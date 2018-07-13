@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Ringoid</string>
+
+    <string name="label_boosted">Boosted</string>
+
+    <string name="message_location_enable">Please, enable your location</string>
+    <string name="message_register_confirm">Enter last 5 digits of calling number</string>
+    <string name="message_invite">Send invitation to your friend</string>
+
+    <string name="hint_chat">enter message here</string>
+    <string name="hint_email">enter friend email</string>
+    <string name="hint_phone">Enter phone number</string>
+
+    <string name="checkbox_adult">I have 18</string>
+    <string name="checkbox_terms">I agree to the Terms and Conditions</string>
+
+    <string name="button_invite">Send invite</string>
+    <string name="button_location_enable">Enable location</string>
+    <string name="button_confirm">confirm</string>
+    <string name="button_register">register</string>
+
+</resources>

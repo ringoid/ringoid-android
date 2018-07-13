@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/selectableImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_sex_female_black_24dp" />
+
+        <ImageView
+            style="@style/selectableImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_sex_male_black_24dp" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rvItems"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_boost_white_24dp" />
+
+</FrameLayout>
