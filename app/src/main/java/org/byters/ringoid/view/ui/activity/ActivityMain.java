@@ -21,6 +21,6 @@ public class ActivityMain extends AppCompatActivity {
 
         ApplicationRingoid.getComponent().inject(this);
 
-        presenterActivityMain.onCreateView();
+        presenterActivityMain.onCreateView(getSupportFragmentManager(), R.id.flContentRoot);
     }
 }

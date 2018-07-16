@@ -21,7 +21,7 @@ public class ApplicationRingoid extends Application {
     private AppComponent buildComponent() {
         return DaggerAppComponent
                 .builder()
-                .appModule(new AppModule())
+                .appModule(new AppModule(this))
                 .build();
     }
 }
