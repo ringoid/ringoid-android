@@ -15,7 +15,7 @@ public class CacheToken implements ICacheToken {
 
     private String token;
 
-    public CacheToken(){
+    public CacheToken() {
         ApplicationRingoid.getComponent().inject(this);
     }
 
@@ -30,5 +30,11 @@ public class CacheToken implements ICacheToken {
 
         token = cacheStorage.readObject(FileEnum.TOKEN, String.class);
         return token;
+    }
+
+    @Override
+    public void setToken(String token) {
+        this.token = token;
+        cacheStorage.writeData(FileEnum.TOKEN, token);
     }
 }

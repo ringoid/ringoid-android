@@ -1,0 +1,37 @@
+package org.byters.ringoid.controller.data.repository;
+
+import org.byters.mockserver.MockServer;
+import org.byters.ringoid.ApplicationRingoid;
+import org.byters.ringoid.controller.data.memorycache.ICacheRegister;
+import org.byters.ringoid.controller.data.repository.callback.IRepositoryRegisterListener;
+
+import java.lang.ref.WeakReference;
+
+import javax.inject.Inject;
+
+public class RepositoryRegister implements IRepositoryRegister {
+    @Inject
+    ICacheRegister cacheRegister;
+    private WeakReference<IRepositoryRegisterListener> refListener;
+
+    public RepositoryRegister() {
+        ApplicationRingoid.getComponent().inject(this);
+    }
+
+    @Override
+    public void request(String phone) {
+        //todo implement
+        MockServer.requestRegister(phone, cacheRegister.getSex());
+        notifySuccess();
+    }
+
+    private void notifySuccess() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onSuccess();
+    }
+
+    @Override
+    public void setListener(IRepositoryRegisterListener listener) {
+        this.refListener = new WeakReference<>(listener);
+    }
+}

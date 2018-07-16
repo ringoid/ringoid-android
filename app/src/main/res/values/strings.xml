@@ -18,5 +18,7 @@
     <string name="button_location_enable">Enable location</string>
     <string name="button_confirm">confirm</string>
     <string name="button_register">register</string>
+    <string name="hint_register_confirm">enter last 5 digits</string>
+    <string name="error_terms">Please accept terms and review your age</string>
 
 </resources>
