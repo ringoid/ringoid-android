@@ -2,7 +2,7 @@ package org.byters.ringoid.view;
 
 import android.support.v4.app.FragmentManager;
 
-import org.byters.ringoid.view.ui.fragment.FragmentFeed;
+import org.byters.ringoid.view.ui.fragment.FragmentPages;
 import org.byters.ringoid.view.ui.fragment.FragmentLogin;
 
 import java.lang.ref.WeakReference;
@@ -16,7 +16,7 @@ public class Navigator implements INavigator {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
-                .replace(viewId, new FragmentFeed())
+                .replace(viewId, new FragmentPages())
                 .commit();
     }
 

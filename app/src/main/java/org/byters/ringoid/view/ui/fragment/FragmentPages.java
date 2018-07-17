@@ -16,7 +16,7 @@ import org.byters.ringoid.view.presenter.callback.IPresenterPagesContainerListen
 
 import javax.inject.Inject;
 
-public class FragmentFeed extends FragmentBase
+public class FragmentPages extends FragmentBase
         implements View.OnClickListener {
 
     @Inject
