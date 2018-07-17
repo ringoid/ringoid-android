@@ -1,5 +1,7 @@
 package org.byters.ringoid.view.presenter;
 
+import android.text.TextUtils;
+
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegister;
@@ -16,10 +18,6 @@ import javax.inject.Inject;
 
 public class PresenterRegister implements IPresenterRegister {
 
-    private ListenerRegisterConfirm listenerRegisterConfirm;
-    private ListenerRegister listenerRegister;
-    private WeakReference<IPresenterRegisterListener> refListener;
-
     @Inject
     IRepositoryRegister repositoryRegister;
 
@@ -32,6 +30,10 @@ public class PresenterRegister implements IPresenterRegister {
     @Inject
     ICacheRegister cacheRegister;
 
+    private ListenerRegisterConfirm listenerRegisterConfirm;
+    private ListenerRegister listenerRegister;
+    private WeakReference<IPresenterRegisterListener> refListener;
+
     public PresenterRegister() {
         ApplicationRingoid.getComponent().inject(this);
         repositoryRegister.setListener(listenerRegister = new ListenerRegister());
@@ -42,6 +44,11 @@ public class PresenterRegister implements IPresenterRegister {
     public void onClickRegister(String phoneText, boolean isAgeChecked, boolean isTermsChecked) {
         if (!isAgeChecked || !isTermsChecked) {
             notifyError(R.string.error_terms);
+            return;
+        }
+
+        if (TextUtils.isEmpty(phoneText)) {
+            notifyError(R.string.error_phone);
             return;
         }
 

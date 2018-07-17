@@ -55,6 +55,10 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.tvRegisterConfirm).setOnClickListener(this);
         view.findViewById(R.id.ivSexFemale).setOnClickListener(this);
         view.findViewById(R.id.ivSexMale).setOnClickListener(this);
+
+        vsLogin.setInAnimation(getContext(), android.R.anim.slide_in_left);
+
+        vsLogin.setOutAnimation(getContext(), android.R.anim.slide_out_right);
     }
 
     @Override
@@ -83,7 +87,7 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void navigateConfirm() {
-            vsLogin.getNextView();
+            vsLogin.showNext();
         }
     }
 }
