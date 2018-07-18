@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        tools:text="@string/login_phone_confirm_message_format" />
+
+    <EditText
+        android:id="@+id/etPhoneCheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:hint="@string/hint_register_confirm"
+        android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/tvPhoneReenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:paddingBottom="12dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="12dp"
+        android:text="@string/button_phone_reenter"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Button" />
+
+    <TextView
+        android:id="@+id/tvRegisterConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:paddingBottom="12dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="12dp"
+        android:text="@string/button_confirm"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

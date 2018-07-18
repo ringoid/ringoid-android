@@ -8,47 +8,25 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:padding="12dp"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:visibility="gone"
-        tools:text="status"
-        tools:visibility="visible" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+        tools:text="1" />
 
-    <include layout="@layout/view_container_images" />
-
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/view_container_images" />
 
         <TextView
-            android:id="@+id/tvLikes"
-            style="@style/textImage"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_favorite_black_24dp"
+            android:padding="12dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
             android:visibility="gone"
-            tools:text="123"
+            tools:text="status"
             tools:visibility="visible" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:id="@+id/ivReport"
-            style="@style/selectableImage"
-            android:src="@drawable/ic_report_black_24dp" />
-
-        <ImageView
-            android:id="@+id/ivBlock"
-            style="@style/selectableImage"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_block_black_24dp" />
-
-    </LinearLayout>
-
+    </FrameLayout>
 
 </LinearLayout>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-
+    <!--todo show on explore and rank -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +15,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/message_location_enable" />
+            android:gravity="center"
+            android:text="@string/message_location_enable"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,6 +28,14 @@
             android:text="@string/button_location_enable"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
             android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/message_location_enable_distance"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
 
     </LinearLayout>
 

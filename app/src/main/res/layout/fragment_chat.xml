@@ -5,6 +5,26 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--todo
+
+    female
+    1 step text, supertext, wink, superwink
+    2 step text, supertext
+
+    male
+    1 step
+    supertext, wink, superwink
+
+    2 step
+    wink-wink -> supertext
+    wink-message -> text, supertext
+
+
+    //////////////////
+    disable copypaste
+
+    -->
+
     <ImageView
         android:src="@drawable/ic_arrow_back_black_24dp"
         style="@style/selectableImage"/>
@@ -24,6 +44,7 @@
         android:layout_gravity="bottom">
 
         <EditText
+            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="56dp"
@@ -39,7 +60,6 @@
     <LinearLayout
         android:gravity="center"
         android:orientation="horizontal"
-        tools:visibility="visible"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="56dp"

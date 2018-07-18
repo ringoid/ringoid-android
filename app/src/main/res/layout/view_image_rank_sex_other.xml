@@ -1,43 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <include layout="@layout/view_container_images" />
-
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:padding="12dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+        tools:text="1" />
 
-        <ImageView
-            android:id="@+id/ivLike"
-            style="@style/selectableImage"
-            android:src="@drawable/ic_favorite_black_24dp" />
-
-        <ImageView
-            android:id="@+id/ivLikeSuper"
-            style="@style/selectableImage"
-            android:src="@drawable/ic_favorite_black_24dp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:id="@+id/ivReport"
-            style="@style/selectableImage"
-            android:src="@drawable/ic_report_black_24dp" />
-
-        <ImageView
-            android:id="@+id/ivBlock"
-            style="@style/selectableImage"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_block_black_24dp" />
-
-    </LinearLayout>
-
+    <include layout="@layout/view_container_images" />
 
 </LinearLayout>

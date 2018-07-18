@@ -31,6 +31,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="56dp" />
 
+    <!--todo only on same gender -->
     <android.support.design.widget.FloatingActionButton
         android:layout_width="56dp"
         android:layout_height="56dp"

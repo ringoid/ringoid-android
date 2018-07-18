@@ -3,23 +3,55 @@
 
     <string name="label_boosted">Boosted</string>
 
-    <string name="message_location_enable">Please, enable your location</string>
-    <string name="message_register_confirm">Enter last 5 digits of calling number</string>
+    <string name="message_location_enable">Ringoid is using geolocation to help you discover people with attractive photos around you.</string>
+    <string name="login_phone_confirm_message_format" formatted="false">Verification code has been sent to %s
+    \nIf you have not received SMS within two minutes, please check your phone number or connection</string>
     <string name="message_invite">Send invitation to your friend</string>
 
     <string name="hint_chat">enter message here</string>
     <string name="hint_email">enter friend email</string>
     <string name="hint_phone">Enter phone number</string>
 
-    <string name="checkbox_adult">I have 18</string>
-    <string name="checkbox_terms">I agree to the Terms and Conditions</string>
+    <string name="checkbox_adult">I am of legal age and adult, as defined by the country or state from where I am accessing Ringoid app</string>
+    <string name="checkbox_terms">I have read and understood Ringoid\'s Terms &amp; Conditions and Privacy Notice</string>
 
     <string name="button_invite">Send invite</string>
     <string name="button_location_enable">Enable location</string>
     <string name="button_confirm">confirm</string>
-    <string name="button_register">register</string>
-    <string name="hint_register_confirm">enter last 5 digits</string>
+    <string name="button_register">next</string>
+    <string name="hint_register_confirm">enter code from sms</string>
     <string name="error_terms">Please accept terms and review your age</string>
     <string name="error_phone">Please enter phone number</string>
+    <string name="button_phone_reenter">edit phone</string>
+    <string name="hint_date_birth">Select birth date</string>
+    <string name="welcome_title">Welcome to Ringoid!</string>
+    <string name="welcome_lead">Ringoid is like Tinder or Bumble but more interesting and easier to use</string>
+    <string name="welcome_list">
+    \u2022 See how many likes your photos receive from opposite gender
+    \n\u2022 Check your ranking amongst others in your location
+    \n\u2022 Browse feeds of people with attractive photos
+    \n\u2022 Discover hot people around you</string>
+    <string name="button_accept_terms">Agree and Continue</string>
+    <string name="login_phone_title">Verify your phone number</string>
+    <string name="login_phone_lead">Ringoid will send an SMS message (carrier charges may apply) to verify your phone number. Enter your country code and phone number:</string>
+    <string name="login_phone_country">Choose your country</string>
+    <string name="button_login_phone">Verify</string>
+    <string name="checkbox_terms_2">I have read and agreed to the Terms of Use and the Privacy Notice</string>
+    <string name="button_register_confirm">Continue</string>
+    <string name="login_register_age_desc">We don\'t display age on user profiles and don\'t use age in filters or search.</string>
+    <string name="login_phone_note">We don\'t collect or use your name or username, email, password, Facebook details or list of friends, Instagram or LinkedIn ids, contact list from phonebook.</string>
+    <string name="login_referral_message">Claim 50 credits</string>
+    <string name="hint_referral">Enter referral link</string>
+    <string name="login_referral_desc">Both you and a person who invited you will receive 50 credits that you can use to
+        \n\u2022 Boost your profile (30 credits)
+        \n\u2022 Buy extra photo for your profile (200 credits)
+        \n\u2022 Super Like someone (15 credits)
+        \n\u2022 Super Wink to someone (5 credits)
+        \n\u2022 Send Super Text to someone (10 credits)</string>
+    <string name="login_referral_lead">We will hide your profile from your friend, and your friend\'s profile will be hidden from you. Let\'s make it safer for everyone.</string>
+    <string name="wallet_title_format">You have %d credits</string>
+    <string name="wallet_lead">Both you and a person who invited you will receive 50 credits.</string>
+    <string name="wallet_desc">To invite others, ask them to open the referral link.</string>
+    <string name="message_location_enable_distance">We do not display your location to others and do not show distance between users.</string>
 
 </resources>

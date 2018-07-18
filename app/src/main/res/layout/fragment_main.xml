@@ -9,6 +9,8 @@
         android:layout_height="56dp">
 
         <TextView
+
+            android:drawableTint="#757575"
             android:id="@+id/tvWallet"
             style="@style/textImage"
             android:layout_width="wrap_content"
@@ -18,11 +20,14 @@
             tools:text="123" />
 
         <ImageView
+
+            android:tint="#757575"
             style="@style/selectableImage"
             android:layout_gravity="end"
             android:src="@drawable/ic_settings_black_24dp" />
 
         <TextView
+            android:textColor="#757575"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -51,29 +56,36 @@
             android:orientation="horizontal">
 
             <ImageView
+
+                android:tint="#757575"
+                android:id="@+id/ivMenuProfile"
+                style="@style/bottomMenuItem"
+                android:src="@drawable/ic_person_black_24dp" />
+
+
+            <ImageView
                 android:id="@+id/ivMenuRank"
                 style="@style/bottomMenuItem"
                 android:src="@drawable/ic_sort_black_24dp" />
 
             <ImageView
+                android:tint="#757575"
                 android:id="@+id/ivMenuLikes"
                 style="@style/bottomMenuItem"
                 android:src="@drawable/ic_favorite_black_24dp" />
 
-            <ImageView
-                android:id="@+id/ivMenuProfile"
-                style="@style/bottomMenuItem"
-                android:src="@drawable/ic_person_black_24dp" />
 
             <ImageView
+                android:tint="#757575"
                 android:id="@+id/ivMenuMessages"
                 style="@style/bottomMenuItem"
                 android:src="@drawable/ic_message_black_24dp" />
 
             <ImageView
+                android:tint="#757575"
                 android:id="@+id/ivMenuExplore"
                 style="@style/bottomMenuItem"
-                android:src="@drawable/ic_search_black_24dp" />
+                android:src="@drawable/ic_person_pin_circle_black_24dp" />
 
         </LinearLayout>
 
