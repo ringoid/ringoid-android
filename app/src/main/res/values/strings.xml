@@ -23,7 +23,7 @@
     <string name="error_terms">Please accept terms and review your age</string>
     <string name="error_phone">Please enter phone number</string>
     <string name="button_phone_reenter">edit phone</string>
-    <string name="hint_date_birth">Select birth date</string>
+    <string name="message_date_birth">Select birth date</string>
     <string name="welcome_title">Welcome to Ringoid!</string>
     <string name="welcome_lead">Ringoid is like Tinder or Bumble but more interesting and easier to use</string>
     <string name="welcome_list">
@@ -53,5 +53,8 @@
     <string name="wallet_lead">Both you and a person who invited you will receive 50 credits.</string>
     <string name="wallet_desc">To invite others, ask them to open the referral link.</string>
     <string name="message_location_enable_distance">We do not display your location to others and do not show distance between users.</string>
+    <string name="error_agreement">To continue agree the terms</string>
+    <string name="error_age_terms_date">Please check entered data</string>
+    <string name="button_referral_skip">skip</string>
 
 </resources>

@@ -1,8 +1,11 @@
 package org.byters.ringoid.controller.data.repository;
 
+import com.google.gson.Gson;
+
 import org.byters.mockserver.MockServer;
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.controller.data.memorycache.ICacheToken;
+import org.byters.ringoid.controller.data.network.response.ResponseRegisterCodeConfirm;
 import org.byters.ringoid.controller.data.repository.callback.IRepositoryRegisterConfirmListener;
 
 import java.lang.ref.WeakReference;
@@ -27,14 +30,14 @@ public class RepositoryRegisterConfirm implements IRepositoryRegisterConfirm {
     @Override
     public void request(String textCheck) {
         //todo implement
-        String token = MockServer.requestRegisterConfirm(textCheck);
+        ResponseRegisterCodeConfirm response = new Gson().fromJson(MockServer.requestRegisterCodeConfirm(textCheck), ResponseRegisterCodeConfirm.class);
 
-        cacheToken.setToken(token);
-        notifySuccess();
+        cacheToken.setToken(response.getToken());
+        notifySuccess(response.isRegistered());
     }
 
-    private void notifySuccess() {
+    private void notifySuccess(boolean isRegistered) {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().onSuccess();
+        refListener.get().onSuccess(isRegistered);
     }
 }

@@ -1,7 +1,10 @@
 package org.byters.ringoid.controller.data.memorycache;
 
+import org.byters.ringoid.model.SEX;
+
 public class CacheRegister implements ICacheRegister {
     private int sex;
+    private long dateBirthMillis;
 
     @Override
     public int getSex() {
@@ -10,11 +13,26 @@ public class CacheRegister implements ICacheRegister {
 
     @Override
     public void setSexFemale() {
-        this.sex = 0;
+        this.sex = SEX.FEMALE.getValue();
     }
 
     @Override
     public void setSexMale() {
-        this.sex = 1;
+        this.sex = SEX.FEMALE.getValue();
+    }
+
+    @Override
+    public boolean isDateBirthSelected() {
+        return dateBirthMillis != 0;
+    }
+
+    @Override
+    public long getDateBirthMillis() {
+        return dateBirthMillis;
+    }
+
+    @Override
+    public void setDateBirthMillis(long timeInMillis) {
+        this.dateBirthMillis = timeInMillis;
     }
 }

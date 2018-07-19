@@ -21,7 +21,7 @@ public class RepositoryRegister implements IRepositoryRegister {
     @Override
     public void request(String phone) {
         //todo implement
-        MockServer.requestRegister(phone, cacheRegister.getSex());
+        MockServer.requestRegisterCode(phone);
         notifySuccess();
     }
 

@@ -15,7 +15,7 @@
         tools:text="@string/login_phone_confirm_message_format" />
 
     <EditText
-        android:id="@+id/etPhoneCheck"
+        android:id="@+id/etCodeSMS"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -39,7 +39,7 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Button" />
 
     <TextView
-        android:id="@+id/tvRegisterConfirm"
+        android:id="@+id/tvCodeSMSConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

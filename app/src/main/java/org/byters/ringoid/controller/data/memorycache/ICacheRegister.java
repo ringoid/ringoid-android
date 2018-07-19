@@ -6,4 +6,10 @@ public interface ICacheRegister {
     void setSexFemale();
 
     void setSexMale();
+
+    boolean isDateBirthSelected();
+
+    long getDateBirthMillis();
+
+    void setDateBirthMillis(long timeInMillis);
 }
