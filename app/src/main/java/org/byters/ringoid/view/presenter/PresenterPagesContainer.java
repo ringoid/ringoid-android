@@ -6,6 +6,7 @@ import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.controller.data.memorycache.ICacheWallet;
 import org.byters.ringoid.controller.data.memorycache.listener.ICacheWalletListener;
 import org.byters.ringoid.controller.data.repository.IRepositoryWallet;
+import org.byters.ringoid.view.INavigator;
 import org.byters.ringoid.view.INavigatorPages;
 import org.byters.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 
@@ -17,6 +18,11 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     @Inject
     INavigatorPages navigatorPages;
+
+    @Inject
+    INavigator navigator;
+
+
     @Inject
     IRepositoryWallet repositoryWallet;
     @Inject
@@ -70,6 +76,11 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Override
     public void setListener(IPresenterPagesContainerListener listener) {
         this.refListener = new WeakReference<>(listener);
+    }
+
+    @Override
+    public void onClickSettings() {
+        navigator.navigateSettings();
     }
 
     private void updateWallet(int coinsNum) {

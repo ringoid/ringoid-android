@@ -2,11 +2,13 @@ package org.byters.ringoid;
 
 import android.content.Context;
 
+import org.byters.ringoid.controller.data.memorycache.CacheBlacklist;
 import org.byters.ringoid.controller.data.memorycache.CacheCountryList;
 import org.byters.ringoid.controller.data.memorycache.CacheRegister;
 import org.byters.ringoid.controller.data.memorycache.CacheRegisterReferral;
 import org.byters.ringoid.controller.data.memorycache.CacheToken;
 import org.byters.ringoid.controller.data.memorycache.CacheWallet;
+import org.byters.ringoid.controller.data.memorycache.ICacheBlacklist;
 import org.byters.ringoid.controller.data.memorycache.ICacheCountryList;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegister;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegisterReferral;
@@ -31,15 +33,19 @@ import org.byters.ringoid.view.INavigatorPages;
 import org.byters.ringoid.view.Navigator;
 import org.byters.ringoid.view.NavigatorPages;
 import org.byters.ringoid.view.presenter.IPresenterActivityMain;
+import org.byters.ringoid.view.presenter.IPresenterAdapterBlacklistPhones;
 import org.byters.ringoid.view.presenter.IPresenterAdapterCountryList;
 import org.byters.ringoid.view.presenter.IPresenterAdapterRank;
 import org.byters.ringoid.view.presenter.IPresenterAdapterRankImages;
+import org.byters.ringoid.view.presenter.IPresenterBlacklistPhones;
 import org.byters.ringoid.view.presenter.IPresenterPagesContainer;
 import org.byters.ringoid.view.presenter.IPresenterRegister;
 import org.byters.ringoid.view.presenter.PresenterActivityMain;
+import org.byters.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterAdapterCountryList;
 import org.byters.ringoid.view.presenter.PresenterAdapterRank;
 import org.byters.ringoid.view.presenter.PresenterAdapterRankImages;
+import org.byters.ringoid.view.presenter.PresenterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterPagesContainer;
 import org.byters.ringoid.view.presenter.PresenterRegister;
 
@@ -109,6 +115,11 @@ class AppModule {
         return new CacheRegisterReferral();
     }
 
+    @Provides
+    @Singleton
+    ICacheBlacklist getCacheBlacklist() {
+        return new CacheBlacklist();
+    }
 
     @Provides
     @Singleton
@@ -144,6 +155,18 @@ class AppModule {
     @Singleton
     IPresenterAdapterRankImages getPresenterAdapterRankImages() {
         return new PresenterAdapterRankImages();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterBlacklistPhones getPresenterBlacklistPhones() {
+        return new PresenterBlacklistPhones();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterAdapterBlacklistPhones getPresenterAdapterBlacklistPhones() {
+        return new PresenterAdapterBlacklistPhones();
     }
 
     @Provides

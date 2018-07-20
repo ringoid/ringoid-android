@@ -20,4 +20,6 @@ public interface IPresenterPagesContainer {
     void onClickPageExplore();
 
     void setListener(IPresenterPagesContainerListener listener);
+
+    void onClickSettings();
 }

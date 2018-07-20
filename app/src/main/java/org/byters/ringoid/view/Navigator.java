@@ -2,8 +2,10 @@ package org.byters.ringoid.view;
 
 import android.support.v4.app.FragmentManager;
 
+import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import org.byters.ringoid.view.ui.fragment.FragmentPages;
 import org.byters.ringoid.view.ui.fragment.FragmentLogin;
+import org.byters.ringoid.view.ui.fragment.FragmentSettings;
 
 import java.lang.ref.WeakReference;
 
@@ -33,5 +35,27 @@ public class Navigator implements INavigator {
     public void set(FragmentManager supportFragmentManager, int viewId) {
         this.refFragmentManager = new WeakReference<>(supportFragmentManager);
         this.viewId = viewId;
+    }
+
+    @Override
+    public void navigateSettings() {
+
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, new FragmentSettings())
+                .commit();
+    }
+
+    @Override
+    public void navigateBlacklistPhones() {
+
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, new FragmentBlacklistPhones())
+                .commit();
     }
 }

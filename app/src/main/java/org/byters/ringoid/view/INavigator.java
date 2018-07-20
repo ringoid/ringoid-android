@@ -8,4 +8,8 @@ public interface INavigator {
     void navigateLogin();
 
     void set(FragmentManager supportFragmentManager, int viewId);
+
+    void navigateSettings();
+
+    void navigateBlacklistPhones();
 }

@@ -20,10 +20,10 @@ public class FragmentPages extends FragmentBase
         implements View.OnClickListener {
 
     /*
-    * on like like alpha
-    * on superlike alertdialog only first time with description, cost, ok, cancel.
-    * on superlike alertdialog if no enough money description, cost, gotowallet, cancel.
-    * */
+     * on like like alpha
+     * on superlike alertdialog only first time with description, cost, ok, cancel.
+     * on superlike alertdialog if no enough money description, cost, gotowallet, cancel.
+     * */
 
     @Inject
     IPresenterPagesContainer presenterPagesContainer;
@@ -60,7 +60,7 @@ public class FragmentPages extends FragmentBase
         view.findViewById(R.id.ivMenuMessages).setOnClickListener(this);
         view.findViewById(R.id.ivMenuExplore).setOnClickListener(this);
         tvWallet.setOnClickListener(this);
-
+        view.findViewById(R.id.tvSettings).setOnClickListener(this);
     }
 
     @Override
@@ -68,6 +68,9 @@ public class FragmentPages extends FragmentBase
 
         if (view.getId() == R.id.tvWallet)
             presenterPagesContainer.onClickWallet();
+
+        if (view.getId() == R.id.tvSettings)
+            presenterPagesContainer.onClickSettings();
 
         if (view.getId() == R.id.ivMenuRank)
             presenterPagesContainer.onClickPageRank();

@@ -1,20 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/ivBack"
+        style="@style/selectableImage"
+        android:src="@drawable/ic_arrow_back_black_24dp" />
 
-    <!--links(open webview in app):
-     faq,
-     terms and privacy,
-     support email,
-     copyright,
+    <TextView
+        style="@style/dialog_menu_item"
+        android:text="@string/settings_faq" />
 
-     blacklist for numbers (add phonenumber to blacklist)
-     button delete account
-     about (Ringoid is dating app),
-     version
-     -->
+    <TextView
+        style="@style/dialog_menu_item"
+        android:text="@string/settings_terms" />
+
+    <TextView
+        style="@style/dialog_menu_item"
+        android:text="@string/settings_email" />
+
+    <TextView
+        style="@style/dialog_menu_item"
+        android:text="@string/settings_copyright" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/tvBlacklist"
+        style="@style/dialog_menu_item"
+        android:text="@string/settings_blacklist" />
+
+    <TextView
+        style="@style/dialog_menu_item"
+        android:text="@string/settings_delete_account" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/settings_about"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        tools:text="v123" />
 
 </LinearLayout>
