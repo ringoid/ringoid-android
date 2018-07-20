@@ -5,10 +5,12 @@ import android.content.Context;
 import org.byters.ringoid.controller.data.memorycache.CacheCountryList;
 import org.byters.ringoid.controller.data.memorycache.CacheRegister;
 import org.byters.ringoid.controller.data.memorycache.CacheRegisterReferral;
+import org.byters.ringoid.controller.data.memorycache.CacheToken;
 import org.byters.ringoid.controller.data.memorycache.CacheWallet;
 import org.byters.ringoid.controller.data.memorycache.ICacheCountryList;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegister;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegisterReferral;
+import org.byters.ringoid.controller.data.memorycache.ICacheToken;
 import org.byters.ringoid.controller.data.memorycache.ICacheWallet;
 import org.byters.ringoid.controller.data.repository.IRepositoryCountryList;
 import org.byters.ringoid.controller.data.repository.IRepositoryRegister;
@@ -22,22 +24,24 @@ import org.byters.ringoid.controller.data.repository.RepositoryRegisterConfirm;
 import org.byters.ringoid.controller.data.repository.RepositoryRegisterReferralConfirm;
 import org.byters.ringoid.controller.data.repository.RepositoryRegisterReferralDescription;
 import org.byters.ringoid.controller.data.repository.RepositoryWallet;
-import org.byters.ringoid.view.INavigatorPages;
-import org.byters.ringoid.view.NavigatorPages;
-import org.byters.ringoid.view.presenter.IPresenterAdapterCountryList;
-import org.byters.ringoid.view.presenter.IPresenterPagesContainer;
-import org.byters.ringoid.view.presenter.PresenterAdapterCountryList;
-import org.byters.ringoid.view.presenter.PresenterPagesContainer;
-import org.byters.ringoid.view.presenter.PresenterRegister;
-import org.byters.ringoid.controller.data.memorycache.CacheToken;
-import org.byters.ringoid.controller.data.memorycache.ICacheToken;
 import org.byters.ringoid.controller.device.CacheStorage;
 import org.byters.ringoid.controller.device.ICacheStorage;
 import org.byters.ringoid.view.INavigator;
+import org.byters.ringoid.view.INavigatorPages;
 import org.byters.ringoid.view.Navigator;
+import org.byters.ringoid.view.NavigatorPages;
 import org.byters.ringoid.view.presenter.IPresenterActivityMain;
+import org.byters.ringoid.view.presenter.IPresenterAdapterCountryList;
+import org.byters.ringoid.view.presenter.IPresenterAdapterRank;
+import org.byters.ringoid.view.presenter.IPresenterAdapterRankImages;
+import org.byters.ringoid.view.presenter.IPresenterPagesContainer;
 import org.byters.ringoid.view.presenter.IPresenterRegister;
 import org.byters.ringoid.view.presenter.PresenterActivityMain;
+import org.byters.ringoid.view.presenter.PresenterAdapterCountryList;
+import org.byters.ringoid.view.presenter.PresenterAdapterRank;
+import org.byters.ringoid.view.presenter.PresenterAdapterRankImages;
+import org.byters.ringoid.view.presenter.PresenterPagesContainer;
+import org.byters.ringoid.view.presenter.PresenterRegister;
 
 import java.lang.ref.WeakReference;
 
@@ -58,50 +62,50 @@ class AppModule {
 
     @Provides
     @Singleton
-    INavigator getNavigator(){
+    INavigator getNavigator() {
         return new Navigator();
     }
 
     @Provides
     @Singleton
-    INavigatorPages getNavigatorPages(){
+    INavigatorPages getNavigatorPages() {
         return new NavigatorPages();
     }
 
     @Provides
     @Singleton
-    ICacheToken getCacheToken(){
+    ICacheToken getCacheToken() {
         return new CacheToken();
     }
 
     @Provides
     @Singleton
-    ICacheStorage getCacheStorage(){
+    ICacheStorage getCacheStorage() {
         return new CacheStorage(refContext == null ? null : refContext.get());
     }
 
     @Provides
     @Singleton
-    ICacheRegister getCacheRegister(){
+    ICacheRegister getCacheRegister() {
         return new CacheRegister();
     }
 
     @Provides
     @Singleton
-    ICacheWallet getCacheWallet(){
+    ICacheWallet getCacheWallet() {
         return new CacheWallet();
     }
 
     @Provides
     @Singleton
-    ICacheCountryList getCacheCountryList(){
+    ICacheCountryList getCacheCountryList() {
         return new CacheCountryList();
     }
 
 
     @Provides
     @Singleton
-    ICacheRegisterReferral getCacheRegisterReferral(){
+    ICacheRegisterReferral getCacheRegisterReferral() {
         return new CacheRegisterReferral();
     }
 
@@ -132,39 +136,51 @@ class AppModule {
 
     @Provides
     @Singleton
-    IRepositoryRegister getRepositoryRegister(){
+    IPresenterAdapterRank getPresenterAdapterRank() {
+        return new PresenterAdapterRank();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterAdapterRankImages getPresenterAdapterRankImages() {
+        return new PresenterAdapterRankImages();
+    }
+
+    @Provides
+    @Singleton
+    IRepositoryRegister getRepositoryRegister() {
         return new RepositoryRegister();
     }
 
     @Provides
     @Singleton
-    IRepositoryCountryList getRepositoryCountryList(){
+    IRepositoryCountryList getRepositoryCountryList() {
         return new RepositoryCountryList();
     }
 
     @Provides
     @Singleton
-    IRepositoryWallet getRepositoryWallet(){
+    IRepositoryWallet getRepositoryWallet() {
         return new RepositoryWallet();
     }
 
 
     @Provides
     @Singleton
-    IRepositoryRegisterConfirm getRepositoryRegisterConfirm(){
+    IRepositoryRegisterConfirm getRepositoryRegisterConfirm() {
         return new RepositoryRegisterConfirm();
     }
 
     @Provides
     @Singleton
-    IRepositoryRegisterReferralDescription getRepositoryRegisterReferralDescription(){
+    IRepositoryRegisterReferralDescription getRepositoryRegisterReferralDescription() {
         return new RepositoryRegisterReferralDescription();
     }
 
 
     @Provides
     @Singleton
-    IRepositoryRegisterReferralConfirm getRepositoryRegisterReferralConfirm(){
+    IRepositoryRegisterReferralConfirm getRepositoryRegisterReferralConfirm() {
         return new RepositoryRegisterReferralConfirm();
     }
 

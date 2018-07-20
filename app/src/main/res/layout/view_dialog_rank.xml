@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvLike"
+        style="@style/dialog_menu_item"
+        android:text="@string/dialog_menu_rank_like" />
+
+
+    <TextView
+        android:id="@+id/tvSuperlike"
+        style="@style/dialog_menu_item"
+        android:text="@string/dialog_menu_rank_superlike" />
+
+    <TextView
+        android:id="@+id/tvReport"
+        style="@style/dialog_menu_item"
+        android:text="@string/dialog_menu_rank_report" />
+
+    <TextView
+        android:id="@+id/tvBlock"
+        style="@style/dialog_menu_item"
+        android:text="@string/dialog_menu_rank_block" />
+
+
+</LinearLayout>

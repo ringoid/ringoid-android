@@ -10,12 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.byters.ringoid.R;
-import org.byters.ringoid.view.ui.adapter.AdapterBase;
-import org.byters.ringoid.view.ui.adapter.AdapterRankSexOther;
-import org.byters.ringoid.view.ui.adapter.AdapterRankSexSame;
+import org.byters.ringoid.view.ui.adapter.AdapterRank;
 
-public class FragmentRank extends FragmentBase
-        implements View.OnClickListener {
+public class FragmentRank extends FragmentBase {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,28 +25,13 @@ public class FragmentRank extends FragmentBase
         View view = inflater.inflate(R.layout.fragment_rank, container, false);
 
         initList(view);
-        view.findViewById(R.id.ivFemale).setOnClickListener(this);
-        view.findViewById(R.id.ivMale).setOnClickListener(this);
         return view;
     }
 
     private void initList(View view) {
-        initList(view, new AdapterRankSexOther()); //todo implement get sex from cache
-    }
-
-    private void initList(View view, AdapterBase adapterBase) {
         RecyclerView rvItems = view.findViewById(R.id.rvItems);
         rvItems.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        rvItems.setAdapter(adapterBase);
+        rvItems.setAdapter(new AdapterRank());
     }
 
-    @Override
-    public void onClick(View view) {
-        //todo implement pass to presenter
-        if (view.getId() == R.id.ivFemale)
-            initList(getView(), new AdapterRankSexOther());
-
-        if (view.getId() == R.id.ivMale)
-            initList(getView(), new AdapterRankSexSame());
-    }
 }

@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:paddingBottom="80dp"
-        tools:listitem="@layout/view_image_profile"/>
+        tools:listitem="@layout/view_image"/>
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="56dp"

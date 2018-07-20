@@ -56,5 +56,9 @@
     <string name="error_agreement">To continue agree the terms</string>
     <string name="error_age_terms_date">Please check entered data</string>
     <string name="button_referral_skip">skip</string>
+    <string name="dialog_menu_rank_like">like</string>
+    <string name="dialog_menu_rank_superlike">superlike</string>
+    <string name="dialog_menu_rank_report">report</string>
+    <string name="dialog_menu_rank_block">block</string>
 
 </resources>

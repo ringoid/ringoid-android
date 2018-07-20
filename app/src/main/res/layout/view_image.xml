@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -14,6 +15,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
+        android:id="@+id/tvMenu"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:padding="12dp"
@@ -21,12 +23,13 @@
         android:tint="#757575"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView xmlns:tools="http://schemas.android.com/tools"
+    <TextView
         android:id="@+id/tvLikes"
         style="@style/textImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_favorite_black_24dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="123"
         tools:visibility="visible" />

@@ -12,8 +12,10 @@ import org.byters.ringoid.view.presenter.PresenterPagesContainer;
 import org.byters.ringoid.view.presenter.PresenterRegister;
 import org.byters.ringoid.view.ui.activity.ActivityMain;
 import org.byters.ringoid.view.ui.adapter.AdapterCountryList;
-import org.byters.ringoid.view.ui.fragment.FragmentPages;
+import org.byters.ringoid.view.ui.adapter.AdapterRank;
+import org.byters.ringoid.view.ui.adapter.AdapterRankImages;
 import org.byters.ringoid.view.ui.fragment.FragmentLogin;
+import org.byters.ringoid.view.ui.fragment.FragmentPages;
 
 import javax.inject.Singleton;
 
@@ -49,4 +51,8 @@ public interface AppComponent {
     void inject(RepositoryRegisterReferralDescription repositoryRegisterReferralDescription);
 
     void inject(RepositoryRegisterReferralConfirm repositoryRegisterReferralConfirm);
+
+    void inject(AdapterRank adapterRank);
+
+    void inject(AdapterRankImages adapterRankImages);
 }
