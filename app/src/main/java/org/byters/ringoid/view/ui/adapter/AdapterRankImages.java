@@ -50,6 +50,7 @@ public class AdapterRankImages extends AdapterBase {
         private View ivLikeAnimated;
         private ImageView ivItem;
         private DialogMenuRank dialogMenuRank;
+        private AnimationSet animation;
 
         ViewHolderItem(ViewGroup parent) {
             super(parent, R.layout.view_image);
@@ -81,24 +82,28 @@ public class AdapterRankImages extends AdapterBase {
                 dialogMenuRank.show();
             }
 
-            showLikeAnimation();
+            if (v == itemView)
+               ;// showLikeAnimation();
 
         }
 
         private void showLikeAnimation() {
-            ivLikeAnimated.setVisibility(View.VISIBLE);
-            Animation animationAlpha = new AlphaAnimation(1, 0);
-            animationAlpha.setDuration(250);
+            if (animation == null) {
+                ivLikeAnimated.setVisibility(View.VISIBLE);
+                Animation animationAlpha = new AlphaAnimation(1, 0);
+                animationAlpha.setDuration(250);
 
-            Animation animationResize = new ScaleAnimation(1f, 0.8f, 1f, 0.8f,
-                    Animation.RELATIVE_TO_SELF, 0.5f,
-                    Animation.RELATIVE_TO_SELF, 0.5f);
-            animationResize.setDuration(250);
+                Animation animationResize = new ScaleAnimation(1f, 0.8f, 1f, 0.8f,
+                        Animation.RELATIVE_TO_SELF, 0.5f,
+                        Animation.RELATIVE_TO_SELF, 0.5f);
+                animationResize.setDuration(250);
 
-            AnimationSet animation = new AnimationSet(false);
-            animation.addAnimation(animationAlpha);
-            animation.addAnimation(animationResize);
-            animation.setFillAfter(true);
+                animation = new AnimationSet(false);
+                animation.addAnimation(animationAlpha);
+                animation.addAnimation(animationResize);
+                animation.setFillAfter(true);
+            }
+            animation.reset();
             ivLikeAnimated.startAnimation(animation);
         }
     }
