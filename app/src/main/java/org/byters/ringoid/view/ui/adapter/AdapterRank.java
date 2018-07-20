@@ -2,9 +2,8 @@ package org.byters.ringoid.view.ui.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -51,8 +50,9 @@ public class AdapterRank extends AdapterBase {
             RecyclerView rvItems = itemView.findViewById(R.id.rvImages);
             rvItems.setLayoutManager(new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false));
             rvItems.setAdapter(adapter = new AdapterRankImages());
-            SnapHelper snapHelper = new LinearSnapHelper();
+            PagerSnapHelper snapHelper = new PagerSnapHelper();
             snapHelper.attachToRecyclerView(rvItems);
+
         }
 
         @Override
