@@ -4,6 +4,10 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -43,6 +47,7 @@ public class AdapterRankImages extends AdapterBase {
     }
 
     private class ViewHolderItem extends ViewHolderBase implements View.OnClickListener {
+        private View ivLikeAnimated;
         private ImageView ivItem;
         private DialogMenuRank dialogMenuRank;
 
@@ -50,10 +55,14 @@ public class AdapterRankImages extends AdapterBase {
             super(parent, R.layout.view_image);
             ivItem = itemView.findViewById(R.id.ivContent);
             itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
+            itemView.setOnClickListener(this);
+            ivLikeAnimated = itemView.findViewById(R.id.ivLikeAnimated);
         }
 
         @Override
         void setData(int position) {
+            ivLikeAnimated.setVisibility(View.GONE);
+
             String url = presenterAdapterRankImages.getUrl(AdapterRankImages.this.position, position);
             if (TextUtils.isEmpty(url))
                 ivItem.setImageDrawable(null);
@@ -65,10 +74,32 @@ public class AdapterRankImages extends AdapterBase {
 
         @Override
         public void onClick(View v) {
-            if (dialogMenuRank != null)
-                dialogMenuRank.cancel();
-            dialogMenuRank = new DialogMenuRank(itemView.getContext());
-            dialogMenuRank.show();
+            if (v.getId() == R.id.tvMenu) {
+                if (dialogMenuRank != null)
+                    dialogMenuRank.cancel();
+                dialogMenuRank = new DialogMenuRank(itemView.getContext());
+                dialogMenuRank.show();
+            }
+
+            showLikeAnimation();
+
+        }
+
+        private void showLikeAnimation() {
+            ivLikeAnimated.setVisibility(View.VISIBLE);
+            Animation animationAlpha = new AlphaAnimation(1, 0);
+            animationAlpha.setDuration(250);
+
+            Animation animationResize = new ScaleAnimation(1f, 0.8f, 1f, 0.8f,
+                    Animation.RELATIVE_TO_SELF, 0.5f,
+                    Animation.RELATIVE_TO_SELF, 0.5f);
+            animationResize.setDuration(250);
+
+            AnimationSet animation = new AnimationSet(false);
+            animation.addAnimation(animationAlpha);
+            animation.addAnimation(animationResize);
+            animation.setFillAfter(true);
+            ivLikeAnimated.startAnimation(animation);
         }
     }
 }
