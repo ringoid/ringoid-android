@@ -5,14 +5,16 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!--todo horizontal-->
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/rvItems"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="80dp"
         tools:listitem="@layout/view_image"/>
+
+    <FrameLayout
+        android:id="@+id/flDots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="56dp"

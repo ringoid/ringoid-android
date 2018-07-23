@@ -17,8 +17,13 @@ public class DataProfile {
         return urls.get(imagePosition).ratio;
     }
 
+    public int getLikes(int pos) {
+        return urls.get(pos).likes;
+    }
+
     private class DataImage {
         private String url;
         private float ratio;
+        private int likes;
     }
 }

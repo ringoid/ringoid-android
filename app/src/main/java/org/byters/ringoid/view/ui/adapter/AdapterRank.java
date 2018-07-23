@@ -64,11 +64,8 @@ public class AdapterRank extends AdapterBase {
             rvItems = itemView.findViewById(R.id.rvImages);
             rvItems.setLayoutManager(layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false));
             rvItems.setAdapter(adapter = new AdapterRankImages());
-            PagerSnapHelper snapHelper = new PagerSnapHelper();
+            new PagerSnapHelper().attachToRecyclerView(rvItems);
             rvItems.addOnScrollListener(new ListenerScrollComplete(scrollCallback = new ScrollCallback()));
-
-            snapHelper.attachToRecyclerView(rvItems);
-
             dotsIndicatorHelper = new DotsIndicatorHelper(flDots, rvItems, layoutManager);
         }
 

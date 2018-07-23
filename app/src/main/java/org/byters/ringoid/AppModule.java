@@ -4,6 +4,7 @@ import android.content.Context;
 
 import org.byters.ringoid.controller.data.memorycache.CacheBlacklist;
 import org.byters.ringoid.controller.data.memorycache.CacheCountryList;
+import org.byters.ringoid.controller.data.memorycache.CacheProfile;
 import org.byters.ringoid.controller.data.memorycache.CacheRank;
 import org.byters.ringoid.controller.data.memorycache.CacheRegister;
 import org.byters.ringoid.controller.data.memorycache.CacheRegisterReferral;
@@ -11,6 +12,7 @@ import org.byters.ringoid.controller.data.memorycache.CacheToken;
 import org.byters.ringoid.controller.data.memorycache.CacheWallet;
 import org.byters.ringoid.controller.data.memorycache.ICacheBlacklist;
 import org.byters.ringoid.controller.data.memorycache.ICacheCountryList;
+import org.byters.ringoid.controller.data.memorycache.ICacheProfile;
 import org.byters.ringoid.controller.data.memorycache.ICacheRank;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegister;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegisterReferral;
@@ -37,18 +39,22 @@ import org.byters.ringoid.view.NavigatorPages;
 import org.byters.ringoid.view.presenter.IPresenterActivityMain;
 import org.byters.ringoid.view.presenter.IPresenterAdapterBlacklistPhones;
 import org.byters.ringoid.view.presenter.IPresenterAdapterCountryList;
+import org.byters.ringoid.view.presenter.IPresenterAdapterProfile;
 import org.byters.ringoid.view.presenter.IPresenterAdapterRank;
 import org.byters.ringoid.view.presenter.IPresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.IPresenterBlacklistPhones;
 import org.byters.ringoid.view.presenter.IPresenterPagesContainer;
+import org.byters.ringoid.view.presenter.IPresenterProfile;
 import org.byters.ringoid.view.presenter.IPresenterRegister;
 import org.byters.ringoid.view.presenter.PresenterActivityMain;
 import org.byters.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterAdapterCountryList;
+import org.byters.ringoid.view.presenter.PresenterAdapterProfile;
 import org.byters.ringoid.view.presenter.PresenterAdapterRank;
 import org.byters.ringoid.view.presenter.PresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.PresenterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterPagesContainer;
+import org.byters.ringoid.view.presenter.PresenterProfile;
 import org.byters.ringoid.view.presenter.PresenterRegister;
 
 import java.lang.ref.WeakReference;
@@ -130,6 +136,11 @@ class AppModule {
         return new CacheRank();
     }
 
+    @Provides
+    @Singleton
+    ICacheProfile getCacheProfile() {
+        return new CacheProfile();
+    }
 
     @Provides
     @Singleton
@@ -177,6 +188,18 @@ class AppModule {
     @Singleton
     IPresenterAdapterBlacklistPhones getPresenterAdapterBlacklistPhones() {
         return new PresenterAdapterBlacklistPhones();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterProfile getPresenterProfile() {
+        return new PresenterProfile();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterAdapterProfile getPresenterAdapterProfile() {
+        return new PresenterAdapterProfile();
     }
 
     @Provides
