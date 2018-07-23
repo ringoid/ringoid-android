@@ -1,21 +1,20 @@
 package org.byters.ringoid.view.ui.adapter;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterRankImages;
 import org.byters.ringoid.view.ui.dialog.DialogMenuRank;
+import org.byters.ringoid.view.ui.util.GlideApp;
 
 import javax.inject.Inject;
 
@@ -23,7 +22,6 @@ public class AdapterRankImages extends AdapterBase {
 
     @Inject
     IPresenterAdapterRankImages presenterAdapterRankImages;
-
     private int position;
 
     AdapterRankImages() {
@@ -37,6 +35,19 @@ public class AdapterRankImages extends AdapterBase {
     }
 
     @Override
+    public void onViewDetachedFromWindow(@NonNull ViewHolderBase holder) {
+        super.onViewDetachedFromWindow(holder);
+
+        ((ViewHolderItem) holder).onDetached();
+    }
+
+    @Override
+    public void onViewRecycled(@NonNull ViewHolderBase holder) {
+        super.onViewRecycled(holder);
+        android.util.Log.v("some", "recycled");
+    }
+
+    @Override
     public int getItemCount() {
         return presenterAdapterRankImages.getItemsNum(position);
     }
@@ -46,7 +57,13 @@ public class AdapterRankImages extends AdapterBase {
         notifyDataSetChanged();
     }
 
-    private class ViewHolderItem extends ViewHolderBase implements View.OnClickListener {
+    public void loadImage(RecyclerView.ViewHolder viewHolder) {
+        if (viewHolder == null) return;
+        ((ViewHolderItem) viewHolder).loadImage();
+    }
+
+
+    class ViewHolderItem extends ViewHolderBase implements View.OnClickListener {
         private View ivLikeAnimated;
         private ImageView ivItem;
         private DialogMenuRank dialogMenuRank;
@@ -62,15 +79,8 @@ public class AdapterRankImages extends AdapterBase {
 
         @Override
         void setData(int position) {
-            ivLikeAnimated.setVisibility(View.GONE);
-
-            String url = presenterAdapterRankImages.getUrl(AdapterRankImages.this.position, position);
-            if (TextUtils.isEmpty(url))
-                ivItem.setImageDrawable(null);
-            else
-                Glide.with(itemView.getContext())
-                        .load(url)
-                        .into(ivItem);
+            if (position == 0)
+                loadImage(position);
         }
 
         @Override
@@ -81,30 +91,31 @@ public class AdapterRankImages extends AdapterBase {
                 dialogMenuRank = new DialogMenuRank(itemView.getContext());
                 dialogMenuRank.show();
             }
-
-            if (v == itemView)
-               ;// showLikeAnimation();
-
         }
 
-        private void showLikeAnimation() {
-            if (animation == null) {
-                ivLikeAnimated.setVisibility(View.VISIBLE);
-                Animation animationAlpha = new AlphaAnimation(1, 0);
-                animationAlpha.setDuration(250);
 
-                Animation animationResize = new ScaleAnimation(1f, 0.8f, 1f, 0.8f,
-                        Animation.RELATIVE_TO_SELF, 0.5f,
-                        Animation.RELATIVE_TO_SELF, 0.5f);
-                animationResize.setDuration(250);
+        private void loadImage(int pos) {
 
-                animation = new AnimationSet(false);
-                animation.addAnimation(animationAlpha);
-                animation.addAnimation(animationResize);
-                animation.setFillAfter(true);
+            String url = presenterAdapterRankImages.getUrl(AdapterRankImages.this.position, pos);
+            if (TextUtils.isEmpty(url))
+                ivItem.setImageDrawable(null);
+            else {
+                if (ivItem.getDrawable() == null)
+                    GlideApp.with(itemView.getContext())
+                            .load(url)
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .into(ivItem);
             }
-            animation.reset();
-            ivLikeAnimated.startAnimation(animation);
+        }
+
+        void onDetached() {
+            ivItem.setImageDrawable(null);
+            GlideApp.get(itemView.getContext()).clearMemory();
+        }
+
+        public void loadImage() {
+            loadImage(Math.max(getAdapterPosition(), 0));
         }
     }
 }

@@ -4,12 +4,14 @@ import android.content.Context;
 
 import org.byters.ringoid.controller.data.memorycache.CacheBlacklist;
 import org.byters.ringoid.controller.data.memorycache.CacheCountryList;
+import org.byters.ringoid.controller.data.memorycache.CacheRank;
 import org.byters.ringoid.controller.data.memorycache.CacheRegister;
 import org.byters.ringoid.controller.data.memorycache.CacheRegisterReferral;
 import org.byters.ringoid.controller.data.memorycache.CacheToken;
 import org.byters.ringoid.controller.data.memorycache.CacheWallet;
 import org.byters.ringoid.controller.data.memorycache.ICacheBlacklist;
 import org.byters.ringoid.controller.data.memorycache.ICacheCountryList;
+import org.byters.ringoid.controller.data.memorycache.ICacheRank;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegister;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegisterReferral;
 import org.byters.ringoid.controller.data.memorycache.ICacheToken;
@@ -120,6 +122,14 @@ class AppModule {
     ICacheBlacklist getCacheBlacklist() {
         return new CacheBlacklist();
     }
+
+
+    @Provides
+    @Singleton
+    ICacheRank getCacheRank() {
+        return new CacheRank();
+    }
+
 
     @Provides
     @Singleton

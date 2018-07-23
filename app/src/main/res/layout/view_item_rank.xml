@@ -13,6 +13,19 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
         tools:text="1" />
 
-    <include layout="@layout/view_container_images" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvImages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@+id/flDots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
 </LinearLayout>

@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/ivContent"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintDimensionRatio="H,3:2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <ImageView
         android:id="@+id/tvMenu"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_gravity="end"
         android:padding="12dp"
         android:src="@drawable/ic_more_vert_black_24dp"
-        android:tint="#757575"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:tint="#757575" />
 
     <TextView
         android:id="@+id/tvLikes"
         style="@style/textImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:drawableStart="@drawable/ic_favorite_black_24dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="123"
         tools:visibility="visible" />
 
@@ -39,13 +34,9 @@
         android:id="@+id/ivLikeAnimated"
         android:layout_width="96dp"
         android:layout_height="96dp"
+        android:layout_gravity="center"
         android:src="@drawable/ic_favorite_white_96dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
-
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>

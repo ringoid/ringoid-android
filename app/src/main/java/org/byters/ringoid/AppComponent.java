@@ -9,6 +9,8 @@ import org.byters.ringoid.controller.data.repository.RepositoryRegisterReferralD
 import org.byters.ringoid.view.presenter.PresenterActivityMain;
 import org.byters.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterAdapterCountryList;
+import org.byters.ringoid.view.presenter.PresenterAdapterRank;
+import org.byters.ringoid.view.presenter.PresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.PresenterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterPagesContainer;
 import org.byters.ringoid.view.presenter.PresenterRegister;
@@ -70,4 +72,8 @@ public interface AppComponent {
     void inject(PresenterBlacklistPhones presenterBlacklistPhones);
 
     void inject(PresenterAdapterBlacklistPhones presenterAdapterBlacklistPhones);
+
+    void inject(PresenterAdapterRank presenterAdapterRank);
+
+    void inject(PresenterAdapterRankImages presenterAdapterRankImages);
 }
