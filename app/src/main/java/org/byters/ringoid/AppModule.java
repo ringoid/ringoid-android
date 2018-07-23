@@ -8,6 +8,7 @@ import org.byters.ringoid.controller.data.memorycache.CacheProfile;
 import org.byters.ringoid.controller.data.memorycache.CacheRank;
 import org.byters.ringoid.controller.data.memorycache.CacheRegister;
 import org.byters.ringoid.controller.data.memorycache.CacheRegisterReferral;
+import org.byters.ringoid.controller.data.memorycache.CacheScroll;
 import org.byters.ringoid.controller.data.memorycache.CacheToken;
 import org.byters.ringoid.controller.data.memorycache.CacheWallet;
 import org.byters.ringoid.controller.data.memorycache.ICacheBlacklist;
@@ -16,6 +17,7 @@ import org.byters.ringoid.controller.data.memorycache.ICacheProfile;
 import org.byters.ringoid.controller.data.memorycache.ICacheRank;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegister;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegisterReferral;
+import org.byters.ringoid.controller.data.memorycache.ICacheScroll;
 import org.byters.ringoid.controller.data.memorycache.ICacheToken;
 import org.byters.ringoid.controller.data.memorycache.ICacheWallet;
 import org.byters.ringoid.controller.data.repository.IRepositoryCountryList;
@@ -45,6 +47,7 @@ import org.byters.ringoid.view.presenter.IPresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.IPresenterBlacklistPhones;
 import org.byters.ringoid.view.presenter.IPresenterPagesContainer;
 import org.byters.ringoid.view.presenter.IPresenterProfile;
+import org.byters.ringoid.view.presenter.IPresenterRank;
 import org.byters.ringoid.view.presenter.IPresenterRegister;
 import org.byters.ringoid.view.presenter.PresenterActivityMain;
 import org.byters.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
@@ -55,6 +58,7 @@ import org.byters.ringoid.view.presenter.PresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.PresenterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterPagesContainer;
 import org.byters.ringoid.view.presenter.PresenterProfile;
+import org.byters.ringoid.view.presenter.PresenterRank;
 import org.byters.ringoid.view.presenter.PresenterRegister;
 
 import java.lang.ref.WeakReference;
@@ -72,6 +76,12 @@ class AppModule {
 
     AppModule(Context context) {
         this.refContext = new WeakReference<>(context);
+    }
+
+    @Provides
+    @Singleton
+    WeakReference<Context> getContext() {
+        return refContext;
     }
 
     @Provides
@@ -138,6 +148,12 @@ class AppModule {
 
     @Provides
     @Singleton
+    ICacheScroll getCacheScroll() {
+        return new CacheScroll();
+    }
+
+    @Provides
+    @Singleton
     ICacheProfile getCacheProfile() {
         return new CacheProfile();
     }
@@ -200,6 +216,12 @@ class AppModule {
     @Singleton
     IPresenterAdapterProfile getPresenterAdapterProfile() {
         return new PresenterAdapterProfile();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterRank getPresenterRank() {
+        return new PresenterRank();
     }
 
     @Provides

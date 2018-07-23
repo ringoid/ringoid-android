@@ -31,6 +31,7 @@ public class FragmentPages extends FragmentBase
     private TextView tvWallet;
     private AlertDialog dialogInvite;
     private ListenerPresenter listenerPresenter;
+    private View flToolbar, svBottomAppBar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +54,9 @@ public class FragmentPages extends FragmentBase
         presenterPagesContainer.onViewCreate(getChildFragmentManager(), R.id.flContent);
 
         tvWallet = view.findViewById(R.id.tvWallet);
+
+        flToolbar = view.findViewById(R.id.flToolbar);
+        svBottomAppBar = view.findViewById(R.id.svBottomAppBar);
 
         view.findViewById(R.id.ivMenuRank).setOnClickListener(this);
         view.findViewById(R.id.ivMenuLikes).setOnClickListener(this);
@@ -104,6 +108,12 @@ public class FragmentPages extends FragmentBase
         @Override
         public void setWallet(int coinsNum) {
             tvWallet.setText(String.valueOf(coinsNum));
+        }
+
+        @Override
+        public void setPosition(int topPos, int bottomPos) {
+            flToolbar.setTranslationY(topPos);
+            svBottomAppBar.setTranslationY(bottomPos);
         }
     }
 }

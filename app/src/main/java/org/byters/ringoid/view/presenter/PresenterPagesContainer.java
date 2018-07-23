@@ -1,9 +1,13 @@
 package org.byters.ringoid.view.presenter;
 
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
 
 import org.byters.ringoid.ApplicationRingoid;
+import org.byters.ringoid.R;
+import org.byters.ringoid.controller.data.memorycache.ICacheScroll;
 import org.byters.ringoid.controller.data.memorycache.ICacheWallet;
+import org.byters.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
 import org.byters.ringoid.controller.data.memorycache.listener.ICacheWalletListener;
 import org.byters.ringoid.controller.data.repository.IRepositoryWallet;
 import org.byters.ringoid.view.INavigator;
@@ -22,17 +26,24 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Inject
     INavigator navigator;
 
-
     @Inject
     IRepositoryWallet repositoryWallet;
+
     @Inject
     ICacheWallet cacheWallet;
+
+    @Inject
+    ICacheScroll cacheScroll;
+
+    private ListenerCacheScroll listenerCacheScroll;
     private CacheWalletListener listenerCacheWallet;
     private WeakReference<IPresenterPagesContainerListener> refListener;
+
 
     public PresenterPagesContainer() {
         ApplicationRingoid.getComponent().inject(this);
         cacheWallet.setListener(listenerCacheWallet = new CacheWalletListener());
+        cacheScroll.setListener(listenerCacheScroll = new ListenerCacheScroll());
     }
 
     @Override
@@ -92,6 +103,16 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         @Override
         public void onUpdate() {
             updateWallet(cacheWallet.getCoinsNum());
+        }
+    }
+
+    private class ListenerCacheScroll implements ICacheScrollListener {
+        @Override
+        public void onScroll(int scrollSum) {
+            if (refListener == null || refListener.get() == null) return;
+
+            refListener.get().setPosition(-scrollSum, scrollSum);
+
         }
     }
 }

@@ -3,4 +3,5 @@
     <dimen name="indicator_padding_horizontal">4dp</dimen>
 
     <dimen name="dot_photo_list_margin">4dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
 </resources>

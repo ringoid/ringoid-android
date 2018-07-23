@@ -5,8 +5,15 @@
     android:layout_height="match_parent">
 
     <FrameLayout
+        android:id="@+id/flContent"
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:id="@+id/flToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@android:color/white">
 
         <TextView
             android:id="@+id/tvWallet"
@@ -35,21 +42,16 @@
 
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/flContent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="56dp"
-        android:layout_marginTop="56dp" />
-
     <ScrollView
+        android:id="@+id/svBottomAppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
+        android:layout_height="@dimen/toolbar_height"
+        android:layout_gravity="bottom"
+        android:background="@android:color/white">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
 

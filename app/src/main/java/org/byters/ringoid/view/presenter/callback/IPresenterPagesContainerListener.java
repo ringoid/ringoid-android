@@ -4,4 +4,6 @@ public interface IPresenterPagesContainerListener {
     void showDialogInvite();
 
     void setWallet(int coinsNum);
+
+    void setPosition(int topPos, int bottomPos);
 }

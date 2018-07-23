@@ -1,5 +1,6 @@
 package org.byters.ringoid;
 
+import org.byters.ringoid.controller.data.memorycache.CacheScroll;
 import org.byters.ringoid.controller.data.memorycache.CacheToken;
 import org.byters.ringoid.controller.data.repository.RepositoryCountryList;
 import org.byters.ringoid.controller.data.repository.RepositoryRegister;
@@ -15,6 +16,7 @@ import org.byters.ringoid.view.presenter.PresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.PresenterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterPagesContainer;
 import org.byters.ringoid.view.presenter.PresenterProfile;
+import org.byters.ringoid.view.presenter.PresenterRank;
 import org.byters.ringoid.view.presenter.PresenterRegister;
 import org.byters.ringoid.view.ui.activity.ActivityMain;
 import org.byters.ringoid.view.ui.adapter.AdapterBlacklistPhones;
@@ -26,6 +28,7 @@ import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import org.byters.ringoid.view.ui.fragment.FragmentLogin;
 import org.byters.ringoid.view.ui.fragment.FragmentPages;
 import org.byters.ringoid.view.ui.fragment.FragmentProfile;
+import org.byters.ringoid.view.ui.fragment.FragmentRank;
 import org.byters.ringoid.view.ui.fragment.FragmentSettings;
 
 import javax.inject.Singleton;
@@ -88,4 +91,10 @@ public interface AppComponent {
     void inject(PresenterProfile presenterProfile);
 
     void inject(PresenterAdapterProfile presenterAdapterProfile);
+
+    void inject(PresenterRank presenterRank);
+
+    void inject(FragmentRank fragmentRank);
+
+    void inject(CacheScroll cacheScroll);
 }
