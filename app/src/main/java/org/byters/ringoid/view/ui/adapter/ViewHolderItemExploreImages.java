@@ -3,7 +3,6 @@ package org.byters.ringoid.view.ui.adapter;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.request.target.Target;
@@ -23,7 +22,7 @@ public class ViewHolderItemExploreImages extends ViewHolderBase
     @Inject
     IPresenterAdapterExploreImages presenterAdapterExploreImages;
 
-    private FrameLayout flLikeAnimation;
+    private View ivLikeAnimated;
     private ImageView ivItem, ivLike;
     private DialogMenuRank dialogMenuRank;
     private AnimationLike animationLike;
@@ -34,7 +33,7 @@ public class ViewHolderItemExploreImages extends ViewHolderBase
         super(parent, R.layout.view_image_explore);
         ApplicationRingoid.getComponent().inject(this);
 
-        flLikeAnimation = itemView.findViewById(R.id.flLikeAnimation);
+        ivLikeAnimated = itemView.findViewById(R.id.ivLikeAnimated);
         ivItem = itemView.findViewById(R.id.ivContent);
         ivLike = itemView.findViewById(R.id.ivLike);
         itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
@@ -60,6 +59,8 @@ public class ViewHolderItemExploreImages extends ViewHolderBase
                     .into(ivItem);
 
         setLiked(position);
+
+        if (animationLike != null) animationLike.cancel();
     }
 
     private void setLiked(int position) {
@@ -86,7 +87,7 @@ public class ViewHolderItemExploreImages extends ViewHolderBase
     private void showLikeAnimation() {
         if (animationLike != null)
             animationLike.cancel();
-        animationLike = new AnimationLike(flLikeAnimation);
+        animationLike = new AnimationLike(ivLikeAnimated);
         animationLike.show();
     }
 }
