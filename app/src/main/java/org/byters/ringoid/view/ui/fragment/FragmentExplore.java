@@ -1,5 +1,7 @@
 package org.byters.ringoid.view.ui.fragment;
 
+import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -43,6 +45,7 @@ public class FragmentExplore extends FragmentBase {
         rvItems.setLayoutManager(new LinearLayoutManager(view.getContext()));
         rvItems.setAdapter(new AdapterExplore());
         rvItems.addOnScrollListener(new OnScrollListener());
+        rvItems.addItemDecoration(new ItemDecoration(getContext()));
     }
 
     private class OnScrollListener extends RecyclerView.OnScrollListener {
@@ -53,4 +56,25 @@ public class FragmentExplore extends FragmentBase {
             presenterExplore.onScroll(dy);
         }
     }
+
+    private class ItemDecoration extends RecyclerView.ItemDecoration {
+
+        private int margin;
+
+        ItemDecoration(Context context) {
+            margin = (int) context.getResources().getDimension(R.dimen.divider);
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            super.getItemOffsets(outRect, view, parent, state);
+
+            int position = parent.getChildLayoutPosition(view);
+
+            if (position != 0)
+                outRect.top = margin;
+        }
+
+    }
 }
+
