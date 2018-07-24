@@ -11,6 +11,16 @@
         android:src="@drawable/ic_arrow_back_black_24dp" />
 
     <TextView
+        android:id="@+id/tvBlacklist"
+        style="@style/dialog_menu_item"
+        android:text="@string/settings_blacklist" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
         style="@style/dialog_menu_item"
         android:text="@string/settings_faq" />
 
@@ -28,13 +38,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="8dp"
+        android:layout_height="2dp"
         android:background="@android:color/darker_gray" />
-
-    <TextView
-        android:id="@+id/tvBlacklist"
-        style="@style/dialog_menu_item"
-        android:text="@string/settings_blacklist" />
 
     <TextView
         style="@style/dialog_menu_item"
