@@ -12,11 +12,14 @@ import org.byters.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterAdapterCountryList;
 import org.byters.ringoid.view.presenter.PresenterAdapterExplore;
 import org.byters.ringoid.view.presenter.PresenterAdapterExploreImages;
+import org.byters.ringoid.view.presenter.PresenterAdapterLikes;
+import org.byters.ringoid.view.presenter.PresenterAdapterLikesImages;
 import org.byters.ringoid.view.presenter.PresenterAdapterProfile;
 import org.byters.ringoid.view.presenter.PresenterAdapterRank;
 import org.byters.ringoid.view.presenter.PresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.PresenterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterExplore;
+import org.byters.ringoid.view.presenter.PresenterLikes;
 import org.byters.ringoid.view.presenter.PresenterPagesContainer;
 import org.byters.ringoid.view.presenter.PresenterProfile;
 import org.byters.ringoid.view.presenter.PresenterRank;
@@ -26,13 +29,18 @@ import org.byters.ringoid.view.ui.adapter.AdapterBlacklistPhones;
 import org.byters.ringoid.view.ui.adapter.AdapterCountryList;
 import org.byters.ringoid.view.ui.adapter.AdapterExplore;
 import org.byters.ringoid.view.ui.adapter.AdapterExploreImages;
+import org.byters.ringoid.view.ui.adapter.AdapterLikes;
+import org.byters.ringoid.view.ui.adapter.AdapterLikesImages;
 import org.byters.ringoid.view.ui.adapter.AdapterProfile;
 import org.byters.ringoid.view.ui.adapter.AdapterRank;
 import org.byters.ringoid.view.ui.adapter.AdapterRankImages;
 import org.byters.ringoid.view.ui.adapter.ViewHolderItemExplore;
 import org.byters.ringoid.view.ui.adapter.ViewHolderItemExploreImages;
+import org.byters.ringoid.view.ui.adapter.ViewHolderItemLikes;
+import org.byters.ringoid.view.ui.adapter.ViewHolderItemLikesImages;
 import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import org.byters.ringoid.view.ui.fragment.FragmentExplore;
+import org.byters.ringoid.view.ui.fragment.FragmentLikes;
 import org.byters.ringoid.view.ui.fragment.FragmentLogin;
 import org.byters.ringoid.view.ui.fragment.FragmentPages;
 import org.byters.ringoid.view.ui.fragment.FragmentProfile;
@@ -121,4 +129,20 @@ public interface AppComponent {
     void inject(PresenterAdapterExplore presenterAdapterExplore);
 
     void inject(PresenterAdapterExploreImages presenterAdapterExploreImages);
+
+    void inject(FragmentLikes fragmentLikes);
+
+    void inject(PresenterLikes presenterLikes);
+
+    void inject(PresenterAdapterLikes presenterAdapterLikes);
+
+    void inject(ViewHolderItemLikes viewHolderItemLikes);
+
+    void inject(AdapterLikes adapterLikes);
+
+    void inject(PresenterAdapterLikesImages presenterAdapterLikesImages);
+
+    void inject(AdapterLikesImages adapterLikesImages);
+
+    void inject(ViewHolderItemLikesImages viewHolderItemLikesImages);
 }

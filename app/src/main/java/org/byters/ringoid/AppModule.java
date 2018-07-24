@@ -5,6 +5,7 @@ import android.content.Context;
 import org.byters.ringoid.controller.data.memorycache.CacheBlacklist;
 import org.byters.ringoid.controller.data.memorycache.CacheCountryList;
 import org.byters.ringoid.controller.data.memorycache.CacheExplore;
+import org.byters.ringoid.controller.data.memorycache.CacheLikes;
 import org.byters.ringoid.controller.data.memorycache.CacheProfile;
 import org.byters.ringoid.controller.data.memorycache.CacheRank;
 import org.byters.ringoid.controller.data.memorycache.CacheRegister;
@@ -15,6 +16,7 @@ import org.byters.ringoid.controller.data.memorycache.CacheWallet;
 import org.byters.ringoid.controller.data.memorycache.ICacheBlacklist;
 import org.byters.ringoid.controller.data.memorycache.ICacheCountryList;
 import org.byters.ringoid.controller.data.memorycache.ICacheExplore;
+import org.byters.ringoid.controller.data.memorycache.ICacheLikes;
 import org.byters.ringoid.controller.data.memorycache.ICacheProfile;
 import org.byters.ringoid.controller.data.memorycache.ICacheRank;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegister;
@@ -45,11 +47,14 @@ import org.byters.ringoid.view.presenter.IPresenterAdapterBlacklistPhones;
 import org.byters.ringoid.view.presenter.IPresenterAdapterCountryList;
 import org.byters.ringoid.view.presenter.IPresenterAdapterExplore;
 import org.byters.ringoid.view.presenter.IPresenterAdapterExploreImages;
+import org.byters.ringoid.view.presenter.IPresenterAdapterLikes;
+import org.byters.ringoid.view.presenter.IPresenterAdapterLikesImages;
 import org.byters.ringoid.view.presenter.IPresenterAdapterProfile;
 import org.byters.ringoid.view.presenter.IPresenterAdapterRank;
 import org.byters.ringoid.view.presenter.IPresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.IPresenterBlacklistPhones;
 import org.byters.ringoid.view.presenter.IPresenterExplore;
+import org.byters.ringoid.view.presenter.IPresenterLikes;
 import org.byters.ringoid.view.presenter.IPresenterPagesContainer;
 import org.byters.ringoid.view.presenter.IPresenterProfile;
 import org.byters.ringoid.view.presenter.IPresenterRank;
@@ -59,11 +64,14 @@ import org.byters.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterAdapterCountryList;
 import org.byters.ringoid.view.presenter.PresenterAdapterExplore;
 import org.byters.ringoid.view.presenter.PresenterAdapterExploreImages;
+import org.byters.ringoid.view.presenter.PresenterAdapterLikes;
+import org.byters.ringoid.view.presenter.PresenterAdapterLikesImages;
 import org.byters.ringoid.view.presenter.PresenterAdapterProfile;
 import org.byters.ringoid.view.presenter.PresenterAdapterRank;
 import org.byters.ringoid.view.presenter.PresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.PresenterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterExplore;
+import org.byters.ringoid.view.presenter.PresenterLikes;
 import org.byters.ringoid.view.presenter.PresenterPagesContainer;
 import org.byters.ringoid.view.presenter.PresenterProfile;
 import org.byters.ringoid.view.presenter.PresenterRank;
@@ -162,6 +170,12 @@ class AppModule {
 
     @Provides
     @Singleton
+    ICacheLikes getCacheLikes() {
+        return new CacheLikes();
+    }
+
+    @Provides
+    @Singleton
     ICacheScroll getCacheScroll() {
         return new CacheScroll();
     }
@@ -224,6 +238,25 @@ class AppModule {
     @Singleton
     IPresenterExplore getPresenterExplore() {
         return new PresenterExplore();
+    }
+
+
+    @Provides
+    @Singleton
+    IPresenterAdapterLikes getPresenterAdapterLikes() {
+        return new PresenterAdapterLikes();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterAdapterLikesImages getPresenterAdapterLikesImages() {
+        return new PresenterAdapterLikesImages();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterLikes getPresenterLikes() {
+        return new PresenterLikes();
     }
 
     @Provides
