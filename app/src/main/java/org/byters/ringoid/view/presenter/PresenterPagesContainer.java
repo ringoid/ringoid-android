@@ -49,7 +49,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Override
     public void onViewCreate(FragmentManager childFragmentManager, int viewId) {
         navigatorPages.set(childFragmentManager, viewId);
-        navigatorPages.navigateRank();
+        navigatorPages.navigateExplore();
         repositoryWallet.request();
     }
 

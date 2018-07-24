@@ -21,9 +21,28 @@ public class DataProfile {
         return urls.get(pos).likes;
     }
 
+    public boolean isLiked(int pos) {
+        return urls.get(pos).isLiked;
+    }
+
+    public void setLiked(int itemPosition) {
+        urls.get(itemPosition).isLiked = true;
+    }
+
+    public float getRatioMax() {
+        float max = 0;
+
+        for (DataImage item : urls) {
+            if (item.ratio > max)
+                max = item.ratio;
+        }
+        return max;
+    }
+
     private class DataImage {
         private String url;
         private float ratio;
         private int likes;
+        private boolean isLiked;
     }
 }
