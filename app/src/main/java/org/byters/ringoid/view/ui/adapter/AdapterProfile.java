@@ -1,14 +1,13 @@
 package org.byters.ringoid.view.ui.adapter;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.Target;
 
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
@@ -34,20 +33,8 @@ public class AdapterProfile extends AdapterBase {
     }
 
     @Override
-    public void onViewDetachedFromWindow(@NonNull ViewHolderBase holder) {
-        super.onViewDetachedFromWindow(holder);
-
-        ((ViewHolderItem) holder).onDetached();
-    }
-
-    @Override
     public int getItemCount() {
         return presenterAdapterProfile.getItemsNum();
-    }
-
-    public void loadImage(RecyclerView.ViewHolder viewHolder) {
-        if (viewHolder == null) return;
-        ((ViewHolderItem) viewHolder).loadImage();
     }
 
     class ViewHolderItem extends ViewHolderBase implements View.OnClickListener {
@@ -65,12 +52,27 @@ public class AdapterProfile extends AdapterBase {
 
         @Override
         void setData(int position) {
-            if (position == 0)
-                loadImage(position);
+            loadImage(position);
+            setLikes(position);
+        }
 
+        private void setLikes(int position) {
             int likes = presenterAdapterProfile.getLikesNum(position);
             tvLikes.setVisibility(likes > 0 ? View.VISIBLE : View.GONE);
             tvLikes.setText(String.format(itemView.getContext().getString(R.string.format_likes), likes));
+        }
+
+        private void loadImage(int position) {
+            String url = presenterAdapterProfile.getUrl(position);
+            if (TextUtils.isEmpty(url))
+                ivItem.setImageDrawable(null);
+            else {
+                if (ivItem.getDrawable() == null)
+                    GlideApp.with(itemView.getContext())
+                            .load(url)
+                            .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                            .into(ivItem);
+            }
         }
 
         @Override
@@ -81,31 +83,6 @@ public class AdapterProfile extends AdapterBase {
                 dialogMenu = new DialogMenuProfile(itemView.getContext());
                 dialogMenu.show();
             }
-        }
-
-
-        private void loadImage(int pos) {
-
-            String url = presenterAdapterProfile.getUrl(pos);
-            if (TextUtils.isEmpty(url))
-                ivItem.setImageDrawable(null);
-            else {
-                if (ivItem.getDrawable() == null)
-                    GlideApp.with(itemView.getContext())
-                            .load(url)
-                            .skipMemoryCache(true)
-                            .diskCacheStrategy(DiskCacheStrategy.NONE)
-                            .into(ivItem);
-            }
-        }
-
-        void onDetached() {
-            ivItem.setImageDrawable(null);
-            GlideApp.get(itemView.getContext()).clearMemory();
-        }
-
-        public void loadImage() {
-            loadImage(Math.max(getAdapterPosition(), 0));
         }
     }
 }

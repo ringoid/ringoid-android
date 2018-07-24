@@ -16,8 +16,6 @@ import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterProfile;
 import org.byters.ringoid.view.ui.adapter.AdapterProfile;
 import org.byters.ringoid.view.ui.util.DotsIndicatorHelper;
-import org.byters.ringoid.view.ui.util.ListenerScrollComplete;
-import org.byters.ringoid.view.ui.util.listener.IScrollCompleteCallback;
 
 import javax.inject.Inject;
 
@@ -25,8 +23,6 @@ public class FragmentProfile extends FragmentBase {
 
     @Inject
     IPresenterProfile presenterProfile;
-
-    private ScrollCallback scrollCallback;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,39 +51,5 @@ public class FragmentProfile extends FragmentBase {
 
         DotsIndicatorHelper dotsIndicatorHelper = new DotsIndicatorHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
         dotsIndicatorHelper.updateData(presenterProfile.getItemsNum());
-
-        rvItems.addOnScrollListener(new ListenerScrollComplete(scrollCallback = new ScrollCallback(rvItems, layoutManager, adapter)));
-
-        scrollCallback.updateLayout(0);
-    }
-
-    private class ScrollCallback implements IScrollCompleteCallback {
-
-        private RecyclerView rvItems;
-        private AdapterProfile adapter;
-        private LinearLayoutManager layoutManager;
-
-        ScrollCallback(RecyclerView rvItems, LinearLayoutManager layoutManager, AdapterProfile adapter) {
-            this.rvItems = rvItems;
-            this.layoutManager = layoutManager;
-            this.adapter = adapter;
-        }
-
-        @Override
-        public void onScrollComplete() {
-            updateLayout(layoutManager.findFirstVisibleItemPosition());
-        }
-
-        void updateLayout(int position) {
-
-            int height = presenterProfile.getItemHeight(getContext(), position);
-
-            ViewGroup.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-
-            rvItems.setLayoutParams(params);
-
-            adapter.loadImage(rvItems.findViewHolderForLayoutPosition(position));
-        }
-
     }
 }
