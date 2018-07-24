@@ -5,10 +5,10 @@
     android:orientation="vertical">
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tvLike"
         style="@style/dialog_menu_item"
         android:text="@string/dialog_menu_rank_like" />
-
 
     <TextView
         android:visibility="gone"
