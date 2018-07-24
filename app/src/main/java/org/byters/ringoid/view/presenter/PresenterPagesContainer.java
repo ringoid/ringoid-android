@@ -61,26 +61,31 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     @Override
     public void onClickPageRank() {
+        cacheScroll.resetCache();
         navigatorPages.navigateRank();
     }
 
     @Override
     public void onClickPageLikes() {
+        cacheScroll.resetCache();
         navigatorPages.navigateLikes();
     }
 
     @Override
     public void onClickPageProfile() {
+        cacheScroll.resetCache();
         navigatorPages.navigateProfile();
     }
 
     @Override
     public void onClickPageMessages() {
+        cacheScroll.resetCache();
         navigatorPages.navigateMessages();
     }
 
     @Override
     public void onClickPageExplore() {
+        cacheScroll.resetCache();
         navigatorPages.navigateExplore();
     }
 
