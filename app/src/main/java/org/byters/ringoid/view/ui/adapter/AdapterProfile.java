@@ -56,7 +56,7 @@ public class AdapterProfile extends AdapterBase {
         private TextView tvLikes;
 
         ViewHolderItem(ViewGroup parent) {
-            super(parent, R.layout.view_image);
+            super(parent, R.layout.view_image_profile);
             ivItem = itemView.findViewById(R.id.ivContent);
             itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
             itemView.setOnClickListener(this);
@@ -70,7 +70,7 @@ public class AdapterProfile extends AdapterBase {
 
             int likes = presenterAdapterProfile.getLikesNum(position);
             tvLikes.setVisibility(likes > 0 ? View.VISIBLE : View.GONE);
-            tvLikes.setText(String.valueOf(likes));
+            tvLikes.setText(String.format(itemView.getContext().getString(R.string.format_likes), likes));
         }
 
         @Override
