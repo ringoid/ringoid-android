@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.byters.ringoid.ApplicationRingoid;
@@ -29,6 +28,12 @@ public class AdapterRank extends AdapterBase {
         ApplicationRingoid.getComponent().inject(this);
     }
 
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull ViewHolderBase holder) {
+        super.onViewAttachedToWindow(holder);
+        ((HolderItem) holder).onViewAttached();
+    }
 
     @Override
     public int getItemCount() {
@@ -79,6 +84,11 @@ public class AdapterRank extends AdapterBase {
             dotsIndicatorHelper.updateData(presenterAdapterRank.getItemsNum(position));
         }
 
+        void onViewAttached() {
+            RecyclerView.ViewHolder viewHolder = rvItems.findViewHolderForLayoutPosition(layoutManager.findFirstVisibleItemPosition());
+            adapter.onAttached(viewHolder);
+        }
+
         private class ScrollCallback implements IScrollCompleteCallback {
             @Override
             public void onScrollComplete() {
@@ -93,7 +103,7 @@ public class AdapterRank extends AdapterBase {
 
                 rvItems.setLayoutParams(params);
 
-                adapter.loadImage(rvItems.findViewHolderForLayoutPosition(itemPosition));
+                adapter.loadImage(rvItems.findViewHolderForLayoutPosition(itemPosition), height);
             }
 
         }

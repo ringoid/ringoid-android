@@ -5,7 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.ScaleAnimation;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -51,11 +57,15 @@ public class AdapterRankImages extends AdapterBase {
         notifyDataSetChanged();
     }
 
-    public void loadImage(RecyclerView.ViewHolder viewHolder) {
+    public void loadImage(RecyclerView.ViewHolder viewHolder, int height) {
         if (viewHolder == null) return;
         ((ViewHolderItem) viewHolder).loadImage();
     }
 
+    public void onAttached(RecyclerView.ViewHolder viewHolder) {
+        if (viewHolder == null) return;
+        ((ViewHolderItem) viewHolder).hideLikeAnimation();
+    }
 
     class ViewHolderItem extends ViewHolderBase implements View.OnClickListener {
         private View ivLikeAnimated;
@@ -85,22 +95,23 @@ public class AdapterRankImages extends AdapterBase {
                 dialogMenuRank = new DialogMenuRank(itemView.getContext());
                 dialogMenuRank.show();
             }
+            if (v == itemView)
+                showLikeAnimation();
         }
-
 
         private void loadImage(int pos) {
 
+            hideLikeAnimation();
+
             String url = presenterAdapterRankImages.getUrl(AdapterRankImages.this.position, pos);
-            if (TextUtils.isEmpty(url))
-                ivItem.setImageDrawable(null);
-            else {
-                if (ivItem.getDrawable() == null)
-                    GlideApp.with(itemView.getContext())
-                            .load(url)
-                            .skipMemoryCache(true)
-                            .diskCacheStrategy(DiskCacheStrategy.NONE)
-                            .into(ivItem);
-            }
+
+            ivItem.setImageDrawable(null);
+            if (!TextUtils.isEmpty(url))
+                GlideApp.with(itemView.getContext())
+                        .load(url)
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .into(ivItem);
         }
 
         void onDetached() {
@@ -108,8 +119,50 @@ public class AdapterRankImages extends AdapterBase {
             GlideApp.get(itemView.getContext()).clearMemory();
         }
 
-        public void loadImage() {
+        void loadImage() {
             loadImage(Math.max(getAdapterPosition(), 0));
+        }
+
+        void hideLikeAnimation() {
+            if (animation != null) animation.cancel();
+            ivLikeAnimated.clearAnimation();
+            ivLikeAnimated.setVisibility(View.GONE);
+        }
+
+        private void showLikeAnimation() {
+
+            int size = (int) itemView.getContext().getResources().getDimension(R.dimen.like_animation);
+            int x = itemView.getContext().getResources().getDisplayMetrics().widthPixels / 2 - size / 2;
+            int y = presenterAdapterRankImages.getItemHeight(itemView.getContext(), position, getAdapterPosition()) / 2 - size / 2;
+            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) ivLikeAnimated.getLayoutParams();
+            params.setMargins(x, y, 0, 0);
+            ivLikeAnimated.setLayoutParams(params);
+
+            if (animation == null) {
+                ivLikeAnimated.setVisibility(View.VISIBLE);
+                Animation animationAlphaIn = new AlphaAnimation(0.5f, 0.9f);
+                animationAlphaIn.setDuration(250);
+
+                Animation animationResize = new ScaleAnimation(0.5f, 1f, 0.5f, 1f,
+                        Animation.RELATIVE_TO_SELF, 0.5f,
+                        Animation.RELATIVE_TO_SELF, 0.5f);
+                animationResize.setDuration(250);
+                animationResize.setInterpolator(new OvershootInterpolator());
+
+                Animation animationAlphaOut = new AlphaAnimation(0.9f, 0f);
+                animationAlphaOut.setDuration(50);
+                animationAlphaOut.setStartOffset(500);
+                animationAlphaOut.setInterpolator(new DecelerateInterpolator());
+
+                animation = new AnimationSet(false);
+                animation.addAnimation(animationAlphaIn);
+                animation.addAnimation(animationResize);
+                animation.addAnimation(animationAlphaOut);
+                animation.setFillAfter(true);
+
+            }
+            animation.reset();
+            ivLikeAnimated.startAnimation(animation);
         }
     }
 }

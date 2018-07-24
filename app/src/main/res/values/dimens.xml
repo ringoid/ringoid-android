@@ -4,4 +4,5 @@
 
     <dimen name="dot_photo_list_margin">4dp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="like_animation">96dp</dimen>
 </resources>
