@@ -25,7 +25,8 @@ public class FragmentPages extends FragmentBase
     private TextView tvWallet;
     private AlertDialog dialogInvite;
     private ListenerPresenter listenerPresenter;
-    private View flToolbar, svBottomAppBar;
+    private View flToolbar;
+    private ViewGroup llBottomAppBar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,18 +42,17 @@ public class FragmentPages extends FragmentBase
 
         initViews(view);
 
+        presenterPagesContainer.onViewCreate(getChildFragmentManager(), R.id.flContent);
         return view;
     }
 
     private void initViews(View view) {
-        presenterPagesContainer.onViewCreate(getChildFragmentManager(), R.id.flContent);
 
         tvWallet = view.findViewById(R.id.tvWallet);
 
         flToolbar = view.findViewById(R.id.flToolbar);
-        svBottomAppBar = view.findViewById(R.id.svBottomAppBar);
+        llBottomAppBar = view.findViewById(R.id.llBottomAppBar);
 
-        view.findViewById(R.id.ivMenuRank).setOnClickListener(this);
         view.findViewById(R.id.ivMenuLikes).setOnClickListener(this);
         view.findViewById(R.id.ivMenuProfile).setOnClickListener(this);
         view.findViewById(R.id.ivMenuMessages).setOnClickListener(this);
@@ -69,9 +69,6 @@ public class FragmentPages extends FragmentBase
 
         if (view.getId() == R.id.tvSettings)
             presenterPagesContainer.onClickSettings();
-
-        if (view.getId() == R.id.ivMenuRank)
-            presenterPagesContainer.onClickPageRank();
 
         if (view.getId() == R.id.ivMenuLikes)
             presenterPagesContainer.onClickPageLikes();
@@ -107,7 +104,22 @@ public class FragmentPages extends FragmentBase
         @Override
         public void setPosition(int topPos, int bottomPos) {
             flToolbar.setTranslationY(topPos);
-            svBottomAppBar.setTranslationY(bottomPos);
+            llBottomAppBar.setTranslationY(bottomPos);
+        }
+
+        @Override
+        public void setPageSelected(int num) {
+            if (llBottomAppBar==null) return;
+            for (int i = 0; i < llBottomAppBar.getChildCount(); ++i) {
+                View view = llBottomAppBar.getChildAt(i);
+                if (view == null) continue;
+
+                if (i == num)
+                    view.setBackgroundColor(getContext().getResources().getColor(R.color.colorAccent));
+                else
+                    view.setBackground(null);
+
+            }
         }
     }
 }

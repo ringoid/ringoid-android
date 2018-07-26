@@ -14,6 +14,8 @@ public class NavigatorPages implements INavigatorPages {
 
     private WeakReference<FragmentManager> refFragmentManager;
     private int viewId;
+    private WeakReference<INavigatorPagesListener> refListener;
+
 
     @Override
     public void set(FragmentManager childFragmentManager, int viewId) {
@@ -32,6 +34,7 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateLikes() {
+        ontifyListeners(1);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
@@ -39,8 +42,14 @@ public class NavigatorPages implements INavigatorPages {
                 .commit();
     }
 
+    private void ontifyListeners(int num) {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onPageSelected(num);
+    }
+
     @Override
     public void navigateProfile() {
+        ontifyListeners(0);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
@@ -50,6 +59,7 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateMessages() {
+        ontifyListeners(2);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
@@ -59,10 +69,16 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateExplore() {
+        ontifyListeners(3);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
                 .replace(viewId, new FragmentExplore())
                 .commit();
+    }
+
+    @Override
+    public void setLisener(INavigatorPagesListener listener) {
+        this.refListener = new WeakReference<>(listener);
     }
 }

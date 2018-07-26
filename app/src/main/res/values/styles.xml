@@ -6,9 +6,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="bottomMenuItem" parent="selectableImage">
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
+    <style name="bottomMenuItem">
+        <item name="android:padding">16dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">match_parent</item>
     </style>
 
     <style name="selectableImage">

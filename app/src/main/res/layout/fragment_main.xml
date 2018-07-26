@@ -48,47 +48,36 @@
 
     </FrameLayout>
 
-    <ScrollView
-        android:id="@+id/svBottomAppBar"
+
+    <LinearLayout
+        android:id="@+id/llBottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
         android:layout_gravity="bottom"
-        android:background="@color/colorPrimary">
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/ivMenuProfile"
+            style="@style/bottomMenuItem"
+            android:src="@drawable/ic_person_white_24dp" />
 
-            <ImageView
-                android:id="@+id/ivMenuProfile"
-                style="@style/bottomMenuItem"
-                android:src="@drawable/ic_person_white_24dp" />
+        <ImageView
+            android:id="@+id/ivMenuLikes"
+            style="@style/bottomMenuItem"
+            android:src="@drawable/ic_menu_favorite_white_24dp" />
 
-            <ImageView
-                android:id="@+id/ivMenuRank"
-                style="@style/bottomMenuItem"
-                android:src="@drawable/ic_sort_black_24dp"
-                android:visibility="gone" />
+        <ImageView
+            android:id="@+id/ivMenuMessages"
+            style="@style/bottomMenuItem"
+            android:src="@drawable/ic_menu_message_white_24dp" />
 
-            <ImageView
-                android:id="@+id/ivMenuLikes"
-                style="@style/bottomMenuItem"
-                android:src="@drawable/ic_menu_favorite_white_24dp" />
+        <ImageView
+            android:id="@+id/ivMenuExplore"
+            style="@style/bottomMenuItem"
+            android:src="@drawable/ic_person_pin_circle_white_24dp" />
 
-            <ImageView
-                android:id="@+id/ivMenuMessages"
-                style="@style/bottomMenuItem"
-                android:src="@drawable/ic_menu_message_white_24dp" />
-
-            <ImageView
-                android:id="@+id/ivMenuExplore"
-                style="@style/bottomMenuItem"
-                android:src="@drawable/ic_person_pin_circle_white_24dp" />
-
-        </LinearLayout>
-
-    </ScrollView>
+    </LinearLayout>
 
 </FrameLayout>

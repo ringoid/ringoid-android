@@ -6,4 +6,6 @@ public interface IPresenterPagesContainerListener {
     void setWallet(int coinsNum);
 
     void setPosition(int topPos, int bottomPos);
+
+    void setPageSelected(int num);
 }
