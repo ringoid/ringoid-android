@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ public class FragmentPages extends FragmentBase
     @Inject
     IPresenterPagesContainer presenterPagesContainer;
 
-    private TextView tvWallet;
+    private TextView tvWallet, tvSubtitle;
     private AlertDialog dialogInvite;
     private ListenerPresenter listenerPresenter;
     private View flToolbar;
@@ -49,6 +50,7 @@ public class FragmentPages extends FragmentBase
     private void initViews(View view) {
 
         tvWallet = view.findViewById(R.id.tvWallet);
+        tvSubtitle = view.findViewById(R.id.tvSubtitle);
 
         flToolbar = view.findViewById(R.id.flToolbar);
         llBottomAppBar = view.findViewById(R.id.llBottomAppBar);
@@ -109,7 +111,7 @@ public class FragmentPages extends FragmentBase
 
         @Override
         public void setPageSelected(int num) {
-            if (llBottomAppBar==null) return;
+            if (llBottomAppBar == null) return;
             for (int i = 0; i < llBottomAppBar.getChildCount(); ++i) {
                 View view = llBottomAppBar.getChildAt(i);
                 if (view == null) continue;
@@ -120,6 +122,9 @@ public class FragmentPages extends FragmentBase
                     view.setBackground(null);
 
             }
+
+            String subtitle = getContext().getResources().getStringArray(R.array.pages_titles)[num];
+            tvSubtitle.setText(TextUtils.isEmpty(subtitle) ? "" : subtitle);
         }
     }
 }
