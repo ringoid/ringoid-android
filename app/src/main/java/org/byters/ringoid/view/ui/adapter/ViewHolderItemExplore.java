@@ -26,7 +26,7 @@ public class ViewHolderItemExplore extends ViewHolderBase {
     private AdapterExploreImages adapter;
 
     public ViewHolderItemExplore(ViewGroup parent) {
-        super(parent, R.layout.view_item_explore);
+        super(parent, R.layout.view_item_images);
         ApplicationRingoid.getComponent().inject(this);
 
         flDots = itemView.findViewById(R.id.flDots);

@@ -58,4 +58,9 @@ public class Navigator implements INavigator {
                 .replace(viewId, new FragmentBlacklistPhones())
                 .commit();
     }
+
+    @Override
+    public void openChat() {
+
+    }
 }

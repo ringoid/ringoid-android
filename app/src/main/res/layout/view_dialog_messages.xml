@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:drawableStart="@drawable/ic_message_black_24dp"
+        android:id="@+id/tvChat"
+        style="@style/dialog_menu_item"
+        android:text="@string/dialog_menu_message" />
+
+    <TextView
+        android:drawableStart="@drawable/ic_report_black_24dp"
+        android:id="@+id/tvReport"
+        style="@style/dialog_menu_item"
+        android:text="@string/dialog_menu_rank_report" />
+
+    <TextView
+        android:drawableStart="@drawable/ic_block_black_24dp"
+        android:id="@+id/tvBlock"
+        style="@style/dialog_menu_item"
+        android:text="@string/dialog_menu_rank_block" />
+
+
+</LinearLayout>

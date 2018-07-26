@@ -3,39 +3,43 @@ package org.byters.ringoid.view.ui.adapter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
-import org.byters.ringoid.view.presenter.IPresenterAdapterLikes;
+import org.byters.ringoid.view.presenter.IPresenterAdapterMessages;
 import org.byters.ringoid.view.ui.util.DotsIndicatorHelper;
 
 import javax.inject.Inject;
 
-public class ViewHolderItemLikes extends ViewHolderBase {
+public class ViewHolderItemMessage extends ViewHolderBase
+        implements View.OnClickListener {
 
     @Inject
-    IPresenterAdapterLikes presenterAdapterLikes;
+    IPresenterAdapterMessages presenterAdapterMessages;
 
     private FrameLayout flDots;
     private DotsIndicatorHelper dotsIndicatorHelper;
     private RecyclerView rvItems;
-    private AdapterLikesImages adapter;
+    private AdapterMessagesImages adapter;
 
-    public ViewHolderItemLikes(ViewGroup parent) {
+    public ViewHolderItemMessage(ViewGroup parent) {
         super(parent, R.layout.view_item_images);
         ApplicationRingoid.getComponent().inject(this);
 
         flDots = itemView.findViewById(R.id.flDots);
 
         initList();
+
+        itemView.setOnClickListener(this);
     }
 
     private void initList() {
         rvItems = itemView.findViewById(R.id.rvImages);
         LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        adapter = new AdapterLikesImages();
+        adapter = new AdapterMessagesImages();
 
         rvItems.setLayoutManager(layoutManager);
         rvItems.setAdapter(adapter);
@@ -47,6 +51,12 @@ public class ViewHolderItemLikes extends ViewHolderBase {
     @Override
     void setData(int position) {
         adapter.setPosition(position);
-        dotsIndicatorHelper.updateData(presenterAdapterLikes.getItemsNum(position));
+        dotsIndicatorHelper.updateData(presenterAdapterMessages.getItemsNum(position));
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        presenterAdapterMessages.onClickItem(getAdapterPosition());
     }
 }
