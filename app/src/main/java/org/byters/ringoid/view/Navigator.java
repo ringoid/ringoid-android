@@ -3,6 +3,7 @@ package org.byters.ringoid.view;
 import android.support.v4.app.FragmentManager;
 
 import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhones;
+import org.byters.ringoid.view.ui.fragment.FragmentChat;
 import org.byters.ringoid.view.ui.fragment.FragmentPages;
 import org.byters.ringoid.view.ui.fragment.FragmentLogin;
 import org.byters.ringoid.view.ui.fragment.FragmentSettings;
@@ -60,7 +61,13 @@ public class Navigator implements INavigator {
     }
 
     @Override
-    public void openChat() {
+    public void navigateChat() {
 
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, new FragmentChat())
+                .commit();
     }
 }

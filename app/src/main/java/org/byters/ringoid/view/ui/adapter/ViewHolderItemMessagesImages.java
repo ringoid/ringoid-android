@@ -20,7 +20,6 @@ public class ViewHolderItemMessagesImages extends ViewHolderBase
     IPresenterAdapterMessagesImages presenterAdapterMessagesImages;
 
     private ImageView ivItem;
-    private DialogMenuMessages dialogMenu;
 
     private int adapterPosition;
 
@@ -29,7 +28,7 @@ public class ViewHolderItemMessagesImages extends ViewHolderBase
         ApplicationRingoid.getComponent().inject(this);
 
         ivItem = itemView.findViewById(R.id.ivContent);
-        itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
+        itemView.setOnClickListener(this);
     }
 
     @Override
@@ -56,11 +55,8 @@ public class ViewHolderItemMessagesImages extends ViewHolderBase
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.tvMenu) {
-            if (dialogMenu != null)
-                dialogMenu.cancel();
-            dialogMenu = new DialogMenuMessages(itemView.getContext());
-            dialogMenu.show();
-        }
+        if (v == itemView)
+            presenterAdapterMessagesImages.onClickItem(adapterPosition);
+
     }
 }

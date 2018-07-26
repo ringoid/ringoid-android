@@ -13,5 +13,5 @@ public interface INavigator {
 
     void navigateBlacklistPhones();
 
-    void openChat();
+    void navigateChat();
 }

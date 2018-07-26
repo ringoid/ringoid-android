@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterMessages;
+import org.byters.ringoid.view.ui.dialog.DialogMenuMessages;
 import org.byters.ringoid.view.ui.util.DotsIndicatorHelper;
 
 import javax.inject.Inject;
@@ -20,20 +21,20 @@ public class ViewHolderItemMessage extends ViewHolderBase
     @Inject
     IPresenterAdapterMessages presenterAdapterMessages;
 
+    private DialogMenuMessages dialogMenu;
     private FrameLayout flDots;
     private DotsIndicatorHelper dotsIndicatorHelper;
     private RecyclerView rvItems;
     private AdapterMessagesImages adapter;
 
-    public ViewHolderItemMessage(ViewGroup parent) {
-        super(parent, R.layout.view_item_images);
+    ViewHolderItemMessage(ViewGroup parent) {
+        super(parent, R.layout.view_item_messages_images);
         ApplicationRingoid.getComponent().inject(this);
 
         flDots = itemView.findViewById(R.id.flDots);
 
+        itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
         initList();
-
-        itemView.setOnClickListener(this);
     }
 
     private void initList() {
@@ -54,9 +55,14 @@ public class ViewHolderItemMessage extends ViewHolderBase
         dotsIndicatorHelper.updateData(presenterAdapterMessages.getItemsNum(position));
     }
 
-
     @Override
     public void onClick(View v) {
-        presenterAdapterMessages.onClickItem(getAdapterPosition());
+        if (v.getId() == R.id.tvMenu) {
+            if (dialogMenu != null)
+                dialogMenu.cancel();
+            dialogMenu = new DialogMenuMessages(itemView.getContext());
+            dialogMenu.show();
+        }
+
     }
 }

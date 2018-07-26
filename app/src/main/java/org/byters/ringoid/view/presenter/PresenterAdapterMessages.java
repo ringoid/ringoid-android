@@ -30,6 +30,6 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
 
     @Override
     public void onClickItem(int position) {
-        navigator.openChat();
+        navigator.navigateChat();
     }
 }
