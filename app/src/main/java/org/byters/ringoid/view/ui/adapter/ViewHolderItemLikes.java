@@ -46,13 +46,6 @@ public class ViewHolderItemLikes extends ViewHolderBase {
 
     @Override
     void setData(int position) {
-
-        int height = presenterAdapterLikes.getItemHeight(itemView.getContext(), position);
-
-        ViewGroup.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-
-        rvItems.setLayoutParams(params);
-
         adapter.setPosition(position);
         dotsIndicatorHelper.updateData(presenterAdapterLikes.getItemsNum(position));
     }

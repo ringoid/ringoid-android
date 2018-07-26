@@ -5,8 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.request.target.Target;
-
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterExploreImages;
@@ -55,8 +53,11 @@ public class ViewHolderItemExploreImages extends ViewHolderBase
         if (!TextUtils.isEmpty(url))
             GlideApp.with(itemView.getContext())
                     .load(url)
-                    .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                    // .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                    .override(ivItem.getWidth(), ivItem.getHeight())
+                    .centerCrop()
                     .into(ivItem);
+
 
         setLiked(position);
 

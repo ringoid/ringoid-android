@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.request.target.Target;
-
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterProfile;
@@ -70,7 +68,9 @@ public class AdapterProfile extends AdapterBase {
                 if (ivItem.getDrawable() == null)
                     GlideApp.with(itemView.getContext())
                             .load(url)
-                            .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                            //.override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                            .override(ivItem.getWidth(), ivItem.getHeight())
+                            .centerCrop()
                             .into(ivItem);
             }
         }

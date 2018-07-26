@@ -55,7 +55,9 @@ public class ViewHolderItemLikesImages  extends ViewHolderBase
         if (!TextUtils.isEmpty(url))
             GlideApp.with(itemView.getContext())
                     .load(url)
-                    .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                    //.override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                    .override(ivItem.getWidth(),ivItem.getHeight())
+                    .centerCrop()
                     .into(ivItem);
 
         setLiked(position);
