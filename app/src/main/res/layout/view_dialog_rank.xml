@@ -17,11 +17,13 @@
         android:text="@string/dialog_menu_rank_superlike" />
 
     <TextView
+        android:drawableStart="@drawable/ic_report_black_24dp"
         android:id="@+id/tvReport"
         style="@style/dialog_menu_item"
         android:text="@string/dialog_menu_rank_report" />
 
     <TextView
+        android:drawableStart="@drawable/ic_block_black_24dp"
         android:id="@+id/tvBlock"
         style="@style/dialog_menu_item"
         android:text="@string/dialog_menu_rank_block" />

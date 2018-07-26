@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#ff7777</color>
+    <color name="colorPrimaryDark">#cc5d5d</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="dot_active">#fff</color>
-    <color name="dot_inactive">#66000000</color>
+    <color name="dot_inactive">#33000000</color>
 
 </resources>

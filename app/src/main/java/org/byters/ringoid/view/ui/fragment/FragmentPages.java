@@ -19,12 +19,6 @@ import javax.inject.Inject;
 public class FragmentPages extends FragmentBase
         implements View.OnClickListener {
 
-    /*
-     * on like like alpha
-     * on superlike alertdialog only first time with description, cost, ok, cancel.
-     * on superlike alertdialog if no enough money description, cost, gotowallet, cancel.
-     * */
-
     @Inject
     IPresenterPagesContainer presenterPagesContainer;
 

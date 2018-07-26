@@ -6,5 +6,5 @@
     <dimen name="toolbar_height">56dp</dimen>
     <dimen name="like_animation">96dp</dimen>
     <dimen name="profile_footer">56dp</dimen>
-    <dimen name="divider">16dp</dimen>
+    <dimen name="divider">4dp</dimen>
 </resources>
