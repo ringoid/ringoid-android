@@ -16,4 +16,6 @@ public interface INavigatorPages {
     void navigateExplore();
 
     void setLisener(INavigatorPagesListener listener);
+
+    void navigateCurrentPage();
 }
