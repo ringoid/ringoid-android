@@ -35,7 +35,7 @@ public class CacheScroll implements ICacheScroll {
 
     private void notifyListeners() {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().onScroll(scrollSum);
+        refListener.get().onScroll(scrollSum, 1 - scrollSum / (float) maxScroll);
     }
 
     @Override

@@ -114,10 +114,10 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     private class ListenerCacheScroll implements ICacheScrollListener {
         @Override
-        public void onScroll(int scrollSum) {
+        public void onScroll(int scrollSum, float alpha) {
             if (refListener == null || refListener.get() == null) return;
 
-            refListener.get().setPosition(-scrollSum, scrollSum);
+            refListener.get().setPosition(-scrollSum, scrollSum, alpha);
 
         }
     }

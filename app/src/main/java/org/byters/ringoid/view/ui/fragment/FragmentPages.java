@@ -104,9 +104,12 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void setPosition(int topPos, int bottomPos) {
+        public void setPosition(int topPos, int bottomPos, float alpha) {
             flToolbar.setTranslationY(topPos);
             llBottomAppBar.setTranslationY(bottomPos);
+
+            flToolbar.setAlpha(alpha);
+            llBottomAppBar.setAlpha(alpha);
         }
 
         @Override
