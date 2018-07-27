@@ -28,11 +28,6 @@ public class CacheLikes implements ICacheLikes {
     }
 
     @Override
-    public float getItemRatioMax(int position) {
-        return data.get(position).getRatioMax();
-    }
-
-    @Override
     public int getItemsNum(int adapterPosition) {
         return data.get(adapterPosition).getItemsNum();
     }

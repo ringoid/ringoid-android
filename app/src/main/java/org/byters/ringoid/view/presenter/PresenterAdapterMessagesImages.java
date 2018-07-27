@@ -30,6 +30,7 @@ public class PresenterAdapterMessagesImages implements IPresenterAdapterMessages
 
     @Override
     public void onClickItem(int position) {
+        cacheMessages.setUserSelected(position);
         navigator.navigateChat();
     }
 }

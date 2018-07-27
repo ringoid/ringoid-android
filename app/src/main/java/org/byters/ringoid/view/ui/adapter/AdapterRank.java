@@ -97,13 +97,6 @@ public class AdapterRank extends AdapterBase {
 
             void updateLayout(int position, int itemPosition) {
 
-                int height = presenterAdapterRank.getItemHeight(itemView.getContext(), position, itemPosition);
-
-                ViewGroup.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-
-                rvItems.setLayoutParams(params);
-
-                adapter.loadImage(rvItems.findViewHolderForLayoutPosition(itemPosition), height);
             }
 
         }

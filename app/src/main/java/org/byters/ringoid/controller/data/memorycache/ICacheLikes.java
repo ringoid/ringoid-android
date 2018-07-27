@@ -4,8 +4,6 @@ public interface ICacheLikes {
 
     int getItemsNum();
 
-    float getItemRatioMax(int position);
-
     int getItemsNum(int adapterPosition);
 
     void setLiked(int adapterPosition, int itemPosition);

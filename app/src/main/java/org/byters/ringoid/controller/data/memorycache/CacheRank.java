@@ -34,11 +34,6 @@ public class CacheRank implements ICacheRank {
     }
 
     @Override
-    public float getItemRatio(int adapterPosition, int itemPos) {
-        return data.get(adapterPosition).getRatio(itemPos);
-    }
-
-    @Override
     public int getItemsNum(int position) {
         return data.get(position).getItemsNum();
     }

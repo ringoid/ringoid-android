@@ -131,38 +131,6 @@ public class AdapterRankImages extends AdapterBase {
 
         private void showLikeAnimation() {
 
-            int size = (int) itemView.getContext().getResources().getDimension(R.dimen.like_animation);
-            int x = itemView.getContext().getResources().getDisplayMetrics().widthPixels / 2 - size / 2;
-            int y = presenterAdapterRankImages.getItemHeight(itemView.getContext(), position, getAdapterPosition()) / 2 - size / 2;
-            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) ivLikeAnimated.getLayoutParams();
-            params.setMargins(x, y, 0, 0);
-            ivLikeAnimated.setLayoutParams(params);
-
-            if (animation == null) {
-                ivLikeAnimated.setVisibility(View.VISIBLE);
-                Animation animationAlphaIn = new AlphaAnimation(0.5f, 0.9f);
-                animationAlphaIn.setDuration(250);
-
-                Animation animationResize = new ScaleAnimation(0.5f, 1f, 0.5f, 1f,
-                        Animation.RELATIVE_TO_SELF, 0.5f,
-                        Animation.RELATIVE_TO_SELF, 0.5f);
-                animationResize.setDuration(250);
-                animationResize.setInterpolator(new OvershootInterpolator());
-
-                Animation animationAlphaOut = new AlphaAnimation(0.9f, 0f);
-                animationAlphaOut.setDuration(50);
-                animationAlphaOut.setStartOffset(500);
-                animationAlphaOut.setInterpolator(new DecelerateInterpolator());
-
-                animation = new AnimationSet(false);
-                animation.addAnimation(animationAlphaIn);
-                animation.addAnimation(animationResize);
-                animation.addAnimation(animationAlphaOut);
-                animation.setFillAfter(true);
-
-            }
-            animation.reset();
-            ivLikeAnimated.startAnimation(animation);
         }
     }
 }

@@ -25,11 +25,6 @@ public class CacheProfile implements ICacheProfile {
     }
 
     @Override
-    public float getItemRatio(int position) {
-        return data.getRatio(position);
-    }
-
-    @Override
     public int getLikesNum(int position) {
         return data.getLikes(position);
     }
