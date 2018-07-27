@@ -41,4 +41,19 @@ public class CacheMessages implements ICacheMessages {
     public void setUserSelected(int position) {
         this.selectedUserId = data.get(position).getId();
     }
+
+    @Override
+    public String getUrlSelectedUser() {
+        DataProfile user = getSelectedUser();
+        return user == null ? null : user.getImage(0);
+    }
+
+    private DataProfile getSelectedUser() {
+        if (data == null) return null;
+        for (DataProfile item : data) {
+            if (item.getId().equals(selectedUserId))
+                return item;
+        }
+        return null;
+    }
 }

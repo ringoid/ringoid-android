@@ -20,6 +20,7 @@ import org.byters.ringoid.view.presenter.PresenterAdapterProfile;
 import org.byters.ringoid.view.presenter.PresenterAdapterRank;
 import org.byters.ringoid.view.presenter.PresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.PresenterBlacklistPhones;
+import org.byters.ringoid.view.presenter.PresenterChat;
 import org.byters.ringoid.view.presenter.PresenterExplore;
 import org.byters.ringoid.view.presenter.PresenterLikes;
 import org.byters.ringoid.view.presenter.PresenterMessages;
@@ -46,6 +47,7 @@ import org.byters.ringoid.view.ui.adapter.ViewHolderItemLikesImages;
 import org.byters.ringoid.view.ui.adapter.ViewHolderItemMessage;
 import org.byters.ringoid.view.ui.adapter.ViewHolderItemMessagesImages;
 import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhones;
+import org.byters.ringoid.view.ui.fragment.FragmentChat;
 import org.byters.ringoid.view.ui.fragment.FragmentExplore;
 import org.byters.ringoid.view.ui.fragment.FragmentLikes;
 import org.byters.ringoid.view.ui.fragment.FragmentLogin;
@@ -169,4 +171,8 @@ public interface AppComponent {
     void inject(AdapterMessagesImages adapterMessagesImages);
 
     void inject(PresenterAdapterMessagesImages presenterAdapterMessagesImages);
+
+    void inject(FragmentChat fragmentChat);
+
+    void inject(PresenterChat presenterChat);
 }

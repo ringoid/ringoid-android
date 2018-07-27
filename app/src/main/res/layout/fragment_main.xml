@@ -37,32 +37,12 @@
             android:layout_gravity="end|center_vertical"
             android:src="@drawable/ic_settings_24dp" />
 
-        <LinearLayout
+        <include
+            layout="@layout/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/app_name"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                android:textColor="@color/gray" />
-
-            <TextView
-                android:id="@+id/tvSubtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="4dp"
-                android:fontFamily="sans-serif-thin"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                android:textColor="@color/gray"
-                tools:text="@string/app_name" />
-
-        </LinearLayout>
+            android:layout_marginStart="16dp" />
 
     </FrameLayout>
 

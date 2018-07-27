@@ -75,6 +75,9 @@
     <string name="dialog_menu_profile_remove">remove</string>
     <string name="format_likes" formatted="false">%d likes</string>
     <string name="dialog_menu_message">Chat</string>
+    <string name="chat_empty_title">She is waiting</string>
+    <string name="chat_empty_lead">for your activity</string>
+    <string name="chat_input_disabled">Chat not available before she answer</string>
 
 
     <string-array name="pages_titles">

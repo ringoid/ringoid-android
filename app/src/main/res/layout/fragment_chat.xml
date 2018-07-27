@@ -2,86 +2,129 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
-    <!--todo
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height">
 
-    female
-    1 step text, supertext, wink, superwink
-    2 step text, supertext
+        <ImageView
+            android:id="@+id/ivBack"
+            style="@style/selectableImage"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
 
-    male
-    1 step
-    supertext, wink, superwink
+        <include
+            layout="@layout/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="48dp" />
 
-    2 step
-    wink-wink -> supertext
-    wink-message -> text, supertext
+        <ImageView
+            android:id="@+id/ivMenu"
+            style="@style/selectableImage"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_more_horiz_gray_24dp" />
 
+    </FrameLayout>
 
-    //////////////////
-    disable copypaste
+    <LinearLayout
+        android:id="@+id/llChatEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-    -->
+        <ImageView
+            android:id="@+id/ivUser"
+            android:layout_width="64dp"
+            android:layout_height="64dp" />
 
-    <ImageView
-        android:src="@drawable/ic_arrow_back_black_24dp"
-        style="@style/selectableImage"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvChatEmptyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_empty_title"
+                android:textColor="@color/gray30"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-thin"
+                android:text="@string/chat_empty_lead"
+                android:textColor="@color/gray30"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/rvItems"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
-        android:layout_marginBottom="56dp" />
-
-    <FrameLayout
-        tools:visibility="visible"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="bottom">
-
-        <EditText
-            android:layout_gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="56dp"
-            android:hint="@string/hint_chat" />
-
-        <ImageView
-            style="@style/selectableImage"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_send_black_24dp" />
-
-    </FrameLayout>
+        android:clipToPadding="false"
+        android:paddingBottom="112dp" />
 
     <LinearLayout
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="bottom">
+        android:layout_height="@dimen/toolbar_height"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/toolbar_height"
+        android:background="#f4f4f4">
 
         <ImageView
-            android:id="@+id/ivWink"
-            style="@style/selectableImage"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_insert_emoticon_black_24dp" />
+            style="@style/bottomMenuItem"
+            android:src="@drawable/ic_smile_wink" />
 
         <ImageView
-            android:id="@+id/ivWinkSuper"
-            style="@style/selectableImage"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_insert_emoticon_black_24dp" />
+            style="@style/bottomMenuItem"
+            android:src="@drawable/ic_smile_in_love" />
 
         <ImageView
-            android:id="@+id/ivMessageSuper"
-            style="@style/selectableImage"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_send_black_24dp" />
+            style="@style/bottomMenuItem"
+            android:src="@drawable/ic_smile_kiss" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:layout_gravity="bottom"
+        android:background="#f4f4f4"
+        android:gravity="center_vertical"
+        android:padding="8dp">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:background="@drawable/chat_input"
+            android:enabled="false"
+            android:hint="@string/chat_input_disabled"
+            android:inputType="text"
+            android:lines="1"
+            android:textColorHint="#bfbfbf" />
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/chat_send_disabled"
+            android:paddingEnd="16dp"
+            android:paddingStart="20dp"
+            android:src="@drawable/ic_send_white_24dp" />
 
     </LinearLayout>
 

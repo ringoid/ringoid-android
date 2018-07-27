@@ -8,4 +8,6 @@ public interface ICacheMessages {
     String getUrl(int adapterPosition, int itemPosition);
 
     void setUserSelected(int position);
+
+    String getUrlSelectedUser();
 }

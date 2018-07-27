@@ -57,6 +57,7 @@ import org.byters.ringoid.view.presenter.IPresenterAdapterProfile;
 import org.byters.ringoid.view.presenter.IPresenterAdapterRank;
 import org.byters.ringoid.view.presenter.IPresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.IPresenterBlacklistPhones;
+import org.byters.ringoid.view.presenter.IPresenterChat;
 import org.byters.ringoid.view.presenter.IPresenterExplore;
 import org.byters.ringoid.view.presenter.IPresenterLikes;
 import org.byters.ringoid.view.presenter.IPresenterMessages;
@@ -77,6 +78,7 @@ import org.byters.ringoid.view.presenter.PresenterAdapterProfile;
 import org.byters.ringoid.view.presenter.PresenterAdapterRank;
 import org.byters.ringoid.view.presenter.PresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.PresenterBlacklistPhones;
+import org.byters.ringoid.view.presenter.PresenterChat;
 import org.byters.ringoid.view.presenter.PresenterExplore;
 import org.byters.ringoid.view.presenter.PresenterLikes;
 import org.byters.ringoid.view.presenter.PresenterMessages;
@@ -318,6 +320,12 @@ class AppModule {
     @Singleton
     IPresenterRank getPresenterRank() {
         return new PresenterRank();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterChat getPresenterChat() {
+        return new PresenterChat();
     }
 
     @Provides
