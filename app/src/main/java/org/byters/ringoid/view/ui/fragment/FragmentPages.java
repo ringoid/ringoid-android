@@ -120,7 +120,7 @@ public class FragmentPages extends FragmentBase
                 if (view == null) continue;
 
                 if (i == num)
-                    view.setBackgroundColor(getContext().getResources().getColor(R.color.colorAccent));
+                    view.setBackgroundColor(getContext().getResources().getColor(R.color.menu_bottom_selected));
                 else
                     view.setBackground(null);
 

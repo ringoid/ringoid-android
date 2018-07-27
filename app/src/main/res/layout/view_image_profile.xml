@@ -12,13 +12,11 @@
         android:layout_marginBottom="56dp"/>
 
     <ImageView
-        android:layout_marginEnd="4dp"
         android:id="@+id/tvMenu"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:padding="12dp"
-        android:src="@drawable/ic_more_horiz_white_36dp"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginEnd="4dp"
+        style="@style/selectableImage"
+        android:src="@drawable/ic_more_horiz_white_24dp"
+        app:layout_constraintEnd_toEndOf="parent"  />
 
     <TextView
         android:id="@+id/tvLikes"
