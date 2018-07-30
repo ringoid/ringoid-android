@@ -9,6 +9,7 @@ import org.byters.ringoid.controller.data.repository.RepositoryRegisterReferralC
 import org.byters.ringoid.controller.data.repository.RepositoryRegisterReferralDescription;
 import org.byters.ringoid.view.presenter.PresenterActivityMain;
 import org.byters.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
+import org.byters.ringoid.view.presenter.PresenterAdapterChatMessages;
 import org.byters.ringoid.view.presenter.PresenterAdapterCountryList;
 import org.byters.ringoid.view.presenter.PresenterAdapterExplore;
 import org.byters.ringoid.view.presenter.PresenterAdapterExploreImages;
@@ -30,6 +31,7 @@ import org.byters.ringoid.view.presenter.PresenterRank;
 import org.byters.ringoid.view.presenter.PresenterRegister;
 import org.byters.ringoid.view.ui.activity.ActivityMain;
 import org.byters.ringoid.view.ui.adapter.AdapterBlacklistPhones;
+import org.byters.ringoid.view.ui.adapter.AdapterChatMessages;
 import org.byters.ringoid.view.ui.adapter.AdapterCountryList;
 import org.byters.ringoid.view.ui.adapter.AdapterExplore;
 import org.byters.ringoid.view.ui.adapter.AdapterExploreImages;
@@ -175,4 +177,8 @@ public interface AppComponent {
     void inject(FragmentChat fragmentChat);
 
     void inject(PresenterChat presenterChat);
+
+    void inject(AdapterChatMessages adapterChatMessages);
+
+    void inject(PresenterAdapterChatMessages presenterAdapterChatMessages);
 }

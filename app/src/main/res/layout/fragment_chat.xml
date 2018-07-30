@@ -70,7 +70,7 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/rvItems"
+        android:id="@+id/rvMessages"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
@@ -85,14 +85,17 @@
         android:background="#f4f4f4">
 
         <ImageView
+            android:id="@+id/ivSmileWink"
             style="@style/bottomMenuItem"
             android:src="@drawable/ic_smile_wink" />
 
         <ImageView
+            android:id="@+id/ivSmileLove"
             style="@style/bottomMenuItem"
             android:src="@drawable/ic_smile_in_love" />
 
         <ImageView
+            android:id="@+id/ivSmileKiss"
             style="@style/bottomMenuItem"
             android:src="@drawable/ic_smile_kiss" />
 
@@ -107,17 +110,19 @@
         android:padding="8dp">
 
         <EditText
+            android:id="@+id/etMessage"
             android:layout_width="0dp"
             android:layout_height="36dp"
             android:layout_weight="1"
             android:background="@drawable/chat_input"
             android:enabled="false"
-            android:hint="@string/chat_input_disabled"
+            android:hint="@string/hint_chat_disabled"
             android:inputType="text"
             android:lines="1"
             android:textColorHint="#bfbfbf" />
 
         <ImageView
+            android:id="@+id/ivSend"
             android:layout_width="56dp"
             android:layout_height="36dp"
             android:layout_marginStart="8dp"

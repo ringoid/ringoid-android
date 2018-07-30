@@ -3,11 +3,15 @@ package org.byters.ringoid.view.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -15,7 +19,9 @@ import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterChat;
 import org.byters.ringoid.view.presenter.callback.IPresenterChatListener;
+import org.byters.ringoid.view.ui.adapter.AdapterChatMessages;
 import org.byters.ringoid.view.ui.dialog.DialogMenuMessages;
+import org.byters.ringoid.view.ui.util.DividerItemDecoration;
 import org.byters.ringoid.view.ui.util.GlideApp;
 import org.byters.ringoid.view.ui.util.TransformationAlpha;
 
@@ -29,6 +35,10 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
     private ImageView ivUser;
     private ListenerPresenter listenerPresenter;
     private DialogMenuMessages dialogMenu;
+    private View vEmpty;
+    private RecyclerView rvMessages;
+    private EditText etMessage;
+    private View ivSend;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,14 +53,35 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
 
         intiViews(view);
+        initList(view);
         presenterChat.onCreateView();
         return view;
     }
 
+    private void initList(View view) {
+        RecyclerView rvMessages = view.findViewById(R.id.rvMessages);
+        rvMessages.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvMessages.setAdapter(new AdapterChatMessages());
+        rvMessages.addItemDecoration(new DividerItemDecoration(getContext()));
+    }
+
     private void intiViews(View view) {
         ivUser = view.findViewById(R.id.ivUser);
+        vEmpty = view.findViewById(R.id.llChatEmpty);
+        rvMessages = view.findViewById(R.id.rvMessages);
+
+        etMessage = view.findViewById(R.id.etMessage);
+        ivSend = view.findViewById(R.id.ivSend);
+
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.ivMenu).setOnClickListener(this);
+
+        view.findViewById(R.id.ivSmileWink).setOnClickListener(this);
+        view.findViewById(R.id.ivSmileLove).setOnClickListener(this);
+        view.findViewById(R.id.ivSmileKiss).setOnClickListener(this);
+        ivSend.setOnClickListener(this);
+
+        ((TextView) view.findViewById(R.id.tvSubtitle)).setText(R.string.chat_subtitle);
     }
 
     @Override
@@ -59,6 +90,19 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
             getActivity().onBackPressed();
         if (v.getId() == R.id.ivMenu)
             showMenu();
+        if (v.getId() == R.id.ivSmileWink) {
+            presenterChat.onClickSmileWink();
+        }
+        if (v.getId() == R.id.ivSmileLove) {
+            presenterChat.onClickSmileLove();
+        }
+        if (v.getId() == R.id.ivSmileKiss) {
+            presenterChat.onClickSmileKiss();
+        }
+        if (v.getId() == R.id.ivSend) {
+            presenterChat.onClickSend(etMessage.getText().toString());
+            etMessage.setText("");
+        }
     }
 
     private void showMenu() {
@@ -82,6 +126,19 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
                         .transform(new TransformationAlpha())
                         .into(ivUser);
 
+        }
+
+        @Override
+        public void setDataExist(boolean exist) {
+            vEmpty.setVisibility(exist ? View.GONE : View.VISIBLE);
+            rvMessages.setVisibility(exist ? View.VISIBLE : View.GONE);
+        }
+
+        @Override
+        public void setSendEnabled(boolean enabled) {
+            etMessage.setEnabled(enabled);
+            etMessage.setHint(enabled ? R.string.hint_chat_enabled : R.string.hint_chat_disabled);
+            ivSend.setBackgroundResource(enabled ? R.drawable.chat_send_enabled : R.drawable.chat_send_disabled);
         }
     }
 

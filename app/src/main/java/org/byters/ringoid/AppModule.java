@@ -3,6 +3,7 @@ package org.byters.ringoid;
 import android.content.Context;
 
 import org.byters.ringoid.controller.data.memorycache.CacheBlacklist;
+import org.byters.ringoid.controller.data.memorycache.CacheChatMessages;
 import org.byters.ringoid.controller.data.memorycache.CacheCountryList;
 import org.byters.ringoid.controller.data.memorycache.CacheExplore;
 import org.byters.ringoid.controller.data.memorycache.CacheLikes;
@@ -15,6 +16,7 @@ import org.byters.ringoid.controller.data.memorycache.CacheScroll;
 import org.byters.ringoid.controller.data.memorycache.CacheToken;
 import org.byters.ringoid.controller.data.memorycache.CacheWallet;
 import org.byters.ringoid.controller.data.memorycache.ICacheBlacklist;
+import org.byters.ringoid.controller.data.memorycache.ICacheChatMessages;
 import org.byters.ringoid.controller.data.memorycache.ICacheCountryList;
 import org.byters.ringoid.controller.data.memorycache.ICacheExplore;
 import org.byters.ringoid.controller.data.memorycache.ICacheLikes;
@@ -46,6 +48,7 @@ import org.byters.ringoid.view.Navigator;
 import org.byters.ringoid.view.NavigatorPages;
 import org.byters.ringoid.view.presenter.IPresenterActivityMain;
 import org.byters.ringoid.view.presenter.IPresenterAdapterBlacklistPhones;
+import org.byters.ringoid.view.presenter.IPresenterAdapterChatMessages;
 import org.byters.ringoid.view.presenter.IPresenterAdapterCountryList;
 import org.byters.ringoid.view.presenter.IPresenterAdapterExplore;
 import org.byters.ringoid.view.presenter.IPresenterAdapterExploreImages;
@@ -67,6 +70,7 @@ import org.byters.ringoid.view.presenter.IPresenterRank;
 import org.byters.ringoid.view.presenter.IPresenterRegister;
 import org.byters.ringoid.view.presenter.PresenterActivityMain;
 import org.byters.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
+import org.byters.ringoid.view.presenter.PresenterAdapterChatMessages;
 import org.byters.ringoid.view.presenter.PresenterAdapterCountryList;
 import org.byters.ringoid.view.presenter.PresenterAdapterExplore;
 import org.byters.ringoid.view.presenter.PresenterAdapterExploreImages;
@@ -204,6 +208,12 @@ class AppModule {
 
     @Provides
     @Singleton
+    ICacheChatMessages getCacheChatMessages() {
+        return new CacheChatMessages();
+    }
+
+    @Provides
+    @Singleton
     IPresenterActivityMain getPresenterActivityMain() {
         return new PresenterActivityMain();
     }
@@ -326,6 +336,12 @@ class AppModule {
     @Singleton
     IPresenterChat getPresenterChat() {
         return new PresenterChat();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterAdapterChatMessages getPresenterAdapterChatMessages() {
+        return new PresenterAdapterChatMessages();
     }
 
     @Provides

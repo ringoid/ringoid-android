@@ -6,4 +6,12 @@ public interface IPresenterChat {
     void onCreateView();
 
     void setListener(IPresenterChatListener listener);
+
+    void onClickSmileWink();
+
+    void onClickSmileLove();
+
+    void onClickSmileKiss();
+
+    void onClickSend(String message);
 }

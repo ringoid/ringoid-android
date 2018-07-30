@@ -8,7 +8,7 @@
     \nIf you have not received SMS within two minutes, please check your phone number or connection</string>
     <string name="message_invite">Send invitation to your friend</string>
 
-    <string name="hint_chat">enter message here</string>
+    <string name="hint_chat_enabled">enter message here</string>
     <string name="hint_email">enter friend email</string>
     <string name="hint_phone">Enter phone number</string>
 
@@ -77,7 +77,8 @@
     <string name="dialog_menu_message">Chat</string>
     <string name="chat_empty_title">She is waiting</string>
     <string name="chat_empty_lead">for your activity</string>
-    <string name="chat_input_disabled">Chat not available before she answer</string>
+    <string name="hint_chat_disabled">Chat not available before she answer</string>
+    <string name="chat_subtitle">Chat</string>
 
 
     <string-array name="pages_titles">
