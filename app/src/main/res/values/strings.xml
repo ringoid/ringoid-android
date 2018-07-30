@@ -93,6 +93,10 @@
     <string name="dialog_report_message">Ringoid will automatically block the profile after you report it so you won\'t see photos of each other again</string>
     <string name="dialog_report_cancel">cancel</string>
     <string name="dialog_report_confirm">report</string>
+    <string name="dialog_block_confirm">block</string>
+    <string name="dialog_cancel">cancel</string>
+    <string name="dialog_block_title">Are you sure want to block user?</string>
+    <string name="dialog_block_message">Ringoid will never show you to each other again</string>
 
 
     <string-array name="pages_titles">

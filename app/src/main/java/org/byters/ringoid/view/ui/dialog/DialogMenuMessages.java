@@ -10,6 +10,7 @@ import org.byters.ringoid.R;
 public class DialogMenuMessages implements View.OnClickListener {
 
     private AlertDialog dialog;
+    private DialogBlock dialogBlock;
     private DialogReport dialogReport;
 
     public DialogMenuMessages(Context context) {
@@ -21,6 +22,7 @@ public class DialogMenuMessages implements View.OnClickListener {
         view.findViewById(R.id.tvBlock).setOnClickListener(this);
 
         dialogReport = new DialogReport(context);
+        dialogBlock = new DialogBlock(context);
     }
 
     public void cancel() {
@@ -35,6 +37,10 @@ public class DialogMenuMessages implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.tvReport)
             dialogReport.show();
+
+        if (v.getId() == R.id.tvBlock)
+            dialogBlock.show();
+
         cancel();
     }
 }
