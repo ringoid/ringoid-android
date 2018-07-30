@@ -85,6 +85,14 @@
     <string name="settings_feedback">Leave a feedback</string>
     <string name="settings_logout">Log Out</string>
     <string name="settings_subtitle">Settings</string>
+    <string name="dialog_report_title">Report</string>
+    <string name="dialog_report_item_content">Inappropriate content</string>
+    <string name="dialog_report_item_stolen">Stolen, someone\'s else photos</string>
+    <string name="dialog_report_item_fraud">Advertising, fraud</string>
+    <string name="dialog_report_item_porn">Explicit content, pornography</string>
+    <string name="dialog_report_message">Ringoid will automatically block the profile after you report it so you won\'t see photos of each other again</string>
+    <string name="dialog_report_cancel">cancel</string>
+    <string name="dialog_report_confirm">report</string>
 
 
     <string-array name="pages_titles">
