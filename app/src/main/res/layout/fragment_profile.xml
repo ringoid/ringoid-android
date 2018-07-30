@@ -15,7 +15,7 @@
         app:layout_constraintDimensionRatio="3:4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/view_image" />
+        tools:listitem="@layout/view_image_profile" />
 
     <FrameLayout
         android:id="@+id/flDots"
@@ -27,7 +27,7 @@
         android:layout_height="56dp"
         android:layout_margin="16dp"
         android:src="@drawable/ic_add_white_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/rvItems"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

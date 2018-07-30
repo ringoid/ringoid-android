@@ -57,7 +57,7 @@ public class AdapterProfile extends AdapterBase {
         private void setLikes(int position) {
             int likes = presenterAdapterProfile.getLikesNum(position);
             tvLikes.setVisibility(likes > 0 ? View.VISIBLE : View.GONE);
-            tvLikes.setText(String.format(itemView.getContext().getString(R.string.format_likes), likes));
+            tvLikes.setText(String.valueOf(likes));
         }
 
         private void loadImage(int position) {
