@@ -40,8 +40,8 @@ public class FragmentSettings extends FragmentBase
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.tvBlacklist).setOnClickListener(this);
 
-        TextView tvVersion = view.findViewById(R.id.tvVersion);
-        tvVersion.setText(String.format("%d(%s)", BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME));
+        TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
+        tvSubtitle.setText(R.string.settings_subtitle);
     }
 
     @Override
