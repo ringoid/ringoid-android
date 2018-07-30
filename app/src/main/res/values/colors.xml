@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#bcbcbc</color>
-    <color name="colorAccent">#71da6a</color>
+    <color name="colorAccent">#fb7a7a</color>
+    <color name="colorAccentGreen">#71da6a</color>
 
     <color name="dot_active">#fff</color>
     <color name="dot_inactive">#33000000</color>

@@ -70,4 +70,8 @@
 
     </style>
 
+    <style name="fabProfile">
+        <item name="colorAccent">@color/colorAccentGreen</item>
+    </style>
+
 </resources>

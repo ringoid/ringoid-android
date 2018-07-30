@@ -27,6 +27,7 @@
         android:layout_height="56dp"
         android:layout_margin="16dp"
         android:src="@drawable/ic_add_white_24dp"
+        android:theme="@style/fabProfile"
         app:layout_constraintBottom_toBottomOf="@id/rvItems"
         app:layout_constraintEnd_toEndOf="parent" />
 
