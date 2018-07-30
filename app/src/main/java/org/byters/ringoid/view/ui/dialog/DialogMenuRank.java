@@ -10,16 +10,16 @@ import org.byters.ringoid.R;
 public class DialogMenuRank implements View.OnClickListener {
 
     private AlertDialog dialog;
+    private DialogReport dialogReport;
 
     public DialogMenuRank(Context context) {
         dialog = new AlertDialog.Builder(context).create();
         View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_rank, null);
         dialog.setView(view);
 
-        view.findViewById(R.id.tvLike).setOnClickListener(this);
-        view.findViewById(R.id.tvSuperlike).setOnClickListener(this);
         view.findViewById(R.id.tvReport).setOnClickListener(this);
         view.findViewById(R.id.tvBlock).setOnClickListener(this);
+        dialogReport = new DialogReport(context);
     }
 
     public void cancel() {
@@ -32,6 +32,9 @@ public class DialogMenuRank implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.tvReport)
+            dialogReport.show();
+
         cancel();
     }
 }

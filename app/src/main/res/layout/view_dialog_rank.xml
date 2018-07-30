@@ -5,18 +5,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:visibility="gone"
-        android:id="@+id/tvLike"
-        style="@style/dialog_menu_item"
-        android:text="@string/dialog_menu_rank_like" />
-
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/tvSuperlike"
-        style="@style/dialog_menu_item"
-        android:text="@string/dialog_menu_rank_superlike" />
-
-    <TextView
         android:drawableStart="@drawable/ic_report_black_24dp"
         android:id="@+id/tvReport"
         style="@style/dialog_menu_item"
