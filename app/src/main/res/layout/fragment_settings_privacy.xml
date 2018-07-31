@@ -295,16 +295,19 @@
                 style="@style/settings_privacy_items_container">
 
                 <TextView
+                    android:id="@+id/tvSettingsPrivacyPolicyDataStorage"
                     style="@style/settings_menu_item"
                     android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                     android:text="@string/settings_privacy_policy_data_storage" />
 
                 <TextView
+                    android:id="@+id/tvSettingsPrivacyPolicyData"
                     style="@style/settings_menu_item"
                     android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                     android:text="@string/settings_privacy_policy_data" />
 
                 <TextView
+                    android:id="@+id/tvSettingsPrivacyPolicyNotice"
                     style="@style/settings_menu_item"
                     android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                     android:text="@string/settings_privacy_policy_privacy" />

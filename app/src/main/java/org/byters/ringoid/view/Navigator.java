@@ -9,6 +9,7 @@ import org.byters.ringoid.view.ui.fragment.FragmentLogin;
 import org.byters.ringoid.view.ui.fragment.FragmentSettings;
 import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacy;
 import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
+import org.byters.ringoid.view.ui.fragment.FragmentWebView;
 
 import java.lang.ref.WeakReference;
 
@@ -92,6 +93,17 @@ public class Navigator implements INavigator {
                 .beginTransaction()
                 .addToBackStack(null)
                 .replace(viewId, FragmentSettingsPrivacy.getInstance(showPhoto))
+                .commit();
+    }
+
+    @Override
+    public void navigateWebView(String url) {
+
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, FragmentWebView.getInstance(url))
                 .commit();
     }
 }
