@@ -48,19 +48,19 @@
                 <TextView
                     android:id="@+id/tvPrivacyPhotosAll"
                     style="@style/settings_menu_item"
-                    android:drawableStart="@drawable/ic_privacy_all"
+                    android:drawableStart="@drawable/ic_privacy_all_gray_24dp"
                     android:text="@string/settings_privacy_photos_all" />
 
                 <TextView
                     android:id="@+id/tvPrivacyPhotosLikes"
                     style="@style/settings_menu_item"
-                    android:drawableStart="@drawable/ic_privacy_likes"
+                    android:drawableStart="@drawable/ic_privacy_likes_gray_24dp"
                     android:text="@string/settings_privacy_photos_liked" />
 
                 <TextView
                     android:id="@+id/tvPrivacyPhotosNoone"
                     style="@style/settings_menu_item"
-                    android:drawableStart="@drawable/ic_privacy_noone"
+                    android:drawableStart="@drawable/ic_privacy_noone_gray_24dp"
                     android:text="@string/settings_privacy_photos_noone" />
 
                 <LinearLayout style="@style/settings_privacy_item_container">

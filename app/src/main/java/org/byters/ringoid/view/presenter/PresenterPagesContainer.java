@@ -64,9 +64,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         if (refListener == null || refListener.get() == null) return;
         int type = cacheSettingsPrivacy.getPrivacyPhotos();
 
-        refListener.get().setViewPrivacy(type == 0 ? R.drawable.ic_privacy_all
-                : type == 1 ? R.drawable.ic_privacy_likes
-                : R.drawable.ic_privacy_noone);
+        refListener.get().setViewPrivacy(type == 0 ? R.drawable.ic_privacy_all_gray_24dp
+                : type == 1 ? R.drawable.ic_privacy_likes_gray_24dp
+                : R.drawable.ic_privacy_noone_gray_24dp);
     }
 
     @Override
