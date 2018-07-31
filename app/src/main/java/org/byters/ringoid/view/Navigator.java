@@ -74,17 +74,6 @@ public class Navigator implements INavigator {
     }
 
     @Override
-    public void navigateSettingsPrivacy() {
-
-        if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        refFragmentManager.get()
-                .beginTransaction()
-                .addToBackStack(null)
-                .replace(viewId, new FragmentSettingsPrivacy())
-                .commit();
-    }
-
-    @Override
     public void navigateSettingsPrivacyDistance() {
 
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
@@ -92,6 +81,17 @@ public class Navigator implements INavigator {
                 .beginTransaction()
                 .addToBackStack(null)
                 .replace(viewId, new FragmentSettingsPrivacyDistance())
+                .commit();
+    }
+
+    @Override
+    public void navigateSettingsPrivacy(boolean showPhoto) {
+
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, FragmentSettingsPrivacy.getInstance(showPhoto))
                 .commit();
     }
 }

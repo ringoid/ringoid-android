@@ -8,4 +8,6 @@ public interface IPresenterPagesContainerListener {
     void setPosition(int topPos, int bottomPos, float alpha);
 
     void setPageSelected(int num);
+
+    void setViewPrivacy(int drawableId);
 }

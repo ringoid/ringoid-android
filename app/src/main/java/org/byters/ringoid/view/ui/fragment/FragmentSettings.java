@@ -50,6 +50,6 @@ public class FragmentSettings extends FragmentBase
             getActivity().onBackPressed();
 
         if (v.getId() == R.id.tvPrivacy)
-            navigator.navigateSettingsPrivacy();
+            navigator.navigateSettingsPrivacy(false);
     }
 }

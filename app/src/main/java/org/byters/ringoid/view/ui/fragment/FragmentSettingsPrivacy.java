@@ -3,6 +3,7 @@ package org.byters.ringoid.view.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import javax.inject.Inject;
 public class FragmentSettingsPrivacy extends FragmentBase
         implements View.OnClickListener {
 
+    private static final String ARG_SHOW_PHOTO = "arg_show_photo";
+
     @Inject
     INavigator navigator;
 
@@ -28,6 +31,14 @@ public class FragmentSettingsPrivacy extends FragmentBase
     private TextView tvPrivacyPhotosAll, tvPrivacyPhotosLikes, tvPrivacyPhotosNoone;
     private TextView tvPrivacyDistance;
     private IPresenterSettingsPrivacyListener listenerPresenter;
+
+    public static Fragment getInstance(boolean showPhoto) {
+        Bundle args = new Bundle();
+        args.putBoolean(ARG_SHOW_PHOTO, showPhoto);
+        Fragment fragment = new FragmentSettingsPrivacy();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,6 +79,8 @@ public class FragmentSettingsPrivacy extends FragmentBase
         view.findViewById(R.id.llPrivacyDistance).setOnClickListener(this);
         tvPrivacyDistance = view.findViewById(R.id.tvPrivacyDistance);
 
+        view.findViewById(R.id.llPrivacyPhotos).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_PHOTO) ? View.VISIBLE : View.GONE);
+
         presenterSettingsPrivacy.onCreateView();
     }
 
@@ -96,7 +109,7 @@ public class FragmentSettingsPrivacy extends FragmentBase
         if (v.getId() == R.id.tvPrivacyPhoneBlacklist)
             navigator.navigateBlacklistPhones();
 
-        if (v.getId()==R.id.llPrivacyDistance)
+        if (v.getId() == R.id.llPrivacyDistance)
             navigator.navigateSettingsPrivacyDistance();
 
     }

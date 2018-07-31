@@ -3,7 +3,9 @@ package org.byters.ringoid.view.presenter;
 import android.support.v4.app.FragmentManager;
 
 import org.byters.ringoid.ApplicationRingoid;
+import org.byters.ringoid.R;
 import org.byters.ringoid.controller.data.memorycache.ICacheScroll;
+import org.byters.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import org.byters.ringoid.controller.data.memorycache.ICacheWallet;
 import org.byters.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
 import org.byters.ringoid.controller.data.memorycache.listener.ICacheWalletListener;
@@ -34,6 +36,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Inject
     ICacheScroll cacheScroll;
 
+    @Inject
+    ICacheSettingsPrivacy cacheSettingsPrivacy;
+
     private INavigatorPagesListener listenerNavigatorPages;
     private ListenerCacheScroll listenerCacheScroll;
     private CacheWalletListener listenerCacheWallet;
@@ -52,6 +57,16 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         navigatorPages.set(childFragmentManager, viewId);
         navigatorPages.navigateCurrentPage();
         repositoryWallet.request();
+        updateViewPrivacy();
+    }
+
+    private void updateViewPrivacy() {
+        if (refListener == null || refListener.get() == null) return;
+        int type = cacheSettingsPrivacy.getPrivacyPhotos();
+
+        refListener.get().setViewPrivacy(type == 0 ? R.drawable.ic_privacy_all
+                : type == 1 ? R.drawable.ic_privacy_likes
+                : R.drawable.ic_privacy_noone);
     }
 
     @Override
@@ -98,6 +113,11 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Override
     public void onClickSettings() {
         navigator.navigateSettings();
+    }
+
+    @Override
+    public void onClickPrivacy() {
+        navigator.navigateSettingsPrivacy(true);
     }
 
     private void updateWallet(int coinsNum) {

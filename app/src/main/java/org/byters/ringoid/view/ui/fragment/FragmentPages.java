@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.byters.ringoid.ApplicationRingoid;
@@ -28,6 +29,7 @@ public class FragmentPages extends FragmentBase
     private ListenerPresenter listenerPresenter;
     private View flToolbar;
     private ViewGroup llBottomAppBar;
+    private ImageView ivPrivacy;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class FragmentPages extends FragmentBase
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_pages, container, false);
 
         initViews(view);
 
@@ -61,6 +63,9 @@ public class FragmentPages extends FragmentBase
         view.findViewById(R.id.ivMenuExplore).setOnClickListener(this);
         tvWallet.setOnClickListener(this);
         view.findViewById(R.id.tvSettings).setOnClickListener(this);
+
+        ivPrivacy = view.findViewById(R.id.ivPrivacy);
+        ivPrivacy.setOnClickListener(this);
     }
 
     @Override
@@ -83,6 +88,9 @@ public class FragmentPages extends FragmentBase
 
         if (view.getId() == R.id.ivMenuExplore)
             presenterPagesContainer.onClickPageExplore();
+
+        if (view.getId()==R.id.ivPrivacy)
+            presenterPagesContainer.onClickPrivacy();
 
     }
 
@@ -128,6 +136,11 @@ public class FragmentPages extends FragmentBase
 
             String subtitle = getContext().getResources().getStringArray(R.array.pages_titles)[num];
             tvSubtitle.setText(TextUtils.isEmpty(subtitle) ? "" : subtitle);
+        }
+
+        @Override
+        public void setViewPrivacy(int drawableId) {
+            ivPrivacy.setImageResource(drawableId);
         }
     }
 }

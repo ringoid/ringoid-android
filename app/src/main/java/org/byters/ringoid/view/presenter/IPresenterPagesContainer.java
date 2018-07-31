@@ -22,4 +22,6 @@ public interface IPresenterPagesContainer {
     void setListener(IPresenterPagesContainerListener listener);
 
     void onClickSettings();
+
+    void onClickPrivacy();
 }

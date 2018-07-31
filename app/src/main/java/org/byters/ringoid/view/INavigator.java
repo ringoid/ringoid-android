@@ -15,7 +15,7 @@ public interface INavigator {
 
     void navigateChat();
 
-    void navigateSettingsPrivacy();
-
     void navigateSettingsPrivacyDistance();
+
+    void navigateSettingsPrivacy(boolean showPhotos);
 }
