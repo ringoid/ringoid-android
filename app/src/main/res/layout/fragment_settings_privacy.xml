@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            style="@style/selectableImage"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+
+        <include
+            layout="@layout/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="46dp" />
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPrivacyPhotos"
+                style="@style/settings_privacy_menu_title"
+                android:text="@string/settings_privacy_photos" />
+
+
+            <LinearLayout
+                android:id="@+id/llPrivacyPhotos"
+                style="@style/settings_privacy_items_container">
+
+                <TextView
+                    style="@style/settings_menu_item"
+                    android:text="@string/settings_privacy_photos_message" />
+
+                <TextView
+                    android:id="@+id/tvPrivacyPhotosAll"
+                    style="@style/settings_menu_item"
+                    android:drawableStart="@drawable/ic_privacy_all"
+                    android:text="@string/settings_privacy_photos_all" />
+
+                <TextView
+                    android:id="@+id/tvPrivacyPhotosLikes"
+                    style="@style/settings_menu_item"
+                    android:drawableStart="@drawable/ic_privacy_likes"
+                    android:text="@string/settings_privacy_photos_liked" />
+
+                <TextView
+                    android:id="@+id/tvPrivacyPhotosNoone"
+                    style="@style/settings_menu_item"
+                    android:drawableStart="@drawable/ic_privacy_noone"
+                    android:text="@string/settings_privacy_photos_noone" />
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_likes_nums" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_only_me" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_likes_who" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_only_me" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_search" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_no" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPrivacyPhone"
+                style="@style/settings_privacy_menu_title"
+                android:text="@string/settings_privacy_phone" />
+
+            <LinearLayout
+                android:id="@+id/llPrivacyPhone"
+                style="@style/settings_privacy_items_container">
+
+                <TextView
+                    android:id="@+id/tvPrivacyPhoneBlacklist"
+                    style="@style/settings_menu_item"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                    android:text="@string/settings_privacy_phone_blacklist" />
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_phone_see" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_phone_find" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPrivacyLocation"
+                style="@style/settings_privacy_menu_title"
+                android:text="@string/settings_privacy_location" />
+
+            <LinearLayout
+                android:id="@+id/llPrivacyLocation"
+                style="@style/settings_privacy_items_container">
+
+                <LinearLayout
+                    android:id="@+id/llPrivacyDistance"
+                    style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_location_distance" />
+
+                    <TextView
+                        android:id="@+id/tvPrivacyDistance"
+                        style="@style/settings_privacy_item_value"
+                        android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_location_who" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPrivacyAge"
+                style="@style/settings_privacy_menu_title"
+                android:text="@string/settings_privacy_age" />
+
+            <LinearLayout
+                android:id="@+id/llPrivacyAge"
+                style="@style/settings_privacy_items_container">
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_age_who" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPrivacyActivity"
+                style="@style/settings_privacy_menu_title"
+                android:text="@string/settings_privacy_activity" />
+
+            <LinearLayout
+                android:id="@+id/llPrivacyActivity"
+                style="@style/settings_privacy_items_container">
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_activity_likes" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_activity_reports" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_activity_online" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_activity_online_last_time" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_activity_chat_messages_time" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_activity_chat_messages" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPrivacyPolicy"
+                style="@style/settings_privacy_menu_title"
+                android:text="@string/settings_privacy_policy" />
+
+            <LinearLayout
+                android:id="@+id/llPrivacyPolicy"
+                style="@style/settings_privacy_items_container">
+
+                <TextView
+                    style="@style/settings_menu_item"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                    android:text="@string/settings_privacy_policy_data_storage" />
+
+                <TextView
+                    style="@style/settings_menu_item"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                    android:text="@string/settings_privacy_policy_data" />
+
+                <TextView
+                    style="@style/settings_menu_item"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                    android:text="@string/settings_privacy_policy_privacy" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

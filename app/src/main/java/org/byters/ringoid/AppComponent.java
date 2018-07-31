@@ -29,6 +29,8 @@ import org.byters.ringoid.view.presenter.PresenterPagesContainer;
 import org.byters.ringoid.view.presenter.PresenterProfile;
 import org.byters.ringoid.view.presenter.PresenterRank;
 import org.byters.ringoid.view.presenter.PresenterRegister;
+import org.byters.ringoid.view.presenter.PresenterSettingsPrivacy;
+import org.byters.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import org.byters.ringoid.view.ui.activity.ActivityMain;
 import org.byters.ringoid.view.ui.adapter.AdapterBlacklistPhones;
 import org.byters.ringoid.view.ui.adapter.AdapterChatMessages;
@@ -58,6 +60,8 @@ import org.byters.ringoid.view.ui.fragment.FragmentPages;
 import org.byters.ringoid.view.ui.fragment.FragmentProfile;
 import org.byters.ringoid.view.ui.fragment.FragmentRank;
 import org.byters.ringoid.view.ui.fragment.FragmentSettings;
+import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacy;
+import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 
 import javax.inject.Singleton;
 
@@ -181,4 +185,12 @@ public interface AppComponent {
     void inject(AdapterChatMessages adapterChatMessages);
 
     void inject(PresenterAdapterChatMessages presenterAdapterChatMessages);
+
+    void inject(FragmentSettingsPrivacy fragmentSettingsPrivacy);
+
+    void inject(PresenterSettingsPrivacy presenterSettingsPrivacy);
+
+    void inject(FragmentSettingsPrivacyDistance item);
+
+    void inject(PresenterSettingsPrivacyDistance item);
 }

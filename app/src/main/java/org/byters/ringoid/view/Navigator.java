@@ -7,6 +7,8 @@ import org.byters.ringoid.view.ui.fragment.FragmentChat;
 import org.byters.ringoid.view.ui.fragment.FragmentPages;
 import org.byters.ringoid.view.ui.fragment.FragmentLogin;
 import org.byters.ringoid.view.ui.fragment.FragmentSettings;
+import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacy;
+import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 
 import java.lang.ref.WeakReference;
 
@@ -68,6 +70,28 @@ public class Navigator implements INavigator {
                 .beginTransaction()
                 .addToBackStack(null)
                 .replace(viewId, new FragmentChat())
+                .commit();
+    }
+
+    @Override
+    public void navigateSettingsPrivacy() {
+
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, new FragmentSettingsPrivacy())
+                .commit();
+    }
+
+    @Override
+    public void navigateSettingsPrivacyDistance() {
+
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, new FragmentSettingsPrivacyDistance())
                 .commit();
     }
 }

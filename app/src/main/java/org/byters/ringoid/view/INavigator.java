@@ -14,4 +14,8 @@ public interface INavigator {
     void navigateBlacklistPhones();
 
     void navigateChat();
+
+    void navigateSettingsPrivacy();
+
+    void navigateSettingsPrivacyDistance();
 }

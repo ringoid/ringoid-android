@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            style="@style/selectableImage"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+
+        <include
+            layout="@layout/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="46dp" />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/settings_privacy_distance_message" />
+
+    <TextView
+        android:id="@+id/tvDistance0"
+        style="@style/settings_menu_item"
+        android:text="@string/settings_privacy_distance_0" />
+
+    <TextView
+        android:id="@+id/tvDistance1"
+        style="@style/settings_menu_item"
+        android:text="@string/settings_privacy_distance_1" />
+
+    <TextView
+        android:id="@+id/tvDistance2"
+        style="@style/settings_menu_item"
+        android:text="@string/settings_privacy_distance_2" />
+
+    <TextView
+        android:id="@+id/tvDistance3"
+        style="@style/settings_menu_item"
+        android:text="@string/settings_privacy_distance_3" />
+
+    <TextView
+        android:id="@+id/tvDistance4"
+        style="@style/settings_menu_item"
+        android:text="@string/settings_privacy_distance_4" />
+
+
+</LinearLayout>

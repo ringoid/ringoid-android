@@ -38,7 +38,7 @@ public class FragmentSettings extends FragmentBase
 
     private void initView(View view) {
         view.findViewById(R.id.ivBack).setOnClickListener(this);
-        view.findViewById(R.id.tvBlacklist).setOnClickListener(this);
+        view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.settings_subtitle);
@@ -49,7 +49,7 @@ public class FragmentSettings extends FragmentBase
         if (v.getId() == R.id.ivBack && getActivity() != null)
             getActivity().onBackPressed();
 
-        if (v.getId() == R.id.tvBlacklist)
-            navigator.navigateBlacklistPhones();
+        if (v.getId() == R.id.tvPrivacy)
+            navigator.navigateSettingsPrivacy();
     }
 }

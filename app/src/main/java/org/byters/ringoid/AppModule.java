@@ -13,6 +13,7 @@ import org.byters.ringoid.controller.data.memorycache.CacheRank;
 import org.byters.ringoid.controller.data.memorycache.CacheRegister;
 import org.byters.ringoid.controller.data.memorycache.CacheRegisterReferral;
 import org.byters.ringoid.controller.data.memorycache.CacheScroll;
+import org.byters.ringoid.controller.data.memorycache.CacheSettingsPrivacy;
 import org.byters.ringoid.controller.data.memorycache.CacheToken;
 import org.byters.ringoid.controller.data.memorycache.CacheWallet;
 import org.byters.ringoid.controller.data.memorycache.ICacheBlacklist;
@@ -26,6 +27,7 @@ import org.byters.ringoid.controller.data.memorycache.ICacheRank;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegister;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegisterReferral;
 import org.byters.ringoid.controller.data.memorycache.ICacheScroll;
+import org.byters.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import org.byters.ringoid.controller.data.memorycache.ICacheToken;
 import org.byters.ringoid.controller.data.memorycache.ICacheWallet;
 import org.byters.ringoid.controller.data.repository.IRepositoryCountryList;
@@ -68,6 +70,8 @@ import org.byters.ringoid.view.presenter.IPresenterPagesContainer;
 import org.byters.ringoid.view.presenter.IPresenterProfile;
 import org.byters.ringoid.view.presenter.IPresenterRank;
 import org.byters.ringoid.view.presenter.IPresenterRegister;
+import org.byters.ringoid.view.presenter.IPresenterSettingsPrivacy;
+import org.byters.ringoid.view.presenter.IPresenterSettingsPrivacyDistance;
 import org.byters.ringoid.view.presenter.PresenterActivityMain;
 import org.byters.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterAdapterChatMessages;
@@ -90,6 +94,8 @@ import org.byters.ringoid.view.presenter.PresenterPagesContainer;
 import org.byters.ringoid.view.presenter.PresenterProfile;
 import org.byters.ringoid.view.presenter.PresenterRank;
 import org.byters.ringoid.view.presenter.PresenterRegister;
+import org.byters.ringoid.view.presenter.PresenterSettingsPrivacy;
+import org.byters.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 
 import java.lang.ref.WeakReference;
 
@@ -210,6 +216,13 @@ class AppModule {
     @Singleton
     ICacheChatMessages getCacheChatMessages() {
         return new CacheChatMessages();
+    }
+
+
+    @Provides
+    @Singleton
+    ICacheSettingsPrivacy getCacheSettingsPrivacy() {
+        return new CacheSettingsPrivacy();
     }
 
     @Provides
@@ -342,6 +355,18 @@ class AppModule {
     @Singleton
     IPresenterAdapterChatMessages getPresenterAdapterChatMessages() {
         return new PresenterAdapterChatMessages();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterSettingsPrivacy getPresenterSettingsPrivacy() {
+        return new PresenterSettingsPrivacy();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterSettingsPrivacyDistance getPresenterSettingsPrivacyDistance() {
+        return new PresenterSettingsPrivacyDistance();
     }
 
     @Provides
