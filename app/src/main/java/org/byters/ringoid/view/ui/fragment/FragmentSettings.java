@@ -13,6 +13,7 @@ import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.BuildConfig;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.INavigator;
+import org.byters.ringoid.view.ui.dialog.DialogAccountDelete;
 import org.byters.ringoid.view.ui.dialog.DialogLogout;
 
 import javax.inject.Inject;
@@ -24,6 +25,7 @@ public class FragmentSettings extends FragmentBase
     INavigator navigator;
 
     private DialogLogout dialogLogout;
+    private DialogAccountDelete dialogAccountDelete;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class FragmentSettings extends FragmentBase
         view.findViewById(R.id.tvSettingsTerms).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsFeedback).setOnClickListener(this);
         view.findViewById(R.id.tvLogout).setOnClickListener(this);
+        view.findViewById(R.id.tvAccountDelete).setOnClickListener(this);
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.settings_subtitle);
@@ -71,6 +74,9 @@ public class FragmentSettings extends FragmentBase
 
         if (v.getId() == R.id.tvLogout)
             showDialogLogout();
+
+        if (v.getId() == R.id.tvAccountDelete)
+            showDialogAccountDelete();
     }
 
     private void showDialogLogout() {
@@ -78,5 +84,12 @@ public class FragmentSettings extends FragmentBase
             dialogLogout.cancel();
         dialogLogout = new DialogLogout(getContext());
         dialogLogout.show();
+    }
+
+    private void showDialogAccountDelete() {
+        if (dialogAccountDelete != null)
+            dialogAccountDelete.cancel();
+        dialogAccountDelete = new DialogAccountDelete(getContext());
+        dialogAccountDelete.show();
     }
 }
