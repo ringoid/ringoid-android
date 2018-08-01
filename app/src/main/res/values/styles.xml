@@ -71,7 +71,7 @@
 
     </style>
 
-    <style name="fabProfile">
+    <style name="themeGreen">
         <item name="colorAccent">@color/colorAccentGreen</item>
     </style>
 

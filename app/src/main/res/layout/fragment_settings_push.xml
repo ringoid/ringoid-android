@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            style="@style/selectableImage"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+
+        <include
+            layout="@layout/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="46dp" />
+
+    </FrameLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        style="@style/settings_menu_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvMessageLikes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toStartOf="@id/swItemLikes"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/settings_push_likes_message" />
+
+        <TextView
+            android:id="@+id/tvDescriptionLikes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+            app:layout_constraintEnd_toStartOf="@id/swItemLikes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMessageLikes"
+            android:text="@string/settings_push_likes_description" />
+
+        <Switch
+            android:id="@+id/swItemLikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/themeGreen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        style="@style/settings_menu_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvMessageMatches"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toStartOf="@id/swItemMatches"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/settings_push_matches_message" />
+
+        <TextView
+            android:id="@+id/tvDescriptionMatches"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+            app:layout_constraintEnd_toStartOf="@id/swItemMatches"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMessageMatches"
+            android:text="@string/settings_push_matches_description" />
+
+        <Switch
+            android:id="@+id/swItemMatches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/themeGreen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        style="@style/settings_menu_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvMessageMessages"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toStartOf="@id/swItemMessages"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/settings_push_messages_message" />
+
+        <TextView
+            android:id="@+id/tvDescriptionMessages"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+            app:layout_constraintEnd_toStartOf="@id/swItemMessages"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMessageMessages"
+            android:text="@string/settings_push_messages_description" />
+
+        <Switch
+            android:id="@+id/swItemMessages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/themeGreen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</LinearLayout>

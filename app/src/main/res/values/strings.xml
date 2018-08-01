@@ -151,6 +151,13 @@
     <string name="dialog_account_delete_message_2">If you don\'t log in within 30 days then your account will be deleted permanently. You will lose all likes that your photos received (which affects your popularity).</string>
     <string name="dialog_account_delete_message_3">If you just want to hide your photos from everyone, you can do it on Privacy screen.</string>
     <string name="dialog_account_delete_confirm">Delete</string>
+    <string name="settings_push_likes_message">New likes</string>
+    <string name="settings_push_likes_description">Your photo has been liked</string>
+    <string name="settings_push_matches_description">You just got a new match</string>
+    <string name="settings_push_matches_message">New matches</string>
+    <string name="settings_push_messages_message">New messages</string>
+    <string name="settings_push_messages_description">Your match sent you a new message</string>
+    <string name="settings_push_subtitle">Push Notifications</string>
 
 
     <string-array name="pages_titles">

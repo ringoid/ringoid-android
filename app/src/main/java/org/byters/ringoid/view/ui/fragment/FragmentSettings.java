@@ -49,6 +49,7 @@ public class FragmentSettings extends FragmentBase
         view.findViewById(R.id.tvSettingsFeedback).setOnClickListener(this);
         view.findViewById(R.id.tvLogout).setOnClickListener(this);
         view.findViewById(R.id.tvAccountDelete).setOnClickListener(this);
+        view.findViewById(R.id.tvPush).setOnClickListener(this);
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.settings_subtitle);
@@ -61,6 +62,9 @@ public class FragmentSettings extends FragmentBase
 
         if (v.getId() == R.id.tvPrivacy)
             navigator.navigateSettingsPrivacy(false);
+
+        if (v.getId() == R.id.tvPush)
+            navigator.navigateSettingsPush();
 
         if (v.getId() == R.id.tvSettingsTerms)
             navigator.navigateWebView("http://ringoid.com/terms.html");
