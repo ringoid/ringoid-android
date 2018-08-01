@@ -1,11 +1,14 @@
 package org.byters.ringoid.view;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 
 import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import org.byters.ringoid.view.ui.fragment.FragmentChat;
-import org.byters.ringoid.view.ui.fragment.FragmentPages;
 import org.byters.ringoid.view.ui.fragment.FragmentLogin;
+import org.byters.ringoid.view.ui.fragment.FragmentPages;
 import org.byters.ringoid.view.ui.fragment.FragmentSettings;
 import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacy;
 import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
@@ -105,5 +108,17 @@ public class Navigator implements INavigator {
                 .addToBackStack(null)
                 .replace(viewId, FragmentWebView.getInstance(url))
                 .commit();
+    }
+
+    @Override
+    public void navigateFeedback(Context context, int versionCode, String versionName, String sdkInt, String model) {
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:support@ringoid.com"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, String.format("Ringoid Android App %d(%s) Feedback %s, %s", versionCode, versionName, model, sdkInt));
+        intent.putExtra(Intent.EXTRA_TEXT, "");
+
+        if (intent.resolveActivity(context.getPackageManager()) == null) return;
+
+        context.startActivity(intent);
     }
 }

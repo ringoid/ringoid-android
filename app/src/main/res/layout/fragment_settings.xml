@@ -62,6 +62,7 @@
                 android:text="@string/settings_terms" />
 
             <TextView
+                android:id="@+id/tvSettingsFeedback"
                 style="@style/settings_menu_item"
                 android:layout_marginTop="32dp"
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"

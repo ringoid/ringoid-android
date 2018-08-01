@@ -1,5 +1,6 @@
 package org.byters.ringoid.view;
 
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
 
 public interface INavigator {
@@ -20,4 +21,6 @@ public interface INavigator {
     void navigateSettingsPrivacy(boolean showPhotos);
 
     void navigateWebView(String url);
+
+    void navigateFeedback(Context context, int versionCode, String versionName, String sdkInt, String model);
 }
