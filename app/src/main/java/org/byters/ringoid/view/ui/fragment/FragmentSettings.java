@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.byters.ringoid.ApplicationRingoid;
-import org.byters.ringoid.BuildConfig;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.INavigator;
 
@@ -39,6 +38,7 @@ public class FragmentSettings extends FragmentBase
     private void initView(View view) {
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
+        view.findViewById(R.id.tvSettingsTerms).setOnClickListener(this);
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.settings_subtitle);
@@ -51,5 +51,8 @@ public class FragmentSettings extends FragmentBase
 
         if (v.getId() == R.id.tvPrivacy)
             navigator.navigateSettingsPrivacy(false);
+
+        if (v.getId() == R.id.tvSettingsTerms)
+            navigator.navigateWebView("http://ringoid.com/terms.html");
     }
 }
