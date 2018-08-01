@@ -80,7 +80,7 @@ public class AdapterProfile extends AdapterBase {
             if (v.getId() == R.id.tvMenu) {
                 if (dialogMenu != null)
                     dialogMenu.cancel();
-                dialogMenu = new DialogMenuProfile(itemView.getContext());
+                dialogMenu = new DialogMenuProfile(itemView);
                 dialogMenu.show();
             }
         }

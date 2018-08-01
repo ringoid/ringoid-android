@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterMessages;
-import org.byters.ringoid.view.ui.dialog.DialogMenuMessages;
+import org.byters.ringoid.view.ui.dialog.DialogMenuImageOther;
 import org.byters.ringoid.view.ui.util.DotsIndicatorHelper;
 
 import javax.inject.Inject;
@@ -22,7 +22,7 @@ public class ViewHolderItemMessage extends ViewHolderBase
     @Inject
     IPresenterAdapterMessages presenterAdapterMessages;
 
-    private DialogMenuMessages dialogMenu;
+    private DialogMenuImageOther dialogMenu;
     private FrameLayout flDots;
     private DotsIndicatorHelper dotsIndicatorHelper;
     private RecyclerView rvItems;
@@ -65,7 +65,7 @@ public class ViewHolderItemMessage extends ViewHolderBase
         if (v.getId() == R.id.tvMenu) {
             if (dialogMenu != null)
                 dialogMenu.cancel();
-            dialogMenu = new DialogMenuMessages(itemView.getContext());
+            dialogMenu = new DialogMenuImageOther(itemView);
             dialogMenu.show();
         }
 

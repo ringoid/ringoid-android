@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterLikesImages;
-import org.byters.ringoid.view.ui.dialog.DialogMenuRank;
+import org.byters.ringoid.view.ui.dialog.DialogMenuImageOther;
 
 import javax.inject.Inject;
 
@@ -16,7 +16,7 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
     @Inject
     IPresenterAdapterLikesImages presenterAdapterLikesImages;
 
-    private DialogMenuRank dialogMenuRank;
+    private DialogMenuImageOther dialogMenuRank;
 
     private int adapterPosition;
 
@@ -47,7 +47,7 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
         if (v.getId() == R.id.tvMenu) {
             if (dialogMenuRank != null)
                 dialogMenuRank.cancel();
-            dialogMenuRank = new DialogMenuRank(itemView.getContext());
+            dialogMenuRank = new DialogMenuImageOther(itemView);
             dialogMenuRank.show();
         }
         if (v == itemView) {

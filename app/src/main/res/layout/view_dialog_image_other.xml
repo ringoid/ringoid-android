@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flContent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="4dp"
+    android:paddingEnd="8dp"
+    android:paddingTop="4dp"
+    tools:background="#cc000000">
+
+    <ImageView
+        android:id="@+id/ivTriangleTop"
+        android:layout_width="16dp"
+        android:layout_height="8dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_triangle_top_16dp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/ivTriangleBottom"
+        android:layout_width="16dp"
+        android:layout_height="8dp"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_triangle_bottom_16dp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_dialog"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvReport"
+            style="@style/dialog_menu_item"
+            android:drawableStart="@drawable/ic_report_black_24dp"
+            android:text="@string/dialog_menu_rank_report"
+            app:layout_constraintEnd_toStartOf="@id/vBarrier"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_min="wrap" />
+
+        <TextView
+            android:id="@+id/tvBlock"
+            style="@style/dialog_menu_item"
+            android:drawableStart="@drawable/ic_block_black_24dp"
+            android:text="@string/dialog_menu_rank_block"
+            app:layout_constraintEnd_toStartOf="@id/vBarrier"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvReport"
+            app:layout_constraintWidth_min="wrap" />
+
+        <android.support.constraint.Barrier
+            android:id="@+id/vBarrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="tvReport,tvBlock" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

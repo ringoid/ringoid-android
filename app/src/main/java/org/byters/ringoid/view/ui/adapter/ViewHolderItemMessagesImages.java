@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterMessagesImages;
-import org.byters.ringoid.view.ui.dialog.DialogMenuMessages;
 import org.byters.ringoid.view.ui.util.GlideApp;
 
 import javax.inject.Inject;

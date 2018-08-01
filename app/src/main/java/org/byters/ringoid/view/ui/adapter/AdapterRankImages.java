@@ -5,13 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.OvershootInterpolator;
-import android.view.animation.ScaleAnimation;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -19,7 +13,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterRankImages;
-import org.byters.ringoid.view.ui.dialog.DialogMenuRank;
+import org.byters.ringoid.view.ui.dialog.DialogMenuImageOther;
 import org.byters.ringoid.view.ui.util.GlideApp;
 
 import javax.inject.Inject;
@@ -70,7 +64,7 @@ public class AdapterRankImages extends AdapterBase {
     class ViewHolderItem extends ViewHolderBase implements View.OnClickListener {
         private View ivLikeAnimated;
         private ImageView ivItem;
-        private DialogMenuRank dialogMenuRank;
+        private DialogMenuImageOther dialogMenuRank;
         private AnimationSet animation;
 
         ViewHolderItem(ViewGroup parent) {
@@ -92,7 +86,7 @@ public class AdapterRankImages extends AdapterBase {
             if (v.getId() == R.id.tvMenu) {
                 if (dialogMenuRank != null)
                     dialogMenuRank.cancel();
-                dialogMenuRank = new DialogMenuRank(itemView.getContext());
+                dialogMenuRank = new DialogMenuImageOther(itemView);
                 dialogMenuRank.show();
             }
             if (v == itemView)

@@ -56,10 +56,8 @@
     <string name="error_agreement">To continue agree the terms</string>
     <string name="error_age_terms_date">Please check entered data</string>
     <string name="button_referral_skip">skip</string>
-    <string name="dialog_menu_rank_like">like</string>
-    <string name="dialog_menu_rank_superlike">superlike</string>
-    <string name="dialog_menu_rank_report">report</string>
-    <string name="dialog_menu_rank_block">block</string>
+    <string name="dialog_menu_rank_report">Report</string>
+    <string name="dialog_menu_rank_block">Block</string>
     <string name="settings_faq">FAQ</string>
     <string name="settings_terms">Terms &amp; Conditions</string>
     <string name="settings_email">support email</string>
@@ -72,7 +70,7 @@
     <string name="blacklist_phone_hint">Enter phone number</string>
     <string name="blacklist_phone_add">Add to the blacklist</string>
     <string name="blacklist_description">Users with the below phone numbers won\'t be able to see or contact you in any way in Ringoid</string>
-    <string name="dialog_menu_profile_remove">remove</string>
+    <string name="dialog_menu_profile_remove">Remove</string>
     <string name="format_likes" formatted="false">%d likes</string>
     <string name="dialog_menu_message">Chat</string>
     <string name="chat_empty_title">She is waiting</string>
