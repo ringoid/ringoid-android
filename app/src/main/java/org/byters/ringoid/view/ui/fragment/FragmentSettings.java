@@ -13,6 +13,7 @@ import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.BuildConfig;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.INavigator;
+import org.byters.ringoid.view.ui.dialog.DialogLogout;
 
 import javax.inject.Inject;
 
@@ -21,6 +22,8 @@ public class FragmentSettings extends FragmentBase
 
     @Inject
     INavigator navigator;
+
+    private DialogLogout dialogLogout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class FragmentSettings extends FragmentBase
         view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsTerms).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsFeedback).setOnClickListener(this);
+        view.findViewById(R.id.tvLogout).setOnClickListener(this);
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.settings_subtitle);
@@ -64,5 +68,15 @@ public class FragmentSettings extends FragmentBase
                     BuildConfig.VERSION_NAME,
                     Build.VERSION.RELEASE + ", " + Build.VERSION.SDK_INT,
                     Build.MODEL + " " + Build.MANUFACTURER + " " + Build.PRODUCT);
+
+        if (v.getId() == R.id.tvLogout)
+            showDialogLogout();
+    }
+
+    private void showDialogLogout() {
+        if (dialogLogout != null)
+            dialogLogout.cancel();
+        dialogLogout = new DialogLogout(getContext());
+        dialogLogout.show();
     }
 }

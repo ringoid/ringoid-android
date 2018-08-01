@@ -145,6 +145,9 @@
     <string name="distance_2">50 meters</string>
     <string name="distance_3">100 meters</string>
     <string name="distance_4">250 meters</string>
+    <string name="dialog_logout_title">Do you want to log out?</string>
+    <string name="dialog_logout_message">You will need to have access to your phone number to log in again. You won\'t be able to return to your account in any other way.</string>
+    <string name="dialog_logout_confirm">Log out</string>
 
 
     <string-array name="pages_titles">
