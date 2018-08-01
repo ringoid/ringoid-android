@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
@@ -26,6 +27,7 @@ public class ViewHolderItemMessage extends ViewHolderBase
     private DotsIndicatorHelper dotsIndicatorHelper;
     private RecyclerView rvItems;
     private AdapterMessagesImages adapter;
+    private ImageView ivMessage;
 
     ViewHolderItemMessage(ViewGroup parent) {
         super(parent, R.layout.view_item_messages_images);
@@ -34,6 +36,8 @@ public class ViewHolderItemMessage extends ViewHolderBase
         flDots = itemView.findViewById(R.id.flDots);
 
         itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
+        ivMessage = itemView.findViewById(R.id.ivMessage);
+
         initList();
     }
 
@@ -53,6 +57,7 @@ public class ViewHolderItemMessage extends ViewHolderBase
     void setData(int position) {
         adapter.setPosition(position);
         dotsIndicatorHelper.updateData(presenterAdapterMessages.getItemsNum(position));
+        ivMessage.setImageResource(presenterAdapterMessages.isMessagesNew(position) ? R.drawable.ic_message_full_white_24dp : R.drawable.ic_message_white_24dp);
     }
 
     @Override

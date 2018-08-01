@@ -6,4 +6,6 @@ public interface IPresenterAdapterMessages {
     int getItemsNum(int position);
 
     void onClickItem(int position);
+
+    boolean isMessagesNew(int position);
 }

@@ -32,4 +32,9 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
     public void onClickItem(int position) {
         navigator.navigateChat();
     }
+
+    @Override
+    public boolean isMessagesNew(int position) {
+        return position == 1;
+    }
 }
