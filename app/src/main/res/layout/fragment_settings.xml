@@ -51,11 +51,6 @@
                 android:text="@string/settings_about" />
 
             <TextView
-                style="@style/settings_menu_item"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
-                android:text="@string/settings_faq" />
-
-            <TextView
                 android:id="@+id/tvSettingsTerms"
                 style="@style/settings_menu_item"
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
