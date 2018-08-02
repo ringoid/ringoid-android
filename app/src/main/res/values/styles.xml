@@ -6,6 +6,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
     <style name="bottomMenuItem">
         <item name="android:padding">16dp</item>
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
