@@ -67,9 +67,9 @@
     <string name="settings_about">About</string>
     <string name="blacklist_title">Blacklist of Phone Numbers</string>
     <string name="blacklist_lead">If you want to block someone from seing your photos in Ringoid, you can add their phone number to the blacklist.</string>
-    <string name="blacklist_phone_hint">Enter phone number</string>
-    <string name="blacklist_phone_add">Add to the blacklist</string>
-    <string name="blacklist_description">Users with the below phone numbers won\'t be able to see or contact you in any way in Ringoid</string>
+    <string name="blacklist_phone_hint">Phone number</string>
+    <string name="blacklist_phone_add">Block it!</string>
+    <string name="blacklist_description">People with below phone numbers won\'t see your photos and you won\'t see theirs.</string>
     <string name="dialog_menu_profile_remove">Remove</string>
     <string name="format_likes" formatted="false">%d likes</string>
     <string name="dialog_menu_message">Chat</string>
@@ -164,13 +164,15 @@
     <string name="welcome_message_1_2">Your phone number is your private account id. Ringoid avoids Facebook, Instagram, email, name, and profile text.</string>
     <string name="welcome_message_1_3">You can blacklist phone numbers, show your photos only to people you liked first, and set minimum safety distance to prevent people who are too close to see your photos.</string>
     <string name="welcome_title_2">More Feedback</string>
-    <string name="welcome_message_2_1" >Ringoid shows you who liked you and allows you to like as many photos of others as you want. </string>
+    <string name="welcome_message_2_1">Ringoid shows you who liked you and allows you to like as many photos of others as you want. </string>
     <string name="welcome_message_2_2">You can see how many times each of your photos were liked.</string>
     <string name="welcome_message_2_3">All of that for free, including chatting with your matches.</string>
     <string name="welcome_title_3">More Visual</string>
     <string name="welcome_message_3_1">Ringoid sorts profiles by geographical proximity and popularity (likes).</string>
     <string name="welcome_message_3_2">The more likes your photos received the more people can discover you.</string>
     <string name="welcome_message_3_3">Only you can see how many likes you have.</string>
+    <string name="settings_privacy_phones_subtitle">Blacklist</string>
+    <string name="settings_privacy_phone_blacklist_add_subtitle">Add to the blacklist</string>
 
 
     <string-array name="pages_titles">

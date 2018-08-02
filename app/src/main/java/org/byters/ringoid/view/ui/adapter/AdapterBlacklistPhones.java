@@ -45,14 +45,11 @@ public class AdapterBlacklistPhones extends AdapterBase {
 
     private class ViewHolderItem extends ViewHolderBase implements View.OnClickListener {
 
-        private View ivRemove;
         private TextView tvPhone;
 
         ViewHolderItem(ViewGroup parent) {
             super(parent, R.layout.view_item_blacklist_phone);
             tvPhone = itemView.findViewById(R.id.tvPhone);
-            ivRemove = itemView.findViewById(R.id.ivRemove);
-            itemView.setOnClickListener(this);
             itemView.findViewById(R.id.ivRemove).setOnClickListener(this);
         }
 
@@ -61,16 +58,12 @@ public class AdapterBlacklistPhones extends AdapterBase {
             String phone = presenterAdapterBlacklistPhones.getPhone(position);
 
             tvPhone.setText(TextUtils.isEmpty(phone) ? "" : phone);
-            ivRemove.setVisibility(presenterAdapterBlacklistPhones.isSelected(position) ? View.VISIBLE : View.GONE);
         }
 
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.ivRemove)
                 presenterAdapterBlacklistPhones.onClickRemove(getAdapterPosition());
-            if (v == itemView) {
-                presenterAdapterBlacklistPhones.onClickItem(getAdapterPosition());
-            }
         }
     }
 }

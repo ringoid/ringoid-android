@@ -15,8 +15,7 @@
         android:id="@+id/ivRemove"
         style="@style/selectableImage"
         android:layout_gravity="end"
-        android:src="@drawable/ic_delete_black_24dp"
-        android:visibility="gone"
-        tools:visibility="visible" />
+        android:padding="16dp"
+        android:src="@drawable/ic_remove_gray_16dp" />
 
 </FrameLayout>

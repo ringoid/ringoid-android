@@ -4,65 +4,39 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/ivBack"
-        style="@style/selectableImage"
-        android:src="@drawable/ic_arrow_back_black_24dp" />
-
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/blacklist_title"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:text="@string/blacklist_lead"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp">
-
-        <EditText
-            android:id="@+id/etPhone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/blacklist_phone_hint"
-            android:inputType="phone" />
+        android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/ivBack"
             style="@style/selectableImage"
-            android:src="@drawable/ic_content_paste_black_24dp" />
+            android:src="@drawable/ic_arrow_back_black_24dp" />
 
-    </LinearLayout>
+        <include
+            layout="@layout/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="46dp" />
 
-    <TextView
-        android:id="@+id/tvBlacklistAdd"
-        style="@style/buttonColored"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:text="@string/blacklist_phone_add" />
+        <ImageView
+            android:id="@+id/ivBlacklistAdd"
+            style="@style/selectableImage"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_add_circle_black_24dp" />
+
+
+    </FrameLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
+        android:layout_marginTop="24dp"
+        android:paddingEnd="32dp"
+        android:paddingStart="32dp"
         android:text="@string/blacklist_description"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvItems"

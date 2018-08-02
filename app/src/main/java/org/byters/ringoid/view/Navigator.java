@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 
 import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhones;
+import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import org.byters.ringoid.view.ui.fragment.FragmentChat;
 import org.byters.ringoid.view.ui.fragment.FragmentLogin;
 import org.byters.ringoid.view.ui.fragment.FragmentPages;
@@ -67,6 +68,18 @@ public class Navigator implements INavigator {
                 .replace(viewId, new FragmentBlacklistPhones())
                 .commit();
     }
+
+    @Override
+    public void navigateBlacklistPhonesAdd() {
+
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, new FragmentBlacklistPhonesAdd())
+                .commit();
+    }
+
 
     @Override
     public void navigateChat() {

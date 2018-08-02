@@ -51,6 +51,7 @@ import org.byters.ringoid.view.ui.adapter.ViewHolderItemLikesImages;
 import org.byters.ringoid.view.ui.adapter.ViewHolderItemMessage;
 import org.byters.ringoid.view.ui.adapter.ViewHolderItemMessagesImages;
 import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhones;
+import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import org.byters.ringoid.view.ui.fragment.FragmentChat;
 import org.byters.ringoid.view.ui.fragment.FragmentExplore;
 import org.byters.ringoid.view.ui.fragment.FragmentLikes;
@@ -193,4 +194,6 @@ public interface AppComponent {
     void inject(FragmentSettingsPrivacyDistance item);
 
     void inject(PresenterSettingsPrivacyDistance item);
+
+    void inject(FragmentBlacklistPhonesAdd fragmentBlacklistPhonesAdd);
 }

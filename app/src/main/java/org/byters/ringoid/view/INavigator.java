@@ -27,4 +27,6 @@ public interface INavigator {
     void navigateSettingsPush();
 
     void navigateWelcome();
+
+    void navigateBlacklistPhonesAdd();
 }
