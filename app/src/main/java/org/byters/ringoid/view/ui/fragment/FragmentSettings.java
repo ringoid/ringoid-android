@@ -53,6 +53,9 @@ public class FragmentSettings extends FragmentBase
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.settings_subtitle);
+
+        TextView tvVersion = view.findViewById(R.id.tvVersion);
+        tvVersion.setText(String.format("%d (%s)", BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME));
     }
 
     @Override
