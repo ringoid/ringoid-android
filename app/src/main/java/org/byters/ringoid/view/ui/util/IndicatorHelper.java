@@ -5,20 +5,20 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.FrameLayout;
 
-public class DotsIndicatorHelper {
-    private DotsIndicator dotsIndicator;
+public class IndicatorHelper {
+    private IIndicator indicator;
     private LinearLayoutManager layoutManager;
 
-    public DotsIndicatorHelper(FrameLayout viewContainer, RecyclerView recyclerView, LinearLayoutManager layoutManager) {
-        dotsIndicator = new DotsIndicator(viewContainer);
-        dotsIndicator.init();
+    public IndicatorHelper(FrameLayout viewContainer, RecyclerView recyclerView, LinearLayoutManager layoutManager, IIndicator indicator) {
+        this.indicator = indicator;
+        indicator.init(viewContainer);
         recyclerView.addOnScrollListener(new ScrollListener());
         this.layoutManager = layoutManager;
     }
 
     public void updateData(int num) {
-        dotsIndicator.setDots(num);
-        dotsIndicator.initDots();
+        indicator.setDots(num);
+        indicator.initDots();
     }
 
     private class ScrollListener extends RecyclerView.OnScrollListener {
@@ -28,7 +28,7 @@ public class DotsIndicatorHelper {
 
             int pos = layoutManager.findFirstVisibleItemPosition();
 
-            dotsIndicator.onScroll(pos, layoutManager.findViewByPosition(pos).getRight());
+            indicator.onScroll(pos, layoutManager.findViewByPosition(pos).getRight());
         }
     }
 }
