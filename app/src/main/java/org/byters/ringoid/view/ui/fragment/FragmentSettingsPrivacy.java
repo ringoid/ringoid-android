@@ -82,7 +82,6 @@ public class FragmentSettingsPrivacy extends FragmentBase
         view.findViewById(R.id.llPrivacyPhotos).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_PHOTO) ? View.VISIBLE : View.GONE);
 
         view.findViewById(R.id.tvSettingsPrivacyPolicyDataStorage).setOnClickListener(this);
-        view.findViewById(R.id.tvSettingsPrivacyPolicyData).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsPrivacyPolicyNotice).setOnClickListener(this);
 
         presenterSettingsPrivacy.onCreateView();
@@ -118,9 +117,6 @@ public class FragmentSettingsPrivacy extends FragmentBase
 
         if (v.getId() == R.id.tvSettingsPrivacyPolicyDataStorage)
             navigator.navigateWebView("http://ringoid.com/data-summary.html");
-
-        if (v.getId() == R.id.tvSettingsPrivacyPolicyData)
-            navigator.navigateWebView("http://ringoid.com/data-policy.html");
 
         if (v.getId() == R.id.tvSettingsPrivacyPolicyNotice)
             navigator.navigateWebView("http://ringoid.com/privacy-notice.html");

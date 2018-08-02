@@ -99,6 +99,31 @@
 
                 </LinearLayout>
 
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_search_unregister" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_no" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_search_same_gender" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_no" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <TextView
@@ -139,6 +164,19 @@
                         android:text="@string/settings_privacy_item_value_noone" />
 
                 </LinearLayout>
+
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_phone_login" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
@@ -169,13 +207,39 @@
 
                     <TextView
                         style="@style/settings_privacy_item_message"
-                        android:text="@string/settings_privacy_location_who" />
+                        android:text="@string/settings_privacy_location_current" />
 
                     <TextView
                         style="@style/settings_privacy_item_value"
                         android:text="@string/settings_privacy_item_value_noone" />
 
                 </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_location_who_distance" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_location_history" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -193,6 +257,18 @@
                     <TextView
                         style="@style/settings_privacy_item_message"
                         android:text="@string/settings_privacy_age_who" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_birth" />
 
                     <TextView
                         style="@style/settings_privacy_item_value"
@@ -239,6 +315,19 @@
 
                     <TextView
                         style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_activity_blocks" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
                         android:text="@string/settings_privacy_activity_online" />
 
                     <TextView
@@ -263,7 +352,7 @@
 
                     <TextView
                         style="@style/settings_privacy_item_message"
-                        android:text="@string/settings_privacy_activity_chat_messages_time" />
+                        android:text="@string/settings_privacy_activity_chat_messages" />
 
                     <TextView
                         style="@style/settings_privacy_item_value"
@@ -275,7 +364,19 @@
 
                     <TextView
                         style="@style/settings_privacy_item_message"
-                        android:text="@string/settings_privacy_activity_chat_messages" />
+                        android:text="@string/settings_privacy_activity_chat_messages_date" />
+
+                    <TextView
+                        style="@style/settings_privacy_item_value"
+                        android:text="@string/settings_privacy_item_value_noone" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/settings_privacy_item_container">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_activity_use" />
 
                     <TextView
                         style="@style/settings_privacy_item_value"
@@ -299,12 +400,6 @@
                     style="@style/settings_menu_item"
                     android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                     android:text="@string/settings_privacy_policy_data_storage" />
-
-                <TextView
-                    android:id="@+id/tvSettingsPrivacyPolicyData"
-                    style="@style/settings_menu_item"
-                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
-                    android:text="@string/settings_privacy_policy_data" />
 
                 <TextView
                     android:id="@+id/tvSettingsPrivacyPolicyNotice"
