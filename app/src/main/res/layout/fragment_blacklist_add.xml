@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -39,18 +38,12 @@
         android:background="@drawable/border_rounded_gray"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvCodeCountry"
+        <Spinner
+            android:id="@+id/spCodes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_triangle_bottom_gray_8dp"
-            android:drawablePadding="4dp"
-            android:gravity="center_vertical"
-            android:paddingBottom="16dp"
-            android:paddingEnd="16dp"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            tools:text="RU +7" />
+            android:layout_gravity="center_vertical"
+            android:popupBackground="@drawable/bg_spinner" />
 
         <View
             android:layout_width="1dp"

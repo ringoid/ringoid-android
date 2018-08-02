@@ -3,16 +3,17 @@ package org.byters.ringoid.view.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.Html;
-import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterBlacklistPhones;
+import org.byters.ringoid.view.ui.adapter.AdapterSpinnerCodes;
 
 import javax.inject.Inject;
 
@@ -43,9 +44,23 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.settings_privacy_phone_blacklist_add_subtitle);
 
-
+/*
         TextView tvCodeCountry = view.findViewById(R.id.tvCodeCountry);
         tvCodeCountry.setText(Html.fromHtml("US <b>+1</b>"));
+        */
+        initSpinner(view);
+    }
+
+    private void initSpinner(View view) {
+
+        //String[] data = new String[]{"RU <B>+7</B>", "US +1", "ES +61", "KZ +7"};
+        Spinner spinner = view.findViewById(R.id.spCodes);
+        BaseAdapter adapter = new AdapterSpinnerCodes(); /*new ArrayAdapter<>(
+                getContext(),
+                android.R.layout.simple_spinner_item, data);*/
+
+       // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 
     @Override
