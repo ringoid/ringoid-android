@@ -25,4 +25,6 @@ public interface INavigator {
     void navigateFeedback(Context context, int versionCode, String versionName, String sdkInt, String model);
 
     void navigateSettingsPush();
+
+    void navigateWelcome();
 }

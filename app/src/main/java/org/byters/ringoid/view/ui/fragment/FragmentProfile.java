@@ -15,7 +15,8 @@ import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterProfile;
 import org.byters.ringoid.view.ui.adapter.AdapterProfile;
-import org.byters.ringoid.view.ui.util.DotsIndicatorHelper;
+import org.byters.ringoid.view.ui.util.IndicatorHelper;
+import org.byters.ringoid.view.ui.util.LinesIndicator;
 
 import javax.inject.Inject;
 
@@ -49,7 +50,7 @@ public class FragmentProfile extends FragmentBase {
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
 
-        DotsIndicatorHelper dotsIndicatorHelper = new DotsIndicatorHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
+        IndicatorHelper dotsIndicatorHelper = new IndicatorHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager(),new LinesIndicator());
         dotsIndicatorHelper.updateData(presenterProfile.getItemsNum());
     }
 }

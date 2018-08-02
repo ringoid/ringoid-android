@@ -9,7 +9,8 @@ import android.widget.FrameLayout;
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterLikes;
-import org.byters.ringoid.view.ui.util.DotsIndicatorHelper;
+import org.byters.ringoid.view.ui.util.IndicatorHelper;
+import org.byters.ringoid.view.ui.util.LinesIndicator;
 
 import javax.inject.Inject;
 
@@ -19,7 +20,7 @@ public class ViewHolderItemLikes extends ViewHolderBase {
     IPresenterAdapterLikes presenterAdapterLikes;
 
     private FrameLayout flDots;
-    private DotsIndicatorHelper dotsIndicatorHelper;
+    private IndicatorHelper dotsIndicatorHelper;
     private RecyclerView rvItems;
     private AdapterLikesImages adapter;
 
@@ -41,7 +42,7 @@ public class ViewHolderItemLikes extends ViewHolderBase {
         rvItems.setAdapter(adapter);
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
-        dotsIndicatorHelper = new DotsIndicatorHelper(flDots, rvItems, layoutManager);
+        dotsIndicatorHelper = new IndicatorHelper(flDots, rvItems, layoutManager,new LinesIndicator());
     }
 
     @Override

@@ -3,15 +3,14 @@ package org.byters.ringoid.view.ui.adapter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterExplore;
-import org.byters.ringoid.view.ui.util.DotsIndicatorHelper;
-import org.byters.ringoid.view.ui.util.ListenerScrollComplete;
+import org.byters.ringoid.view.ui.util.IndicatorHelper;
+import org.byters.ringoid.view.ui.util.LinesIndicator;
 
 import javax.inject.Inject;
 
@@ -21,7 +20,7 @@ public class ViewHolderItemExplore extends ViewHolderBase {
     IPresenterAdapterExplore presenterAdapterExplore;
 
     private FrameLayout flDots;
-    private DotsIndicatorHelper dotsIndicatorHelper;
+    private IndicatorHelper dotsIndicatorHelper;
     private RecyclerView rvItems;
     private AdapterExploreImages adapter;
 
@@ -43,7 +42,7 @@ public class ViewHolderItemExplore extends ViewHolderBase {
         rvItems.setAdapter(adapter);
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
-        dotsIndicatorHelper = new DotsIndicatorHelper(flDots, rvItems, layoutManager);
+        dotsIndicatorHelper = new IndicatorHelper(flDots, rvItems, layoutManager,new LinesIndicator());
     }
 
     @Override

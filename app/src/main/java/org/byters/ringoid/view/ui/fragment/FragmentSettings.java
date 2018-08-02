@@ -50,6 +50,7 @@ public class FragmentSettings extends FragmentBase
         view.findViewById(R.id.tvLogout).setOnClickListener(this);
         view.findViewById(R.id.tvAccountDelete).setOnClickListener(this);
         view.findViewById(R.id.tvPush).setOnClickListener(this);
+        view.findViewById(R.id.tvSettingsAbout).setOnClickListener(this);
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.settings_subtitle);
@@ -84,6 +85,9 @@ public class FragmentSettings extends FragmentBase
 
         if (v.getId() == R.id.tvAccountDelete)
             showDialogAccountDelete();
+
+        if (v.getId() == R.id.tvSettingsAbout)
+            navigator.navigateWelcome();
     }
 
     private void showDialogLogout() {

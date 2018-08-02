@@ -158,6 +158,19 @@
     <string name="settings_push_messages_message">New messages</string>
     <string name="settings_push_messages_description">Your match sent you a new message</string>
     <string name="settings_push_subtitle">Push Notifications</string>
+    <string name="skip">skip</string>
+    <string name="welcome_title_1">Safer Dating</string>
+    <string name="welcome_message_1_1">Ringoid hides your age, location, distance, and online status from everyone.</string>
+    <string name="welcome_message_1_2">Your phone number is your private account id. Ringoid avoids Facebook, Instagram, email, name, and profile text.</string>
+    <string name="welcome_message_1_3">You can blacklist phone numbers, show your photos only to people you liked first, and set minimum safety distance to prevent people who are too close to see your photos.</string>
+    <string name="welcome_title_2">More Feedback</string>
+    <string name="welcome_message_2_1" >Ringoid shows you who liked you and allows you to like as many photos of others as you want. </string>
+    <string name="welcome_message_2_2">You can see how many times each of your photos were liked.</string>
+    <string name="welcome_message_2_3">All of that for free, including chatting with your matches.</string>
+    <string name="welcome_title_3">More Visual</string>
+    <string name="welcome_message_3_1">Ringoid sorts profiles by geographical proximity and popularity (likes).</string>
+    <string name="welcome_message_3_2">The more likes your photos received the more people can discover you.</string>
+    <string name="welcome_message_3_3">Only you can see how many likes you have.</string>
 
 
     <string-array name="pages_titles">

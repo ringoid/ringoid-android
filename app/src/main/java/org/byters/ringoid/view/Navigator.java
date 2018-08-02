@@ -14,6 +14,7 @@ import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacy;
 import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 import org.byters.ringoid.view.ui.fragment.FragmentSettingsPush;
 import org.byters.ringoid.view.ui.fragment.FragmentWebView;
+import org.byters.ringoid.view.ui.fragment.FragmentWelcome;
 
 import java.lang.ref.WeakReference;
 
@@ -131,6 +132,17 @@ public class Navigator implements INavigator {
                 .beginTransaction()
                 .addToBackStack(null)
                 .replace(viewId, new FragmentSettingsPush())
+                .commit();
+    }
+
+    @Override
+    public void navigateWelcome() {
+
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, new FragmentWelcome())
                 .commit();
     }
 }

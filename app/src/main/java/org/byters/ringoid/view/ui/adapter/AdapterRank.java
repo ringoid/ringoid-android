@@ -13,7 +13,8 @@ import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterRank;
 import org.byters.ringoid.view.ui.adapter.callback.IPresenterAdapterRankImagesListener;
-import org.byters.ringoid.view.ui.util.DotsIndicatorHelper;
+import org.byters.ringoid.view.ui.util.IndicatorHelper;
+import org.byters.ringoid.view.ui.util.LinesIndicator;
 import org.byters.ringoid.view.ui.util.ListenerScrollComplete;
 import org.byters.ringoid.view.ui.util.listener.IScrollCompleteCallback;
 
@@ -55,7 +56,7 @@ public class AdapterRank extends AdapterBase {
         private LinearLayoutManager layoutManager;
         private FrameLayout flDots;
         private ScrollCallback scrollCallback;
-        private DotsIndicatorHelper dotsIndicatorHelper;
+        private IndicatorHelper dotsIndicatorHelper;
 
         HolderItem(ViewGroup parent) {
             super(parent, R.layout.view_item_rank);
@@ -71,7 +72,7 @@ public class AdapterRank extends AdapterBase {
             rvItems.setAdapter(adapter = new AdapterRankImages());
             new PagerSnapHelper().attachToRecyclerView(rvItems);
             rvItems.addOnScrollListener(new ListenerScrollComplete(scrollCallback = new ScrollCallback()));
-            dotsIndicatorHelper = new DotsIndicatorHelper(flDots, rvItems, layoutManager);
+            dotsIndicatorHelper = new IndicatorHelper(flDots, rvItems, layoutManager,new LinesIndicator());
         }
 
         @Override
