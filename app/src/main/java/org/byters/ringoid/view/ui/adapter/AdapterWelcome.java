@@ -36,9 +36,9 @@ public class AdapterWelcome extends AdapterBase {
         @Override
         void setData(int position) {
             tvTitle.setText(position == 0 ? R.string.welcome_title_1 : position == 1 ? R.string.welcome_title_2 : R.string.welcome_title_3);
-            tvMessage1.setText(position == 0 ? R.string.welcome_message_1_1 : position == 1 ? R.string.welcome_message_1_2 : R.string.welcome_message_1_3);
-            tvMessage2.setText(position == 0 ? R.string.welcome_message_2_1 : position == 1 ? R.string.welcome_message_2_2 : R.string.welcome_message_2_3);
-            tvMessage3.setText(position == 0 ? R.string.welcome_message_3_1 : position == 1 ? R.string.welcome_message_3_2 : R.string.welcome_message_3_3);
+            tvMessage1.setText(position == 0 ? R.string.welcome_message_1_1 : position == 1 ? R.string.welcome_message_2_1 : R.string.welcome_message_3_1);
+            tvMessage2.setText(position == 0 ? R.string.welcome_message_1_2 : position == 1 ? R.string.welcome_message_2_2 : R.string.welcome_message_3_2);
+            tvMessage3.setText(position == 0 ? R.string.welcome_message_1_3 : position == 1 ? R.string.welcome_message_2_3 : R.string.welcome_message_3_3);
 
             ivContent.setImageResource(position == 0 ? R.drawable.welcome_1 : position == 1 ? R.drawable.welcome_2 : R.drawable.welcome_3);
 
