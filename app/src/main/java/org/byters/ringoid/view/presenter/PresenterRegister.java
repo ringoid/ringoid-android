@@ -7,8 +7,6 @@ import org.byters.ringoid.R;
 import org.byters.ringoid.controller.data.memorycache.ICacheCountryList;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegister;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegisterReferral;
-import org.byters.ringoid.controller.data.memorycache.listener.ICacheCountryListListener;
-import org.byters.ringoid.controller.data.memorycache.listener.ICacheRegisterReferralListener;
 import org.byters.ringoid.controller.data.repository.IRepositoryCountryList;
 import org.byters.ringoid.controller.data.repository.IRepositoryRegister;
 import org.byters.ringoid.controller.data.repository.IRepositoryRegisterConfirm;
@@ -17,7 +15,7 @@ import org.byters.ringoid.controller.data.repository.IRepositoryRegisterReferral
 import org.byters.ringoid.controller.data.repository.callback.IRepositoryRegisterConfirmListener;
 import org.byters.ringoid.controller.data.repository.callback.IRepositoryRegisterListener;
 import org.byters.ringoid.controller.data.repository.callback.IRepositoryRegisterReferralConfirmListener;
-import org.byters.ringoid.model.DataCountry;
+import org.byters.ringoid.model.SEX;
 import org.byters.ringoid.view.INavigator;
 import org.byters.ringoid.view.presenter.callback.IPresenterRegisterListener;
 
@@ -27,8 +25,6 @@ import javax.inject.Inject;
 
 public class PresenterRegister implements IPresenterRegister {
 
-    private final ICacheCountryListListener listenerCacheCountryList;
-    private final ListenerCacheRegisterReferral listenerCacheRegisterReferral;
     private final IRepositoryRegisterReferralConfirmListener listenerRepositoryRegisterReferralConfirm;
 
     @Inject
@@ -66,8 +62,6 @@ public class PresenterRegister implements IPresenterRegister {
         ApplicationRingoid.getComponent().inject(this);
         repositoryRegister.setListener(listenerRegister = new ListenerRegister());
         repositoryRegisterCodeConfirm.setListener(listenerRegisterConfirm = new ListenerRegisterConfirm());
-        cacheCountryList.addListener(listenerCacheCountryList = new ListenerCacheCountryList());
-        cacheRegisterReferral.setListener(listenerCacheRegisterReferral = new ListenerCacheRegisterReferral());
         repositoryRegisterReferralConfirm.setListener(listenerRepositoryRegisterReferralConfirm = new ListenerRepositoryRegisterReferralConfirm());
     }
 
@@ -79,11 +73,15 @@ public class PresenterRegister implements IPresenterRegister {
     @Override
     public void onClickFemale() {
         cacheRegister.setSexFemale();
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().setGenderSelected(SEX.FEMALE);
     }
 
     @Override
     public void onClickMale() {
         cacheRegister.setSexMale();
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().setGenderSelected(SEX.MALE);
     }
 
     @Override
@@ -92,8 +90,8 @@ public class PresenterRegister implements IPresenterRegister {
     }
 
     @Override
-    public void onClickLoginTermsAgreement(boolean isAgreementChecked) {
-        if (!isAgreementChecked) {
+    public void onClickLoginTermsAgreement(boolean isAgreementChecked, boolean ageChecked) {
+        if (!isAgreementChecked || !ageChecked) {
             notifyError(R.string.error_agreement);
             return;
         }
@@ -103,17 +101,11 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Override
     public void onClickLoginPhoneVerify(String phone) {
-        if (TextUtils.isEmpty(phone) || !cacheCountryList.isCountrySelected()) {
+        if (TextUtils.isEmpty(phone)) {
             notifyError(R.string.error_phone);
             return;
         }
         repositoryRegister.request(phone);
-    }
-
-    @Override
-    public void onClickCountry() {
-        repositoryCountryList.request();
-        showAlertCountryList();
     }
 
     @Override
@@ -122,66 +114,26 @@ public class PresenterRegister implements IPresenterRegister {
     }
 
     @Override
-    public void onClickRegister(boolean ageChecked, boolean termsChecked) {
-        if (!ageChecked || !termsChecked || !cacheRegister.isDateBirthSelected()) {
-            notifyError(R.string.error_age_terms_date);
-            return;
-        }
+    public void onClickRegister() {
 
-        repositoryRegisterReferralDescription.request();
-        loginGoNext();
-    }
-
-    @Override
-    public void onClickDateBirth() {
-        long dateMillis = cacheRegister.getDateBirthMillis();
-        dialogDateBirthShow(dateMillis);
-    }
-
-    @Override
-    public void onClickReferralConfirm(String linkReferral) {
-        repositoryRegisterReferralConfirm.request(linkReferral);
+        navigator.navigateFeed();
     }
 
     @Override
     public void onDataBirthSet(long timeInMillis) {
         cacheRegister.setDateBirthMillis(timeInMillis);
+        showDateBirth(timeInMillis);
     }
 
-    @Override
-    public void onClickReferralSkip() {
-        repositoryRegisterReferralConfirm.request(null);
-    }
-
-    private void dialogDateBirthShow(long dateMillis) {
+    private void showDateBirth(long time) {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().dialogDateBirthShow(dateMillis);
-    }
-
-    private void showAlertCountryList() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().showAlertCountryList();
+        refListener.get().showDateBirth(time);
     }
 
     private void loginGoNext() {
 
         if (refListener == null || refListener.get() == null) return;
         refListener.get().navigateNext();
-    }
-
-    private void showCountry(String code, String title) {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().showCoutry(code, title);
-    }
-
-    private void dialogCountryListCancel() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().dialogCountryListCancel();
-    }
-
-    private void viewReferralShow(String title, String description) {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().showReferralData(title, description);
     }
 
     private class ListenerRegister implements IRepositoryRegisterListener {
@@ -197,26 +149,6 @@ public class PresenterRegister implements IPresenterRegister {
             if (isRegistered)
                 navigator.navigateFeed();
             else loginGoNext();
-        }
-    }
-
-    private class ListenerCacheCountryList implements ICacheCountryListListener {
-        @Override
-        public void onDataUpdate() {
-        }
-
-        @Override
-        public void onSelectedItemUpdate(DataCountry country) {
-            if (country == null) return;
-            dialogCountryListCancel();
-            showCountry(country.getCode(), country.getTitle());
-        }
-    }
-
-    private class ListenerCacheRegisterReferral implements ICacheRegisterReferralListener {
-        @Override
-        public void onUpdate(String title, String description) {
-            viewReferralShow(title, description);
         }
     }
 

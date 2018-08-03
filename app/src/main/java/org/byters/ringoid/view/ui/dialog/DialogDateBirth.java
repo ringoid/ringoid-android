@@ -38,6 +38,10 @@ public class DialogDateBirth {
         dialog.show();
     }
 
+    public void cancel() {
+        dialog.cancel();
+    }
+
     private class DialogListener implements DatePickerDialog.OnDateSetListener {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

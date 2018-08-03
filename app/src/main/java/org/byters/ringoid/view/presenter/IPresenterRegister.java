@@ -10,21 +10,13 @@ public interface IPresenterRegister {
 
     void setListener(IPresenterRegisterListener listener);
 
-    void onClickLoginTermsAgreement(boolean isAgreementChecked);
+    void onClickLoginTermsAgreement(boolean isAgreementChecked, boolean checked);
 
     void onClickLoginPhoneVerify(String phone);
 
-    void onClickCountry();
-
     void onClickCodeSMSConfirm(String code);
 
-    void onClickRegister(boolean ageChecked, boolean termsChecked);
-
-    void onClickDateBirth();
-
-    void onClickReferralConfirm(String linkReferral);
+    void onClickRegister();
 
     void onDataBirthSet(long timeInMillis);
-
-    void onClickReferralSkip();
 }

@@ -44,22 +44,12 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.settings_privacy_phone_blacklist_add_subtitle);
 
-/*
-        TextView tvCodeCountry = view.findViewById(R.id.tvCodeCountry);
-        tvCodeCountry.setText(Html.fromHtml("US <b>+1</b>"));
-        */
         initSpinner(view);
     }
 
     private void initSpinner(View view) {
-
-        //String[] data = new String[]{"RU <B>+7</B>", "US +1", "ES +61", "KZ +7"};
         Spinner spinner = view.findViewById(R.id.spCodes);
-        BaseAdapter adapter = new AdapterSpinnerCodes(); /*new ArrayAdapter<>(
-                getContext(),
-                android.R.layout.simple_spinner_item, data);*/
-
-       // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        BaseAdapter adapter = new AdapterSpinnerCodes();
         spinner.setAdapter(adapter);
     }
 

@@ -13,17 +13,17 @@
     <string name="hint_phone">Enter phone number</string>
 
     <string name="checkbox_adult">I am of legal age and adult, as defined by the country or state from where I am accessing Ringoid app</string>
-    <string name="checkbox_terms">I have read and understood Ringoid\'s Terms &amp; Conditions and Privacy Notice</string>
+    <string name="checkbox_terms">I have read and understood <a href="http://ringoid.com/terms.html">Terms &amp; Conditions</a> and <a href="http://ringoid.com/privacy-notice.html">Privacy Notice</a></string>
 
     <string name="button_invite">Send invite</string>
     <string name="button_location_enable">Enable location</string>
     <string name="button_confirm">confirm</string>
     <string name="button_register">next</string>
-    <string name="hint_register_confirm">enter code from sms</string>
+    <string name="hint_register_confirm">Code from SMS</string>
     <string name="error_terms">Please accept terms and review your age</string>
     <string name="error_phone">Please enter phone number</string>
     <string name="button_phone_reenter">edit phone</string>
-    <string name="message_date_birth">Select birth date</string>
+    <string name="message_date_birth">Date of Birth</string>
     <string name="welcome_title">Welcome to Ringoid!</string>
     <string name="welcome_lead">Ringoid is like Tinder or Bumble but more interesting and easier to use</string>
     <string name="welcome_list">
@@ -31,11 +31,11 @@
     \n\u2022 Check your ranking amongst others in your location
     \n\u2022 Browse feeds of people with attractive photos
     \n\u2022 Discover hot people around you</string>
-    <string name="button_accept_terms">Agree and Continue</string>
+    <string name="button_accept_terms">Accept and Continue</string>
     <string name="login_phone_title">Verify your phone number</string>
-    <string name="login_phone_lead">Ringoid will send an SMS message (carrier charges may apply) to verify your phone number. Enter your country code and phone number:</string>
+    <string name="login_phone_lead">Ringoid will send an SMS message (carrier charges may apply) to verify your phone number.</string>
     <string name="login_phone_country">Choose your country</string>
-    <string name="button_login_phone">Verify</string>
+    <string name="button_login_phone">Send SMS to verify</string>
     <string name="checkbox_terms_2">I have read and agreed to the Terms of Use and the Privacy Notice</string>
     <string name="button_register_confirm">Continue</string>
     <string name="login_register_age_desc">We don\'t display age on user profiles and don\'t use age in filters or search.</string>
@@ -183,6 +183,14 @@
     <string name="settings_privacy_activity_blocks">Who can see profiles you blocked?</string>
     <string name="settings_privacy_activity_chat_messages_date">Who can see when you have sent chat messages?</string>
     <string name="settings_privacy_activity_use">Who can see when and how often you use Ringoid?</string>
+    <string name="checkbox_age">I am of legal age and adult, as defined by the country or state from where I am accessing Ringoid app</string>
+    <string name="login_sms">Enter code from SMS</string>
+    <string name="login_details_title">Personal details</string>
+    <string name="button_continue">Continue</string>
+    <string name="login_birth_message">Your Date of Birth:</string>
+    <string name="login_birth_gender_message">Your Gender:</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 
 
     <string-array name="pages_titles">

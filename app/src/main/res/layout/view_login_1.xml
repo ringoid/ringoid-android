@@ -1,15 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="16dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/login_phone" />
 
     <TextView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/login_phone_title"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
@@ -17,63 +27,64 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:gravity="center"
         android:text="@string/login_phone_lead"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
-
-    <TextView
-        android:id="@+id/tvCountry"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:padding="12dp"
-        android:text="@string/login_phone_country"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:gravity="center_vertical"
+        android:background="@drawable/border_rounded_gray"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvCodeCountry"
+        <Spinner
+            android:id="@+id/spCodes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            tools:text="+7" />
+            android:layout_gravity="center_vertical"
+            android:popupBackground="@drawable/bg_spinner" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#b6b6b6" />
 
         <EditText
             android:id="@+id/etPhone"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_phone"
-            android:inputType="phone" />
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="@string/blacklist_phone_hint"
+            android:inputType="phone"
+            android:padding="16dp" />
+
+        <ImageView
+            style="@style/selectableImage"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_content_paste_black_24dp" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvLoginPhoneVerify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:background="@color/colorAccent"
-        android:gravity="center"
-        android:paddingBottom="12dp"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:paddingTop="12dp"
-        android:text="@string/button_login_phone"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
-        android:textColor="@android:color/white" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/login_phone_note"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
+        android:id="@+id/tvLoginPhoneVerify"
+        style="@style/buttonColored"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rectangle_rounded_green"
+        android:padding="16dp"
+        android:text="@string/button_login_phone"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

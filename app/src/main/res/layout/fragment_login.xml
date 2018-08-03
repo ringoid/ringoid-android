@@ -16,9 +16,6 @@
 
         <include layout="@layout/view_login_3"/>
 
-        <include layout="@layout/view_login_4"/>
-
-
     </ViewFlipper>
 
 </FrameLayout>
