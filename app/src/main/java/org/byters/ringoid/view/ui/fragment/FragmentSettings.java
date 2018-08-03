@@ -12,9 +12,11 @@ import android.widget.TextView;
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.BuildConfig;
 import org.byters.ringoid.R;
+import org.byters.ringoid.controller.data.memorycache.ICacheToken;
 import org.byters.ringoid.view.INavigator;
 import org.byters.ringoid.view.ui.dialog.DialogAccountDelete;
 import org.byters.ringoid.view.ui.dialog.DialogLogout;
+import org.byters.ringoid.view.ui.dialog.callback.IDialogLogoutListener;
 
 import javax.inject.Inject;
 
@@ -24,13 +26,18 @@ public class FragmentSettings extends FragmentBase
     @Inject
     INavigator navigator;
 
+    @Inject
+    ICacheToken cacheToken;
+
     private DialogLogout dialogLogout;
     private DialogAccountDelete dialogAccountDelete;
+    private IDialogLogoutListener listenerDialogLogout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ApplicationRingoid.getComponent().inject(this);
+        listenerDialogLogout = new ListenerDialogLogout();
     }
 
     @Nullable
@@ -93,7 +100,7 @@ public class FragmentSettings extends FragmentBase
     private void showDialogLogout() {
         if (dialogLogout != null)
             dialogLogout.cancel();
-        dialogLogout = new DialogLogout(getContext());
+        dialogLogout = new DialogLogout(getContext(), listenerDialogLogout);
         dialogLogout.show();
     }
 
@@ -102,5 +109,13 @@ public class FragmentSettings extends FragmentBase
             dialogAccountDelete.cancel();
         dialogAccountDelete = new DialogAccountDelete(getContext());
         dialogAccountDelete.show();
+    }
+
+    private class ListenerDialogLogout implements IDialogLogoutListener {
+        @Override
+        public void onConfirm() {
+            cacheToken.resetCache();
+            navigator.navigateLogin();
+        }
     }
 }

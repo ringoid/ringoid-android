@@ -35,10 +35,22 @@ public class Navigator implements INavigator {
     @Override
     public void navigateLogin() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
+
+        clearBackStack();
         refFragmentManager.get()
                 .beginTransaction()
                 .replace(viewId, new FragmentLogin())
                 .commit();
+    }
+
+    private void clearBackStack() {
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+
+        FragmentManager fm = refFragmentManager.get();
+
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
     }
 
     @Override

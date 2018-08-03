@@ -4,4 +4,6 @@ public interface ICacheToken {
     boolean isTokenExist();
 
     void setToken(String token);
+
+    void resetCache();
 }

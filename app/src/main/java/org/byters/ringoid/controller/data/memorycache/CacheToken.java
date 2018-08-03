@@ -37,4 +37,9 @@ public class CacheToken implements ICacheToken {
         this.token = token;
         cacheStorage.writeData(FileEnum.TOKEN, token);
     }
+
+    @Override
+    public void resetCache() {
+        setToken("");
+    }
 }
