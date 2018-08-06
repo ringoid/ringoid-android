@@ -8,9 +8,11 @@ import java.util.WeakHashMap;
 
 public class CacheChatMessages implements ICacheChatMessages {
 
-    public static final String SMILE_WINK = ":wink:";
+    public static final String SMILE_SHY = ":wink:";
     public static final String SMILE_LOVE = ":love:";
     public static final String SMILE_KISS = ":kiss:";
+    public static final String SMILE_HEART = ":heart:";
+
     private WeakHashMap<String, ICacheChatMessagesListener> listeners;
 
     private ArrayList<DataMessage> data;

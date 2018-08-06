@@ -76,7 +76,8 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.ivMenu).setOnClickListener(this);
 
-        view.findViewById(R.id.ivSmileWink).setOnClickListener(this);
+        view.findViewById(R.id.ivSmileHeart).setOnClickListener(this);
+        view.findViewById(R.id.ivSmileShy).setOnClickListener(this);
         view.findViewById(R.id.ivSmileLove).setOnClickListener(this);
         view.findViewById(R.id.ivSmileKiss).setOnClickListener(this);
         ivSend.setOnClickListener(this);
@@ -90,8 +91,12 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
             getActivity().onBackPressed();
         if (v.getId() == R.id.ivMenu)
             showMenu();
-        if (v.getId() == R.id.ivSmileWink) {
-            presenterChat.onClickSmileWink();
+
+        if (v.getId() == R.id.ivSmileHeart) {
+            presenterChat.onClickSmileHeart();
+        }
+        if (v.getId() == R.id.ivSmileShy) {
+            presenterChat.onClickSmileShy();
         }
         if (v.getId() == R.id.ivSmileLove) {
             presenterChat.onClickSmileLove();

@@ -67,8 +67,11 @@ public class PresenterAdapterChatMessages implements IPresenterAdapterChatMessag
     public int getMessageSmile(int position) {
         String message = getMessage(position);
 
-        if (message.contains(CacheChatMessages.SMILE_WINK))
-            return R.drawable.ic_smile_wink;
+        if (message.contains(CacheChatMessages.SMILE_HEART))
+            return R.drawable.ic_smile_heart;
+
+        if (message.contains(CacheChatMessages.SMILE_SHY))
+            return R.drawable.ic_smile_shy;
 
         if (message.contains(CacheChatMessages.SMILE_LOVE))
             return R.drawable.ic_smile_in_love;

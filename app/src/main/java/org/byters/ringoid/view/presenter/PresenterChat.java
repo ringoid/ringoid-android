@@ -50,8 +50,8 @@ public class PresenterChat implements IPresenterChat {
     }
 
     @Override
-    public void onClickSmileWink() {
-        cacheChatMessages.addMessage(CacheChatMessages.SMILE_WINK);
+    public void onClickSmileShy() {
+        cacheChatMessages.addMessage(CacheChatMessages.SMILE_SHY);
     }
 
     @Override
@@ -62,6 +62,11 @@ public class PresenterChat implements IPresenterChat {
     @Override
     public void onClickSmileKiss() {
         cacheChatMessages.addMessage(CacheChatMessages.SMILE_KISS);
+    }
+
+    @Override
+    public void onClickSmileHeart() {
+        cacheChatMessages.addMessage(CacheChatMessages.SMILE_HEART);
     }
 
     @Override
