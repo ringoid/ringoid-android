@@ -20,7 +20,7 @@ import javax.inject.Inject;
 public class FragmentSettingsPrivacy extends FragmentBase
         implements View.OnClickListener {
 
-    private static final String ARG_SHOW_PHOTO = "arg_show_photo";
+    private static final String ARG_SHOW_ALL = "arg_show_all";
 
     @Inject
     INavigator navigator;
@@ -32,9 +32,9 @@ public class FragmentSettingsPrivacy extends FragmentBase
     private TextView tvPrivacyDistance;
     private IPresenterSettingsPrivacyListener listenerPresenter;
 
-    public static Fragment getInstance(boolean showPhoto) {
+    public static Fragment getInstance(boolean showAll) {
         Bundle args = new Bundle();
-        args.putBoolean(ARG_SHOW_PHOTO, showPhoto);
+        args.putBoolean(ARG_SHOW_ALL, showAll);
         Fragment fragment = new FragmentSettingsPrivacy();
         fragment.setArguments(args);
         return fragment;
@@ -79,12 +79,21 @@ public class FragmentSettingsPrivacy extends FragmentBase
         view.findViewById(R.id.llPrivacyDistance).setOnClickListener(this);
         tvPrivacyDistance = view.findViewById(R.id.tvPrivacyDistance);
 
-        view.findViewById(R.id.llPrivacyPhotos).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_PHOTO) ? View.VISIBLE : View.GONE);
+        setVisibility(view);
 
         view.findViewById(R.id.tvSettingsPrivacyPolicyDataStorage).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsPrivacyPolicyNotice).setOnClickListener(this);
 
         presenterSettingsPrivacy.onCreateView();
+    }
+
+    private void setVisibility(View view) {
+        view.findViewById(R.id.llPrivacyPhotos).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_ALL) ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.llPrivacyPhone).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_ALL) ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.llPrivacyLocation).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_ALL) ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.llPrivacyAge).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_ALL) ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.llPrivacyActivity).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_ALL) ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.llPrivacyPolicy).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_ALL) ? View.VISIBLE : View.GONE);
     }
 
     @Override
