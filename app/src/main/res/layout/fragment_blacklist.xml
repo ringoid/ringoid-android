@@ -19,14 +19,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="46dp" />
-
-        <ImageView
-            android:id="@+id/ivBlacklistAdd"
-            style="@style/selectableImage"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_add_circle_black_24dp" />
-
-
     </FrameLayout>
 
     <TextView
@@ -41,7 +33,16 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvItems"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/ivBlacklistAdd"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+        android:layout_gravity="end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add_white_24dp" />
 
 </LinearLayout>
