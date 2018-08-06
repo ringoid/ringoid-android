@@ -191,6 +191,11 @@
     <string name="login_birth_gender_message">Your Gender:</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="dialog_report_chat_item_commercial">Advertising, fraud, commercial content</string>
+    <string name="dialog_report_chat_item_spam">Feels like spam</string>
+    <string name="dialog_report_chat_item_inappropriate">Inappropriate messages</string>
+    <string name="dialog_report_chat_item_hate">Hate speech or graphic violence</string>
+    <string name="dialog_report_chat_abuse">Verbal abuse, harassment or bullying</string>
 
 
     <string-array name="pages_titles">

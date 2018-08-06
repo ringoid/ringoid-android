@@ -20,7 +20,7 @@ import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterChat;
 import org.byters.ringoid.view.presenter.callback.IPresenterChatListener;
 import org.byters.ringoid.view.ui.adapter.AdapterChatMessages;
-import org.byters.ringoid.view.ui.dialog.DialogMenuImageOther;
+import org.byters.ringoid.view.ui.dialog.DialogMenuChat;
 import org.byters.ringoid.view.ui.util.DividerItemDecoration;
 import org.byters.ringoid.view.ui.util.GlideApp;
 import org.byters.ringoid.view.ui.util.TransformationAlpha;
@@ -34,7 +34,7 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
 
     private ImageView ivUser;
     private ListenerPresenter listenerPresenter;
-    private DialogMenuImageOther dialogMenu;
+    private DialogMenuChat dialogMenu;
     private View vEmpty;
     private RecyclerView rvMessages;
     private EditText etMessage;
@@ -112,7 +112,7 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
 
     private void showMenu() {
         if (dialogMenu != null) dialogMenu.cancel();
-        dialogMenu = new DialogMenuImageOther(getView());
+        dialogMenu = new DialogMenuChat(getView());
         dialogMenu.show();
     }
 
