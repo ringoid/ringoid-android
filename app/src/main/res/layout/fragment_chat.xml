@@ -87,7 +87,7 @@
         <ImageView
             android:id="@+id/ivSmileHeart"
             style="@style/bottomMenuItem"
-            android:src="@drawable/ic_smile_shy" />
+            android:src="@drawable/ic_smile_heart" />
 
         <ImageView
             android:id="@+id/ivSmileShy"
