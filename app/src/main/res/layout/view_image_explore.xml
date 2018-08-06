@@ -11,14 +11,14 @@
 
     <ImageView
         android:id="@+id/tvMenu"
+        style="@style/menuImageEnd"
         android:layout_marginEnd="4dp"
-        style="@style/selectableImage"
         android:src="@drawable/ic_more_horiz_white_24dp"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/ivLike"
-        style="@style/selectableImage"
+        style="@style/menuImageStart"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:src="@drawable/ic_favorite_border_white_24dp"

@@ -11,7 +11,7 @@
 
     <ImageView
         android:id="@+id/tvMenu"
-        style="@style/selectableImage"
+        style="@style/menuImageEnd"
         android:layout_gravity="end"
         android:layout_marginEnd="4dp"
         android:src="@drawable/ic_more_horiz_white_24dp" />
