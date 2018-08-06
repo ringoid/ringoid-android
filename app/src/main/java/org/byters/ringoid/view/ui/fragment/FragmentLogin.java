@@ -137,7 +137,7 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void setGenderSelected(SEX sex) {
-            getView().findViewById(R.id.tvSexFemale).setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_red) : null);
+            getView().findViewById(R.id.tvSexFemale).setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_pink) : null);
             getView().findViewById(R.id.tvSexMale).setBackground(sex == SEX.MALE ? getResources().getDrawable(R.drawable.border_rounded_blue) : null);
         }
 

@@ -102,7 +102,7 @@
             android:gravity="center"
             android:padding="16dp"
             android:text="@string/female"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/pink" />
 
     </LinearLayout>
 
