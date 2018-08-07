@@ -84,25 +84,50 @@
         android:layout_marginBottom="57dp"
         android:background="#f4f4f4">
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white" />
+
         <ImageView
             android:id="@+id/ivSmileHeart"
             style="@style/bottomMenuItem"
             android:src="@drawable/ic_smile_heart" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white" />
 
         <ImageView
             android:id="@+id/ivSmileShy"
             style="@style/bottomMenuItem"
             android:src="@drawable/ic_smile_shy" />
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white" />
+
         <ImageView
             android:id="@+id/ivSmileLove"
             style="@style/bottomMenuItem"
             android:src="@drawable/ic_smile_in_love" />
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white" />
+
         <ImageView
             android:id="@+id/ivSmileKiss"
             style="@style/bottomMenuItem"
             android:src="@drawable/ic_smile_kiss" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white" />
 
     </LinearLayout>
 
