@@ -68,6 +68,7 @@
         android:background="@drawable/rectangle_rounded_green"
         android:padding="16dp"
         android:text="@string/button_continue"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        android:textSize="18sp" />
 
 </LinearLayout>

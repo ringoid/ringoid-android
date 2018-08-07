@@ -85,6 +85,7 @@
         android:padding="16dp"
         android:text="@string/button_login_phone"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
 </LinearLayout>

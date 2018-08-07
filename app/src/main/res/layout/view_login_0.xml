@@ -27,6 +27,7 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
         android:textColor="@color/gray"
         android:textColorLink="@color/gray"
+        android:textSize="17sp"
         android:theme="@style/themeGreen" />
 
     <CheckBox
@@ -41,6 +42,7 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
         android:textColor="@color/gray"
         android:textColorLink="@color/gray"
+        android:textSize="17sp"
         android:theme="@style/themeGreen" />
 
     <View
@@ -55,6 +57,7 @@
         android:background="@drawable/rectangle_rounded_green"
         android:padding="16dp"
         android:text="@string/button_accept_terms"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        android:textSize="18sp" />
 
 </LinearLayout>
