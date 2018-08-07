@@ -50,7 +50,7 @@ public class FragmentProfile extends FragmentBase {
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
 
-        IndicatorHelper dotsIndicatorHelper = new IndicatorHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager(),new LinesIndicator());
+        IndicatorHelper dotsIndicatorHelper = IndicatorHelper.getLinesHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
         dotsIndicatorHelper.updateData(presenterProfile.getItemsNum());
     }
 }

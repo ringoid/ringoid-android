@@ -23,6 +23,7 @@
             android:layout_marginTop="32dp"
             android:gravity="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            android:textSize="20sp"
             tools:text="title" />
 
         <TextView
@@ -35,32 +36,35 @@
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_dot_red_6dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+            android:textSize="15sp"
             tools:text="message" />
 
         <TextView
             android:id="@+id/tvMessage2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginEnd="40dp"
+
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_dot_red_6dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+            android:textSize="15sp"
             tools:text="message" />
 
         <TextView
             android:id="@+id/tvMessage3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginEnd="40dp"
+
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_dot_red_6dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+            android:textSize="15sp"
             tools:text="message" />
 
 

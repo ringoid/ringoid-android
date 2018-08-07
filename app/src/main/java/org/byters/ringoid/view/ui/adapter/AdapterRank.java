@@ -72,7 +72,7 @@ public class AdapterRank extends AdapterBase {
             rvItems.setAdapter(adapter = new AdapterRankImages());
             new PagerSnapHelper().attachToRecyclerView(rvItems);
             rvItems.addOnScrollListener(new ListenerScrollComplete(scrollCallback = new ScrollCallback()));
-            dotsIndicatorHelper = new IndicatorHelper(flDots, rvItems, layoutManager,new LinesIndicator());
+            dotsIndicatorHelper = IndicatorHelper.getLinesHelper(flDots, rvItems, layoutManager);
         }
 
         @Override

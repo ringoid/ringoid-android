@@ -55,7 +55,7 @@ public class DotsIndicator implements IIndicator {
         for (int i = 0; i < itemCount; ++i) {
 
             ImageView imageView = new ImageView(llDots.getContext());
-            imageView.setImageResource(R.drawable.indicator_line_accent);
+            imageView.setImageResource(R.drawable.indicator_line_white);
             imageView.setLayoutParams(params);
             llDots.addView(imageView);
         }

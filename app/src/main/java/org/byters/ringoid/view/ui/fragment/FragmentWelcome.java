@@ -10,15 +10,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.ui.adapter.AdapterWelcome;
+import org.byters.ringoid.view.ui.adapter.IAdapterWelcomeListener;
 import org.byters.ringoid.view.ui.util.DotsIndicator;
 import org.byters.ringoid.view.ui.util.IndicatorHelper;
 
 public class FragmentWelcome extends FragmentBase implements View.OnClickListener {
 
     private IndicatorHelper dotsIndicatorHelper;
+    private ListenerAdapterWelcome listenerAdapter;
+    private RecyclerView rvItems;
+    private LinearLayoutManager layoutManager;
+    private AdapterWelcome adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,22 +42,50 @@ public class FragmentWelcome extends FragmentBase implements View.OnClickListene
 
     private void initViews(View view) {
         view.findViewById(R.id.tvSkip).setOnClickListener(this);
-
-        intiList(view);
+        view.findViewById(R.id.tvContinue).setOnClickListener(this);
+        initList(view);
     }
 
-    private void intiList(View view) {
-        RecyclerView rvItems = view.findViewById(R.id.rvItems);
-        rvItems.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        rvItems.setAdapter(new AdapterWelcome());
+    private void initList(View view) {
+        rvItems = view.findViewById(R.id.rvItems);
+        rvItems.setLayoutManager(layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        rvItems.setAdapter(adapter = new AdapterWelcome(listenerAdapter = new ListenerAdapterWelcome()));
         new PagerSnapHelper().attachToRecyclerView(rvItems);
 
-        dotsIndicatorHelper = new IndicatorHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager(),new DotsIndicator());
+        dotsIndicatorHelper = IndicatorHelper.getLinesAccentHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
         dotsIndicatorHelper.updateData(rvItems.getAdapter().getItemCount());
     }
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.tvSkip) {
+            confirm();
+        }
+        if (v.getId() == R.id.tvContinue) {
+            showNext();
+        }
+    }
+
+    private void showNext() {
+        int pos = layoutManager.findFirstVisibleItemPosition();
+        if (pos < 0 || pos >= adapter.getItemCount()) return;
+        if (pos == adapter.getItemCount() - 1) {
+            confirm();
+            return;
+        }
+
+        rvItems.scrollToPosition(pos + 1);
+    }
+
+    private void confirm() {
         getActivity().onBackPressed();
+    }
+
+    private class ListenerAdapterWelcome implements IAdapterWelcomeListener {
+        @Override
+        public void onPageShown(boolean isLast) {
+            getView().findViewById(R.id.tvSkip).setVisibility(isLast ? View.GONE : View.VISIBLE);
+            ((TextView) getView().findViewById(R.id.tvContinue)).setText(isLast ? R.string.button_want_it : R.string.button_continue);
+        }
     }
 }

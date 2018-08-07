@@ -9,6 +9,20 @@ import android.widget.TextView;
 import org.byters.ringoid.R;
 
 public class AdapterWelcome extends AdapterBase {
+    private IAdapterWelcomeListener listener;
+
+    public AdapterWelcome(IAdapterWelcomeListener listener) {
+        super();
+        this.listener = listener;
+    }
+
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull ViewHolderBase holder) {
+        super.onViewAttachedToWindow(holder);
+        listener.onPageShown(holder.getAdapterPosition() == getItemCount() - 1);
+    }
+
     @NonNull
     @Override
     public ViewHolderBase onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

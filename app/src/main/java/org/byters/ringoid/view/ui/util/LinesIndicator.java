@@ -8,10 +8,16 @@ import android.widget.LinearLayout;
 import org.byters.ringoid.R;
 
 public class LinesIndicator implements IIndicator {
+    private final int resAccent, resDefault;
     private FrameLayout flIndicator;
 
     private LinearLayout llDots;
     private int savedPos;
+
+    public LinesIndicator(int resAccent, int resDefault) {
+        this.resAccent = resAccent;
+        this.resDefault = resDefault;
+    }
 
     @Override
     public void initDots() {
@@ -23,7 +29,7 @@ public class LinesIndicator implements IIndicator {
         if (savedPos == pos) return;
         savedPos = pos;
         for (int i = 0; i < llDots.getChildCount(); ++i)
-            llDots.getChildAt(i).setBackgroundResource(i == pos ? R.drawable.indicator_line_accent : R.drawable.indicator_line_grey);
+            llDots.getChildAt(i).setBackgroundResource(i == pos ? resAccent : resDefault);
     }
 
     @Override
@@ -55,7 +61,7 @@ public class LinesIndicator implements IIndicator {
         for (int i = 0; i < itemCount; ++i) {
 
             FrameLayout view = new FrameLayout(llDots.getContext());
-            view.setBackgroundResource(R.drawable.indicator_line_accent);
+            view.setBackgroundResource(R.drawable.indicator_line_white);
             view.setLayoutParams(params);
             llDots.addView(view);
         }

@@ -196,6 +196,7 @@
     <string name="dialog_report_chat_item_inappropriate">Inappropriate messages</string>
     <string name="dialog_report_chat_item_hate">Hate speech or graphic violence</string>
     <string name="dialog_report_chat_abuse">Verbal abuse, harassment or bullying</string>
+    <string name="button_want_it">I want it!</string>
 
 
     <string-array name="pages_titles">

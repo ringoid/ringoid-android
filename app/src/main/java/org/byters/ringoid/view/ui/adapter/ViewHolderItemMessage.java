@@ -13,7 +13,6 @@ import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterMessages;
 import org.byters.ringoid.view.ui.dialog.DialogMenuImageOther;
 import org.byters.ringoid.view.ui.util.IndicatorHelper;
-import org.byters.ringoid.view.ui.util.LinesIndicator;
 
 import javax.inject.Inject;
 
@@ -51,7 +50,7 @@ public class ViewHolderItemMessage extends ViewHolderBase
         rvItems.setAdapter(adapter);
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
-        dotsIndicatorHelper = new IndicatorHelper(flDots, rvItems, layoutManager, new LinesIndicator());
+        dotsIndicatorHelper = IndicatorHelper.getLinesHelper(flDots, rvItems, layoutManager);
     }
 
     @Override

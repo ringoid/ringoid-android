@@ -5,15 +5,32 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.FrameLayout;
 
+import org.byters.ringoid.R;
+
 public class IndicatorHelper {
     private IIndicator indicator;
     private LinearLayoutManager layoutManager;
 
-    public IndicatorHelper(FrameLayout viewContainer, RecyclerView recyclerView, LinearLayoutManager layoutManager, IIndicator indicator) {
+    private IndicatorHelper(FrameLayout viewContainer, RecyclerView recyclerView, LinearLayoutManager layoutManager, IIndicator indicator) {
         this.indicator = indicator;
         indicator.init(viewContainer);
         recyclerView.addOnScrollListener(new ScrollListener());
         this.layoutManager = layoutManager;
+    }
+
+    public static IndicatorHelper getLinesHelper(FrameLayout viewContainer, RecyclerView recyclerView, LinearLayoutManager layoutManager) {
+        return new IndicatorHelper(viewContainer,
+                recyclerView,
+                layoutManager,
+                new LinesIndicator(R.drawable.indicator_line_white, R.drawable.indicator_line_grey));
+    }
+
+
+    public static IndicatorHelper getLinesAccentHelper(FrameLayout viewContainer, RecyclerView recyclerView, LinearLayoutManager layoutManager) {
+        return new IndicatorHelper(viewContainer,
+                recyclerView,
+                layoutManager,
+                new LinesIndicator(R.drawable.indicator_line_accent, R.drawable.indicator_line_grey));
     }
 
     public void updateData(int num) {

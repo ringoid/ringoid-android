@@ -42,7 +42,7 @@ public class ViewHolderItemLikes extends ViewHolderBase {
         rvItems.setAdapter(adapter);
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
-        dotsIndicatorHelper = new IndicatorHelper(flDots, rvItems, layoutManager,new LinesIndicator());
+        dotsIndicatorHelper = IndicatorHelper.getLinesHelper(flDots, rvItems, layoutManager);
     }
 
     @Override
