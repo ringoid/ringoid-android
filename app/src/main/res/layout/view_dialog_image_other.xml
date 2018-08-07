@@ -44,9 +44,14 @@
         <TextView
             android:id="@+id/tvReport"
             style="@style/dialog_menu_item"
-            android:drawableStart="@drawable/ic_report_black_24dp"
-            android:padding="20dp"
+            android:drawableStart="@drawable/ic_report_red_24dp"
+
+            android:paddingBottom="20dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="20dp"
+
             android:text="@string/dialog_menu_rank_report"
+            android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@id/vBarrier"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintWidth_min="wrap" />
@@ -55,8 +60,13 @@
             android:id="@+id/tvBlock"
             style="@style/dialog_menu_item"
             android:drawableStart="@drawable/ic_block_black_24dp"
-            android:padding="20dp"
+
+            android:paddingBottom="20dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="20dp"
+
             android:text="@string/dialog_menu_rank_block"
+            android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@id/vBarrier"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvReport"
