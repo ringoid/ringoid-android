@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/fragment_settings_privacy">
+
+    <TextView
+        android:id="@+id/tvPrivacyMessages"
+        style="@style/settings_privacy_menu_title"
+        android:drawableStart="@drawable/ic_privacy_messages"
+        android:text="@string/settings_privacy_messages" />
+
+    <LinearLayout
+        android:id="@+id/llPrivacyMessages"
+        style="@style/settings_privacy_items_container">
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_messages_text"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/swPrivacyMessagesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/themeGreen" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_messages_emoji" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_yes" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_messages_pics" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_no" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_messages_read" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_messages_when" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_messages_online" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_messages_online_last_time" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</merge>

@@ -99,9 +99,9 @@
     <string name="settings_push">Push notifications</string>
     <string name="settings_privacy_photos">Photos</string>
     <string name="settings_privacy_photos_message">Who can see your photos?</string>
-    <string name="settings_privacy_photos_all">Ringoid users of the opposite sex</string>
-    <string name="settings_privacy_photos_liked">Only users whom photos I liked</string>
-    <string name="settings_privacy_photos_noone">Only me</string>
+    <string name="settings_privacy_photos_all">Ringoid users of the opposite sex\n(Regular mode)</string>
+    <string name="settings_privacy_photos_liked">Only users whom photos I liked\n(Incognito mode)</string>
+    <string name="settings_privacy_photos_noone">Only me\n(Hidden mode)</string>
     <string name="settings_privacy_likes_nums">Who can see how many times your photos were liked?</string>
     <string name="settings_privacy_likes_who">Who can see who liked your photos?</string>
     <string name="settings_privacy_search">Can search engines find and index your photos?</string>
@@ -124,7 +124,7 @@
     <string name="settings_privacy_policy_privacy">Privacy Notice</string>
     <string name="settings_privacy_subtitle">Privacy</string>
     <string name="settings_privacy_activity_likes">Who can see which photos you liked?</string>
-    <string name="settings_privacy_activity_reports">Who can see photos you reported?</string>
+    <string name="settings_privacy_activity_reports">Who can see which photos you reported?</string>
     <string name="settings_privacy_activity_online">Who can see that you are online?</string>
     <string name="settings_privacy_activity_online_last_time">Who can see when you were online last time?</string>
     <string name="settings_privacy_activity_chat_messages_time">Who can see when you sent or read chat messages?</string>
@@ -180,7 +180,7 @@
     <string name="settings_privacy_location_who_distance">Who can see distance between you and others?</string>
     <string name="settings_privacy_location_history">Who can see your location history?</string>
     <string name="settings_privacy_birth">Who can see your date of birth?</string>
-    <string name="settings_privacy_activity_blocks">Who can see profiles you blocked?</string>
+    <string name="settings_privacy_activity_blocks">Who can see which profiles you blocked?</string>
     <string name="settings_privacy_activity_chat_messages_date">Who can see when you have sent chat messages?</string>
     <string name="settings_privacy_activity_use">Who can see when and how often you use Ringoid?</string>
     <string name="checkbox_age">I am of legal age and adult, as defined by the country or state from where I am accessing Ringoid app</string>
@@ -197,6 +197,15 @@
     <string name="dialog_report_chat_item_hate">Hate speech or graphic violence</string>
     <string name="dialog_report_chat_abuse">Verbal abuse, harassment or bullying</string>
     <string name="button_want_it">I want it!</string>
+    <string name="settings_privacy_messages">Messages</string>
+    <string name="settings_privacy_messages_text">Do you allow a person with whom you matched to send first a text message to you?</string>
+    <string name="settings_privacy_messages_emoji">Can a person with whom you matched send first an emoji to you?</string>
+    <string name="settings_privacy_item_value_yes">Yes</string>
+    <string name="settings_privacy_messages_pics">Can someone send you pictures or photos in a chat?</string>
+    <string name="settings_privacy_messages_read">Who can see that you read chat messages?</string>
+    <string name="settings_privacy_messages_when">Who can see when you have sent chat messages?</string>
+    <string name="settings_privacy_messages_online">Who can see that you are online?</string>
+    <string name="settings_privacy_messages_online_last_time">Who can see when you were online last time?</string>
 
 
     <string-array name="pages_titles">

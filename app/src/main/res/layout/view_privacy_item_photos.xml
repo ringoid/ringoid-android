@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/fragment_settings_privacy">
+
+    <TextView
+        android:drawableStart="@drawable/ic_privacy_photos"
+        android:id="@+id/tvPrivacyPhotos"
+        style="@style/settings_privacy_menu_title"
+        android:text="@string/settings_privacy_photos" />
+
+    <LinearLayout
+        android:id="@+id/llPrivacyPhotos"
+        style="@style/settings_privacy_items_container">
+
+        <TextView
+            style="@style/settings_menu_item"
+            android:text="@string/settings_privacy_photos_message" />
+
+        <TextView
+            android:id="@+id/tvPrivacyPhotosAll"
+            style="@style/settings_menu_item"
+            android:drawableStart="@drawable/ic_privacy_all_gray_24dp"
+            android:text="@string/settings_privacy_photos_all" />
+
+        <TextView
+            android:id="@+id/tvPrivacyPhotosLikes"
+            style="@style/settings_menu_item"
+            android:drawableStart="@drawable/ic_privacy_likes_gray_24dp"
+            android:text="@string/settings_privacy_photos_liked" />
+
+        <TextView
+            android:id="@+id/tvPrivacyPhotosNoone"
+            style="@style/settings_menu_item"
+            android:drawableStart="@drawable/ic_privacy_noone_gray_24dp"
+            android:text="@string/settings_privacy_photos_noone" />
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_likes_nums" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_only_me" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_likes_who" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_only_me" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_search" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_no" />
+
+        </LinearLayout>
+
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_search_unregister" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_no" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_search_same_gender" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_no" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</merge>

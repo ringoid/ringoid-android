@@ -1,5 +1,6 @@
 package org.byters.ringoid.view.ui.fragment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -66,6 +67,7 @@ public class FragmentSettingsPrivacy extends FragmentBase
         view.findViewById(R.id.tvPrivacyAge).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacyActivity).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacyPolicy).setOnClickListener(this);
+        view.findViewById(R.id.tvPrivacyMessages).setOnClickListener(this);
 
         tvPrivacyPhotosAll = view.findViewById(R.id.tvPrivacyPhotosAll);
         tvPrivacyPhotosLikes = view.findViewById(R.id.tvPrivacyPhotosLikes);
@@ -94,6 +96,7 @@ public class FragmentSettingsPrivacy extends FragmentBase
         view.findViewById(R.id.llPrivacyAge).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_ALL) ? View.VISIBLE : View.GONE);
         view.findViewById(R.id.llPrivacyActivity).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_ALL) ? View.VISIBLE : View.GONE);
         view.findViewById(R.id.llPrivacyPolicy).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_ALL) ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.llPrivacyMessages).setVisibility(getArguments() != null && getArguments().getBoolean(ARG_SHOW_ALL) ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -108,6 +111,7 @@ public class FragmentSettingsPrivacy extends FragmentBase
         visibilityChangeCheck(v, R.id.tvPrivacyAge, R.id.llPrivacyAge);
         visibilityChangeCheck(v, R.id.tvPrivacyActivity, R.id.llPrivacyActivity);
         visibilityChangeCheck(v, R.id.tvPrivacyPolicy, R.id.llPrivacyPolicy);
+        visibilityChangeCheck(v, R.id.tvPrivacyMessages, R.id.llPrivacyMessages);
 
         if (v.getId() == R.id.tvPrivacyPhotosAll)
             presenterSettingsPrivacy.onClickPrivacyPhotosAll();
@@ -137,7 +141,7 @@ public class FragmentSettingsPrivacy extends FragmentBase
         View vContainer = getView().findViewById(viewContainerId);
         vContainer.setVisibility(vContainer.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
         TextView view = getView().findViewById(viewId);
-        view.setCompoundDrawablesWithIntrinsicBounds(null, null, getContext().getResources().getDrawable(vContainer.getVisibility() == View.GONE
+        view.setCompoundDrawablesWithIntrinsicBounds(view.getCompoundDrawables()[0], null, getContext().getResources().getDrawable(vContainer.getVisibility() == View.GONE
                 ? R.drawable.ic_keyboard_arrow_down_gray_24dp
                 : R.drawable.ic_keyboard_arrow_up_black_24dp), null);
     }
@@ -145,9 +149,17 @@ public class FragmentSettingsPrivacy extends FragmentBase
     private class ListenerPresenter implements IPresenterSettingsPrivacyListener {
         @Override
         public void setPrivacyPhotos(int type) {
+            setTextStyle(tvPrivacyPhotosAll, type == 0);
+            setTextStyle(tvPrivacyPhotosLikes, type == 1);
+            setTextStyle(tvPrivacyPhotosNoone, type == 2);
+
             tvPrivacyPhotosAll.setCompoundDrawablesWithIntrinsicBounds(getContext().getResources().getDrawable(R.drawable.ic_privacy_all_gray_24dp), null, type == 0 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
             tvPrivacyPhotosLikes.setCompoundDrawablesWithIntrinsicBounds(getContext().getResources().getDrawable(R.drawable.ic_privacy_likes_gray_24dp), null, type == 1 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
             tvPrivacyPhotosNoone.setCompoundDrawablesWithIntrinsicBounds(getContext().getResources().getDrawable(R.drawable.ic_privacy_noone_gray_24dp), null, type == 2 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
+        }
+
+        private void setTextStyle(TextView textView, boolean isBold) {
+            textView.setTypeface(null, isBold ? Typeface.BOLD : Typeface.NORMAL);
         }
 
         @Override

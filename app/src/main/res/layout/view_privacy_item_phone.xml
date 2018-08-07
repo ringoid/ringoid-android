@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/fragment_settings_privacy">
+
+    <TextView
+        android:drawableStart="@drawable/ic_privacy_phone"
+        android:id="@+id/tvPrivacyPhone"
+        style="@style/settings_privacy_menu_title"
+        android:text="@string/settings_privacy_phone" />
+
+    <LinearLayout
+        android:id="@+id/llPrivacyPhone"
+        style="@style/settings_privacy_items_container">
+
+        <TextView
+            android:id="@+id/tvPrivacyPhoneBlacklist"
+            style="@style/settings_menu_item"
+            android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+            android:text="@string/settings_privacy_phone_blacklist"
+            android:textStyle="bold" />
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_phone_see" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_phone_find" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_phone_login" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_no" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</merge>

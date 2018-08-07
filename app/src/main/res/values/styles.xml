@@ -89,6 +89,7 @@
     </style>
 
     <style name="settings_menu_item">
+        <item name="android:textSize">15sp</item>
         <item name="android:drawablePadding">8dp</item>
         <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Body1</item>
         <item name="android:gravity">center_vertical</item>
@@ -107,6 +108,7 @@
     </style>
 
     <style name="settings_privacy_menu_title" parent="settings_menu_item">
+        <item name="android:drawablePadding">12dp</item>
         <item name="android:background">#f5f5f5</item>
         <item name="android:drawableEnd">@drawable/ic_keyboard_arrow_down_gray_24dp</item>
         <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
@@ -125,6 +127,7 @@
     </style>
 
     <style name="settings_privacy_item_message">
+        <item name="android:textSize">15sp</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center_vertical</item>

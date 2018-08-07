@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/fragment_settings_privacy">
+
+    <TextView
+        android:drawableStart="@drawable/ic_privacy_activity"
+        android:id="@+id/tvPrivacyActivity"
+        style="@style/settings_privacy_menu_title"
+        android:text="@string/settings_privacy_activity" />
+
+    <LinearLayout
+        android:id="@+id/llPrivacyActivity"
+        style="@style/settings_privacy_items_container">
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_activity_likes" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_activity_reports" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_activity_blocks" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_activity_use" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</merge>

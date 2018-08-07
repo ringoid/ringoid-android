@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/fragment_settings_privacy">
+
+    <TextView
+        android:drawableStart="@drawable/ic_privacy_location"
+        android:id="@+id/tvPrivacyLocation"
+        style="@style/settings_privacy_menu_title"
+        android:text="@string/settings_privacy_location" />
+
+    <LinearLayout
+        android:id="@+id/llPrivacyLocation"
+        style="@style/settings_privacy_items_container">
+
+        <LinearLayout
+            android:id="@+id/llPrivacyDistance"
+            style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_location_distance"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvPrivacyDistance"
+                style="@style/settings_privacy_item_value"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_location_current" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_location_who_distance" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_location_history" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</merge>
