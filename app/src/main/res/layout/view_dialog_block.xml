@@ -12,7 +12,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_block_red_32dp" />
+        android:src="@drawable/ic_block_black_32dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -65,9 +65,7 @@
             android:paddingRight="16dp"
             android:paddingTop="12dp"
             android:text="@string/dialog_block_confirm"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
-            android:textColor="@color/colorAccent" />
-
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button" />
 
     </LinearLayout>
 
