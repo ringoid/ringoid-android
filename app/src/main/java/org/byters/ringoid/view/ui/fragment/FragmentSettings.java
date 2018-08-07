@@ -94,7 +94,7 @@ public class FragmentSettings extends FragmentBase
             showDialogAccountDelete();
 
         if (v.getId() == R.id.tvSettingsAbout)
-            navigator.navigateWelcome();
+            navigator.navigateWelcome(false);
     }
 
     private void showDialogLogout() {

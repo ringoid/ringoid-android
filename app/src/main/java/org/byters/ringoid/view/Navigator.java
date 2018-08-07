@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
@@ -48,7 +49,7 @@ public class Navigator implements INavigator {
 
         FragmentManager fm = refFragmentManager.get();
 
-        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
         }
     }
@@ -161,13 +162,16 @@ public class Navigator implements INavigator {
     }
 
     @Override
-    public void navigateWelcome() {
+    public void navigateWelcome(boolean isLogin) {
 
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        refFragmentManager.get()
-                .beginTransaction()
-                .addToBackStack(null)
-                .replace(viewId, new FragmentWelcome())
+        FragmentTransaction transaction = refFragmentManager.get()
+                .beginTransaction();
+
+        if (!isLogin)
+            transaction.addToBackStack(null);
+
+        transaction.replace(viewId, FragmentWelcome.getInstance(isLogin))
                 .commit();
     }
 }

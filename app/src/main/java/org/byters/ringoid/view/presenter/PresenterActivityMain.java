@@ -26,6 +26,6 @@ public class PresenterActivityMain implements IPresenterActivityMain {
 
         if (cacheToken.isTokenExist())
             navigator.navigateFeed();
-        else navigator.navigateLogin();
+        else navigator.navigateWelcome(true);
     }
 }

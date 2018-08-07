@@ -63,6 +63,7 @@ import org.byters.ringoid.view.ui.fragment.FragmentRank;
 import org.byters.ringoid.view.ui.fragment.FragmentSettings;
 import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacy;
 import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
+import org.byters.ringoid.view.ui.fragment.FragmentWelcome;
 
 import javax.inject.Singleton;
 
@@ -196,4 +197,6 @@ public interface AppComponent {
     void inject(PresenterSettingsPrivacyDistance item);
 
     void inject(FragmentBlacklistPhonesAdd fragmentBlacklistPhonesAdd);
+
+    void inject(FragmentWelcome fragmentWelcome);
 }

@@ -3,6 +3,7 @@ package org.byters.ringoid.view.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -12,23 +13,38 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
+import org.byters.ringoid.view.INavigator;
 import org.byters.ringoid.view.ui.adapter.AdapterWelcome;
 import org.byters.ringoid.view.ui.adapter.IAdapterWelcomeListener;
-import org.byters.ringoid.view.ui.util.DotsIndicator;
 import org.byters.ringoid.view.ui.util.IndicatorHelper;
+
+import javax.inject.Inject;
 
 public class FragmentWelcome extends FragmentBase implements View.OnClickListener {
 
+    private static final String ARG_IS_WELCOME = "arg_welcome";
+    @Inject
+    INavigator navigator;
     private IndicatorHelper dotsIndicatorHelper;
     private ListenerAdapterWelcome listenerAdapter;
     private RecyclerView rvItems;
     private LinearLayoutManager layoutManager;
     private AdapterWelcome adapter;
 
+    public static Fragment getInstance(boolean isLogin) {
+        Bundle args = new Bundle();
+        args.putBoolean(ARG_IS_WELCOME, isLogin);
+        FragmentWelcome fragmentWelcome = new FragmentWelcome();
+        fragmentWelcome.setArguments(args);
+        return fragmentWelcome;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ApplicationRingoid.getComponent().inject(this);
     }
 
     @Nullable
@@ -78,7 +94,11 @@ public class FragmentWelcome extends FragmentBase implements View.OnClickListene
     }
 
     private void confirm() {
-        getActivity().onBackPressed();
+        if (!getArguments().getBoolean(ARG_IS_WELCOME)) {
+            getActivity().onBackPressed();
+            return;
+        }
+        navigator.navigateLogin();
     }
 
     private class ListenerAdapterWelcome implements IAdapterWelcomeListener {
