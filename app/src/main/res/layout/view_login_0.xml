@@ -25,7 +25,9 @@
         android:paddingStart="20dp"
         android:text="@string/checkbox_terms"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textColor="@color/gray" />
+        android:textColor="@color/gray"
+        android:textColorLink="@color/gray"
+        android:theme="@style/themeGreen" />
 
     <CheckBox
         android:id="@+id/cbAge"
@@ -37,7 +39,9 @@
         android:paddingStart="20dp"
         android:text="@string/checkbox_age"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textColor="@color/gray" />
+        android:textColor="@color/gray"
+        android:textColorLink="@color/gray"
+        android:theme="@style/themeGreen" />
 
     <View
         android:layout_width="match_parent"
