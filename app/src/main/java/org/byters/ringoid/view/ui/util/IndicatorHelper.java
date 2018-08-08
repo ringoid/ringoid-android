@@ -26,6 +26,13 @@ public class IndicatorHelper {
     }
 
 
+    public static IndicatorHelper getLinesAccentGreenHelper(FrameLayout viewContainer, RecyclerView recyclerView, LinearLayoutManager layoutManager) {
+        return new IndicatorHelper(viewContainer,
+                recyclerView,
+                layoutManager,
+                new LinesIndicator(R.drawable.indicator_line_accent_green, R.drawable.indicator_line_grey));
+    }
+
     public static IndicatorHelper getLinesAccentHelper(FrameLayout viewContainer, RecyclerView recyclerView, LinearLayoutManager layoutManager) {
         return new IndicatorHelper(viewContainer,
                 recyclerView,

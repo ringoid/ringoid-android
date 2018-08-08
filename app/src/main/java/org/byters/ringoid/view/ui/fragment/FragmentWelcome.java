@@ -68,7 +68,7 @@ public class FragmentWelcome extends FragmentBase implements View.OnClickListene
         rvItems.setAdapter(adapter = new AdapterWelcome(listenerAdapter = new ListenerAdapterWelcome()));
         new PagerSnapHelper().attachToRecyclerView(rvItems);
 
-        dotsIndicatorHelper = IndicatorHelper.getLinesAccentHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
+        dotsIndicatorHelper = IndicatorHelper.getLinesAccentGreenHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
         dotsIndicatorHelper.updateData(rvItems.getAdapter().getItemCount());
     }
 

@@ -10,7 +10,6 @@ import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterAdapterLikes;
 import org.byters.ringoid.view.ui.util.IndicatorHelper;
-import org.byters.ringoid.view.ui.util.LinesIndicator;
 
 import javax.inject.Inject;
 
@@ -42,7 +41,7 @@ public class ViewHolderItemLikes extends ViewHolderBase {
         rvItems.setAdapter(adapter);
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
-        dotsIndicatorHelper = IndicatorHelper.getLinesHelper(flDots, rvItems, layoutManager);
+        dotsIndicatorHelper = IndicatorHelper.getLinesAccentHelper(flDots, rvItems, layoutManager);
     }
 
     @Override

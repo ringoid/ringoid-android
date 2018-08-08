@@ -50,7 +50,7 @@ public class ViewHolderItemMessage extends ViewHolderBase
         rvItems.setAdapter(adapter);
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
-        dotsIndicatorHelper = IndicatorHelper.getLinesHelper(flDots, rvItems, layoutManager);
+        dotsIndicatorHelper = IndicatorHelper.getLinesAccentGreenHelper(flDots, rvItems, layoutManager);
     }
 
     @Override
