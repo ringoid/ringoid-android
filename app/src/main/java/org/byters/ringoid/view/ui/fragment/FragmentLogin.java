@@ -80,6 +80,15 @@ public class FragmentLogin extends FragmentBase
         initSpinner(view);
     }
 
+    @Override
+    public boolean onBackPressed() {
+        if (vfLogin.getCurrentView().getId() != R.id.llLoginTerms) {
+            vfLogin.showPrevious();
+            return true;
+        }
+        return false;
+    }
+
     private void initSpinner(View view) {
         Spinner spinner = view.findViewById(R.id.spCodes);
         BaseAdapter adapter = new AdapterSpinnerCodes();

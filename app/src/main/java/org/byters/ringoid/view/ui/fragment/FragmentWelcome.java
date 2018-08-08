@@ -81,6 +81,21 @@ public class FragmentWelcome extends FragmentBase implements View.OnClickListene
         }
     }
 
+    @Override
+    public boolean onBackPressed() {
+        if (layoutManager.findFirstVisibleItemPosition() == 0)
+            return false;
+
+        showPrevious();
+        return true;
+    }
+
+    private void showPrevious() {
+        int pos = layoutManager.findFirstVisibleItemPosition();
+        if (pos < 1 || pos >= adapter.getItemCount()) return;
+        rvItems.scrollToPosition(pos - 1);
+    }
+
     private void showNext() {
         int pos = layoutManager.findFirstVisibleItemPosition();
         if (pos < 0 || pos >= adapter.getItemCount()) return;

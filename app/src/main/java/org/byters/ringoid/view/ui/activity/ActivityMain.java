@@ -23,4 +23,10 @@ public class ActivityMain extends AppCompatActivity {
 
         presenterActivityMain.onCreateView(getSupportFragmentManager(), R.id.flContentRoot);
     }
+
+    @Override
+    public void onBackPressed() {
+        if (!presenterActivityMain.onBackPressed())
+            super.onBackPressed();
+    }
 }

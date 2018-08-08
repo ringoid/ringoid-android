@@ -3,9 +3,11 @@ package org.byters.ringoid.view;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import org.byters.ringoid.view.ui.fragment.FragmentBase;
 import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import org.byters.ringoid.view.ui.fragment.FragmentChat;
@@ -21,11 +23,15 @@ import org.byters.ringoid.view.ui.fragment.FragmentWelcome;
 import java.lang.ref.WeakReference;
 
 public class Navigator implements INavigator {
+    private static final String CURRENT_FRAGMENT_PAGE = "current_fragment";
+
     private WeakReference<FragmentManager> refFragmentManager;
     private int viewId;
 
     @Override
     public void navigateFeed() {
+        clearBackStack();
+
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
@@ -40,7 +46,8 @@ public class Navigator implements INavigator {
         clearBackStack();
         refFragmentManager.get()
                 .beginTransaction()
-                .replace(viewId, new FragmentLogin())
+                .addToBackStack(null)
+                .replace(viewId, new FragmentLogin(), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 
@@ -67,7 +74,7 @@ public class Navigator implements INavigator {
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
-                .replace(viewId, new FragmentSettings())
+                .replace(viewId, new FragmentSettings(), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 
@@ -78,7 +85,7 @@ public class Navigator implements INavigator {
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
-                .replace(viewId, new FragmentBlacklistPhones())
+                .replace(viewId, new FragmentBlacklistPhones(), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 
@@ -89,8 +96,15 @@ public class Navigator implements INavigator {
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
-                .replace(viewId, new FragmentBlacklistPhonesAdd())
+                .replace(viewId, new FragmentBlacklistPhonesAdd(), CURRENT_FRAGMENT_PAGE)
                 .commit();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_PAGE);
+        if (fragment == null) return false;
+        return ((FragmentBase) fragment).onBackPressed();
     }
 
 
@@ -101,7 +115,7 @@ public class Navigator implements INavigator {
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
-                .replace(viewId, new FragmentChat())
+                .replace(viewId, new FragmentChat(), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 
@@ -112,7 +126,7 @@ public class Navigator implements INavigator {
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
-                .replace(viewId, new FragmentSettingsPrivacyDistance())
+                .replace(viewId, new FragmentSettingsPrivacyDistance(), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 
@@ -123,7 +137,7 @@ public class Navigator implements INavigator {
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
-                .replace(viewId, FragmentSettingsPrivacy.getInstance(showPhoto))
+                .replace(viewId, FragmentSettingsPrivacy.getInstance(showPhoto), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 
@@ -134,7 +148,7 @@ public class Navigator implements INavigator {
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
-                .replace(viewId, FragmentWebView.getInstance(url))
+                .replace(viewId, FragmentWebView.getInstance(url), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 
@@ -157,7 +171,7 @@ public class Navigator implements INavigator {
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
-                .replace(viewId, new FragmentSettingsPush())
+                .replace(viewId, new FragmentSettingsPush(), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 
@@ -171,7 +185,7 @@ public class Navigator implements INavigator {
         if (!isLogin)
             transaction.addToBackStack(null);
 
-        transaction.replace(viewId, FragmentWelcome.getInstance(isLogin))
+        transaction.replace(viewId, FragmentWelcome.getInstance(isLogin), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 }

@@ -28,4 +28,9 @@ public class PresenterActivityMain implements IPresenterActivityMain {
             navigator.navigateFeed();
         else navigator.navigateWelcome(true);
     }
+
+    @Override
+    public boolean onBackPressed() {
+        return navigator.onBackPressed();
+    }
 }
