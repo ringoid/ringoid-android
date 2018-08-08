@@ -3,7 +3,7 @@ package org.byters.mockserver;
 public class MockServer {
 
     public static String requestRegisterCodeConfirm(String textCheck) {
-        return "{\"registered\":0}";
+        return "{\"registered\":1,\"token\":\"123\"}";
     }
 
     public static String requestCountryList() {
