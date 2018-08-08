@@ -4,6 +4,8 @@ import android.support.v4.app.FragmentManager;
 
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
+import org.byters.ringoid.controller.data.memorycache.ICacheLikes;
+import org.byters.ringoid.controller.data.memorycache.ICacheMessages;
 import org.byters.ringoid.controller.data.memorycache.ICacheScroll;
 import org.byters.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import org.byters.ringoid.controller.data.memorycache.ICacheWallet;
@@ -38,12 +40,14 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     @Inject
     ICacheSettingsPrivacy cacheSettingsPrivacy;
-
+    @Inject
+    ICacheLikes cacheLikes;
+    @Inject
+    ICacheMessages cacheMessages;
     private INavigatorPagesListener listenerNavigatorPages;
     private ListenerCacheScroll listenerCacheScroll;
     private CacheWalletListener listenerCacheWallet;
     private WeakReference<IPresenterPagesContainerListener> refListener;
-
 
     public PresenterPagesContainer() {
         ApplicationRingoid.getComponent().inject(this);
@@ -58,6 +62,16 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         navigatorPages.navigateCurrentPage();
         repositoryWallet.request();
         updateViewPrivacy();
+        updateViewBottomSheet();
+    }
+
+    private void updateViewBottomSheet() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().setBottomSheetDrawables(R.drawable.ic_menu_profile_24dp,
+                cacheLikes.isDataExist() ? R.drawable.ic_menu_favorite_red_24dp : R.drawable.ic_menu_favorite_24dp,
+                cacheMessages.isDataExist() ? R.drawable.ic_menu_message_green_24dp : R.drawable.ic_menu_message_24dp,
+                R.drawable.ic_menu_explore_24dp
+        );
     }
 
     private void updateViewPrivacy() {
@@ -146,7 +160,15 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         @Override
         public void onPageSelected(int num) {
             if (refListener == null || refListener.get() == null) return;
-            refListener.get().setPageSelected(num);
+            refListener.get().setPageSelected(num, getBackgroundColorRes(num));
+        }
+
+        private int getBackgroundColorRes(int num) {
+
+            if (num == 1 && cacheLikes.isDataExist()) return R.color.bottomMenuColorAccent;
+            if (num == 2 && cacheMessages.isDataExist()) return R.color.bottomMenuColorAccentGreen;
+
+            return R.color.menu_bottom_selected;
         }
     }
 }

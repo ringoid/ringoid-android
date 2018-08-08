@@ -48,6 +48,11 @@ public class CacheMessages implements ICacheMessages {
         return user == null ? null : user.getImage(0);
     }
 
+    @Override
+    public boolean isDataExist() {
+        return data != null && data.size() > 0;
+    }
+
     private DataProfile getSelectedUser() {
         if (data == null) return null;
         for (DataProfile item : data) {

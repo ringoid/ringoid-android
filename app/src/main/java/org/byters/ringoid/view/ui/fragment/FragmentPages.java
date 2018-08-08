@@ -89,7 +89,7 @@ public class FragmentPages extends FragmentBase
         if (view.getId() == R.id.ivMenuExplore)
             presenterPagesContainer.onClickPageExplore();
 
-        if (view.getId()==R.id.ivPrivacy)
+        if (view.getId() == R.id.ivPrivacy)
             presenterPagesContainer.onClickPrivacy();
 
     }
@@ -121,14 +121,14 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void setPageSelected(int num) {
+        public void setPageSelected(int num, int backgroundColorRes) {
             if (llBottomAppBar == null) return;
             for (int i = 0; i < llBottomAppBar.getChildCount(); ++i) {
                 View view = llBottomAppBar.getChildAt(i);
                 if (view == null) continue;
 
                 if (i == num)
-                    view.setBackgroundColor(getContext().getResources().getColor(R.color.menu_bottom_selected));
+                    view.setBackgroundColor(getContext().getResources().getColor(backgroundColorRes));
                 else
                     view.setBackground(null);
 
@@ -141,6 +141,16 @@ public class FragmentPages extends FragmentBase
         @Override
         public void setViewPrivacy(int drawableId) {
             ivPrivacy.setImageResource(drawableId);
+        }
+
+        @Override
+        public void setBottomSheetDrawables(int profile, int likes, int messages, int explore) {
+            if (llBottomAppBar == null ||llBottomAppBar.getChildCount()!=4) return;
+            ((ImageView)llBottomAppBar.getChildAt(0)).setImageResource(profile);
+            ((ImageView)llBottomAppBar.getChildAt(1)).setImageResource(likes);
+            ((ImageView)llBottomAppBar.getChildAt(2)).setImageResource(messages);
+            ((ImageView)llBottomAppBar.getChildAt(3)).setImageResource(explore);
+
         }
     }
 }

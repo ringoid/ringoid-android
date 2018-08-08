@@ -10,4 +10,6 @@ public interface ICacheMessages {
     void setUserSelected(int position);
 
     String getUrlSelectedUser();
+
+    boolean isDataExist();
 }

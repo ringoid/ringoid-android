@@ -7,7 +7,9 @@ public interface IPresenterPagesContainerListener {
 
     void setPosition(int topPos, int bottomPos, float alpha);
 
-    void setPageSelected(int num);
+    void setPageSelected(int num, int backgroundColorRes);
 
     void setViewPrivacy(int drawableId);
+
+    void setBottomSheetDrawables(int profile, int likes, int messages, int explore);
 }

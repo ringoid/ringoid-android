@@ -46,4 +46,10 @@ public class CacheLikes implements ICacheLikes {
     public String getUrl(int adapterPosition, int itemPosition) {
         return data.get(adapterPosition).getImage(itemPosition);
     }
+
+    @Override
+    public boolean isDataExist() {
+        return data != null && data.size() > 0;
+    }
+
 }

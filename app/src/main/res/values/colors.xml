@@ -15,5 +15,7 @@
     <color name="chat_send_disabled">#d8d8d8</color>
     <color name="blue">#60a6e8</color>
     <color name="pink">#ff62ab</color>
+    <color name="bottomMenuColorAccent">#33ff4646</color>
+    <color name="bottomMenuColorAccentGreen">#3371da6a</color>
 
 </resources>
