@@ -70,7 +70,7 @@
     <string name="blacklist_phone_hint">Phone number</string>
     <string name="blacklist_phone_add">Block it!</string>
     <string name="blacklist_description">People with below phone numbers won\'t see your photos and you won\'t see theirs.</string>
-    <string name="dialog_menu_profile_remove">Remove</string>
+    <string name="dialog_menu_profile_remove">Delete</string>
     <string name="format_likes" formatted="false">%d likes</string>
     <string name="dialog_menu_message">Chat</string>
     <string name="chat_empty_title">She is waiting</string>
