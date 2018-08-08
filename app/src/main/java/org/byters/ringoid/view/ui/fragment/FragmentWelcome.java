@@ -83,7 +83,7 @@ public class FragmentWelcome extends FragmentBase implements View.OnClickListene
 
     @Override
     public boolean onBackPressed() {
-        if (layoutManager.findFirstVisibleItemPosition() == 0)
+        if (layoutManager.findFirstVisibleItemPosition() == 0 || !getArguments().getBoolean(ARG_IS_WELCOME) )
             return false;
 
         showPrevious();
