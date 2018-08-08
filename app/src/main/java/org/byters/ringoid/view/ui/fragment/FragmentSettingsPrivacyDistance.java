@@ -1,5 +1,6 @@
 package org.byters.ringoid.view.ui.fragment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -84,6 +85,17 @@ public class FragmentSettingsPrivacyDistance extends FragmentBase
             tvDistance2.setCompoundDrawablesWithIntrinsicBounds(null, null, type == 2 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
             tvDistance3.setCompoundDrawablesWithIntrinsicBounds(null, null, type == 3 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
             tvDistance4.setCompoundDrawablesWithIntrinsicBounds(null, null, type == 4 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
+
+            checkBold(tvDistance0, type==0);
+            checkBold(tvDistance1, type==1);
+            checkBold(tvDistance2, type==2);
+            checkBold(tvDistance3, type==3);
+            checkBold(tvDistance4, type==4);
+
+        }
+
+        private void checkBold(TextView textView, boolean isBold) {
+            textView.setTypeface(null, isBold ? Typeface.BOLD : Typeface.NORMAL);
         }
     }
 }
