@@ -160,7 +160,13 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         @Override
         public void onPageSelected(int num) {
             if (refListener == null || refListener.get() == null) return;
-            refListener.get().setPageSelected(num, getBackgroundColorRes(num));
+            refListener.get().setPageSelected(num, getBackgroundColorRes(num), getSubtitleColorRes(num));
+        }
+
+        private int getSubtitleColorRes(int num) {
+            if (num == 1) return R.color.colorAccent;
+            if (num == 2) return R.color.colorAccentGreen;
+            return android.R.color.black;
         }
 
         private int getBackgroundColorRes(int num) {

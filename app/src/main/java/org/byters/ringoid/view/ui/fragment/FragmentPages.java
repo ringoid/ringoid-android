@@ -121,7 +121,7 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void setPageSelected(int num, int backgroundColorRes) {
+        public void setPageSelected(int num, int backgroundColorRes, int subtitleColorRes) {
             if (llBottomAppBar == null) return;
             for (int i = 0; i < llBottomAppBar.getChildCount(); ++i) {
                 View view = llBottomAppBar.getChildAt(i);
@@ -136,6 +136,7 @@ public class FragmentPages extends FragmentBase
 
             String subtitle = getContext().getResources().getStringArray(R.array.pages_titles)[num];
             tvSubtitle.setText(TextUtils.isEmpty(subtitle) ? "" : subtitle);
+            tvSubtitle.setTextColor(getContext().getResources().getColor(subtitleColorRes));
         }
 
         @Override
@@ -145,11 +146,11 @@ public class FragmentPages extends FragmentBase
 
         @Override
         public void setBottomSheetDrawables(int profile, int likes, int messages, int explore) {
-            if (llBottomAppBar == null ||llBottomAppBar.getChildCount()!=4) return;
-            ((ImageView)llBottomAppBar.getChildAt(0)).setImageResource(profile);
-            ((ImageView)llBottomAppBar.getChildAt(1)).setImageResource(likes);
-            ((ImageView)llBottomAppBar.getChildAt(2)).setImageResource(messages);
-            ((ImageView)llBottomAppBar.getChildAt(3)).setImageResource(explore);
+            if (llBottomAppBar == null || llBottomAppBar.getChildCount() != 4) return;
+            ((ImageView) llBottomAppBar.getChildAt(0)).setImageResource(profile);
+            ((ImageView) llBottomAppBar.getChildAt(1)).setImageResource(likes);
+            ((ImageView) llBottomAppBar.getChildAt(2)).setImageResource(messages);
+            ((ImageView) llBottomAppBar.getChildAt(3)).setImageResource(explore);
 
         }
     }
