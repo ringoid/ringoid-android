@@ -17,7 +17,6 @@ import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.INavigator;
 import org.byters.ringoid.view.ui.adapter.AdapterWelcome;
-import org.byters.ringoid.view.ui.adapter.IAdapterWelcomeListener;
 import org.byters.ringoid.view.ui.util.IndicatorHelper;
 
 import javax.inject.Inject;
@@ -28,7 +27,6 @@ public class FragmentWelcome extends FragmentBase implements View.OnClickListene
     @Inject
     INavigator navigator;
     private IndicatorHelper dotsIndicatorHelper;
-    private ListenerAdapterWelcome listenerAdapter;
     private RecyclerView rvItems;
     private LinearLayoutManager layoutManager;
     private AdapterWelcome adapter;
@@ -65,11 +63,12 @@ public class FragmentWelcome extends FragmentBase implements View.OnClickListene
     private void initList(View view) {
         rvItems = view.findViewById(R.id.rvItems);
         rvItems.setLayoutManager(layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        rvItems.setAdapter(adapter = new AdapterWelcome(listenerAdapter = new ListenerAdapterWelcome()));
+        rvItems.setAdapter(adapter = new AdapterWelcome());
         new PagerSnapHelper().attachToRecyclerView(rvItems);
 
         dotsIndicatorHelper = IndicatorHelper.getLinesAccentGreenHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
         dotsIndicatorHelper.updateData(rvItems.getAdapter().getItemCount());
+        rvItems.addOnScrollListener(new WelcomeScrollListener());
     }
 
     @Override
@@ -101,11 +100,19 @@ public class FragmentWelcome extends FragmentBase implements View.OnClickListene
         navigator.navigateLogin();
     }
 
-    private class ListenerAdapterWelcome implements IAdapterWelcomeListener {
+    private class WelcomeScrollListener extends RecyclerView.OnScrollListener {
         @Override
-        public void onPageShown(boolean isLast) {
-            getView().findViewById(R.id.tvSkip).setVisibility(isLast ? View.GONE : View.VISIBLE);
-            ((TextView) getView().findViewById(R.id.tvContinue)).setText(isLast ? R.string.button_want_it : R.string.button_continue);
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+
+            int pos = layoutManager.findFirstVisibleItemPosition();
+            int right = layoutManager.findViewByPosition(pos).getRight();
+
+            if (right < getContext().getResources().getDisplayMetrics().widthPixels / 2)
+                pos += 1;
+
+            getView().findViewById(R.id.tvSkip).setVisibility(adapter.isLast(pos) ? View.GONE : View.VISIBLE);
+            ((TextView) getView().findViewById(R.id.tvContinue)).setText(adapter.isLast(pos) ? R.string.button_want_it : R.string.button_continue);
         }
     }
 }
