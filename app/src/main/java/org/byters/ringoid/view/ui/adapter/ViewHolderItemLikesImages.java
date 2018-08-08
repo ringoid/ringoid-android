@@ -42,6 +42,15 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
         setLiked(presenterAdapterLikesImages.isLiked(adapterPosition, position));
     }
 
+
+
+    @Override
+    void setLiked(boolean isLikes) {
+        ivLike.setImageResource(isLikes
+                ? R.drawable.ic_favorite_red_24dp
+                : R.drawable.ic_favorite_border_red_24dp);
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tvMenu) {

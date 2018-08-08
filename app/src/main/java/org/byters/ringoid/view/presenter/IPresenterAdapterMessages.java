@@ -8,4 +8,6 @@ public interface IPresenterAdapterMessages {
     void onClickItem(int position);
 
     boolean isMessagesNew(int position);
+
+    boolean isMessagesExist(int position);
 }

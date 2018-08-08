@@ -37,4 +37,9 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
     public boolean isMessagesNew(int position) {
         return position == 1;
     }
+
+    @Override
+    public boolean isMessagesExist(int position) {
+        return position == 2;
+    }
 }

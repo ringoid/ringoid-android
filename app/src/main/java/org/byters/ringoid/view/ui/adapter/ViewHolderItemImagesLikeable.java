@@ -17,7 +17,7 @@ abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
 
     private AnimationLike animationLike;
     private View ivLikeAnimated;
-    private ImageView ivItem, ivLike;
+    ImageView ivItem, ivLike;
 
     ViewHolderItemImagesLikeable(ViewGroup container, int layoutRes) {
         super(container, layoutRes);

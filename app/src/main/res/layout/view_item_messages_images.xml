@@ -20,7 +20,7 @@
         android:id="@+id/tvMenu"
         style="@style/menuImageEnd"
         android:layout_marginEnd="4dp"
-        android:src="@drawable/ic_more_horiz_white_24dp"
+        android:src="@drawable/ic_more_horiz_green_24dp"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
@@ -28,7 +28,7 @@
         style="@style/menuImageStart"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        android:src="@drawable/ic_message_white_24dp"
+        android:src="@drawable/ic_message_border_green_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -57,7 +57,11 @@ public class ViewHolderItemMessage extends ViewHolderBase
     void setData(int position) {
         adapter.setPosition(position);
         dotsIndicatorHelper.updateData(presenterAdapterMessages.getItemsNum(position));
-        ivMessage.setImageResource(presenterAdapterMessages.isMessagesNew(position) ? R.drawable.ic_message_full_white_24dp : R.drawable.ic_message_white_24dp);
+        ivMessage.setImageResource(presenterAdapterMessages.isMessagesNew(position)
+                ? R.drawable.ic_message_full_green_24dp
+                : presenterAdapterMessages.isMessagesExist(position)
+                ? R.drawable.ic_message_dots_green_24dp
+                : R.drawable.ic_message_border_green_24dp);
     }
 
     @Override
