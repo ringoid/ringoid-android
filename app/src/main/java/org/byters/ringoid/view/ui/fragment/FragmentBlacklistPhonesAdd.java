@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,9 +19,11 @@ import org.byters.ringoid.view.ui.adapter.AdapterSpinnerCodes;
 import javax.inject.Inject;
 
 public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnClickListener {
+
     @Inject
     IPresenterBlacklistPhones presenterBlacklistPhones;
-    private TextView tvPhone;
+
+    private EditText tvPhone;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +48,14 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
         tvSubtitle.setText(R.string.settings_privacy_phone_blacklist_add_subtitle);
 
         initSpinner(view);
+
+        showKeyboard(tvPhone);
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        hideKeyboard();
+        return false;
     }
 
     private void initSpinner(View view) {
