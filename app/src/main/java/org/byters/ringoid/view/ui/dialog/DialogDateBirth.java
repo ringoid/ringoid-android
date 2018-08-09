@@ -11,6 +11,8 @@ import java.util.Calendar;
 
 public class DialogDateBirth {
 
+    private static final int AGE_DEFAULT = 20;
+
     private DialogListener listenerDialog;
     private DatePickerDialog dialog;
     private WeakReference<IDialogDateCallback> refCallback;
@@ -19,6 +21,7 @@ public class DialogDateBirth {
         listenerDialog = new DialogListener();
 
         Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.YEAR, -AGE_DEFAULT);
         dialog = new DatePickerDialog(context,
                 listenerDialog,
                 calendar.get(Calendar.YEAR),
