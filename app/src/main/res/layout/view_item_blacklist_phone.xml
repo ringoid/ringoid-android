@@ -4,6 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
     <TextView
         android:id="@+id/tvPhone"
         style="@style/settings_menu_item"
@@ -14,7 +19,7 @@
     <ImageView
         android:id="@+id/ivRemove"
         style="@style/selectableImage"
-        android:layout_gravity="end"
+        android:layout_gravity="end|center_vertical"
         android:padding="16dp"
         android:src="@drawable/ic_remove_gray_16dp" />
 

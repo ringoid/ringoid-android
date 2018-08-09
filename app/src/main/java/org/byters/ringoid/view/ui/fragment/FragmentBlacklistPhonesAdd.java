@@ -59,7 +59,7 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     }
 
     private void initSpinner(View view) {
-        ViewPhoneInput vpiLogin = view.findViewById(R.id.vpiLogin);
+        ViewPhoneInput vpiLogin = view.findViewById(R.id.vpiBlacklist);
         vpiLogin.setDefaultCountry(Locale.getDefault().getLanguage());
     }
 
