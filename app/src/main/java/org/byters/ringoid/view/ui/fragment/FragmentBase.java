@@ -13,7 +13,7 @@ public class FragmentBase extends Fragment {
     void showKeyboard(EditText editView) {
         editView.requestFocus();
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        imm.showSoftInput(editView, InputMethodManager.SHOW_IMPLICIT);
     }
 
     void hideKeyboard() {
