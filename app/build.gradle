@@ -35,5 +35,7 @@ dependencies {
 
     implementation project(path: ':mockserver')
 
-    compile 'com.azimolabs.maskformatter:maskformatter:0.2'
+    implementation 'com.azimolabs.maskformatter:maskformatter:0.2'
+
+    implementation 'com.googlecode.libphonenumber:libphonenumber:7.3.1'
 }

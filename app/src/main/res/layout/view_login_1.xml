@@ -35,43 +35,10 @@
         android:text="@string/login_phone_lead"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
 
-    <LinearLayout
+    <org.byters.ringoid.view.ui.view.ViewPhoneInput
+        android:id="@+id/vpiLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/border_rounded_gray"
-        android:orientation="horizontal">
-
-        <Spinner
-            android:id="@+id/spCodes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:popupBackground="@drawable/bg_spinner" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#b6b6b6" />
-
-        <EditText
-            android:id="@+id/etPhone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:hint="@string/blacklist_phone_hint"
-            android:inputType="phone"
-            android:padding="16dp" />
-
-        <ImageView
-            style="@style/selectableImage"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_content_paste_black_24dp" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="match_parent"

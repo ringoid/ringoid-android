@@ -6,15 +6,15 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterBlacklistPhones;
-import org.byters.ringoid.view.ui.adapter.AdapterSpinnerCodes;
+import org.byters.ringoid.view.ui.view.ViewPhoneInput;
+
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -59,9 +59,8 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     }
 
     private void initSpinner(View view) {
-        Spinner spinner = view.findViewById(R.id.spCodes);
-        BaseAdapter adapter = new AdapterSpinnerCodes();
-        spinner.setAdapter(adapter);
+        ViewPhoneInput vpiLogin = view.findViewById(R.id.vpiLogin);
+        vpiLogin.setDefaultCountry(Locale.getDefault().getLanguage());
     }
 
     @Override

@@ -8,10 +8,8 @@ import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -23,12 +21,13 @@ import org.byters.ringoid.R;
 import org.byters.ringoid.model.SEX;
 import org.byters.ringoid.view.presenter.IPresenterRegister;
 import org.byters.ringoid.view.presenter.callback.IPresenterRegisterListener;
-import org.byters.ringoid.view.ui.adapter.AdapterSpinnerCodes;
 import org.byters.ringoid.view.ui.dialog.DialogDateBirth;
 import org.byters.ringoid.view.ui.dialog.callback.IDialogDateCallback;
+import org.byters.ringoid.view.ui.view.ViewPhoneInput;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -45,6 +44,7 @@ public class FragmentLogin extends FragmentBase
 
     private DialogDateBirth dialogDateBirth;
     private IDialogDateCallback listenerDialogDate;
+    private ViewPhoneInput vpiLogin;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -113,9 +113,8 @@ public class FragmentLogin extends FragmentBase
     }
 
     private void initSpinner(View view) {
-        Spinner spinner = view.findViewById(R.id.spCodes);
-        BaseAdapter adapter = new AdapterSpinnerCodes();
-        spinner.setAdapter(adapter);
+        vpiLogin = view.findViewById(R.id.vpiLogin);
+        vpiLogin.setDefaultCountry(Locale.getDefault().getLanguage());
     }
 
     @Override
@@ -126,6 +125,11 @@ public class FragmentLogin extends FragmentBase
         }
 
         if (view.getId() == R.id.tvLoginPhoneVerify) {
+            if (!vpiLogin.isValid()) {
+                Toast.makeText(getContext(), "Please enter valid phone", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             presenterRegister.onClickLoginPhoneVerify(etPhone.getText().toString());
         }
 
