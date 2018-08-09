@@ -3,9 +3,12 @@ package org.byters.ringoid.view.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Layout;
 import android.text.format.DateFormat;
 import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -19,6 +22,7 @@ import com.azimolabs.maskformatter.MaskFormatter;
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.model.SEX;
+import org.byters.ringoid.view.INavigator;
 import org.byters.ringoid.view.presenter.IPresenterRegister;
 import org.byters.ringoid.view.presenter.callback.IPresenterRegisterListener;
 import org.byters.ringoid.view.ui.dialog.DialogDateBirth;
@@ -36,6 +40,9 @@ public class FragmentLogin extends FragmentBase
 
     @Inject
     IPresenterRegister presenterRegister;
+
+    @Inject
+    INavigator navigator;
 
     private ViewFlipper vfLogin;
     private EditText etPhone, etCodeSMS;
@@ -70,7 +77,7 @@ public class FragmentLogin extends FragmentBase
         etCodeSMS = view.findViewById(R.id.etCodeSMS);
         cbAge = view.findViewById(R.id.cbAge);
 
-        cbTerms.setMovementMethod(new LinkMovementMethod());
+        cbTerms.setMovementMethod(new LinkMovementMethodInternal());
 
         view.findViewById(R.id.tvRegister).setOnClickListener(this);
         view.findViewById(R.id.tvSexFemale).setOnClickListener(this);
@@ -215,5 +222,35 @@ public class FragmentLogin extends FragmentBase
         public void onResult(long timeInMillis) {
             presenterRegister.onDataBirthSet(timeInMillis);
         }
+    }
+
+    private class LinkMovementMethodInternal extends LinkMovementMethod {
+        public boolean onTouchEvent(TextView widget, android.text.Spannable buffer, android.view.MotionEvent event) {
+            int action = event.getAction();
+
+            if (action == MotionEvent.ACTION_UP) {
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+
+                x -= widget.getTotalPaddingLeft();
+                y -= widget.getTotalPaddingTop();
+
+                x += widget.getScrollX();
+                y += widget.getScrollY();
+
+                Layout layout = widget.getLayout();
+                int line = layout.getLineForVertical(y);
+                int off = layout.getOffsetForHorizontal(line, x);
+
+                URLSpan[] link = buffer.getSpans(off, off, URLSpan.class);
+                if (link.length != 0) {
+                    String url = link[0].getURL();
+                    navigator.navigateWebView(url);
+                    return true;
+                }
+            }
+            return super.onTouchEvent(widget, buffer, event);
+        }
+
     }
 }

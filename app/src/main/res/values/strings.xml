@@ -13,7 +13,7 @@
     <string name="hint_phone">Enter phone number</string>
 
     <string name="checkbox_adult">I am of legal age and adult, as defined by the country or state from where I am accessing Ringoid app</string>
-    <string name="checkbox_terms">I have read and understood <a href="http://ringoid.com/terms.html">Terms &amp; Conditions</a> and <a href="http://ringoid.com/privacy-notice.html">Privacy Notice</a></string>
+    <string name="checkbox_terms">I have read and understood\n\n<a href="http://ringoid.com/terms.html">Terms &amp; Conditions</a> and\n\n<a href="http://ringoid.com/privacy-notice.html">Privacy Notice</a></string>
 
     <string name="button_invite">Send invite</string>
     <string name="button_location_enable">Enable location</string>
