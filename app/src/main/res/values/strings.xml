@@ -211,7 +211,7 @@
 
     <string-array name="pages_titles">
         <item></item>
-        <item>Likes</item>
+        <item>Who Liked You</item>
         <item>Matches</item>
         <item>New Faces</item>
     </string-array>
