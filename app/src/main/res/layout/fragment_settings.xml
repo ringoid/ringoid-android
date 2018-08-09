@@ -70,6 +70,13 @@
                 android:drawableStart="@drawable/ic_settings_terms_24dp"
                 android:text="@string/settings_terms" />
 
+            <TextView
+                android:id="@+id/tvSettingsLicenses"
+                style="@style/settings_menu_item"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                android:drawableStart="@drawable/ic_settings_licenses_24dp"
+                android:text="@string/settings_licenses" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
