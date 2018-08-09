@@ -3,6 +3,7 @@ package org.byters.ringoid.view.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.format.DateFormat;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.azimolabs.maskformatter.MaskFormatter;
 
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
@@ -78,7 +81,26 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.ivCalendar).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
 
+        initInputDate(view);
         initSpinner(view);
+    }
+
+    private void initInputDate(View view) {
+        EditText etDate = view.findViewById(R.id.etDateBirth);
+        String mask = ((SimpleDateFormat) DateFormat.getDateFormat(getContext())).toLocalizedPattern()
+
+                .replace("/", " ")
+                .replace("\\", " ")
+                .replace("-", " ")
+                .replace(".", " ");
+        etDate.setHint(mask);
+
+        mask = mask.replace("yyyy", "2999")
+                .replace("MM", "19")
+                .replace("dd", "39");
+        etDate.addTextChangedListener(new MaskFormatter(mask, etDate));
+
+
     }
 
     @Override
@@ -173,7 +195,7 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void showDateBirth(long time) {
-            ((TextView) getView().findViewById(R.id.etDateBirth)).setText(new SimpleDateFormat("yyyy MM dd").format(new Date(time)));
+            ((TextView) getView().findViewById(R.id.etDateBirth)).setText(DateFormat.getDateFormat(getContext()).format(new Date(time)));
         }
 
         @Override
