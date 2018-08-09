@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,7 @@ public class FragmentLogin extends FragmentBase
     IPresenterRegister presenterRegister;
 
     private ViewFlipper vfLogin;
-    private TextView etPhone, etCodeSMS;
+    private EditText etPhone, etCodeSMS;
     private CheckBox cbAge, cbTerms;
     private ListenerPresenter listenerPresenter;
 
@@ -83,7 +84,7 @@ public class FragmentLogin extends FragmentBase
     @Override
     public boolean onBackPressed() {
         if (vfLogin.getCurrentView().getId() != R.id.llLoginTerms) {
-            vfLogin.showPrevious();
+            showPrev();
             return true;
         }
         return false;
@@ -98,17 +99,20 @@ public class FragmentLogin extends FragmentBase
     @Override
     public void onClick(View view) {
 
-        if (view.getId() == R.id.tvLoginTermsAgreement)
+        if (view.getId() == R.id.tvLoginTermsAgreement) {
             presenterRegister.onClickLoginTermsAgreement(cbTerms.isChecked(), cbAge.isChecked());
+        }
 
-        if (view.getId() == R.id.tvLoginPhoneVerify)
+        if (view.getId() == R.id.tvLoginPhoneVerify) {
             presenterRegister.onClickLoginPhoneVerify(etPhone.getText().toString());
+        }
 
-        if (view.getId() == R.id.tvCodeSMSConfirm)
+        if (view.getId() == R.id.tvCodeSMSConfirm) {
             presenterRegister.onClickCodeSMSConfirm(etCodeSMS.getText().toString());
+        }
 
         if (view.getId() == R.id.ivBack)
-            vfLogin.showPrevious();
+            showPrev();
 
         if (view.getId() == R.id.tvRegister)
             presenterRegister.onClickRegister();
@@ -122,6 +126,31 @@ public class FragmentLogin extends FragmentBase
         if (view.getId() == R.id.ivCalendar)
             showDialogCalendar();
     }
+
+    private void showPrev() {
+        vfLogin.showPrevious();
+        checkKeyboard();
+    }
+
+    private void checkKeyboard() {
+        if (vfLogin.getCurrentView().getId() == R.id.llLoginTerms)
+            hideKeyboard();
+
+        if (vfLogin.getCurrentView().getId() == R.id.llLoginPhone)
+            showKeyboard(etPhone);
+
+        if (vfLogin.getCurrentView().getId() == R.id.llLoginSMS)
+            showKeyboard(etCodeSMS);
+
+        if (vfLogin.getCurrentView().getId() == R.id.llLoginInfo)
+            hideKeyboard();
+    }
+
+    private void showNext() {
+        vfLogin.showNext();
+        checkKeyboard();
+    }
+
 
     private void showDialogCalendar() {
         if (dialogDateBirth != null) dialogDateBirth.cancel();
@@ -139,7 +168,7 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void navigateNext() {
-            vfLogin.showNext();
+            showNext();
         }
 
         @Override
