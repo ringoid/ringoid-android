@@ -4,9 +4,9 @@
     tools:showIn="@layout/fragment_settings_privacy">
 
     <TextView
-        android:drawableStart="@drawable/ic_privacy_policy"
         android:id="@+id/tvPrivacyPolicy"
         style="@style/settings_privacy_menu_title"
+        android:drawableStart="@drawable/ic_privacy_policy"
         android:text="@string/settings_privacy_policy" />
 
     <LinearLayout
@@ -18,6 +18,11 @@
             style="@style/settings_menu_item"
             android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
             android:text="@string/settings_privacy_policy_data_storage" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
 
         <TextView
             android:id="@+id/tvSettingsPrivacyPolicyNotice"

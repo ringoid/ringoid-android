@@ -35,20 +35,40 @@
         style="@style/settings_menu_item"
         android:text="@string/settings_privacy_distance_0" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
     <TextView
         android:id="@+id/tvDistance1"
         style="@style/settings_menu_item"
         android:text="@string/settings_privacy_distance_1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
 
     <TextView
         android:id="@+id/tvDistance2"
         style="@style/settings_menu_item"
         android:text="@string/settings_privacy_distance_2" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
     <TextView
         android:id="@+id/tvDistance3"
         style="@style/settings_menu_item"
         android:text="@string/settings_privacy_distance_3" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
 
     <TextView
         android:id="@+id/tvDistance4"

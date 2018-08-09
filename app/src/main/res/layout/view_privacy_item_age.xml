@@ -4,9 +4,9 @@
     tools:showIn="@layout/fragment_settings_privacy">
 
     <TextView
-        android:drawableStart="@drawable/ic_privacy_age"
         android:id="@+id/tvPrivacyAge"
         style="@style/settings_privacy_menu_title"
+        android:drawableStart="@drawable/ic_privacy_age"
         android:text="@string/settings_privacy_age" />
 
     <LinearLayout
@@ -24,6 +24,11 @@
                 android:text="@string/settings_privacy_item_value_noone" />
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
 
         <LinearLayout style="@style/settings_privacy_item_container">
 

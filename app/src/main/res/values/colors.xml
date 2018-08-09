@@ -17,5 +17,6 @@
     <color name="pink">#ff62ab</color>
     <color name="bottomMenuColorAccent">#33ff4646</color>
     <color name="bottomMenuColorAccentGreen">#3371da6a</color>
+    <color name="divider">#e1e1e1</color>
 
 </resources>

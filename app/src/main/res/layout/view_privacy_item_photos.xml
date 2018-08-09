@@ -4,9 +4,9 @@
     tools:showIn="@layout/fragment_settings_privacy">
 
     <TextView
-        android:drawableStart="@drawable/ic_privacy_photos"
         android:id="@+id/tvPrivacyPhotos"
         style="@style/settings_privacy_menu_title"
+        android:drawableStart="@drawable/ic_privacy_photos"
         android:text="@string/settings_privacy_photos" />
 
     <LinearLayout
@@ -35,6 +35,11 @@
             android:drawableStart="@drawable/ic_privacy_noone_gray_24dp"
             android:text="@string/settings_privacy_photos_noone" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+
         <LinearLayout style="@style/settings_privacy_item_container">
 
             <TextView
@@ -46,6 +51,11 @@
                 android:text="@string/settings_privacy_item_value_only_me" />
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
 
         <LinearLayout style="@style/settings_privacy_item_container">
 
@@ -59,6 +69,11 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+
         <LinearLayout style="@style/settings_privacy_item_container">
 
             <TextView
@@ -71,6 +86,10 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
 
         <LinearLayout style="@style/settings_privacy_item_container">
 
@@ -83,6 +102,11 @@
                 android:text="@string/settings_privacy_item_value_no" />
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
 
         <LinearLayout style="@style/settings_privacy_item_container">
 

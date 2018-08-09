@@ -30,6 +30,7 @@
         android:layout_weight="1" />
 
     <org.byters.ringoid.view.ui.view.ViewPhoneInput
+        android:id="@+id/vpiBlacklist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

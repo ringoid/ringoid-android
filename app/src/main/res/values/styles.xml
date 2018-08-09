@@ -118,18 +118,16 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:visibility">gone</item>
+        <item name="android:visibility">visible</item>
     </style>
 
     <style name="settings_privacy_item_container" parent="@style/settings_menu_item">
-        <item name="android:orientation">horizontal</item>
-        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
     <style name="settings_privacy_item_message">
         <item name="android:textSize">15sp</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Body1</item>
@@ -140,7 +138,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_marginStart">16dp</item>
     </style>
 
 </resources>
