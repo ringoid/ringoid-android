@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 
 import org.byters.ringoid.view.ui.fragment.FragmentBase;
 import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhones;
@@ -13,6 +14,7 @@ import org.byters.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import org.byters.ringoid.view.ui.fragment.FragmentChat;
 import org.byters.ringoid.view.ui.fragment.FragmentLogin;
 import org.byters.ringoid.view.ui.fragment.FragmentPages;
+import org.byters.ringoid.view.ui.fragment.FragmentPhotoCrop;
 import org.byters.ringoid.view.ui.fragment.FragmentSettings;
 import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacy;
 import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
@@ -24,6 +26,7 @@ import java.lang.ref.WeakReference;
 
 public class Navigator implements INavigator {
     private static final String CURRENT_FRAGMENT_PAGE = "current_fragment";
+    private static final int SELECT_FILE = 173;
 
     private WeakReference<FragmentManager> refFragmentManager;
     private int viewId;
@@ -107,6 +110,33 @@ public class Navigator implements INavigator {
         return ((FragmentBase) fragment).onBackPressed();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SELECT_FILE) {
+            navigatePhotoCrop(data.getData());
+        }
+    }
+
+    private void navigatePhotoCrop(Uri data) {
+
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, FragmentPhotoCrop.getInstance(data), CURRENT_FRAGMENT_PAGE)
+                .commit();
+    }
+
+    @Override
+    public void navigatePhotoAdd(AppCompatActivity activity) {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+
+        if (intent.resolveActivity(activity.getPackageManager()) == null) return;
+
+        activity.startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
+    }
 
     @Override
     public void navigateChat() {

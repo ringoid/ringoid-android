@@ -150,6 +150,7 @@
     <string name="settings_privacy_messages_online">Who can see that you are online?</string>
     <string name="settings_privacy_messages_online_last_time">Who can see when you were online last time?</string>
     <string name="settings_licenses">Licenses</string>
+    <string name="crop_subtitle">Crop photo</string>
 
     <string-array name="pages_titles">
         <item></item>

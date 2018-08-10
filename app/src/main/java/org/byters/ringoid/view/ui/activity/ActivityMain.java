@@ -1,5 +1,6 @@
 package org.byters.ringoid.view.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -28,5 +29,11 @@ public class ActivityMain extends AppCompatActivity {
     public void onBackPressed() {
         if (!presenterActivityMain.onBackPressed())
             super.onBackPressed();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        presenterActivityMain.onActivityResult(requestCode, resultCode, data);
     }
 }

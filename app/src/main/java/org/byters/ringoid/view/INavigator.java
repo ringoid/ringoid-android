@@ -1,7 +1,9 @@
 package org.byters.ringoid.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 public interface INavigator {
     void navigateFeed();
@@ -13,6 +15,8 @@ public interface INavigator {
     void navigateSettings();
 
     void navigateBlacklistPhones();
+
+    void navigatePhotoAdd(AppCompatActivity activity);
 
     void navigateChat();
 
@@ -31,4 +35,6 @@ public interface INavigator {
     void navigateBlacklistPhonesAdd();
 
     boolean onBackPressed();
+
+    void onActivityResult(int requestCode, int resultCode, Intent data);
 }

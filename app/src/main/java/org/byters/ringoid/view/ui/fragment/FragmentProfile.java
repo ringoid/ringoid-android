@@ -3,6 +3,7 @@ package org.byters.ringoid.view.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -16,11 +17,10 @@ import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterProfile;
 import org.byters.ringoid.view.ui.adapter.AdapterProfile;
 import org.byters.ringoid.view.ui.util.IndicatorHelper;
-import org.byters.ringoid.view.ui.util.LinesIndicator;
 
 import javax.inject.Inject;
 
-public class FragmentProfile extends FragmentBase {
+public class FragmentProfile extends FragmentBase implements View.OnClickListener {
 
     @Inject
     IPresenterProfile presenterProfile;
@@ -35,6 +35,8 @@ public class FragmentProfile extends FragmentBase {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        view.findViewById(R.id.fabProfile).setOnClickListener(this);
 
         initList(view);
         return view;
@@ -52,5 +54,11 @@ public class FragmentProfile extends FragmentBase {
 
         IndicatorHelper dotsIndicatorHelper = IndicatorHelper.getLinesHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
         dotsIndicatorHelper.updateData(presenterProfile.getItemsNum());
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.fabProfile)
+            presenterProfile.onClickPhotoAdd((AppCompatActivity) getActivity());
     }
 }
