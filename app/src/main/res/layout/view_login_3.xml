@@ -33,37 +33,22 @@
         android:text="@string/login_birth_message"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@drawable/border_rounded_gray"
-        android:orientation="horizontal">
+        android:background="@drawable/border_rounded_gray">
 
-        <ImageView
-            android:id="@+id/ivCalendar"
-            style="@style/selectableImage"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="12dp"
-            android:layout_marginStart="12dp"
-            android:src="@drawable/ic_calendar_black_24dp" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#b6b6b6" />
-
-        <EditText
-            android:id="@+id/etDateBirth"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/tvDateBirth"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
             android:hint="@string/message_date_birth"
-            android:inputType="date"
             android:padding="16dp" />
 
-    </LinearLayout>
+    </FrameLayout>
 
     <TextView
         android:layout_width="match_parent"

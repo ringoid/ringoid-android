@@ -17,8 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.azimolabs.maskformatter.MaskFormatter;
-
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.model.SEX;
@@ -29,7 +27,6 @@ import org.byters.ringoid.view.ui.dialog.DialogDateBirth;
 import org.byters.ringoid.view.ui.dialog.callback.IDialogDateCallback;
 import org.byters.ringoid.view.ui.view.ViewPhoneInput;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -85,27 +82,8 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.tvCodeSMSConfirm).setOnClickListener(this);
         view.findViewById(R.id.tvLoginTermsAgreement).setOnClickListener(this);
         view.findViewById(R.id.tvLoginPhoneVerify).setOnClickListener(this);
-        view.findViewById(R.id.ivCalendar).setOnClickListener(this);
+        view.findViewById(R.id.tvDateBirth).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
-
-        initInputDate(view);
-    }
-
-    private void initInputDate(View view) {
-        EditText etDate = view.findViewById(R.id.etDateBirth);
-        String mask = ((SimpleDateFormat) DateFormat.getDateFormat(getContext())).toLocalizedPattern()
-
-                .replace("/", " ")
-                .replace("\\", " ")
-                .replace("-", " ")
-                .replace(".", " ");
-        etDate.setHint(mask);
-
-        mask = mask.replace("yyyy", "2999")
-                .replace("MM", "19")
-                .replace("dd", "39");
-        etDate.addTextChangedListener(new MaskFormatter(mask, etDate));
-
 
     }
 
@@ -150,7 +128,7 @@ public class FragmentLogin extends FragmentBase
         if (view.getId() == R.id.tvSexMale)
             presenterRegister.onClickMale();
 
-        if (view.getId() == R.id.ivCalendar)
+        if (view.getId() == R.id.tvDateBirth)
             showDialogCalendar();
     }
 
@@ -200,7 +178,7 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void showDateBirth(long time) {
-            ((TextView) getView().findViewById(R.id.etDateBirth)).setText(DateFormat.getDateFormat(getContext()).format(new Date(time)));
+            ((TextView) getView().findViewById(R.id.tvDateBirth)).setText(DateFormat.getDateFormat(getContext()).format(new Date(time)));
         }
 
         @Override
