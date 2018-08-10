@@ -31,7 +31,6 @@ import org.byters.ringoid.view.ui.view.ViewPhoneInput;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -76,6 +75,7 @@ public class FragmentLogin extends FragmentBase
         etPhone = view.findViewById(R.id.etPhone);
         etCodeSMS = view.findViewById(R.id.etCodeSMS);
         cbAge = view.findViewById(R.id.cbAge);
+        vpiLogin = view.findViewById(R.id.vpiLogin);
 
         cbTerms.setMovementMethod(new LinkMovementMethodInternal());
 
@@ -89,7 +89,6 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.ivBack).setOnClickListener(this);
 
         initInputDate(view);
-        initSpinner(view);
     }
 
     private void initInputDate(View view) {
@@ -117,11 +116,6 @@ public class FragmentLogin extends FragmentBase
             return true;
         }
         return false;
-    }
-
-    private void initSpinner(View view) {
-        vpiLogin = view.findViewById(R.id.vpiLogin);
-        vpiLogin.setDefaultCountry(Locale.getDefault().getLanguage());
     }
 
     @Override

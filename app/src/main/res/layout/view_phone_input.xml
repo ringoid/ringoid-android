@@ -1,37 +1,65 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="16dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="16dp"
-    android:background="@drawable/border_rounded_gray"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/spPhone"
-        android:layout_width="wrap_content"
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/ccp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:popupBackground="@drawable/bg_spinner" />
+        app:ccp_autoDetectCountry="true"
+        app:ccp_autoDetectLanguage="true"
+        app:ccp_defaultNameCode="US"
+        app:ccp_showFullName="true"
+        app:ccp_showNameCode="false"
+        app:ccp_showPhoneCode="false"
+        app:ccp_textSize="17sp" />
 
-    <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="#b6b6b6" />
-
-    <EditText
-        android:id="@+id/etPhone"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:hint="@string/blacklist_phone_hint"
-        android:inputType="phone"
-        android:padding="16dp" />
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_rounded_gray"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-    <ImageView
-        style="@style/selectableImage"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_content_paste_black_24dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="+"
+            android:textSize="17sp" />
 
+        <EditText
+            android:id="@+id/etPhoneCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="123"
+            android:inputType="number"
+            android:paddingEnd="16dp"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#b6b6b6" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="@string/blacklist_phone_hint"
+            android:inputType="phone"
+            android:padding="16dp"
+            android:textSize="17sp" />
+
+        <ImageView
+            style="@style/selectableImage"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_content_paste_black_24dp" />
+    </LinearLayout>
 </LinearLayout>

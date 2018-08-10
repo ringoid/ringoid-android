@@ -14,8 +14,6 @@ import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterBlacklistPhones;
 import org.byters.ringoid.view.ui.view.ViewPhoneInput;
 
-import java.util.Locale;
-
 import javax.inject.Inject;
 
 public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnClickListener {
@@ -24,6 +22,7 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     IPresenterBlacklistPhones presenterBlacklistPhones;
 
     private EditText tvPhone;
+    private ViewPhoneInput vpiLogin;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,13 +40,13 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
 
     private void initView(View view) {
         tvPhone = view.findViewById(R.id.etPhone);
+        vpiLogin = view.findViewById(R.id.vpiLogin);
+
         view.findViewById(R.id.tvBlacklistAdd).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.settings_privacy_phone_blacklist_add_subtitle);
-
-        initSpinner(view);
 
         showKeyboard(tvPhone);
     }
@@ -58,14 +57,13 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
         return false;
     }
 
-    private void initSpinner(View view) {
-        ViewPhoneInput vpiLogin = view.findViewById(R.id.vpiBlacklist);
-        vpiLogin.setDefaultCountry(Locale.getDefault().getLanguage());
-    }
-
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tvBlacklistAdd) {
+            if (!vpiLogin.isValid()) {
+                return;
+            }
+
             presenterBlacklistPhones.onClickBlacklistAdd(tvPhone.getText().toString());
             tvPhone.setText("");
             getActivity().onBackPressed();

@@ -37,5 +37,5 @@ dependencies {
 
     implementation 'com.azimolabs.maskformatter:maskformatter:0.2'
 
-    implementation 'com.googlecode.libphonenumber:libphonenumber:7.3.1'
+    implementation 'com.hbb20:ccp:2.2.2'
 }
