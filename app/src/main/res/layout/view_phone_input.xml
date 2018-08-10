@@ -58,6 +58,7 @@
             android:textSize="17sp" />
 
         <ImageView
+            android:id="@+id/ivPaste"
             style="@style/selectableImage"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_content_paste_black_24dp" />

@@ -1,9 +1,13 @@
 package org.byters.ringoid.view.ui.view;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -11,10 +15,11 @@ import com.hbb20.CountryCodePicker;
 
 import org.byters.ringoid.R;
 
-public class ViewPhoneInput extends LinearLayout {
+public class ViewPhoneInput extends LinearLayout implements View.OnClickListener {
     CountryCodePicker ccp;
     EditText etCode;
     private ListenerCountry listenerCountry;
+    private EditText etPhone;
 
     public ViewPhoneInput(Context context) {
         super(context);
@@ -38,15 +43,35 @@ public class ViewPhoneInput extends LinearLayout {
 
     private void initViews() {
         etCode = findViewById(R.id.etPhoneCode);
+        etPhone = findViewById(R.id.etPhone);
         etCode.addTextChangedListener(new ListenerCode());
         ccp = findViewById(R.id.ccp);
         ccp.setOnCountryChangeListener(listenerCountry = new ListenerCountry());
-        ccp.registerCarrierNumberEditText((EditText)findViewById(R.id.etPhone));
+        ccp.registerCarrierNumberEditText((EditText) findViewById(R.id.etPhone));
         listenerCountry.onCountrySelected();
+
+
+        findViewById(R.id.ivPaste).setOnClickListener(this);
     }
 
     public boolean isValid() {
         return ccp.isValidFullNumber();
+    }
+
+    @Override
+    public void onClick(View v) {
+        android.content.ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData = clipboardManager.getPrimaryClip();
+
+
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < clipData.getItemCount(); ++i) {
+            result.append(clipData.getItemAt(i).getText());
+        }
+        if (TextUtils.isEmpty(result)) return;
+
+        etPhone.setText(String.format("%s%s", etPhone.getText().toString(), result));
     }
 
     private class ListenerCode implements TextWatcher {
