@@ -8,10 +8,7 @@ import org.byters.ringoid.controller.data.memorycache.ICacheLikes;
 import org.byters.ringoid.controller.data.memorycache.ICacheMessages;
 import org.byters.ringoid.controller.data.memorycache.ICacheScroll;
 import org.byters.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
-import org.byters.ringoid.controller.data.memorycache.ICacheWallet;
 import org.byters.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
-import org.byters.ringoid.controller.data.memorycache.listener.ICacheWalletListener;
-import org.byters.ringoid.controller.data.repository.IRepositoryWallet;
 import org.byters.ringoid.view.INavigator;
 import org.byters.ringoid.view.INavigatorPages;
 import org.byters.ringoid.view.INavigatorPagesListener;
@@ -30,12 +27,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     INavigator navigator;
 
     @Inject
-    IRepositoryWallet repositoryWallet;
-
-    @Inject
-    ICacheWallet cacheWallet;
-
-    @Inject
     ICacheScroll cacheScroll;
 
     @Inject
@@ -46,12 +37,10 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     ICacheMessages cacheMessages;
     private INavigatorPagesListener listenerNavigatorPages;
     private ListenerCacheScroll listenerCacheScroll;
-    private CacheWalletListener listenerCacheWallet;
     private WeakReference<IPresenterPagesContainerListener> refListener;
 
     public PresenterPagesContainer() {
         ApplicationRingoid.getComponent().inject(this);
-        cacheWallet.setListener(listenerCacheWallet = new CacheWalletListener());
         cacheScroll.setListener(listenerCacheScroll = new ListenerCacheScroll());
         navigatorPages.setLisener(listenerNavigatorPages = new ListenerNavigatorPages());
     }
@@ -60,7 +49,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public void onViewCreate(FragmentManager childFragmentManager, int viewId) {
         navigatorPages.set(childFragmentManager, viewId);
         navigatorPages.navigateCurrentPage();
-        repositoryWallet.request();
         updateViewPrivacy();
         updateViewBottomSheet();
     }
@@ -87,12 +75,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public void onClickWallet() {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().showDialogInvite();
-    }
-
-    @Override
-    public void onClickPageRank() {
-        cacheScroll.resetCache();
-        navigatorPages.navigateRank();
     }
 
     @Override
@@ -132,18 +114,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Override
     public void onClickPrivacy() {
         navigator.navigateSettingsPrivacy(true);
-    }
-
-    private void updateWallet(int coinsNum) {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().setWallet(coinsNum);
-    }
-
-    private class CacheWalletListener implements ICacheWalletListener {
-        @Override
-        public void onUpdate() {
-            updateWallet(cacheWallet.getCoinsNum());
-        }
     }
 
     private class ListenerCacheScroll implements ICacheScrollListener {

@@ -37,18 +37,8 @@ public class PresenterAdapterBlacklistPhones implements IPresenterAdapterBlackli
     }
 
     @Override
-    public void onClickItem(int position) {
-        cacheBlacklist.changeSelect(position);
-    }
-
-    @Override
     public void setListener(IPresenterAdapterBlacklistPhonesListener listener) {
         this.refListener = new WeakReference<>(listener);
-    }
-
-    @Override
-    public boolean isSelected(int position) {
-        return cacheBlacklist.isSelected(position);
     }
 
     private class ListenerCacheBlacklist implements ICacheBlacklistListener {

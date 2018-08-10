@@ -8,13 +8,8 @@ import java.util.ArrayList;
 
 public class CacheBlacklist implements ICacheBlacklist {
 
-    private int selectedPosition;
     private ArrayList<DataBlacklistPhone> data;
     private WeakReference<ICacheBlacklistListener> refListener;
-
-    public CacheBlacklist() {
-        selectedPosition = -1;
-    }
 
     @Override
     public void addPhone(String phone) {
@@ -55,18 +50,7 @@ public class CacheBlacklist implements ICacheBlacklist {
     public void remove(int position) {
         if (data == null || position < 0 || position >= data.size()) return;
         data.remove(position);
-        selectedPosition = -1;
         notifyListeners();
     }
 
-    @Override
-    public void changeSelect(int position) {
-        selectedPosition = selectedPosition == position ? -1 : position;
-        notifyListeners();
-    }
-
-    @Override
-    public boolean isSelected(int position) {
-        return position == selectedPosition;
-    }
 }

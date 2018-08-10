@@ -2,15 +2,11 @@ package org.byters.ringoid;
 
 import org.byters.ringoid.controller.data.memorycache.CacheScroll;
 import org.byters.ringoid.controller.data.memorycache.CacheToken;
-import org.byters.ringoid.controller.data.repository.RepositoryCountryList;
 import org.byters.ringoid.controller.data.repository.RepositoryRegister;
 import org.byters.ringoid.controller.data.repository.RepositoryRegisterConfirm;
-import org.byters.ringoid.controller.data.repository.RepositoryRegisterReferralConfirm;
-import org.byters.ringoid.controller.data.repository.RepositoryRegisterReferralDescription;
 import org.byters.ringoid.view.presenter.PresenterActivityMain;
 import org.byters.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterAdapterChatMessages;
-import org.byters.ringoid.view.presenter.PresenterAdapterCountryList;
 import org.byters.ringoid.view.presenter.PresenterAdapterExplore;
 import org.byters.ringoid.view.presenter.PresenterAdapterExploreImages;
 import org.byters.ringoid.view.presenter.PresenterAdapterLikes;
@@ -18,8 +14,6 @@ import org.byters.ringoid.view.presenter.PresenterAdapterLikesImages;
 import org.byters.ringoid.view.presenter.PresenterAdapterMessages;
 import org.byters.ringoid.view.presenter.PresenterAdapterMessagesImages;
 import org.byters.ringoid.view.presenter.PresenterAdapterProfile;
-import org.byters.ringoid.view.presenter.PresenterAdapterRank;
-import org.byters.ringoid.view.presenter.PresenterAdapterRankImages;
 import org.byters.ringoid.view.presenter.PresenterBlacklistPhones;
 import org.byters.ringoid.view.presenter.PresenterChat;
 import org.byters.ringoid.view.presenter.PresenterExplore;
@@ -27,14 +21,12 @@ import org.byters.ringoid.view.presenter.PresenterLikes;
 import org.byters.ringoid.view.presenter.PresenterMessages;
 import org.byters.ringoid.view.presenter.PresenterPagesContainer;
 import org.byters.ringoid.view.presenter.PresenterProfile;
-import org.byters.ringoid.view.presenter.PresenterRank;
 import org.byters.ringoid.view.presenter.PresenterRegister;
 import org.byters.ringoid.view.presenter.PresenterSettingsPrivacy;
 import org.byters.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import org.byters.ringoid.view.ui.activity.ActivityMain;
 import org.byters.ringoid.view.ui.adapter.AdapterBlacklistPhones;
 import org.byters.ringoid.view.ui.adapter.AdapterChatMessages;
-import org.byters.ringoid.view.ui.adapter.AdapterCountryList;
 import org.byters.ringoid.view.ui.adapter.AdapterExplore;
 import org.byters.ringoid.view.ui.adapter.AdapterExploreImages;
 import org.byters.ringoid.view.ui.adapter.AdapterLikes;
@@ -42,8 +34,6 @@ import org.byters.ringoid.view.ui.adapter.AdapterLikesImages;
 import org.byters.ringoid.view.ui.adapter.AdapterMessages;
 import org.byters.ringoid.view.ui.adapter.AdapterMessagesImages;
 import org.byters.ringoid.view.ui.adapter.AdapterProfile;
-import org.byters.ringoid.view.ui.adapter.AdapterRank;
-import org.byters.ringoid.view.ui.adapter.AdapterRankImages;
 import org.byters.ringoid.view.ui.adapter.ViewHolderItemExplore;
 import org.byters.ringoid.view.ui.adapter.ViewHolderItemExploreImages;
 import org.byters.ringoid.view.ui.adapter.ViewHolderItemLikes;
@@ -59,7 +49,6 @@ import org.byters.ringoid.view.ui.fragment.FragmentLogin;
 import org.byters.ringoid.view.ui.fragment.FragmentMessages;
 import org.byters.ringoid.view.ui.fragment.FragmentPages;
 import org.byters.ringoid.view.ui.fragment.FragmentProfile;
-import org.byters.ringoid.view.ui.fragment.FragmentRank;
 import org.byters.ringoid.view.ui.fragment.FragmentSettings;
 import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacy;
 import org.byters.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
@@ -90,20 +79,6 @@ public interface AppComponent {
 
     void inject(PresenterPagesContainer presenterPagesContainer);
 
-    void inject(AdapterCountryList adapterCountryList);
-
-    void inject(RepositoryCountryList repositoryCountryList);
-
-    void inject(PresenterAdapterCountryList presenterAdapterCountryList);
-
-    void inject(RepositoryRegisterReferralDescription repositoryRegisterReferralDescription);
-
-    void inject(RepositoryRegisterReferralConfirm repositoryRegisterReferralConfirm);
-
-    void inject(AdapterRank adapterRank);
-
-    void inject(AdapterRankImages adapterRankImages);
-
     void inject(FragmentSettings fragmentSettings);
 
     void inject(FragmentBlacklistPhones fragmentBlacklistPhones);
@@ -114,10 +89,6 @@ public interface AppComponent {
 
     void inject(PresenterAdapterBlacklistPhones presenterAdapterBlacklistPhones);
 
-    void inject(PresenterAdapterRank presenterAdapterRank);
-
-    void inject(PresenterAdapterRankImages presenterAdapterRankImages);
-
     void inject(AdapterProfile adapterProfile);
 
     void inject(FragmentProfile fragmentProfile);
@@ -125,10 +96,6 @@ public interface AppComponent {
     void inject(PresenterProfile presenterProfile);
 
     void inject(PresenterAdapterProfile presenterAdapterProfile);
-
-    void inject(PresenterRank presenterRank);
-
-    void inject(FragmentRank fragmentRank);
 
     void inject(CacheScroll cacheScroll);
 

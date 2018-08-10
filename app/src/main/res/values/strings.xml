@@ -1,85 +1,37 @@
 <resources>
     <string name="app_name">Ringoid</string>
 
-    <string name="label_boosted">Boosted</string>
-
-    <string name="message_location_enable">Ringoid is using geolocation to help you discover people with attractive photos around you.</string>
-    <string name="login_phone_confirm_message_format" formatted="false">Verification code has been sent to %s
-    \nIf you have not received SMS within two minutes, please check your phone number or connection</string>
-    <string name="message_invite">Send invitation to your friend</string>
-
     <string name="hint_chat_enabled">enter message here</string>
-    <string name="hint_email">enter friend email</string>
-    <string name="hint_phone">Enter phone number</string>
 
-    <string name="checkbox_adult">I am of legal age and adult, as defined by the country or state from where I am accessing Ringoid app</string>
     <string name="checkbox_terms">I have read and understood\n\n<a href="http://ringoid.com/terms.html">Terms &amp; Conditions</a> and\n\n<a href="http://ringoid.com/privacy-notice.html">Privacy Notice</a></string>
 
-    <string name="button_invite">Send invite</string>
-    <string name="button_location_enable">Enable location</string>
-    <string name="button_confirm">confirm</string>
-    <string name="button_register">next</string>
     <string name="hint_register_confirm">Code from SMS</string>
-    <string name="error_terms">Please accept terms and review your age</string>
     <string name="error_phone">Please enter phone number</string>
-    <string name="button_phone_reenter">edit phone</string>
     <string name="message_date_birth">Date of Birth</string>
-    <string name="welcome_title">Welcome to Ringoid!</string>
-    <string name="welcome_lead">Ringoid is like Tinder or Bumble but more interesting and easier to use</string>
-    <string name="welcome_list">
-    \u2022 See how many likes your photos receive from opposite gender
-    \n\u2022 Check your ranking amongst others in your location
-    \n\u2022 Browse feeds of people with attractive photos
-    \n\u2022 Discover hot people around you</string>
     <string name="button_accept_terms">Accept and Continue</string>
     <string name="login_phone_title">Verify your phone number</string>
     <string name="login_phone_lead">Ringoid will send an SMS message (carrier charges may apply) to verify your phone number.</string>
-    <string name="login_phone_country">Choose your country</string>
     <string name="button_login_phone">Send SMS to verify</string>
-    <string name="checkbox_terms_2">I have read and agreed to the Terms of Use and the Privacy Notice</string>
     <string name="button_register_confirm">Continue</string>
-    <string name="login_register_age_desc">We don\'t display age on user profiles and don\'t use age in filters or search.</string>
-    <string name="login_phone_note">We don\'t collect or use your name or username, email, password, Facebook details or list of friends, Instagram or LinkedIn ids, contact list from phonebook.</string>
-    <string name="login_referral_message">Claim 50 credits</string>
-    <string name="hint_referral">Enter referral link</string>
-    <string name="login_referral_desc">Both you and a person who invited you will receive 50 credits that you can use to
-        \n\u2022 Boost your profile (30 credits)
-        \n\u2022 Buy extra photo for your profile (200 credits)
-        \n\u2022 Super Like someone (15 credits)
-        \n\u2022 Super Wink to someone (5 credits)
-        \n\u2022 Send Super Text to someone (10 credits)</string>
     <string name="login_referral_lead">We will hide your profile from your friend, and your friend\'s profile will be hidden from you. Let\'s make it safer for everyone.</string>
     <string name="wallet_title_format">You have %d credits</string>
     <string name="wallet_lead">Both you and a person who invited you will receive 50 credits.</string>
     <string name="wallet_desc">To invite others, ask them to open the referral link.</string>
-    <string name="message_location_enable_distance">We do not display your location to others and do not show distance between users.</string>
     <string name="error_agreement">To continue agree the terms</string>
-    <string name="error_age_terms_date">Please check entered data</string>
-    <string name="button_referral_skip">skip</string>
     <string name="dialog_menu_rank_report">Report</string>
     <string name="dialog_menu_rank_block">Block</string>
-    <string name="settings_faq">FAQ</string>
     <string name="settings_terms">Terms &amp; Conditions</string>
-    <string name="settings_email">support email</string>
-    <string name="settings_copyright">copyright</string>
-    <string name="settings_blacklist">Blacklist for phone numbers</string>
     <string name="settings_delete_account">Delete account</string>
     <string name="settings_about">About</string>
-    <string name="blacklist_title">Blacklist of Phone Numbers</string>
-    <string name="blacklist_lead">If you want to block someone from seing your photos in Ringoid, you can add their phone number to the blacklist.</string>
     <string name="blacklist_phone_hint">Phone number</string>
     <string name="blacklist_phone_add">Block it!</string>
     <string name="blacklist_description">People with below phone numbers won\'t see your photos and you won\'t see theirs.</string>
     <string name="dialog_menu_profile_remove">Delete</string>
-    <string name="format_likes" formatted="false">%d likes</string>
-    <string name="dialog_menu_message">Chat</string>
     <string name="chat_empty_title">She is waiting</string>
     <string name="chat_empty_lead">for your activity</string>
     <string name="hint_chat_disabled">Chat not available before she answer</string>
     <string name="chat_subtitle">Chat</string>
     <string name="settings_privacy">Privacy</string>
-    <string name="settings_feature_request">Suggest a feature</string>
-    <string name="settings_report_bug">Report a bug</string>
     <string name="settings_feedback">Send us feedback</string>
     <string name="settings_logout">Log Out</string>
     <string name="settings_subtitle">Settings</string>
@@ -115,20 +67,12 @@
     <string name="settings_privacy_policy">Data protection</string>
     <string name="settings_privacy_item_value_only_me">Only me</string>
     <string name="settings_privacy_location_distance">Minimum safety distance</string>
-    <string name="settings_privacy_location_who">Who can see your location or distance?</string>
-    <string name="settings_privacy_location_distance_who">Who can see distance between you and others?</string>
     <string name="settings_privacy_age_who">Who can see your age?</string>
-    <string name="settings_privacy_age_birth_who">Who can see your date of birth?</string>
     <string name="settings_privacy_policy_data_storage">Personal data that Ringoid holds about you</string>
-    <string name="settings_privacy_policy_data">Data Policy</string>
     <string name="settings_privacy_policy_privacy">Privacy Notice</string>
     <string name="settings_privacy_subtitle">Privacy</string>
     <string name="settings_privacy_activity_likes">Who can see which photos you liked?</string>
     <string name="settings_privacy_activity_reports">Who can see which photos you reported?</string>
-    <string name="settings_privacy_activity_online">Who can see that you are online?</string>
-    <string name="settings_privacy_activity_online_last_time">Who can see when you were online last time?</string>
-    <string name="settings_privacy_activity_chat_messages_time">Who can see when you sent or read chat messages?</string>
-    <string name="settings_privacy_activity_chat_messages">Who can see that you read chat messages?</string>
     <string name="settings_privacy_item_value_no">No</string>
     <string name="settings_privacy_item_value_noone">No one</string>
     <string name="settings_privacy_distance_message">Don\'t show my photos to anyone (and don\'t show their photos to me) who is closer than</string>
@@ -181,7 +125,6 @@
     <string name="settings_privacy_location_history">Who can see your location history?</string>
     <string name="settings_privacy_birth">Who can see your date of birth?</string>
     <string name="settings_privacy_activity_blocks">Who can see which profiles you blocked?</string>
-    <string name="settings_privacy_activity_chat_messages_date">Who can see when you have sent chat messages?</string>
     <string name="settings_privacy_activity_use">Who can see when and how often you use Ringoid?</string>
     <string name="checkbox_age">I am of legal age and adult, as defined by the country or state from where I am accessing Ringoid app</string>
     <string name="login_sms">Enter code from SMS</string>
@@ -206,9 +149,7 @@
     <string name="settings_privacy_messages_when">Who can see when you have sent chat messages?</string>
     <string name="settings_privacy_messages_online">Who can see that you are online?</string>
     <string name="settings_privacy_messages_online_last_time">Who can see when you were online last time?</string>
-    <string name="com_lamudi_phonefield_flag_spinner">spinner</string>
     <string name="settings_licenses">Licenses</string>
-
 
     <string-array name="pages_titles">
         <item></item>

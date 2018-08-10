@@ -13,8 +13,4 @@ public interface ICacheBlacklist {
     DataBlacklistPhone getItem(int position);
 
     void remove(int position);
-
-    void changeSelect(int position);
-
-    boolean isSelected(int position);
 }

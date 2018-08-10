@@ -26,8 +26,6 @@ public class FragmentBlacklistPhones extends FragmentBase
     @Inject
     IPresenterBlacklistPhones presenterBlacklistPhones;
 
-    private TextView tvPhone;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

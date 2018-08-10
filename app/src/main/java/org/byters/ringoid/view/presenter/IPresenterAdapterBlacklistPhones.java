@@ -9,9 +9,5 @@ public interface IPresenterAdapterBlacklistPhones {
 
     void onClickRemove(int position);
 
-    void onClickItem(int position);
-
     void setListener(IPresenterAdapterBlacklistPhonesListener listener);
-
-    boolean isSelected(int position);
 }

@@ -107,11 +107,6 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void setWallet(int coinsNum) {
-            tvWallet.setText(String.valueOf(coinsNum));
-        }
-
-        @Override
         public void setPosition(int topPos, int bottomPos, float alpha) {
             flToolbar.setTranslationY(topPos);
             llBottomAppBar.setTranslationY(bottomPos);

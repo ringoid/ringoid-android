@@ -9,8 +9,6 @@ public interface IPresenterPagesContainer {
 
     void onClickWallet();
 
-    void onClickPageRank();
-
     void onClickPageLikes();
 
     void onClickPageProfile();

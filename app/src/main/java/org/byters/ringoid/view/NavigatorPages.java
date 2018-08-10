@@ -6,7 +6,6 @@ import org.byters.ringoid.view.ui.fragment.FragmentExplore;
 import org.byters.ringoid.view.ui.fragment.FragmentLikes;
 import org.byters.ringoid.view.ui.fragment.FragmentMessages;
 import org.byters.ringoid.view.ui.fragment.FragmentProfile;
-import org.byters.ringoid.view.ui.fragment.FragmentRank;
 
 import java.lang.ref.WeakReference;
 
@@ -25,15 +24,6 @@ public class NavigatorPages implements INavigatorPages {
     public void set(FragmentManager childFragmentManager, int viewId) {
         this.refFragmentManager = new WeakReference<>(childFragmentManager);
         this.viewId = viewId;
-    }
-
-    @Override
-    public void navigateRank() {
-        if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        refFragmentManager.get()
-                .beginTransaction()
-                .replace(viewId, new FragmentRank())
-                .commit();
     }
 
     @Override

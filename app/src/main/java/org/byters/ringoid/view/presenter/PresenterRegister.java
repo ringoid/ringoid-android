@@ -4,17 +4,11 @@ import android.text.TextUtils;
 
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
-import org.byters.ringoid.controller.data.memorycache.ICacheCountryList;
 import org.byters.ringoid.controller.data.memorycache.ICacheRegister;
-import org.byters.ringoid.controller.data.memorycache.ICacheRegisterReferral;
-import org.byters.ringoid.controller.data.repository.IRepositoryCountryList;
 import org.byters.ringoid.controller.data.repository.IRepositoryRegister;
 import org.byters.ringoid.controller.data.repository.IRepositoryRegisterConfirm;
-import org.byters.ringoid.controller.data.repository.IRepositoryRegisterReferralConfirm;
-import org.byters.ringoid.controller.data.repository.IRepositoryRegisterReferralDescription;
 import org.byters.ringoid.controller.data.repository.callback.IRepositoryRegisterConfirmListener;
 import org.byters.ringoid.controller.data.repository.callback.IRepositoryRegisterListener;
-import org.byters.ringoid.controller.data.repository.callback.IRepositoryRegisterReferralConfirmListener;
 import org.byters.ringoid.model.SEX;
 import org.byters.ringoid.view.INavigator;
 import org.byters.ringoid.view.presenter.callback.IPresenterRegisterListener;
@@ -25,11 +19,6 @@ import javax.inject.Inject;
 
 public class PresenterRegister implements IPresenterRegister {
 
-    private final IRepositoryRegisterReferralConfirmListener listenerRepositoryRegisterReferralConfirm;
-
-    @Inject
-    IRepositoryRegisterReferralConfirm repositoryRegisterReferralConfirm;
-
     @Inject
     IRepositoryRegister repositoryRegister;
 
@@ -37,22 +26,10 @@ public class PresenterRegister implements IPresenterRegister {
     IRepositoryRegisterConfirm repositoryRegisterCodeConfirm;
 
     @Inject
-    IRepositoryCountryList repositoryCountryList;
-
-    @Inject
-    IRepositoryRegisterReferralDescription repositoryRegisterReferralDescription;
-
-    @Inject
     INavigator navigator;
 
     @Inject
     ICacheRegister cacheRegister;
-
-    @Inject
-    ICacheCountryList cacheCountryList;
-
-    @Inject
-    ICacheRegisterReferral cacheRegisterReferral;
 
     private ListenerRegisterConfirm listenerRegisterConfirm;
     private ListenerRegister listenerRegister;
@@ -62,7 +39,6 @@ public class PresenterRegister implements IPresenterRegister {
         ApplicationRingoid.getComponent().inject(this);
         repositoryRegister.setListener(listenerRegister = new ListenerRegister());
         repositoryRegisterCodeConfirm.setListener(listenerRegisterConfirm = new ListenerRegisterConfirm());
-        repositoryRegisterReferralConfirm.setListener(listenerRepositoryRegisterReferralConfirm = new ListenerRepositoryRegisterReferralConfirm());
     }
 
     private void notifyError(int stringId) {
@@ -152,10 +128,4 @@ public class PresenterRegister implements IPresenterRegister {
         }
     }
 
-    private class ListenerRepositoryRegisterReferralConfirm implements IRepositoryRegisterReferralConfirmListener {
-        @Override
-        public void onSuccess() {
-            navigator.navigateFeed();
-        }
-    }
 }
