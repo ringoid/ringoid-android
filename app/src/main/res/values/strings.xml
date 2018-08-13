@@ -40,7 +40,7 @@
     <string name="dialog_report_item_stolen">Stolen, someone\'s else photos</string>
     <string name="dialog_report_item_fraud">Advertising, fraud</string>
     <string name="dialog_report_item_porn">Explicit content, pornography</string>
-    <string name="dialog_report_message">Ringoid will automatically block the profile after you report. They won\'t be able to see your photos ever again (and you won\'t see theirs). They won\'t be able to like, match or chat with you.</string>
+    <string name="dialog_report_message">Ringoid will automatically block the profile after you report it. They won\'t see your photos again (and you won't see theirs). They won\'t be able to like, match or chat with you.</string>
     <string name="dialog_report_cancel">cancel</string>
     <string name="dialog_report_confirm">report</string>
     <string name="dialog_block_confirm">block</string>

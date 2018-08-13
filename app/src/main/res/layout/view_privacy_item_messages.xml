@@ -61,7 +61,7 @@
 
             <TextView
                 style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_no" />
+                android:text="@string/settings_privacy_item_value_noone" />
 
         </LinearLayout>
 
