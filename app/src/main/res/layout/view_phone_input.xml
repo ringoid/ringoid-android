@@ -11,7 +11,7 @@
         android:background="@drawable/border_rounded_gray"
         android:paddingBottom="8dp"
         android:paddingTop="8dp"
-        app:ccp_autoDetectCountry="true"
+        app:ccp_autoDetectCountry="false"
         app:ccp_autoDetectLanguage="true"
         app:ccp_defaultNameCode="US"
         app:ccp_showFullName="true"
@@ -49,12 +49,11 @@
             android:layout_height="match_parent"
             android:background="#b6b6b6" />
 
-        <EditText
+        <android.support.v7.widget.AppCompatEditText
             android:id="@+id/etPhone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
             android:hint="@string/blacklist_phone_hint"
             android:inputType="phone"
             android:padding="16dp"
@@ -65,5 +64,6 @@
             style="@style/selectableImage"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_content_paste_black_24dp" />
+
     </LinearLayout>
 </LinearLayout>

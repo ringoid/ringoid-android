@@ -3,6 +3,8 @@ package org.byters.ringoid.view.ui.view;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.support.v4.view.ViewCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -52,6 +54,9 @@ public class ViewPhoneInput extends LinearLayout implements View.OnClickListener
 
 
         findViewById(R.id.ivPaste).setOnClickListener(this);
+
+
+        etPhone.addTextChangedListener(new PhoneInputTextWatcher());
     }
 
     public boolean isValid() {
@@ -105,6 +110,30 @@ public class ViewPhoneInput extends LinearLayout implements View.OnClickListener
         public void onCountrySelected() {
             if (etCode.getText().toString().equals(ccp.getSelectedCountryCode())) return;
             etCode.setText(ccp.getSelectedCountryCode());
+        }
+    }
+
+
+    private class PhoneInputTextWatcher implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            ColorStateList color = ColorStateList.valueOf(getContext().getResources().getColor(
+                    TextUtils.isEmpty(etPhone.getText()) ? android.R.color.white
+                            : ccp.isValidFullNumber()
+                            ? R.color.colorAccentGreen
+                            : R.color.colorAccent));
+            ViewCompat.setBackgroundTintList(etPhone, color);
+
         }
     }
 }
