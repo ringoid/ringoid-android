@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.hbb20.CCPCountry;
 import com.hbb20.CountryCodePicker;
 
 import org.byters.ringoid.R;
@@ -100,6 +101,9 @@ public class ViewPhoneInput extends LinearLayout implements View.OnClickListener
             } catch (NumberFormatException e) {
                 return;
             }
+
+            CCPCountry ccpCountry = CCPCountry.getCountryForCode(getContext(), CountryCodePicker.Language.ENGLISH, null, s.toString()); //xml stores data in string format, but want to allow only numeric value to country code to user.
+            if (ccpCountry == null) return;
 
             ccp.setCountryForPhoneCode(num);
         }
