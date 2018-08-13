@@ -151,6 +151,8 @@
     <string name="settings_privacy_messages_online_last_time">Who can see when you were online last time?</string>
     <string name="settings_licenses">Licenses</string>
     <string name="crop_subtitle">Crop photo</string>
+    <string name="message_dialog_phone_valid">Your phone %s not pass validation, but you can proceed if you sure</string>
+    <string name="dialog_phone_confirm">Confirm</string>
 
     <string-array name="pages_titles">
         <item></item>

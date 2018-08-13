@@ -24,7 +24,9 @@ import org.byters.ringoid.view.INavigator;
 import org.byters.ringoid.view.presenter.IPresenterRegister;
 import org.byters.ringoid.view.presenter.callback.IPresenterRegisterListener;
 import org.byters.ringoid.view.ui.dialog.DialogDateBirth;
+import org.byters.ringoid.view.ui.dialog.DialogPhoneValid;
 import org.byters.ringoid.view.ui.dialog.callback.IDialogDateCallback;
+import org.byters.ringoid.view.ui.dialog.callback.IDialogPhoneValidListener;
 import org.byters.ringoid.view.ui.view.ViewPhoneInput;
 
 import java.util.Date;
@@ -48,6 +50,8 @@ public class FragmentLogin extends FragmentBase
     private DialogDateBirth dialogDateBirth;
     private IDialogDateCallback listenerDialogDate;
     private ViewPhoneInput vpiLogin;
+    private DialogPhoneValid dialogPhoneValid;
+    private IDialogPhoneValidListener listenerDialogPhoneValid;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class FragmentLogin extends FragmentBase
         ApplicationRingoid.getComponent().inject(this);
         presenterRegister.setListener(listenerPresenter = new ListenerPresenter());
         listenerDialogDate = new ListenerDialogDate();
+        listenerDialogPhoneValid = new ListenerDialogPhoneValid();
     }
 
     @Nullable
@@ -105,7 +110,7 @@ public class FragmentLogin extends FragmentBase
 
         if (view.getId() == R.id.tvLoginPhoneVerify) {
             if (!vpiLogin.isValid()) {
-                Toast.makeText(getContext(), "Please enter valid phone", Toast.LENGTH_SHORT).show();
+                showDialogPhoneValid(etPhone.getText().toString());
                 return;
             }
 
@@ -130,6 +135,12 @@ public class FragmentLogin extends FragmentBase
 
         if (view.getId() == R.id.tvDateBirth)
             showDialogCalendar();
+    }
+
+    private void showDialogPhoneValid(String phone) {
+        if (dialogPhoneValid != null) dialogPhoneValid.cancel();
+        dialogPhoneValid = new DialogPhoneValid(getContext(), phone, listenerDialogPhoneValid);
+        dialogPhoneValid.show();
     }
 
     private void showPrev() {
@@ -224,5 +235,12 @@ public class FragmentLogin extends FragmentBase
             return super.onTouchEvent(widget, buffer, event);
         }
 
+    }
+
+    private class ListenerDialogPhoneValid implements IDialogPhoneValidListener {
+        @Override
+        public void onConfirm() {
+            presenterRegister.onClickLoginPhoneVerify(etPhone.getText().toString());
+        }
     }
 }

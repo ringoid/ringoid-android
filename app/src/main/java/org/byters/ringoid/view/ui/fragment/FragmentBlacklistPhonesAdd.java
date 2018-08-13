@@ -12,6 +12,8 @@ import android.widget.TextView;
 import org.byters.ringoid.ApplicationRingoid;
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.presenter.IPresenterBlacklistPhones;
+import org.byters.ringoid.view.ui.dialog.DialogPhoneValid;
+import org.byters.ringoid.view.ui.dialog.callback.IDialogPhoneValidListener;
 import org.byters.ringoid.view.ui.view.ViewPhoneInput;
 
 import javax.inject.Inject;
@@ -24,10 +26,15 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     private EditText tvPhone;
     private ViewPhoneInput vpiLogin;
 
+    private IDialogPhoneValidListener listenerDialogPhoneValid;
+    private DialogPhoneValid dialogPhoneValid;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ApplicationRingoid.getComponent().inject(this);
+
+        listenerDialogPhoneValid = new ListenerDialogPhoneValid();
     }
 
     @Nullable
@@ -61,16 +68,33 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     public void onClick(View v) {
         if (v.getId() == R.id.tvBlacklistAdd) {
             if (!vpiLogin.isValid()) {
+                showDialogPhoneValid(tvPhone.getText().toString());
                 return;
             }
 
-            presenterBlacklistPhones.onClickBlacklistAdd(tvPhone.getText().toString());
-            tvPhone.setText("");
-            getActivity().onBackPressed();
+            confirmPhoneAdd();
         }
 
         if (v.getId() == R.id.ivBack && getActivity() != null)
             getActivity().onBackPressed();
+    }
 
+    private void confirmPhoneAdd() {
+        presenterBlacklistPhones.onClickBlacklistAdd(tvPhone.getText().toString());
+        tvPhone.setText("");
+        getActivity().onBackPressed();
+    }
+
+    private void showDialogPhoneValid(String phone) {
+        if (dialogPhoneValid != null) dialogPhoneValid.cancel();
+        dialogPhoneValid = new DialogPhoneValid(getContext(), phone, listenerDialogPhoneValid);
+        dialogPhoneValid.show();
+    }
+
+    private class ListenerDialogPhoneValid implements IDialogPhoneValidListener {
+        @Override
+        public void onConfirm() {
+            confirmPhoneAdd();
+        }
     }
 }
