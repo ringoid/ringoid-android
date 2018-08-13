@@ -1,1 +1,1 @@
-include ':app', ':mockserver', ':cropiwa'
+include ':app', ':mockserver', ':cropiwa', ':ccp'

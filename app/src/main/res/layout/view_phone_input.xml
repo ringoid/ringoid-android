@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <com.hbb20.CountryCodePicker
+    <com.hbb20.view.CountryCodePicker
         android:id="@+id/ccp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
