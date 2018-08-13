@@ -153,6 +153,7 @@
     <string name="crop_subtitle">Crop photo</string>
     <string name="message_dialog_phone_valid">Your phone %s not pass validation, but you can proceed if you sure</string>
     <string name="dialog_phone_confirm">Confirm</string>
+    <string name="hint_phone_code">Code</string>
 
     <string-array name="pages_titles">
         <item></item>
