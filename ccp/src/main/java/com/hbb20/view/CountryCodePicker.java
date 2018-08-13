@@ -903,10 +903,11 @@ public class CountryCodePicker extends RelativeLayout {
                                         String currentAreaCode = digitsValue.substring(0, currentCountryGroup.areaCodeLength);
                                         if (!currentAreaCode.equals(lastCheckedAreaCode)) {
                                             DataCountry detectedCountry = currentCountryGroup.getCountryForAreaCode(context, getLanguageToApply(), currentAreaCode);
-                                            if (!detectedCountry.equals(selectedCountry)) {
+                                            if (detectedCountry == null || !detectedCountry.equals(selectedCountry)) {
                                                 countryChangedDueToAreaCode = true;
                                                 lastCursorPosition = Selection.getSelectionEnd(s);
-                                                setSelectedCountry(detectedCountry);
+                                                if (detectedCountry != null)
+                                                    setSelectedCountry(detectedCountry);
                                             }
                                             lastCheckedAreaCode = currentAreaCode;
                                         }
