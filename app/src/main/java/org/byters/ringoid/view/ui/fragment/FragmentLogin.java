@@ -109,7 +109,7 @@ public class FragmentLogin extends FragmentBase
         }
 
         if (view.getId() == R.id.tvLoginPhoneVerify) {
-            if (!vpiLogin.isValid()) {
+            if (!vpiLogin.isValid() && etPhone.getText().length() > 0) {
                 showDialogPhoneValid(etPhone.getText().toString());
                 return;
             }
