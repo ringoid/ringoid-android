@@ -16,7 +16,7 @@
         app:ccp_defaultNameCode="US"
         app:ccp_showFullName="true"
         app:ccp_showNameCode="false"
-        app:ccp_showPhoneCode="false"
+        app:ccp_showPhoneCode="true"
         app:ccp_textSize="17sp" />
 
     <LinearLayout
