@@ -77,7 +77,7 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
         if (v.getId() == R.id.tvBlacklistAdd) {
             if (!vpiBlacklist.isValid()) {
                 if (tvPhone.getText().length() > 0 && etPhoneCode.getText().length() > 0)
-                    showDialogPhoneValid(tvPhone.getText().toString());
+                    showDialogPhoneValid(etPhoneCode.getText().toString(), tvPhone.getText().toString());
                 return;
             }
 
@@ -94,9 +94,9 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
         getActivity().onBackPressed();
     }
 
-    private void showDialogPhoneValid(String phone) {
+    private void showDialogPhoneValid(String code, String phone) {
         if (dialogPhoneValid != null) dialogPhoneValid.cancel();
-        dialogPhoneValid = new DialogPhoneValid(getContext(), phone, listenerDialogPhoneValid);
+        dialogPhoneValid = new DialogPhoneValid(getContext(), code, phone, listenerDialogPhoneValid);
         dialogPhoneValid.show();
     }
 

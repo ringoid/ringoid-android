@@ -151,7 +151,7 @@
     <string name="settings_privacy_messages_online_last_time">Who can see when you were online last time?</string>
     <string name="settings_licenses">Licenses</string>
     <string name="crop_subtitle">Crop photo</string>
-    <string name="message_dialog_phone_valid">%s looks invalid. Most likely we won\'t be able to send SMS with a verification code to validate it. Do you still want to proceed?</string>
+    <string name="message_dialog_phone_valid" formatted="false">+%s %s looks invalid. Most likely we won\'t be able to send SMS with a verification code to validate it. Do you still want to proceed?</string>
     <string name="dialog_phone_confirm">Confirm</string>
     <string name="hint_phone_code">Code</string>
     <string name="message_paste">Paste from clipboard</string>
