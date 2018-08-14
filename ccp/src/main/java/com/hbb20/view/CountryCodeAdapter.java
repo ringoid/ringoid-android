@@ -189,8 +189,6 @@ class CountryCodeAdapter extends RecyclerView.Adapter<CountryCodeAdapter.Country
                         codePicker.onUserTappedCountry(filteredCountries.get(i));
                     }
                     if (view != null && filteredCountries != null && filteredCountries.size() > i && filteredCountries.get(i) != null) {
-                        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                         dialog.dismiss();
                     }
                 }
