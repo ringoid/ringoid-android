@@ -13,9 +13,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import com.hbb20.PresenterCountry;
-import com.hbb20.model.Language;
 import com.hbb20.model.DataCountry;
+import com.hbb20.model.Language;
 import com.hbb20.view.CountryCodePicker;
 
 import org.byters.ringoid.R;
@@ -68,9 +71,13 @@ public class ViewPhoneInput extends LinearLayout implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        android.content.ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clipData = clipboardManager.getPrimaryClip();
+        if (v.getId() == R.id.ivPaste)
+            clipboardPaste();
+    }
 
+    private void clipboardPaste() {
+        ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData = clipboardManager.getPrimaryClip();
 
         StringBuilder result = new StringBuilder();
 
@@ -79,7 +86,34 @@ public class ViewPhoneInput extends LinearLayout implements View.OnClickListener
         }
         if (TextUtils.isEmpty(result)) return;
 
-        etPhone.setText(String.format("%s%s", etPhone.getText().toString(), result));
+        String phone = getClipboardPhone(result.toString());
+        String code = getClipboardCode(result.toString());
+
+        if (!TextUtils.isEmpty(code))
+            etCode.setText(code);
+
+        if (!TextUtils.isEmpty(phone))
+            etPhone.setText(phone);
+    }
+
+    private String getClipboardPhone(String data) {
+        Phonenumber.PhoneNumber number = getNumber(data);
+        return number == null ? data : String.valueOf(number.getNationalNumber());
+    }
+
+    private String getClipboardCode(String data) {
+        Phonenumber.PhoneNumber number = getNumber(data);
+        return number == null ? null : String.valueOf(number.getCountryCode());
+    }
+
+    private Phonenumber.PhoneNumber getNumber(String data) {
+        Phonenumber.PhoneNumber number;
+        try {
+            number = PhoneNumberUtil.getInstance().parse(data, null);
+        } catch (NumberParseException e) {
+            return null;
+        }
+        return number;
     }
 
     private class ListenerCode implements TextWatcher {
