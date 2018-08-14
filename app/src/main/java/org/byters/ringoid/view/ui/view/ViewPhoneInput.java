@@ -13,9 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
+import com.hbb20.PhoneUtils;
 import com.hbb20.PresenterCountry;
 import com.hbb20.model.DataCountry;
 import com.hbb20.model.Language;
@@ -86,34 +84,14 @@ public class ViewPhoneInput extends LinearLayout implements View.OnClickListener
         }
         if (TextUtils.isEmpty(result)) return;
 
-        String phone = getClipboardPhone(result.toString());
-        String code = getClipboardCode(result.toString());
+        String phone = PhoneUtils.getPhone(getContext(), result.toString());
+        String code = PhoneUtils.getCode(getContext(), result.toString());
 
         if (!TextUtils.isEmpty(code))
             etCode.setText(code);
 
         if (!TextUtils.isEmpty(phone))
             etPhone.setText(phone);
-    }
-
-    private String getClipboardPhone(String data) {
-        Phonenumber.PhoneNumber number = getNumber(data);
-        return number == null ? data : String.valueOf(number.getNationalNumber());
-    }
-
-    private String getClipboardCode(String data) {
-        Phonenumber.PhoneNumber number = getNumber(data);
-        return number == null ? null : String.valueOf(number.getCountryCode());
-    }
-
-    private Phonenumber.PhoneNumber getNumber(String data) {
-        Phonenumber.PhoneNumber number;
-        try {
-            number = PhoneNumberUtil.getInstance().parse(data, null);
-        } catch (NumberParseException e) {
-            return null;
-        }
-        return number;
     }
 
     private class ListenerCode implements TextWatcher {
