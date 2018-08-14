@@ -1,8 +1,10 @@
 package org.byters.ringoid.view.ui.view;
 
+import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.support.v4.view.ViewCompat;
 import android.text.Editable;
@@ -21,6 +23,7 @@ import com.hbb20.model.Language;
 import com.hbb20.view.CountryCodePicker;
 
 import org.byters.ringoid.R;
+import org.byters.ringoid.view.ui.view.callback.IViewPhotoInputListener;
 
 public class ViewPhoneInput extends LinearLayout
         implements View.OnClickListener, View.OnLongClickListener {
@@ -28,6 +31,7 @@ public class ViewPhoneInput extends LinearLayout
     EditText etCode;
     private ListenerCountry listenerCountry;
     private EditText etPhone;
+    private IViewPhotoInputListener listener;
 
     public ViewPhoneInput(Context context) {
         super(context);
@@ -56,6 +60,7 @@ public class ViewPhoneInput extends LinearLayout
         ccp = findViewById(R.id.ccp);
         ccp.setOnCountryChangeListener(listenerCountry = new ListenerCountry());
         ccp.registerCarrierNumberEditText((EditText) findViewById(R.id.etPhone));
+        ccp.setDialogEventsListener(new DialogCountyEventListener());
         listenerCountry.onCountrySelected();
 
 
@@ -116,6 +121,10 @@ public class ViewPhoneInput extends LinearLayout
             etPhone.setText(phone);
     }
 
+    public void setListener(IViewPhotoInputListener listener) {
+        this.listener = listener;
+    }
+
     private class ListenerCode implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -166,6 +175,23 @@ public class ViewPhoneInput extends LinearLayout
                             : R.color.colorAccent));
             ViewCompat.setBackgroundTintList(etPhone, color);
 
+        }
+    }
+
+    private class DialogCountyEventListener implements CountryCodePicker.DialogEventsListener {
+        @Override
+        public void onCcpDialogOpen(Dialog dialog) {
+
+        }
+
+        @Override
+        public void onCcpDialogDismiss(DialogInterface dialogInterface) {
+            if (listener != null) listener.onDialogClose();
+        }
+
+        @Override
+        public void onCcpDialogCancel(DialogInterface dialogInterface) {
+            if (listener != null) listener.onDialogClose();
         }
     }
 }

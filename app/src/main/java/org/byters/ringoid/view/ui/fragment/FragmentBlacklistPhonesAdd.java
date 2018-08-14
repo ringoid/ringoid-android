@@ -15,6 +15,7 @@ import org.byters.ringoid.view.presenter.IPresenterBlacklistPhones;
 import org.byters.ringoid.view.ui.dialog.DialogPhoneValid;
 import org.byters.ringoid.view.ui.dialog.callback.IDialogPhoneValidListener;
 import org.byters.ringoid.view.ui.view.ViewPhoneInput;
+import org.byters.ringoid.view.ui.view.callback.IViewPhotoInputListener;
 
 import javax.inject.Inject;
 
@@ -48,6 +49,7 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     private void initView(View view) {
         tvPhone = view.findViewById(R.id.etPhone);
         vpiBlacklist = view.findViewById(R.id.vpiBlacklist);
+        vpiBlacklist.setListener(new ListenerViewPhoneInput());
 
         view.findViewById(R.id.tvBlacklistAdd).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
@@ -99,6 +101,13 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
         @Override
         public void onConfirm() {
             confirmPhoneAdd();
+        }
+    }
+
+    private class ListenerViewPhoneInput implements IViewPhotoInputListener {
+        @Override
+        public void onDialogClose() {
+            showKeyboard(tvPhone);
         }
     }
 }

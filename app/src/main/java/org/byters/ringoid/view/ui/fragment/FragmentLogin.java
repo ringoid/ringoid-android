@@ -28,6 +28,7 @@ import org.byters.ringoid.view.ui.dialog.DialogPhoneValid;
 import org.byters.ringoid.view.ui.dialog.callback.IDialogDateCallback;
 import org.byters.ringoid.view.ui.dialog.callback.IDialogPhoneValidListener;
 import org.byters.ringoid.view.ui.view.ViewPhoneInput;
+import org.byters.ringoid.view.ui.view.callback.IViewPhotoInputListener;
 
 import java.util.Date;
 
@@ -89,6 +90,8 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.tvLoginPhoneVerify).setOnClickListener(this);
         view.findViewById(R.id.tvDateBirth).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
+
+        vpiLogin.setListener(new ListenerViewPhoneInput());
 
     }
 
@@ -241,6 +244,13 @@ public class FragmentLogin extends FragmentBase
         @Override
         public void onConfirm() {
             presenterRegister.onClickLoginPhoneVerify(etPhone.getText().toString());
+        }
+    }
+
+    private class ListenerViewPhoneInput implements IViewPhotoInputListener {
+        @Override
+        public void onDialogClose(){
+            showKeyboard(etPhone);
         }
     }
 }
