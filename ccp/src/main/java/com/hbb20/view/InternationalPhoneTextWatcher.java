@@ -7,9 +7,8 @@ import android.text.Selection;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 
-import io.michaelrocks.libphonenumber.android.AsYouTypeFormatter;
-import io.michaelrocks.libphonenumber.android.PhoneNumberUtil;
-
+import com.google.i18n.phonenumbers.AsYouTypeFormatter;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 //Reference https://stackoverflow.com/questions/32661363/using-phonenumberformattingtextwatcher-without-typing-country-calling-code to solve formatting issue
 public class InternationalPhoneTextWatcher implements TextWatcher {
@@ -43,7 +42,7 @@ public class InternationalPhoneTextWatcher implements TextWatcher {
     public InternationalPhoneTextWatcher(Context context, String countryNameCode, int countryPhoneCode) {
         if (countryNameCode == null || countryNameCode.length() == 0)
             throw new IllegalArgumentException();
-        phoneNumberUtil = PhoneNumberUtil.createInstance(context);
+        phoneNumberUtil = PhoneNumberUtil.getInstance();
         updateCountry(countryNameCode, countryPhoneCode);
     }
 

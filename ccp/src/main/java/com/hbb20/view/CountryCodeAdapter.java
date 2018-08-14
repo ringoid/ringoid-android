@@ -153,14 +153,22 @@ class CountryCodeAdapter extends RecyclerView.Adapter<CountryCodeAdapter.Country
         List<DataCountry> result = new ArrayList<>();
 
         for (DataCountry item : masterCountries) {
-            if (item.getNameCode().toLowerCase().contains(query.toLowerCase())
-                    || PresenterCountry.getName(codePicker.getContext(), codePicker.getLanguageToApply(), item).toLowerCase().contains(query.toLowerCase())
-                    || item.getPhoneCode().toLowerCase().contains(query.toLowerCase())) {
+            if (isContains(item.getNameCode(), query)
+                    || isContains(PresenterCountry.getName(codePicker.getContext(), codePicker.getLanguageToApply(), item), query)
+                    || isContains(item.getPhoneCode(), query)) {
                 result.add(item);
             }
         }
 
         return result;
+    }
+
+    private boolean isContains(String source, String data) {
+        if (TextUtils.isEmpty(source) || TextUtils.isEmpty(data))
+            return false;
+
+        return source.toLowerCase().replace("-", "")
+                .contains(data.toLowerCase().replace("-", ""));
     }
 
     @Override
