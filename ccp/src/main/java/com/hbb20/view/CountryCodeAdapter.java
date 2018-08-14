@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import com.hbb20.PresenterCountry;
 import com.hbb20.R;
 import com.hbb20.model.DataCountry;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -105,19 +107,6 @@ class CountryCodeAdapter extends RecyclerView.Adapter<CountryCodeAdapter.Country
                 }
             });
 
-            /*if (codePicker.isDialogKeyboardAutoPopup()) {
-                try {
-                    if(editText_search.getVisibility()==View.VISIBLE) {
-                        editText_search.requestFocus();
-                        editText_search.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_DOWN, 0, 0, 0));
-                        editText_search.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_UP, 0, 0, 0));
-                        editText_search.setSelection(editText_search.getText().toString().length());
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-*/
             this.editText_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -159,7 +148,19 @@ class CountryCodeAdapter extends RecyclerView.Adapter<CountryCodeAdapter.Country
     }
 
     private List<DataCountry> getFilteredCountries(String query) {
-        return masterCountries;
+        if (TextUtils.isEmpty(query)) return masterCountries;
+
+        List<DataCountry> result = new ArrayList<>();
+
+        for (DataCountry item : masterCountries) {
+            if (item.getNameCode().toLowerCase().contains(query.toLowerCase())
+                    || PresenterCountry.getName(codePicker.getContext(), codePicker.getLanguageToApply(), item).toLowerCase().contains(query.toLowerCase())
+                    || item.getPhoneCode().toLowerCase().contains(query.toLowerCase())) {
+                result.add(item);
+            }
+        }
+
+        return result;
     }
 
     @Override
