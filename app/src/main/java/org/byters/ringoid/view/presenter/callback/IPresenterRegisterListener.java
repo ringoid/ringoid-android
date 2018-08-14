@@ -10,4 +10,6 @@ public interface IPresenterRegisterListener {
     void showDateBirth(long time);
 
     void setGenderSelected(SEX sex);
+
+    void showToast(int stringRes);
 }

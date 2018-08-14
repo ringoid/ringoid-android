@@ -1,9 +1,14 @@
 package org.byters.ringoid.view.ui.fragment;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewCompat;
+import android.text.Editable;
 import android.text.Layout;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
@@ -29,13 +34,14 @@ import org.byters.ringoid.view.ui.dialog.callback.IDialogDateCallback;
 import org.byters.ringoid.view.ui.dialog.callback.IDialogPhoneValidListener;
 import org.byters.ringoid.view.ui.view.ViewPhoneInput;
 import org.byters.ringoid.view.ui.view.callback.IViewPhotoInputListener;
+import org.byters.ringoid.view.ui.view.utils.ClipboardUtils;
 
 import java.util.Date;
 
 import javax.inject.Inject;
 
 public class FragmentLogin extends FragmentBase
-        implements View.OnClickListener {
+        implements View.OnClickListener, View.OnLongClickListener {
 
     @Inject
     IPresenterRegister presenterRegister;
@@ -90,8 +96,13 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.tvLoginPhoneVerify).setOnClickListener(this);
         view.findViewById(R.id.tvDateBirth).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
+        view.findViewById(R.id.ivPasteSMS).setOnClickListener(this);
+
+        view.findViewById(R.id.ivPasteSMS).setOnLongClickListener(this);
 
         vpiLogin.setListener(new ListenerViewPhoneInput());
+
+        etCodeSMS.addTextChangedListener(new SMSTextChangedListener());
 
     }
 
@@ -138,6 +149,19 @@ public class FragmentLogin extends FragmentBase
 
         if (view.getId() == R.id.tvDateBirth)
             showDialogCalendar();
+
+        if (view.getId() == R.id.ivPasteSMS) {
+            pasteSMSFromCLipboard();
+        }
+
+    }
+
+    private void pasteSMSFromCLipboard() {
+        String result = ClipboardUtils.getString(getContext());
+        if (TextUtils.isEmpty(result) || !TextUtils.isDigitsOnly(result) || result.length() != 4)
+            return;
+
+        etCodeSMS.setText(result);
     }
 
     private void showDialogPhoneValid(String phone) {
@@ -178,6 +202,15 @@ public class FragmentLogin extends FragmentBase
         dialogDateBirth.show();
     }
 
+    @Override
+    public boolean onLongClick(View v) {
+        if (v.getId() == R.id.ivPaste) {
+            Toast.makeText(getContext(), R.string.message_paste, Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
+    }
+
     private class ListenerPresenter implements IPresenterRegisterListener {
 
         @Override
@@ -199,6 +232,11 @@ public class FragmentLogin extends FragmentBase
         public void setGenderSelected(SEX sex) {
             getView().findViewById(R.id.tvSexFemale).setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_pink) : null);
             getView().findViewById(R.id.tvSexMale).setBackground(sex == SEX.MALE ? getResources().getDrawable(R.drawable.border_rounded_blue) : null);
+        }
+
+        @Override
+        public void showToast(int stringRes) {
+            Toast.makeText(getContext(), stringRes, Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -249,8 +287,38 @@ public class FragmentLogin extends FragmentBase
 
     private class ListenerViewPhoneInput implements IViewPhotoInputListener {
         @Override
-        public void onDialogClose(){
+        public void onDialogClose() {
             showKeyboard(etPhone);
+        }
+    }
+
+    private class SMSTextChangedListener implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+            setDrawableState(s.length());
+
+            if (s.length() <= 4) return;
+            s.replace(0, s.length(), s, 0, 4);
+        }
+
+        private void setDrawableState(int length) {
+            ColorStateList color = ColorStateList.valueOf(getContext().getResources().getColor(
+                    TextUtils.isEmpty(etCodeSMS.getText()) ? android.R.color.white
+                            : length == 4
+                            ? R.color.colorAccentGreen
+                            : R.color.colorAccent));
+            ViewCompat.setBackgroundTintList(etCodeSMS, color);
         }
     }
 }

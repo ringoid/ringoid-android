@@ -86,7 +86,17 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Override
     public void onClickCodeSMSConfirm(String code) {
+        if (TextUtils.isEmpty(code) || code.length() != 4) {
+            showToastSMSError();
+            return;
+        }
+
         repositoryRegisterCodeConfirm.request(code);
+    }
+
+    private void showToastSMSError() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().showToast(R.string.error_sms_code_len);
     }
 
     @Override

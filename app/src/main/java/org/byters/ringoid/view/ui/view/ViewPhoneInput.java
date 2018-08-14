@@ -1,8 +1,6 @@
 package org.byters.ringoid.view.ui.view;
 
 import android.app.Dialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
@@ -25,6 +23,7 @@ import com.hbb20.view.CountryCodePicker;
 
 import org.byters.ringoid.R;
 import org.byters.ringoid.view.ui.view.callback.IViewPhotoInputListener;
+import org.byters.ringoid.view.ui.view.utils.ClipboardUtils;
 
 public class ViewPhoneInput extends LinearLayout
         implements View.OnClickListener, View.OnLongClickListener {
@@ -111,14 +110,7 @@ public class ViewPhoneInput extends LinearLayout
     }
 
     private void clipboardPaste() {
-        ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clipData = clipboardManager.getPrimaryClip();
-
-        StringBuilder result = new StringBuilder();
-
-        for (int i = 0; i < clipData.getItemCount(); ++i) {
-            result.append(clipData.getItemAt(i).getText());
-        }
+        String result = ClipboardUtils.getString(getContext());
         if (TextUtils.isEmpty(result)) return;
 
         String phone = PhoneUtils.getPhone(getContext(), result.toString());

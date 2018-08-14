@@ -159,6 +159,7 @@
     <string name="message_phone_empty">Please enter phone number</string>
     <string name="dialog_phone_invalid_cancel">Correct phone number</string>
     <string name="dialog_phone_invalid_confirm">Try anyway</string>
+    <string name="error_sms_code_len">Please enter 4 digits verification code</string>
 
     <string-array name="pages_titles">
         <item></item>
