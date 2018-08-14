@@ -59,6 +59,7 @@ public class FragmentLogin extends FragmentBase
     private ViewPhoneInput vpiLogin;
     private DialogPhoneValid dialogPhoneValid;
     private IDialogPhoneValidListener listenerDialogPhoneValid;
+    private EditText etPhoneCode;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +83,7 @@ public class FragmentLogin extends FragmentBase
         vfLogin = view.findViewById(R.id.vfLogin);
         cbTerms = view.findViewById(R.id.cbTerms);
         etPhone = view.findViewById(R.id.etPhone);
+        etPhoneCode = view.findViewById(R.id.etPhoneCode);
         etCodeSMS = view.findViewById(R.id.etCodeSMS);
         cbAge = view.findViewById(R.id.cbAge);
         vpiLogin = view.findViewById(R.id.vpiLogin);
@@ -123,8 +125,9 @@ public class FragmentLogin extends FragmentBase
         }
 
         if (view.getId() == R.id.tvLoginPhoneVerify) {
-            if (!vpiLogin.isValid() && etPhone.getText().length() > 0) {
-                showDialogPhoneValid(etPhone.getText().toString());
+            if (!vpiLogin.isValid()) {
+                if (etPhone.getText().length() > 0 && etPhoneCode.getText().length() > 0)
+                    showDialogPhoneValid(etPhone.getText().toString());
                 return;
             }
 

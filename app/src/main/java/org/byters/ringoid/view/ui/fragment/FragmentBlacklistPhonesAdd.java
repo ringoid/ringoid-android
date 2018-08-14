@@ -29,6 +29,7 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
 
     private IDialogPhoneValidListener listenerDialogPhoneValid;
     private DialogPhoneValid dialogPhoneValid;
+    private EditText etPhoneCode;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
 
     private void initView(View view) {
         tvPhone = view.findViewById(R.id.etPhone);
+        etPhoneCode = view.findViewById(R.id.etPhoneCode);
         vpiBlacklist = view.findViewById(R.id.vpiBlacklist);
         vpiBlacklist.setListener(new ListenerViewPhoneInput());
 
@@ -73,8 +75,9 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tvBlacklistAdd) {
-            if (!vpiBlacklist.isValid() && tvPhone.getText().length() > 0) {
-                showDialogPhoneValid(tvPhone.getText().toString());
+            if (!vpiBlacklist.isValid()) {
+                if (tvPhone.getText().length() > 0 && etPhoneCode.getText().length() > 0)
+                    showDialogPhoneValid(tvPhone.getText().toString());
                 return;
             }
 
