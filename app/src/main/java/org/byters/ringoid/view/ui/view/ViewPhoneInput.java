@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -63,6 +64,7 @@ public class ViewPhoneInput extends LinearLayout
         ccp.setDialogEventsListener(new DialogCountyEventListener());
         listenerCountry.onCountrySelected();
 
+        findViewById(R.id.tvCodePrefix).setOnClickListener(this);
 
         findViewById(R.id.ivPaste).setOnClickListener(this);
         findViewById(R.id.ivPaste).setOnLongClickListener(this);
@@ -84,6 +86,14 @@ public class ViewPhoneInput extends LinearLayout
     public void onClick(View v) {
         if (v.getId() == R.id.ivPaste)
             clipboardPaste();
+        if (v.getId() == R.id.tvCodePrefix)
+            showKeyboard(etCode);
+    }
+
+    void showKeyboard(EditText editView) {
+        editView.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(editView, InputMethodManager.SHOW_IMPLICIT);
     }
 
 
