@@ -16,14 +16,17 @@ public class DialogPhoneValid implements DialogInterface.OnClickListener {
 
         dialog = new AlertDialog.Builder(context)
                 .setMessage(String.format(context.getResources().getString(R.string.message_dialog_phone_valid), phone))
-                .setPositiveButton(R.string.dialog_phone_confirm, this)
-                .setNegativeButton(R.string.dialog_cancel, null)
+                .setPositiveButton(R.string.dialog_phone_invalid_confirm, this)
+                .setNegativeButton(R.string.dialog_phone_invalid_cancel, null)
                 .create();
 
     }
 
     public void show() {
         dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(dialog.getContext().getResources().getColor(R.color.colorAccent));
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(dialog.getContext().getResources().getColor(R.color.colorPrimaryDark));
+
     }
 
     public void cancel() {

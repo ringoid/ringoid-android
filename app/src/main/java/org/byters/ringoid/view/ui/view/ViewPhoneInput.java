@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.hbb20.PhoneUtils;
 import com.hbb20.PresenterCountry;
@@ -21,7 +22,8 @@ import com.hbb20.view.CountryCodePicker;
 
 import org.byters.ringoid.R;
 
-public class ViewPhoneInput extends LinearLayout implements View.OnClickListener {
+public class ViewPhoneInput extends LinearLayout
+        implements View.OnClickListener, View.OnLongClickListener {
     CountryCodePicker ccp;
     EditText etCode;
     private ListenerCountry listenerCountry;
@@ -58,12 +60,18 @@ public class ViewPhoneInput extends LinearLayout implements View.OnClickListener
 
 
         findViewById(R.id.ivPaste).setOnClickListener(this);
+        findViewById(R.id.ivPaste).setOnLongClickListener(this);
 
 
         etPhone.addTextChangedListener(new PhoneInputTextWatcher());
     }
 
     public boolean isValid() {
+        if (TextUtils.isEmpty(etCode.getText()))
+            Toast.makeText(getContext(), R.string.message_code_empty, Toast.LENGTH_SHORT).show();
+        else if (TextUtils.isEmpty(etPhone.getText()))
+            Toast.makeText(getContext(), R.string.message_phone_empty, Toast.LENGTH_SHORT).show();
+
         return ccp.isValidFullNumber();
     }
 
@@ -71,6 +79,20 @@ public class ViewPhoneInput extends LinearLayout implements View.OnClickListener
     public void onClick(View v) {
         if (v.getId() == R.id.ivPaste)
             clipboardPaste();
+    }
+
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (v.getId() == R.id.ivPaste) {
+            showHintPaste();
+            return true;
+        }
+        return false;
+    }
+
+    private void showHintPaste() {
+        Toast.makeText(getContext(), R.string.message_paste, Toast.LENGTH_SHORT).show();
     }
 
     private void clipboardPaste() {
