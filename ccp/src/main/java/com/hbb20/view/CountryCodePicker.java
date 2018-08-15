@@ -131,7 +131,8 @@ public class CountryCodePicker extends RelativeLayout {
     private int fastScrollerHandleColor;
     private int dialogBackgroundColor, dialogTextColor, dialogSearchEditTextTintColor;
     private int fastScrollerBubbleTextAppearance;
-
+    private CCPCountryGroup currentCountryGroup;
+    private CountryCodeDialog dialogCountries;
     View.OnClickListener countryCodeHolderClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -140,7 +141,6 @@ public class CountryCodePicker extends RelativeLayout {
             }
         }
     };
-    private CCPCountryGroup currentCountryGroup;
 
     public CountryCodePicker(Context context) {
         super(context);
@@ -1849,7 +1849,9 @@ public class CountryCodePicker extends RelativeLayout {
      * Developer can use this to trigger manually.
      */
     public void launchCountrySelectionDialog() {
-        CountryCodeDialog.openCountryCodeDialog(codePicker, getLanguageToApply());
+        if (dialogCountries != null) dialogCountries.cancel();
+        dialogCountries = new CountryCodeDialog(codePicker, getLanguageToApply());
+        dialogCountries.show();
     }
 
     /**

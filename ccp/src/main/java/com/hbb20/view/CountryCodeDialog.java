@@ -1,7 +1,7 @@
 package com.hbb20.view;
 
 import android.app.Activity;
-import android.app.Dialog;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
@@ -11,9 +11,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -70,31 +69,33 @@ class CountryCodeDialog {
         }
     }
 
-    public static void openCountryCodeDialog(final CountryCodePicker codePicker, Language language) {
-        final Context context = codePicker.getContext();
-        final Dialog dialog = new Dialog(context);
+    private CountryCodePicker codePicker;
+
+    private AlertDialog dialog;
+
+    CountryCodeDialog(CountryCodePicker codePicker, Language language) {
+        this.codePicker = codePicker;
+
+        Context context = codePicker.getContext();
+
+        dialog = new AlertDialog.Builder(context)
+                .create();
+
         codePicker.refreshCustomMasterList();
         List<DataCountry> masterCountries = PresenterCountry.getData(context, language).getData();
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setContentView(R.layout.layout_picker_dialog);
 
-        //keyboard
-        if (codePicker.isSearchAllowed() && codePicker.isDialogKeyboardAutoPopup()) {
-            dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        } else {
-            dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        }
-
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_picker_dialog, null);
+        dialog.setView(view);
 
         //dialog views
-        RecyclerView recyclerView_countryDialog = (RecyclerView) dialog.findViewById(R.id.recycler_countryDialog);
-        final TextView textViewTitle = (TextView) dialog.findViewById(R.id.textView_title);
-        RelativeLayout rlQueryHolder = (RelativeLayout) dialog.findViewById(R.id.rl_query_holder);
-        ImageView imgClearQuery = (ImageView) dialog.findViewById(R.id.img_clear_query);
-        final EditText editText_search = (EditText) dialog.findViewById(R.id.editText_search);
-        TextView textView_noResult = (TextView) dialog.findViewById(R.id.textView_noresult);
-        RelativeLayout rlHolder = (RelativeLayout) dialog.findViewById(R.id.rl_holder);
-        ImageView imgDismiss = (ImageView) dialog.findViewById(R.id.img_dismiss);
+        RecyclerView recyclerView_countryDialog = view.findViewById(R.id.recycler_countryDialog);
+        TextView textViewTitle = view.findViewById(R.id.textView_title);
+        RelativeLayout rlQueryHolder = view.findViewById(R.id.rl_query_holder);
+        ImageView imgClearQuery = view.findViewById(R.id.img_clear_query);
+        EditText editText_search = view.findViewById(R.id.editText_search);
+        TextView textView_noResult = view.findViewById(R.id.textView_noresult);
+        RelativeLayout rlHolder = view.findViewById(R.id.rl_holder);
+        ImageView imgDismiss = view.findViewById(R.id.img_dismiss);
 
         // type faces
         //set type faces
@@ -182,7 +183,7 @@ class CountryCodeDialog {
         recyclerView_countryDialog.setAdapter(cca);
 
         //fast scroller
-        FastScroller fastScroller = (FastScroller) dialog.findViewById(R.id.fastscroll);
+        FastScroller fastScroller = view.findViewById(R.id.fastscroll);
         fastScroller.setRecyclerView(recyclerView_countryDialog);
         if (codePicker.isShowFastScroller()) {
             if (codePicker.getFastScrollerBubbleColor() != 0) {
@@ -208,9 +209,9 @@ class CountryCodeDialog {
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
-                hideKeyboard(context);
-                if (codePicker.getDialogEventsListener() != null) {
-                    codePicker.getDialogEventsListener().onCcpDialogDismiss(dialogInterface);
+                hideKeyboard(dialog.getContext());
+                if (CountryCodeDialog.this.codePicker.getDialogEventsListener() != null) {
+                    CountryCodeDialog.this.codePicker.getDialogEventsListener().onCcpDialogDismiss(dialogInterface);
                 }
             }
         });
@@ -218,20 +219,32 @@ class CountryCodeDialog {
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialogInterface) {
-                hideKeyboard(context);
-                if (codePicker.getDialogEventsListener() != null) {
-                    codePicker.getDialogEventsListener().onCcpDialogCancel(dialogInterface);
+                hideKeyboard(dialog.getContext());
+                if (CountryCodeDialog.this.codePicker.getDialogEventsListener() != null) {
+                    CountryCodeDialog.this.codePicker.getDialogEventsListener().onCcpDialogCancel(dialogInterface);
                 }
             }
         });
 
-        dialog.show();
-        if (codePicker.getDialogEventsListener() != null) {
-            codePicker.getDialogEventsListener().onCcpDialogOpen(dialog);
-        }
+
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+
+                if (CountryCodeDialog.this.codePicker.isSearchAllowed() && CountryCodeDialog.this.codePicker.isDialogKeyboardAutoPopup())
+                    showKeyboard(CountryCodeDialog.this.dialog.getContext(), (EditText) CountryCodeDialog.this.dialog.findViewById(R.id.editText_search));
+                else
+                    hideKeyboard(CountryCodeDialog.this.dialog.getContext());
+
+                if (CountryCodeDialog.this.codePicker.getDialogEventsListener() != null) {
+                    CountryCodeDialog.this.codePicker.getDialogEventsListener().onCcpDialogOpen(CountryCodeDialog.this.dialog);
+                }
+            }
+        });
+
     }
 
-    private static void hideKeyboard(Context context) {
+    private void hideKeyboard(Context context) {
         if (context instanceof Activity) {
             Activity activity = (Activity) context;
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -245,7 +258,7 @@ class CountryCodeDialog {
         }
     }
 
-    static void setCursorColor(EditText editText, int color) {
+    private void setCursorColor(EditText editText, int color) {
         if (sCursorDrawableField == null) {
             return;
         }
@@ -259,11 +272,27 @@ class CountryCodeDialog {
         }
     }
 
-    private static Drawable getDrawable(Context context, int id) {
+    private Drawable getDrawable(Context context, int id) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return context.getResources().getDrawable(id);
         } else {
             return context.getDrawable(id);
         }
+    }
+
+    public void cancel() {
+        dialog.cancel();
+    }
+
+    public void show() {
+
+        dialog.show();
+
+    }
+
+    void showKeyboard(Context context, EditText editView) {
+        editView.requestFocus();
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(editView, InputMethodManager.SHOW_IMPLICIT);
     }
 }
