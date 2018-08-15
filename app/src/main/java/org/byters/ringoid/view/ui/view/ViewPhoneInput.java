@@ -152,7 +152,11 @@ public class ViewPhoneInput extends LinearLayout
         @Override
         public void onCountrySelected() {
             if (etCode.getText().toString().equals(ccp.getSelectedCountryCode())) return;
-            etCode.setText(ccp.getSelectedCountryCode());
+
+            String code = ccp.getSelectedCountryCode();
+
+            etCode.setText(code);
+            etCode.setSelection(code.length());
         }
     }
 
