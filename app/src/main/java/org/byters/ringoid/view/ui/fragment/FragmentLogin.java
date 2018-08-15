@@ -161,10 +161,17 @@ public class FragmentLogin extends FragmentBase
 
     private void pasteSMSFromCLipboard() {
         String result = ClipboardUtils.getString(getContext());
-        if (TextUtils.isEmpty(result) || !TextUtils.isDigitsOnly(result) || result.length() != 4)
+
+        if (TextUtils.isEmpty(result))
             return;
 
+        result = result.replaceAll("[^0-9]", "")
+                .substring(0, Math.min(4, result.length()));
+
+        if (TextUtils.isEmpty(result)) return;
+
         etCodeSMS.setText(result);
+        etCodeSMS.setSelection(etCodeSMS.getText().length());
     }
 
     private void showDialogPhoneValid(String code, String phone) {
@@ -207,7 +214,7 @@ public class FragmentLogin extends FragmentBase
 
     @Override
     public boolean onLongClick(View v) {
-        if (v.getId() == R.id.ivPaste) {
+        if (v.getId() == R.id.ivPasteSMS) {
             Toast.makeText(getContext(), R.string.message_paste, Toast.LENGTH_SHORT).show();
             return true;
         }
