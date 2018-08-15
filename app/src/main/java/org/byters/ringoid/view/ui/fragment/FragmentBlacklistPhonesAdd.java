@@ -48,8 +48,8 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     }
 
     private void initView(View view) {
-        tvPhone = view.findViewById(R.id.etPhone);
-        etPhoneCode = view.findViewById(R.id.etPhoneCode);
+        tvPhone = view.findViewById(R.id.etTelNum);
+        etPhoneCode = view.findViewById(R.id.etTelCode);
         vpiBlacklist = view.findViewById(R.id.vpiBlacklist);
         vpiBlacklist.setListener(new ListenerViewPhoneInput());
 

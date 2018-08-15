@@ -54,12 +54,12 @@ public class ViewPhoneInput extends LinearLayout
     }
 
     private void initViews() {
-        etCode = findViewById(R.id.etPhoneCode);
-        etPhone = findViewById(R.id.etPhone);
+        etCode = findViewById(R.id.etTelCode);
+        etPhone = findViewById(R.id.etTelNum);
         etCode.addTextChangedListener(new ListenerCode());
         ccp = findViewById(R.id.ccp);
         ccp.setOnCountryChangeListener(listenerCountry = new ListenerCountry());
-        ccp.registerCarrierNumberEditText((EditText) findViewById(R.id.etPhone));
+        ccp.registerCarrierNumberEditText((EditText) findViewById(R.id.etTelNum));
         ccp.setDialogEventsListener(new DialogCountyEventListener());
         listenerCountry.onCountrySelected();
 

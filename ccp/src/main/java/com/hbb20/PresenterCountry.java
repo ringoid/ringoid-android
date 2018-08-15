@@ -1,6 +1,7 @@
 package com.hbb20;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.hbb20.model.CCPCountryGroup;
@@ -66,11 +67,28 @@ public class PresenterCountry {
 
     public static DataCountry getCountryForPhoneCode(Context context, Language language, String code) {
         for (DataCountry item : getData(context, language).getData()) {
-            if (item.getPhoneCode().equals(code)) {
+            if (isEqual(item.getPhoneCode(), code)) {
                 return item;
             }
         }
         return null;
+    }
+
+
+    public static boolean isContains(String source, String data) {
+        if (TextUtils.isEmpty(source) || TextUtils.isEmpty(data))
+            return false;
+
+        return source.toLowerCase().replace("-", "")
+                .contains(data.toLowerCase().replace("-", ""));
+    }
+
+    public static boolean isEqual(String source, String data) {
+        if (TextUtils.isEmpty(source) || TextUtils.isEmpty(data))
+            return false;
+
+        return source.toLowerCase().replace("-", "")
+                .equals(data.toLowerCase().replace("-", ""));
     }
 
     public static DataCountry getCountryForNameCode(Context context, Language language, String code) {

@@ -82,8 +82,8 @@ public class FragmentLogin extends FragmentBase
     private void initViews(View view) {
         vfLogin = view.findViewById(R.id.vfLogin);
         cbTerms = view.findViewById(R.id.cbTerms);
-        etPhone = view.findViewById(R.id.etPhone);
-        etPhoneCode = view.findViewById(R.id.etPhoneCode);
+        etPhone = view.findViewById(R.id.etTelNum);
+        etPhoneCode = view.findViewById(R.id.etTelCode);
         etCodeSMS = view.findViewById(R.id.etCodeSMS);
         cbAge = view.findViewById(R.id.cbAge);
         vpiLogin = view.findViewById(R.id.vpiLogin);
