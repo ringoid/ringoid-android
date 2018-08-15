@@ -78,7 +78,7 @@ public class ViewPhoneInput extends LinearLayout
         else if (TextUtils.isEmpty(etPhone.getText()))
             Toast.makeText(getContext(), R.string.message_phone_empty, Toast.LENGTH_SHORT).show();
 
-        return ccp.isValidFullNumber();
+        return ccp.isValidFullNumber() && !TextUtils.isEmpty(etCode.getText()) && !TextUtils.isEmpty(etPhone.getText());
     }
 
     @Override
