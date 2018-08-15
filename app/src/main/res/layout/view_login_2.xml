@@ -31,6 +31,7 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
     <LinearLayout
+        android:id="@+id/vContainerSMSCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -41,13 +42,14 @@
             android:id="@+id/etCodeSMS"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:background="@android:color/transparent"
+            android:gravity="center|center_vertical"
             android:hint="@string/hint_register_confirm"
             android:inputType="number"
             android:paddingBottom="16dp"
             android:paddingEnd="8dp"
-            android:layout_marginStart="48dp"
             android:paddingStart="8dp"
             android:paddingTop="16dp" />
 

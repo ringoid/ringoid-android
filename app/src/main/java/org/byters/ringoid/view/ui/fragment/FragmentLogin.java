@@ -1,10 +1,11 @@
 package org.byters.ringoid.view.ui.fragment;
 
-import android.content.res.ColorStateList;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.TextUtils;
@@ -60,6 +61,7 @@ public class FragmentLogin extends FragmentBase
     private DialogPhoneValid dialogPhoneValid;
     private IDialogPhoneValidListener listenerDialogPhoneValid;
     private EditText etPhoneCode;
+    private View vContainerSMSCode;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,6 +82,7 @@ public class FragmentLogin extends FragmentBase
     }
 
     private void initViews(View view) {
+        vContainerSMSCode = view.findViewById(R.id.vContainerSMSCode);
         vfLogin = view.findViewById(R.id.vfLogin);
         cbTerms = view.findViewById(R.id.cbTerms);
         etPhone = view.findViewById(R.id.etTelNum);
@@ -323,12 +326,36 @@ public class FragmentLogin extends FragmentBase
         }
 
         private void setDrawableState(int length) {
-            ColorStateList color = ColorStateList.valueOf(getContext().getResources().getColor(
-                    TextUtils.isEmpty(etCodeSMS.getText()) ? android.R.color.white
+            Context context = getContext();
+            if (context == null) return;
+
+            Resources resources = context.getResources();
+            if (resources == null) return;
+
+            boolean empty = TextUtils.isEmpty(etCodeSMS.getText());
+
+            int drawableRes = empty
+                    ? R.drawable.border_rounded_gray
+                    : length == 4
+                    ? R.drawable.border_rounded_green
+                    : R.drawable.border_rounded_red;
+
+            Drawable drawable = empty
+                    ? null
+                    : length == 4
+                    ? resources.getDrawable(R.drawable.ic_check_green_8dp)
+                    : resources.getDrawable(R.drawable.ic_error_red_8dp);
+
+            int color = resources.getColor(
+                    TextUtils.isEmpty(etCodeSMS.getText())
+                            ? android.R.color.black
                             : length == 4
-                            ? R.color.colorAccentGreen
-                            : R.color.colorAccent));
-            ViewCompat.setBackgroundTintList(etCodeSMS, color);
+                            ? android.R.color.black
+                            : R.color.colorAccent);
+
+            vContainerSMSCode.setBackgroundResource(drawableRes);
+            etCodeSMS.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
+            etCodeSMS.setTextColor(color);
         }
     }
 }
