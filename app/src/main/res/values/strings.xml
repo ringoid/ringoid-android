@@ -5,7 +5,7 @@
 
     <string name="checkbox_terms">I have read and understood\n\n<a href="http://ringoid.com/terms.html">Terms &amp; Conditions</a> and\n\n<a href="http://ringoid.com/privacy-notice.html">Privacy Notice</a></string>
 
-    <string name="hint_register_confirm">Enter verification code from SMS</string>
+    <string name="hint_register_confirm">1234</string>
     <string name="error_phone">Please enter phone number</string>
     <string name="message_date_birth">Date of Birth</string>
     <string name="button_accept_terms">Accept and Continue</string>
