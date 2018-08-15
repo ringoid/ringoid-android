@@ -14,6 +14,8 @@
         app:ccp_autoDetectCountry="false"
         app:ccp_autoDetectLanguage="true"
         app:ccp_defaultNameCode="US"
+        app:ccp_hintExampleNumber="true"
+        app:ccp_hintExampleNumberType="MOBILE"
         app:ccp_showFullName="true"
         app:ccp_showNameCode="false"
         app:ccp_showPhoneCode="true"
@@ -56,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/blacklist_phone_hint"
-            android:inputType="number"
+            android:inputType="phone"
             android:padding="16dp"
             android:textSize="17sp" />
 
