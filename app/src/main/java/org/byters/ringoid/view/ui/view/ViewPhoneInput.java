@@ -3,8 +3,7 @@ package org.byters.ringoid.view.ui.view;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.ColorStateList;
-import android.support.v4.view.ViewCompat;
+import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -32,6 +31,7 @@ public class ViewPhoneInput extends LinearLayout
     private ListenerCountry listenerCountry;
     private EditText etPhone;
     private IViewPhotoInputListener listener;
+    private View vContainerCode, vContainerNumber;
 
     public ViewPhoneInput(Context context) {
         super(context);
@@ -54,6 +54,8 @@ public class ViewPhoneInput extends LinearLayout
     }
 
     private void initViews() {
+        vContainerCode = findViewById(R.id.vContainerCode);
+        vContainerNumber = findViewById(R.id.vContainerNumber);
         etCode = findViewById(R.id.etTelCode);
         etPhone = findViewById(R.id.etTelNum);
         etCode.addTextChangedListener(new ListenerCode());
@@ -127,6 +129,22 @@ public class ViewPhoneInput extends LinearLayout
         this.listener = listener;
     }
 
+    private Drawable getCheckDrawable(boolean empty, boolean valid) {
+        return empty
+                ? null
+                : valid
+                ? getContext().getResources().getDrawable(R.drawable.ic_check_green_8dp)
+                : getContext().getResources().getDrawable(R.drawable.ic_error_red_8dp);
+    }
+
+    private int getTextColor(boolean empty, boolean valid) {
+        return getContext().getResources().getColor(empty
+                ? android.R.color.black
+                : valid
+                ? android.R.color.black
+                : R.color.colorAccent);
+    }
+
     private class ListenerCode implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -140,11 +158,23 @@ public class ViewPhoneInput extends LinearLayout
 
         @Override
         public void afterTextChanged(Editable s) {
-
             DataCountry ccpCountry = PresenterCountry.getCountryForPhoneCode(getContext(), Language.ENGLISH, s.toString()); //xml stores data in string format, but want to allow only numeric value to country code to user.
-            if (ccpCountry == null) return;
 
-            ccp.setCountryForPhoneCode(s.toString());
+            int color = getTextColor(TextUtils.isEmpty(etCode.getText()), ccpCountry != null);
+            Drawable drawable = getCheckDrawable(TextUtils.isEmpty(etCode.getText()), ccpCountry != null);
+
+            etCode.setTextColor(color);
+            etCode.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
+            if (ccpCountry != null)
+                ccp.setCountryForPhoneCode(s.toString());
+
+            vContainerCode.setBackgroundResource(
+                    TextUtils.isEmpty(etCode.getText())
+                            ? R.drawable.border_rounded_left_gray
+                            : ccpCountry != null
+                            ? R.drawable.border_rounded_left_green
+                            : R.drawable.border_rounded_left_red);
+
         }
     }
 
@@ -160,7 +190,6 @@ public class ViewPhoneInput extends LinearLayout
         }
     }
 
-
     private class PhoneInputTextWatcher implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -174,13 +203,18 @@ public class ViewPhoneInput extends LinearLayout
 
         @Override
         public void afterTextChanged(Editable s) {
-            ColorStateList color = ColorStateList.valueOf(getContext().getResources().getColor(
-                    TextUtils.isEmpty(etPhone.getText()) ? android.R.color.white
-                            : ccp.isValidFullNumber()
-                            ? R.color.colorAccentGreen
-                            : R.color.colorAccent));
-            ViewCompat.setBackgroundTintList(etPhone, color);
+            boolean isValid = ccp.isValidFullNumber();
+            int color = getTextColor(TextUtils.isEmpty(etPhone.getText()), isValid);
+            Drawable drawable = getCheckDrawable(TextUtils.isEmpty(etPhone.getText()), isValid);
 
+            etPhone.setTextColor(color);
+            etPhone.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
+
+            vContainerNumber.setBackgroundResource(TextUtils.isEmpty(etPhone.getText())
+                    ? R.drawable.border_rounded_right_gray
+                    : isValid
+                    ? R.drawable.border_rounded_right_green
+                    : R.drawable.border_rounded_right_red);
         }
     }
 

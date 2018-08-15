@@ -25,48 +25,65 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@drawable/border_rounded_gray"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvCodePrefix"
+        <LinearLayout
+            android:id="@+id/vContainerCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="+"
-            android:textSize="17sp" />
+            android:background="@drawable/border_rounded_left_gray"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/etTelCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:hint="@string/hint_phone_code"
-            android:inputType="number"
-            android:paddingEnd="16dp"
-            android:textSize="17sp" />
+            <TextView
+                android:id="@+id/tvCodePrefix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="+"
+                android:textSize="17sp" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#b6b6b6" />
+            <EditText
+                android:id="@+id/etTelCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="@string/hint_phone_code"
+                android:inputType="number"
+                android:paddingBottom="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="16dp"
+                android:textSize="17sp" />
 
-        <EditText
-            android:id="@+id/etTelNum"
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/vContainerNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/blacklist_phone_hint"
-            android:inputType="phone"
-            android:padding="16dp"
-            android:textSize="17sp" />
+            android:background="@drawable/border_rounded_right_gray"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/ivPaste"
-            style="@style/selectableImage"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_content_paste_black_24dp" />
+            <EditText
+                android:id="@+id/etTelNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="48dp"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="@string/blacklist_phone_hint"
+                android:inputType="phone"
+                android:padding="16dp"
+                android:textSize="17sp" />
 
+            <ImageView
+                android:id="@+id/ivPaste"
+                style="@style/selectableImage"
+                android:layout_gravity="center_vertical|end"
+                android:src="@drawable/ic_content_paste_black_24dp" />
+
+        </FrameLayout>
     </LinearLayout>
 </LinearLayout>
