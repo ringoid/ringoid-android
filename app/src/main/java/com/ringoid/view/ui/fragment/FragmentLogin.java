@@ -135,7 +135,7 @@ public class FragmentLogin extends FragmentBase
                 return;
             }
 
-            presenterRegister.onClickLoginPhoneVerify(etPhone.getText().toString());
+            setPhone();
         }
 
         if (view.getId() == R.id.tvCodeSMSConfirm) {
@@ -295,8 +295,12 @@ public class FragmentLogin extends FragmentBase
     private class ListenerDialogPhoneValid implements IDialogPhoneValidListener {
         @Override
         public void onConfirm() {
-            presenterRegister.onClickLoginPhoneVerify(etPhone.getText().toString());
+            setPhone();
         }
+    }
+
+    private void setPhone() {
+        presenterRegister.onClickLoginPhoneVerify(etPhoneCode.getText().toString(), etPhone.getText().toString());
     }
 
     private class ListenerViewPhoneInput implements IViewPhotoInputListener {

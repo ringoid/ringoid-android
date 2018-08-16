@@ -13,6 +13,7 @@ import com.ringoid.controller.data.memorycache.CacheRegister;
 import com.ringoid.controller.data.memorycache.CacheScroll;
 import com.ringoid.controller.data.memorycache.CacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.CacheToken;
+import com.ringoid.controller.data.memorycache.CacheUser;
 import com.ringoid.controller.data.memorycache.ICacheBlacklist;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheExplore;
@@ -23,6 +24,7 @@ import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheToken;
+import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.repository.IRepositoryRegister;
 import com.ringoid.controller.data.repository.IRepositoryRegisterConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegister;
@@ -174,6 +176,12 @@ class AppModule {
     @Singleton
     ICacheSettingsPrivacy getCacheSettingsPrivacy() {
         return new CacheSettingsPrivacy();
+    }
+
+    @Provides
+    @Singleton
+    ICacheUser getCacheUser() {
+        return new CacheUser();
     }
 
     @Provides

@@ -13,7 +13,7 @@ public interface IPresenterRegister {
 
     void onClickLoginTermsAgreement(boolean isAgreementChecked, boolean checked);
 
-    void onClickLoginPhoneVerify(String phone);
+    void onClickLoginPhoneVerify(String code, String phone);
 
     void onClickCodeSMSConfirm(String code);
 

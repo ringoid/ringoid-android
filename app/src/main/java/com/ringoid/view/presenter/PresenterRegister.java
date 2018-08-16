@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
+import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.repository.IRepositoryRegister;
 import com.ringoid.controller.data.repository.IRepositoryRegisterConfirm;
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterConfirmListener;
@@ -31,6 +32,9 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Inject
     ICacheRegister cacheRegister;
+
+    @Inject
+    ICacheUser cacheUser;
 
     private ListenerRegisterConfirm listenerRegisterConfirm;
     private ListenerRegister listenerRegister;
@@ -77,11 +81,13 @@ public class PresenterRegister implements IPresenterRegister {
     }
 
     @Override
-    public void onClickLoginPhoneVerify(String phone) {
+    public void onClickLoginPhoneVerify(String code, String phone) {
         if (TextUtils.isEmpty(phone)) {
             notifyError(R.string.error_phone);
             return;
         }
+
+        cacheUser.setPhone(code, phone);
         repositoryRegister.request(phone);
     }
 

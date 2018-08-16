@@ -5,6 +5,10 @@ import android.text.TextUtils;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheBlacklist;
+import com.ringoid.controller.data.memorycache.ICacheUser;
+import com.ringoid.view.presenter.callback.IPresenterBlacklistPhonesListener;
+
+import java.lang.ref.WeakReference;
 
 import javax.inject.Inject;
 
@@ -12,6 +16,10 @@ public class PresenterBlacklistPhones implements IPresenterBlacklistPhones {
 
     @Inject
     ICacheBlacklist cacheBlacklist;
+
+    @Inject
+    ICacheUser cacheUser;
+    private WeakReference<IPresenterBlacklistPhonesListener> refListener;
 
     public PresenterBlacklistPhones() {
         ApplicationRingoid.getComponent().inject(this);
@@ -21,5 +29,18 @@ public class PresenterBlacklistPhones implements IPresenterBlacklistPhones {
     public void onClickBlacklistAdd(String phone) {
         if (TextUtils.isEmpty(phone)) return;
         cacheBlacklist.addPhone(phone);
+    }
+
+    @Override
+    public void onViewCreated() {
+        String code = cacheUser.getPhoneCode();
+        if (TextUtils.isEmpty(code)) return;
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().setPhoneData(code);
+    }
+
+    @Override
+    public void setListener(IPresenterBlacklistPhonesListener listener) {
+        this.refListener = new WeakReference<>(listener);
     }
 }

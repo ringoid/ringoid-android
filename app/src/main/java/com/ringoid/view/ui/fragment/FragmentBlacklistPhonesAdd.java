@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterBlacklistPhones;
+import com.ringoid.view.presenter.callback.IPresenterBlacklistPhonesListener;
 import com.ringoid.view.ui.dialog.DialogPhoneValid;
 import com.ringoid.view.ui.dialog.callback.IDialogPhoneValidListener;
 import com.ringoid.view.ui.view.ViewPhoneInput;
@@ -31,11 +32,13 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     private IDialogPhoneValidListener listenerDialogPhoneValid;
     private DialogPhoneValid dialogPhoneValid;
     private EditText etPhoneCode;
+    private IPresenterBlacklistPhonesListener listenerPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ApplicationRingoid.getComponent().inject(this);
+        presenterBlacklistPhones.setListener(listenerPresenter = new ListenerPresenterBlacklistPhones());
 
         listenerDialogPhoneValid = new ListenerDialogPhoneValid();
     }
@@ -45,6 +48,7 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_blacklist_add, container, false);
         initView(view);
+        presenterBlacklistPhones.onViewCreated();
         return view;
     }
 
@@ -112,6 +116,13 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
         @Override
         public void onDialogClose() {
             showKeyboard(tvPhone);
+        }
+    }
+
+    private class ListenerPresenterBlacklistPhones implements IPresenterBlacklistPhonesListener {
+        @Override
+        public void setPhoneData(String code) {
+            etPhoneCode.setText(code);
         }
     }
 }
