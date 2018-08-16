@@ -136,8 +136,8 @@ public class ViewPhoneInput extends LinearLayout
         return empty
                 ? null
                 : valid
-                ? getContext().getResources().getDrawable(R.drawable.ic_check_green_8dp)
-                : getContext().getResources().getDrawable(R.drawable.ic_error_red_8dp);
+                ? getContext().getResources().getDrawable(R.drawable.ic_check_green_16dp)
+                : getContext().getResources().getDrawable(R.drawable.ic_error_red_16dp);
     }
 
     private int getTextColor(boolean empty, boolean valid) {

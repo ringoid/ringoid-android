@@ -344,8 +344,8 @@ public class FragmentLogin extends FragmentBase
             Drawable drawable = empty
                     ? null
                     : length == 4
-                    ? resources.getDrawable(R.drawable.ic_check_green_8dp)
-                    : resources.getDrawable(R.drawable.ic_error_red_8dp);
+                    ? resources.getDrawable(R.drawable.ic_check_green_16dp)
+                    : resources.getDrawable(R.drawable.ic_error_red_16dp);
 
             int color = resources.getColor(
                     TextUtils.isEmpty(etCodeSMS.getText())
