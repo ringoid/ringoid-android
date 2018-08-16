@@ -35,7 +35,7 @@
         android:text="@string/login_phone_lead"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
 
-    <org.byters.ringoid.view.ui.view.ViewPhoneInput
+    <com.ringoid.view.ui.view.ViewPhoneInput
         android:id="@+id/vpiLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
