@@ -3,6 +3,10 @@ package com.ringoid;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
+
+import io.fabric.sdk.android.Fabric;
+
 public class ApplicationRingoid extends Application {
 
 
@@ -15,6 +19,7 @@ public class ApplicationRingoid extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         component = buildComponent();
     }
