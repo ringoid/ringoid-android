@@ -1,3 +1,4 @@
+/*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.util;
 
 import android.support.v7.widget.RecyclerView;

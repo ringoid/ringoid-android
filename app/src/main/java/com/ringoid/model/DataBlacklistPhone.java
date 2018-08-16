@@ -1,3 +1,4 @@
+/*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.model;
 
 public class DataBlacklistPhone {
