@@ -5,4 +5,6 @@ public interface ICacheUser {
     void setPhone(String code, String phone);
 
     String getPhoneCode();
+
+    void resetCache();
 }

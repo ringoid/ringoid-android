@@ -3,6 +3,7 @@ package com.ringoid;
 
 import com.ringoid.controller.data.memorycache.CacheScroll;
 import com.ringoid.controller.data.memorycache.CacheToken;
+import com.ringoid.controller.data.memorycache.CacheUser;
 import com.ringoid.controller.data.repository.RepositoryRegister;
 import com.ringoid.controller.data.repository.RepositoryRegisterConfirm;
 import com.ringoid.view.presenter.PresenterActivityMain;
@@ -167,4 +168,6 @@ public interface AppComponent {
     void inject(FragmentBlacklistPhonesAdd fragmentBlacklistPhonesAdd);
 
     void inject(FragmentWelcome fragmentWelcome);
+
+    void inject(CacheUser cacheUser);
 }

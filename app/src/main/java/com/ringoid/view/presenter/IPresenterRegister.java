@@ -20,4 +20,6 @@ public interface IPresenterRegister {
     void onClickRegister();
 
     void onDataBirthSet(long timeInMillis);
+
+    void onCreateView();
 }

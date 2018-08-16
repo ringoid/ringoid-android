@@ -118,6 +118,11 @@ public class PresenterRegister implements IPresenterRegister {
         showDateBirth(timeInMillis);
     }
 
+    @Override
+    public void onCreateView() {
+        cacheUser.resetCache();
+    }
+
     private void showDateBirth(long time) {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().showDateBirth(time);

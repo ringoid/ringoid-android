@@ -79,6 +79,7 @@ public class FragmentLogin extends FragmentBase
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         initViews(view);
+        presenterRegister.onCreateView();
         return view;
     }
 
