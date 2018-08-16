@@ -141,8 +141,8 @@
     <string name="dialog_report_chat_abuse">Verbal abuse, harassment or bullying</string>
     <string name="button_want_it">I want it!</string>
     <string name="settings_privacy_messages">Messages</string>
-    <string name="settings_privacy_messages_text">Do you allow a person with whom you matched to send first a text message to you?</string>
-    <string name="settings_privacy_messages_emoji">Can a person with whom you matched send first an emoji to you?</string>
+    <string name="settings_privacy_messages_text">Who can message first?</string>
+    <string name="settings_privacy_messages_emoji">Who can send first emojis?</string>
     <string name="settings_privacy_item_value_yes">Yes</string>
     <string name="settings_privacy_messages_pics">Who can send photos in a chat?</string>
     <string name="settings_privacy_messages_read">Who can see that you read chat messages?</string>
@@ -160,6 +160,15 @@
     <string name="dialog_phone_invalid_cancel">Correct phone number</string>
     <string name="dialog_phone_invalid_confirm">Try anyway</string>
     <string name="error_sms_code_len">Please enter 4 digits verification code</string>
+    <string name="settings_privacy_activity_likes_answer">No one. Users can see that you liked them and the total number of likes for each photo but not who liked which photo(s).</string>
+    <string name="settings_privacy_activity_unlikes">Who can see which photos you liked and then unliked?</string>
+    <string name="settings_privacy_activity_views">Who can see which photos you viewed?</string>
+    <string name="settings_privacy_activity_views_times">Who can see how many times you viewed photos?</string>
+    <string name="settings_privacy_activity_views_notifications">Who receives a notification that you viewed their profile?</string>
+    <string name="settings_privacy_item_message_matched">A person with whom I matched or me</string>
+    <string name="settings_privacy_messages_emoji_value">A person with whom I matched or me. After I sent emoji to my match, I allow them to reply with text messages</string>
+    <string name="settings_privacy_messages_screenshots">Who can make screenshots of your text messages and emojis displayed in Chat?</string>
+    <string name="settings_privacy_messages_screenshots_value">No one. Users with smartphones that run Android version 5.0 and higher can\'t make screenshots in Ringoid (except screenshots of their own photos, Privacy and Settings screens).</string>
 
     <string-array name="pages_titles">
         <item></item>

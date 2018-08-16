@@ -5,4 +5,6 @@ public interface IPresenterSettingsPrivacyListener {
     void setPrivacyPhotos(int type);
 
     void setPrivacyDistance(int distanceType);
+
+    void setPrivacyMessagesFirst(int i);
 }

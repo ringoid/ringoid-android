@@ -51,7 +51,23 @@ public class PresenterSettingsPrivacy implements IPresenterSettingsPrivacy {
     @Override
     public void onCreateView() {
         notifyListenersPrivacyPhotos();
+        notifyListenersPrivacyMessagesFirst(0);
         notifyListenersPrivacyDistance();
+    }
+
+    @Override
+    public void onClickMessageFirstMatched() {
+        notifyListenersPrivacyMessagesFirst(0);
+    }
+
+    @Override
+    public void onClickMessageFirstOnlyMe() {
+        notifyListenersPrivacyMessagesFirst(1);
+    }
+
+    private void notifyListenersPrivacyMessagesFirst(int type) {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().setPrivacyMessagesFirst(type);
     }
 
     private void notifyListenersPrivacyDistance() {

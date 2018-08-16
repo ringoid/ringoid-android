@@ -14,20 +14,22 @@
         style="@style/settings_privacy_items_container">
 
         <LinearLayout
-            style="@style/settings_privacy_item_container"
-            android:orientation="horizontal">
+            style="@style/settings_privacy_items_container"
+            android:orientation="vertical">
 
             <TextView
-                style="@style/settings_privacy_item_message"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/settings_privacy_messages_text"
-                android:textStyle="bold"
-                android:theme="@style/themeGreen" />
+                style="@style/settings_menu_item"
+                android:text="@string/settings_privacy_messages_text" />
 
-            <CheckBox
-                style="@style/settings_privacy_item_value"
-                android:layout_marginStart="16dp" />
+            <TextView
+                android:id="@+id/tvPrivacyMessagesTextFirstMatched"
+                style="@style/settings_menu_item"
+                android:text="@string/settings_privacy_item_message_matched" />
+
+            <TextView
+                android:id="@+id/tvPrivacyMessagesTextFirstOnlyMe"
+                style="@style/settings_menu_item"
+                android:text="@string/settings_privacy_item_value_only_me" />
 
         </LinearLayout>
 
@@ -44,7 +46,7 @@
 
             <TextView
                 style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_yes" />
+                android:text="@string/settings_privacy_messages_emoji_value" />
 
         </LinearLayout>
 
@@ -130,6 +132,23 @@
             <TextView
                 style="@style/settings_privacy_item_value"
                 android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_messages_screenshots" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_messages_screenshots_value" />
 
         </LinearLayout>
 

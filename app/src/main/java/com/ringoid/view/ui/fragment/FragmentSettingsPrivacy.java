@@ -33,6 +33,7 @@ public class FragmentSettingsPrivacy extends FragmentBase
     private TextView tvPrivacyPhotosAll, tvPrivacyPhotosLikes, tvPrivacyPhotosNoone;
     private TextView tvPrivacyDistance;
     private IPresenterSettingsPrivacyListener listenerPresenter;
+    private TextView tvPrivacyMessagesTextFirstMatched, tvPrivacyMessagesTextFirstOnlyMe;
 
     public static Fragment getInstance(boolean showAll) {
         Bundle args = new Bundle();
@@ -76,6 +77,11 @@ public class FragmentSettingsPrivacy extends FragmentBase
         tvPrivacyPhotosAll.setOnClickListener(this);
         tvPrivacyPhotosLikes.setOnClickListener(this);
         tvPrivacyPhotosNoone.setOnClickListener(this);
+
+        tvPrivacyMessagesTextFirstMatched = view.findViewById(R.id.tvPrivacyMessagesTextFirstMatched);
+        tvPrivacyMessagesTextFirstOnlyMe = view.findViewById(R.id.tvPrivacyMessagesTextFirstOnlyMe);
+        tvPrivacyMessagesTextFirstMatched.setOnClickListener(this);
+        tvPrivacyMessagesTextFirstOnlyMe.setOnClickListener(this);
 
         view.findViewById(R.id.tvPrivacyPhoneBlacklist).setOnClickListener(this);
 
@@ -123,6 +129,13 @@ public class FragmentSettingsPrivacy extends FragmentBase
         if (v.getId() == R.id.tvPrivacyPhotosNoone)
             presenterSettingsPrivacy.onClickPrivacyPhotosNoone();
 
+        if (v.getId() == R.id.tvPrivacyMessagesTextFirstMatched) {
+            presenterSettingsPrivacy.onClickMessageFirstMatched();
+        }
+        if (v.getId() == R.id.tvPrivacyMessagesTextFirstOnlyMe) {
+            presenterSettingsPrivacy.onClickMessageFirstOnlyMe();
+        }
+
         if (v.getId() == R.id.tvPrivacyPhoneBlacklist)
             navigator.navigateBlacklistPhones();
 
@@ -137,6 +150,14 @@ public class FragmentSettingsPrivacy extends FragmentBase
 
     }
 
+    private void setCheckedTextFirst(TextView toCheck, TextView toUncheck) {
+        setTextStyle(toCheck, true);
+        setTextStyle(toUncheck, false);
+
+        toCheck.setCompoundDrawablesWithIntrinsicBounds(null, null, getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp), null);
+        toUncheck.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+    }
+
     private void visibilityChangeCheck(View v, int viewId, int viewContainerId) {
         if (v.getId() != viewId) return;
         View vContainer = getView().findViewById(viewContainerId);
@@ -145,6 +166,10 @@ public class FragmentSettingsPrivacy extends FragmentBase
         view.setCompoundDrawablesWithIntrinsicBounds(view.getCompoundDrawables()[0], null, getContext().getResources().getDrawable(vContainer.getVisibility() == View.GONE
                 ? R.drawable.ic_keyboard_arrow_down_gray_24dp
                 : R.drawable.ic_keyboard_arrow_up_black_24dp), null);
+    }
+
+    private void setTextStyle(TextView textView, boolean isBold) {
+        textView.setTypeface(null, isBold ? Typeface.BOLD : Typeface.NORMAL);
     }
 
     private class ListenerPresenter implements IPresenterSettingsPrivacyListener {
@@ -159,13 +184,17 @@ public class FragmentSettingsPrivacy extends FragmentBase
             tvPrivacyPhotosNoone.setCompoundDrawablesWithIntrinsicBounds(getContext().getResources().getDrawable(R.drawable.ic_privacy_noone_gray_24dp), null, type == 2 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
         }
 
-        private void setTextStyle(TextView textView, boolean isBold) {
-            textView.setTypeface(null, isBold ? Typeface.BOLD : Typeface.NORMAL);
-        }
-
         @Override
         public void setPrivacyDistance(int distanceId) {
             tvPrivacyDistance.setText(distanceId);
+        }
+
+        @Override
+        public void setPrivacyMessagesFirst(int type) {
+            if (type == 0)
+                setCheckedTextFirst(tvPrivacyMessagesTextFirstMatched, tvPrivacyMessagesTextFirstOnlyMe);
+            else
+                setCheckedTextFirst(tvPrivacyMessagesTextFirstOnlyMe, tvPrivacyMessagesTextFirstMatched);
         }
     }
 }

@@ -13,4 +13,8 @@ public interface IPresenterSettingsPrivacy {
     void setListener(IPresenterSettingsPrivacyListener listener);
 
     void onCreateView();
+
+    void onClickMessageFirstMatched();
+
+    void onClickMessageFirstOnlyMe();
 }
