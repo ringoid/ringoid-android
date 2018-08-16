@@ -20,7 +20,6 @@ import com.hbb20.PresenterCountry;
 import com.hbb20.model.DataCountry;
 import com.hbb20.model.Language;
 import com.hbb20.view.CountryCodePicker;
-
 import com.ringoid.R;
 import com.ringoid.view.ui.view.callback.IViewPhotoInputListener;
 import com.ringoid.view.ui.view.utils.ClipboardUtils;
@@ -81,7 +80,10 @@ public class ViewPhoneInput extends LinearLayout
         else if (TextUtils.isEmpty(etPhone.getText()))
             Toast.makeText(getContext(), R.string.message_phone_empty, Toast.LENGTH_SHORT).show();
 
-        return ccp.isValidFullNumber() && !TextUtils.isEmpty(etCode.getText()) && !TextUtils.isEmpty(etPhone.getText());
+        return ccp.isValidFullNumber()
+                && !TextUtils.isEmpty(etCode.getText())
+                && !TextUtils.isEmpty(etPhone.getText())
+                && etCode.getText().toString().equals(ccp.getSelectedCountryCode());
     }
 
     @Override
