@@ -59,6 +59,23 @@
 
             <TextView
                 style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_messages_paste" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
                 android:text="@string/settings_privacy_messages_pics" />
 
             <TextView
@@ -94,6 +111,23 @@
             <TextView
                 style="@style/settings_privacy_item_message"
                 android:text="@string/settings_privacy_messages_when" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_noone" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_messages_copy" />
 
             <TextView
                 style="@style/settings_privacy_item_value"

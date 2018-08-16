@@ -169,6 +169,24 @@
     <string name="settings_privacy_messages_emoji_value">A person with whom I matched or me. After I sent emoji to my match, I allow them to reply with text messages</string>
     <string name="settings_privacy_messages_screenshots">Who can make screenshots of your text messages and emojis displayed in Chat?</string>
     <string name="settings_privacy_messages_screenshots_value">No one. Users with smartphones that run Android version 5.0 and higher can\'t make screenshots in Ringoid (except screenshots of their own photos, Privacy and Settings screens).</string>
+    <string name="settings_privacy_photos_lookalike">Who can discover your photos if your face looks similar to someone\'s else?</string>
+    <string name="settings_privacy_photos_lookalike_value">No one. Ringoid doesn\'t allow lookalike or face search, or reverse image search.</string>
+    <string name="settings_privacy_location_rank">Who can see your popularity ranking in a geographical area?</string>
+    <string name="settings_privacy_location_rank_value">No one. Only you can see how many likes your photos received.</string>
+    <string name="settings_privacy_location_bumped">Who can see that you bumped into other users?</string>
+    <string name="settings_privacy_activity_history">Who can see your activity history?</string>
+    <string name="settings_privacy_messages_copy">Who can copy your text messages to the clipboard from a chat?</string>
+    <string name="settings_privacy_messages_paste">Who can paste a text message from the clipboard in order to send it to you in a chat?</string>
+    <string name="settings_privacy_photos_download">Who can download your photos in Ringoid?</string>
+    <string name="settings_privacy_photos_share">Who can share your profile via Ringoid?</string>
+    <string name="settings_privacy_photos_screenshots">Who can make screenshots of your photos displayed in Who Liked You, Matches and New Faces?</string>
+    <string name="settings_privacy_photos_screenshots_value">No one. Users with smartphones that run Android version 5.0 and higher can\'t make screenshots in Ringoid (except screenshots of their own photos, Privacy and Settings screens).</string>
+    <string name="settings_privacy_phone_blacklist_num">Who can see how many phone numbers you blacklisted?</string>
+    <string name="settings_privacy_phone_migrate">Who can migrate your account to different phone number?</string>
+    <string name="settings_privacy_phone_migrate_value">No one. Due to security reasons, Ringoid customer support won\'t be able to recover your account if you can\'t access your phone number, and doesn\'t migrate an account to a different phone number.</string>
+    <string name="settings_privacy_phone_blacklist_who">Who can see what phone numbers you blacklisted?</string>
+    <string name="settings_privacy_phone_sessions">How many Ringoid apps linked to your phone number can run concurrently?</string>
+    <string name="settings_privacy_phone_sessions_value">Only one. The most recent login will take over, and all other sessions will be signed out automatically.</string>
 
     <string-array name="pages_titles">
         <item></item>

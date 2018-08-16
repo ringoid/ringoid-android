@@ -46,6 +46,40 @@
 
             <TextView
                 style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_phone_blacklist_num" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_only_me" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_phone_blacklist_who" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_item_value_only_me" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
                 android:text="@string/settings_privacy_phone_find" />
 
             <TextView
@@ -67,7 +101,7 @@
 
             <TextView
                 style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_no" />
+                android:text="@string/settings_privacy_item_value_noone" />
 
         </LinearLayout>
 
@@ -75,6 +109,36 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_phone_migrate" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_phone_migrate_value" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+
+        <LinearLayout style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:text="@string/settings_privacy_phone_sessions" />
+
+            <TextView
+                style="@style/settings_privacy_item_value"
+                android:text="@string/settings_privacy_phone_sessions_value" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </merge>
