@@ -194,9 +194,14 @@
     <string name="settings_privacy_description_click_message">Send your ideas how to make dating even safer to support@ringoid.com</string>
     <string name="message_likes_tutorial">You both liked each other. Now you can open chat from Matches</string>
     <string name="message_likes_other">You can like different photos of the same user so your profile will rise higher in their Matches.\n\nTo unlike, tap on the heart icon in the corner</string>
-    <string name="message_explore_like_other">You can like different photos of the same user so your profile will rise higher in their Who Liked You. \\n\\n To unlike, tap on the heart icon in the corner</string>
+    <string name="message_explore_like_other">You can like different photos of the same user so your profile will rise higher in their Who Liked You. \n\n To unlike, tap on the heart icon in the corner</string>
     <string name="message_explore_like_tutorial">If they like you too, it will be a match and you can chat</string>
     <string name="format_profile_photo_click_tutorial">Who can see your photos?\n%s</string>
+    <string name="dialog_profile_likes_title">How \"Likes\" work in Ringoid</string>
+    <string name="dialog_profile_likes_message">Only you can see how many likes your photos have.\nThe more likes you have, the higher your popularity ranking in a geographical area and the more people of the opposite sex can discover you.\nPhotos with more likes are shown first.</string>
+    <string name="dialog_profile_likes_button_about">About</string>
+    <string name="dialog_profile_likes_button_privacy">Privacy</string>
+    <string name="dialog_profile_likes_button_likes">Who Liked You</string>
 
     <string-array name="pages_titles">
         <item></item>

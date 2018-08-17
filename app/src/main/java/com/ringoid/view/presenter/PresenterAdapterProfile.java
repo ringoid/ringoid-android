@@ -7,6 +7,8 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
+import com.ringoid.view.INavigator;
+import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.IViewPopup;
 
 import javax.inject.Inject;
@@ -22,6 +24,11 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     @Inject
     ICacheSettingsPrivacy cacheSettingsPrivacy;
 
+    @Inject
+    INavigator navigator;
+
+    @Inject
+    INavigatorPages navigatorPages;
 
     public PresenterAdapterProfile() {
         ApplicationRingoid.getComponent().inject(this);
@@ -51,5 +58,20 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
                 : R.string.settings_privacy_policy_privacy;
         viewPopup.showToast(String.format(context.getResources().getString(R.string.format_profile_photo_click_tutorial),
                 context.getResources().getString(messageRes)));
+    }
+
+    @Override
+    public void onClickAbout() {
+        navigator.navigateWelcome(false);
+    }
+
+    @Override
+    public void onClickPrivacy() {
+        navigator.navigateSettingsPrivacy(false);
+    }
+
+    @Override
+    public void onClickLiked() {
+        navigatorPages.navigateLikes();
     }
 }

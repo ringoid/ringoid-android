@@ -12,6 +12,8 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterProfile;
 import com.ringoid.view.ui.dialog.DialogMenuProfile;
+import com.ringoid.view.ui.dialog.DialogProfileLikes;
+import com.ringoid.view.ui.dialog.callback.IDialogProfileLikesListener;
 import com.ringoid.view.ui.util.GlideApp;
 
 import javax.inject.Inject;
@@ -40,6 +42,8 @@ public class AdapterProfile extends AdapterBase {
         private ImageView ivItem;
         private DialogMenuProfile dialogMenu;
         private TextView tvLikes;
+        private DialogProfileLikes dialogProfileLikes;
+        private IDialogProfileLikesListener listenerDialogProfileLikes;
 
         ViewHolderItem(ViewGroup parent) {
             super(parent, R.layout.view_image_profile);
@@ -47,6 +51,8 @@ public class AdapterProfile extends AdapterBase {
             itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
             itemView.setOnClickListener(this);
             tvLikes = itemView.findViewById(R.id.tvLikes);
+            tvLikes.setOnClickListener(this);
+            listenerDialogProfileLikes = new ListenerDialogProfileLikes();
         }
 
         @Override
@@ -85,8 +91,35 @@ public class AdapterProfile extends AdapterBase {
                 dialogMenu.show();
             }
 
+            if (v.getId() == R.id.tvLikes)
+                onClickLikes();
+
             if (v == itemView)
                 presenterAdapterProfile.onClickItem(itemView.getContext(), getAdapterPosition());
+        }
+
+        private void onClickLikes() {
+            if (dialogProfileLikes != null)
+                dialogProfileLikes.cancel();
+            dialogProfileLikes = new DialogProfileLikes(itemView.getContext(), listenerDialogProfileLikes);
+            dialogProfileLikes.show();
+        }
+
+        private class ListenerDialogProfileLikes implements IDialogProfileLikesListener {
+            @Override
+            public void onSelectAbout() {
+                presenterAdapterProfile.onClickAbout();
+            }
+
+            @Override
+            public void onSelectPrivacy() {
+                presenterAdapterProfile.onClickPrivacy();
+            }
+
+            @Override
+            public void onSelectLiked() {
+                presenterAdapterProfile.onClickLiked();
+            }
         }
     }
 }

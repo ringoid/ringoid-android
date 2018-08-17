@@ -11,4 +11,10 @@ public interface IPresenterAdapterProfile {
     int getLikesNum(int position);
 
     void onClickItem(Context context, int position);
+
+    void onClickAbout();
+
+    void onClickPrivacy();
+
+    void onClickLiked();
 }
