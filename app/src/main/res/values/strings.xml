@@ -113,12 +113,12 @@
     <string name="welcome_message_2_3"><![CDATA[All of that for <b>free</b>, including chatting with your matches.]]></string>
     <string name="welcome_title_3">More Visual</string>
     <string name="welcome_message_3_1"><![CDATA[Ringoid sorts profiles by geographical distance and <b>popularity (likes).</b>]]></string>
-    <string name="welcome_message_3_2">The more likes your photos received, the higher your popularity ranking in a geographical area and the more people of the opposite gender can discover you.</string>
+    <string name="welcome_message_3_2">The more likes your photos received, the higher your popularity ranking in a geographical area and the more people of the opposite sex can discover you.</string>
     <string name="welcome_message_3_3">Only you can see how many likes you have. No one can see your popularity ranking, location or distance.</string>
     <string name="settings_privacy_phones_subtitle">Blacklist</string>
     <string name="settings_privacy_phone_blacklist_add_subtitle">Add to the blacklist</string>
     <string name="settings_privacy_search_unregister">Can people who didn\'t register their phone numbers get access to your photos in Ringoid?</string>
-    <string name="settings_privacy_search_same_gender">Can Ringoid users of the same gender discover your profile and browse your photos?</string>
+    <string name="settings_privacy_search_same_gender">Can Ringoid users of the same sex discover your profile and browse your photos?</string>
     <string name="settings_privacy_phone_login">Who can login into your account without access to your phone number?</string>
     <string name="settings_privacy_location_current">Who can see your current location?</string>
     <string name="settings_privacy_location_who_distance">Who can see distance between you and others?</string>
@@ -131,7 +131,7 @@
     <string name="login_details_title">Personal details</string>
     <string name="button_continue">Continue</string>
     <string name="login_birth_message">Your Date of Birth:</string>
-    <string name="login_birth_gender_message">Your Gender:</string>
+    <string name="login_birth_gender_message">Your Sex:</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="dialog_report_chat_item_commercial">Advertising, fraud, commercial content</string>
@@ -187,6 +187,8 @@
     <string name="settings_privacy_phone_blacklist_who">Who can see what phone numbers you blacklisted?</string>
     <string name="settings_privacy_phone_sessions">How many Ringoid apps linked to your phone number can run concurrently?</string>
     <string name="settings_privacy_phone_sessions_value">Only one. The most recent login will take over, and all other sessions will be signed out automatically.</string>
+    <string name="settings_privacy_messages_logout_history">Who can recover after you logout a chat history between you and your matches?</string>
+    <string name="settings_privacy_messages_logout_history_value">No one. There is no way to recover chat history after you logout or reinstall Ringoid because the server doesn\'t store messages in the database after they are delivered to the app. When you login after logout, the app loads your photos, how many likes your photos received, your matches, who liked you, and privacy settings.</string>
 
     <string-array name="pages_titles">
         <item></item>
