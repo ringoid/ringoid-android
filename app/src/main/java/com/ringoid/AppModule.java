@@ -13,6 +13,7 @@ import com.ringoid.controller.data.memorycache.CacheRegister;
 import com.ringoid.controller.data.memorycache.CacheScroll;
 import com.ringoid.controller.data.memorycache.CacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.CacheToken;
+import com.ringoid.controller.data.memorycache.CacheTutorial;
 import com.ringoid.controller.data.memorycache.CacheUser;
 import com.ringoid.controller.data.memorycache.ICacheBlacklist;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
@@ -24,6 +25,7 @@ import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheToken;
+import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.repository.IRepositoryRegister;
 import com.ringoid.controller.data.repository.IRepositoryRegisterConfirm;
@@ -33,8 +35,10 @@ import com.ringoid.controller.device.CacheStorage;
 import com.ringoid.controller.device.ICacheStorage;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
+import com.ringoid.view.IViewPopup;
 import com.ringoid.view.Navigator;
 import com.ringoid.view.NavigatorPages;
+import com.ringoid.view.ViewPopup;
 import com.ringoid.view.presenter.IPresenterActivityMain;
 import com.ringoid.view.presenter.IPresenterAdapterBlacklistPhones;
 import com.ringoid.view.presenter.IPresenterAdapterChatMessages;
@@ -113,6 +117,12 @@ class AppModule {
 
     @Provides
     @Singleton
+    IViewPopup getViewPopup() {
+        return new ViewPopup();
+    }
+
+    @Provides
+    @Singleton
     ICacheToken getCacheToken() {
         return new CacheToken();
     }
@@ -182,6 +192,12 @@ class AppModule {
     @Singleton
     ICacheUser getCacheUser() {
         return new CacheUser();
+    }
+
+    @Provides
+    @Singleton
+    ICacheTutorial getCacheTutorial() {
+        return new CacheTutorial();
     }
 
     @Provides

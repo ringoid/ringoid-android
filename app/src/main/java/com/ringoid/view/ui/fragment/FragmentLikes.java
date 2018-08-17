@@ -38,6 +38,7 @@ public class FragmentLikes extends FragmentBase {
 
         initViews(view);
 
+        presenterLikes.onCreateView();
         return view;
     }
 

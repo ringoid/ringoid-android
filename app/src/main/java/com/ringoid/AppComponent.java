@@ -6,6 +6,7 @@ import com.ringoid.controller.data.memorycache.CacheToken;
 import com.ringoid.controller.data.memorycache.CacheUser;
 import com.ringoid.controller.data.repository.RepositoryRegister;
 import com.ringoid.controller.data.repository.RepositoryRegisterConfirm;
+import com.ringoid.view.ViewPopup;
 import com.ringoid.view.presenter.PresenterActivityMain;
 import com.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
 import com.ringoid.view.presenter.PresenterAdapterChatMessages;
@@ -176,4 +177,6 @@ public interface AppComponent {
     void inject(FragmentBase fragmentBase);
 
     void inject(ViewToolbar viewToolbar);
+
+    void inject(ViewPopup viewPopup);
 }

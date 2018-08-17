@@ -192,6 +192,7 @@
     <string name="blacklist_phone_num">%d phone number(s)</string>
     <string name="empty" />
     <string name="settings_privacy_description_click_message">Send your ideas how to make dating even safer to support@ringoid.com</string>
+    <string name="message_likes_tutorial">You both liked each other. Now you can open chat from Matches</string>
 
     <string-array name="pages_titles">
         <item></item>
