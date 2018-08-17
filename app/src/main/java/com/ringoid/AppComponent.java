@@ -42,6 +42,7 @@ import com.ringoid.view.ui.adapter.ViewHolderItemLikes;
 import com.ringoid.view.ui.adapter.ViewHolderItemLikesImages;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessage;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessagesImages;
+import com.ringoid.view.ui.fragment.FragmentBase;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import com.ringoid.view.ui.fragment.FragmentChat;
@@ -55,6 +56,7 @@ import com.ringoid.view.ui.fragment.FragmentSettings;
 import com.ringoid.view.ui.fragment.FragmentSettingsPrivacy;
 import com.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 import com.ringoid.view.ui.fragment.FragmentWelcome;
+import com.ringoid.view.ui.view.ViewToolbar;
 
 import javax.inject.Singleton;
 
@@ -170,4 +172,8 @@ public interface AppComponent {
     void inject(FragmentWelcome fragmentWelcome);
 
     void inject(CacheUser cacheUser);
+
+    void inject(FragmentBase fragmentBase);
+
+    void inject(ViewToolbar viewToolbar);
 }

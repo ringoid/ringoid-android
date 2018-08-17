@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,18 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height">
 
-        <ImageView
-            android:id="@+id/ivBack"
-            style="@style/selectableImage"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_arrow_back_black_24dp" />
-
-        <include
-            layout="@layout/toolbar_title"
-            android:layout_width="wrap_content"
+        <com.ringoid.view.ui.view.ViewToolbar
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="48dp" />
+            app:is_show_back="true" />
 
         <ImageView
             android:id="@+id/ivMenu"
