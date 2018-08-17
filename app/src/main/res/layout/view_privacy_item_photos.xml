@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="@layout/fragment_settings_privacy">
 
@@ -40,155 +41,101 @@
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_likes_nums" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_only_me" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_only_me"
+            app:item_privacy_title="@string/settings_privacy_likes_nums" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_likes_who" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_only_me" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_only_me"
+            app:item_privacy_title="@string/settings_privacy_likes_who" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_search" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_no" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_no"
+            app:item_privacy_title="@string/settings_privacy_search" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_search_unregister" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_no" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_no"
+            app:item_privacy_title="@string/settings_privacy_search_unregister" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_search_same_gender" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_no" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_no"
+            app:item_privacy_title="@string/settings_privacy_search_same_gender" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
 
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_photos_lookalike" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_photos_lookalike_value" />
-
-        </LinearLayout>
-
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_photos_lookalike_value"
+            app:item_privacy_title="@string/settings_privacy_photos_lookalike" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
 
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_photos_download" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_photos_noone" />
-
-        </LinearLayout>
-
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_photos_download" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_photos_share" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_photos_noone" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_photos_share" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_photos_screenshots" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_photos_screenshots_value" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_photos_screenshots_value"
+            app:item_privacy_title="@string/settings_privacy_photos_screenshots" />
 
     </LinearLayout>
 </merge>

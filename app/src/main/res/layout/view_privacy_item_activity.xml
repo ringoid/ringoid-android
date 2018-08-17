@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="@layout/fragment_settings_privacy">
 
@@ -13,153 +14,99 @@
         android:id="@+id/llPrivacyActivity"
         style="@style/settings_privacy_items_container">
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_activity_likes" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_activity_likes_answer" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_activity_likes_answer"
+            app:item_privacy_title="@string/settings_privacy_activity_likes" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_activity_unlikes" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_noone" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_activity_unlikes" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_activity_views" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_noone" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_activity_views" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_activity_views_times" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_noone" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_activity_views_times" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_activity_views_notifications" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_noone" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_activity_views_notifications" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_activity_reports" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_noone" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_activity_reports"
+            app:item_privacy_title="@string/settings_privacy_item_value_noone" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_activity_blocks" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_noone" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_activity_blocks" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_activity_use" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_noone" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_activity_use" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_activity_history" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_noone" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_activity_history" />
 
     </LinearLayout>
 </merge>

@@ -190,6 +190,8 @@
     <string name="settings_privacy_messages_logout_history">Who can recover after you logout a chat history between you and your matches?</string>
     <string name="settings_privacy_messages_logout_history_value">No one. There is no way to recover chat history after you logout or reinstall Ringoid because the server doesn\'t store messages in the database after they are delivered to the app. When you login after logout, the app loads your photos, how many likes your photos received, your matches, who liked you, and privacy settings.</string>
     <string name="blacklist_phone_num">%d phone number(s)</string>
+    <string name="empty" />
+    <string name="settings_privacy_description_click_message">Send your ideas how to make dating even safer to support@ringoid.com</string>
 
     <string-array name="pages_titles">
         <item></item>

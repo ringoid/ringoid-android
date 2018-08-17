@@ -1,0 +1,13 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llItem"
+    style="@style/settings_privacy_item_container">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/settings_privacy_item_message" />
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        style="@style/settings_privacy_item_value" />
+
+</LinearLayout>

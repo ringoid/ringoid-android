@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="@layout/fragment_settings_privacy">
 
@@ -34,86 +35,55 @@
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_location_current" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_noone" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_location_current" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_location_who_distance" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_noone" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_location_who_distance" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_location_history" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_noone" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_location_history" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_location_rank" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_location_rank_value" />
-
-        </LinearLayout>
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_location_rank_value"
+            app:item_privacy_title="@string/settings_privacy_location_rank" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/divider" />
 
-        <LinearLayout style="@style/settings_privacy_item_container">
-
-            <TextView
-                style="@style/settings_privacy_item_message"
-                android:text="@string/settings_privacy_location_bumped" />
-
-            <TextView
-                style="@style/settings_privacy_item_value"
-                android:text="@string/settings_privacy_item_value_noone" />
-
-        </LinearLayout>
-
+        <com.ringoid.view.ui.view.ViewPrivacyItemDescription
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_privacy_subtitle="@string/settings_privacy_item_value_noone"
+            app:item_privacy_title="@string/settings_privacy_location_bumped" />
 
     </LinearLayout>
 </merge>
