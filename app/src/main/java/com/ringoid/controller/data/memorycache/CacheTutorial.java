@@ -5,9 +5,11 @@ package com.ringoid.controller.data.memorycache;
 
 public class CacheTutorial implements ICacheTutorial {
     private boolean isLikesShown;
+    private boolean isExploreShown;
 
     public CacheTutorial() {
         resetLikes();
+        resetExplore();
     }
 
     @Override
@@ -23,5 +25,20 @@ public class CacheTutorial implements ICacheTutorial {
     @Override
     public void setLikesShown() {
         this.isLikesShown = true;
+    }
+
+    @Override
+    public void resetExplore() {
+        isExploreShown = false;
+    }
+
+    @Override
+    public boolean isExploreShown() {
+        return isExploreShown;
+    }
+
+    @Override
+    public void setExploreShown() {
+        isExploreShown = true;
     }
 }

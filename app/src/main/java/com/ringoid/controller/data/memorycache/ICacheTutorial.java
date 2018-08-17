@@ -9,4 +9,10 @@ public interface ICacheTutorial {
     boolean isLikesShown();
 
     void setLikesShown();
+
+    void resetExplore();
+
+    boolean isExploreShown();
+
+    void setExploreShown();
 }

@@ -37,7 +37,7 @@ public class FragmentExplore extends FragmentBase {
         View view = inflater.inflate(R.layout.fragment_explore, container, false);
 
         initViews(view);
-
+        presenterExplore.onCreateView();
         return view;
     }
 

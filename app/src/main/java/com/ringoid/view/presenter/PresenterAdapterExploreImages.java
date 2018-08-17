@@ -2,7 +2,10 @@
 package com.ringoid.view.presenter;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheExplore;
+import com.ringoid.controller.data.memorycache.ICacheTutorial;
+import com.ringoid.view.IViewPopup;
 
 import javax.inject.Inject;
 
@@ -10,6 +13,12 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
 
     @Inject
     ICacheExplore cacheExplore;
+
+    @Inject
+    ICacheTutorial cacheTutorial;
+
+    @Inject
+    IViewPopup viewPopup;
 
     public PresenterAdapterExploreImages() {
         ApplicationRingoid.getComponent().inject(this);
@@ -22,7 +31,21 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
 
     @Override
     public void onClickLike(int adapterPosition, int itemPosition) {
+        checkLikesTutorial(adapterPosition, itemPosition);
+        checkLikedAlready(adapterPosition, itemPosition);
         cacheExplore.setLiked(adapterPosition, itemPosition);
+    }
+
+    private void checkLikedAlready(int adapterPosition, int itemPosition) {
+        if (!cacheExplore.isLiked(adapterPosition, itemPosition)) return;
+        viewPopup.showToast(R.string.message_explore_like_other);
+    }
+
+    private void checkLikesTutorial(int adapterPosition, int itemPosition) {
+        if (cacheTutorial.isExploreShown() || cacheExplore.isLiked(adapterPosition, itemPosition))
+            return;
+        cacheTutorial.setExploreShown();
+        viewPopup.showToast(R.string.message_explore_like_tutorial);
     }
 
     @Override
@@ -32,6 +55,11 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
 
     @Override
     public String getUrl(int adapterPosition, int itemPosition) {
-        return "file:///android_asset/" +cacheExplore.getUrl(adapterPosition, itemPosition);
+        return "file:///android_asset/" + cacheExplore.getUrl(adapterPosition, itemPosition);
+    }
+
+    @Override
+    public void onLongClick(int adapterPosition, int itemPosition) {
+        viewPopup.showToast(R.string.message_explore_like_other);
     }
 }
