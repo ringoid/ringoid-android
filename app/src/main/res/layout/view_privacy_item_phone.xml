@@ -13,12 +13,21 @@
         android:id="@+id/llPrivacyPhone"
         style="@style/settings_privacy_items_container">
 
-        <TextView
-            android:id="@+id/tvPrivacyPhoneBlacklist"
-            style="@style/settings_menu_item"
-            android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
-            android:text="@string/settings_privacy_phone_blacklist"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/llPrivacyPhoneBlacklist"
+            style="@style/settings_privacy_item_container">
+
+            <TextView
+                style="@style/settings_privacy_item_message"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                android:text="@string/settings_privacy_phone_blacklist"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvPrivacyPhoneBlacklistNum"
+                style="@style/settings_privacy_item_value" />
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"

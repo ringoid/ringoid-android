@@ -7,4 +7,6 @@ public interface IPresenterSettingsPrivacyListener {
     void setPrivacyDistance(int distanceType);
 
     void setPrivacyMessagesFirst(int i);
+
+    void setPrivacyPhoneNum(int itemsNum);
 }

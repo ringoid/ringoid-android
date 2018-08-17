@@ -58,7 +58,7 @@
     <string name="settings_privacy_likes_who">Who can see who liked you?</string>
     <string name="settings_privacy_search">Can search engines find and index your photos?</string>
     <string name="settings_privacy_phone">Phone number</string>
-    <string name="settings_privacy_phone_blacklist">Blacklist of phone numbers</string>
+    <string name="settings_privacy_phone_blacklist">Blacklist</string>
     <string name="settings_privacy_phone_see">Who can see your phone number?</string>
     <string name="settings_privacy_phone_find">Who can find your profile by your phone number?</string>
     <string name="settings_privacy_location">Location</string>
@@ -189,6 +189,7 @@
     <string name="settings_privacy_phone_sessions_value">Only one. The most recent login will take over, and all other sessions will be signed out automatically.</string>
     <string name="settings_privacy_messages_logout_history">Who can recover after you logout a chat history between you and your matches?</string>
     <string name="settings_privacy_messages_logout_history_value">No one. There is no way to recover chat history after you logout or reinstall Ringoid because the server doesn\'t store messages in the database after they are delivered to the app. When you login after logout, the app loads your photos, how many likes your photos received, your matches, who liked you, and privacy settings.</string>
+    <string name="blacklist_phone_num">%d phone number(s)</string>
 
     <string-array name="pages_titles">
         <item></item>

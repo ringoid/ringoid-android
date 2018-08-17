@@ -34,6 +34,7 @@ public class FragmentSettingsPrivacy extends FragmentBase
     private TextView tvPrivacyDistance;
     private IPresenterSettingsPrivacyListener listenerPresenter;
     private TextView tvPrivacyMessagesTextFirstMatched, tvPrivacyMessagesTextFirstOnlyMe;
+    private TextView tvPrivacyPhoneBlacklistNum;
 
     public static Fragment getInstance(boolean showAll) {
         Bundle args = new Bundle();
@@ -63,6 +64,8 @@ public class FragmentSettingsPrivacy extends FragmentBase
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         ((TextView) view.findViewById(R.id.tvSubtitle)).setText(R.string.settings_privacy_subtitle);
 
+        tvPrivacyPhoneBlacklistNum = view.findViewById(R.id.tvPrivacyPhoneBlacklistNum);
+
         view.findViewById(R.id.tvPrivacyPhotos).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacyPhone).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacyLocation).setOnClickListener(this);
@@ -83,7 +86,7 @@ public class FragmentSettingsPrivacy extends FragmentBase
         tvPrivacyMessagesTextFirstMatched.setOnClickListener(this);
         tvPrivacyMessagesTextFirstOnlyMe.setOnClickListener(this);
 
-        view.findViewById(R.id.tvPrivacyPhoneBlacklist).setOnClickListener(this);
+        view.findViewById(R.id.llPrivacyPhoneBlacklist).setOnClickListener(this);
 
         view.findViewById(R.id.llPrivacyDistance).setOnClickListener(this);
         tvPrivacyDistance = view.findViewById(R.id.tvPrivacyDistance);
@@ -136,7 +139,7 @@ public class FragmentSettingsPrivacy extends FragmentBase
             presenterSettingsPrivacy.onClickMessageFirstOnlyMe();
         }
 
-        if (v.getId() == R.id.tvPrivacyPhoneBlacklist)
+        if (v.getId() == R.id.llPrivacyPhoneBlacklist)
             navigator.navigateBlacklistPhones();
 
         if (v.getId() == R.id.llPrivacyDistance)
@@ -195,6 +198,11 @@ public class FragmentSettingsPrivacy extends FragmentBase
                 setCheckedTextFirst(tvPrivacyMessagesTextFirstMatched, tvPrivacyMessagesTextFirstOnlyMe);
             else
                 setCheckedTextFirst(tvPrivacyMessagesTextFirstOnlyMe, tvPrivacyMessagesTextFirstMatched);
+        }
+
+        @Override
+        public void setPrivacyPhoneNum(int itemsNum) {
+            tvPrivacyPhoneBlacklistNum.setText(String.format(getContext().getResources().getString(R.string.blacklist_phone_num), itemsNum));
         }
     }
 }

@@ -3,6 +3,7 @@ package com.ringoid.view.presenter;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.controller.data.memorycache.ICacheBlacklist;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.view.presenter.callback.IPresenterSettingsPrivacyListener;
 
@@ -14,6 +15,10 @@ public class PresenterSettingsPrivacy implements IPresenterSettingsPrivacy {
 
     @Inject
     ICacheSettingsPrivacy cacheSettingsPrivacy;
+
+    @Inject
+    ICacheBlacklist cacheBlacklist;
+
     private WeakReference<IPresenterSettingsPrivacyListener> refListener;
 
     public PresenterSettingsPrivacy() {
@@ -53,6 +58,13 @@ public class PresenterSettingsPrivacy implements IPresenterSettingsPrivacy {
         notifyListenersPrivacyPhotos();
         notifyListenersPrivacyMessagesFirst(0);
         notifyListenersPrivacyDistance();
+        notifyListenersPrivacyBlacklistNum();
+    }
+
+    private void notifyListenersPrivacyBlacklistNum() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().setPrivacyPhoneNum(cacheBlacklist.getItemsNum());
+
     }
 
     @Override
