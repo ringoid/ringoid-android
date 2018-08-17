@@ -3,4 +3,6 @@ package com.ringoid.view;
 
 public interface IViewPopup {
     void showToast(int messageRes);
+
+    void showToast(String message);
 }

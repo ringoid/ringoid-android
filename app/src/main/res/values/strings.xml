@@ -196,6 +196,7 @@
     <string name="message_likes_other">You can like different photos of the same user so your profile will rise higher in their Matches.\n\nTo unlike, tap on the heart icon in the corner</string>
     <string name="message_explore_like_other">You can like different photos of the same user so your profile will rise higher in their Who Liked You. \\n\\n To unlike, tap on the heart icon in the corner</string>
     <string name="message_explore_like_tutorial">If they like you too, it will be a match and you can chat</string>
+    <string name="format_profile_photo_click_tutorial">Who can see your photos?\n%s</string>
 
     <string-array name="pages_titles">
         <item></item>

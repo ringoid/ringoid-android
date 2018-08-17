@@ -25,4 +25,14 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     public void setPrivacyDistance(int type) {
         this.distanceType = type;
     }
+
+    @Override
+    public boolean isPrivacyPhotosPublic() {
+        return privacyPhotosType == 0;
+    }
+
+    @Override
+    public boolean isPrivacyPhotosLikes() {
+        return privacyPhotosType == 1;
+    }
 }

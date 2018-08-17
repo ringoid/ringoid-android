@@ -84,6 +84,9 @@ public class AdapterProfile extends AdapterBase {
                 dialogMenu = new DialogMenuProfile(itemView);
                 dialogMenu.show();
             }
+
+            if (v == itemView)
+                presenterAdapterProfile.onClickItem(itemView.getContext(), getAdapterPosition());
         }
     }
 }

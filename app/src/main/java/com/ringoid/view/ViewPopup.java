@@ -27,4 +27,11 @@ public class ViewPopup implements IViewPopup {
         if (context == null) return;
         Toast.makeText(context, messageRes, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void showToast(String message) {
+        Context context = refContext.get();
+        if (context == null) return;
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
 }
