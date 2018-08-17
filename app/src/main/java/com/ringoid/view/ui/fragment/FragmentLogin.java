@@ -170,8 +170,8 @@ public class FragmentLogin extends FragmentBase
         if (TextUtils.isEmpty(result))
             return;
 
-        result = result.replaceAll("[^0-9]", "")
-                .substring(0, Math.min(4, result.length()));
+        result = result.replaceAll("[^0-9]", "");
+        result = result.substring(0, Math.min(4, result.length()));
 
         if (TextUtils.isEmpty(result)) return;
 
@@ -224,6 +224,10 @@ public class FragmentLogin extends FragmentBase
             return true;
         }
         return false;
+    }
+
+    private void setPhone() {
+        presenterRegister.onClickLoginPhoneVerify(etPhoneCode.getText().toString(), etPhone.getText().toString());
     }
 
     private class ListenerPresenter implements IPresenterRegisterListener {
@@ -298,10 +302,6 @@ public class FragmentLogin extends FragmentBase
         public void onConfirm() {
             setPhone();
         }
-    }
-
-    private void setPhone() {
-        presenterRegister.onClickLoginPhoneVerify(etPhoneCode.getText().toString(), etPhone.getText().toString());
     }
 
     private class ListenerViewPhoneInput implements IViewPhotoInputListener {
