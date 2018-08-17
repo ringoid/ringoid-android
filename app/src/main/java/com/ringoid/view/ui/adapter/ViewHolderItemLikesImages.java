@@ -12,7 +12,7 @@ import com.ringoid.view.ui.dialog.DialogMenuImageOther;
 import javax.inject.Inject;
 
 public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
-        implements View.OnClickListener {
+        implements View.OnClickListener, View.OnLongClickListener {
 
     @Inject
     IPresenterAdapterLikesImages presenterAdapterLikesImages;
@@ -26,6 +26,7 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
         ApplicationRingoid.getComponent().inject(this);
 
         itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
     }
 
     @Override
@@ -42,7 +43,6 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
 
         setLiked(presenterAdapterLikesImages.isLiked(adapterPosition, position));
     }
-
 
 
     @Override
@@ -66,4 +66,12 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
         }
     }
 
+    @Override
+    public boolean onLongClick(View v) {
+        if (v == itemView) {
+            presenterAdapterLikesImages.onLongClick(adapterPosition, getAdapterPosition());
+            return true;
+        }
+        return false;
+    }
 }

@@ -193,6 +193,7 @@
     <string name="empty" />
     <string name="settings_privacy_description_click_message">Send your ideas how to make dating even safer to support@ringoid.com</string>
     <string name="message_likes_tutorial">You both liked each other. Now you can open chat from Matches</string>
+    <string name="message_likes_other">You can like different photos of the same user so your profile will rise higher in their Matches.\n\nTo unlike, tap on the heart icon in the corner</string>
 
     <string-array name="pages_titles">
         <item></item>

@@ -32,7 +32,13 @@ public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages
     @Override
     public void onClickLike(int adapterPosition, int itemPosition) {
         checkLikesTutorial(adapterPosition, itemPosition);
+        checkLikedAlready(adapterPosition, itemPosition);
         cacheLikes.setLiked(adapterPosition, itemPosition);
+    }
+
+    private void checkLikedAlready(int adapterPosition, int itemPosition) {
+        if (!cacheLikes.isLiked(adapterPosition, itemPosition)) return;
+        viewPopup.showToast(R.string.message_likes_other);
     }
 
     private void checkLikesTutorial(int adapterPosition, int itemPosition) {
@@ -50,5 +56,10 @@ public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages
     @Override
     public String getUrl(int adapterPosition, int itemPosition) {
         return "file:///android_asset/" + cacheLikes.getUrl(adapterPosition, itemPosition);
+    }
+
+    @Override
+    public void onLongClick(int adapterPosition, int itemPosition) {
+        viewPopup.showToast(R.string.message_likes_other);
     }
 }

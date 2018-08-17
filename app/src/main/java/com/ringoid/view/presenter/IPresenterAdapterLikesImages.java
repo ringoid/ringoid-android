@@ -9,4 +9,6 @@ public interface IPresenterAdapterLikesImages {
     boolean isLiked(int adapterPosition, int itemPosition);
 
     String getUrl(int adapterPosition, int itemPosition);
+
+    void onLongClick(int adapterPosition, int itemPosition);
 }
