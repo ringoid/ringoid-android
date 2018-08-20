@@ -2,10 +2,12 @@
 package com.ringoid.view.ui.fragment;
 
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.ringoid.R;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.IPresenterSettingsPrivacy;
 import com.ringoid.view.presenter.callback.IPresenterSettingsPrivacyListener;
+import com.ringoid.view.ui.util.IStatusBarViewHelper;
 
 import javax.inject.Inject;
 
@@ -29,6 +32,9 @@ public class FragmentSettingsPrivacy extends FragmentBase
 
     @Inject
     IPresenterSettingsPrivacy presenterSettingsPrivacy;
+
+    @Inject
+    IStatusBarViewHelper statusBarViewHelper;
 
     private TextView tvPrivacyPhotosAll, tvPrivacyPhotosLikes, tvPrivacyPhotosNoone;
     private TextView tvPrivacyDistance;
@@ -185,6 +191,10 @@ public class FragmentSettingsPrivacy extends FragmentBase
             tvPrivacyPhotosAll.setCompoundDrawablesWithIntrinsicBounds(getContext().getResources().getDrawable(R.drawable.ic_privacy_all_gray_24dp), null, type == 0 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
             tvPrivacyPhotosLikes.setCompoundDrawablesWithIntrinsicBounds(getContext().getResources().getDrawable(R.drawable.ic_privacy_likes_gray_24dp), null, type == 1 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
             tvPrivacyPhotosNoone.setCompoundDrawablesWithIntrinsicBounds(getContext().getResources().getDrawable(R.drawable.ic_privacy_noone_gray_24dp), null, type == 2 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                statusBarViewHelper.setColor((AppCompatActivity) getActivity(), type);
         }
 
         @Override

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterPagesContainer;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
+import com.ringoid.view.ui.util.IStatusBarViewHelper;
 
 import javax.inject.Inject;
 
@@ -24,7 +26,8 @@ public class FragmentPages extends FragmentBase
 
     @Inject
     IPresenterPagesContainer presenterPagesContainer;
-
+    @Inject
+    IStatusBarViewHelper statusBarViewHelper;
     private TextView tvWallet, tvSubtitle;
     private AlertDialog dialogInvite;
     private ListenerPresenter listenerPresenter;
@@ -94,7 +97,7 @@ public class FragmentPages extends FragmentBase
         if (view.getId() == R.id.ivPrivacy)
             presenterPagesContainer.onClickPrivacy();
 
-        if (view.getId()==R.id.llToolbarTitle)
+        if (view.getId() == R.id.llToolbarTitle)
             presenterPagesContainer.onClickToolbar();
 
     }
@@ -152,6 +155,11 @@ public class FragmentPages extends FragmentBase
             ((ImageView) llBottomAppBar.getChildAt(2)).setImageResource(messages);
             ((ImageView) llBottomAppBar.getChildAt(3)).setImageResource(explore);
 
+        }
+
+        @Override
+        public void setStatusBarColor(int type) {
+            statusBarViewHelper.setColor((AppCompatActivity) getActivity(), type);
         }
     }
 }

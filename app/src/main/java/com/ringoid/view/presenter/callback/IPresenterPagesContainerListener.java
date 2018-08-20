@@ -11,4 +11,6 @@ public interface IPresenterPagesContainerListener {
     void setViewPrivacy(int drawableId);
 
     void setBottomSheetDrawables(int profile, int likes, int messages, int explore);
+
+    void setStatusBarColor(int type);
 }

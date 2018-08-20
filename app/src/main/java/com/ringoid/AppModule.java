@@ -79,6 +79,8 @@ import com.ringoid.view.presenter.PresenterProfile;
 import com.ringoid.view.presenter.PresenterRegister;
 import com.ringoid.view.presenter.PresenterSettingsPrivacy;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
+import com.ringoid.view.ui.util.IStatusBarViewHelper;
+import com.ringoid.view.ui.util.StatusBarViewHelper;
 
 import java.lang.ref.WeakReference;
 
@@ -119,6 +121,12 @@ class AppModule {
     @Singleton
     IViewPopup getViewPopup() {
         return new ViewPopup();
+    }
+
+    @Provides
+    @Singleton
+    IStatusBarViewHelper getStatusBarViewHelper() {
+        return new StatusBarViewHelper();
     }
 
     @Provides
