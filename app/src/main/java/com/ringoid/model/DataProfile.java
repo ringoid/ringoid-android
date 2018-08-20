@@ -31,6 +31,10 @@ public class DataProfile {
         urls.get(itemPosition).isLiked = true;
     }
 
+    public void changeLiked(int itemPosition) {
+        urls.get(itemPosition).isLiked = !urls.get(itemPosition).isLiked;
+    }
+
     private class DataImage {
         private String url;
         private int likes;

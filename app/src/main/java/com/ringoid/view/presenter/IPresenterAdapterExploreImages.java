@@ -11,4 +11,6 @@ public interface IPresenterAdapterExploreImages {
     String getUrl(int adapterPosition, int itemPosition);
 
     void onLongClick(int adapterPosition, int itemPosition);
+
+    boolean onClickIconLike(int adapterPosition, int itemPosition);
 }

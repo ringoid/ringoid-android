@@ -53,4 +53,9 @@ public class CacheLikes implements ICacheLikes {
         return data != null && data.size() > 0;
     }
 
+    @Override
+    public void changeLiked(int adapterPosition, int itemPosition) {
+        data.get(adapterPosition).changeLiked(itemPosition);
+    }
+
 }

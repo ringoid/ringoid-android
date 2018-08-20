@@ -2,7 +2,6 @@
 package com.ringoid.controller.data.memorycache;
 
 import com.google.gson.Gson;
-
 import com.ringoid.controller.data.network.response.ResponseDataProfile;
 import com.ringoid.model.DataProfile;
 
@@ -52,5 +51,10 @@ public class CacheExplore implements ICacheExplore {
     @Override
     public String getUrl(int adapterPosition, int itemPosition) {
         return data.get(adapterPosition).getImage(itemPosition);
+    }
+
+    @Override
+    public void changeLiked(int adapterPosition, int itemPosition) {
+        data.get(adapterPosition).changeLiked(itemPosition);
     }
 }

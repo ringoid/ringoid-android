@@ -10,15 +10,19 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.ringoid.R;
+import com.ringoid.view.ui.dialog.DialogMenuImageOther;
 import com.ringoid.view.ui.util.AnimationLike;
 import com.ringoid.view.ui.util.GlideApp;
 
 abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
-        implements View.OnClickListener {
+        implements View.OnClickListener, View.OnLongClickListener {
 
     private AnimationLike animationLike;
     private View ivLikeAnimated;
     ImageView ivItem, ivLike;
+
+    int adapterPosition;
+    private DialogMenuImageOther dialogMenuRank;
 
     ViewHolderItemImagesLikeable(ViewGroup container, int layoutRes) {
         super(container, layoutRes);
@@ -27,6 +31,10 @@ abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
         ivLike = itemView.findViewById(R.id.ivLike);
 
         itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
+
+        itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
+        itemView.findViewById(R.id.ivLike).setOnClickListener(this);
     }
 
 
@@ -64,6 +72,14 @@ abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
         if (animationLike != null) animationLike.cancel();
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.tvMenu) {
+            if (dialogMenuRank != null)
+                dialogMenuRank.cancel();
+            dialogMenuRank = new DialogMenuImageOther(itemView);
+            dialogMenuRank.show();
+        }    }
 
     void setLiked(boolean isLikes) {
         ivLike.setImageResource(isLikes
@@ -71,8 +87,14 @@ abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
                 : R.drawable.ic_favorite_border_white_24dp);
     }
 
-    public void onClickView(boolean liked) {
+    void onClickView(boolean liked) {
         showLikeAnimationSmall(liked);
         showLikeAnimation();
+    }
+
+    void onClickIconLike(boolean isLiked) {
+        if (isLiked)
+            onClickView(true);
+        else setLiked(false);
     }
 }

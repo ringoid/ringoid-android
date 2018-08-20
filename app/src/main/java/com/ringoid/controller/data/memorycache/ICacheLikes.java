@@ -14,4 +14,6 @@ public interface ICacheLikes {
     String getUrl(int adapterPosition, int itemPosition);
 
     boolean isDataExist();
+
+    void changeLiked(int adapterPosition, int itemPosition);
 }

@@ -7,26 +7,19 @@ import android.view.ViewGroup;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterLikesImages;
-import com.ringoid.view.ui.dialog.DialogMenuImageOther;
 
 import javax.inject.Inject;
 
 public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
-        implements View.OnClickListener, View.OnLongClickListener {
+        implements View.OnClickListener {
 
     @Inject
     IPresenterAdapterLikesImages presenterAdapterLikesImages;
-
-    private DialogMenuImageOther dialogMenuRank;
-
-    private int adapterPosition;
 
     ViewHolderItemLikesImages(ViewGroup parent) {
         super(parent, R.layout.view_image_likes);
         ApplicationRingoid.getComponent().inject(this);
 
-        itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
-        itemView.setOnLongClickListener(this);
     }
 
     @Override
@@ -44,25 +37,16 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
         setLiked(presenterAdapterLikesImages.isLiked(adapterPosition, position));
     }
 
-
-    @Override
-    void setLiked(boolean isLikes) {
-        ivLike.setImageResource(isLikes
-                ? R.drawable.ic_favorite_red_24dp
-                : R.drawable.ic_favorite_border_red_24dp);
-    }
-
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.tvMenu) {
-            if (dialogMenuRank != null)
-                dialogMenuRank.cancel();
-            dialogMenuRank = new DialogMenuImageOther(itemView);
-            dialogMenuRank.show();
-        }
+        super.onClick(v);
         if (v == itemView) {
             presenterAdapterLikesImages.onClickLike(adapterPosition, getAdapterPosition());
             super.onClickView(presenterAdapterLikesImages.isLiked(adapterPosition, getAdapterPosition()));
+        }
+        if (v.getId() == R.id.ivLike) {
+            boolean isLiked = presenterAdapterLikesImages.onClickIconLike(adapterPosition, getAdapterPosition());
+            super.onClickIconLike(isLiked);
         }
     }
 

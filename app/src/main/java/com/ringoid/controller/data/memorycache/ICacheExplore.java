@@ -11,4 +11,6 @@ public interface ICacheExplore {
     boolean isLiked(int adapterPosition, int itemPosition);
 
     String getUrl(int adapterPosition, int itemPosition);
+
+    void changeLiked(int adapterPosition, int itemPosition);
 }

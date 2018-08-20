@@ -62,4 +62,10 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
     public void onLongClick(int adapterPosition, int itemPosition) {
         viewPopup.showToast(R.string.message_explore_like_other);
     }
+
+    @Override
+    public boolean onClickIconLike(int adapterPosition, int itemPosition) {
+        cacheExplore.changeLiked(adapterPosition, itemPosition);
+        return cacheExplore.isLiked(adapterPosition, itemPosition);
+    }
 }
