@@ -10,6 +10,7 @@ public class ClipboardUtils {
     public static String getString(Context context) {
         ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = clipboardManager.getPrimaryClip();
+        if (clipData == null) return null;
 
         StringBuilder result = new StringBuilder();
 
