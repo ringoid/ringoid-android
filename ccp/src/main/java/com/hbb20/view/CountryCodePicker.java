@@ -770,17 +770,11 @@ public class CountryCodePicker extends RelativeLayout {
             String formattedNumber = "";
             Phonenumber.PhoneNumber exampleNumber = getPhoneUtil().getExampleNumberForType(getSelectedCountryNameCode(), getSelectedHintNumberType());
             if (exampleNumber != null) {
-                formattedNumber = exampleNumber.getNationalNumber() + "";
-                Log.d(TAG, "updateHint: " + formattedNumber);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    formattedNumber = PhoneNumberUtils.formatNumber(getSelectedCountryCodeWithPlus() + formattedNumber, getSelectedCountryNameCode());
-                } else {
-                    formattedNumber = PhoneNumberUtils.formatNumber(getSelectedCountryCodeWithPlus() + formattedNumber + formattedNumber);
-                }
+                formattedNumber = String.valueOf(exampleNumber.getNationalNumber());
+                formattedNumber = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+                        ? PhoneNumberUtils.formatNumber(getSelectedCountryCodeWithPlus() + formattedNumber, getSelectedCountryNameCode())
+                        : PhoneNumberUtils.formatNumber(getSelectedCountryCodeWithPlus() + formattedNumber);
                 formattedNumber = formattedNumber.substring(getSelectedCountryCodeWithPlus().length()).trim();
-                Log.d(TAG, "updateHint: after format " + formattedNumber + " " + selectionMemoryTag);
-            } else {
-                Log.w(TAG, "updateHint: No example number found for this country (" + getSelectedCountryNameCode() + ") or this type (" + hintExampleNumberType.name() + ").");
             }
             editText_registeredCarrierNumber.setHint(formattedNumber);
         }
