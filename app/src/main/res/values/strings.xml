@@ -198,7 +198,7 @@
     <string name="message_explore_like_tutorial">If they like you too, it will be a match and you can chat</string>
     <string name="format_profile_photo_click_tutorial">Privacy: Who can see your photos?\n%s</string>
     <string name="dialog_profile_likes_title">How \"Likes\" work in Ringoid</string>
-    <string name="dialog_profile_likes_message">Only you can see how many likes your photos have.\nThe more likes you have, the higher your popularity ranking in a geographical area and the more people of the opposite sex can discover you.\nPhotos with more likes are shown first.</string>
+    <string name="dialog_profile_likes_message">Only you can see how many likes your photos have.\n\nThe more likes you have, the higher your popularity ranking in a geographical area and the more people of the opposite sex can discover you.\n\nYou can't see who liked what photo(s) but you can see who liked you\n\nPhotos with more likes are shown first.</string>
     <string name="dialog_profile_likes_button_about">About</string>
     <string name="dialog_profile_likes_button_privacy">Privacy</string>
     <string name="dialog_profile_likes_button_likes">Who Liked You</string>
