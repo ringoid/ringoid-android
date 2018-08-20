@@ -923,6 +923,42 @@
     {
       "phone_code": "998",
       "name_code": "UZ"
+    },
+    {
+      "phone_code": "678",
+      "name_code": "VU"
+    },
+    {
+      "phone_code": "379",
+      "name_code": "VA"
+    },
+    {
+      "phone_code": "58",
+      "name_code": "VE"
+    },
+    {
+      "phone_code": "84",
+      "name_code": "VN"
+    },
+    {
+      "phone_code": "681",
+      "name_code": "WF"
+    },
+    {
+      "phone_code": "212",
+      "name_code": "EH"
+    },
+    {
+      "phone_code": "967",
+      "name_code": "YE"
+    },
+    {
+      "phone_code": "260",
+      "name_code": "ZM"
+    },
+    {
+      "phone_code": "263",
+      "name_code": "ZW"
     }
   ]
 }
