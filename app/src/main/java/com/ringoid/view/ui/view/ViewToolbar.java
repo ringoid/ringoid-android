@@ -9,17 +9,11 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
-import com.ringoid.view.INavigator;
-
-import javax.inject.Inject;
 
 public class ViewToolbar extends FrameLayout {
 
     private static final String PARAM_SHOW_BACK = "param_show_back";
-    @Inject
-    INavigator navigator;
 
     public ViewToolbar(Context context) {
         super(context);
@@ -53,24 +47,10 @@ public class ViewToolbar extends FrameLayout {
     }
 
     private void initViews(Bundle params) {
-        ApplicationRingoid.getComponent().inject(this);
-
         findViewById(R.id.ivBack).setVisibility(getParamInt(params, PARAM_SHOW_BACK, View.GONE));
-
-        View viewToolbar = findViewById(R.id.llToolbarTitle);
-        viewToolbar.setOnClickListener(new ListenerClickTitle());
     }
 
     private int getParamInt(Bundle params, String param, int defaultValue) {
         return params == null ? defaultValue : params.getInt(param, defaultValue);
-    }
-
-    private class ListenerClickTitle implements OnClickListener {
-        @Override
-        public void onClick(View v) {
-
-            if (v.getId() == R.id.llToolbarTitle)
-                navigator.navigateWelcome(false);
-        }
     }
 }

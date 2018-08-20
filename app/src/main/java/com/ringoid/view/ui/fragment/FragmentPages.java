@@ -47,6 +47,7 @@ public class FragmentPages extends FragmentBase
         initViews(view);
 
         presenterPagesContainer.onViewCreate(getChildFragmentManager(), R.id.flContent);
+        view.findViewById(R.id.llToolbarTitle).setOnClickListener(this);
         return view;
     }
 
@@ -92,6 +93,9 @@ public class FragmentPages extends FragmentBase
 
         if (view.getId() == R.id.ivPrivacy)
             presenterPagesContainer.onClickPrivacy();
+
+        if (view.getId()==R.id.llToolbarTitle)
+            presenterPagesContainer.onClickToolbar();
 
     }
 

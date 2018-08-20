@@ -117,6 +117,11 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         navigator.navigateSettingsPrivacy(true);
     }
 
+    @Override
+    public void onClickToolbar() {
+        navigator.navigateWelcome(false);
+    }
+
     private class ListenerCacheScroll implements ICacheScrollListener {
         @Override
         public void onScroll(int scrollSum, float alpha) {

@@ -23,4 +23,6 @@ public interface IPresenterPagesContainer {
     void onClickSettings();
 
     void onClickPrivacy();
+
+    void onClickToolbar();
 }
