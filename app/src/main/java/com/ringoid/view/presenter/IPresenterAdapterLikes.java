@@ -5,4 +5,6 @@ public interface IPresenterAdapterLikes {
     int getItemsNum();
 
     int getItemsNum(int position);
+
+    void onClickScrolls();
 }

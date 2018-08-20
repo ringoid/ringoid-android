@@ -5,4 +5,6 @@ public interface IPresenterAdapterExplore {
     int getItemsNum();
 
     int getItemsNum(int position);
+
+    void onClickScrolls();
 }

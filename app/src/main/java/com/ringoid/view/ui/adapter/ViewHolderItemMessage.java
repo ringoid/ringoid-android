@@ -38,6 +38,7 @@ public class ViewHolderItemMessage extends ViewHolderBase
 
         itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
         ivMessage = itemView.findViewById(R.id.ivMessage);
+        flDots.setOnClickListener(this);
 
         initList();
     }
@@ -73,6 +74,9 @@ public class ViewHolderItemMessage extends ViewHolderBase
             dialogMenu = new DialogMenuImageOther(itemView);
             dialogMenu.show();
         }
+
+        if (v.getId()==R.id.flDots)
+            presenterAdapterMessages.onClickScrolls();
 
     }
 }

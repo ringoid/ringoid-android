@@ -4,6 +4,7 @@ package com.ringoid.view.ui.adapter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -14,7 +15,7 @@ import com.ringoid.view.ui.util.IndicatorHelper;
 
 import javax.inject.Inject;
 
-public class ViewHolderItemLikes extends ViewHolderBase {
+public class ViewHolderItemLikes extends ViewHolderBase implements View.OnClickListener{
 
     @Inject
     IPresenterAdapterLikes presenterAdapterLikes;
@@ -30,6 +31,7 @@ public class ViewHolderItemLikes extends ViewHolderBase {
 
         flDots = itemView.findViewById(R.id.flDots);
 
+        flDots.setOnClickListener(this);
         initList();
     }
 
@@ -49,5 +51,11 @@ public class ViewHolderItemLikes extends ViewHolderBase {
     void setData(int position) {
         adapter.setPosition(position);
         dotsIndicatorHelper.updateData(presenterAdapterLikes.getItemsNum(position));
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId()==R.id.flDots)
+            presenterAdapterLikes.onClickScrolls();
     }
 }
