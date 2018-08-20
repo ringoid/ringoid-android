@@ -10,7 +10,7 @@ public interface ICacheSettingsPrivacy {
 
     void setPrivacyDistance(int type);
 
-    boolean isPrivacyPhotosPublic();
+    boolean isPrivacyPhotosOppositeSex();
 
     boolean isPrivacyPhotosLikes();
 }

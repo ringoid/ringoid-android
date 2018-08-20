@@ -27,7 +27,7 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     }
 
     @Override
-    public boolean isPrivacyPhotosPublic() {
+    public boolean isPrivacyPhotosOppositeSex() {
         return privacyPhotosType == 0;
     }
 

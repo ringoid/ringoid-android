@@ -51,7 +51,7 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
 
     @Override
     public void onClickItem(Context context, int position) {
-        int messageRes = cacheSettingsPrivacy.isPrivacyPhotosPublic()
+        int messageRes = cacheSettingsPrivacy.isPrivacyPhotosOppositeSex()
                 ? R.string.settings_privacy_photos_all
                 : cacheSettingsPrivacy.isPrivacyPhotosLikes()
                 ? R.string.settings_privacy_photos_liked
