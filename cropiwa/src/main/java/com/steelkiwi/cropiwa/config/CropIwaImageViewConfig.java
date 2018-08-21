@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class CropIwaImageViewConfig {
 
-    private static final float DEFAULT_MIN_SCALE = 0.7f;
+    private static final float DEFAULT_MIN_SCALE = 0.1f;
     private static final float DEFAULT_MAX_SCALE = 3f;
 
     public static final int SCALE_UNSPECIFIED = -1;
