@@ -13,12 +13,16 @@ import javax.inject.Inject;
 
 public class CacheScroll implements ICacheScroll {
 
+    private static final int SCROLL_UP = 1;
+    private static final int SCROLL_DOWN = 2;
+
     private final int maxScroll;
     @Inject
     WeakReference<Context> refContext;
 
     private WeakReference<ICacheScrollListener> refListener;
     private int scrollSum;
+    private int scrollDirection;
 
     public CacheScroll() {
         ApplicationRingoid.getComponent().inject(this);
@@ -42,6 +46,8 @@ public class CacheScroll implements ICacheScroll {
     @Override
     public void onScroll(int dy) {
 
+        scrollDirection = dy > 0 ? SCROLL_DOWN : SCROLL_UP;
+
         scrollSum += dy;
 
         scrollSum = scrollSum >= 0
@@ -54,5 +60,19 @@ public class CacheScroll implements ICacheScroll {
     @Override
     public void setListener(ICacheScrollListener listener) {
         this.refListener = new WeakReference<>(listener);
+    }
+
+    @Override
+    public void onScrollIdle() {
+        if (scrollDirection == SCROLL_DOWN)
+            scrollSum = maxScroll;
+        if (scrollDirection == SCROLL_UP)
+            scrollSum = 0;
+        notifyListenersCompleteScroll();
+    }
+
+    private void notifyListenersCompleteScroll() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onScrollComplete(scrollSum, scrollSum == maxScroll ? 0 : 1);
     }
 }

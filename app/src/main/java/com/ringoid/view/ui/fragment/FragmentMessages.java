@@ -56,6 +56,12 @@ public class FragmentMessages extends FragmentBase {
             super.onScrolled(recyclerView, dx, dy);
             presenterMessages.onScroll(dy);
         }
+
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            presenterMessages.onScrollState(newState);
+        }
     }
 
 }

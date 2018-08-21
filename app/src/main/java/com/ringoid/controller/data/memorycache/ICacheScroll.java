@@ -9,4 +9,6 @@ public interface ICacheScroll {
     void onScroll(int dy);
 
     void setListener(ICacheScrollListener listener);
+
+    void onScrollIdle();
 }

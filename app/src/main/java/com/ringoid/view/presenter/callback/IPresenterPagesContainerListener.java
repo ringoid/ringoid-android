@@ -13,4 +13,6 @@ public interface IPresenterPagesContainerListener {
     void setBottomSheetDrawables(int profile, int likes, int messages, int explore);
 
     void setStatusBarColor(int type);
+
+    void scrollComplete(int scrollSum, int alpha);
 }

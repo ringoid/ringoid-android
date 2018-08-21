@@ -56,6 +56,12 @@ public class FragmentExplore extends FragmentBase {
             super.onScrolled(recyclerView, dx, dy);
             presenterExplore.onScroll(dy);
         }
+
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            presenterExplore.onScrollState(newState);
+        }
     }
 
     private class ItemDecoration extends RecyclerView.ItemDecoration {

@@ -132,6 +132,13 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
             refListener.get().setPosition(-scrollSum, scrollSum, alpha);
 
         }
+
+        @Override
+        public void onScrollComplete(int scrollSum, int alpha) {
+            if (refListener == null || refListener.get() == null) return;
+
+            refListener.get().scrollComplete(scrollSum, alpha);
+        }
     }
 
     private class ListenerNavigatorPages implements INavigatorPagesListener {

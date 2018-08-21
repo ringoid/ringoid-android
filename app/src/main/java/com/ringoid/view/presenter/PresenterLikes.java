@@ -1,6 +1,8 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
@@ -27,5 +29,11 @@ public class PresenterLikes implements IPresenterLikes {
     @Override
     public void onCreateView() {
         cacheTutorial.resetLikes();
+    }
+
+    @Override
+    public void onScrollState(int newState) {
+        if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
+        cacheScroll.onScrollIdle();
     }
 }

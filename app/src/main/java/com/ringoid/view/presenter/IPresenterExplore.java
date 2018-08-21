@@ -5,4 +5,6 @@ public interface IPresenterExplore {
     void onScroll(int dy);
 
     void onCreateView();
+
+    void onScrollState(int newState);
 }

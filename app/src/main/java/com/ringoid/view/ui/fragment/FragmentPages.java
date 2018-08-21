@@ -124,6 +124,19 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
+        public void scrollComplete(int scrollSum, int alpha) {
+            flToolbar.animate()
+                    .alpha(alpha)
+                    .translationY(-scrollSum)
+                    .setDuration(250);
+
+            llBottomAppBar.animate()
+                    .alpha(alpha)
+                    .translationY(scrollSum)
+                    .setDuration(250);
+        }
+
+        @Override
         public void setPageSelected(int num, int backgroundColorRes, int subtitleColorRes) {
             if (llBottomAppBar == null) return;
             for (int i = 0; i < llBottomAppBar.getChildCount(); ++i) {

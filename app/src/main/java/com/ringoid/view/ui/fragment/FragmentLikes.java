@@ -57,6 +57,12 @@ public class FragmentLikes extends FragmentBase {
             super.onScrolled(recyclerView, dx, dy);
             presenterLikes.onScroll(dy);
         }
+
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            presenterLikes.onScrollState(newState);
+        }
     }
 
     private class ItemDecoration extends RecyclerView.ItemDecoration {
