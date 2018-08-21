@@ -35,12 +35,8 @@
 
     <TextView
         android:id="@+id/tvContinue"
-        style="@style/buttonColored"
+        style="@style/buttonBase.Colored.Green"
         android:layout_gravity="bottom"
-        android:layout_margin="16dp"
-        android:background="@drawable/rectangle_rounded_green"
-        android:text="@string/button_continue"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textSize="18sp" />
+        android:text="@string/button_continue" />
 
 </LinearLayout>

@@ -99,12 +99,7 @@
 
     <TextView
         android:id="@+id/tvRegister"
-        style="@style/buttonColored"
-        android:layout_margin="16dp"
-        android:background="@drawable/rectangle_rounded_green"
-        android:padding="16dp"
-        android:text="@string/button_register_confirm"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textSize="18sp" />
+        style="@style/buttonBase.Colored.Green"
+        android:text="@string/button_register_confirm" />
 
 </LinearLayout>

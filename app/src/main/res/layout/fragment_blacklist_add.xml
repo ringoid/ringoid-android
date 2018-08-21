@@ -30,14 +30,7 @@
 
     <TextView
         android:id="@+id/tvBlacklistAdd"
-        style="@style/buttonColored"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/blacklist_phone_add"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textSize="18sp" />
+        style="@style/buttonBase.Colored"
+        android:text="@string/blacklist_phone_add" />
 
 </LinearLayout>

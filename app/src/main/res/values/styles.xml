@@ -80,12 +80,18 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="buttonColored" parent="buttonBase">
+    <style name="buttonBase.Colored">
         <item name="android:gravity">center</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@drawable/rectangle_rounded_red</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Body1</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 
+    <style name="buttonBase.Colored.Green">
+        <item name="android:background">@drawable/rectangle_rounded_green</item>
     </style>
 
     <style name="settings_menu_item">
