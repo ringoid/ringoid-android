@@ -4,8 +4,12 @@
 package com.ringoid.controller.data.memorycache;
 
 public class CacheTutorial implements ICacheTutorial {
+
+    //todo store in prererences
+
     private boolean isLikesShown;
     private boolean isExploreShown;
+    private boolean isShowProfileLikesDialog;
 
     public CacheTutorial() {
         resetLikes();
@@ -40,5 +44,15 @@ public class CacheTutorial implements ICacheTutorial {
     @Override
     public void setExploreShown() {
         isExploreShown = true;
+    }
+
+    @Override
+    public void setProfileDialogLikeShow(boolean isShow) {
+        this.isShowProfileLikesDialog = isShow;
+    }
+
+    @Override
+    public boolean isShowDialogLikes() {
+        return isShowProfileLikesDialog;
     }
 }

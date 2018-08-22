@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 
 import com.ringoid.R;
 import com.ringoid.view.ui.dialog.callback.IDialogProfileLikesListener;
@@ -16,6 +17,7 @@ public class DialogProfileLikes implements View.OnClickListener {
 
     private IDialogProfileLikesListener listener;
     private AlertDialog dialog;
+    private CheckBox cbDontShow;
 
     public DialogProfileLikes(Context context, IDialogProfileLikesListener listenerDialogProfileLikes) {
         this.listener = listenerDialogProfileLikes;
@@ -30,6 +32,7 @@ public class DialogProfileLikes implements View.OnClickListener {
         view.findViewById(R.id.tvAbout).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
         view.findViewById(R.id.tvLikes).setOnClickListener(this);
+        cbDontShow = view.findViewById(R.id.cbShowAgain);
     }
 
     public void cancel() {
@@ -43,13 +46,13 @@ public class DialogProfileLikes implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tvAbout)
-            listener.onSelectAbout();
+            listener.onSelectAbout(!cbDontShow.isChecked());
 
         if (v.getId() == R.id.tvPrivacy)
-            listener.onSelectPrivacy();
+            listener.onSelectPrivacy(!cbDontShow.isChecked());
 
         if (v.getId() == R.id.tvLikes)
-            listener.onSelectLiked();
+            listener.onSelectLiked(!cbDontShow.isChecked());
 
         cancel();
     }

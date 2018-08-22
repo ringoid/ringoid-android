@@ -15,4 +15,8 @@ public interface ICacheTutorial {
     boolean isExploreShown();
 
     void setExploreShown();
+
+    void setProfileDialogLikeShow(boolean isShow);
+
+    boolean isShowDialogLikes();
 }

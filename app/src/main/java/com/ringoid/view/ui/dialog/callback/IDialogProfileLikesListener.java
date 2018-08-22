@@ -2,9 +2,9 @@ package com.ringoid.view.ui.dialog.callback;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 public interface IDialogProfileLikesListener {
-    void onSelectAbout();
+    void onSelectAbout(boolean checked);
 
-    void onSelectPrivacy();
+    void onSelectPrivacy(boolean checked);
 
-    void onSelectLiked();
+    void onSelectLiked(boolean checked);
 }

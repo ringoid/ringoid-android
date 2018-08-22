@@ -101,24 +101,25 @@ public class AdapterProfile extends AdapterBase {
         private void onClickLikes() {
             if (dialogProfileLikes != null)
                 dialogProfileLikes.cancel();
+            if (!presenterAdapterProfile.isDialogShowLikes()) return;
             dialogProfileLikes = new DialogProfileLikes(itemView.getContext(), listenerDialogProfileLikes);
             dialogProfileLikes.show();
         }
 
         private class ListenerDialogProfileLikes implements IDialogProfileLikesListener {
             @Override
-            public void onSelectAbout() {
-                presenterAdapterProfile.onClickAbout();
+            public void onSelectAbout(boolean isShow) {
+                presenterAdapterProfile.onClickAbout(isShow);
             }
 
             @Override
-            public void onSelectPrivacy() {
-                presenterAdapterProfile.onClickPrivacy();
+            public void onSelectPrivacy(boolean isShow) {
+                presenterAdapterProfile.onClickPrivacy(isShow);
             }
 
             @Override
-            public void onSelectLiked() {
-                presenterAdapterProfile.onClickLiked();
+            public void onSelectLiked(boolean isShow) {
+                presenterAdapterProfile.onClickLiked(isShow);
             }
         }
     }
