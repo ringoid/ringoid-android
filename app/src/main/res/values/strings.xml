@@ -31,7 +31,7 @@
     <string name="chat_empty_lead">to show your interest</string>
     <string name="hint_chat_disabled">Only your match can message first</string>
     <string name="chat_subtitle">Chat</string>
-    <string name="settings_privacy">Privacy</string>
+    <string name="privacy">Privacy</string>
     <string name="settings_feedback">Send us email</string>
     <string name="settings_logout">Log out</string>
     <string name="settings_subtitle">Settings</string>
@@ -209,6 +209,8 @@
     <string name="OK">ok</string>
     <string name="dialog_new_faces_title">How New Faces works</string>
     <string name="dialog_new_faces_message">You can see here photos of people which you have not yet seen. You can swipe photos left and right, and scroll profiles up and down.\n\nTo let someone know that you like them, you can just tap anywhere on a photo. To unlike, tap on the heart icon in the corner of the photo.\n\nIf they like you too, it will be a match and you can send emoji and text messages to each other. You can receive a push notification about new matches if you set it in Settings.\n\nYou can like different photos of the same user so your profile will rise higher in their Who Liked You and they can notice you sooner.</string>
+    <string name="dialog_hidden_mode_title">You are in Hidden mode</string>
+    <string name="dialog_hidden_mode_message">Only you can see your photos.\n\nOthers can\'t see your photos, like or message you. It is almost like you deleted your account, although you can still see Who Liked You already and browse New Faces.\n\nYou can change who can see your photos in Privacy, and allow others to see your photos, like and message you.</string>
 
     <string-array name="pages_titles">
         <item></item>
