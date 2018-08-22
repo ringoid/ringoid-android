@@ -19,4 +19,8 @@ public interface ICacheTutorial {
     void setProfileDialogLikeShow(boolean isShow);
 
     boolean isShowDialogLikes();
+
+    boolean isShowDialogHiddenMode();
+
+    void setDialogHiddenModeShow(boolean isShow);
 }

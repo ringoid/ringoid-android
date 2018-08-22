@@ -13,4 +13,6 @@ public interface ICacheSettingsPrivacy {
     boolean isPrivacyPhotosOppositeSex();
 
     boolean isPrivacyPhotosLikes();
+
+    boolean isPrivacyPhotosNoone();
 }

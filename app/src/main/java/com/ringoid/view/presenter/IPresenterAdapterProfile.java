@@ -10,7 +10,7 @@ public interface IPresenterAdapterProfile {
 
     int getLikesNum(int position);
 
-    void onClickItem(Context context, int position);
+    boolean onClickItem(Context context, int position);
 
     void onClickAbout(boolean isShow);
 
@@ -19,4 +19,10 @@ public interface IPresenterAdapterProfile {
     void onClickLiked(boolean isShow);
 
     boolean isDialogShowLikes();
+
+    void onClickAboutHiddenMode(boolean isShow);
+
+    void onClickHiddenModeOK(boolean isShow);
+
+    void onClickHiddenModePrivacy(boolean isShow);
 }

@@ -11,8 +11,10 @@ import android.widget.TextView;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterProfile;
+import com.ringoid.view.ui.dialog.DialogHiddenMode;
 import com.ringoid.view.ui.dialog.DialogMenuProfile;
 import com.ringoid.view.ui.dialog.DialogProfileLikes;
+import com.ringoid.view.ui.dialog.callback.IDialogHiddenModeListener;
 import com.ringoid.view.ui.dialog.callback.IDialogProfileLikesListener;
 import com.ringoid.view.ui.util.GlideApp;
 
@@ -23,8 +25,18 @@ public class AdapterProfile extends AdapterBase {
     @Inject
     IPresenterAdapterProfile presenterAdapterProfile;
 
+    private DialogHiddenMode dialogHiddenMode;
+    private DialogMenuProfile dialogMenu;
+    private DialogProfileLikes dialogProfileLikes;
+
+    private ListenerDialogHidden listenerDialogHidden;
+    private IDialogProfileLikesListener listenerDialogProfileLikes;
+
     public AdapterProfile() {
         ApplicationRingoid.getComponent().inject(this);
+
+        listenerDialogProfileLikes = new ListenerDialogProfileLikes();
+        listenerDialogHidden = new ListenerDialogHidden();
     }
 
     @NonNull
@@ -40,10 +52,7 @@ public class AdapterProfile extends AdapterBase {
 
     class ViewHolderItem extends ViewHolderBase implements View.OnClickListener {
         private ImageView ivItem;
-        private DialogMenuProfile dialogMenu;
         private TextView tvLikes;
-        private DialogProfileLikes dialogProfileLikes;
-        private IDialogProfileLikesListener listenerDialogProfileLikes;
 
         ViewHolderItem(ViewGroup parent) {
             super(parent, R.layout.view_image_profile);
@@ -52,7 +61,6 @@ public class AdapterProfile extends AdapterBase {
             itemView.setOnClickListener(this);
             tvLikes = itemView.findViewById(R.id.tvLikes);
             tvLikes.setOnClickListener(this);
-            listenerDialogProfileLikes = new ListenerDialogProfileLikes();
         }
 
         @Override
@@ -95,7 +103,16 @@ public class AdapterProfile extends AdapterBase {
                 onClickLikes();
 
             if (v == itemView)
-                presenterAdapterProfile.onClickItem(itemView.getContext(), getAdapterPosition());
+                if (presenterAdapterProfile.onClickItem(itemView.getContext(), getAdapterPosition())) {
+                    showDialogHidden();
+                }
+        }
+
+        private void showDialogHidden() {
+            if (dialogHiddenMode != null)
+                dialogHiddenMode.cancel();
+            dialogHiddenMode = new DialogHiddenMode(itemView.getContext(), listenerDialogHidden);
+            dialogHiddenMode.show();
         }
 
         private void onClickLikes() {
@@ -106,21 +123,39 @@ public class AdapterProfile extends AdapterBase {
             dialogProfileLikes.show();
         }
 
-        private class ListenerDialogProfileLikes implements IDialogProfileLikesListener {
-            @Override
-            public void onSelectAbout(boolean isShow) {
-                presenterAdapterProfile.onClickAbout(isShow);
-            }
+    }
 
-            @Override
-            public void onSelectPrivacy(boolean isShow) {
-                presenterAdapterProfile.onClickPrivacy(isShow);
-            }
+    private class ListenerDialogProfileLikes implements IDialogProfileLikesListener {
+        @Override
+        public void onSelectAbout(boolean isShow) {
+            presenterAdapterProfile.onClickAbout(isShow);
+        }
 
-            @Override
-            public void onSelectLiked(boolean isShow) {
-                presenterAdapterProfile.onClickLiked(isShow);
-            }
+        @Override
+        public void onSelectPrivacy(boolean isShow) {
+            presenterAdapterProfile.onClickPrivacy(isShow);
+        }
+
+        @Override
+        public void onSelectLiked(boolean isShow) {
+            presenterAdapterProfile.onClickLiked(isShow);
+        }
+    }
+
+    private class ListenerDialogHidden implements IDialogHiddenModeListener {
+        @Override
+        public void onSelectAbout(boolean isShow) {
+            presenterAdapterProfile.onClickAboutHiddenMode(isShow);
+        }
+
+        @Override
+        public void onSelectOK(boolean isShow) {
+            presenterAdapterProfile.onClickHiddenModeOK(isShow);
+        }
+
+        @Override
+        public void onSelectPrivacy(boolean isShow) {
+            presenterAdapterProfile.onClickHiddenModePrivacy(isShow);
         }
     }
 }

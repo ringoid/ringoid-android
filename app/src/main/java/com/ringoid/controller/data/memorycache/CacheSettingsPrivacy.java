@@ -35,4 +35,9 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     public boolean isPrivacyPhotosLikes() {
         return privacyPhotosType == 1;
     }
+
+    @Override
+    public boolean isPrivacyPhotosNoone() {
+        return privacyPhotosType == 2;
+    }
 }

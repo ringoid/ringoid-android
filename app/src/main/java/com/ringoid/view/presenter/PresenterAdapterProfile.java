@@ -54,7 +54,11 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     }
 
     @Override
-    public void onClickItem(Context context, int position) {
+    public boolean onClickItem(Context context, int position) {
+
+        if (cacheTutorial.isShowDialogHiddenMode() && cacheSettingsPrivacy.isPrivacyPhotosNoone())
+            return true;
+
         int messageRes = cacheSettingsPrivacy.isPrivacyPhotosOppositeSex()
                 ? R.string.settings_privacy_photos_all
                 : cacheSettingsPrivacy.isPrivacyPhotosLikes()
@@ -62,6 +66,7 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
                 : R.string.settings_privacy_photos_noone;
         viewPopup.showToast(String.format(context.getResources().getString(R.string.format_profile_photo_click_tutorial),
                 context.getResources().getString(messageRes)));
+        return false;
     }
 
     @Override
@@ -85,5 +90,22 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     @Override
     public boolean isDialogShowLikes() {
         return cacheTutorial.isShowDialogLikes();
+    }
+
+    @Override
+    public void onClickAboutHiddenMode(boolean isShow) {
+        cacheTutorial.setDialogHiddenModeShow(isShow);
+        navigator.navigateWelcome(false);
+    }
+
+    @Override
+    public void onClickHiddenModeOK(boolean isShow) {
+        cacheTutorial.setDialogHiddenModeShow(isShow);
+    }
+
+    @Override
+    public void onClickHiddenModePrivacy(boolean isShow) {
+        cacheTutorial.setDialogHiddenModeShow(isShow);
+        navigator.navigateSettingsPrivacy(true);
     }
 }
