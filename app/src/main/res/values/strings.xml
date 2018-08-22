@@ -207,6 +207,8 @@
     <string name="dialog_who_liked_you_title">How Who Liked You works</string>
     <string name="dialog_who_liked_you_message">You can see here photos of people who liked you. You can swipe photos left and right, and scroll profiles up and down.\n\nIf you like someone as well, you can tap anywhere on a photo. To unlike, tap on the heart icon in the corner of the photo.\n\nAs soon as you liked them, you can go to Matches. Their profile will move there too, and you can send emoji and text messages to each other.   You can receive a push notification about new messages  if you set it in Settings.\n\nYou can like different photos of the same user so your profile will rise higher in their Matches and they can notice your emoji or messages sooner.</string>
     <string name="OK">ok</string>
+    <string name="dialog_new_faces_title">How New Faces works</string>
+    <string name="dialog_new_faces_message">You can see here photos of people which you have not yet seen. You can swipe photos left and right, and scroll profiles up and down.\n\nTo let someone know that you like them, you can just tap anywhere on a photo. To unlike, tap on the heart icon in the corner of the photo.\n\nIf they like you too, it will be a match and you can send emoji and text messages to each other. You can receive a push notification about new matches if you set it in Settings.\n\nYou can like different photos of the same user so your profile will rise higher in their Who Liked You and they can notice you sooner.</string>
 
     <string-array name="pages_titles">
         <item></item>
