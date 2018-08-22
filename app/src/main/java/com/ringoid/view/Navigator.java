@@ -113,7 +113,7 @@ public class Navigator implements INavigator {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SELECT_FILE) {
+        if (requestCode == SELECT_FILE && data != null) {
             navigatePhotoCrop(data.getData());
         }
     }
