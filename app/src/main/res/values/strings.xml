@@ -35,7 +35,7 @@
     <string name="settings_feedback">Send us email</string>
     <string name="settings_logout">Log out</string>
     <string name="settings_subtitle">Settings</string>
-    <string name="dialog_report_title">Report</string>
+    <string name="dialog_report_title">Report &amp; Block</string>
     <string name="dialog_report_item_content">Inappropriate content</string>
     <string name="dialog_report_item_stolen">Stolen, someone\'s else photos</string>
     <string name="dialog_report_item_fraud">Advertising, fraud</string>
