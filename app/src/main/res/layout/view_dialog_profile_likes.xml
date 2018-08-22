@@ -30,7 +30,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:paddingStart="16dp"
-        android:text="@string/message_dialog_profile_likes_show_again"
+        android:text="@string/message_dialog_show_again"
         android:textSize="17sp" />
 
 
@@ -43,43 +43,22 @@
 
         <TextView
             android:id="@+id/tvAbout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:paddingBottom="12dp"
-            android:paddingEnd="16dp"
-            android:paddingStart="16dp"
-            android:paddingTop="12dp"
-            android:text="@string/dialog_profile_likes_button_about"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
+            style="@style/buttonBase"
+            android:text="@string/about"
             android:textColor="@android:color/black"
             android:textSize="17sp" />
 
         <TextView
             android:id="@+id/tvPrivacy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:paddingBottom="12dp"
-            android:paddingEnd="16dp"
-            android:paddingStart="16dp"
-            android:paddingTop="12dp"
+            style="@style/buttonBase"
             android:text="@string/dialog_profile_likes_button_privacy"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
             android:textColor="@android:color/black"
             android:textSize="17sp" />
 
         <TextView
             android:id="@+id/tvLikes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:paddingBottom="12dp"
-            android:paddingEnd="16dp"
-            android:paddingStart="16dp"
-            android:paddingTop="12dp"
+            style="@style/buttonBase"
             android:text="@string/dialog_profile_likes_button_likes"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
             android:textColor="@color/colorAccent"
             android:textSize="17sp" />
     </LinearLayout>

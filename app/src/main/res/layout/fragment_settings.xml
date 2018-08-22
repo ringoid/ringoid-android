@@ -38,7 +38,7 @@
                 style="@style/settings_menu_item"
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_settings_push_24dp"
-                android:text="@string/settings_push" />
+                android:text="@string/push" />
 
             <View
                 android:layout_width="match_parent"
