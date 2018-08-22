@@ -35,9 +35,11 @@ import com.ringoid.controller.device.CacheStorage;
 import com.ringoid.controller.device.ICacheStorage;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
+import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.Navigator;
 import com.ringoid.view.NavigatorPages;
+import com.ringoid.view.ViewDialogs;
 import com.ringoid.view.ViewPopup;
 import com.ringoid.view.presenter.IPresenterActivityMain;
 import com.ringoid.view.presenter.IPresenterAdapterBlacklistPhones;
@@ -123,6 +125,12 @@ class AppModule {
     @Singleton
     IViewPopup getViewPopup() {
         return new ViewPopup();
+    }
+
+    @Provides
+    @Singleton
+    IViewDialogs getViewDialogs() {
+        return new ViewDialogs();
     }
 
     @Provides

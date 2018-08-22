@@ -6,6 +6,7 @@ import com.ringoid.controller.data.memorycache.CacheToken;
 import com.ringoid.controller.data.memorycache.CacheUser;
 import com.ringoid.controller.data.repository.RepositoryRegister;
 import com.ringoid.controller.data.repository.RepositoryRegisterConfirm;
+import com.ringoid.view.ViewDialogs;
 import com.ringoid.view.ViewPopup;
 import com.ringoid.view.presenter.PresenterActivityMain;
 import com.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
@@ -185,4 +186,6 @@ public interface AppComponent {
     void inject(ViewHolderItemImagesLikeable viewHolderItemImagesLikeable);
 
     void inject(PresenterItemImageLikeable presenterItemImageLikeable);
+
+    void inject(ViewDialogs viewDialogs);
 }

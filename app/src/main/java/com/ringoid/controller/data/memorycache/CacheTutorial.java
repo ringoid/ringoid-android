@@ -11,12 +11,14 @@ public class CacheTutorial implements ICacheTutorial {
     private boolean isExploreShown;
     private boolean isShowDialogProfileLikes;
     private boolean isShowDialogHiddenMode;
+    private boolean isShowDialogExplore;
 
     public CacheTutorial() {
         resetLikes();
         resetExplore();
         isShowDialogHiddenMode = true;
         isShowDialogProfileLikes = true;
+        isShowDialogExplore = true;
     }
 
     @Override
@@ -67,5 +69,15 @@ public class CacheTutorial implements ICacheTutorial {
     @Override
     public void setDialogHiddenModeShow(boolean isShow) {
         isShowDialogHiddenMode = isShow;
+    }
+
+    @Override
+    public boolean isShowDialogExplore() {
+        return isShowDialogExplore;
+    }
+
+    @Override
+    public void setDialogExploreShow(boolean isShow) {
+        isShowDialogExplore = isShow;
     }
 }

@@ -1,6 +1,7 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.ringoid.view.ui.fragment.FragmentExplore;
@@ -11,6 +12,8 @@ import com.ringoid.view.ui.fragment.FragmentProfile;
 import java.lang.ref.WeakReference;
 
 public class NavigatorPages implements INavigatorPages {
+
+    private static final String CURRENT_FRAGMENT_TAB = "current_tab";
 
     private WeakReference<FragmentManager> refFragmentManager;
     private int viewId;
@@ -34,7 +37,7 @@ public class NavigatorPages implements INavigatorPages {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
-                .replace(viewId, new FragmentLikes())
+                .replace(viewId, new FragmentLikes(), CURRENT_FRAGMENT_TAB)
                 .commit();
     }
 
@@ -50,7 +53,7 @@ public class NavigatorPages implements INavigatorPages {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
-                .replace(viewId, new FragmentProfile())
+                .replace(viewId, new FragmentProfile(), CURRENT_FRAGMENT_TAB)
                 .commit();
     }
 
@@ -61,7 +64,7 @@ public class NavigatorPages implements INavigatorPages {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
-                .replace(viewId, new FragmentMessages())
+                .replace(viewId, new FragmentMessages(), CURRENT_FRAGMENT_TAB)
                 .commit();
     }
 
@@ -72,7 +75,7 @@ public class NavigatorPages implements INavigatorPages {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
-                .replace(viewId, new FragmentExplore())
+                .replace(viewId, new FragmentExplore(), CURRENT_FRAGMENT_TAB)
                 .commit();
     }
 
@@ -87,5 +90,13 @@ public class NavigatorPages implements INavigatorPages {
         if (currentPage == 1) navigateLikes();
         if (currentPage == 2) navigateMessages();
         if (currentPage == 3) navigateExplore();
+    }
+
+    @Override
+    public boolean isPageExplore() {
+        if (refFragmentManager == null || refFragmentManager.get() == null) return false;
+
+        Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
+        return fragment != null && fragment instanceof FragmentExplore;
     }
 }

@@ -23,4 +23,8 @@ public interface ICacheTutorial {
     boolean isShowDialogHiddenMode();
 
     void setDialogHiddenModeShow(boolean isShow);
+
+    boolean isShowDialogExplore();
+
+    void setDialogExploreShow(boolean isShow);
 }

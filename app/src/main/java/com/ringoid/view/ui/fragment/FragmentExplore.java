@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterExplore;
+import com.ringoid.view.presenter.callback.IPresenterExploreListener;
 import com.ringoid.view.ui.adapter.AdapterExplore;
 
 import javax.inject.Inject;
@@ -24,11 +25,15 @@ public class FragmentExplore extends FragmentBase {
     @Inject
     IPresenterExplore presenterExplore;
 
+    private IPresenterExploreListener listenerPresenter;
+    private RecyclerView rvItems;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         ApplicationRingoid.getComponent().inject(this);
+        presenterExplore.setListener(listenerPresenter = new ListenerPresenter());
     }
 
     @Nullable
@@ -42,7 +47,7 @@ public class FragmentExplore extends FragmentBase {
     }
 
     private void initViews(View view) {
-        RecyclerView rvItems = view.findViewById(R.id.rvItems);
+        rvItems = view.findViewById(R.id.rvItems);
         rvItems.setLayoutManager(new LinearLayoutManager(view.getContext()));
         rvItems.setAdapter(new AdapterExplore());
         rvItems.addOnScrollListener(new OnScrollListener());
@@ -82,6 +87,18 @@ public class FragmentExplore extends FragmentBase {
                 outRect.top = margin;
         }
 
+    }
+
+    private class ListenerPresenter implements IPresenterExploreListener {
+        @Override
+        public boolean isPositionTop() {
+            return rvItems.getScaleY() == 0;
+        }
+
+        @Override
+        public void scrollTop() {
+            rvItems.scrollToPosition(0);
+        }
     }
 }
 

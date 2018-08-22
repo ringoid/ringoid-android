@@ -6,6 +6,7 @@ import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheExplore;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
+import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 
 import javax.inject.Inject;
@@ -23,6 +24,8 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
 
     @Inject
     ICacheSettingsPrivacy cacheSettingsPrivacy;
+    @Inject
+    IViewDialogs viewDialogs;
 
     public PresenterAdapterExploreImages() {
         ApplicationRingoid.getComponent().inject(this);
@@ -64,6 +67,11 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
 
     @Override
     public void onLongClick(int adapterPosition, int itemPosition) {
+        if (cacheTutorial.isShowDialogExplore()) {
+            viewDialogs.showDialogExplore();
+            return;
+        }
+
         viewPopup.showToast(R.string.message_explore_like_other);
     }
 

@@ -1,12 +1,14 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.IViewDialogs;
 
 import javax.inject.Inject;
 
@@ -18,13 +20,17 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     @Inject
     INavigator navigator;
 
+    @Inject
+    IViewDialogs viewDialogs;
+
     public PresenterActivityMain() {
         ApplicationRingoid.getComponent().inject(this);
     }
 
     @Override
-    public void onCreateView(FragmentManager supportFragmentManager, int viewId) {
+    public void onCreateView(Context context, FragmentManager supportFragmentManager, int viewId) {
         navigator.set(supportFragmentManager, viewId);
+        viewDialogs.set(context);
 
         if (cacheToken.isTokenExist())
             navigator.navigateFeed();
