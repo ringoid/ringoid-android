@@ -20,6 +20,7 @@ import com.ringoid.view.presenter.PresenterAdapterProfile;
 import com.ringoid.view.presenter.PresenterBlacklistPhones;
 import com.ringoid.view.presenter.PresenterChat;
 import com.ringoid.view.presenter.PresenterExplore;
+import com.ringoid.view.presenter.PresenterItemImageLikeable;
 import com.ringoid.view.presenter.PresenterLikes;
 import com.ringoid.view.presenter.PresenterMessages;
 import com.ringoid.view.presenter.PresenterPagesContainer;
@@ -39,6 +40,7 @@ import com.ringoid.view.ui.adapter.AdapterMessagesImages;
 import com.ringoid.view.ui.adapter.AdapterProfile;
 import com.ringoid.view.ui.adapter.ViewHolderItemExplore;
 import com.ringoid.view.ui.adapter.ViewHolderItemExploreImages;
+import com.ringoid.view.ui.adapter.ViewHolderItemImagesLikeable;
 import com.ringoid.view.ui.adapter.ViewHolderItemLikes;
 import com.ringoid.view.ui.adapter.ViewHolderItemLikesImages;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessage;
@@ -179,4 +181,8 @@ public interface AppComponent {
     void inject(ViewToolbar viewToolbar);
 
     void inject(ViewPopup viewPopup);
+
+    void inject(ViewHolderItemImagesLikeable viewHolderItemImagesLikeable);
+
+    void inject(PresenterItemImageLikeable presenterItemImageLikeable);
 }

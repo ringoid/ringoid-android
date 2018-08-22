@@ -4,6 +4,7 @@ package com.ringoid.view.presenter;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheExplore;
+import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.view.IViewPopup;
 
@@ -19,6 +20,9 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
 
     @Inject
     IViewPopup viewPopup;
+
+    @Inject
+    ICacheSettingsPrivacy cacheSettingsPrivacy;
 
     public PresenterAdapterExploreImages() {
         ApplicationRingoid.getComponent().inject(this);
@@ -67,5 +71,10 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
     public boolean onClickIconLike(int adapterPosition, int itemPosition) {
         cacheExplore.changeLiked(adapterPosition, itemPosition);
         return cacheExplore.isLiked(adapterPosition, itemPosition);
+    }
+
+    @Override
+    public boolean isLikeable() {
+        return !cacheSettingsPrivacy.isPrivacyPhotosNoone();
     }
 }

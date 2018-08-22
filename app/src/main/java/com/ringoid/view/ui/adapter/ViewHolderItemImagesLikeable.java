@@ -9,23 +9,38 @@ import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
+import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.view.presenter.IPresenterItemImageLikeable;
+import com.ringoid.view.ui.dialog.DialogHiddenMode;
 import com.ringoid.view.ui.dialog.DialogMenuImageOther;
+import com.ringoid.view.ui.dialog.callback.IDialogHiddenModeListener;
 import com.ringoid.view.ui.util.AnimationLike;
 import com.ringoid.view.ui.util.GlideApp;
 
-abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
+import javax.inject.Inject;
+
+public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
         implements View.OnClickListener, View.OnLongClickListener {
 
-    private AnimationLike animationLike;
-    private View ivLikeAnimated;
+    @Inject
+    IPresenterItemImageLikeable presenterItemImageLikeable;
+
     ImageView ivItem, ivLike;
 
     int adapterPosition;
+
+    private ListenerDialogHiddenMode listenerDialogHiddenMode;
+    private AnimationLike animationLike;
+    private View ivLikeAnimated;
+
     private DialogMenuImageOther dialogMenuRank;
+    private DialogHiddenMode dialogHiddenMode;
 
     ViewHolderItemImagesLikeable(ViewGroup container, int layoutRes) {
         super(container, layoutRes);
+        ApplicationRingoid.getComponent().inject(this);
+
         ivLikeAnimated = itemView.findViewById(R.id.ivLikeAnimated);
         ivItem = itemView.findViewById(R.id.ivContent);
         ivLike = itemView.findViewById(R.id.ivLike);
@@ -35,6 +50,8 @@ abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
 
         itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
         itemView.findViewById(R.id.ivLike).setOnClickListener(this);
+        listenerDialogHiddenMode = new ListenerDialogHiddenMode();
+
     }
 
 
@@ -79,7 +96,8 @@ abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
                 dialogMenuRank.cancel();
             dialogMenuRank = new DialogMenuImageOther(itemView);
             dialogMenuRank.show();
-        }    }
+        }
+    }
 
     void setLiked(boolean isLikes) {
         ivLike.setImageResource(isLikes
@@ -96,5 +114,35 @@ abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
         if (isLiked)
             onClickView(true);
         else setLiked(false);
+    }
+
+    boolean isLikeable() {
+        if (!presenterItemImageLikeable.isHiddenMode()) return true;
+        if (!presenterItemImageLikeable.isDialogHiddenShow()) return false;
+
+        if (dialogHiddenMode != null) dialogHiddenMode.cancel();
+
+        dialogHiddenMode = new DialogHiddenMode(itemView.getContext(), listenerDialogHiddenMode);
+        dialogHiddenMode.show();
+
+
+        return false;
+    }
+
+    private class ListenerDialogHiddenMode implements IDialogHiddenModeListener {
+        @Override
+        public void onSelectAbout(boolean b) {
+            presenterItemImageLikeable.onClickAbout(b);
+        }
+
+        @Override
+        public void onSelectOK(boolean b) {
+            presenterItemImageLikeable.onClickOK(b);
+        }
+
+        @Override
+        public void onSelectPrivacy(boolean b) {
+            presenterItemImageLikeable.onClickPrivacy(b);
+        }
     }
 }

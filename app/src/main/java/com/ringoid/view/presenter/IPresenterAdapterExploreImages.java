@@ -13,4 +13,6 @@ public interface IPresenterAdapterExploreImages {
     void onLongClick(int adapterPosition, int itemPosition);
 
     boolean onClickIconLike(int adapterPosition, int itemPosition);
+
+    boolean isLikeable();
 }

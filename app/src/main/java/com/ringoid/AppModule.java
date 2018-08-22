@@ -52,6 +52,7 @@ import com.ringoid.view.presenter.IPresenterAdapterProfile;
 import com.ringoid.view.presenter.IPresenterBlacklistPhones;
 import com.ringoid.view.presenter.IPresenterChat;
 import com.ringoid.view.presenter.IPresenterExplore;
+import com.ringoid.view.presenter.IPresenterItemImageLikeable;
 import com.ringoid.view.presenter.IPresenterLikes;
 import com.ringoid.view.presenter.IPresenterMessages;
 import com.ringoid.view.presenter.IPresenterPagesContainer;
@@ -72,6 +73,7 @@ import com.ringoid.view.presenter.PresenterAdapterProfile;
 import com.ringoid.view.presenter.PresenterBlacklistPhones;
 import com.ringoid.view.presenter.PresenterChat;
 import com.ringoid.view.presenter.PresenterExplore;
+import com.ringoid.view.presenter.PresenterItemImageLikeable;
 import com.ringoid.view.presenter.PresenterLikes;
 import com.ringoid.view.presenter.PresenterMessages;
 import com.ringoid.view.presenter.PresenterPagesContainer;
@@ -260,6 +262,13 @@ class AppModule {
     @Singleton
     IPresenterAdapterMessagesImages getPresenterAdapterMessagesImages() {
         return new PresenterAdapterMessagesImages();
+    }
+
+
+    @Provides
+    @Singleton
+    IPresenterItemImageLikeable getPresenterItemImageLikeable() {
+        return new PresenterItemImageLikeable();
     }
 
     @Provides

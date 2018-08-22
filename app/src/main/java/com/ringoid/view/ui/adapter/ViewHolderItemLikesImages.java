@@ -41,6 +41,8 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
     public void onClick(View v) {
         super.onClick(v);
         if (v == itemView) {
+            if (!isLikeable()) return;
+
             presenterAdapterLikesImages.onClickLike(adapterPosition, getAdapterPosition());
             super.onClickView(presenterAdapterLikesImages.isLiked(adapterPosition, getAdapterPosition()));
         }
