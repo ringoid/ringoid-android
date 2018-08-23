@@ -27,4 +27,10 @@ public interface ICacheTutorial {
     boolean isShowDialogExplore();
 
     void setDialogExploreShow(boolean isShow);
+
+    void resetLikesNum();
+
+    void setLikesNum(String itemId);
+
+    int getImageLikes();
 }

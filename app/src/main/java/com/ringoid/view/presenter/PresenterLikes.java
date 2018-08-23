@@ -29,6 +29,7 @@ public class PresenterLikes implements IPresenterLikes {
     @Override
     public void onCreateView() {
         cacheTutorial.resetLikes();
+        cacheTutorial.resetLikesNum();
     }
 
     @Override

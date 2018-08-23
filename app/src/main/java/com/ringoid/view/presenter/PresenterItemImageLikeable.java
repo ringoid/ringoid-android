@@ -5,10 +5,13 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.IViewDialogs;
 
 import javax.inject.Inject;
 
 public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
+
+    private static int MAX_LIKES_DIALOG_SHOW = 3;
 
     @Inject
     ICacheSettingsPrivacy cacheSettingsPrivacy;
@@ -18,6 +21,9 @@ public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
 
     @Inject
     INavigator navigator;
+
+    @Inject
+    IViewDialogs viewDialogs;
 
     public PresenterItemImageLikeable() {
         ApplicationRingoid.getComponent().inject(this);
@@ -48,5 +54,13 @@ public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
     public void onClickPrivacy(boolean b) {
         cacheTutorial.setDialogHiddenModeShow(b);
         navigator.navigateSettingsPrivacy(true);
+    }
+
+    @Override
+    public void checkLikesDialog() {
+        if (cacheTutorial.getImageLikes() < MAX_LIKES_DIALOG_SHOW) return;
+
+        cacheTutorial.resetLikesNum();
+        viewDialogs.showDialogExplore();
     }
 }

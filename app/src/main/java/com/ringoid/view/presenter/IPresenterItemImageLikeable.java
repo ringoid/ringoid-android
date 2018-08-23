@@ -11,4 +11,6 @@ public interface IPresenterItemImageLikeable {
     void onClickOK(boolean b);
 
     void onClickPrivacy(boolean b);
+
+    void checkLikesDialog();
 }

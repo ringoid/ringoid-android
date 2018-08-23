@@ -41,6 +41,7 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
         checkLikesTutorial(adapterPosition, itemPosition);
         checkLikedAlready(adapterPosition, itemPosition);
         cacheExplore.setLiked(adapterPosition, itemPosition);
+        cacheTutorial.setLikesNum(cacheExplore.getItemId(adapterPosition, itemPosition));
     }
 
     private void checkLikedAlready(int adapterPosition, int itemPosition) {

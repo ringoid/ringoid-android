@@ -4,7 +4,6 @@ package com.ringoid.view.presenter;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
-import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.view.IViewPopup;
 
@@ -35,6 +34,7 @@ public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages
         checkLikesTutorial(adapterPosition, itemPosition);
         checkLikedAlready(adapterPosition, itemPosition);
         cacheLikes.setLiked(adapterPosition, itemPosition);
+        cacheTutorial.setLikesNum(cacheLikes.getItemId(adapterPosition, itemPosition));
     }
 
     private void checkLikedAlready(int adapterPosition, int itemPosition) {

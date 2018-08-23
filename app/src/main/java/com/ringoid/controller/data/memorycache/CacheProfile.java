@@ -9,9 +9,9 @@ public class CacheProfile implements ICacheProfile {
 
     private final String JSON_DATA =
             "{\"urls\":[" +
-                    "{\"url\":\"m1/01.jpg\",\"ratio\":0.67,\"likes\":312}," +
-                    "{\"url\":\"m1/02.jpg\",\"ratio\":1.22,\"likes\":54}," +
-                    "{\"url\":\"m1/03.jpg\",\"ratio\":0.75,\"likes\":0}" +
+                    "{\"url\":\"m1/01.jpg\",\"likes\":312}," +
+                    "{\"url\":\"m1/02.jpg\",\"likes\":54}," +
+                    "{\"url\":\"m1/03.jpg\",\"likes\":0}" +
                     "]}";
 
     private DataProfile data;

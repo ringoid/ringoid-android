@@ -35,9 +35,18 @@ public class DataProfile {
         urls.get(itemPosition).isLiked = !urls.get(itemPosition).isLiked;
     }
 
+    public String getImageId(int itemPosition) {
+        return urls.get(itemPosition).getId();
+    }
+
     private class DataImage {
         private String url;
+        private String id;
         private int likes;
         private boolean isLiked;
+
+        public String getId() {
+            return id;
+        }
     }
 }

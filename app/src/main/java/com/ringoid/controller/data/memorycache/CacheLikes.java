@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public class CacheLikes implements ICacheLikes {
 
     private final String JSON_DATA = "{ \"data\":[" +
-            "{\"urls\":[{\"url\":\"f4/01.jpg\",\"ratio\":1.55},{\"url\":\"f4/02.jpg\",\"ratio\":0.946},{\"url\":\"f4/03.jpg\",\"ratio\":0.667},{\"url\":\"f4/04.jpg\",\"ratio\":0.75}]}," +
-            "{\"urls\":[{\"url\":\"f5/01.jpg\",\"ratio\":1.5},{\"url\":\"f5/02.jpg\",\"ratio\":0.56},{\"url\":\"f5/03.jpg\",\"ratio\":1.5},{\"url\":\"f5/04.png\",\"ratio\":1.33},{\"url\":\"f5/05.jpg\",\"ratio\":0.665}]}," +
-            "{\"urls\":[{\"url\":\"f9/01.jpg\",\"ratio\":1.5},{\"url\":\"f9/02.jpg\",\"ratio\":1.26},{\"url\":\"f9/03.jpg\",\"ratio\":0.75},{\"url\":\"f9/04.jpg\",\"ratio\":0.625}]}" +
+            "{\"urls\":[{\"id\":\"111\",\"url\":\"f4/01.jpg\"}, {\"id\":\"112\",\"url\":\"f4/02.jpg\"},{\"url\":\"f4/03.jpg\"}, {\"id\":\"113\",\"url\":\"f4/04.jpg\"}]}," +
+            "{\"urls\":[{\"id\":\"121\",\"url\":\"f5/01.jpg\"}, {\"id\":\"122\",\"url\":\"f5/02.jpg\"},{\"url\":\"f5/03.jpg\"}, {\"id\":\"123\",\"url\":\"f5/04.png\"},{\"id\":\"124\",\"url\":\"f5/05.jpg\"}]}," +
+            "{\"urls\":[{\"id\":\"131\",\"url\":\"f9/01.jpg\"}, {\"id\":\"132\",\"url\":\"f9/02.jpg\"},{\"url\":\"f9/03.jpg\"}, {\"id\":\"133\",\"url\":\"f9/04.jpg\"}]}" +
             "]  }";
 
     private ArrayList<DataProfile> data;
@@ -56,6 +56,11 @@ public class CacheLikes implements ICacheLikes {
     @Override
     public void changeLiked(int adapterPosition, int itemPosition) {
         data.get(adapterPosition).changeLiked(itemPosition);
+    }
+
+    @Override
+    public String getItemId(int adapterPosition, int itemPosition) {
+        return data.get(adapterPosition).getImageId(itemPosition);
     }
 
 }

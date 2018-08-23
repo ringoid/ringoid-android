@@ -12,6 +12,8 @@ public class CacheTutorial implements ICacheTutorial {
     private boolean isShowDialogProfileLikes;
     private boolean isShowDialogHiddenMode;
     private boolean isShowDialogExplore;
+    private String imageLikesId;
+    private int imageLikes;
 
     public CacheTutorial() {
         resetLikes();
@@ -19,6 +21,7 @@ public class CacheTutorial implements ICacheTutorial {
         isShowDialogHiddenMode = true;
         isShowDialogProfileLikes = true;
         isShowDialogExplore = true;
+        resetLikesNum();
     }
 
     @Override
@@ -79,5 +82,27 @@ public class CacheTutorial implements ICacheTutorial {
     @Override
     public void setDialogExploreShow(boolean isShow) {
         isShowDialogExplore = isShow;
+    }
+
+    @Override
+    public void resetLikesNum() {
+        imageLikes = 0;
+        imageLikesId = null;
+    }
+
+    @Override
+    public void setLikesNum(String itemId) {
+        if (imageLikesId != null && imageLikesId.equals(itemId)) {
+            ++imageLikes;
+            return;
+        }
+
+        imageLikes = 1;
+        imageLikesId = itemId;
+    }
+
+    @Override
+    public int getImageLikes() {
+        return imageLikes;
     }
 }
