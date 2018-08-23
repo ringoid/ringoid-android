@@ -8,4 +8,6 @@ public interface ICacheStorage {
     <T> T readObject(FileEnum fileEnum, Class<T> tClass);
 
     void writeData(FileEnum fileEnum, Object data);
+
+    void removeData(FileEnum user);
 }

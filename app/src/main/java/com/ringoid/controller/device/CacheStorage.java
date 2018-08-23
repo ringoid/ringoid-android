@@ -34,6 +34,14 @@ public class CacheStorage implements ICacheStorage {
         writeObjectToFile(data, fileEnum);
     }
 
+    @Override
+    public void removeData(FileEnum fileEnum) {
+        if (refContext == null || refContext.get() == null) return;
+
+        File file = new File(refContext.get().getFilesDir(), fileEnum.getFilename());
+        file.delete();
+    }
+
     private synchronized void writeObjectToFile(Object data, FileEnum fileEnum) {
         if (refContext == null || refContext.get() == null) return;
 
