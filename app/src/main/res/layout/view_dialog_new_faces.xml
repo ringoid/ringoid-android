@@ -1,45 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:paddingTop="20dp"
-        android:text="@string/dialog_new_faces_title"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:text="@string/dialog_new_faces_message"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textSize="17sp" />
-
-    <CheckBox
-        android:id="@+id/cbShowAgain"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:paddingStart="16dp"
-        android:text="@string/message_dialog_show_again"
-        android:textSize="17sp" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="20dp"
+                android:text="@string/dialog_new_faces_title"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:text="@string/dialog_new_faces_message"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textSize="17sp" />
+
+            <CheckBox
+                android:id="@+id/cbShowAgain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:paddingStart="16dp"
+                android:text="@string/message_dialog_show_again"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginTop="16dp"
-        android:orientation="horizontal">
+        android:gravity="end"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvAbout"
