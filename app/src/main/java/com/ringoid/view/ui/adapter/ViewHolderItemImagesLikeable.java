@@ -108,11 +108,6 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
     void onClickView(boolean liked) {
         showLikeAnimationSmall(liked);
         showLikeAnimation();
-        checkLikesDialog();
-    }
-
-    private void checkLikesDialog() {
-        presenterItemImageLikeable.checkLikesDialog();
     }
 
     void onClickIconLike(boolean isLiked) {

@@ -13,6 +13,8 @@ import javax.inject.Inject;
 
 public class PresenterAdapterExploreImages implements IPresenterAdapterExploreImages {
 
+    private static int MAX_LIKES_DIALOG_SHOW = 3;
+
     @Inject
     ICacheExplore cacheExplore;
 
@@ -24,6 +26,7 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
 
     @Inject
     ICacheSettingsPrivacy cacheSettingsPrivacy;
+
     @Inject
     IViewDialogs viewDialogs;
 
@@ -41,7 +44,16 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
         checkLikesTutorial(adapterPosition, itemPosition);
         checkLikedAlready(adapterPosition, itemPosition);
         cacheExplore.setLiked(adapterPosition, itemPosition);
+        checkLikesDialog(adapterPosition, itemPosition);
+    }
+
+    private void checkLikesDialog(int adapterPosition, int itemPosition) {
         cacheTutorial.setLikesNum(cacheExplore.getItemId(adapterPosition, itemPosition));
+
+        if (cacheTutorial.getImageLikes() < MAX_LIKES_DIALOG_SHOW) return;
+
+        cacheTutorial.resetLikesNum();
+        viewDialogs.showDialogExplore();
     }
 
     private void checkLikedAlready(int adapterPosition, int itemPosition) {
