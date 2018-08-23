@@ -30,12 +30,6 @@ public class CacheTutorial implements ICacheTutorial {
     }
 
     @Override
-    public void resetLikes() {
-        getData().isLikesShown = false;
-        updateData();
-    }
-
-    @Override
     public boolean isLikesShown() {
         return getData().isLikesShown;
     }

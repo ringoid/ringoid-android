@@ -7,4 +7,6 @@ public interface IViewDialogs {
     void showDialogExplore();
 
     void set(Context context);
+
+    void showDialogLikes();
 }

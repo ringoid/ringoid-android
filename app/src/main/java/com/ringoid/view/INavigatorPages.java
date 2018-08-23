@@ -19,4 +19,6 @@ public interface INavigatorPages {
     void navigateCurrentPage();
 
     boolean isPageExplore();
+
+    boolean isPageLikes();
 }

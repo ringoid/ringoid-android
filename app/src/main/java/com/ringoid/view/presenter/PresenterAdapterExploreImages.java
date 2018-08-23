@@ -41,9 +41,9 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
 
     @Override
     public void onClickLike(int adapterPosition, int itemPosition) {
-        checkLikesTutorial(adapterPosition, itemPosition);
         checkLikedAlready(adapterPosition, itemPosition);
         cacheExplore.setLiked(adapterPosition, itemPosition);
+        checkLikesTutorial(adapterPosition, itemPosition);
         checkLikesDialog(adapterPosition, itemPosition);
     }
 

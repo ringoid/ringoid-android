@@ -9,6 +9,7 @@ import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
+import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
@@ -46,6 +47,10 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Inject
     IPresenterExplore presenterExplore;
 
+    @Inject
+    IPresenterLikes presenterLikes;
+    @Inject
+    ICacheTutorial cacheTutorial;
     private INavigatorPagesListener listenerNavigatorPages;
     private ListenerCacheScroll listenerCacheScroll;
     private WeakReference<IPresenterPagesContainerListener> refListener;
@@ -93,6 +98,16 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Override
     public void onClickPageLikes() {
         cacheScroll.resetCache();
+
+
+        if (navigatorPages.isPageLikes()) {
+            if (!presenterLikes.isPositionTop())
+                presenterLikes.scrollTop();
+            else viewDialogs.showDialogLikes();
+
+            return;
+        }
+
         navigatorPages.navigateLikes();
     }
 
@@ -140,10 +155,16 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     @Override
     public void onClickToolbar() {
-        if (navigatorPages.isPageExplore()) {
+        if (navigatorPages.isPageExplore() && cacheTutorial.isShowDialogExplore()) {
             viewDialogs.showDialogExplore();
             return;
         }
+
+        if (navigatorPages.isPageLikes() && cacheTutorial.isShowDialogLikes()) {
+            viewDialogs.showDialogLikes();
+            return;
+        }
+
 
         navigator.navigateWelcome(false);
     }

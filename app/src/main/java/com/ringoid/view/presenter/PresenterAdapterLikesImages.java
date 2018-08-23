@@ -5,11 +5,14 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
+import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 
 import javax.inject.Inject;
 
 public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages {
+
+    private static int MAX_LIKES_DIALOG_SHOW = 3;
 
     @Inject
     ICacheLikes cacheLikes;
@@ -19,6 +22,9 @@ public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages
 
     @Inject
     IViewPopup viewPopup;
+
+    @Inject
+    IViewDialogs viewDialogs;
 
     public PresenterAdapterLikesImages() {
         ApplicationRingoid.getComponent().inject(this);
@@ -31,10 +37,19 @@ public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages
 
     @Override
     public void onClickLike(int adapterPosition, int itemPosition) {
-        checkLikesTutorial(adapterPosition, itemPosition);
         checkLikedAlready(adapterPosition, itemPosition);
         cacheLikes.setLiked(adapterPosition, itemPosition);
+        checkLikesTutorial(adapterPosition, itemPosition);
+        checkLikesDialog(adapterPosition, itemPosition);
+    }
+
+    private void checkLikesDialog(int adapterPosition, int itemPosition) {
         cacheTutorial.setLikesNum(cacheLikes.getItemId(adapterPosition, itemPosition));
+
+        if (cacheTutorial.getImageLikes() < MAX_LIKES_DIALOG_SHOW) return;
+
+        cacheTutorial.resetLikesNum();
+        viewDialogs.showDialogLikes();
     }
 
     private void checkLikedAlready(int adapterPosition, int itemPosition) {
@@ -46,7 +61,7 @@ public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages
         if (cacheTutorial.isLikesShown() || cacheLikes.isLiked(adapterPosition, itemPosition))
             return;
         cacheTutorial.setLikesShown();
-        viewPopup.showToast(R.string.message_likes_tutorial);
+        viewDialogs.showDialogLikes();
     }
 
     @Override
@@ -61,7 +76,13 @@ public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages
 
     @Override
     public void onLongClick(int adapterPosition, int itemPosition) {
+        if (cacheTutorial.isShowDialogLikes()) {
+            viewDialogs.showDialogLikes();
+            return;
+        }
+
         viewPopup.showToast(R.string.message_likes_other);
+
     }
 
     @Override
