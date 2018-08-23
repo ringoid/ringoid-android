@@ -36,7 +36,7 @@ public class CacheUser implements ICacheUser {
     @Override
     public void resetCache() {
         data = null;
-        cacheStorage.writeData(FileEnum.USER, null);
+        cacheStorage.removeData(FileEnum.USER);
     }
 
     private DataUser getData() {

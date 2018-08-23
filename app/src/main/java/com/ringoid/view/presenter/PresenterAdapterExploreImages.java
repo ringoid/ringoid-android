@@ -53,7 +53,7 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
         if (cacheTutorial.isExploreShown() || cacheExplore.isLiked(adapterPosition, itemPosition))
             return;
         cacheTutorial.setExploreShown();
-        viewPopup.showToast(R.string.message_explore_like_tutorial);
+        viewDialogs.showDialogExplore();
     }
 
     @Override

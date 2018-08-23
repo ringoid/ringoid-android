@@ -3,6 +3,7 @@ package com.ringoid;
 
 import com.ringoid.controller.data.memorycache.CacheScroll;
 import com.ringoid.controller.data.memorycache.CacheToken;
+import com.ringoid.controller.data.memorycache.CacheTutorial;
 import com.ringoid.controller.data.memorycache.CacheUser;
 import com.ringoid.controller.data.repository.RepositoryRegister;
 import com.ringoid.controller.data.repository.RepositoryRegisterConfirm;
@@ -188,4 +189,6 @@ public interface AppComponent {
     void inject(PresenterItemImageLikeable presenterItemImageLikeable);
 
     void inject(ViewDialogs viewDialogs);
+
+    void inject(CacheTutorial cacheTutorial);
 }

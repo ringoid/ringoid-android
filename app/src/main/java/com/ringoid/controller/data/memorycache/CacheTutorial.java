@@ -3,106 +3,129 @@
 
 package com.ringoid.controller.data.memorycache;
 
+import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.FileEnum;
+import com.ringoid.controller.device.ICacheStorage;
+import com.ringoid.model.DataTutorial;
+
+import javax.inject.Inject;
+
 public class CacheTutorial implements ICacheTutorial {
 
-    //todo store in prererences
+    @Inject
+    ICacheStorage cacheStorage;
 
-    private boolean isLikesShown;
-    private boolean isExploreShown;
-    private boolean isShowDialogProfileLikes;
-    private boolean isShowDialogHiddenMode;
-    private boolean isShowDialogExplore;
-    private String imageLikesId;
-    private int imageLikes;
+    private DataTutorial dataTutorial;
 
     public CacheTutorial() {
-        resetLikes();
-        resetExplore();
-        isShowDialogHiddenMode = true;
-        isShowDialogProfileLikes = true;
-        isShowDialogExplore = true;
-        resetLikesNum();
+        ApplicationRingoid.getComponent().inject(this);
+    }
+
+    private DataTutorial getData() {
+        if (dataTutorial == null)
+            dataTutorial = cacheStorage.readObject(FileEnum.TUTORIAL, DataTutorial.class);
+
+        if (dataTutorial == null) dataTutorial = new DataTutorial();
+        return dataTutorial;
     }
 
     @Override
     public void resetLikes() {
-        this.isLikesShown = false;
+        getData().isLikesShown = false;
+        updateData();
     }
 
     @Override
     public boolean isLikesShown() {
-        return isLikesShown;
+        return getData().isLikesShown;
     }
 
     @Override
     public void setLikesShown() {
-        this.isLikesShown = true;
-    }
-
-    @Override
-    public void resetExplore() {
-        isExploreShown = false;
+        getData().isLikesShown = true;
+        updateData();
     }
 
     @Override
     public boolean isExploreShown() {
-        return isExploreShown;
+        return getData().isExploreShown;
     }
 
     @Override
     public void setExploreShown() {
-        isExploreShown = true;
+        getData().isExploreShown = true;
+        updateData();
     }
 
     @Override
     public void setProfileDialogLikeShow(boolean isShow) {
-        this.isShowDialogProfileLikes = isShow;
+        getData().isShowDialogProfileLikes = isShow;
+        updateData();
     }
 
     @Override
     public boolean isShowDialogLikes() {
-        return isShowDialogProfileLikes;
+        return getData().isShowDialogProfileLikes;
     }
 
     @Override
     public boolean isShowDialogHiddenMode() {
-        return isShowDialogHiddenMode;
+        return getData().isShowDialogHiddenMode;
     }
 
     @Override
     public void setDialogHiddenModeShow(boolean isShow) {
-        isShowDialogHiddenMode = isShow;
+        getData().isShowDialogHiddenMode = isShow;
+        updateData();
     }
 
     @Override
     public boolean isShowDialogExplore() {
-        return isShowDialogExplore;
+        return getData().isShowDialogExplore;
     }
 
     @Override
     public void setDialogExploreShow(boolean isShow) {
-        isShowDialogExplore = isShow;
+        getData().isShowDialogExplore = isShow;
+        updateData();
     }
 
     @Override
     public void resetLikesNum() {
-        imageLikes = 0;
-        imageLikesId = null;
+        getData().imageLikes = 0;
+        getData().imageLikesId = null;
+        updateData();
     }
 
     @Override
     public void setLikesNum(String itemId) {
-        if (imageLikesId != null && imageLikesId.equals(itemId)) {
-            ++imageLikes;
+        if (getData().imageLikesId != null && getData().imageLikesId.equals(itemId)) {
+            increaseImageLikes();
             return;
         }
 
-        imageLikes = 1;
-        imageLikesId = itemId;
+        getData().imageLikes = 1;
+        getData().imageLikesId = itemId;
+        updateData();
+    }
+
+    private void increaseImageLikes() {
+        ++getData().imageLikes;
+        updateData();
+    }
+
+    private void updateData() {
+        cacheStorage.writeData(FileEnum.TUTORIAL, dataTutorial);
     }
 
     @Override
     public int getImageLikes() {
-        return imageLikes;
+        return getData().imageLikes;
+    }
+
+    @Override
+    public void resetCache() {
+        dataTutorial = null;
+        cacheStorage.removeData(FileEnum.TUTORIAL);
     }
 }

@@ -33,7 +33,6 @@ public class PresenterExplore implements IPresenterExplore {
 
     @Override
     public void onCreateView() {
-        cacheTutorial.resetExplore();
         cacheTutorial.resetLikesNum();
     }
 

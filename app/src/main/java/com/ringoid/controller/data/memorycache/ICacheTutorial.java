@@ -10,8 +10,6 @@ public interface ICacheTutorial {
 
     void setLikesShown();
 
-    void resetExplore();
-
     boolean isExploreShown();
 
     void setExploreShown();
@@ -33,4 +31,6 @@ public interface ICacheTutorial {
     void setLikesNum(String itemId);
 
     int getImageLikes();
+
+    void resetCache();
 }
