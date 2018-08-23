@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
+import com.ringoid.controller.data.memorycache.ICacheToken;
+import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.repository.IRepositoryRegister;
 import com.ringoid.controller.data.repository.IRepositoryRegisterConfirm;
@@ -35,6 +37,12 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Inject
     ICacheUser cacheUser;
+
+    @Inject
+    ICacheTutorial cacheTutorial;
+
+    @Inject
+    ICacheToken cacheToken;
 
     private ListenerRegisterConfirm listenerRegisterConfirm;
     private ListenerRegister listenerRegister;
@@ -108,7 +116,7 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Override
     public void onClickRegister() {
-
+        cacheToken.setToken("123");
         navigator.navigateFeed();
     }
 
@@ -121,6 +129,7 @@ public class PresenterRegister implements IPresenterRegister {
     @Override
     public void onCreateView() {
         cacheUser.resetCache();
+        cacheTutorial.resetCache();
     }
 
     private void showDateBirth(long time) {
