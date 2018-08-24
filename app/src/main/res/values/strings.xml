@@ -66,7 +66,7 @@
     <string name="settings_privacy_activity">Activity</string>
     <string name="settings_privacy_policy">Data protection</string>
     <string name="settings_privacy_item_value_only_me">Only me</string>
-    <string name="settings_privacy_location_distance">Minimum safety distance</string>
+    <string name="settings_privacy_location_distance">Safety distance</string>
     <string name="settings_privacy_age_who">Who can see your age?</string>
     <string name="settings_privacy_policy_data_storage">Personal data that Ringoid holds about you</string>
     <string name="settings_privacy_policy_privacy">Privacy Notice</string>
