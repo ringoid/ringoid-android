@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -111,6 +112,9 @@ public class FragmentLogin extends FragmentBase
 
         etCodeSMS.addTextChangedListener(new SMSTextChangedListener());
 
+        cbTerms.setOnCheckedChangeListener(new ListenerCheckedChangeTerms());
+        cbAge.setOnCheckedChangeListener(new ListenerCheckedChangeAge());
+
     }
 
     @Override
@@ -136,7 +140,7 @@ public class FragmentLogin extends FragmentBase
                 return;
             }
 
-            setPhone();
+            setPhone(true);
         }
 
         if (view.getId() == R.id.tvCodeSMSConfirm) {
@@ -226,8 +230,8 @@ public class FragmentLogin extends FragmentBase
         return false;
     }
 
-    private void setPhone() {
-        presenterRegister.onClickLoginPhoneVerify(etPhoneCode.getText().toString(), etPhone.getText().toString());
+    private void setPhone(boolean isValid) {
+        presenterRegister.onClickLoginPhoneVerify(etPhoneCode.getText().toString(), etPhone.getText().toString(), isValid);
     }
 
     private class ListenerPresenter implements IPresenterRegisterListener {
@@ -300,7 +304,7 @@ public class FragmentLogin extends FragmentBase
     private class ListenerDialogPhoneValid implements IDialogPhoneValidListener {
         @Override
         public void onConfirm() {
-            setPhone();
+            setPhone(false);
         }
     }
 
@@ -362,6 +366,20 @@ public class FragmentLogin extends FragmentBase
             vContainerSMSCode.setBackgroundResource(drawableRes);
             etCodeSMS.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
             etCodeSMS.setTextColor(color);
+        }
+    }
+
+    private class ListenerCheckedChangeTerms implements CompoundButton.OnCheckedChangeListener {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            presenterRegister.setCheckedTerms(isChecked);
+        }
+    }
+
+    private class ListenerCheckedChangeAge implements CompoundButton.OnCheckedChangeListener {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            presenterRegister.setCheckedAge(isChecked);
         }
     }
 }

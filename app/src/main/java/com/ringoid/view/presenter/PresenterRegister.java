@@ -9,8 +9,8 @@ import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
-import com.ringoid.controller.data.repository.IRepositoryRegister;
-import com.ringoid.controller.data.repository.IRepositoryRegisterConfirm;
+import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
+import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterConfirmListener;
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterListener;
 import com.ringoid.model.SEX;
@@ -24,10 +24,10 @@ import javax.inject.Inject;
 public class PresenterRegister implements IPresenterRegister {
 
     @Inject
-    IRepositoryRegister repositoryRegister;
+    IRepositoryRegisterPhone repositoryRegister;
 
     @Inject
-    IRepositoryRegisterConfirm repositoryRegisterCodeConfirm;
+    IRepositoryRegisterCodeConfirm repositoryRegisterCodeConfirm;
 
     @Inject
     INavigator navigator;
@@ -89,19 +89,29 @@ public class PresenterRegister implements IPresenterRegister {
     }
 
     @Override
-    public void onClickLoginPhoneVerify(String code, String phone) {
+    public void onClickLoginPhoneVerify(String code, String phone, boolean isValid) {
         if (TextUtils.isEmpty(phone)) {
             notifyError(R.string.error_phone);
             return;
         }
 
         cacheUser.setPhone(code, phone);
-        repositoryRegister.request(phone);
+        cacheRegister.setPhoneValid(isValid);
+        repositoryRegister.request();
     }
 
     @Override
-    public void onClickCodeSMSConfirm(String code) {
-        if (TextUtils.isEmpty(code) || code.length() != 4) {
+    public void onClickCodeSMSConfirm(String param) {
+        if (TextUtils.isEmpty(param) || param.length() != 4) {
+            showToastSMSError();
+            return;
+        }
+
+        int code;
+
+        try {
+            code = Integer.valueOf(param);
+        } catch (NumberFormatException e) {
             showToastSMSError();
             return;
         }
@@ -130,6 +140,16 @@ public class PresenterRegister implements IPresenterRegister {
     public void onCreateView() {
         cacheUser.resetCache();
         cacheTutorial.resetCache();
+    }
+
+    @Override
+    public void setCheckedTerms(boolean isChecked) {
+        cacheRegister.setDateTerms(isChecked);
+    }
+
+    @Override
+    public void setCheckedAge(boolean isChecked) {
+        cacheRegister.setDateAge(isChecked);
     }
 
     private void showDateBirth(long time) {

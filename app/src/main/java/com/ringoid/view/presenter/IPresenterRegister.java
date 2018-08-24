@@ -13,7 +13,7 @@ public interface IPresenterRegister {
 
     void onClickLoginTermsAgreement(boolean isAgreementChecked, boolean checked);
 
-    void onClickLoginPhoneVerify(String code, String phone);
+    void onClickLoginPhoneVerify(String code, String phone, boolean isValid);
 
     void onClickCodeSMSConfirm(String code);
 
@@ -22,4 +22,8 @@ public interface IPresenterRegister {
     void onDataBirthSet(long timeInMillis);
 
     void onCreateView();
+
+    void setCheckedTerms(boolean isChecked);
+
+    void setCheckedAge(boolean isChecked);
 }

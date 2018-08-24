@@ -2,14 +2,14 @@
 package com.ringoid.controller.data.network.response;
 
 public class ResponseRegisterCodeConfirm extends ResponseBase {
-    private String token;
-    private int registered;
+    private String accessToken;
+    private boolean accountAlreadyExist;
 
     public String getToken() {
-        return token;
+        return accessToken;
     }
 
     public boolean isRegistered() {
-        return registered == 1;
+        return accountAlreadyExist;
     }
 }

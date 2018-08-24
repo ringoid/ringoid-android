@@ -3,10 +3,13 @@ package com.ringoid;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.ringoid.controller.data.memorycache.CacheBlacklist;
 import com.ringoid.controller.data.memorycache.CacheChatMessages;
 import com.ringoid.controller.data.memorycache.CacheExplore;
 import com.ringoid.controller.data.memorycache.CacheLikes;
+import com.ringoid.controller.data.memorycache.CacheLocale;
 import com.ringoid.controller.data.memorycache.CacheMessages;
 import com.ringoid.controller.data.memorycache.CacheProfile;
 import com.ringoid.controller.data.memorycache.CacheRegister;
@@ -19,6 +22,7 @@ import com.ringoid.controller.data.memorycache.ICacheBlacklist;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheExplore;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
+import com.ringoid.controller.data.memorycache.ICacheLocale;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
@@ -27,9 +31,10 @@ import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
-import com.ringoid.controller.data.repository.IRepositoryRegister;
-import com.ringoid.controller.data.repository.IRepositoryRegisterConfirm;
-import com.ringoid.controller.data.repository.RepositoryRegister;
+import com.ringoid.controller.data.network.IApiRingoid;
+import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
+import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
+import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.RepositoryRegisterConfirm;
 import com.ringoid.controller.device.CacheStorage;
 import com.ringoid.controller.device.ICacheStorage;
@@ -87,11 +92,15 @@ import com.ringoid.view.ui.util.IStatusBarViewHelper;
 import com.ringoid.view.ui.util.StatusBarViewHelper;
 
 import java.lang.ref.WeakReference;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 class AppModule {
@@ -101,6 +110,26 @@ class AppModule {
 
     AppModule(Context context) {
         this.refContext = new WeakReference<>(context);
+    }
+
+    @Provides
+    @Singleton
+    public IApiRingoid getApi() {
+
+        OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                .connectTimeout(1, TimeUnit.MINUTES)
+                .readTimeout(1, TimeUnit.MINUTES);
+        OkHttpClient client = builder.build();
+
+        Gson gson = new GsonBuilder()
+                .create();
+
+        return new Retrofit.Builder()
+                .baseUrl(BuildConfig.API_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+                .create(IApiRingoid.class);
     }
 
     @Provides
@@ -216,6 +245,12 @@ class AppModule {
     @Singleton
     ICacheTutorial getCacheTutorial() {
         return new CacheTutorial();
+    }
+
+    @Provides
+    @Singleton
+    ICacheLocale getCacheLocale() {
+        return new CacheLocale();
     }
 
     @Provides
@@ -347,13 +382,13 @@ class AppModule {
 
     @Provides
     @Singleton
-    IRepositoryRegister getRepositoryRegister() {
-        return new RepositoryRegister();
+    IRepositoryRegisterPhone getRepositoryRegister() {
+        return new RepositoryRegisterPhone();
     }
 
     @Provides
     @Singleton
-    IRepositoryRegisterConfirm getRepositoryRegisterConfirm() {
+    IRepositoryRegisterCodeConfirm getRepositoryRegisterConfirm() {
         return new RepositoryRegisterConfirm();
     }
 

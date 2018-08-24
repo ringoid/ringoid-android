@@ -4,7 +4,9 @@ package com.ringoid.controller.data.memorycache;
 public interface ICacheUser {
     void setPhone(String code, String phone);
 
-    String getPhoneCode();
+    int getPhoneCode();
+
+    String getPhone();
 
     void resetCache();
 }

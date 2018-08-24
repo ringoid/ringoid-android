@@ -25,3 +25,10 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext{
+    PROD = ''
+    STAGE = '"http://lewwnhue55.execute-api.eu-west-1.amazonaws.com"'
+
+    SERVER = STAGE
+}

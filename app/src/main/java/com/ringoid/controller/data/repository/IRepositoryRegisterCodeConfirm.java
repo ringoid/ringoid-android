@@ -3,8 +3,8 @@ package com.ringoid.controller.data.repository;
 
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterConfirmListener;
 
-public interface IRepositoryRegisterConfirm {
+public interface IRepositoryRegisterCodeConfirm {
     void setListener(IRepositoryRegisterConfirmListener listener);
 
-    void request(String textCheck);
+    void request(int code);
 }

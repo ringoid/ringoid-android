@@ -13,4 +13,22 @@ public interface ICacheRegister {
     long getDateBirthMillis();
 
     void setDateBirthMillis(long timeInMillis);
+
+    void setSessionId(String sessionId);
+
+    String getSessionId();
+
+    void setPhoneValid(boolean isValid);
+
+    void setDateTerms(boolean isChecked);
+
+    void setDateAge(boolean isChecked);
+
+    long getDateTerms();
+
+    long getDateAge();
+
+    long getDatePrivacy();
+
+    boolean isPhoneValid();
 }

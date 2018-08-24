@@ -3,8 +3,8 @@ package com.ringoid.controller.data.repository;
 
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterListener;
 
-public interface IRepositoryRegister {
-    void request(String phone);
+public interface IRepositoryRegisterPhone {
+    void request();
 
     void setListener(IRepositoryRegisterListener listener);
 }

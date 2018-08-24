@@ -28,9 +28,25 @@ public class CacheUser implements ICacheUser {
     }
 
     @Override
-    public String getPhoneCode() {
+    public int getPhoneCode() {
         DataUser data = getData();
-        return data == null ? null : data.getCode();
+        if (data == null) return 0;
+
+        int code;
+
+        try {
+            code = Integer.valueOf(data.getCode().replaceAll("[^0-9]", ""));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+
+        return code;
+    }
+
+    @Override
+    public String getPhone() {
+        DataUser data = getData();
+        return data == null ? null : data.getPhone();
     }
 
     @Override
