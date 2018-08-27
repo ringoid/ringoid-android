@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheToken;
+import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 
@@ -16,6 +17,9 @@ public class PresenterActivityMain implements IPresenterActivityMain {
 
     @Inject
     ICacheToken cacheToken;
+
+    @Inject
+    ICacheUser cacheUser;
 
     @Inject
     INavigator navigator;
@@ -32,9 +36,11 @@ public class PresenterActivityMain implements IPresenterActivityMain {
         navigator.set(supportFragmentManager, viewId);
         viewDialogs.set(context);
 
-        if (cacheToken.isTokenExist())
-            navigator.navigateFeed();
-        else navigator.navigateWelcome(true);
+        if (cacheToken.isTokenExist()) {
+            if (cacheUser.isRegistered())
+                navigator.navigateFeed();
+            else navigator.navigateProfileUpdate();
+        } else navigator.navigateWelcome(true);
     }
 
     @Override

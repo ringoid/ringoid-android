@@ -4,6 +4,8 @@ package com.ringoid.controller.data.memorycache;
 public interface ICacheToken {
     boolean isTokenExist();
 
+    String getToken();
+
     void setToken(String token);
 
     void resetCache();

@@ -34,8 +34,10 @@ import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
+import com.ringoid.controller.data.repository.IRepositoryRegisterUserDetails;
+import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
-import com.ringoid.controller.data.repository.RepositoryRegisterConfirm;
+import com.ringoid.controller.data.repository.RepositoryRegisterUserDetails;
 import com.ringoid.controller.device.CacheStorage;
 import com.ringoid.controller.device.ICacheStorage;
 import com.ringoid.view.INavigator;
@@ -389,7 +391,12 @@ class AppModule {
     @Provides
     @Singleton
     IRepositoryRegisterCodeConfirm getRepositoryRegisterConfirm() {
-        return new RepositoryRegisterConfirm();
+        return new RepositoryRegisterCodeConfirm();
     }
 
+    @Provides
+    @Singleton
+    IRepositoryRegisterUserDetails getRepositoryRegisterUserDetails() {
+        return new RepositoryRegisterUserDetails();
+    }
 }

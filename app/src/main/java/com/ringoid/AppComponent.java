@@ -5,8 +5,9 @@ import com.ringoid.controller.data.memorycache.CacheScroll;
 import com.ringoid.controller.data.memorycache.CacheToken;
 import com.ringoid.controller.data.memorycache.CacheTutorial;
 import com.ringoid.controller.data.memorycache.CacheUser;
+import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
-import com.ringoid.controller.data.repository.RepositoryRegisterConfirm;
+import com.ringoid.controller.data.repository.RepositoryRegisterUserDetails;
 import com.ringoid.view.ViewDialogs;
 import com.ringoid.view.ViewPopup;
 import com.ringoid.view.presenter.PresenterActivityMain;
@@ -82,7 +83,7 @@ public interface AppComponent {
 
     void inject(RepositoryRegisterPhone repositoryRegister);
 
-    void inject(RepositoryRegisterConfirm repositoryRegisterConfirm);
+    void inject(RepositoryRegisterCodeConfirm repositoryRegisterConfirm);
 
     void inject(FragmentPages fragmentPages);
 
@@ -191,4 +192,6 @@ public interface AppComponent {
     void inject(ViewDialogs viewDialogs);
 
     void inject(CacheTutorial cacheTutorial);
+
+    void inject(RepositoryRegisterUserDetails repositoryRegisterUserDetails);
 }

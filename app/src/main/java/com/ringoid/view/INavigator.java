@@ -38,4 +38,6 @@ public interface INavigator {
     boolean onBackPressed();
 
     void onActivityResult(int requestCode, int resultCode, Intent data);
+
+    void navigateProfileUpdate();
 }

@@ -9,10 +9,12 @@ import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
-import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
-import com.ringoid.controller.data.repository.callback.IRepositoryRegisterConfirmListener;
-import com.ringoid.controller.data.repository.callback.IRepositoryRegisterListener;
+import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
+import com.ringoid.controller.data.repository.IRepositoryRegisterUserDetails;
+import com.ringoid.controller.data.repository.callback.IRepositoryRegisterCodeConfirmListener;
+import com.ringoid.controller.data.repository.callback.IRepositoryRegisterPhoneListener;
+import com.ringoid.controller.data.repository.callback.IRepositoryRegisterUserDetailsListener;
 import com.ringoid.model.SEX;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
@@ -24,10 +26,13 @@ import javax.inject.Inject;
 public class PresenterRegister implements IPresenterRegister {
 
     @Inject
-    IRepositoryRegisterPhone repositoryRegister;
+    IRepositoryRegisterPhone repositoryRegisterPhone;
 
     @Inject
     IRepositoryRegisterCodeConfirm repositoryRegisterCodeConfirm;
+
+    @Inject
+    IRepositoryRegisterUserDetails repositoryRegisterUserDetails;
 
     @Inject
     INavigator navigator;
@@ -44,14 +49,17 @@ public class PresenterRegister implements IPresenterRegister {
     @Inject
     ICacheToken cacheToken;
 
-    private ListenerRegisterConfirm listenerRegisterConfirm;
-    private ListenerRegister listenerRegister;
+    private ListenerRegisterCodeConfirm listenerRegisterCodeConfirm;
+    private ListenerRegisterPhone listenerRegisterPhone;
+    private ListenerRegisterUserDetails listenerRegisterUserDetails;
+
     private WeakReference<IPresenterRegisterListener> refListener;
 
     public PresenterRegister() {
         ApplicationRingoid.getComponent().inject(this);
-        repositoryRegister.setListener(listenerRegister = new ListenerRegister());
-        repositoryRegisterCodeConfirm.setListener(listenerRegisterConfirm = new ListenerRegisterConfirm());
+        repositoryRegisterPhone.setListener(listenerRegisterPhone = new ListenerRegisterPhone());
+        repositoryRegisterCodeConfirm.setListener(listenerRegisterCodeConfirm = new ListenerRegisterCodeConfirm());
+        repositoryRegisterUserDetails.setListener(listenerRegisterUserDetails = new ListenerRegisterUserDetails());
     }
 
     private void notifyError(int stringId) {
@@ -97,7 +105,7 @@ public class PresenterRegister implements IPresenterRegister {
 
         cacheUser.setPhone(code, phone);
         cacheRegister.setPhoneValid(isValid);
-        repositoryRegister.request();
+        repositoryRegisterPhone.request();
     }
 
     @Override
@@ -107,16 +115,7 @@ public class PresenterRegister implements IPresenterRegister {
             return;
         }
 
-        int code;
-
-        try {
-            code = Integer.valueOf(param);
-        } catch (NumberFormatException e) {
-            showToastSMSError();
-            return;
-        }
-
-        repositoryRegisterCodeConfirm.request(code);
+        repositoryRegisterCodeConfirm.request(param);
     }
 
     private void showToastSMSError() {
@@ -126,8 +125,7 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Override
     public void onClickRegister() {
-        cacheToken.setToken("123");
-        navigator.navigateFeed();
+        repositoryRegisterUserDetails.request();
     }
 
     @Override
@@ -138,8 +136,10 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Override
     public void onCreateView() {
-        cacheUser.resetCache();
-        cacheTutorial.resetCache();
+        if (cacheUser.isRegistered()) {
+            cacheUser.resetCache();
+            cacheTutorial.resetCache();
+        }
     }
 
     @Override
@@ -163,20 +163,26 @@ public class PresenterRegister implements IPresenterRegister {
         refListener.get().navigateNext();
     }
 
-    private class ListenerRegister implements IRepositoryRegisterListener {
+    private class ListenerRegisterPhone implements IRepositoryRegisterPhoneListener {
         @Override
         public void onSuccess() {
             loginGoNext();
         }
     }
 
-    private class ListenerRegisterConfirm implements IRepositoryRegisterConfirmListener {
+    private class ListenerRegisterCodeConfirm implements IRepositoryRegisterCodeConfirmListener {
         @Override
-        public void onSuccess(boolean isRegistered) {
-            if (isRegistered)
+        public void onSuccess() {
+            if (cacheUser.isRegistered())
                 navigator.navigateFeed();
             else loginGoNext();
         }
     }
 
+    private class ListenerRegisterUserDetails implements IRepositoryRegisterUserDetailsListener {
+        @Override
+        public void onSuccess() {
+            navigator.navigateFeed();
+        }
+    }
 }

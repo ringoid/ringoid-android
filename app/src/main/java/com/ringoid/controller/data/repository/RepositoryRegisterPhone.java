@@ -6,8 +6,9 @@ import com.ringoid.controller.data.memorycache.ICacheLocale;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.IApiRingoid;
+import com.ringoid.controller.data.network.request.RequestParamRegisterPhone;
 import com.ringoid.controller.data.network.response.ResponseRegisterPhone;
-import com.ringoid.controller.data.repository.callback.IRepositoryRegisterListener;
+import com.ringoid.controller.data.repository.callback.IRepositoryRegisterPhoneListener;
 
 import java.lang.ref.WeakReference;
 
@@ -34,7 +35,7 @@ public class RepositoryRegisterPhone implements IRepositoryRegisterPhone {
     private Call<ResponseRegisterPhone> request;
     private Callback<ResponseRegisterPhone> requestListener;
 
-    private WeakReference<IRepositoryRegisterListener> refListener;
+    private WeakReference<IRepositoryRegisterPhoneListener> refListener;
 
     public RepositoryRegisterPhone() {
         ApplicationRingoid.getComponent().inject(this);
@@ -45,14 +46,14 @@ public class RepositoryRegisterPhone implements IRepositoryRegisterPhone {
     public void request() {
         if (request != null) request.cancel();
 
-        request = apiRingoid.registerPhone(
+        request = apiRingoid.registerPhone(new RequestParamRegisterPhone(
                 cacheUser.getPhoneCode(),
-                cacheUser.getPhone(),
+                cacheUser.getPhone().replaceAll("[^0-9]", ""),
                 cacheRegister.getDateTerms(),
                 cacheRegister.getDateAge(),
                 cacheRegister.getDatePrivacy(),
                 !cacheRegister.isPhoneValid(),
-                cacheLocale.getLang());
+                cacheLocale.getLang()));
         request.enqueue(requestListener);
 
     }
@@ -63,7 +64,7 @@ public class RepositoryRegisterPhone implements IRepositoryRegisterPhone {
     }
 
     @Override
-    public void setListener(IRepositoryRegisterListener listener) {
+    public void setListener(IRepositoryRegisterPhoneListener listener) {
         this.refListener = new WeakReference<>(listener);
     }
 

@@ -33,8 +33,7 @@ public class PresenterBlacklistPhones implements IPresenterBlacklistPhones {
 
     @Override
     public void onViewCreated() {
-        String code = cacheUser.getPhoneCode();
-        if (TextUtils.isEmpty(code)) return;
+        int code = cacheUser.getPhoneCode();
         if (refListener == null || refListener.get() == null) return;
         refListener.get().setPhoneData(code);
     }

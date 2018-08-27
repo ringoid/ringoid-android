@@ -4,9 +4,11 @@ package com.ringoid.controller.data.repository;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheToken;
+import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.IApiRingoid;
+import com.ringoid.controller.data.network.request.RequestParamRegisterCodeConfirm;
 import com.ringoid.controller.data.network.response.ResponseRegisterCodeConfirm;
-import com.ringoid.controller.data.repository.callback.IRepositoryRegisterConfirmListener;
+import com.ringoid.controller.data.repository.callback.IRepositoryRegisterCodeConfirmListener;
 
 import java.lang.ref.WeakReference;
 
@@ -16,10 +18,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RepositoryRegisterConfirm implements IRepositoryRegisterCodeConfirm {
+public class RepositoryRegisterCodeConfirm implements IRepositoryRegisterCodeConfirm {
 
     @Inject
     ICacheToken cacheToken;
+
+    @Inject
+    ICacheUser cacheUser;
 
     @Inject
     IApiRingoid apiRingoid;
@@ -27,15 +32,15 @@ public class RepositoryRegisterConfirm implements IRepositoryRegisterCodeConfirm
     private Call<ResponseRegisterCodeConfirm> request;
     private Callback<ResponseRegisterCodeConfirm> requestListener;
 
-    private WeakReference<IRepositoryRegisterConfirmListener> refListener;
+    private WeakReference<IRepositoryRegisterCodeConfirmListener> refListener;
 
-    public RepositoryRegisterConfirm() {
+    public RepositoryRegisterCodeConfirm() {
         ApplicationRingoid.getComponent().inject(this);
         requestListener = new RequestListener();
     }
 
     @Override
-    public void setListener(IRepositoryRegisterConfirmListener listener) {
+    public void setListener(IRepositoryRegisterCodeConfirmListener listener) {
         this.refListener = new WeakReference<>(listener);
     }
 
@@ -43,18 +48,18 @@ public class RepositoryRegisterConfirm implements IRepositoryRegisterCodeConfirm
     ICacheRegister cacheRegister;
 
     @Override
-    public void request(int code) {
+    public void request(String code) {
         if (request != null) request.cancel();
 
-        request = apiRingoid.registerCodeConfirm(
+        request = apiRingoid.registerCodeConfirm(new RequestParamRegisterCodeConfirm(
                 cacheRegister.getSessionId(),
-                code);
+                code));
         request.enqueue(requestListener);
     }
 
-    private void notifySuccess(boolean isRegistered) {
+    private void notifySuccess() {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().onSuccess(isRegistered);
+        refListener.get().onSuccess();
     }
 
     private class RequestListener implements Callback<ResponseRegisterCodeConfirm> {
@@ -67,7 +72,8 @@ public class RepositoryRegisterConfirm implements IRepositoryRegisterCodeConfirm
                     && response.body().isSuccess()) {
 
                 cacheToken.setToken(response.body().getToken());
-                notifySuccess(response.body().isRegistered());
+                cacheUser.setRegistered(response.body().isRegistered());
+                notifySuccess();
             }
         }
 

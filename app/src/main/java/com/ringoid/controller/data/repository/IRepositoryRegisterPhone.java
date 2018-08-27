@@ -1,10 +1,10 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.repository;
 
-import com.ringoid.controller.data.repository.callback.IRepositoryRegisterListener;
+import com.ringoid.controller.data.repository.callback.IRepositoryRegisterPhoneListener;
 
 public interface IRepositoryRegisterPhone {
     void request();
 
-    void setListener(IRepositoryRegisterListener listener);
+    void setListener(IRepositoryRegisterPhoneListener listener);
 }

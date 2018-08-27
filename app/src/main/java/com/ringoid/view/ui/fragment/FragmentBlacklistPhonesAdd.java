@@ -121,8 +121,8 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
 
     private class ListenerPresenterBlacklistPhones implements IPresenterBlacklistPhonesListener {
         @Override
-        public void setPhoneData(String code) {
-            etPhoneCode.setText(code);
+        public void setPhoneData(int code) {
+            etPhoneCode.setText(String.valueOf(code));
         }
     }
 }

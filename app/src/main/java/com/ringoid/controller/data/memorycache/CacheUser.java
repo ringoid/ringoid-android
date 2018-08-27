@@ -22,8 +22,11 @@ public class CacheUser implements ICacheUser {
 
     @Override
     public void setPhone(String code, String phone) {
-
         data = new DataUser(code, phone);
+        saveData();
+    }
+
+    private void saveData() {
         cacheStorage.writeData(FileEnum.USER, data);
     }
 
@@ -53,6 +56,20 @@ public class CacheUser implements ICacheUser {
     public void resetCache() {
         data = null;
         cacheStorage.removeData(FileEnum.USER);
+    }
+
+    @Override
+    public boolean isRegistered() {
+        DataUser data = getData();
+        return data == null ? false : data.isRegistered();
+    }
+
+    @Override
+    public void setRegistered(boolean registered) {
+        DataUser user = getData();
+        if (user == null) this.data = new DataUser("", "");
+        data.setRegistered(registered);
+        saveData();
     }
 
     private DataUser getData() {

@@ -46,6 +46,9 @@ import javax.inject.Inject;
 public class FragmentLogin extends FragmentBase
         implements View.OnClickListener, View.OnLongClickListener {
 
+    private static final String ARG_PROFILE_UPDATE = "arg_profile_update";
+    private static final int INDEX_PROFILE_UPDATE = 3;
+
     @Inject
     IPresenterRegister presenterRegister;
 
@@ -64,6 +67,14 @@ public class FragmentLogin extends FragmentBase
     private IDialogPhoneValidListener listenerDialogPhoneValid;
     private EditText etPhoneCode;
     private View vContainerSMSCode;
+
+    public static FragmentLogin getInstanceProfileUpdate() {
+        FragmentLogin fragment = new FragmentLogin();
+        Bundle args = new Bundle();
+        args.putBoolean(ARG_PROFILE_UPDATE, true);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -115,6 +126,8 @@ public class FragmentLogin extends FragmentBase
         cbTerms.setOnCheckedChangeListener(new ListenerCheckedChangeTerms());
         cbAge.setOnCheckedChangeListener(new ListenerCheckedChangeAge());
 
+        if (getArguments() != null && getArguments().getBoolean(ARG_PROFILE_UPDATE, false))
+            vfLogin.setDisplayedChild(INDEX_PROFILE_UPDATE);
     }
 
     @Override
@@ -212,7 +225,6 @@ public class FragmentLogin extends FragmentBase
         vfLogin.showNext();
         checkKeyboard();
     }
-
 
     private void showDialogCalendar() {
         if (dialogDateBirth != null) dialogDateBirth.cancel();

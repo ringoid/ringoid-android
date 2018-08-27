@@ -23,7 +23,7 @@ public class CacheRegister implements ICacheRegister {
 
     @Override
     public void setSexMale() {
-        this.sex = SEX.FEMALE.getValue();
+        this.sex = SEX.MALE.getValue();
     }
 
     @Override

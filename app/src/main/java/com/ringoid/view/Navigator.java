@@ -118,6 +118,17 @@ public class Navigator implements INavigator {
         }
     }
 
+    @Override
+    public void navigateProfileUpdate() {
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+
+        clearBackStack();
+        refFragmentManager.get()
+                .beginTransaction()
+                .replace(viewId, FragmentLogin.getInstanceProfileUpdate(), CURRENT_FRAGMENT_PAGE)
+                .commit();
+    }
+
     private void navigatePhotoCrop(Uri data) {
 
         if (refFragmentManager == null || refFragmentManager.get() == null) return;

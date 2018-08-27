@@ -9,4 +9,8 @@ public interface ICacheUser {
     String getPhone();
 
     void resetCache();
+
+    void setRegistered(boolean registered);
+
+    boolean isRegistered();
 }
