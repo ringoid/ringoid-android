@@ -5,7 +5,7 @@ import com.ringoid.controller.data.memorycache.listener.ICacheBlacklistListener;
 import com.ringoid.model.DataBlacklistPhone;
 
 public interface ICacheBlacklist {
-    void addPhone(String phone);
+    void addPhone(String code, String phone);
 
     void setListener(ICacheBlacklistListener iCacheBlacklistListener);
 

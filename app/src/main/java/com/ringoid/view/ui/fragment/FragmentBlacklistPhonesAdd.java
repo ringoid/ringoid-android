@@ -94,7 +94,7 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     }
 
     private void confirmPhoneAdd() {
-        presenterBlacklistPhones.onClickBlacklistAdd(tvPhone.getText().toString());
+        presenterBlacklistPhones.onClickBlacklistAdd(etPhoneCode.getText().toString(), tvPhone.getText().toString());
         tvPhone.setText("");
         getActivity().onBackPressed();
     }

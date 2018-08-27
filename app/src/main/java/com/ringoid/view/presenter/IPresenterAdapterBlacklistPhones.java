@@ -11,4 +11,6 @@ public interface IPresenterAdapterBlacklistPhones {
     void onClickRemove(int position);
 
     void setListener(IPresenterAdapterBlacklistPhonesListener listener);
+
+    String getPhoneCode(int position);
 }

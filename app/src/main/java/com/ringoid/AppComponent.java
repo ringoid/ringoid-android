@@ -1,6 +1,7 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid;
 
+import com.ringoid.controller.data.memorycache.CacheBlacklist;
 import com.ringoid.controller.data.memorycache.CacheScroll;
 import com.ringoid.controller.data.memorycache.CacheToken;
 import com.ringoid.controller.data.memorycache.CacheTutorial;
@@ -194,4 +195,6 @@ public interface AppComponent {
     void inject(CacheTutorial cacheTutorial);
 
     void inject(RepositoryRegisterUserDetails repositoryRegisterUserDetails);
+
+    void inject(CacheBlacklist cacheBlacklist);
 }

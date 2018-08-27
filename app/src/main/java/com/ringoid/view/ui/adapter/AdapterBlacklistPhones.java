@@ -56,7 +56,7 @@ public class AdapterBlacklistPhones extends AdapterBase {
 
         @Override
         void setData(int position) {
-            String phone = presenterAdapterBlacklistPhones.getPhone(position);
+            String phone = String.format("+%s %s", presenterAdapterBlacklistPhones.getPhoneCode(position), presenterAdapterBlacklistPhones.getPhone(position));
 
             tvPhone.setText(TextUtils.isEmpty(phone) ? "" : phone);
         }

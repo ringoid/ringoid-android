@@ -1,30 +1,53 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.memorycache;
 
+import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.FileEnum;
 import com.ringoid.controller.data.memorycache.listener.ICacheBlacklistListener;
+import com.ringoid.controller.device.ICacheStorage;
 import com.ringoid.model.DataBlacklistPhone;
+import com.ringoid.model.DataBlacklistPhones;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 public class CacheBlacklist implements ICacheBlacklist {
 
-    private ArrayList<DataBlacklistPhone> data;
+    @Inject
+    ICacheStorage cacheStorage;
+    private DataBlacklistPhones data;
     private WeakReference<ICacheBlacklistListener> refListener;
 
+    public CacheBlacklist() {
+        ApplicationRingoid.getComponent().inject(this);
+    }
+
     @Override
-    public void addPhone(String phone) {
-        if (isContains(phone)) return;
-        if (data == null) data = new ArrayList<>();
-        data.add(new DataBlacklistPhone(phone));
+    public void addPhone(String code, String phone) {
+        if (isContains(code, phone)) return;
+
+        DataBlacklistPhones data = getData();
+        if (data == null) this.data = new DataBlacklistPhones();
+        this.data.add(new DataBlacklistPhone(code, phone));
+        saveData();
         notifyListeners();
     }
 
-    private boolean isContains(String phone) {
+    private DataBlacklistPhones getData() {
+        if (data == null)
+            data = cacheStorage.readObject(FileEnum.BLACKLIST, DataBlacklistPhones.class);
+        return data;
+    }
+
+    private void saveData() {
+        cacheStorage.writeData(FileEnum.BLACKLIST, data);
+    }
+
+    private boolean isContains(String code, String phone) {
+        DataBlacklistPhones data = getData();
         if (data == null) return false;
-        for (DataBlacklistPhone item : data)
-            if (item.isPhoneEquals(phone)) return true;
-        return false;
+        return data.isContains(code, phone);
     }
 
     private void notifyListeners() {
@@ -39,18 +62,22 @@ public class CacheBlacklist implements ICacheBlacklist {
 
     @Override
     public int getItemsNum() {
+        DataBlacklistPhones data = getData();
         return data == null ? 0 : data.size();
     }
 
     @Override
     public DataBlacklistPhone getItem(int position) {
-        return data.get(position);
+        DataBlacklistPhones data = getData();
+        return data == null ? null : data.get(position);
     }
 
     @Override
     public void remove(int position) {
-        if (data == null || position < 0 || position >= data.size()) return;
+        DataBlacklistPhones data = getData();
+        if (data == null) return;
         data.remove(position);
+        saveData();
         notifyListeners();
     }
 

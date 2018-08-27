@@ -42,6 +42,11 @@ public class PresenterAdapterBlacklistPhones implements IPresenterAdapterBlackli
         this.refListener = new WeakReference<>(listener);
     }
 
+    @Override
+    public String getPhoneCode(int position) {
+        return cacheBlacklist.getItem(position).getCode();
+    }
+
     private class ListenerCacheBlacklist implements ICacheBlacklistListener {
         @Override
         public void onUpdate() {

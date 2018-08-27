@@ -4,7 +4,7 @@ package com.ringoid.view.presenter;
 import com.ringoid.view.presenter.callback.IPresenterBlacklistPhonesListener;
 
 public interface IPresenterBlacklistPhones {
-    void onClickBlacklistAdd(String phone);
+    void onClickBlacklistAdd(String code, String phone);
 
     void onViewCreated();
 

@@ -26,9 +26,9 @@ public class PresenterBlacklistPhones implements IPresenterBlacklistPhones {
     }
 
     @Override
-    public void onClickBlacklistAdd(String phone) {
-        if (TextUtils.isEmpty(phone)) return;
-        cacheBlacklist.addPhone(phone);
+    public void onClickBlacklistAdd(String code, String phone) {
+        if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(code)) return;
+        cacheBlacklist.addPhone(code, phone);
     }
 
     @Override
