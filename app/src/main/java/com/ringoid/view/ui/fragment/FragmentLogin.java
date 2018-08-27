@@ -236,7 +236,7 @@ public class FragmentLogin extends FragmentBase
     @Override
     public boolean onLongClick(View v) {
         if (v.getId() == R.id.ivPasteSMS) {
-            Toast.makeText(getContext(), R.string.message_paste, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), R.string.message_paste, Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;
@@ -250,7 +250,7 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void onError(int stringId) {
-            Toast.makeText(getContext(), stringId, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), stringId, Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -271,7 +271,7 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void showToast(int stringRes) {
-            Toast.makeText(getContext(), stringRes, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), stringRes, Toast.LENGTH_SHORT).show();
         }
 
     }

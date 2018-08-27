@@ -76,9 +76,9 @@ public class ViewPhoneInput extends LinearLayout
 
     public boolean isValid() {
         if (TextUtils.isEmpty(etCode.getText()))
-            Toast.makeText(getContext(), R.string.message_code_empty, Toast.LENGTH_SHORT).show();
+            ;//Toast.makeText(getContext(), R.string.message_code_empty, Toast.LENGTH_SHORT).show();
         else if (TextUtils.isEmpty(etPhone.getText()))
-            Toast.makeText(getContext(), R.string.message_phone_empty, Toast.LENGTH_SHORT).show();
+            ;//Toast.makeText(getContext(), R.string.message_phone_empty, Toast.LENGTH_SHORT).show();
 
         return ccp.isValidFullNumber()
                 && !TextUtils.isEmpty(etCode.getText())
@@ -111,7 +111,7 @@ public class ViewPhoneInput extends LinearLayout
     }
 
     private void showHintPaste() {
-        Toast.makeText(getContext(), R.string.message_paste, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), R.string.message_paste, Toast.LENGTH_SHORT).show();
     }
 
     private void clipboardPaste() {

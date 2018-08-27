@@ -70,7 +70,7 @@ public class ViewPrivacyItemDescription extends FrameLayout {
     private class ListenerClick implements OnClickListener {
         @Override
         public void onClick(View v) {
-            Toast.makeText(v.getContext(), R.string.settings_privacy_description_click_message, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(v.getContext(), R.string.settings_privacy_description_click_message, Toast.LENGTH_SHORT).show();
         }
     }
 }
