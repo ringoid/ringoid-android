@@ -12,9 +12,7 @@ public interface IPresenterAdapterProfile {
 
     boolean onClickItem(Context context, int position);
 
-    void onClickAbout(boolean isShow);
-
-    void onClickPrivacy(boolean isShow);
+    void onClickOK(boolean isShow);
 
     void onClickLiked(boolean isShow);
 

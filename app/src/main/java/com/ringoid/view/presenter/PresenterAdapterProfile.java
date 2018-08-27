@@ -70,15 +70,8 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     }
 
     @Override
-    public void onClickAbout(boolean isShow) {
+    public void onClickOK(boolean isShow) {
         cacheTutorial.setProfileDialogLikeShow(isShow);
-        navigator.navigateWelcome(false);
-    }
-
-    @Override
-    public void onClickPrivacy(boolean isShow) {
-        cacheTutorial.setProfileDialogLikeShow(isShow);
-        navigator.navigateSettingsPrivacy(false);
     }
 
     @Override

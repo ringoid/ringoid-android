@@ -127,13 +127,8 @@ public class AdapterProfile extends AdapterBase {
 
     private class ListenerDialogProfileLikes implements IDialogProfileLikesListener {
         @Override
-        public void onSelectAbout(boolean isShow) {
-            presenterAdapterProfile.onClickAbout(isShow);
-        }
-
-        @Override
-        public void onSelectPrivacy(boolean isShow) {
-            presenterAdapterProfile.onClickPrivacy(isShow);
+        public void onSelectOK(boolean isShow) {
+            presenterAdapterProfile.onClickOK(isShow);
         }
 
         @Override
