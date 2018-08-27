@@ -37,7 +37,7 @@
                 android:textColor="@color/gray"
                 android:textColorLink="@color/gray"
                 android:textSize="17sp"
-                android:theme="@style/themeGreen" />
+                android:theme="@style/AppTheme.Green" />
 
             <CheckBox
                 android:id="@+id/cbAge"
@@ -53,7 +53,7 @@
                 android:textColor="@color/gray"
                 android:textColorLink="@color/gray"
                 android:textSize="17sp"
-                android:theme="@style/themeGreen" />
+                android:theme="@style/AppTheme.Green" />
 
         </LinearLayout>
     </ScrollView>

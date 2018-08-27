@@ -111,7 +111,7 @@
 
     </style>
 
-    <style name="themeGreen">
+    <style name="AppTheme.Green">
         <item name="colorAccent">@color/colorAccentGreen</item>
     </style>
 

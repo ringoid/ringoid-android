@@ -124,7 +124,7 @@
             android:layout_width="52dp"
             android:layout_height="wrap_content"
             android:src="@drawable/switch_off"
-            android:theme="@style/themeGreen"
+            android:theme="@style/AppTheme.Green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
