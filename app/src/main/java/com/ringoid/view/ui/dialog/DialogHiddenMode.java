@@ -30,7 +30,6 @@ public class DialogHiddenMode implements View.OnClickListener {
         View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_hidden_mode, null);
         dialog.setView(view);
 
-        view.findViewById(R.id.tvAbout).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
         view.findViewById(R.id.tvOK).setOnClickListener(this);
         cbDontShow = view.findViewById(R.id.cbShowAgain);
@@ -46,8 +45,6 @@ public class DialogHiddenMode implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.tvAbout)
-            listener.onSelectAbout(!cbDontShow.isChecked());
 
         if (v.getId() == R.id.tvPrivacy)
             listener.onSelectPrivacy(!cbDontShow.isChecked());

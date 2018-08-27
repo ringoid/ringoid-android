@@ -46,6 +46,8 @@ public class ViewHolderItemExploreImages extends ViewHolderItemImagesLikeable
             super.onClickView(presenterAdapterExploreImages.isLiked(adapterPosition, getAdapterPosition()));
         }
         if (v.getId() == R.id.ivLike) {
+            if (!isLikeable()) return;
+
             boolean isLiked = presenterAdapterExploreImages.onClickIconLike(adapterPosition, getAdapterPosition());
             super.onClickIconLike(isLiked);
         }
