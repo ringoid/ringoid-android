@@ -13,7 +13,7 @@
     <string name="login_phone_lead">Ringoid will send an SMS message (carrier charges may apply) to verify your phone number.</string>
     <string name="button_login_phone">Send Verification Code</string>
     <string name="button_register_confirm">Continue</string>
-    <string name="login_referral_lead">We will hide your profile from your friend, and your friend\'s profile will be hidden from you. Let\'s make it safer for everyone.</string>
+    
     <string name="wallet_title_format">You have %d credits</string>
     <string name="wallet_lead">Both you and a person who invited you will receive 50 credits.</string>
     <string name="wallet_desc">To invite others, ask them to open the referral link.</string>
@@ -25,12 +25,12 @@
     <string name="settings_about">About</string>
     <string name="blacklist_phone_hint">Phone number</string>
     <string name="blacklist_phone_add">Block it!</string>
-    <string name="blacklist_description">Don\'t show my photos to users (and don\'t show their photos to me, and don\'t allow them to like, match or chat with me) who have registered their Ringoid accounts to the following phone numbers</string>
+    <string name="blacklist_description">Don\'t show my photos to users (and don\'t show their photos to me, and don\'t allow them to like or message me) who have linked their Ringoid accounts to the following phone numbers</string>
     <string name="dialog_menu_profile_remove">Delete</string>
     <string name="chat_empty_title">Send emoji</string>
     <string name="chat_empty_lead">to show your interest</string>
     <string name="hint_chat_disabled">Only your match can message first</string>
-    <string name="chat_subtitle">Chat</string>
+    <string name="chat_subtitle">Messages</string>
     <string name="privacy">Privacy</string>
     <string name="settings_feedback">Send us email</string>
     <string name="settings_logout">Log out</string>
@@ -40,15 +40,15 @@
     <string name="dialog_report_item_stolen">Stolen, someone\'s else photos</string>
     <string name="dialog_report_item_fraud">Advertising, fraud</string>
     <string name="dialog_report_item_porn">Explicit content, pornography</string>
-    <string name="dialog_report_message">Ringoid will automatically block the profile after you report it. They won\'t see your photos again (and you won\'t see theirs). They won\'t be able to like, match or chat with you.</string>
+    <string name="dialog_report_message">Ringoid will automatically block the profile after you report it. They won\'t see your photos again (and you won\'t see theirs). They won\'t be able to like or message you.</string>
     <string name="dialog_report_cancel">cancel</string>
     <string name="dialog_report_confirm">report</string>
     <string name="dialog_block_confirm">block</string>
     <string name="dialog_cancel">cancel</string>
     <string name="dialog_block_title">Do you want to block this user?</string>
-    <string name="dialog_block_message">They won\'t be able to see your photos ever again (and you won\'t see theirs). They won\'t be able to like, match or chat with you. Chat history (if any) will be deleted for both of you. There is no undo.</string>
-    <string name="settings_rate">Rate Ringoid in Google Play</string>
-    <string name="push">Push notifications</string>
+    <string name="dialog_block_message">They won\'t be able to see your photos ever again (and you won\'t see theirs). They won\'t be able to like or message you. Message history (if any) will be deleted for both of you. There is no undo.</string>
+    <string name="settings_rate">Rate us in Google Play</string>
+    <string name="push">Notifications</string>
     <string name="settings_privacy_photos">Photos</string>
     <string name="settings_privacy_photos_message">Who can see your photos?</string>
     <string name="settings_privacy_photos_all">Ringoid users of the opposite sex\n(Regular mode)</string>
@@ -75,7 +75,7 @@
     <string name="settings_privacy_activity_reports">Who can see which photos you reported?</string>
     <string name="settings_privacy_item_value_no">No</string>
     <string name="settings_privacy_item_value_noone">No one</string>
-    <string name="settings_privacy_distance_message">Don\'t show my photos to users (and don\'t show their photos to me, and don\'t allow them to like, match or chat with me) who is closer than</string>
+    <string name="settings_privacy_distance_message">Don\'t show my photos to Ringoid users (and don\'t show their photos to me, and don\'t allow them to like or message me) who is closer than</string>
     <string name="settings_privacy_distance_0">0 meters (0 feet, 0 yards)</string>
     <string name="settings_privacy_distance_1">10 meters (32 feet, 10 yards)</string>
     <string name="settings_privacy_distance_2">50 meters (164 feet, 54 yards)</string>
@@ -101,16 +101,16 @@
     <string name="settings_push_matches_message">New matches</string>
     <string name="settings_push_messages_message">New messages</string>
     <string name="settings_push_messages_description">Your match sent you a new message</string>
-    <string name="settings_push_subtitle">Push Notifications</string>
+    <string name="settings_push_subtitle">Notifications</string>
     <string name="skip">skip</string>
     <string name="welcome_title_1">Safer Dating</string>
     <string name="welcome_message_1_1"><![CDATA[Ringoid hides your <b>age</b>, location, distance, and online status from everyone.]]></string>
     <string name="welcome_message_1_2"><![CDATA[Ringoid doesn\'t integrate with Facebook or Instagram, and doesn\'t collect your <b>name</b>, email, address, place of study or work.]]></string>
-    <string name="welcome_message_1_3"><![CDATA[You can <b>blacklist phone numbers</b>, show your photos only to people you liked first, and set minimum safety distance to prevent people who are too close to see your photos.]]></string>
+    <string name="welcome_message_1_3"><![CDATA[You can <b>blacklist phone numbers</b>, show your photos only to people you liked first, and set safety distance to prevent people from seeing your photos if they are too close.]]></string>
     <string name="welcome_title_2">More Feedback</string>
-    <string name="welcome_message_2_1">Ringoid shows you who liked you and allows you to like as many photos of others as you want.</string>
-    <string name="welcome_message_2_2">You can see how many times each of your photos were liked.</string>
-    <string name="welcome_message_2_3"><![CDATA[All of that for <b>free</b>, including chatting with your matches.]]></string>
+    <string name="welcome_message_2_1">Ringoid shows you who liked you, and you can see how many times your photos were liked.</string>
+    <string name="welcome_message_2_2">You can like as much as you want. If you like different photos of the same user, your profile will rise higher in their feeds.</string>
+    <string name="welcome_message_2_3"><![CDATA[All of that for <b>free</b>, including messaging your matches. Ringoid doesn't show ads and doesn't charge for services.]]></string>
     <string name="welcome_title_3">More Visual</string>
     <string name="welcome_message_3_1"><![CDATA[Ringoid sorts profiles by geographical distance and <b>popularity (likes).</b>]]></string>
     <string name="welcome_message_3_2">The more likes your photos received, the higher your popularity ranking in a geographical area and the more people of the opposite sex can discover you.</string>
@@ -145,13 +145,13 @@
     <string name="settings_privacy_messages_emoji">Who can send first emojis?</string>
     <string name="settings_privacy_item_value_yes">Yes</string>
     <string name="settings_privacy_messages_pics">Who can send photos in a chat?</string>
-    <string name="settings_privacy_messages_read">Who can see that you read chat messages?</string>
-    <string name="settings_privacy_messages_when">Who can see when you have sent chat messages?</string>
+    <string name="settings_privacy_messages_read">Who can see that you read messages?</string>
+    <string name="settings_privacy_messages_when">Who can see when you have sent messages?</string>
     <string name="settings_privacy_messages_online">Who can see that you are online?</string>
     <string name="settings_privacy_messages_online_last_time">Who can see when you were online last time?</string>
     <string name="settings_licenses">Licenses</string>
     <string name="crop_subtitle">Crop photo</string>
-    <string name="message_dialog_phone_valid" formatted="false">+%s %s looks invalid. Most likely we won\'t be able to send SMS with a verification code to validate it. Do you still want to proceed?</string>
+    <string name="message_dialog_phone_valid" formatted="false">+%s %s looks invalid.\n\nMost likely we won\'t be able to send SMS with a verification code to validate it.\n\nDo you still want to proceed?</string>
     <string name="dialog_phone_confirm">Confirm</string>
     <string name="hint_phone_code">Code</string>
     <string name="message_paste">Paste from clipboard</string>
@@ -167,8 +167,8 @@
     <string name="settings_privacy_activity_views_notifications">Who receives a notification that you viewed their profile?</string>
     <string name="settings_privacy_item_message_matched">A person with whom I matched or me</string>
     <string name="settings_privacy_messages_emoji_value">A person with whom I matched or me. After I sent emoji to my match, I allow them to reply with text messages</string>
-    <string name="settings_privacy_messages_screenshots">Who can make screenshots of your text messages and emojis displayed in Chat?</string>
-    <string name="settings_privacy_messages_screenshots_value">No one. Users with smartphones that run Android version 5.0 and higher can\'t make screenshots in Ringoid (except screenshots of their own photos, Privacy and Settings screens).</string>
+    <string name="settings_privacy_messages_screenshots">Who can make screenshots of your messages?</string>
+    <string name="settings_privacy_messages_screenshots_value">No one. Users with smartphones that run Android version 5.0 and higher can\'t make screenshots in Ringoid (except screenshots of their own photos and Settings).</string>
     <string name="settings_privacy_photos_lookalike">Who can discover your photos if your face looks similar to someone\'s else?</string>
     <string name="settings_privacy_photos_lookalike_value">No one. Ringoid doesn\'t allow lookalike or face search, or reverse image search.</string>
     <string name="settings_privacy_location_rank">Who can see your popularity ranking in a geographical area?</string>
@@ -179,43 +179,43 @@
     <string name="settings_privacy_messages_paste">Who can paste a text message from the clipboard in order to send it to you in a chat?</string>
     <string name="settings_privacy_photos_download">Who can download your photos in Ringoid?</string>
     <string name="settings_privacy_photos_share">Who can share your profile via Ringoid?</string>
-    <string name="settings_privacy_photos_screenshots">Who can make screenshots of your photos displayed in Who Liked You, Matches and New Faces?</string>
-    <string name="settings_privacy_photos_screenshots_value">No one. Users with smartphones that run Android version 5.0 and higher can\'t make screenshots in Ringoid (except screenshots of their own photos, Privacy and Settings screens).</string>
+    <string name="settings_privacy_photos_screenshots">Who can make screenshots of your photos displayed in Who Liked You, Messages and New Faces?</string>
+    <string name="settings_privacy_photos_screenshots_value">No one. Users with smartphones that run Android version 5.0 and higher can\'t make screenshots in Ringoid (except screenshots of their own photos and Settings).</string>
     <string name="settings_privacy_phone_blacklist_num">Who can see how many phone numbers you blacklisted?</string>
     <string name="settings_privacy_phone_migrate">Who can migrate your account to different phone number?</string>
     <string name="settings_privacy_phone_migrate_value">No one. Due to security reasons, Ringoid customer support won\'t be able to recover your account if you can\'t access your phone number, and doesn\'t migrate an account to a different phone number.</string>
     <string name="settings_privacy_phone_blacklist_who">Who can see what phone numbers you blacklisted?</string>
     <string name="settings_privacy_phone_sessions">How many Ringoid apps linked to your phone number can run concurrently?</string>
     <string name="settings_privacy_phone_sessions_value">Only one. The most recent login will take over, and all other sessions will be signed out automatically.</string>
-    <string name="settings_privacy_messages_logout_history">Who can recover after you logout a chat history between you and your matches?</string>
-    <string name="settings_privacy_messages_logout_history_value">No one. There is no way to recover chat history after you logout or reinstall Ringoid because the server doesn\'t store messages in the database after they are delivered to the app. When you login after logout, the app loads your photos, how many likes your photos received, your matches, who liked you, and privacy settings.</string>
+    <string name="settings_privacy_messages_logout_history">Who can recover messages after you delete history, block a user, log out, reinstall the app or delete account?</string>
+    <string name="settings_privacy_messages_logout_history_value">No one. There is no way to recover messages because the server doesn\'t store them in the database after they are delivered to the app.</string>
     <string name="blacklist_phone_num">%d phone number(s)</string>
     <string name="empty" />
     <string name="settings_privacy_description_click_message">Send your ideas how to make dating even safer to support@ringoid.com</string>
-    <string name="message_likes_tutorial">You both liked each other. Now you can open chat from Matches</string>
-    <string name="message_likes_other">You can like different photos of the same user so your profile will rise higher in their Matches.\n\nTo unlike, tap on the heart icon in the corner</string>
+    <string name="message_likes_tutorial">You both liked each other. Now you can text from Messages</string>
+    <string name="message_likes_other">You can like different photos of the same user so your profile will rise higher in their Messages.\n\nTo unlike, tap on the heart icon in the corner</string>
     <string name="message_explore_like_other">You can like different photos of the same user so your profile will rise higher in their Who Liked You. \n\n To unlike, tap on the heart icon in the corner</string>
-    <string name="message_explore_like_tutorial">If they like you too, it will be a match and you can chat</string>
+    <string name="message_explore_like_tutorial">If they like you too, it will be a match and you can message</string>
     <string name="format_profile_photo_click_tutorial">Privacy: Who can see your photos?\n%s</string>
     <string name="dialog_profile_likes_title">How \"Likes\" work in Ringoid</string>
-    <string name="dialog_profile_likes_message">Only you can see how many likes your photos have.\n\nThe more likes you have, the higher your popularity ranking in a geographical area and the more people of the opposite sex can discover you.\n\nYou can\'t see who liked what photo(s) but you can see who liked you\n\nPhotos with more likes are shown first.</string>
+    <string name="dialog_profile_likes_message">Only you can see how many likes your photos have.\n\nThe more likes you have, the higher your popularity ranking in a geographical area and the more people of the opposite sex can discover you.\n\nYou can\'t see who liked what photo(s) but you can see who liked you.\n\nPhotos with more likes are shown first.</string>
     <string name="about">About</string>
     <string name="dialog_profile_likes_button_privacy">Privacy</string>
     <string name="dialog_profile_likes_button_likes">Who Liked You</string>
     <string name="message_scroll_help">You can swipe photos left and right in a carousel.\n\nTo see different profiles, scroll up and down</string>
     <string name="message_dialog_show_again">Don\'t show this again</string>
     <string name="dialog_who_liked_you_title">How Who Liked You works</string>
-    <string name="dialog_who_liked_you_message">You can see here photos of people who liked you. You can swipe photos left and right, and scroll profiles up and down.\n\nIf you like someone as well, you can tap anywhere on a photo. To unlike, tap on the heart icon in the corner of the photo.\n\nAs soon as you liked them, you can go to Matches. Their profile will move there too, and you can send emoji and text messages to each other.   You can receive a push notification about new messages  if you set it in Settings.\n\nYou can like different photos of the same user so your profile will rise higher in their Matches and they can notice your emoji or messages sooner.</string>
+    <string name="dialog_who_liked_you_message">You can see here photos of people who liked you.\n\n* Swipe photos left and right\n* Scroll profiles up and down\n* Tap anywhere to like a photo\n* To unlike, tap on the heart icon\n\nAs soon as you liked them, their profile will move to Messages, and you can text each other.\n\nYou can like different photos of the same user so your profile will rise higher in their Messages and they can notice you sooner.</string>
     <string name="OK">ok</string>
     <string name="dialog_new_faces_title">How New Faces works</string>
-    <string name="dialog_new_faces_message">You can see here photos of people which you have not yet seen. You can swipe photos left and right, and scroll profiles up and down.\n\nTo let someone know that you like them, you can just tap anywhere on a photo. To unlike, tap on the heart icon in the corner of the photo.\n\nIf they like you too, it will be a match and you can send emoji and text messages to each other. You can receive a push notification about new matches if you set it in Settings.\n\nYou can like different photos of the same user so your profile will rise higher in their Who Liked You and they can notice you sooner.</string>
+    <string name="dialog_new_faces_message">Here you can discover people which you have not seen yet, sorted by geographical distance and popularity (likes).\n\n* Swipe photos left and right\n* Scroll profiles up and down\n* Tap anywhere to like a photo\n* To unlike, tap on the heart icon\n\nIf they like you too, it will be a match and you can message each other.\n\nYou can like different photos of the same user so your profile will rise higher in their Who Liked You and they can notice you sooner.</string>
     <string name="dialog_hidden_mode_title">You are in Hidden mode</string>
     <string name="dialog_hidden_mode_message">Only you can see your photos.\n\nOthers can\'t see your photos, like or message you. It is almost like you deleted your account, although you can still see Who Liked You already and browse New Faces.\n\nYou can change who can see your photos in Privacy, and allow others to see your photos, like and message you.</string>
 
     <string-array name="pages_titles">
         <item></item>
         <item>Who Liked You</item>
-        <item>Matches</item>
+        <item>Messages</item>
         <item>New Faces</item>
     </string-array>
 </resources>
