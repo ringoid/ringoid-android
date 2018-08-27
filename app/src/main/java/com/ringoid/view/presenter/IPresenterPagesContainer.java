@@ -8,8 +8,6 @@ import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 public interface IPresenterPagesContainer {
     void onViewCreate(FragmentManager childFragmentManager, int viewId);
 
-    void onClickWallet();
-
     void onClickPageLikes();
 
     void onClickPageProfile();

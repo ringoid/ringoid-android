@@ -2,7 +2,6 @@
 package com.ringoid.view.presenter.callback;
 
 public interface IPresenterPagesContainerListener {
-    void showDialogInvite();
 
     void setPosition(int topPos, int bottomPos, float alpha);
 

@@ -28,7 +28,7 @@ public class FragmentPages extends FragmentBase
     IPresenterPagesContainer presenterPagesContainer;
     @Inject
     IStatusBarViewHelper statusBarViewHelper;
-    private TextView tvWallet, tvSubtitle;
+    private TextView tvSubtitle;
     private AlertDialog dialogInvite;
     private ListenerPresenter listenerPresenter;
     private View flToolbar;
@@ -56,7 +56,6 @@ public class FragmentPages extends FragmentBase
 
     private void initViews(View view) {
 
-        tvWallet = view.findViewById(R.id.tvWallet);
         tvSubtitle = view.findViewById(R.id.tvSubtitle);
 
         flToolbar = view.findViewById(R.id.flToolbar);
@@ -66,7 +65,6 @@ public class FragmentPages extends FragmentBase
         view.findViewById(R.id.ivMenuProfile).setOnClickListener(this);
         view.findViewById(R.id.ivMenuMessages).setOnClickListener(this);
         view.findViewById(R.id.ivMenuExplore).setOnClickListener(this);
-        tvWallet.setOnClickListener(this);
         view.findViewById(R.id.tvSettings).setOnClickListener(this);
 
         ivPrivacy = view.findViewById(R.id.ivPrivacy);
@@ -75,9 +73,6 @@ public class FragmentPages extends FragmentBase
 
     @Override
     public void onClick(View view) {
-
-        if (view.getId() == R.id.tvWallet)
-            presenterPagesContainer.onClickWallet();
 
         if (view.getId() == R.id.tvSettings)
             presenterPagesContainer.onClickSettings();
@@ -103,16 +98,6 @@ public class FragmentPages extends FragmentBase
     }
 
     private class ListenerPresenter implements IPresenterPagesContainerListener {
-        @Override
-        public void showDialogInvite() {
-            if (dialogInvite != null)
-                dialogInvite.dismiss();
-
-            //todo implement invite
-            dialogInvite = new AlertDialog.Builder(getContext()).create();
-            dialogInvite.setView(LayoutInflater.from(getContext()).inflate(R.layout.view_invite, null));
-            dialogInvite.show();
-        }
 
         @Override
         public void setPosition(int topPos, int bottomPos, float alpha) {

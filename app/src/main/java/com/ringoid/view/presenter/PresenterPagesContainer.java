@@ -90,15 +90,8 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     }
 
     @Override
-    public void onClickWallet() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().showDialogInvite();
-    }
-
-    @Override
     public void onClickPageLikes() {
         cacheScroll.resetCache();
-
 
         if (navigatorPages.isPageLikes()) {
             if (!presenterLikes.isPositionTop())

@@ -22,16 +22,6 @@
             android:layout_gravity="bottom"
             android:background="@color/toolbar_shadow" />
 
-        <TextView
-            android:id="@+id/tvWallet"
-            style="@style/textImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:drawableStart="@drawable/ic_account_balance_wallet_black_24dp"
-            android:visibility="gone"
-            tools:text="123" />
-
         <ImageView
             android:id="@+id/ivPrivacy"
             style="@style/selectableImage"
