@@ -82,10 +82,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         if (refListener == null || refListener.get() == null) return;
         int type = cacheSettingsPrivacy.getPrivacyPhotos();
 
-        refListener.get().setViewPrivacy(type == 0 ? R.drawable.ic_privacy_all_gray_32dp
-                : type == 1 ? R.drawable.ic_privacy_likes_gray_32dp
-                : R.drawable.ic_privacy_noone_gray_32dp);
-
         refListener.get().setStatusBarColor(type);
     }
 

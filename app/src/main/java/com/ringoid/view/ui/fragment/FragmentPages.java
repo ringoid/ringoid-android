@@ -66,9 +66,6 @@ public class FragmentPages extends FragmentBase
         view.findViewById(R.id.ivMenuMessages).setOnClickListener(this);
         view.findViewById(R.id.ivMenuExplore).setOnClickListener(this);
         view.findViewById(R.id.tvSettings).setOnClickListener(this);
-
-        ivPrivacy = view.findViewById(R.id.ivPrivacy);
-        ivPrivacy.setOnClickListener(this);
     }
 
     @Override
@@ -88,9 +85,6 @@ public class FragmentPages extends FragmentBase
 
         if (view.getId() == R.id.ivMenuExplore)
             presenterPagesContainer.onClickPageExplore();
-
-        if (view.getId() == R.id.ivPrivacy)
-            presenterPagesContainer.onClickPrivacy();
 
         if (view.getId() == R.id.llToolbarTitle)
             presenterPagesContainer.onClickToolbar();
@@ -138,11 +132,6 @@ public class FragmentPages extends FragmentBase
             String subtitle = getContext().getResources().getStringArray(R.array.pages_titles)[num];
             tvSubtitle.setText(TextUtils.isEmpty(subtitle) ? "" : subtitle);
             tvSubtitle.setTextColor(getContext().getResources().getColor(subtitleColorRes));
-        }
-
-        @Override
-        public void setViewPrivacy(int drawableId) {
-            ivPrivacy.setImageResource(drawableId);
         }
 
         @Override
