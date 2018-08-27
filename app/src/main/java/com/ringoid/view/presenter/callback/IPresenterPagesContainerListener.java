@@ -3,7 +3,9 @@ package com.ringoid.view.presenter.callback;
 
 public interface IPresenterPagesContainerListener {
 
-    void setPosition(int topPos, int bottomPos, float alpha);
+    void setPosition(boolean toolbarScroll, int topPos, int bottomPos, float alpha);
+
+    void showToolbar();
 
     void setPageSelected(int num, int backgroundColorRes, int subtitleColorRes);
 
@@ -11,5 +13,7 @@ public interface IPresenterPagesContainerListener {
 
     void setStatusBarColor(int type);
 
-    void scrollComplete(int scrollSum, int alpha);
+    void scrollComplete(boolean toolbarScroll, int scrollSum, int alpha);
+
+    void hideToolbar();
 }

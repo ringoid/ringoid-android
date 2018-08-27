@@ -21,4 +21,6 @@ public interface INavigatorPages {
     boolean isPageExplore();
 
     boolean isPageLikes();
+
+    boolean isPageProfile();
 }

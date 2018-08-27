@@ -108,4 +108,12 @@ public class NavigatorPages implements INavigatorPages {
         Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
         return fragment != null && fragment instanceof FragmentLikes;
     }
+
+    @Override
+    public boolean isPageProfile() {
+        if (refFragmentManager == null || refFragmentManager.get() == null) return false;
+
+        Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
+        return fragment != null && fragment instanceof FragmentProfile;
+    }
 }

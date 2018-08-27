@@ -9,7 +9,6 @@
         android:layout_height="match_parent"
         android:background="@android:color/black"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/toolbar_height"
-        android:paddingTop="@dimen/toolbar_height" />
+        android:paddingBottom="@dimen/toolbar_height" />
 
 </FrameLayout>

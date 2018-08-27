@@ -94,24 +94,45 @@ public class FragmentPages extends FragmentBase
     private class ListenerPresenter implements IPresenterPagesContainerListener {
 
         @Override
-        public void setPosition(int topPos, int bottomPos, float alpha) {
-            flToolbar.setTranslationY(topPos);
+        public void setPosition(boolean toolbarScroll, int topPos, int bottomPos, float alpha) {
+            if (toolbarScroll) {
+                flToolbar.setTranslationY(topPos);
+                flToolbar.setAlpha(alpha);
+            }
+
             llBottomAppBar.setTranslationY(bottomPos);
 
-            flToolbar.setAlpha(alpha);
             llBottomAppBar.setAlpha(alpha);
         }
 
         @Override
-        public void scrollComplete(int scrollSum, int alpha) {
-            flToolbar.animate()
-                    .alpha(alpha)
-                    .translationY(-scrollSum)
-                    .setDuration(250);
+        public void scrollComplete(boolean toolbarScroll, int scrollSum, int alpha) {
+            if (toolbarScroll)
+                flToolbar.animate()
+                        .alpha(alpha)
+                        .translationY(-scrollSum)
+                        .setDuration(250);
 
             llBottomAppBar.animate()
                     .alpha(alpha)
                     .translationY(scrollSum)
+                    .setDuration(250);
+        }
+
+        @Override
+        public void hideToolbar() {
+            int translation = (int) getContext().getResources().getDimension(R.dimen.toolbar_height);
+            flToolbar.animate()
+                    .alpha(0)
+                    .translationY(-translation)
+                    .setDuration(250);
+        }
+
+        @Override
+        public void showToolbar() {
+            flToolbar.animate()
+                    .alpha(1)
+                    .translationY(0)
                     .setDuration(250);
         }
 

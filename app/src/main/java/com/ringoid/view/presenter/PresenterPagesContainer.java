@@ -67,6 +67,16 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         navigatorPages.navigateCurrentPage();
         updateViewPrivacy();
         updateViewBottomSheet();
+        updateToolbar();
+    }
+
+    private void updateToolbar() {
+        cacheScroll.resetCache();
+
+        if (refListener == null || refListener.get() == null) return;
+        if (navigatorPages.isPageProfile())
+            refListener.get().showToolbar();
+        else refListener.get().hideToolbar();
     }
 
     private void updateViewBottomSheet() {
@@ -89,6 +99,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public void onClickPageLikes() {
         cacheScroll.resetCache();
 
+        if (refListener != null && refListener.get() != null)
+            refListener.get().hideToolbar();
+
         if (navigatorPages.isPageLikes()) {
             if (!presenterLikes.isPositionTop())
                 presenterLikes.scrollTop();
@@ -103,18 +116,29 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Override
     public void onClickPageProfile() {
         cacheScroll.resetCache();
+
+        if (refListener != null && refListener.get() != null)
+            refListener.get().showToolbar();
+
         navigatorPages.navigateProfile();
     }
 
     @Override
     public void onClickPageMessages() {
         cacheScroll.resetCache();
+
+        if (refListener != null && refListener.get() != null)
+            refListener.get().hideToolbar();
+
         navigatorPages.navigateMessages();
     }
 
     @Override
     public void onClickPageExplore() {
         cacheScroll.resetCache();
+
+        if (refListener != null && refListener.get() != null)
+            refListener.get().hideToolbar();
 
         if (navigatorPages.isPageExplore()) {
             if (!presenterExplore.isPositionTop())
@@ -163,7 +187,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         public void onScroll(int scrollSum, float alpha) {
             if (refListener == null || refListener.get() == null) return;
 
-            refListener.get().setPosition(-scrollSum, scrollSum, alpha);
+            refListener.get().setPosition(navigatorPages.isPageProfile(), -scrollSum, scrollSum, alpha);
 
         }
 
@@ -171,7 +195,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         public void onScrollComplete(int scrollSum, int alpha) {
             if (refListener == null || refListener.get() == null) return;
 
-            refListener.get().scrollComplete(scrollSum, alpha);
+            refListener.get().scrollComplete(navigatorPages.isPageProfile(), scrollSum, alpha);
         }
     }
 
