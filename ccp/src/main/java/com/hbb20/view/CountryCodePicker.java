@@ -1983,6 +1983,12 @@ public class CountryCodePicker extends RelativeLayout {
         }
     }
 
+    public String getCountryCodeLocal() {
+        String locale = context.getResources().getConfiguration().locale.getCountry();
+        DataCountry country = PresenterCountry.getCountryForNameCode(getContext(), getLanguageToApply(), locale);
+        return country == null ? null : country.getPhoneCode();
+    }
+
     /**
      * This will detect country from LOCALE info and then load it into CCP.
      *

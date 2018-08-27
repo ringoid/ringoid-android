@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.hbb20.PhoneUtils;
 import com.hbb20.PresenterCountry;
@@ -72,6 +71,14 @@ public class ViewPhoneInput extends LinearLayout
 
 
         etPhone.addTextChangedListener(new PhoneInputTextWatcher());
+
+        checkCountryLocal();
+    }
+
+    private void checkCountryLocal() {
+        String code = ccp.getCountryCodeLocal();
+        if (TextUtils.isEmpty(code)) return;
+        etCode.setText(code);
     }
 
     public boolean isValid() {
