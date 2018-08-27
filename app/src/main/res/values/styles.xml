@@ -81,6 +81,8 @@
     </style>
 
     <style name="buttonBase.Colored">
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@drawable/rectangle_rounded_red</item>
