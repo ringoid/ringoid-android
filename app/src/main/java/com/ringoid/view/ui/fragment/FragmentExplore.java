@@ -92,7 +92,7 @@ public class FragmentExplore extends FragmentBase {
     private class ListenerPresenter implements IPresenterExploreListener {
         @Override
         public boolean isPositionTop() {
-            return rvItems.getScaleY() == 0;
+            return rvItems.getScrollY() == 0;
         }
 
         @Override

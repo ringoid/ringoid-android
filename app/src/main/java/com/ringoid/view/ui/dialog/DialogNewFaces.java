@@ -29,7 +29,6 @@ public class DialogNewFaces implements View.OnClickListener {
         View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_new_faces, null);
         dialog.setView(view);
 
-        view.findViewById(R.id.tvAbout).setOnClickListener(this);
         view.findViewById(R.id.tvPush).setOnClickListener(this);
         view.findViewById(R.id.tvOK).setOnClickListener(this);
         cbDontShow = view.findViewById(R.id.cbShowAgain);
@@ -45,8 +44,6 @@ public class DialogNewFaces implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.tvAbout)
-            listener.onSelectAbout(!cbDontShow.isChecked());
 
         if (v.getId() == R.id.tvPush)
             listener.onSelectPush(!cbDontShow.isChecked());
