@@ -12,7 +12,7 @@
     <string name="login_phone_title">Verify your phone number</string>
     <string name="login_phone_lead">Ringoid will send an SMS message (carrier charges may apply) to verify your phone number.</string>
     <string name="button_login_phone">Send Verification Code</string>
-    <string name="button_register_confirm">Continue</string>
+    <string name="button_register_confirm">Complete registration</string>
     
     <string name="wallet_title_format">You have %d credits</string>
     <string name="wallet_lead">Both you and a person who invited you will receive 50 credits.</string>
