@@ -106,6 +106,7 @@ public class PresenterRegister implements IPresenterRegister {
         cacheUser.setPhone(code, phone);
         cacheRegister.setPhoneValid(isValid);
         repositoryRegisterPhone.request();
+        loginGoNext();
     }
 
     @Override
@@ -166,7 +167,7 @@ public class PresenterRegister implements IPresenterRegister {
     private class ListenerRegisterPhone implements IRepositoryRegisterPhoneListener {
         @Override
         public void onSuccess() {
-            loginGoNext();
+
         }
     }
 
