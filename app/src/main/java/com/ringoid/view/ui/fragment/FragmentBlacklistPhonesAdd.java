@@ -4,6 +4,7 @@ package com.ringoid.view.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,6 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterBlacklistPhones;
 import com.ringoid.view.presenter.callback.IPresenterBlacklistPhonesListener;
-import com.ringoid.view.ui.dialog.DialogPhoneValid;
-import com.ringoid.view.ui.dialog.callback.IDialogPhoneValidListener;
 import com.ringoid.view.ui.view.ViewPhoneInput;
 import com.ringoid.view.ui.view.callback.IViewPhotoInputListener;
 
@@ -29,8 +28,6 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     private EditText tvPhone;
     private ViewPhoneInput vpiBlacklist;
 
-    private IDialogPhoneValidListener listenerDialogPhoneValid;
-    private DialogPhoneValid dialogPhoneValid;
     private EditText etPhoneCode;
     private IPresenterBlacklistPhonesListener listenerPresenter;
 
@@ -40,7 +37,6 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
         ApplicationRingoid.getComponent().inject(this);
         presenterBlacklistPhones.setListener(listenerPresenter = new ListenerPresenterBlacklistPhones());
 
-        listenerDialogPhoneValid = new ListenerDialogPhoneValid();
     }
 
     @Nullable
@@ -80,11 +76,8 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tvBlacklistAdd) {
-            if (!vpiBlacklist.isValid()) {
-                if (tvPhone.getText().length() > 0 && etPhoneCode.getText().length() > 0)
-                    showDialogPhoneValid(etPhoneCode.getText().toString(), tvPhone.getText().toString());
+            if (TextUtils.isEmpty(tvPhone.getText()) || TextUtils.isEmpty(etPhoneCode.getText()))
                 return;
-            }
 
             confirmPhoneAdd();
         }
@@ -97,19 +90,6 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
         presenterBlacklistPhones.onClickBlacklistAdd(etPhoneCode.getText().toString(), tvPhone.getText().toString());
         tvPhone.setText("");
         getActivity().onBackPressed();
-    }
-
-    private void showDialogPhoneValid(String code, String phone) {
-        if (dialogPhoneValid != null) dialogPhoneValid.cancel();
-        dialogPhoneValid = new DialogPhoneValid(getContext(), code, phone, listenerDialogPhoneValid);
-        dialogPhoneValid.show();
-    }
-
-    private class ListenerDialogPhoneValid implements IDialogPhoneValidListener {
-        @Override
-        public void onConfirm() {
-            confirmPhoneAdd();
-        }
     }
 
     private class ListenerViewPhoneInput implements IViewPhotoInputListener {
