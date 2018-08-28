@@ -4,7 +4,8 @@
 package com.ringoid.view;
 
 import android.content.Context;
-import android.widget.Toast;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 
 import com.ringoid.ApplicationRingoid;
 
@@ -17,8 +18,16 @@ public class ViewPopup implements IViewPopup {
     @Inject
     WeakReference<Context> refContext;
 
+    WeakReference<View> refViewSnackbar;
+    private Snackbar snackbar;
+
     public ViewPopup() {
         ApplicationRingoid.getComponent().inject(this);
+    }
+
+    @Override
+    public void setView(View view) {
+        this.refViewSnackbar = new WeakReference<>(view);
     }
 
     @Override
@@ -33,5 +42,16 @@ public class ViewPopup implements IViewPopup {
         /*Context context = refContext.get();
         if (context == null) return;
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();*/
+    }
+
+    @Override
+    public void showSnackbar(int messageRes, int messageAction, View.OnClickListener listener) {
+        View view = refViewSnackbar == null ? null : refViewSnackbar.get();
+        if (view == null) return;
+
+        if (snackbar != null) snackbar.dismiss();
+
+        snackbar = Snackbar.make(view, messageRes, Snackbar.LENGTH_INDEFINITE).setAction(messageAction, listener);
+        snackbar.show();
     }
 }

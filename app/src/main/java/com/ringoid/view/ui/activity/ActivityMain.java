@@ -23,7 +23,7 @@ public class ActivityMain extends AppCompatActivity {
 
         ApplicationRingoid.getComponent().inject(this);
 
-        presenterActivityMain.onCreateView(this, getSupportFragmentManager(), R.id.flContentRoot);
+        presenterActivityMain.onCreateView(this, findViewById(R.id.flContentRoot), getSupportFragmentManager(), R.id.flContentRoot);
     }
 
     @Override

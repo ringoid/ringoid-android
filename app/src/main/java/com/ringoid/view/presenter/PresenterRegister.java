@@ -2,6 +2,7 @@
 package com.ringoid.view.presenter;
 
 import android.text.TextUtils;
+import android.view.View;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
@@ -17,6 +18,7 @@ import com.ringoid.controller.data.repository.callback.IRepositoryRegisterPhoneL
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterUserDetailsListener;
 import com.ringoid.model.SEX;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
 
 import java.lang.ref.WeakReference;
@@ -49,9 +51,13 @@ public class PresenterRegister implements IPresenterRegister {
     @Inject
     ICacheToken cacheToken;
 
+    @Inject
+    IViewPopup viewPopup;
+
     private ListenerRegisterCodeConfirm listenerRegisterCodeConfirm;
     private ListenerRegisterPhone listenerRegisterPhone;
     private ListenerRegisterUserDetails listenerRegisterUserDetails;
+    private View.OnClickListener listenerPopupPhoneConfirmError;
 
     private WeakReference<IPresenterRegisterListener> refListener;
 
@@ -60,6 +66,7 @@ public class PresenterRegister implements IPresenterRegister {
         repositoryRegisterPhone.setListener(listenerRegisterPhone = new ListenerRegisterPhone());
         repositoryRegisterCodeConfirm.setListener(listenerRegisterCodeConfirm = new ListenerRegisterCodeConfirm());
         repositoryRegisterUserDetails.setListener(listenerRegisterUserDetails = new ListenerRegisterUserDetails());
+        listenerPopupPhoneConfirmError = new ListenerPhoneConfirmError();
     }
 
     private void notifyError(int stringId) {
@@ -181,6 +188,11 @@ public class PresenterRegister implements IPresenterRegister {
         public void onSuccess() {
 
         }
+
+        @Override
+        public void onError() {
+            viewPopup.showSnackbar(R.string.message_phone_confirm_error, R.string.message_retry, listenerPopupPhoneConfirmError);
+        }
     }
 
     private class ListenerRegisterCodeConfirm implements IRepositoryRegisterCodeConfirmListener {
@@ -196,6 +208,15 @@ public class PresenterRegister implements IPresenterRegister {
         @Override
         public void onSuccess() {
             navigator.navigateFeed();
+        }
+    }
+
+    private class ListenerPhoneConfirmError implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().showPhoneInput();
         }
     }
 }

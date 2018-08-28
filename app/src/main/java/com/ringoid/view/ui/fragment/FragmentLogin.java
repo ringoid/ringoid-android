@@ -45,6 +45,7 @@ public class FragmentLogin extends FragmentBase
 
     private static final String ARG_PROFILE_UPDATE = "arg_profile_update";
     private static final int INDEX_PROFILE_UPDATE = 3;
+    private static final int INDEX_PHONE_INPUT = 1;
 
     @Inject
     IPresenterRegister presenterRegister;
@@ -262,6 +263,11 @@ public class FragmentLogin extends FragmentBase
         @Override
         public void showToast(int stringRes) {
             //Toast.makeText(getContext(), stringRes, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void showPhoneInput() {
+            vfLogin.setDisplayedChild(INDEX_PHONE_INPUT);
         }
 
     }

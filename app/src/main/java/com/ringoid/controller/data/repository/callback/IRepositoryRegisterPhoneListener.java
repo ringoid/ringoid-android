@@ -3,4 +3,6 @@ package com.ringoid.controller.data.repository.callback;
 
 public interface IRepositoryRegisterPhoneListener {
     void onSuccess();
+
+    void onError();
 }

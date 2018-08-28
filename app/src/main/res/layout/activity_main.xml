@@ -6,7 +6,7 @@
     android:background="@android:color/white"
     tools:context=".view.ui.activity.ActivityMain">
 
-    <FrameLayout
+    <android.support.design.widget.CoordinatorLayout
         android:id="@+id/flContentRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

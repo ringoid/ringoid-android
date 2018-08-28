@@ -212,6 +212,8 @@
     <string name="dialog_hidden_mode_title">Only you can see your photos</string>
     <string name="dialog_hidden_mode_message">Others can\'t see your photos, like or message you. It is almost like you deleted your account, although you can still see Who Liked You already and browse New Faces.\n\nYou can change who can see your photos in Privacy, and allow others to see your photos, like and message you.</string>
     <string name="ignore">ignore</string>
+    <string name="message_retry">Edit phone</string>
+    <string name="message_phone_confirm_error">Error: cannot confirm phone number</string>
 
     <string-array name="pages_titles">
         <item></item>

@@ -68,6 +68,11 @@ public class RepositoryRegisterPhone implements IRepositoryRegisterPhone {
         this.refListener = new WeakReference<>(listener);
     }
 
+    private void notifyError() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onError();
+    }
+
     private class RequestListener implements Callback<ResponseRegisterPhone> {
         @Override
         public void onResponse(Call<ResponseRegisterPhone> call, Response<ResponseRegisterPhone> response) {
@@ -78,12 +83,13 @@ public class RepositoryRegisterPhone implements IRepositoryRegisterPhone {
 
                 cacheRegister.setSessionId(response.body().getSessionId());
                 notifySuccess();
-            }
+            } else notifyError();
         }
 
         @Override
         public void onFailure(Call<ResponseRegisterPhone> call, Throwable t) {
-
+            if (call.isCanceled()) return;
+            notifyError();
         }
     }
 }

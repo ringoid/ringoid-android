@@ -124,31 +124,22 @@ class AppModule {
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(1, TimeUnit.MINUTES)
-                .readTimeout(1, TimeUnit.MINUTES);
+                .readTimeout(1, TimeUnit.MINUTES)
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request request = chain.request();
+                        Response response = chain.proceed(request);
 
-
-        builder.interceptors().add(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request request = chain.request();
-                Response response = null;
-                boolean responseOK = false;
-                int tryCount = 0;
-
-                while (!responseOK && tryCount < 3) {
-                    try {
-                        response = chain.proceed(request);
-                        responseOK = response.isSuccessful();
-                    } catch (Exception e) {
-                    } finally {
-                        tryCount++;
+                        for (int i = 0; i < 3; ++i) {
+                            response = chain.proceed(request);
+                            if (response.isSuccessful())
+                                return response;
+                        }
+                        // otherwise just pass the original response on
+                        return response;
                     }
-                }
-
-                // otherwise just pass the original response on
-                return response;
-            }
-        });
+                });
 
         OkHttpClient client = builder.build();
 
