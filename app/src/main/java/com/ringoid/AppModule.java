@@ -32,8 +32,8 @@ import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.IApiRingoid;
-import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
+import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.IRepositoryRegisterUserDetails;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
@@ -93,6 +93,7 @@ import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import com.ringoid.view.ui.util.IStatusBarViewHelper;
 import com.ringoid.view.ui.util.StatusBarViewHelper;
 
+import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
@@ -100,7 +101,10 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -121,6 +125,31 @@ class AppModule {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(1, TimeUnit.MINUTES)
                 .readTimeout(1, TimeUnit.MINUTES);
+
+
+        builder.interceptors().add(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+                Response response = null;
+                boolean responseOK = false;
+                int tryCount = 0;
+
+                while (!responseOK && tryCount < 3) {
+                    try {
+                        response = chain.proceed(request);
+                        responseOK = response.isSuccessful();
+                    } catch (Exception e) {
+                    } finally {
+                        tryCount++;
+                    }
+                }
+
+                // otherwise just pass the original response on
+                return response;
+            }
+        });
+
         OkHttpClient client = builder.build();
 
         Gson gson = new GsonBuilder()
