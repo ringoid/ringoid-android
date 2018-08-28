@@ -52,11 +52,6 @@ public class CacheRegister implements ICacheRegister {
     }
 
     @Override
-    public void setPhoneValid(boolean isValid) {
-        this.isPhoneValid = isValid;
-    }
-
-    @Override
     public long getDateTerms() {
         return dateTerms;
     }
@@ -84,5 +79,10 @@ public class CacheRegister implements ICacheRegister {
     @Override
     public boolean isPhoneValid() {
         return isPhoneValid;
+    }
+
+    @Override
+    public void setPhoneValid(boolean isValid) {
+        this.isPhoneValid = isValid;
     }
 }

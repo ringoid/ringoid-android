@@ -126,6 +126,9 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Override
     public void onClickRegister() {
+        if (cacheRegister.getSex() == SEX.UNDEFINED.getValue()
+                || cacheRegister.getDateBirthMillis() == 0) return;
+
         repositoryRegisterUserDetails.request();
     }
 
@@ -141,6 +144,15 @@ public class PresenterRegister implements IPresenterRegister {
             cacheUser.resetCache();
             cacheTutorial.resetCache();
         }
+
+        checkInputedData();
+    }
+
+    private void checkInputedData() {
+        if (refListener == null || refListener.get() == null) return;
+        if (cacheRegister.getSex() != SEX.UNDEFINED.getValue())
+            refListener.get().setGenderSelected(cacheRegister.getSex() == SEX.FEMALE.getValue() ? SEX.FEMALE : SEX.MALE);
+        refListener.get().showDateBirth(cacheRegister.getDateBirthMillis());
     }
 
     @Override

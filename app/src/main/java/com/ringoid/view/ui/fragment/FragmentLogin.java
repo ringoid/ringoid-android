@@ -31,9 +31,7 @@ import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.IPresenterRegister;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
 import com.ringoid.view.ui.dialog.DialogDateBirth;
-import com.ringoid.view.ui.dialog.DialogPhoneValid;
 import com.ringoid.view.ui.dialog.callback.IDialogDateCallback;
-import com.ringoid.view.ui.dialog.callback.IDialogPhoneValidListener;
 import com.ringoid.view.ui.view.ViewPhoneInput;
 import com.ringoid.view.ui.view.callback.IViewPhotoInputListener;
 import com.ringoid.view.ui.view.utils.ClipboardUtils;
@@ -64,6 +62,8 @@ public class FragmentLogin extends FragmentBase
     private ViewPhoneInput vpiLogin;
     private EditText etPhoneCode;
     private View vContainerSMSCode;
+    private TextView tvDateBirth;
+    private View tvSexFemale, tvSexMale;
 
     public static FragmentLogin getInstanceProfileUpdate() {
         FragmentLogin fragment = new FragmentLogin();
@@ -100,6 +100,9 @@ public class FragmentLogin extends FragmentBase
         etCodeSMS = view.findViewById(R.id.etCodeSMS);
         cbAge = view.findViewById(R.id.cbAge);
         vpiLogin = view.findViewById(R.id.vpiLogin);
+        tvDateBirth = view.findViewById(R.id.tvDateBirth);
+        tvSexFemale = view.findViewById(R.id.tvSexFemale);
+        tvSexFemale = view.findViewById(R.id.tvSexMale);
 
         cbTerms.setMovementMethod(new LinkMovementMethodInternal());
 
@@ -247,13 +250,13 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void showDateBirth(long time) {
-            ((TextView) getView().findViewById(R.id.tvDateBirth)).setText(DateFormat.getDateFormat(getContext()).format(new Date(time)));
+            tvDateBirth.setText(time == 0 ? "" : DateFormat.getDateFormat(getContext()).format(new Date(time)));
         }
 
         @Override
         public void setGenderSelected(SEX sex) {
-            getView().findViewById(R.id.tvSexFemale).setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_pink) : null);
-            getView().findViewById(R.id.tvSexMale).setBackground(sex == SEX.MALE ? getResources().getDrawable(R.drawable.border_rounded_blue) : null);
+            tvSexFemale.setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_pink) : null);
+            tvSexMale.setBackground(sex == SEX.MALE ? getResources().getDrawable(R.drawable.border_rounded_blue) : null);
         }
 
         @Override

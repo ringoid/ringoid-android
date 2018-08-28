@@ -3,7 +3,7 @@ package com.ringoid.model;
 
 public enum SEX {
 
-    FEMALE(0), MALE(1);
+    FEMALE(2), MALE(1), UNDEFINED(0);
 
     private int value;
 
