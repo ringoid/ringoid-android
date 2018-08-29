@@ -103,7 +103,7 @@ public class FragmentLogin extends FragmentBase
         vpiLogin = view.findViewById(R.id.vpiLogin);
         tvDateBirth = view.findViewById(R.id.tvDateBirth);
         tvSexFemale = view.findViewById(R.id.tvSexFemale);
-        tvSexFemale = view.findViewById(R.id.tvSexMale);
+        tvSexMale = view.findViewById(R.id.tvSexMale);
 
         cbTerms.setMovementMethod(new LinkMovementMethodInternal());
 

@@ -5,7 +5,9 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheBlacklist;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
+import com.ringoid.controller.data.memorycache.listener.ICacheSettingsPrivacyListener;
 import com.ringoid.view.presenter.callback.IPresenterSettingsPrivacyListener;
+import com.ringoid.view.presenter.util.ISettingsHelper;
 
 import java.lang.ref.WeakReference;
 
@@ -19,16 +21,22 @@ public class PresenterSettingsPrivacy implements IPresenterSettingsPrivacy {
     @Inject
     ICacheBlacklist cacheBlacklist;
 
+    @Inject
+    ISettingsHelper settingsHelper;
+
+    private ICacheSettingsPrivacyListener listenerCacheSettings;
+
     private WeakReference<IPresenterSettingsPrivacyListener> refListener;
 
     public PresenterSettingsPrivacy() {
         ApplicationRingoid.getComponent().inject(this);
+        cacheSettingsPrivacy.addListener(listenerCacheSettings = new ListenerCacheSettings());
     }
 
     @Override
     public void onClickPrivacyPhotosAll() {
         cacheSettingsPrivacy.setPrivacyPhotos(0);
-        notifyListenersPrivacyPhotos();
+        settingsHelper.requestSave();
     }
 
     private void notifyListenersPrivacyPhotos() {
@@ -39,13 +47,13 @@ public class PresenterSettingsPrivacy implements IPresenterSettingsPrivacy {
     @Override
     public void onClickPrivacyPhotosLikes() {
         cacheSettingsPrivacy.setPrivacyPhotos(1);
-        notifyListenersPrivacyPhotos();
+        settingsHelper.requestSave();
     }
 
     @Override
     public void onClickPrivacyPhotosNoone() {
         cacheSettingsPrivacy.setPrivacyPhotos(2);
-        notifyListenersPrivacyPhotos();
+        settingsHelper.requestSave();
     }
 
     @Override
@@ -55,9 +63,8 @@ public class PresenterSettingsPrivacy implements IPresenterSettingsPrivacy {
 
     @Override
     public void onCreateView() {
-        notifyListenersPrivacyPhotos();
+        settingsHelper.requestGet();
         notifyListenersPrivacyMessagesFirst(0);
-        notifyListenersPrivacyDistance();
         notifyListenersPrivacyBlacklistNum();
     }
 
@@ -91,5 +98,13 @@ public class PresenterSettingsPrivacy implements IPresenterSettingsPrivacy {
                 : type == 2 ? R.string.distance_2
                 : type == 3 ? R.string.distance_3
                 : R.string.distance_4);
+    }
+
+    private class ListenerCacheSettings implements ICacheSettingsPrivacyListener {
+        @Override
+        public void onUpdate() {
+            notifyListenersPrivacyPhotos();
+            notifyListenersPrivacyDistance();
+        }
     }
 }

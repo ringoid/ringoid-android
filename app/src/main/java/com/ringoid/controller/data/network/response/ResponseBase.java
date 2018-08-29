@@ -10,4 +10,8 @@ public class ResponseBase {
     public boolean isSuccess() {
         return TextUtils.isEmpty(errorCode);
     }
+
+    public boolean isInvalidToken() {
+        return errorCode.equals("InvalidAccessTokenClientError");
+    }
 }

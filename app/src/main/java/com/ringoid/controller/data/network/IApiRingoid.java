@@ -4,13 +4,17 @@ package com.ringoid.controller.data.network;
 import com.ringoid.controller.data.network.request.RequestParamRegisterCodeConfirm;
 import com.ringoid.controller.data.network.request.RequestParamRegisterPhone;
 import com.ringoid.controller.data.network.request.RequestParamRegisterUserDetails;
+import com.ringoid.controller.data.network.request.RequestParamSettingsUpdate;
 import com.ringoid.controller.data.network.response.ResponseBase;
 import com.ringoid.controller.data.network.response.ResponseRegisterCodeConfirm;
 import com.ringoid.controller.data.network.response.ResponseRegisterPhone;
+import com.ringoid.controller.data.network.response.ResponseSettings;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface IApiRingoid {
 
@@ -26,9 +30,12 @@ public interface IApiRingoid {
     Call<ResponseBase> registerUserDetails(
             @Body RequestParamRegisterUserDetails param);
 
-/*
-    @GET("calendar")
-    Call<ResponseCalendarPeriods> requestPeriods(@Query("device_id") String id, @Query("lang") String lang);
-*/
+    @POST("/Prod/update_settings")
+    Call<ResponseBase> settingsUpdate(
+            @Body RequestParamSettingsUpdate param);
+
+
+    @GET("/Prod/get_settings")
+    Call<ResponseSettings> settingsGet(@Query("accessToken") String token);
 
 }

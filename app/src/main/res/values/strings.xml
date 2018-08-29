@@ -214,6 +214,9 @@
     <string name="ignore">ignore</string>
     <string name="message_retry">Edit phone</string>
     <string name="message_phone_confirm_error">Error: cannot confirm phone number</string>
+    <string name="push_likes_all">Every new like</string>
+    <string name="push_likes_every_10">Every 10 new likes</string>
+    <string name="push_likes_every_100">Every 100 new likes</string>
 
     <string-array name="pages_titles">
         <item></item>

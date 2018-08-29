@@ -11,11 +11,13 @@ import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
+import com.ringoid.controller.data.memorycache.listener.ICacheSettingsPrivacyListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.INavigatorPagesListener;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
+import com.ringoid.view.presenter.util.ISettingsHelper;
 
 import java.lang.ref.WeakReference;
 
@@ -49,8 +51,14 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     @Inject
     IPresenterLikes presenterLikes;
+
     @Inject
     ICacheTutorial cacheTutorial;
+
+    @Inject
+    ISettingsHelper settingsHelper;
+
+    private ListenerCacheSettings listenerCacheSettings;
     private INavigatorPagesListener listenerNavigatorPages;
     private ListenerCacheScroll listenerCacheScroll;
     private WeakReference<IPresenterPagesContainerListener> refListener;
@@ -59,6 +67,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         ApplicationRingoid.getComponent().inject(this);
         cacheScroll.setListener(listenerCacheScroll = new ListenerCacheScroll());
         navigatorPages.setLisener(listenerNavigatorPages = new ListenerNavigatorPages());
+        cacheSettingsPrivacy.addListener(listenerCacheSettings = new ListenerCacheSettings());
     }
 
     @Override
@@ -89,10 +98,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     }
 
     private void updateViewPrivacy() {
-        if (refListener == null || refListener.get() == null) return;
-        int type = cacheSettingsPrivacy.getPrivacyPhotos();
-
-        refListener.get().setStatusBarColor(type);
+        settingsHelper.requestGet();
     }
 
     @Override
@@ -218,6 +224,17 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
             if (num == 2 && cacheMessages.isDataExist()) return R.color.bottomMenuColorAccentGreen;
 
             return R.color.menu_bottom_selected;
+        }
+    }
+
+    private class ListenerCacheSettings implements ICacheSettingsPrivacyListener {
+        @Override
+        public void onUpdate() {
+
+            if (refListener == null || refListener.get() == null) return;
+            int type = cacheSettingsPrivacy.getPrivacyPhotos();
+
+            refListener.get().setStatusBarColor(type);
         }
     }
 }

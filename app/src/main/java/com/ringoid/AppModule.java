@@ -35,9 +35,13 @@ import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.IRepositoryRegisterUserDetails;
+import com.ringoid.controller.data.repository.IRepositorySettingsGet;
+import com.ringoid.controller.data.repository.IRepositorySettingsSave;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.RepositoryRegisterUserDetails;
+import com.ringoid.controller.data.repository.RepositorySettingsGet;
+import com.ringoid.controller.data.repository.RepositorySettingsSave;
 import com.ringoid.controller.device.CacheStorage;
 import com.ringoid.controller.device.ICacheStorage;
 import com.ringoid.view.INavigator;
@@ -69,6 +73,7 @@ import com.ringoid.view.presenter.IPresenterProfile;
 import com.ringoid.view.presenter.IPresenterRegister;
 import com.ringoid.view.presenter.IPresenterSettingsPrivacy;
 import com.ringoid.view.presenter.IPresenterSettingsPrivacyDistance;
+import com.ringoid.view.presenter.IPresenterSettingsPush;
 import com.ringoid.view.presenter.PresenterActivityMain;
 import com.ringoid.view.presenter.PresenterAdapterBlacklistPhones;
 import com.ringoid.view.presenter.PresenterAdapterChatMessages;
@@ -90,6 +95,9 @@ import com.ringoid.view.presenter.PresenterProfile;
 import com.ringoid.view.presenter.PresenterRegister;
 import com.ringoid.view.presenter.PresenterSettingsPrivacy;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
+import com.ringoid.view.presenter.PresenterSettingsPush;
+import com.ringoid.view.presenter.util.ISettingsHelper;
+import com.ringoid.view.presenter.util.SettingsHelper;
 import com.ringoid.view.ui.util.IStatusBarViewHelper;
 import com.ringoid.view.ui.util.StatusBarViewHelper;
 
@@ -129,7 +137,8 @@ class AppModule {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request request = chain.request();
-                        Response response = chain.proceed(request);
+
+                        Response response = null;
 
                         for (int i = 0; i < 3; ++i) {
                             response = chain.proceed(request);
@@ -189,6 +198,15 @@ class AppModule {
     IStatusBarViewHelper getStatusBarViewHelper() {
         return new StatusBarViewHelper();
     }
+
+    @Provides
+    @Singleton
+    ISettingsHelper getSettingsHelper(){
+        return new SettingsHelper();
+    }
+
+    //region cache
+
 
     @Provides
     @Singleton
@@ -274,6 +292,11 @@ class AppModule {
     ICacheLocale getCacheLocale() {
         return new CacheLocale();
     }
+
+    //endregion
+
+    //region presenter
+
 
     @Provides
     @Singleton
@@ -404,6 +427,16 @@ class AppModule {
 
     @Provides
     @Singleton
+    IPresenterSettingsPush getPresenterSettingsPush() {
+        return new PresenterSettingsPush();
+    }
+
+    //endregion
+
+    //region repository
+
+    @Provides
+    @Singleton
     IRepositoryRegisterPhone getRepositoryRegister() {
         return new RepositoryRegisterPhone();
     }
@@ -419,4 +452,18 @@ class AppModule {
     IRepositoryRegisterUserDetails getRepositoryRegisterUserDetails() {
         return new RepositoryRegisterUserDetails();
     }
+
+    @Provides
+    @Singleton
+    IRepositorySettingsSave getRepositorySettingsSave() {
+        return new RepositorySettingsSave();
+    }
+
+    @Provides
+    @Singleton
+    IRepositorySettingsGet getRepositorySettingsGet() {
+        return new RepositorySettingsGet();
+    }
+
+    //endregion
 }
