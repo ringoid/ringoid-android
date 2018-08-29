@@ -81,17 +81,19 @@ public class FragmentSettingsPrivacyDistance extends FragmentBase
     private class ListenerPresenter implements IPresenterSettingsPrivacyDistanceListener {
         @Override
         public void setDistance(int type) {
+            if (getContext() == null) return;
+
             tvDistance0.setCompoundDrawablesWithIntrinsicBounds(null, null, type == 0 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
             tvDistance1.setCompoundDrawablesWithIntrinsicBounds(null, null, type == 1 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
             tvDistance2.setCompoundDrawablesWithIntrinsicBounds(null, null, type == 2 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
             tvDistance3.setCompoundDrawablesWithIntrinsicBounds(null, null, type == 3 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
             tvDistance4.setCompoundDrawablesWithIntrinsicBounds(null, null, type == 4 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
 
-            checkBold(tvDistance0, type==0);
-            checkBold(tvDistance1, type==1);
-            checkBold(tvDistance2, type==2);
-            checkBold(tvDistance3, type==3);
-            checkBold(tvDistance4, type==4);
+            checkBold(tvDistance0, type == 0);
+            checkBold(tvDistance1, type == 1);
+            checkBold(tvDistance2, type == 2);
+            checkBold(tvDistance3, type == 3);
+            checkBold(tvDistance4, type == 4);
 
         }
 

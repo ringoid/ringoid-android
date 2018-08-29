@@ -79,8 +79,8 @@ public class PresenterSettingsPush implements IPresenterSettingsPush {
     private void notifyView() {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().setData(
-                cacheSettingsPrivacy.isCheckedPushMatches(),
                 cacheSettingsPrivacy.isCheckedPushMessages(),
+                cacheSettingsPrivacy.isCheckedPushMatches(),
                 cacheSettingsPrivacy.getPushLikesType());
     }
 

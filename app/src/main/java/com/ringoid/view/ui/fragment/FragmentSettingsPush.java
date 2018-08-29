@@ -111,6 +111,7 @@ public class FragmentSettingsPush extends FragmentBase implements View.OnClickLi
     private class ListenerPresenter implements IPresenterSettingsPushListener {
         @Override
         public void setData(boolean messages, boolean matches, int pushLikesType) {
+            if (getContext() == null) return;
             ivMessages.setImageResource(messages ? R.drawable.switch_on : R.drawable.switch_off);
             ivMatches.setImageResource(matches ? R.drawable.switch_on : R.drawable.switch_off);
             setPushLikes(pushLikesType);

@@ -148,12 +148,7 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
 
     @Override
     public void changePushLikes() {
-        if (pushLikesType == 0) {
-            pushLikesType = 1;
-            return;
-        }
-
-        pushLikesType = 0;
+        pushLikesType = pushLikesType == 0 ? 1 : 0;
         notifyListeners();
     }
 

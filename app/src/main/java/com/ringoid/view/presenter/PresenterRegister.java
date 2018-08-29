@@ -148,6 +148,7 @@ public class PresenterRegister implements IPresenterRegister {
     @Override
     public void onCreateView() {
         if (cacheUser.isRegistered()) {
+            cacheToken.resetCache();
             cacheUser.resetCache();
             cacheTutorial.resetCache();
         }

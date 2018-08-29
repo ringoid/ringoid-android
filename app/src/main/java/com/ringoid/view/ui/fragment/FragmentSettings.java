@@ -120,7 +120,6 @@ public class FragmentSettings extends FragmentBase
     private class ListenerDialogLogout implements IDialogLogoutListener {
         @Override
         public void onConfirm() {
-            cacheToken.resetCache();
             navigator.navigateLogin();
         }
     }
