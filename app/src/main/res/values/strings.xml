@@ -48,7 +48,7 @@
     <string name="dialog_block_title">Do you want to block this user?</string>
     <string name="dialog_block_message">They won\'t be able to see your photos ever again (and you won\'t see theirs). They won\'t be able to like or message you. Message history (if any) will be deleted for both of you. There is no undo.</string>
     <string name="settings_rate">Rate in Google Play</string>
-    <string name="push">Notifications</string>
+    <string name="push">Push Notifications</string>
     <string name="settings_privacy_photos">Photos</string>
     <string name="settings_privacy_photos_message">Who can see your photos?</string>
     <string name="settings_privacy_photos_all">Ringoid users of the opposite sex\n(Regular mode)</string>
