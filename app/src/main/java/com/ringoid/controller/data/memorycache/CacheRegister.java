@@ -6,7 +6,7 @@ import com.ringoid.model.SEX;
 public class CacheRegister implements ICacheRegister {
 
     private int sex;
-    private long dateBirthMillis;
+    private int dateBirth;
     private String sessionId;
     private boolean isPhoneValid;
     private long dateTerms, dateAge;
@@ -28,17 +28,19 @@ public class CacheRegister implements ICacheRegister {
 
     @Override
     public boolean isDateBirthSelected() {
-        return dateBirthMillis != 0;
+        return dateBirth != 0;
     }
 
     @Override
-    public long getDateBirthMillis() {
-        return dateBirthMillis;
+    public int getYearBirth() {
+        return dateBirth;
     }
 
     @Override
-    public void setDateBirthMillis(long timeInMillis) {
-        this.dateBirthMillis = timeInMillis;
+    public boolean setDateBirth(int year) {
+        if (dateBirth == year) return false;
+        this.dateBirth = year;
+        return true;
     }
 
     @Override

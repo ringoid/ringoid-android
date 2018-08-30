@@ -22,10 +22,13 @@ import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
 
 import java.lang.ref.WeakReference;
+import java.util.Calendar;
 
 import javax.inject.Inject;
 
 public class PresenterRegister implements IPresenterRegister {
+
+    private static final int DEFAULT_AGE = 38;
 
     @Inject
     IRepositoryRegisterPhone repositoryRegisterPhone;
@@ -134,15 +137,15 @@ public class PresenterRegister implements IPresenterRegister {
     @Override
     public void onClickRegister() {
         if (cacheRegister.getSex() == SEX.UNDEFINED.getValue()
-                || cacheRegister.getDateBirthMillis() == 0) return;
+                || cacheRegister.getYearBirth() == 0) return;
 
         repositoryRegisterUserDetails.request();
     }
 
     @Override
-    public void onDataBirthSet(long timeInMillis) {
-        cacheRegister.setDateBirthMillis(timeInMillis);
-        showDateBirth(timeInMillis);
+    public void onDataBirthSet(int year) {
+        if (cacheRegister.setDateBirth(year))
+        showDateBirth(year);
     }
 
     @Override
@@ -160,7 +163,13 @@ public class PresenterRegister implements IPresenterRegister {
         if (refListener == null || refListener.get() == null) return;
         if (cacheRegister.getSex() != SEX.UNDEFINED.getValue())
             refListener.get().setGenderSelected(cacheRegister.getSex() == SEX.FEMALE.getValue() ? SEX.FEMALE : SEX.MALE);
-        refListener.get().showDateBirth(cacheRegister.getDateBirthMillis());
+        refListener.get().showDateBirth(cacheRegister.getYearBirth());
+        refListener.get().setDateHint(String.valueOf(getDefaultYear()));
+    }
+
+    private int getDefaultYear() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.YEAR) - DEFAULT_AGE;
     }
 
     @Override
@@ -173,9 +182,9 @@ public class PresenterRegister implements IPresenterRegister {
         cacheRegister.setDateAge(isChecked);
     }
 
-    private void showDateBirth(long time) {
+    private void showDateBirth(int year) {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().showDateBirth(time);
+        refListener.get().showDateBirth(year);
     }
 
     private void loginGoNext() {

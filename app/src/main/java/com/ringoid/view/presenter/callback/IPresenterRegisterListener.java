@@ -8,11 +8,13 @@ public interface IPresenterRegisterListener {
 
     void navigateNext();
 
-    void showDateBirth(long time);
+    void showDateBirth(int time);
 
     void setGenderSelected(SEX sex);
 
     void showToast(int stringRes);
 
     void showPhoneInput();
+
+    void setDateHint(String hint);
 }

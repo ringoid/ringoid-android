@@ -19,7 +19,7 @@ public interface IPresenterRegister {
 
     void onClickRegister();
 
-    void onDataBirthSet(long timeInMillis);
+    void onDataBirthSet(int year);
 
     void onCreateView();
 

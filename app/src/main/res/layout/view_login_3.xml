@@ -39,22 +39,17 @@
                 android:text="@string/login_birth_message"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
 
-            <FrameLayout
+            <EditText
+                android:id="@+id/etDateBirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:background="@drawable/border_rounded_gray">
-
-                <TextView
-                    android:id="@+id/tvDateBirth"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:gravity="center"
-                    android:hint="@string/message_date_birth"
-                    android:padding="16dp" />
-
-            </FrameLayout>
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/border_rounded_gray"
+                android:gravity="center"
+                android:inputType="number"
+                android:padding="16dp" />
 
             <TextView
                 android:layout_width="match_parent"

@@ -53,12 +53,9 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
 
         if (request != null) request.cancel();
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(cacheRegister.getDateBirthMillis());
-
         request = apiRingoid.registerUserDetails(new RequestParamRegisterUserDetails(
                 cacheToken.getToken(),
-                calendar.get(Calendar.YEAR),
+                cacheRegister.getYearBirth(),
                 cacheRegister.getSex() == SEX.MALE.getValue() ? "male" : "female"));
         request.enqueue(requestListener);
     }

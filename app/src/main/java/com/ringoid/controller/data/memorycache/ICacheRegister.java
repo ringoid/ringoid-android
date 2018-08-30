@@ -10,9 +10,9 @@ public interface ICacheRegister {
 
     boolean isDateBirthSelected();
 
-    long getDateBirthMillis();
+    int getYearBirth();
 
-    void setDateBirthMillis(long timeInMillis);
+    boolean setDateBirth(int year);
 
     void setSessionId(String sessionId);
 

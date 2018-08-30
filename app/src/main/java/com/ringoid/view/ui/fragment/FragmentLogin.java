@@ -7,11 +7,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.text.format.DateFormat;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.view.LayoutInflater;
@@ -30,13 +30,11 @@ import com.ringoid.model.SEX;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.IPresenterRegister;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
-import com.ringoid.view.ui.dialog.DialogDateBirth;
-import com.ringoid.view.ui.dialog.callback.IDialogDateCallback;
 import com.ringoid.view.ui.view.ViewPhoneInput;
 import com.ringoid.view.ui.view.callback.IViewPhotoInputListener;
 import com.ringoid.view.ui.view.utils.ClipboardUtils;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -58,12 +56,10 @@ public class FragmentLogin extends FragmentBase
     private CheckBox cbAge, cbTerms;
     private ListenerPresenter listenerPresenter;
 
-    private DialogDateBirth dialogDateBirth;
-    private IDialogDateCallback listenerDialogDate;
     private ViewPhoneInput vpiLogin;
     private EditText etPhoneCode;
     private View vContainerSMSCode;
-    private TextView tvDateBirth;
+    private EditText etDateBirth;
     private View tvSexFemale, tvSexMale;
 
     public static FragmentLogin getInstanceProfileUpdate() {
@@ -79,7 +75,6 @@ public class FragmentLogin extends FragmentBase
         super.onCreate(savedInstanceState);
         ApplicationRingoid.getComponent().inject(this);
         presenterRegister.setListener(listenerPresenter = new ListenerPresenter());
-        listenerDialogDate = new ListenerDialogDate();
     }
 
     @Nullable
@@ -101,7 +96,7 @@ public class FragmentLogin extends FragmentBase
         etCodeSMS = view.findViewById(R.id.etCodeSMS);
         cbAge = view.findViewById(R.id.cbAge);
         vpiLogin = view.findViewById(R.id.vpiLogin);
-        tvDateBirth = view.findViewById(R.id.tvDateBirth);
+        etDateBirth = view.findViewById(R.id.etDateBirth);
         tvSexFemale = view.findViewById(R.id.tvSexFemale);
         tvSexMale = view.findViewById(R.id.tvSexMale);
 
@@ -113,7 +108,6 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.tvCodeSMSConfirm).setOnClickListener(this);
         view.findViewById(R.id.tvLoginTermsAgreement).setOnClickListener(this);
         view.findViewById(R.id.tvLoginPhoneVerify).setOnClickListener(this);
-        view.findViewById(R.id.tvDateBirth).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.ivPasteSMS).setOnClickListener(this);
 
@@ -122,6 +116,7 @@ public class FragmentLogin extends FragmentBase
         vpiLogin.setListener(new ListenerViewPhoneInput());
 
         etCodeSMS.addTextChangedListener(new SMSTextChangedListener());
+        etDateBirth.addTextChangedListener(new DateTextChangedListener());
 
         cbTerms.setOnCheckedChangeListener(new ListenerCheckedChangeTerms());
         cbAge.setOnCheckedChangeListener(new ListenerCheckedChangeAge());
@@ -169,9 +164,6 @@ public class FragmentLogin extends FragmentBase
         if (view.getId() == R.id.tvSexMale)
             presenterRegister.onClickMale();
 
-        if (view.getId() == R.id.tvDateBirth)
-            showDialogCalendar();
-
         if (view.getId() == R.id.ivPasteSMS) {
             pasteSMSFromCLipboard();
         }
@@ -217,13 +209,6 @@ public class FragmentLogin extends FragmentBase
         checkKeyboard();
     }
 
-    private void showDialogCalendar() {
-        if (dialogDateBirth != null) dialogDateBirth.cancel();
-        dialogDateBirth = new DialogDateBirth(getContext());
-        dialogDateBirth.setListener(listenerDialogDate);
-        dialogDateBirth.show();
-    }
-
     @Override
     public boolean onLongClick(View v) {
         if (v.getId() == R.id.ivPasteSMS) {
@@ -250,8 +235,13 @@ public class FragmentLogin extends FragmentBase
         }
 
         @Override
-        public void showDateBirth(long time) {
-            tvDateBirth.setText(time == 0 ? "" : DateFormat.getDateFormat(getContext()).format(new Date(time)));
+        public void showDateBirth(int time) {
+            etDateBirth.setText(time == 0 ? "" : String.valueOf(time));
+        }
+
+        @Override
+        public void setDateHint(String hint) {
+            etDateBirth.setHint(hint);
         }
 
         @Override
@@ -270,13 +260,6 @@ public class FragmentLogin extends FragmentBase
             vfLogin.setDisplayedChild(INDEX_PHONE_INPUT);
         }
 
-    }
-
-    private class ListenerDialogDate implements IDialogDateCallback {
-        @Override
-        public void onResult(long timeInMillis) {
-            presenterRegister.onDataBirthSet(timeInMillis);
-        }
     }
 
     private class LinkMovementMethodInternal extends LinkMovementMethod {
@@ -381,6 +364,51 @@ public class FragmentLogin extends FragmentBase
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             presenterRegister.setCheckedAge(isChecked);
+        }
+    }
+
+    private class DateTextChangedListener implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+            int year = getYear(s.toString());
+            boolean isValid = isValid(year);
+
+            etDateBirth.setBackgroundResource(isValid ? R.drawable.border_rounded_green : R.drawable.border_rounded_red);
+            etDateBirth.setTextColor(ContextCompat.getColor(getContext(), isValid ? android.R.color.black : R.color.colorAccent));
+
+            Drawable drawable = ContextCompat.getDrawable(getContext(), isValid ? R.drawable.ic_check_green_16dp : R.drawable.ic_error_red_16dp);
+            etDateBirth.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
+
+            presenterRegister.onDataBirthSet(isValid ? year : 0);
+        }
+
+        private int getYear(String s) {
+            if (!TextUtils.isDigitsOnly(s) || s.length() != 4)
+                return 0;
+
+            int year;
+            try {
+                year = Integer.valueOf(s);
+            } catch (NumberFormatException e) {
+                return 0;
+            }
+
+            return year;
+        }
+
+        private boolean isValid(int year) {
+            return year >= 1938 && year <= Calendar.getInstance().get(Calendar.YEAR) - 18;
         }
     }
 }
