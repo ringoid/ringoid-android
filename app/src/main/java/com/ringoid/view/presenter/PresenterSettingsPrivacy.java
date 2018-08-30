@@ -92,11 +92,12 @@ public class PresenterSettingsPrivacy implements IPresenterSettingsPrivacy {
     private void notifyListenersPrivacyDistance() {
         if (refListener == null || refListener.get() == null) return;
 
-        int type = cacheSettingsPrivacy.getDistanceType();
-        refListener.get().setPrivacyDistance(type == 0 ? R.string.distance_0
-                : type == 1 ? R.string.distance_1
-                : type == 2 ? R.string.distance_2
-                : type == 3 ? R.string.distance_3
+        int distance = cacheSettingsPrivacy.getDistance();
+        refListener.get().setPrivacyDistance(distance == 0 ? R.string.distance_0
+                : distance == 10 ? R.string.distance_1
+                : distance == 25 ? R.string.settings_privacy_distance_25
+                : distance == 50 ? R.string.distance_2
+                : distance == 100 ? R.string.distance_3
                 : R.string.distance_4);
     }
 

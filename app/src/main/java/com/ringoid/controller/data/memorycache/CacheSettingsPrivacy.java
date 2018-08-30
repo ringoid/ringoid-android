@@ -16,7 +16,7 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     private static final String PHOTOS_ONLY_ME = "ONLY_ME";
 
     private int privacyPhotosType;
-    private int distanceType;
+    private int distance;
     private int pushLikesType;
     private boolean isPushEnabledMessages;
     private boolean isPushEnabledMatches;
@@ -44,13 +44,13 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     }
 
     @Override
-    public int getDistanceType() {
-        return distanceType;
+    public int getDistance() {
+        return distance;
     }
 
     @Override
-    public void setPrivacyDistance(int type) {
-        this.distanceType = type;
+    public void setPrivacyDistance(int distance) {
+        this.distance = distance;
         notifyListeners();
     }
 
@@ -95,23 +95,6 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     @Override
     public boolean isCheckedPushMatches() {
         return isPushEnabledMatches;
-    }
-
-    @Override
-    public int getDistanceSafeMeter() {
-
-        return distanceType == 0
-                ? 0
-                : distanceType == 1
-                ? 10
-                : distanceType == 2
-                ? 50
-                : distanceType == 3
-                ? 100
-                : distanceType == 4
-                ? 250
-                : 0;
-
     }
 
     @Override
@@ -168,15 +151,7 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
                 ? 2
                 : 2;
 
-        this.distanceType = safeDistanceInMeter == 0
-                ? 0
-                : safeDistanceInMeter == 10
-                ? 1
-                : safeDistanceInMeter == 100
-                ? 2
-                : safeDistanceInMeter == 250
-                ? 3
-                : 3;
+        this.distance = safeDistanceInMeter;
 
         this.isPushEnabledMatches = pushMatches;
         this.isPushEnabledMessages = pushMessages;

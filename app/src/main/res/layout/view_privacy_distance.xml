@@ -40,6 +40,16 @@
         android:background="@color/divider" />
 
     <TextView
+        android:id="@+id/tvDistance25"
+        style="@style/settings_menu_item"
+        android:text="@string/settings_privacy_distance_25" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <TextView
         android:id="@+id/tvDistance2"
         style="@style/settings_menu_item"
         android:text="@string/settings_privacy_distance_2" />

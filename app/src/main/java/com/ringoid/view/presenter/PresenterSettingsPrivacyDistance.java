@@ -2,10 +2,9 @@
 package com.ringoid.view.presenter;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.listener.ICacheSettingsPrivacyListener;
-import com.ringoid.controller.data.repository.IRepositorySettingsGet;
-import com.ringoid.controller.data.repository.IRepositorySettingsSave;
 import com.ringoid.view.presenter.callback.IPresenterSettingsPrivacyDistanceListener;
 import com.ringoid.view.presenter.util.ISettingsHelper;
 
@@ -31,15 +30,46 @@ public class PresenterSettingsPrivacyDistance implements IPresenterSettingsPriva
     }
 
     @Override
-    public void onClickDistance(int type) {
-        cacheSettingsPrivacy.setPrivacyDistance(type);
+    public void onClickDistance(int resId) {
+
+        int distance =
+                resId == R.id.tvDistance0
+                        ? 0
+                        : resId == R.id.tvDistance1
+                        ? 10
+                        : resId == R.id.tvDistance25
+                        ? 25
+                        : resId == R.id.tvDistance2
+                        ? 50
+                        : resId == R.id.tvDistance3
+                        ? 100
+                        : resId == R.id.tvDistance4
+                        ? 250
+                        : 0;
+
+        cacheSettingsPrivacy.setPrivacyDistance(distance);
         settingsHelper.requestSave();
         notifyListenersDistance();
     }
 
     private void notifyListenersDistance() {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().setDistance(cacheSettingsPrivacy.getDistanceType());
+
+        int distance = cacheSettingsPrivacy.getDistance();
+        refListener.get().setDistance(
+                distance == 0
+                        ? R.id.tvDistance0
+                        : distance == 10
+                        ? R.id.tvDistance1
+                        : distance == 25
+                        ? R.id.tvDistance25
+                        : distance == 50
+                        ? R.id.tvDistance2
+                        : distance == 100
+                        ? R.id.tvDistance3
+                        : distance == 250
+                        ? R.id.tvDistance4
+                        : 0);
     }
 
     @Override
@@ -53,9 +83,9 @@ public class PresenterSettingsPrivacyDistance implements IPresenterSettingsPriva
         this.refListener = new WeakReference<>(listener);
     }
 
-    private class ListenerCacheSettings implements ICacheSettingsPrivacyListener{
+    private class ListenerCacheSettings implements ICacheSettingsPrivacyListener {
         @Override
-        public void onUpdate(){
+        public void onUpdate() {
             notifyListenersDistance();
         }
     }

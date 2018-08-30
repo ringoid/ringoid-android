@@ -8,7 +8,7 @@ public interface ICacheSettingsPrivacy {
 
     int getPrivacyPhotos();
 
-    int getDistanceType();
+    int getDistance();
 
     void setPrivacyDistance(int type);
 
@@ -27,8 +27,6 @@ public interface ICacheSettingsPrivacy {
     boolean isCheckedPushMessages();
 
     boolean isCheckedPushMatches();
-
-    int getDistanceSafeMeter();
 
     String getWhoCanSeePhotosString();
 

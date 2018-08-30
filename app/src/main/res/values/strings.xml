@@ -78,6 +78,7 @@
     <string name="settings_privacy_distance_message">Don\'t show my photos to Ringoid users (and don\'t show their photos to me, and don\'t allow them to like or message me) who is closer than</string>
     <string name="settings_privacy_distance_0">0 meters (0 feet, 0 yards)</string>
     <string name="settings_privacy_distance_1">10 meters (32 feet, 10 yards)</string>
+    <string name="settings_privacy_distance_25">25 meters (82 feet, 27 yards)</string>
     <string name="settings_privacy_distance_2">50 meters (164 feet, 54 yards)</string>
     <string name="settings_privacy_distance_3">100 meters (328 feet, 109 yards)</string>
     <string name="settings_privacy_distance_4">250 meters (820 feet, 273 yards)</string>

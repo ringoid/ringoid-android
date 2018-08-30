@@ -4,7 +4,7 @@ package com.ringoid.view.presenter;
 import com.ringoid.view.presenter.callback.IPresenterSettingsPrivacyDistanceListener;
 
 public interface IPresenterSettingsPrivacyDistance {
-    void onClickDistance(int type);
+    void onClickDistance(int resId);
 
     void onCreateView();
 
