@@ -104,7 +104,7 @@ public class FragmentSettingsPush extends FragmentBase implements View.OnClickLi
 
     private void checkSelected(TextView textView, boolean isSelected) {
         textView.setTypeface(null, isSelected ? Typeface.BOLD : Typeface.NORMAL);
-        Drawable drawable = isSelected ? ContextCompat.getDrawable(getContext(), R.drawable.ic_check_green_16dp) : null;
+        Drawable drawable = isSelected ? ContextCompat.getDrawable(getContext(), R.drawable.ic_check_green_24dp) : null;
         textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
     }
 

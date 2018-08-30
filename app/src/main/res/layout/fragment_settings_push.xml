@@ -151,11 +151,21 @@
                 android:visibility="gone"
                 tools:visibility="visible">
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider" />
+
                 <TextView
                     android:id="@+id/tvPushLikesAll"
                     style="@style/settings_menu_item"
                     android:paddingStart="52dp"
                     android:text="@string/push_likes_all" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider" />
 
                 <TextView
                     android:id="@+id/tvPushLikesEvery10"
@@ -163,11 +173,21 @@
                     android:paddingStart="52dp"
                     android:text="@string/push_likes_every_10" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider" />
+
                 <TextView
                     android:id="@+id/tvPushLikesEvery100"
                     style="@style/settings_menu_item"
                     android:paddingStart="52dp"
                     android:text="@string/push_likes_every_100" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider" />
 
             </LinearLayout>
 
