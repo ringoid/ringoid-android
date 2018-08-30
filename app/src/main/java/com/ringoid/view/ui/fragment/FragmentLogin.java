@@ -236,6 +236,7 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void showDateBirth(int time) {
+            if (String.valueOf(time).equals(etDateBirth.getText().toString())) return;
             etDateBirth.setText(time == 0 ? "" : String.valueOf(time));
         }
 
