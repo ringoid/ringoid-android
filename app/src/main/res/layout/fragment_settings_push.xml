@@ -35,7 +35,7 @@
                     android:text="@string/settings_push_messages_message"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
-                    app:layout_constraintEnd_toStartOf="@id/ivPushMessages"
+                    app:layout_constraintEnd_toStartOf="@id/swPushMessages"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
@@ -44,15 +44,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/settings_push_messages_description"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                    app:layout_constraintEnd_toStartOf="@id/ivPushMessages"
+                    app:layout_constraintEnd_toStartOf="@id/swPushMessages"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvMessageMessages" />
 
-                <ImageView
-                    android:id="@+id/ivPushMessages"
-                    android:layout_width="52dp"
+                <Switch
+                    android:id="@+id/swPushMessages"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/switch_off"
                     android:theme="@style/AppTheme.Green"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +77,7 @@
 
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
-                    app:layout_constraintEnd_toStartOf="@id/ivPushMatches"
+                    app:layout_constraintEnd_toStartOf="@id/swPushMatches"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
@@ -87,15 +86,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/settings_push_matches_description"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                    app:layout_constraintEnd_toStartOf="@id/ivPushMatches"
+                    app:layout_constraintEnd_toStartOf="@id/swPushMatches"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvMessageMatches" />
 
-                <ImageView
-                    android:id="@+id/ivPushMatches"
-                    android:layout_width="52dp"
+                <Switch
+                    android:id="@+id/swPushMatches"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/switch_off"
+                    android:theme="@style/AppTheme.Green"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -119,7 +118,7 @@
                     android:text="@string/settings_push_likes_message"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
-                    app:layout_constraintEnd_toStartOf="@id/ivPushLikes"
+                    app:layout_constraintEnd_toStartOf="@id/swPushLikes"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
@@ -128,15 +127,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/settings_push_likes_description"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                    app:layout_constraintEnd_toStartOf="@id/ivPushLikes"
+                    app:layout_constraintEnd_toStartOf="@id/swPushLikes"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvMessageLikes" />
 
-                <ImageView
-                    android:id="@+id/ivPushLikes"
-                    android:layout_width="52dp"
+                <Switch
+                    android:id="@+id/swPushLikes"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/switch_off"
+                    android:theme="@style/AppTheme.Green"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

@@ -10,7 +10,8 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.ringoid.ApplicationRingoid;
@@ -20,12 +21,12 @@ import com.ringoid.view.presenter.callback.IPresenterSettingsPushListener;
 
 import javax.inject.Inject;
 
-public class FragmentSettingsPush extends FragmentBase implements View.OnClickListener {
+public class FragmentSettingsPush extends FragmentBase implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     @Inject
     IPresenterSettingsPush presenterSettingsPush;
 
-    private ImageView ivMatches, ivMessages, ivLikes;
+    private Switch swMatches, swMessages, swLikes;
     private View llLikesTypes;
     private TextView tvLikesAll, tvLikes10, tvLikes100;
     private IPresenterSettingsPushListener listenerPresenter;
@@ -48,9 +49,9 @@ public class FragmentSettingsPush extends FragmentBase implements View.OnClickLi
     }
 
     private void initView(View view) {
-        ivMatches = view.findViewById(R.id.ivPushMatches);
-        ivMessages = view.findViewById(R.id.ivPushMessages);
-        ivLikes = view.findViewById(R.id.ivPushLikes);
+        swMatches = view.findViewById(R.id.swPushMatches);
+        swMessages = view.findViewById(R.id.swPushMessages);
+        swLikes = view.findViewById(R.id.swPushLikes);
 
         llLikesTypes = view.findViewById(R.id.llLikesTypes);
         tvLikesAll = view.findViewById(R.id.tvPushLikesAll);
@@ -58,9 +59,9 @@ public class FragmentSettingsPush extends FragmentBase implements View.OnClickLi
         tvLikes100 = view.findViewById(R.id.tvPushLikesEvery100);
 
         view.findViewById(R.id.ivBack).setOnClickListener(this);
-        view.findViewById(R.id.ivPushLikes).setOnClickListener(this);
-        view.findViewById(R.id.ivPushMatches).setOnClickListener(this);
-        view.findViewById(R.id.ivPushMessages).setOnClickListener(this);
+        swLikes.setOnCheckedChangeListener(this);
+        swMatches.setOnCheckedChangeListener(this);
+        swMessages.setOnCheckedChangeListener(this);
 
         view.findViewById(R.id.tvPushLikesAll).setOnClickListener(this);
         view.findViewById(R.id.tvPushLikesEvery10).setOnClickListener(this);
@@ -74,9 +75,6 @@ public class FragmentSettingsPush extends FragmentBase implements View.OnClickLi
     public void onClick(View v) {
         if (v.getId() == R.id.ivBack && getActivity() != null)
             getActivity().onBackPressed();
-        checkSwitch(v, R.id.ivPushLikes);
-        checkSwitch(v, R.id.ivPushMatches);
-        checkSwitch(v, R.id.ivPushMessages);
 
         checkLikesSelected(v, R.id.tvPushLikesAll);
         checkLikesSelected(v, R.id.tvPushLikesEvery10);
@@ -88,13 +86,8 @@ public class FragmentSettingsPush extends FragmentBase implements View.OnClickLi
         presenterSettingsPush.onSelectLikesType(resId);
     }
 
-    private void checkSwitch(View v, int viewId) {
-        if (v.getId() != viewId) return;
-        presenterSettingsPush.updateChecked(viewId);
-    }
-
     private void setPushLikes(int type) {
-        ivLikes.setImageResource(type != 0 ? R.drawable.switch_on : R.drawable.switch_off);
+        swLikes.setChecked(type != 0);
         llLikesTypes.setVisibility(type != 0 ? View.VISIBLE : View.GONE);
 
         checkSelected(tvLikesAll, type == 1);
@@ -108,12 +101,25 @@ public class FragmentSettingsPush extends FragmentBase implements View.OnClickLi
         textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
     }
 
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        checkChecked(buttonView, swMessages);
+        checkChecked(buttonView, swMatches);
+        checkChecked(buttonView, swLikes);
+    }
+
+    private void checkChecked(CompoundButton buttonView, Switch viewSwitch) {
+        if (buttonView.getId() != viewSwitch.getId()) return;
+
+        presenterSettingsPush.setChecked(viewSwitch.getId(), viewSwitch.isChecked());
+    }
+
     private class ListenerPresenter implements IPresenterSettingsPushListener {
         @Override
         public void setData(boolean messages, boolean matches, int pushLikesType) {
             if (getContext() == null) return;
-            ivMessages.setImageResource(messages ? R.drawable.switch_on : R.drawable.switch_off);
-            ivMatches.setImageResource(matches ? R.drawable.switch_on : R.drawable.switch_off);
+            swMessages.setChecked(messages);
+            swMatches.setChecked(matches);
             setPushLikes(pushLikesType);
         }
     }

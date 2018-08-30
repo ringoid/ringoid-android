@@ -20,10 +20,6 @@ public interface ICacheSettingsPrivacy {
 
     void addListener(ICacheSettingsPrivacyListener listener);
 
-    void changeCheckedPushMessages();
-
-    void changeCheckedPushMatches();
-
     boolean isCheckedPushMessages();
 
     boolean isCheckedPushMatches();
@@ -36,9 +32,13 @@ public interface ICacheSettingsPrivacy {
 
     boolean isPushLikes();
 
-    void changePushLikes();
-
     void setLikesType(int i);
 
     void setData(String whoCanSeePhoto, int safeDistanceInMeter, String pushLikes, boolean pushMessages, boolean pushMatches);
+
+    boolean setCheckedPushMessages(boolean checked);
+
+    boolean setCheckedPushMatches(boolean checked);
+
+    boolean setPushLikes(boolean checked);
 }

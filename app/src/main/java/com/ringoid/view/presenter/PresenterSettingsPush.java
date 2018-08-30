@@ -42,24 +42,10 @@ public class PresenterSettingsPush implements IPresenterSettingsPush {
     }
 
     @Override
-    public void updateChecked(int viewId) {
-        if (viewId == R.id.ivPushMessages)
-            cacheSettingsPrivacy.changeCheckedPushMessages();
-
-        if (viewId == R.id.ivPushMatches)
-            cacheSettingsPrivacy.changeCheckedPushMatches();
-
-        if (viewId == R.id.ivPushLikes)
-            cacheSettingsPrivacy.changePushLikes();
-
-        settingsHelper.requestSave();
-    }
-
-    @Override
     public boolean isChecked(int viewId) {
-        if (viewId == R.id.ivPushMessages) return cacheSettingsPrivacy.isCheckedPushMessages();
-        if (viewId == R.id.ivPushMatches) return cacheSettingsPrivacy.isCheckedPushMatches();
-        if (viewId == R.id.ivPushLikes) return cacheSettingsPrivacy.isPushLikes();
+        if (viewId == R.id.swPushMessages) return cacheSettingsPrivacy.isCheckedPushMessages();
+        if (viewId == R.id.swPushMatches) return cacheSettingsPrivacy.isCheckedPushMatches();
+        if (viewId == R.id.swPushLikes) return cacheSettingsPrivacy.isPushLikes();
         return false;
     }
 
@@ -74,6 +60,24 @@ public class PresenterSettingsPush implements IPresenterSettingsPush {
                 : 0);
 
         settingsHelper.requestSave();
+    }
+
+    @Override
+    public void setChecked(int viewId, boolean checked) {
+
+        boolean isChanged = false;
+
+        if (viewId == R.id.swPushMessages)
+            isChanged = cacheSettingsPrivacy.setCheckedPushMessages(checked);
+
+        if (viewId == R.id.swPushMatches)
+            isChanged = cacheSettingsPrivacy.setCheckedPushMatches(checked);
+
+        if (viewId == R.id.swPushLikes)
+            isChanged = cacheSettingsPrivacy.setPushLikes(checked);
+
+        if (isChanged)
+            settingsHelper.requestSave();
     }
 
     private void notifyView() {

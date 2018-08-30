@@ -76,18 +76,6 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     }
 
     @Override
-    public void changeCheckedPushMessages() {
-        isPushEnabledMessages = !isPushEnabledMessages;
-        notifyListeners();
-    }
-
-    @Override
-    public void changeCheckedPushMatches() {
-        isPushEnabledMatches = !isPushEnabledMatches;
-        notifyListeners();
-    }
-
-    @Override
     public boolean isCheckedPushMessages() {
         return isPushEnabledMessages;
     }
@@ -130,12 +118,6 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     }
 
     @Override
-    public void changePushLikes() {
-        pushLikesType = pushLikesType == 0 ? 1 : 0;
-        notifyListeners();
-    }
-
-    @Override
     public void setLikesType(int i) {
         pushLikesType = i;
         notifyListeners();
@@ -167,5 +149,33 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
                 : 0;
 
         notifyListeners();
+    }
+
+    @Override
+    public boolean setCheckedPushMessages(boolean checked) {
+        if (isPushEnabledMessages == checked) return false;
+
+        isPushEnabledMessages = checked;
+        notifyListeners();
+        return true;
+    }
+
+    @Override
+    public boolean setCheckedPushMatches(boolean checked) {
+        if (isPushEnabledMatches == checked) return false;
+
+        isPushEnabledMatches = checked;
+        notifyListeners();
+        return true;
+    }
+
+    @Override
+    public boolean setPushLikes(boolean checked) {
+        if (pushLikesType == 0 && !checked
+                || pushLikesType != 0 && checked) return false;
+
+        pushLikesType = checked ? 1 : 0;
+        notifyListeners();
+        return true;
     }
 }

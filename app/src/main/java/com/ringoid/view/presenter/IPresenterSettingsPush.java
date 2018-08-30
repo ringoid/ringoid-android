@@ -8,9 +8,9 @@ public interface IPresenterSettingsPush {
 
     void onCreateView();
 
-    void updateChecked(int viewId);
-
     boolean isChecked(int viewId);
 
     void onSelectLikesType(int resId);
+
+    void setChecked(int id, boolean checked);
 }
