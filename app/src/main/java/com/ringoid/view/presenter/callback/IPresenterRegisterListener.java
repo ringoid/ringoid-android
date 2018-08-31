@@ -17,4 +17,6 @@ public interface IPresenterRegisterListener {
     void showPhoneInput();
 
     void setDateHint(String hint);
+
+    void hideKeyboard();
 }

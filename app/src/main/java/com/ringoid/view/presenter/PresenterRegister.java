@@ -145,7 +145,7 @@ public class PresenterRegister implements IPresenterRegister {
     @Override
     public void onDataBirthSet(int year) {
         if (cacheRegister.setDateBirth(year))
-        showDateBirth(year);
+            showDateBirth(year);
     }
 
     @Override
@@ -193,6 +193,11 @@ public class PresenterRegister implements IPresenterRegister {
         refListener.get().navigateNext();
     }
 
+    private void hideKeyboard() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().hideKeyboard();
+    }
+
     private class ListenerRegisterPhone implements IRepositoryRegisterPhoneListener {
         @Override
         public void onSuccess() {
@@ -208,15 +213,17 @@ public class PresenterRegister implements IPresenterRegister {
     private class ListenerRegisterCodeConfirm implements IRepositoryRegisterCodeConfirmListener {
         @Override
         public void onSuccess() {
-            if (cacheUser.isRegistered())
+            if (cacheUser.isRegistered()) {
+                hideKeyboard();
                 navigator.navigateFeed();
-            else loginGoNext();
+            } else loginGoNext();
         }
     }
 
     private class ListenerRegisterUserDetails implements IRepositoryRegisterUserDetailsListener {
         @Override
         public void onSuccess() {
+            hideKeyboard();
             navigator.navigateFeed();
         }
     }

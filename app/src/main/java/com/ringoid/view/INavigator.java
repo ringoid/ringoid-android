@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 public interface INavigator {
     void navigateFeed();
 
-    void navigateLogin();
+    void navigateLogin(boolean addToBackstack);
 
     void set(FragmentManager supportFragmentManager, int viewId);
 

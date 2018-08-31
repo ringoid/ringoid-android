@@ -113,7 +113,7 @@ public class FragmentWelcome extends FragmentBase implements View.OnClickListene
             getActivity().onBackPressed();
             return;
         }
-        navigator.navigateLogin();
+        navigator.navigateLogin(true);
     }
 
     private class WelcomeScrollListener extends RecyclerView.OnScrollListener {

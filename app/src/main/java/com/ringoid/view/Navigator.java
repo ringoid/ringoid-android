@@ -44,15 +44,15 @@ public class Navigator implements INavigator {
     }
 
     @Override
-    public void navigateLogin() {
+    public void navigateLogin(boolean addToBackstack) {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
 
         clearBackStack();
-        refFragmentManager.get()
-                .beginTransaction()
-                .addToBackStack(null)
-                .replace(viewId, new FragmentLogin(), CURRENT_FRAGMENT_PAGE)
-                .commit();
+        FragmentTransaction transaction = refFragmentManager.get().beginTransaction();
+
+        if (addToBackstack) transaction.addToBackStack(null);
+
+        transaction.replace(viewId, new FragmentLogin(), CURRENT_FRAGMENT_PAGE).commit();
     }
 
     private void clearBackStack() {
@@ -60,9 +60,7 @@ public class Navigator implements INavigator {
 
         FragmentManager fm = refFragmentManager.get();
 
-        for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-            fm.popBackStack();
-        }
+        fm.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
     @Override

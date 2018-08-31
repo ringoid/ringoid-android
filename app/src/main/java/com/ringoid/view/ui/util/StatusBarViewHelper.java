@@ -9,6 +9,8 @@ import com.ringoid.R;
 public class StatusBarViewHelper implements IStatusBarViewHelper {
     @Override
     public void setColor(AppCompatActivity activity, int type) {
+        if (activity == null) return;
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             activity.getWindow().setStatusBarColor(activity.getResources().getColor(type == 0
                     ? android.R.color.black

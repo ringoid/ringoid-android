@@ -127,8 +127,8 @@ public class FragmentLogin extends FragmentBase
 
     @Override
     public boolean onBackPressed() {
-        if (vfLogin.getCurrentView().getId() != R.id.llLoginTerms
-                || vfLogin.getCurrentView().getId() != R.id.llLoginInfo) {
+        if (!(vfLogin.getCurrentView().getId() == R.id.llLoginTerms
+                || vfLogin.getCurrentView().getId() == R.id.llLoginInfo)) {
             showPrev();
             return true;
         }
@@ -245,6 +245,11 @@ public class FragmentLogin extends FragmentBase
         @Override
         public void setDateHint(String hint) {
             etYearBirth.setHint(hint);
+        }
+
+        @Override
+        public void hideKeyboard() {
+            FragmentLogin.this.hideKeyboard();
         }
 
         @Override
