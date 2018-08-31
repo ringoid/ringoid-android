@@ -4,6 +4,8 @@ package com.ringoid.view;
 import android.support.v4.app.FragmentManager;
 
 public interface INavigatorPages {
+    void resetCurrentPage();
+
     void set(FragmentManager childFragmentManager, int viewId);
 
     void navigateLikes();

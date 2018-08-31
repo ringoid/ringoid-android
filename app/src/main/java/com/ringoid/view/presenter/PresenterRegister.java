@@ -18,6 +18,7 @@ import com.ringoid.controller.data.repository.callback.IRepositoryRegisterPhoneL
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterUserDetailsListener;
 import com.ringoid.model.SEX;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
 
@@ -56,12 +57,12 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Inject
     IViewPopup viewPopup;
-
+    @Inject
+    INavigatorPages navigatorPages;
     private ListenerRegisterCodeConfirm listenerRegisterCodeConfirm;
     private ListenerRegisterPhone listenerRegisterPhone;
     private ListenerRegisterUserDetails listenerRegisterUserDetails;
     private View.OnClickListener listenerPopupPhoneConfirmError;
-
     private WeakReference<IPresenterRegisterListener> refListener;
 
     public PresenterRegister() {
@@ -154,6 +155,7 @@ public class PresenterRegister implements IPresenterRegister {
             cacheToken.resetCache();
             cacheUser.resetCache();
             cacheTutorial.resetCache();
+            navigatorPages.resetCurrentPage();
         }
 
         checkInputedData();

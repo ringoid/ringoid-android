@@ -21,6 +21,11 @@ public class NavigatorPages implements INavigatorPages {
     private int currentPage;
 
     public NavigatorPages() {
+        resetCurrentPage();
+    }
+
+    @Override
+    public void resetCurrentPage() {
         currentPage = 3;
     }
 
