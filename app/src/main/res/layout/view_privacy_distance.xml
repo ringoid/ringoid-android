@@ -30,7 +30,7 @@
         android:background="@color/divider" />
 
     <TextView
-        android:id="@+id/tvDistance1"
+        android:id="@+id/tvDistance10"
         style="@style/settings_menu_item"
         android:text="@string/settings_privacy_distance_1" />
 
@@ -50,7 +50,7 @@
         android:background="@color/divider" />
 
     <TextView
-        android:id="@+id/tvDistance2"
+        android:id="@+id/tvDistance50"
         style="@style/settings_menu_item"
         android:text="@string/settings_privacy_distance_2" />
 
@@ -60,7 +60,7 @@
         android:background="@color/divider" />
 
     <TextView
-        android:id="@+id/tvDistance3"
+        android:id="@+id/tvDistance100"
         style="@style/settings_menu_item"
         android:text="@string/settings_privacy_distance_3" />
 
@@ -70,7 +70,7 @@
         android:background="@color/divider" />
 
     <TextView
-        android:id="@+id/tvDistance4"
+        android:id="@+id/tvDistance250"
         style="@style/settings_menu_item"
         android:text="@string/settings_privacy_distance_4" />
 

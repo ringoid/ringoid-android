@@ -35,15 +35,15 @@ public class PresenterSettingsPrivacyDistance implements IPresenterSettingsPriva
         int distance =
                 resId == R.id.tvDistance0
                         ? 0
-                        : resId == R.id.tvDistance1
+                        : resId == R.id.tvDistance10
                         ? 10
                         : resId == R.id.tvDistance25
                         ? 25
-                        : resId == R.id.tvDistance2
+                        : resId == R.id.tvDistance50
                         ? 50
-                        : resId == R.id.tvDistance3
+                        : resId == R.id.tvDistance100
                         ? 100
-                        : resId == R.id.tvDistance4
+                        : resId == R.id.tvDistance250
                         ? 250
                         : 0;
 
@@ -60,15 +60,15 @@ public class PresenterSettingsPrivacyDistance implements IPresenterSettingsPriva
                 distance == 0
                         ? R.id.tvDistance0
                         : distance == 10
-                        ? R.id.tvDistance1
+                        ? R.id.tvDistance10
                         : distance == 25
                         ? R.id.tvDistance25
                         : distance == 50
-                        ? R.id.tvDistance2
+                        ? R.id.tvDistance50
                         : distance == 100
-                        ? R.id.tvDistance3
+                        ? R.id.tvDistance100
                         : distance == 250
-                        ? R.id.tvDistance4
+                        ? R.id.tvDistance250
                         : 0);
     }
 
