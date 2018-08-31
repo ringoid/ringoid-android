@@ -28,7 +28,7 @@ import javax.inject.Inject;
 
 public class PresenterRegister implements IPresenterRegister {
 
-    private static final int DEFAULT_AGE = 38;
+    private static final int DEFAULT_AGE = 39;
 
     @Inject
     IRepositoryRegisterPhone repositoryRegisterPhone;

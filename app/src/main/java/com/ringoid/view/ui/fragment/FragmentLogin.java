@@ -59,7 +59,7 @@ public class FragmentLogin extends FragmentBase
     private ViewPhoneInput vpiLogin;
     private EditText etPhoneCode;
     private View vContainerSMSCode;
-    private EditText etDateBirth;
+    private EditText etYearBirth;
     private View tvSexFemale, tvSexMale;
 
     public static FragmentLogin getInstanceProfileUpdate() {
@@ -96,7 +96,7 @@ public class FragmentLogin extends FragmentBase
         etCodeSMS = view.findViewById(R.id.etCodeSMS);
         cbAge = view.findViewById(R.id.cbAge);
         vpiLogin = view.findViewById(R.id.vpiLogin);
-        etDateBirth = view.findViewById(R.id.etDateBirth);
+        etYearBirth = view.findViewById(R.id.etYearBirth);
         tvSexFemale = view.findViewById(R.id.tvSexFemale);
         tvSexMale = view.findViewById(R.id.tvSexMale);
 
@@ -116,7 +116,7 @@ public class FragmentLogin extends FragmentBase
         vpiLogin.setListener(new ListenerViewPhoneInput());
 
         etCodeSMS.addTextChangedListener(new SMSTextChangedListener());
-        etDateBirth.addTextChangedListener(new DateTextChangedListener());
+        etYearBirth.addTextChangedListener(new DateTextChangedListener());
 
         cbTerms.setOnCheckedChangeListener(new ListenerCheckedChangeTerms());
         cbAge.setOnCheckedChangeListener(new ListenerCheckedChangeAge());
@@ -127,7 +127,8 @@ public class FragmentLogin extends FragmentBase
 
     @Override
     public boolean onBackPressed() {
-        if (vfLogin.getCurrentView().getId() != R.id.llLoginTerms) {
+        if (vfLogin.getCurrentView().getId() != R.id.llLoginTerms
+                || vfLogin.getCurrentView().getId() != R.id.llLoginInfo) {
             showPrev();
             return true;
         }
@@ -201,7 +202,7 @@ public class FragmentLogin extends FragmentBase
             showKeyboard(etCodeSMS);
 
         if (vfLogin.getCurrentView().getId() == R.id.llLoginInfo)
-            hideKeyboard();
+            showKeyboard(etYearBirth);
     }
 
     private void showNext() {
@@ -236,19 +237,20 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void showDateBirth(int time) {
-            if (String.valueOf(time).equals(etDateBirth.getText().toString())) return;
-            etDateBirth.setText(time == 0 ? "" : String.valueOf(time));
+            String text = time == 0 ? "" : String.valueOf(time);
+            if (text.equals(etYearBirth.getText().toString())) return;
+            etYearBirth.setText(text);
         }
 
         @Override
         public void setDateHint(String hint) {
-            etDateBirth.setHint(hint);
+            etYearBirth.setHint(hint);
         }
 
         @Override
         public void setGenderSelected(SEX sex) {
-            tvSexFemale.setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_pink) : null);
-            tvSexMale.setBackground(sex == SEX.MALE ? getResources().getDrawable(R.drawable.border_rounded_blue) : null);
+            tvSexFemale.setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
+            tvSexMale.setBackground(sex == SEX.MALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
         }
 
         @Override
@@ -382,14 +384,17 @@ public class FragmentLogin extends FragmentBase
         @Override
         public void afterTextChanged(Editable s) {
 
+            if (s.length() > 4)
+                s.replace(0, s.length(), s, 0, 4);
+
             int year = getYear(s.toString());
             boolean isValid = isValid(year);
 
-            etDateBirth.setBackgroundResource(isValid ? R.drawable.border_rounded_green : R.drawable.border_rounded_red);
-            etDateBirth.setTextColor(ContextCompat.getColor(getContext(), isValid ? android.R.color.black : R.color.colorAccent));
+            etYearBirth.setBackgroundResource(isValid ? R.drawable.border_rounded_green : R.drawable.border_rounded_red);
+            etYearBirth.setTextColor(ContextCompat.getColor(getContext(), isValid ? android.R.color.black : R.color.colorAccent));
 
             Drawable drawable = ContextCompat.getDrawable(getContext(), isValid ? R.drawable.ic_check_green_16dp : R.drawable.ic_error_red_16dp);
-            etDateBirth.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
+            etYearBirth.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
 
             presenterRegister.onDataBirthSet(isValid ? year : 0);
         }

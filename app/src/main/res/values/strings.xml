@@ -131,8 +131,8 @@
     <string name="login_sms">Verification code from SMS</string>
     <string name="login_details_title">Personal details</string>
     <string name="button_continue">Continue</string>
-    <string name="login_birth_message">Your Date of Birth:</string>
-    <string name="login_birth_gender_message">Your Sex:</string>
+    <string name="login_birth_message">Year of Birth</string>
+    <string name="login_birth_gender_message">Your Sex</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="dialog_report_chat_item_commercial">Advertising, fraud, commercial content</string>
