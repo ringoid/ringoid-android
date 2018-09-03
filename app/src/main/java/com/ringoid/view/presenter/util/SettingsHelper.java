@@ -39,7 +39,7 @@ public class SettingsHelper implements ISettingsHelper {
     private class ListenerRepositoryBase implements IRepositoryListenerBase {
         @Override
         public void onTokenInvalid() {
-            navigator.navigateLogin(false);
+            navigator.navigateLogin();
         }
     }
 }

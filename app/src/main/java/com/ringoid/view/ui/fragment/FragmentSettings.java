@@ -120,7 +120,7 @@ public class FragmentSettings extends FragmentBase
     private class ListenerDialogLogout implements IDialogLogoutListener {
         @Override
         public void onConfirm() {
-            navigator.navigateLogin(false);
+            navigator.navigateLogin();
         }
     }
 }

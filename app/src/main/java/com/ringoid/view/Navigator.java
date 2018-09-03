@@ -44,15 +44,14 @@ public class Navigator implements INavigator {
     }
 
     @Override
-    public void navigateLogin(boolean addToBackstack) {
+    public void navigateLogin() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
 
         clearBackStack();
-        FragmentTransaction transaction = refFragmentManager.get().beginTransaction();
-
-        if (addToBackstack) transaction.addToBackStack(null);
-
-        transaction.replace(viewId, new FragmentLogin(), CURRENT_FRAGMENT_PAGE).commit();
+        refFragmentManager.get()
+                .beginTransaction()
+                .replace(viewId, new FragmentLogin(), CURRENT_FRAGMENT_PAGE)
+                .commit();
     }
 
     private void clearBackStack() {
