@@ -55,7 +55,7 @@ public class AdapterProfile extends AdapterBase {
         ViewHolderItem(ViewGroup parent) {
             super(parent, R.layout.view_image_profile);
             ivItem = itemView.findViewById(R.id.ivContent);
-            itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
+            itemView.findViewById(R.id.ivRemove).setOnClickListener(this);
             itemView.setOnClickListener(this);
             tvLikes = itemView.findViewById(R.id.tvLikes);
             tvLikes.setOnClickListener(this);
