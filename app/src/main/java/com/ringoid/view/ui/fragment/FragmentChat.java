@@ -15,13 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterChat;
 import com.ringoid.view.presenter.callback.IPresenterChatListener;
 import com.ringoid.view.ui.adapter.AdapterChatMessages;
-import com.ringoid.view.ui.dialog.DialogMenuChat;
+import com.ringoid.view.ui.dialog.DialogReport;
 import com.ringoid.view.ui.util.DividerItemDecoration;
 import com.ringoid.view.ui.util.GlideApp;
 import com.ringoid.view.ui.util.TransformationAlpha;
@@ -35,7 +34,7 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
 
     private ImageView ivUser;
     private ListenerPresenter listenerPresenter;
-    private DialogMenuChat dialogMenu;
+    private DialogReport dialogMenu;
     private View vEmpty;
     private RecyclerView rvMessages;
     private EditText etMessage;
@@ -113,7 +112,7 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
 
     private void showMenu() {
         if (dialogMenu != null) dialogMenu.cancel();
-        dialogMenu = new DialogMenuChat(getView());
+        dialogMenu = new DialogReport(getView().getContext());
         dialogMenu.show();
     }
 

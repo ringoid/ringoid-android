@@ -12,7 +12,6 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterProfile;
 import com.ringoid.view.ui.dialog.DialogHiddenMode;
-import com.ringoid.view.ui.dialog.DialogMenuProfile;
 import com.ringoid.view.ui.dialog.DialogProfileLikes;
 import com.ringoid.view.ui.dialog.callback.IDialogHiddenModeListener;
 import com.ringoid.view.ui.dialog.callback.IDialogProfileLikesListener;
@@ -26,7 +25,6 @@ public class AdapterProfile extends AdapterBase {
     IPresenterAdapterProfile presenterAdapterProfile;
 
     private DialogHiddenMode dialogHiddenMode;
-    private DialogMenuProfile dialogMenu;
     private DialogProfileLikes dialogProfileLikes;
 
     private ListenerDialogHidden listenerDialogHidden;
@@ -92,12 +90,6 @@ public class AdapterProfile extends AdapterBase {
 
         @Override
         public void onClick(View v) {
-            if (v.getId() == R.id.tvMenu) {
-                if (dialogMenu != null)
-                    dialogMenu.cancel();
-                dialogMenu = new DialogMenuProfile(itemView);
-                dialogMenu.show();
-            }
 
             if (v.getId() == R.id.tvLikes)
                 onClickLikes();

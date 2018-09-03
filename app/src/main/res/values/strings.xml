@@ -35,14 +35,13 @@
     <string name="settings_feedback">Send us email</string>
     <string name="settings_logout">Sign out</string>
     <string name="settings_subtitle">Settings</string>
-    <string name="dialog_report_title">Report &amp; Block</string>
-    <string name="dialog_report_item_content">Inappropriate content</string>
-    <string name="dialog_report_item_stolen">Stolen, someone\'s else photos</string>
+    <string name="dialog_report_title">Block this user?</string>
+    <string name="dialog_report_item_1">Inappropriate content, sexually explicit, nudity, pornography</string>
+    <string name="dialog_report_item_2">Stolen photos, illegal content, fraud</string>
     <string name="dialog_report_item_fraud">Advertising, fraud</string>
-    <string name="dialog_report_item_porn">Explicit content, pornography</string>
-    <string name="dialog_report_message">Ringoid will automatically block the profile after you report it. They won\'t see your photos again (and you won\'t see theirs). They won\'t be able to like or message you.</string>
+    <string name="dialog_report_message">They won\'t be able to see your photos, like or message you.</string>
     <string name="dialog_report_cancel">cancel</string>
-    <string name="dialog_report_confirm">report</string>
+    <string name="dialog_report_confirm">block</string>
     <string name="dialog_block_confirm">block</string>
     <string name="dialog_cancel">cancel</string>
     <string name="dialog_block_title">Do you want to block this user?</string>
@@ -218,6 +217,13 @@
     <string name="push_likes_all">Every new like</string>
     <string name="push_likes_every_10">Every 10 new likes</string>
     <string name="push_likes_every_100">Every 100 new likes</string>
+    <string name="dialog_report_switch">Report this user</string>
+    <string name="dialog_report_item_3">Spam, advertising, commercial activity</string>
+    <string name="dialog_report_item_4">Human or sex trafficking, criminal activity</string>
+    <string name="dialog_report_item_5">Underage user, child exploitation</string>
+    <string name="dialog_report_message_chat">5-7 last messages will be forwarded to Ringoid support</string>
+    <string name="dialog_report_confirm_report">report &amp; block></string>
+    <string name="dialog_report_item_6">Harassment or threats, verbal abuse</string>
 
     <string-array name="pages_titles">
         <item></item>

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="20dp"
-    android:paddingEnd="20dp"
-    android:paddingStart="20dp"
     android:paddingTop="24dp">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,6 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
                 android:text="@string/dialog_report_title"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
                 android:textColor="@color/gray" />
@@ -29,39 +31,86 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
                 android:text="@string/dialog_report_message"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
 
-            <RadioGroup
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/divider" />
+
+            <Switch
+                android:id="@+id/swReport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:orientation="vertical">
+                android:paddingBottom="16dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:paddingTop="16dp"
+                android:text="@string/dialog_report_switch" />
+
+            <RadioGroup
+                android:id="@+id/rgReport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/dialog_report_item_content" />
+                    android:text="@string/dialog_report_item_1" />
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/dialog_report_item_stolen" />
+                    android:text="@string/dialog_report_item_2" />
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/dialog_report_item_fraud" />
+                    android:text="@string/dialog_report_item_3" />
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/dialog_report_item_porn" />
+                    android:text="@string/dialog_report_item_4" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/dialog_report_item_5" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/dialog_report_item_6" />
 
             </RadioGroup>
+
+            <TextView
+                android:id="@+id/tvReportMessageChat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:text="@string/dialog_report_message_chat"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
         </LinearLayout>
 
@@ -100,8 +149,7 @@
             android:paddingTop="12dp"
             android:text="@string/dialog_report_confirm"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
-            android:textColor="@color/colorAccent" />
-
+            android:textStyle="bold" />
 
     </LinearLayout>
 

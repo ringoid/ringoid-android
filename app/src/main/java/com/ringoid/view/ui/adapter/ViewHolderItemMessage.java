@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterMessages;
-import com.ringoid.view.ui.dialog.DialogMenuImageOther;
+import com.ringoid.view.ui.dialog.DialogReport;
 import com.ringoid.view.ui.util.IndicatorHelper;
 
 import javax.inject.Inject;
@@ -23,7 +23,7 @@ public class ViewHolderItemMessage extends ViewHolderBase
     @Inject
     IPresenterAdapterMessages presenterAdapterMessages;
 
-    private DialogMenuImageOther dialogMenu;
+    private DialogReport dialogMenu;
     private FrameLayout flDots;
     private IndicatorHelper dotsIndicatorHelper;
     private RecyclerView rvItems;
@@ -71,11 +71,11 @@ public class ViewHolderItemMessage extends ViewHolderBase
         if (v.getId() == R.id.tvMenu) {
             if (dialogMenu != null)
                 dialogMenu.cancel();
-            dialogMenu = new DialogMenuImageOther(itemView);
+            dialogMenu = new DialogReport(itemView.getContext());
             dialogMenu.show();
         }
 
-        if (v.getId()==R.id.flDots)
+        if (v.getId() == R.id.flDots)
             presenterAdapterMessages.onClickScrolls();
 
     }

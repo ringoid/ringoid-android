@@ -13,7 +13,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterItemImageLikeable;
 import com.ringoid.view.ui.dialog.DialogHiddenMode;
-import com.ringoid.view.ui.dialog.DialogMenuImageOther;
+import com.ringoid.view.ui.dialog.DialogReport;
 import com.ringoid.view.ui.dialog.callback.IDialogHiddenModeListener;
 import com.ringoid.view.ui.util.AnimationLike;
 import com.ringoid.view.ui.util.GlideApp;
@@ -34,7 +34,7 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
     private AnimationLike animationLike;
     private View ivLikeAnimated;
 
-    private DialogMenuImageOther dialogMenuRank;
+    private DialogReport dialogReport;
     private DialogHiddenMode dialogHiddenMode;
 
     ViewHolderItemImagesLikeable(ViewGroup container, int layoutRes) {
@@ -92,10 +92,10 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tvMenu) {
-            if (dialogMenuRank != null)
-                dialogMenuRank.cancel();
-            dialogMenuRank = new DialogMenuImageOther(itemView);
-            dialogMenuRank.show();
+            if (dialogReport != null)
+                dialogReport.cancel();
+            dialogReport = new DialogReport(itemView.getContext());
+            dialogReport.show();
         }
     }
 
