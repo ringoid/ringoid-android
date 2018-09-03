@@ -114,6 +114,7 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.ivPasteSMS).setOnLongClickListener(this);
 
         vpiLogin.setListener(new ListenerViewPhoneInput());
+        vpiLogin.setCountryLocal();
 
         etCodeSMS.addTextChangedListener(new SMSTextChangedListener());
         etYearBirth.addTextChangedListener(new DateTextChangedListener());

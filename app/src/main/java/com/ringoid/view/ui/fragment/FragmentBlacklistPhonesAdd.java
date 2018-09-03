@@ -102,7 +102,10 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     private class ListenerPresenterBlacklistPhones implements IPresenterBlacklistPhonesListener {
         @Override
         public void setPhoneData(int code) {
-            etPhoneCode.setText(String.valueOf(code));
+            if (code == 0)
+                vpiBlacklist.setCountryLocal();
+            else
+                vpiBlacklist.setCountryCode(code);
         }
     }
 }

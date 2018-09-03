@@ -72,13 +72,18 @@ public class ViewPhoneInput extends LinearLayout
 
         etPhone.addTextChangedListener(new PhoneInputTextWatcher());
 
-        checkCountryLocal();
     }
 
-    private void checkCountryLocal() {
+    public boolean setCountryLocal() {
         String code = ccp.getCountryCodeLocal();
-        if (TextUtils.isEmpty(code)) return;
+        if (TextUtils.isEmpty(code)) return false;
         etCode.setText(code);
+        return true;
+    }
+
+    public boolean setCountryCode(int code) {
+        etCode.setText(String.valueOf(code));
+        return true;
     }
 
     public boolean isValid() {
