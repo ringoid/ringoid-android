@@ -7,7 +7,7 @@ public interface IPresenterPagesContainerListener {
 
     void showToolbar();
 
-    void setPageSelected(int num, int backgroundColorRes, int subtitleColorRes);
+    void setPageSelected(int num);
 
     void setBottomSheetDrawables(int profile, int likes, int messages, int explore);
 

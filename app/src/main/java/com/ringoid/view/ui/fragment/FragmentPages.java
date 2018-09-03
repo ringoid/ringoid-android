@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -137,22 +136,18 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void setPageSelected(int num, int backgroundColorRes, int subtitleColorRes) {
+        public void setPageSelected(int num) {
             if (llBottomAppBar == null) return;
             for (int i = 0; i < llBottomAppBar.getChildCount(); ++i) {
                 View view = llBottomAppBar.getChildAt(i);
                 if (view == null) continue;
 
                 if (i == num)
-                    view.setBackgroundColor(getContext().getResources().getColor(backgroundColorRes));
+                    view.setBackgroundColor(getContext().getResources().getColor(R.color.menu_bottom_selected));
                 else
                     view.setBackground(null);
 
             }
-
-            String subtitle = getContext().getResources().getStringArray(R.array.pages_titles)[num];
-            tvSubtitle.setText(TextUtils.isEmpty(subtitle) ? "" : subtitle);
-            tvSubtitle.setTextColor(getContext().getResources().getColor(subtitleColorRes));
         }
 
         @Override
