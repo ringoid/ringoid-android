@@ -90,9 +90,15 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     private void updateViewBottomSheet() {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().setBottomSheetDrawables(R.drawable.ic_menu_profile_24dp,
+        refListener.get().setBottomSheetDrawables(
+
+                cacheSettingsPrivacy.isPrivacyPhotosOppositeSex()
+                        ? R.drawable.ic_menu_profile_24dp
+                        : cacheSettingsPrivacy.isPrivacyPhotosLikes()
+                        ? R.drawable.ic_menu_profile_likes_24dp
+                        : R.drawable.ic_menu_profile_noone_24dp,
                 cacheLikes.isDataExist() ? R.drawable.ic_menu_favorite_red_24dp : R.drawable.ic_menu_favorite_24dp,
-                cacheMessages.isDataExist() ? R.drawable.ic_menu_message_green_24dp : R.drawable.ic_menu_message_24dp,
+                cacheMessages.isDataExist() ? R.drawable.ic_menu_message_dot_24dp : R.drawable.ic_menu_message_24dp,
                 R.drawable.ic_menu_explore_24dp
         );
     }
