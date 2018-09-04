@@ -16,4 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <ImageView
+        android:id="@+id/ivImageMenu"
+        style="@style/menuImageEnd"
+        android:src="@drawable/ic_block_gray_24dp"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

@@ -36,7 +36,7 @@ public class ViewHolderItemMessage extends ViewHolderBase
 
         flDots = itemView.findViewById(R.id.flDots);
 
-        itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
+        itemView.findViewById(R.id.ivImageMenu).setOnClickListener(this);
         ivMessage = itemView.findViewById(R.id.ivMessage);
         flDots.setOnClickListener(this);
 
@@ -68,7 +68,7 @@ public class ViewHolderItemMessage extends ViewHolderBase
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.tvMenu) {
+        if (v.getId() == R.id.ivImageMenu) {
             if (dialogMenu != null)
                 dialogMenu.cancel();
             dialogMenu = new DialogReport(itemView.getContext());

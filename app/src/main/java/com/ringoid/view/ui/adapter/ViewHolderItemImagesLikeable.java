@@ -34,7 +34,6 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
     private AnimationLike animationLike;
     private View ivLikeAnimated;
 
-    private DialogReport dialogReport;
     private DialogHiddenMode dialogHiddenMode;
 
     ViewHolderItemImagesLikeable(ViewGroup container, int layoutRes) {
@@ -48,7 +47,6 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
 
-        itemView.findViewById(R.id.tvMenu).setOnClickListener(this);
         itemView.findViewById(R.id.ivLike).setOnClickListener(this);
         listenerDialogHiddenMode = new ListenerDialogHiddenMode();
 
@@ -87,16 +85,6 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
                     .into(ivItem);
 
         if (animationLike != null) animationLike.cancel();
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.tvMenu) {
-            if (dialogReport != null)
-                dialogReport.cancel();
-            dialogReport = new DialogReport(itemView.getContext());
-            dialogReport.show();
-        }
     }
 
     void setLiked(boolean isLikes) {

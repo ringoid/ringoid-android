@@ -11,8 +11,8 @@ import android.widget.FrameLayout;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterExplore;
+import com.ringoid.view.ui.dialog.DialogReport;
 import com.ringoid.view.ui.util.IndicatorHelper;
-import com.ringoid.view.ui.util.LinesIndicator;
 
 import javax.inject.Inject;
 
@@ -26,12 +26,15 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
     private RecyclerView rvItems;
     private AdapterExploreImages adapter;
 
+    private DialogReport dialogReport;
+
     public ViewHolderItemExplore(ViewGroup parent) {
-        super(parent, R.layout.view_item_images);
+        super(parent, R.layout.view_item_images_explore);
         ApplicationRingoid.getComponent().inject(this);
 
         flDots = itemView.findViewById(R.id.flDots);
         flDots.setOnClickListener(this);
+        itemView.findViewById(R.id.ivImageMenu).setOnClickListener(this);
 
         initList();
     }
@@ -56,7 +59,13 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.flDots)
+        if (v.getId() == R.id.flDots)
             presenterAdapterExplore.onClickScrolls();
+        if (v.getId() == R.id.ivImageMenu) {
+            if (dialogReport != null)
+                dialogReport.cancel();
+            dialogReport = new DialogReport(itemView.getContext());
+            dialogReport.show();
+        }
     }
 }
