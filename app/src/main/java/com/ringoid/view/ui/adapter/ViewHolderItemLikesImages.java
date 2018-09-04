@@ -39,7 +39,6 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
         if (v == itemView) {
             if (!isLikeable()) return;
 
