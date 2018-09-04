@@ -117,7 +117,13 @@ public class PresenterRegister implements IPresenterRegister {
         cacheUser.setPhone(code, phone);
         cacheRegister.setPhoneValid(isValid);
         repositoryRegisterPhone.request();
+        clearCodeConfirm();
         loginGoNext();
+    }
+
+    private void clearCodeConfirm() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().clearCodeInput();
     }
 
     @Override

@@ -254,6 +254,11 @@ public class FragmentLogin extends FragmentBase
         }
 
         @Override
+        public void clearCodeInput() {
+            etCodeSMS.setText("");
+        }
+
+        @Override
         public void setGenderSelected(SEX sex) {
             tvSexFemale.setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
             tvSexMale.setBackground(sex == SEX.MALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
