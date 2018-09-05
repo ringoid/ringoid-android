@@ -34,11 +34,13 @@ import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
 import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
+import com.ringoid.controller.data.repository.IRepositoryRegisterLogout;
 import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.IRepositoryRegisterUserDetails;
 import com.ringoid.controller.data.repository.IRepositorySettingsGet;
 import com.ringoid.controller.data.repository.IRepositorySettingsSave;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
+import com.ringoid.controller.data.repository.RepositoryRegisterLogout;
 import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.RepositoryRegisterUserDetails;
 import com.ringoid.controller.data.repository.RepositorySettingsGet;
@@ -97,7 +99,9 @@ import com.ringoid.view.presenter.PresenterRegister;
 import com.ringoid.view.presenter.PresenterSettingsPrivacy;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import com.ringoid.view.presenter.PresenterSettingsPush;
+import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.presenter.util.ISettingsHelper;
+import com.ringoid.view.presenter.util.LogoutHelper;
 import com.ringoid.view.presenter.util.SettingsHelper;
 import com.ringoid.view.ui.util.IStatusBarViewHelper;
 import com.ringoid.view.ui.util.StatusBarViewHelper;
@@ -152,6 +156,12 @@ class AppModule {
     @Singleton
     WeakReference<Context> getContext() {
         return refContext;
+    }
+
+    @Provides
+    @Singleton
+    ILogoutHelper getLogoutHelper(){
+        return new LogoutHelper();
     }
 
     @Provides
@@ -437,6 +447,13 @@ class AppModule {
     IRepositoryRegisterUserDetails getRepositoryRegisterUserDetails() {
         return new RepositoryRegisterUserDetails();
     }
+
+    @Provides
+    @Singleton
+    IRepositoryRegisterLogout getRepositoryRegisterLogout() {
+        return new RepositoryRegisterLogout();
+    }
+
 
     @Provides
     @Singleton

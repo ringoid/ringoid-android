@@ -7,6 +7,7 @@ import com.ringoid.controller.data.memorycache.CacheToken;
 import com.ringoid.controller.data.memorycache.CacheTutorial;
 import com.ringoid.controller.data.memorycache.CacheUser;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
+import com.ringoid.controller.data.repository.RepositoryRegisterLogout;
 import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.RepositoryRegisterUserDetails;
 import com.ringoid.controller.data.repository.RepositorySettingsGet;
@@ -35,6 +36,7 @@ import com.ringoid.view.presenter.PresenterRegister;
 import com.ringoid.view.presenter.PresenterSettingsPrivacy;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import com.ringoid.view.presenter.PresenterSettingsPush;
+import com.ringoid.view.presenter.util.LogoutHelper;
 import com.ringoid.view.presenter.util.SettingsHelper;
 import com.ringoid.view.ui.activity.ActivityMain;
 import com.ringoid.view.ui.adapter.AdapterBlacklistPhones;
@@ -212,4 +214,8 @@ public interface AppComponent {
     void inject(SettingsHelper settingsHelper);
 
     void inject(RepositorySettingsGet repositorySettingsGet);
+
+    void inject(LogoutHelper logoutHelper);
+
+    void inject(RepositoryRegisterLogout repositoryRegisterLogout);
 }

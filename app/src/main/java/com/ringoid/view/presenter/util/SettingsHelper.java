@@ -12,12 +12,18 @@ import javax.inject.Inject;
 public class SettingsHelper implements ISettingsHelper {
 
     private final IRepositoryListenerBase listenerRepositoryBase;
+
     @Inject
     IRepositorySettingsSave repositorySettingsSave;
+
     @Inject
     IRepositorySettingsGet repositorySettingsGet;
+
     @Inject
     INavigator navigator;
+
+    @Inject
+    ILogoutHelper logoutHelper;
 
     public SettingsHelper() {
         ApplicationRingoid.getComponent().inject(this);
@@ -39,7 +45,7 @@ public class SettingsHelper implements ISettingsHelper {
     private class ListenerRepositoryBase implements IRepositoryListenerBase {
         @Override
         public void onTokenInvalid() {
-            navigator.navigateLogin();
+            logoutHelper.logout();
         }
     }
 }

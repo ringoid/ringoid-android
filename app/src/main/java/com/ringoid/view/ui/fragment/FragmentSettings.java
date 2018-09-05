@@ -1,4 +1,4 @@
-        /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
+/*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.fragment;
 
 import android.os.Build;
@@ -15,6 +15,7 @@ import com.ringoid.BuildConfig;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.ui.dialog.DialogAccountDelete;
 import com.ringoid.view.ui.dialog.DialogLogout;
 import com.ringoid.view.ui.dialog.callback.IDialogLogoutListener;
@@ -29,6 +30,9 @@ public class FragmentSettings extends FragmentBase
 
     @Inject
     ICacheToken cacheToken;
+
+    @Inject
+    ILogoutHelper logoutHelper;
 
     private DialogLogout dialogLogout;
     private DialogAccountDelete dialogAccountDelete;
@@ -120,7 +124,7 @@ public class FragmentSettings extends FragmentBase
     private class ListenerDialogLogout implements IDialogLogoutListener {
         @Override
         public void onConfirm() {
-            navigator.navigateLogin();
+            logoutHelper.logout();
         }
     }
 }

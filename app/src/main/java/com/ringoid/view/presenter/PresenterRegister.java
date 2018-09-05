@@ -7,8 +7,6 @@ import android.view.View;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
-import com.ringoid.controller.data.memorycache.ICacheToken;
-import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
@@ -18,7 +16,6 @@ import com.ringoid.controller.data.repository.callback.IRepositoryRegisterPhoneL
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterUserDetailsListener;
 import com.ringoid.model.SEX;
 import com.ringoid.view.INavigator;
-import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
 
@@ -50,15 +47,8 @@ public class PresenterRegister implements IPresenterRegister {
     ICacheUser cacheUser;
 
     @Inject
-    ICacheTutorial cacheTutorial;
-
-    @Inject
-    ICacheToken cacheToken;
-
-    @Inject
     IViewPopup viewPopup;
-    @Inject
-    INavigatorPages navigatorPages;
+
     private ListenerRegisterCodeConfirm listenerRegisterCodeConfirm;
     private ListenerRegisterPhone listenerRegisterPhone;
     private ListenerRegisterUserDetails listenerRegisterUserDetails;
@@ -157,13 +147,6 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Override
     public void onCreateView() {
-        if (cacheUser.isRegistered()) {
-            cacheToken.resetCache();
-            cacheUser.resetCache();
-            cacheTutorial.resetCache();
-            navigatorPages.resetCurrentPage();
-        }
-
         checkInputedData();
     }
 

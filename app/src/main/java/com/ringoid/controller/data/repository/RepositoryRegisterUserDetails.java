@@ -40,12 +40,12 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
 
     public RepositoryRegisterUserDetails() {
         ApplicationRingoid.getComponent().inject(this);
+        requestListener = new RequestListener();
     }
 
     @Override
     public void setListener(IRepositoryRegisterUserDetailsListener listener) {
         this.refListener = new WeakReference<>(listener);
-        requestListener = new RequestListener();
     }
 
     @Override

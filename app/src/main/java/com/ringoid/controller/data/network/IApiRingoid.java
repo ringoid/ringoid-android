@@ -2,6 +2,7 @@
 package com.ringoid.controller.data.network;
 
 import com.ringoid.controller.data.network.request.RequestParamRegisterCodeConfirm;
+import com.ringoid.controller.data.network.request.RequestParamRegisterLogout;
 import com.ringoid.controller.data.network.request.RequestParamRegisterPhone;
 import com.ringoid.controller.data.network.request.RequestParamRegisterUserDetails;
 import com.ringoid.controller.data.network.request.RequestParamSettingsUpdate;
@@ -29,6 +30,10 @@ public interface IApiRingoid {
     @POST("/Prod/create_profile")
     Call<ResponseBase> registerUserDetails(
             @Body RequestParamRegisterUserDetails param);
+
+    @POST("/Prod/logout")
+    Call<ResponseBase> registerLogout(
+            @Body RequestParamRegisterLogout param);
 
     @POST("/Prod/update_settings")
     Call<ResponseBase> settingsUpdate(
