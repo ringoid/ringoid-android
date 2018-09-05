@@ -12,4 +12,12 @@ public class ResponseRegisterCodeConfirm extends ResponseBase {
     public boolean isRegistered() {
         return accountAlreadyExist;
     }
+
+    public boolean isNoPendingClient() {
+        return errorCode.equals("NoPendingVerificationClientError");
+    }
+
+    public boolean isInavlidVerificationCode() {
+        return errorCode.equals("WrongVerificationCodeClientError");
+    }
 }

@@ -226,6 +226,18 @@ public class PresenterRegister implements IPresenterRegister {
                 navigator.navigateFeed();
             } else loginGoNext();
         }
+
+        @Override
+        public void onErrorNoPendingClient() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().showPhoneInput();
+        }
+
+        @Override
+        public void onErrorInvalidCode() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().clearCodeInput();
+        }
     }
 
     private class ListenerRegisterUserDetails implements IRepositoryRegisterUserDetailsListener {

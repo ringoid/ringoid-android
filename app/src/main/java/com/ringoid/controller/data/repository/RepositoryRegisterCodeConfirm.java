@@ -29,9 +29,11 @@ public class RepositoryRegisterCodeConfirm implements IRepositoryRegisterCodeCon
     @Inject
     IApiRingoid apiRingoid;
 
+    @Inject
+    ICacheRegister cacheRegister;
+
     private Call<ResponseRegisterCodeConfirm> request;
     private Callback<ResponseRegisterCodeConfirm> requestListener;
-
     private WeakReference<IRepositoryRegisterCodeConfirmListener> refListener;
 
     public RepositoryRegisterCodeConfirm() {
@@ -43,9 +45,6 @@ public class RepositoryRegisterCodeConfirm implements IRepositoryRegisterCodeCon
     public void setListener(IRepositoryRegisterCodeConfirmListener listener) {
         this.refListener = new WeakReference<>(listener);
     }
-
-    @Inject
-    ICacheRegister cacheRegister;
 
     @Override
     public void request(String code) {
@@ -62,10 +61,32 @@ public class RepositoryRegisterCodeConfirm implements IRepositoryRegisterCodeCon
         refListener.get().onSuccess();
     }
 
+    private void notifyNoPendingClient() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onErrorNoPendingClient();
+    }
+
+    private void notifyInvalidVerificationCode() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onErrorInvalidCode();
+    }
+
     private class RequestListener implements Callback<ResponseRegisterCodeConfirm> {
 
         @Override
         public void onResponse(Call<ResponseRegisterCodeConfirm> call, Response<ResponseRegisterCodeConfirm> response) {
+
+            if (response.isSuccessful()
+                    && response.body() != null
+                    && response.body().isInavlidVerificationCode()) {
+                notifyInvalidVerificationCode();
+            }
+
+            if (response.isSuccessful()
+                    && response.body() != null
+                    && response.body().isNoPendingClient()) {
+                notifyNoPendingClient();
+            }
 
             if (response.isSuccessful()
                     && response.body() != null
