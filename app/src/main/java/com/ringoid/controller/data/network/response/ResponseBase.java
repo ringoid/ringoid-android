@@ -4,7 +4,7 @@ package com.ringoid.controller.data.network.response;
 import android.text.TextUtils;
 
 public class ResponseBase {
-    private String errorCode;
+    String errorCode;
     private String errorMessage;
 
     public boolean isSuccess() {
@@ -13,5 +13,9 @@ public class ResponseBase {
 
     public boolean isInvalidToken() {
         return errorCode.equals("InvalidAccessTokenClientError");
+    }
+
+    public boolean isInternalServerError() {
+        return errorCode.equals("InternalServerError");
     }
 }
