@@ -34,11 +34,8 @@ public class FragmentSettingsPrivacy extends FragmentBase
     @Inject
     IStatusBarViewHelper statusBarViewHelper;
 
-    private TextView tvPrivacyPhotosAll, tvPrivacyPhotosLikes, tvPrivacyPhotosNoone;
-    private TextView tvPrivacyDistance;
     private IPresenterSettingsPrivacyListener listenerPresenter;
     private TextView tvPrivacyMessagesTextFirstMatched, tvPrivacyMessagesTextFirstOnlyMe;
-    private TextView tvPrivacyPhoneBlacklistNum;
 
     public static Fragment getInstance(boolean showAll) {
         Bundle args = new Bundle();
@@ -68,8 +65,6 @@ public class FragmentSettingsPrivacy extends FragmentBase
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         ((TextView) view.findViewById(R.id.tvSubtitle)).setText(R.string.settings_privacy_subtitle);
 
-        tvPrivacyPhoneBlacklistNum = view.findViewById(R.id.tvPrivacyPhoneBlacklistNum);
-
         view.findViewById(R.id.tvPrivacyPhotos).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacyPhone).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacyLocation).setOnClickListener(this);
@@ -78,22 +73,10 @@ public class FragmentSettingsPrivacy extends FragmentBase
         view.findViewById(R.id.tvPrivacyPolicy).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacyMessages).setOnClickListener(this);
 
-        tvPrivacyPhotosAll = view.findViewById(R.id.tvPrivacyPhotosAll);
-        tvPrivacyPhotosLikes = view.findViewById(R.id.tvPrivacyPhotosLikes);
-        tvPrivacyPhotosNoone = view.findViewById(R.id.tvPrivacyPhotosNoone);
-        tvPrivacyPhotosAll.setOnClickListener(this);
-        tvPrivacyPhotosLikes.setOnClickListener(this);
-        tvPrivacyPhotosNoone.setOnClickListener(this);
-
         tvPrivacyMessagesTextFirstMatched = view.findViewById(R.id.tvPrivacyMessagesTextFirstMatched);
         tvPrivacyMessagesTextFirstOnlyMe = view.findViewById(R.id.tvPrivacyMessagesTextFirstOnlyMe);
         tvPrivacyMessagesTextFirstMatched.setOnClickListener(this);
         tvPrivacyMessagesTextFirstOnlyMe.setOnClickListener(this);
-
-        view.findViewById(R.id.llPrivacyPhoneBlacklist).setOnClickListener(this);
-
-        view.findViewById(R.id.llPrivacyDistance).setOnClickListener(this);
-        tvPrivacyDistance = view.findViewById(R.id.tvPrivacyDistance);
 
         setVisibility(view);
 
@@ -127,34 +110,17 @@ public class FragmentSettingsPrivacy extends FragmentBase
         visibilityChangeCheck(v, R.id.tvPrivacyPolicy, R.id.llPrivacyPolicy);
         visibilityChangeCheck(v, R.id.tvPrivacyMessages, R.id.llPrivacyMessages);
 
-        if (v.getId() == R.id.tvPrivacyPhotosAll)
-            presenterSettingsPrivacy.onClickPrivacyPhotosAll();
-
-        if (v.getId() == R.id.tvPrivacyPhotosLikes)
-            presenterSettingsPrivacy.onClickPrivacyPhotosLikes();
-
-        if (v.getId() == R.id.tvPrivacyPhotosNoone)
-            presenterSettingsPrivacy.onClickPrivacyPhotosNoone();
-
-        if (v.getId() == R.id.tvPrivacyMessagesTextFirstMatched) {
+        if (v.getId() == R.id.tvPrivacyMessagesTextFirstMatched)
             presenterSettingsPrivacy.onClickMessageFirstMatched();
-        }
-        if (v.getId() == R.id.tvPrivacyMessagesTextFirstOnlyMe) {
+
+        if (v.getId() == R.id.tvPrivacyMessagesTextFirstOnlyMe)
             presenterSettingsPrivacy.onClickMessageFirstOnlyMe();
-        }
-
-        if (v.getId() == R.id.llPrivacyPhoneBlacklist)
-            navigator.navigateBlacklistPhones();
-
-        if (v.getId() == R.id.llPrivacyDistance)
-            navigator.navigateSettingsPrivacyDistance();
 
         if (v.getId() == R.id.tvSettingsPrivacyPolicyDataStorage)
             navigator.navigateWebView(getContext().getString(R.string.url_data_policy), getContext().getString(R.string.subtitle_data_policy));
 
         if (v.getId() == R.id.tvSettingsPrivacyPolicyNotice)
             navigator.navigateWebView(getContext().getString(R.string.url_privacy), getContext().getString(R.string.subtitle_privacy));
-
     }
 
     private void setCheckedTextFirst(TextView toCheck, TextView toUncheck) {
@@ -180,23 +146,6 @@ public class FragmentSettingsPrivacy extends FragmentBase
     }
 
     private class ListenerPresenter implements IPresenterSettingsPrivacyListener {
-        @Override
-        public void setPrivacyPhotos(int type) {
-            if (getContext() == null) return;
-
-            setTextStyle(tvPrivacyPhotosAll, type == 0);
-            setTextStyle(tvPrivacyPhotosLikes, type == 1);
-            setTextStyle(tvPrivacyPhotosNoone, type == 2);
-
-            tvPrivacyPhotosAll.setCompoundDrawablesWithIntrinsicBounds(getContext().getResources().getDrawable(R.drawable.ic_privacy_all_gray_24dp), null, type == 0 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
-            tvPrivacyPhotosLikes.setCompoundDrawablesWithIntrinsicBounds(getContext().getResources().getDrawable(R.drawable.ic_privacy_likes_gray_24dp), null, type == 1 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
-            tvPrivacyPhotosNoone.setCompoundDrawablesWithIntrinsicBounds(getContext().getResources().getDrawable(R.drawable.ic_privacy_noone_gray_24dp), null, type == 2 ? getContext().getResources().getDrawable(R.drawable.ic_check_gray_24dp) : null, null);
-        }
-
-        @Override
-        public void setPrivacyDistance(int distanceId) {
-            tvPrivacyDistance.setText(distanceId);
-        }
 
         @Override
         public void setPrivacyMessagesFirst(int type) {
@@ -204,11 +153,6 @@ public class FragmentSettingsPrivacy extends FragmentBase
                 setCheckedTextFirst(tvPrivacyMessagesTextFirstMatched, tvPrivacyMessagesTextFirstOnlyMe);
             else
                 setCheckedTextFirst(tvPrivacyMessagesTextFirstOnlyMe, tvPrivacyMessagesTextFirstMatched);
-        }
-
-        @Override
-        public void setPrivacyPhoneNum(int itemsNum) {
-            tvPrivacyPhoneBlacklistNum.setText(String.format(getContext().getResources().getQuantityString(R.plurals.blacklist_phone_num,itemsNum), itemsNum));
         }
     }
 }

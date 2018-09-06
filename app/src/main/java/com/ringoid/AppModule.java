@@ -74,6 +74,7 @@ import com.ringoid.view.presenter.IPresenterMessages;
 import com.ringoid.view.presenter.IPresenterPagesContainer;
 import com.ringoid.view.presenter.IPresenterProfile;
 import com.ringoid.view.presenter.IPresenterRegister;
+import com.ringoid.view.presenter.IPresenterSettings;
 import com.ringoid.view.presenter.IPresenterSettingsPrivacy;
 import com.ringoid.view.presenter.IPresenterSettingsPrivacyDistance;
 import com.ringoid.view.presenter.IPresenterSettingsPush;
@@ -96,6 +97,7 @@ import com.ringoid.view.presenter.PresenterMessages;
 import com.ringoid.view.presenter.PresenterPagesContainer;
 import com.ringoid.view.presenter.PresenterProfile;
 import com.ringoid.view.presenter.PresenterRegister;
+import com.ringoid.view.presenter.PresenterSettings;
 import com.ringoid.view.presenter.PresenterSettingsPrivacy;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import com.ringoid.view.presenter.PresenterSettingsPush;
@@ -160,7 +162,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    ILogoutHelper getLogoutHelper(){
+    ILogoutHelper getLogoutHelper() {
         return new LogoutHelper();
     }
 
@@ -297,6 +299,12 @@ class AppModule {
     @Singleton
     IPresenterActivityMain getPresenterActivityMain() {
         return new PresenterActivityMain();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterSettings getPresenterSettings() {
+        return new PresenterSettings();
     }
 
     @Provides

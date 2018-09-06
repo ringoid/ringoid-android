@@ -33,6 +33,7 @@ import com.ringoid.view.presenter.PresenterMessages;
 import com.ringoid.view.presenter.PresenterPagesContainer;
 import com.ringoid.view.presenter.PresenterProfile;
 import com.ringoid.view.presenter.PresenterRegister;
+import com.ringoid.view.presenter.PresenterSettings;
 import com.ringoid.view.presenter.PresenterSettingsPrivacy;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import com.ringoid.view.presenter.PresenterSettingsPush;
@@ -221,4 +222,6 @@ public interface AppComponent {
     void inject(LogoutHelper logoutHelper);
 
     void inject(RepositoryRegisterLogout repositoryRegisterLogout);
+
+    void inject(PresenterSettings presenterSettings);
 }

@@ -15,10 +15,14 @@ import com.ringoid.BuildConfig;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.presenter.IPresenterSettings;
+import com.ringoid.view.presenter.callback.IPresenterSettingsListener;
 import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.ui.dialog.DialogAccountDelete;
 import com.ringoid.view.ui.dialog.DialogLogout;
+import com.ringoid.view.ui.dialog.DialogPrivacyPhotos;
 import com.ringoid.view.ui.dialog.callback.IDialogLogoutListener;
+import com.ringoid.view.ui.dialog.callback.IDialogPrivacyPhotosListener;
 
 import javax.inject.Inject;
 
@@ -34,15 +38,24 @@ public class FragmentSettings extends FragmentBase
     @Inject
     ILogoutHelper logoutHelper;
 
+    @Inject
+    IPresenterSettings presenterSettings;
+
     private DialogLogout dialogLogout;
     private DialogAccountDelete dialogAccountDelete;
     private IDialogLogoutListener listenerDialogLogout;
+    private ListenerPresenterSettings listenerPresenter;
+    private TextView tvPrivacyPhotos, tvPrivacyDistance, tvPrivacyPhoneBlacklistNum;
+    private DialogPrivacyPhotos dialogPrivacyPhotos;
+    private IDialogPrivacyPhotosListener listenerDialogPrivacyPhotos;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ApplicationRingoid.getComponent().inject(this);
         listenerDialogLogout = new ListenerDialogLogout();
+        presenterSettings.setListener(listenerPresenter = new ListenerPresenterSettings());
+        listenerDialogPrivacyPhotos = new ListenerDialogPrivacyPhotos();
     }
 
     @Nullable
@@ -51,10 +64,15 @@ public class FragmentSettings extends FragmentBase
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         initView(view);
+        presenterSettings.onCreateView();
         return view;
     }
 
     private void initView(View view) {
+        tvPrivacyPhotos = view.findViewById(R.id.tvPrivacyPhotos);
+        tvPrivacyPhoneBlacklistNum = view.findViewById(R.id.tvPrivacyPhoneBlacklistNum);
+        tvPrivacyDistance = view.findViewById(R.id.tvPrivacyDistance);
+
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsTerms).setOnClickListener(this);
@@ -64,6 +82,10 @@ public class FragmentSettings extends FragmentBase
         view.findViewById(R.id.tvPush).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsAbout).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsLicenses).setOnClickListener(this);
+
+        view.findViewById(R.id.llPrivacyPhotos).setOnClickListener(this);
+        view.findViewById(R.id.llBlacklist).setOnClickListener(this);
+        view.findViewById(R.id.llPrivacyDistance).setOnClickListener(this);
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.settings_subtitle);
@@ -76,6 +98,15 @@ public class FragmentSettings extends FragmentBase
     public void onClick(View v) {
         if (v.getId() == R.id.ivBack && getActivity() != null)
             getActivity().onBackPressed();
+
+        if (v.getId() == R.id.llPrivacyPhotos)
+            presenterSettings.onClickPrivacyPhotos();
+
+        if (v.getId() == R.id.llBlacklist)
+            presenterSettings.onClickPrivacyBlacklist();
+
+        if (v.getId() == R.id.llPrivacyDistance)
+            presenterSettings.onClickPrivacyDistance();
 
         if (v.getId() == R.id.tvPrivacy)
             navigator.navigateSettingsPrivacy(false);
@@ -126,5 +157,55 @@ public class FragmentSettings extends FragmentBase
         public void onConfirm() {
             logoutHelper.logout();
         }
+    }
+
+    private class ListenerPresenterSettings implements IPresenterSettingsListener {
+
+        @Override
+        public void setPrivacyPhotos(int type) {
+            if (getContext() == null) return;
+
+            tvPrivacyPhotos.setText(type == 0 ? R.string.settings_privacy_photos_all
+                    : type == 1 ? R.string.settings_privacy_photos_liked
+                    : R.string.settings_privacy_photos_noone);
+        }
+
+        @Override
+        public void setPrivacyDistance(int distanceId) {
+            if (getContext() == null) return;
+            tvPrivacyDistance.setText(distanceId);
+        }
+
+        @Override
+        public void setPrivacyPhoneNum(int itemsNum) {
+            if (getContext() == null) return;
+            tvPrivacyPhoneBlacklistNum.setText(String.format(getContext().getResources().getQuantityString(R.plurals.blacklist_phone_num, itemsNum), itemsNum));
+        }
+
+        @Override
+        public void showDialogPrivacyPhotos(int selected) {
+            if (getContext() == null) return;
+            if (dialogPrivacyPhotos != null) dialogPrivacyPhotos.cancel();
+            dialogPrivacyPhotos = new DialogPrivacyPhotos(getContext(), selected, listenerDialogPrivacyPhotos);
+            dialogPrivacyPhotos.show();
+        }
+    }
+
+    private class ListenerDialogPrivacyPhotos implements IDialogPrivacyPhotosListener {
+        @Override
+        public void onClickAll() {
+            presenterSettings.onClickPrivacyPhotosAll();
+        }
+
+        @Override
+        public void onClickLiked() {
+            presenterSettings.onClickPrivacyPhotosLikes();
+        }
+
+        @Override
+        public void onClickNoone() {
+            presenterSettings.onClickPrivacyPhotosNoone();
+        }
+
     }
 }

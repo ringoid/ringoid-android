@@ -43,9 +43,9 @@
     <string name="push">Push Notifications</string>
     <string name="settings_privacy_photos">Photos</string>
     <string name="settings_privacy_photos_message">Who can see your photos?</string>
-    <string name="settings_privacy_photos_all">Ringoid users of the opposite sex\n(Regular mode)</string>
-    <string name="settings_privacy_photos_liked">Only users whom photos I liked\n(Incognito mode)</string>
-    <string name="settings_privacy_photos_noone">Only me\n(Hidden mode)</string>
+    <string name="settings_privacy_photos_all">Ringoid users of the opposite sex</string>
+    <string name="settings_privacy_photos_liked">Only users whom photos I liked</string>
+    <string name="settings_privacy_photos_noone">Only me</string>
     <string name="settings_privacy_likes_nums">Who can see how many times your photos were liked?</string>
     <string name="settings_privacy_likes_who">Who can see who liked you?</string>
     <string name="settings_privacy_search">Can search engines find and index your photos?</string>
@@ -203,6 +203,7 @@
     <string name="subtitle_licenses">Licenses</string>
     <string name="subtitle_privacy">Privacy Policy</string>
     <string name="subtitle_data_policy">Data Policy</string>
+    <string name="dialog_privacy_photos_title">Who can see your photos?</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>

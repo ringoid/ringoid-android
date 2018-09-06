@@ -37,6 +37,128 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+            <!--
+
+
+            <TextView
+                style="@style/settings_menu_item"
+                android:text="@string/settings_privacy_photos_message" />
+
+            <TextView
+                android:id="@+id/tvPrivacyPhotosAll"
+                style="@style/settings_menu_item"
+                android:drawableStart="@drawable/ic_privacy_all_gray_24dp"
+                android:text="@string/settings_privacy_photos_all" />
+
+            <TextView
+                android:id="@+id/tvPrivacyPhotosLikes"
+                style="@style/settings_menu_item"
+                android:drawableStart="@drawable/ic_privacy_likes_gray_24dp"
+                android:text="@string/settings_privacy_photos_liked" />
+
+            <TextView
+                android:id="@+id/tvPrivacyPhotosNoone"
+                style="@style/settings_menu_item"
+                android:drawableStart="@drawable/ic_privacy_noone_gray_24dp"
+                android:text="@string/settings_privacy_photos_noone" />
+
+
+                -->
+            <LinearLayout
+                android:id="@+id/llPrivacyPhotos"
+                style="@style/settings_menu_item"
+                android:orientation="horizontal"
+                android:paddingStart="56dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_photos_message" />
+
+                    <TextView
+                        android:id="@+id/tvPrivacyPhotos"
+                        style="@style/settings_privacy_item_value"
+                        tools:text="Only me" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_keyboard_arrow_right_gray_24dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llBlacklist"
+                style="@style/settings_menu_item"
+                android:orientation="horizontal"
+                android:paddingStart="56dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_phone_blacklist" />
+
+                    <TextView
+                        android:id="@+id/tvPrivacyPhoneBlacklistNum"
+                        style="@style/settings_privacy_item_value"
+                        tools:text="1 phone number" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_keyboard_arrow_right_gray_24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPrivacyDistance"
+                style="@style/settings_menu_item"
+                android:orientation="horizontal"
+                android:paddingStart="56dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/settings_privacy_item_message"
+                        android:text="@string/settings_privacy_location_distance" />
+
+                    <TextView
+                        android:id="@+id/tvPrivacyDistance"
+                        style="@style/settings_privacy_item_value"
+                        tools:text="250m" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_keyboard_arrow_right_gray_24dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="#f5f5f5" />
+
             <TextView
                 android:id="@+id/tvPrivacy"
                 style="@style/settings_menu_item"
