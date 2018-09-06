@@ -8,42 +8,33 @@
     android:paddingStart="20dp"
     android:paddingTop="24dp">
 
-    <ImageView
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_logout_red_32dp" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:gravity="center"
         android:text="@string/dialog_logout_title"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
         android:textColor="@color/gray" />
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:gravity="center"
         android:text="@string/dialog_logout_message"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
         android:textColor="@color/gray" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="end"
         android:layout_marginTop="24dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvCancel"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
             android:gravity="center"
             android:paddingBottom="12dp"
@@ -55,9 +46,8 @@
 
         <TextView
             android:id="@+id/tvConfirm"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
             android:gravity="center"
             android:paddingBottom="12dp"
