@@ -2,12 +2,11 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/fragment_settings_privacy">
+    tools:showIn="@layout/fragment_settings_faq">
 
     <TextView
         android:id="@+id/tvPrivacyPhotos"
         style="@style/settings_privacy_menu_title"
-        android:drawableStart="@drawable/ic_privacy_photos"
         android:text="@string/settings_privacy_photos" />
 
     <LinearLayout

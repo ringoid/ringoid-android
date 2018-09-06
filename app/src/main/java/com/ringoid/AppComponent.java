@@ -34,7 +34,7 @@ import com.ringoid.view.presenter.PresenterPagesContainer;
 import com.ringoid.view.presenter.PresenterProfile;
 import com.ringoid.view.presenter.PresenterRegister;
 import com.ringoid.view.presenter.PresenterSettings;
-import com.ringoid.view.presenter.PresenterSettingsPrivacy;
+import com.ringoid.view.presenter.PresenterSettingsFAQ;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import com.ringoid.view.presenter.PresenterSettingsPush;
 import com.ringoid.view.presenter.util.LogoutHelper;
@@ -67,7 +67,7 @@ import com.ringoid.view.ui.fragment.FragmentMessages;
 import com.ringoid.view.ui.fragment.FragmentPages;
 import com.ringoid.view.ui.fragment.FragmentProfile;
 import com.ringoid.view.ui.fragment.FragmentSettings;
-import com.ringoid.view.ui.fragment.FragmentSettingsPrivacy;
+import com.ringoid.view.ui.fragment.FragmentSettingsFAQ;
 import com.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 import com.ringoid.view.ui.fragment.FragmentSettingsPush;
 import com.ringoid.view.ui.fragment.FragmentWebView;
@@ -175,9 +175,9 @@ public interface AppComponent {
 
     void inject(PresenterAdapterChatMessages presenterAdapterChatMessages);
 
-    void inject(FragmentSettingsPrivacy fragmentSettingsPrivacy);
+    void inject(FragmentSettingsFAQ fragmentSettingsPrivacy);
 
-    void inject(PresenterSettingsPrivacy presenterSettingsPrivacy);
+    void inject(PresenterSettingsFAQ presenterSettingsPrivacy);
 
     void inject(FragmentSettingsPrivacyDistance item);
 

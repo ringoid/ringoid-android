@@ -62,7 +62,7 @@
     <string name="settings_privacy_age_who">Who can see your age?</string>
     <string name="settings_privacy_policy_data_storage">Personal data that Ringoid holds about you</string>
     <string name="settings_privacy_policy_privacy">Privacy Policy</string>
-    <string name="settings_privacy_subtitle">Privacy</string>
+    <string name="settings_privacy_subtitle">FAQ</string>
     <string name="settings_privacy_activity_likes">Who can see which photos you liked?</string>
     <string name="settings_privacy_activity_reports">Who can see which photos you reported?</string>
     <string name="settings_privacy_item_value_no">No</string>
