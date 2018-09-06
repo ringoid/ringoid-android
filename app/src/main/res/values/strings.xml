@@ -171,7 +171,6 @@
     <string name="settings_privacy_phone_sessions_value">Only one. The most recent sign in will take over, and all other sessions will be signed out automatically.</string>
     <string name="settings_privacy_messages_logout_history">Who can recover messages after you delete history, block a user, sign out, reinstall the app or delete account?</string>
     <string name="settings_privacy_messages_logout_history_value">No one. There is no way to recover messages because the server doesn\'t store them in the database after they are delivered to apps.</string>
-    <string name="blacklist_phone_num">%d phone number(s)</string>
     <string name="message_likes_other">You can like different photos of the same user so your profile will rise higher in their Messages.\n\nTo unlike, tap on the heart icon in the corner</string>
     <string name="message_explore_like_other">You can like different photos of the same user so your profile will rise higher in their Who Liked You. \n\n To unlike, tap on the heart icon in the corner</string>
     <string name="format_profile_photo_click_tutorial">Privacy: Who can see your photos?\n%s</string>
@@ -204,6 +203,15 @@
     <string name="subtitle_licenses">Licenses</string>
     <string name="subtitle_privacy">Privacy Policy</string>
     <string name="subtitle_data_policy">Data Policy</string>
+
+    <plurals name="blacklist_phone_num">
+        <item quantity="zero">%d phone numbers</item>
+        <item quantity="one">%d phone number</item>
+        <item quantity="two">%d phone numbers</item>
+        <item quantity="few">%d phone numbers</item>
+        <item quantity="many">%d phone numbers</item>
+        <item quantity="other">%d phone numbers</item>
+    </plurals>
 
     <string-array name="pages_titles">
         <item></item>

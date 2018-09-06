@@ -208,7 +208,7 @@ public class FragmentSettingsPrivacy extends FragmentBase
 
         @Override
         public void setPrivacyPhoneNum(int itemsNum) {
-            tvPrivacyPhoneBlacklistNum.setText(String.format(getContext().getResources().getString(R.string.blacklist_phone_num), itemsNum));
+            tvPrivacyPhoneBlacklistNum.setText(String.format(getContext().getResources().getQuantityString(R.plurals.blacklist_phone_num,itemsNum), itemsNum));
         }
     }
 }
