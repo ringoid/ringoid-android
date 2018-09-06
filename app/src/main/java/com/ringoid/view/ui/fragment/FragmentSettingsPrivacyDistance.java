@@ -95,6 +95,7 @@ public class FragmentSettingsPrivacyDistance extends FragmentBase
 
             checkBold(tvDistance0, resId);
             checkBold(tvDistance10, resId);
+            checkBold(tvDistance25, resId);
             checkBold(tvDistance50, resId);
             checkBold(tvDistance100, resId);
             checkBold(tvDistance250, resId);
