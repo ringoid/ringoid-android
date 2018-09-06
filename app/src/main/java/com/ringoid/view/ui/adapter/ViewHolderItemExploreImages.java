@@ -60,4 +60,9 @@ public class ViewHolderItemExploreImages extends ViewHolderItemImagesLikeable
         }
         return false;
     }
+
+    @Override
+    protected int getLikeEmptyRes() {
+        return R.drawable.ic_favorite_border_white_24dp;
+    }
 }

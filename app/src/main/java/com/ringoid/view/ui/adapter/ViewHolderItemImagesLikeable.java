@@ -13,7 +13,6 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterItemImageLikeable;
 import com.ringoid.view.ui.dialog.DialogHiddenMode;
-import com.ringoid.view.ui.dialog.DialogReport;
 import com.ringoid.view.ui.dialog.callback.IDialogHiddenModeListener;
 import com.ringoid.view.ui.util.AnimationLike;
 import com.ringoid.view.ui.util.GlideApp;
@@ -90,8 +89,10 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
     void setLiked(boolean isLikes) {
         ivLike.setImageResource(isLikes
                 ? R.drawable.ic_favorite_red_24dp
-                : R.drawable.ic_favorite_border_white_24dp);
+                : getLikeEmptyRes());
     }
+
+    protected abstract int getLikeEmptyRes();
 
     void onClickView(boolean liked) {
         showLikeAnimationSmall(liked);
