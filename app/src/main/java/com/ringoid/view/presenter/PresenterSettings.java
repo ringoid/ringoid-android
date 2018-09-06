@@ -26,8 +26,10 @@ public class PresenterSettings implements IPresenterSettings {
 
     @Inject
     ISettingsHelper settingsHelper;
+
     @Inject
     INavigator navigator;
+
     private WeakReference<IPresenterSettingsListener> refListener;
 
     public PresenterSettings() {

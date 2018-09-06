@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.ringoid.view.ui.dialog.DialogLogout;
 import com.ringoid.view.ui.dialog.DialogPrivacyPhotos;
 import com.ringoid.view.ui.dialog.callback.IDialogLogoutListener;
 import com.ringoid.view.ui.dialog.callback.IDialogPrivacyPhotosListener;
+import com.ringoid.view.ui.util.IStatusBarViewHelper;
 
 import javax.inject.Inject;
 
@@ -40,6 +42,9 @@ public class FragmentSettings extends FragmentBase
 
     @Inject
     IPresenterSettings presenterSettings;
+
+    @Inject
+    IStatusBarViewHelper statusBarViewHelper;
 
     private DialogLogout dialogLogout;
     private DialogAccountDelete dialogAccountDelete;
@@ -168,6 +173,8 @@ public class FragmentSettings extends FragmentBase
             tvPrivacyPhotos.setText(type == 0 ? R.string.settings_privacy_photos_all
                     : type == 1 ? R.string.settings_privacy_photos_liked
                     : R.string.settings_privacy_photos_noone);
+
+            statusBarViewHelper.setColor((AppCompatActivity) getActivity(), type);
         }
 
         @Override
