@@ -122,8 +122,14 @@ public class FragmentLogin extends FragmentBase
         cbTerms.setOnCheckedChangeListener(new ListenerCheckedChangeTerms());
         cbAge.setOnCheckedChangeListener(new ListenerCheckedChangeAge());
 
-        if (getArguments() != null && getArguments().getBoolean(ARG_PROFILE_UPDATE, false))
-            vfLogin.setDisplayedChild(INDEX_PROFILE_UPDATE);
+        if (getArguments() != null && getArguments().getBoolean(ARG_PROFILE_UPDATE, false)) {
+            setPage(INDEX_PROFILE_UPDATE);
+        }
+    }
+
+    private void setPage(int index) {
+        vfLogin.setDisplayedChild(index);
+        checkKeyboard();
     }
 
     @Override
@@ -271,7 +277,7 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void showPhoneInput() {
-            vfLogin.setDisplayedChild(INDEX_PHONE_INPUT);
+            setPage(INDEX_PHONE_INPUT);
         }
 
     }
