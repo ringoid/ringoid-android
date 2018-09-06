@@ -2,14 +2,14 @@
 
     <string name="url_terms" translatable="false">http://ringoid.com/terms.html</string>
     <string name="url_licenses" translatable="false">http://ringoid.com/licenses-android.html</string>
-    <string name="url_privacy" translatable="false">http://ringoid.com/privacy-notice.html</string>
+    <string name="url_privacy" translatable="false">http://ringoid.com/privacy.html</string>
     <string name="url_data_policy" translatable="false">http://ringoid.com/data-summary.html</string>
 
     <string name="app_name">Ringoid</string>
 
     <string name="hint_chat_enabled">Type a text message</string>
 
-    <string name="checkbox_terms">I have read and understood\n\n<a href="http://ringoid.com/terms.html">Terms of Service</a> and\n\n<a href="http://ringoid.com/privacy-notice.html">Privacy Policy</a></string>
+    <string name="checkbox_terms">I have read and understood\n\n<a href="http://ringoid.com/terms.html">Terms of Service</a> and\n\n<a href="http://ringoid.com/privacy.html">Privacy Policy</a></string>
 
     <string name="hint_register_confirm">1234</string>
     <string name="error_phone">Please enter phone number</string>
