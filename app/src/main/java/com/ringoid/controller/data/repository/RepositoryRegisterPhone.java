@@ -73,11 +73,22 @@ public class RepositoryRegisterPhone implements IRepositoryRegisterPhone {
         refListener.get().onError();
     }
 
+    private void notifyErrorPhone() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onErrorPhone();
+    }
+
     private class RequestListener implements Callback<ResponseRegisterPhone> {
         @Override
         public void onResponse(Call<ResponseRegisterPhone> call, Response<ResponseRegisterPhone> response) {
 
             if (response.isSuccessful()
+                    && response.body() != null
+                    &&
+                    (response.body().isErrorPhone()
+                            || response.body().isErrorCode())) {
+                notifyErrorPhone();
+            } else if (response.isSuccessful()
                     && response.body() != null
                     && response.body().isSuccess()) {
 

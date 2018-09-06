@@ -7,4 +7,12 @@ public class ResponseRegisterPhone extends ResponseBase {
     public String getSessionId() {
         return sessionId;
     }
+
+    public boolean isErrorPhone() {
+        return errorCode.equals("PhoneNumberClientError");
+    }
+
+    public boolean isErrorCode() {
+        return errorCode.equals("CountryCallingCodeClientError");
+    }
 }

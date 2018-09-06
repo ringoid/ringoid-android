@@ -75,7 +75,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         navigatorPages.set(childFragmentManager, viewId);
         navigatorPages.navigateCurrentPage();
         updateViewPrivacy();
-        updateViewBottomSheet();
         updateToolbar();
     }
 
@@ -222,6 +221,8 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     private class ListenerCacheSettings implements ICacheSettingsPrivacyListener {
         @Override
         public void onUpdate() {
+
+            updateViewBottomSheet();
 
             if (refListener == null || refListener.get() == null) return;
             int type = cacheSettingsPrivacy.getPrivacyPhotos();

@@ -5,4 +5,6 @@ public interface IRepositoryRegisterPhoneListener {
     void onSuccess();
 
     void onError();
+
+    void onErrorPhone();
 }

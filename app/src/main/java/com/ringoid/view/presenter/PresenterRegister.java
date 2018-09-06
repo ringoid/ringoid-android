@@ -199,6 +199,12 @@ public class PresenterRegister implements IPresenterRegister {
         public void onError() {
             viewPopup.showSnackbar(R.string.message_phone_confirm_error, R.string.message_retry, listenerPopupPhoneConfirmError);
         }
+
+        @Override
+        public void onErrorPhone() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().showPhoneInput();
+        }
     }
 
     private class ListenerRegisterCodeConfirm implements IRepositoryRegisterCodeConfirmListener {
