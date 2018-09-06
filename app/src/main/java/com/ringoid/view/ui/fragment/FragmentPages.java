@@ -90,6 +90,20 @@ public class FragmentPages extends FragmentBase
 
     }
 
+    private void hideStatusbar() {
+        if (getActivity() == null) return;
+        View decorView = getActivity().getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+    }
+
+    private void showStatusbar() {
+        if (getActivity() == null) return;
+        View decorView = getActivity().getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_VISIBLE;
+        decorView.setSystemUiVisibility(uiOptions);
+    }
+
     private class ListenerPresenter implements IPresenterPagesContainerListener {
 
         @Override
@@ -120,6 +134,9 @@ public class FragmentPages extends FragmentBase
 
         @Override
         public void hideToolbar() {
+
+            hideStatusbar();
+
             int translation = (int) getContext().getResources().getDimension(R.dimen.toolbar_height);
             flToolbar.animate()
                     .alpha(0)
@@ -129,6 +146,9 @@ public class FragmentPages extends FragmentBase
 
         @Override
         public void showToolbar() {
+
+            showStatusbar();
+
             flToolbar.animate()
                     .alpha(1)
                     .translationY(0)
