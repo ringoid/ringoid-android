@@ -204,6 +204,7 @@
     <string name="subtitle_privacy">Privacy Policy</string>
     <string name="subtitle_data_policy">Data Policy</string>
     <string name="dialog_privacy_photos_title">Who can see your photos?</string>
+    <string name="settings_data_protection">Data protection</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>
