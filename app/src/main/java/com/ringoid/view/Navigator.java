@@ -181,13 +181,13 @@ public class Navigator implements INavigator {
     }
 
     @Override
-    public void navigateWebView(String url) {
+    public void navigateWebView(String url, String subtitle) {
 
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
-                .replace(viewId, FragmentWebView.getInstance(url), CURRENT_FRAGMENT_PAGE)
+                .replace(viewId, FragmentWebView.getInstance(url, subtitle), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 
@@ -197,6 +197,16 @@ public class Navigator implements INavigator {
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:support@ringoid.com"));
         intent.putExtra(Intent.EXTRA_SUBJECT, String.format("Ringoid Android App %d(%s) Feedback %s, %s", versionCode, versionName, model, sdkInt));
         intent.putExtra(Intent.EXTRA_TEXT, "");
+
+        if (intent.resolveActivity(context.getPackageManager()) == null) return;
+
+        context.startActivity(intent);
+    }
+
+    @Override
+    public void navigateUrlExternal(Context context, String url) {
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 
         if (intent.resolveActivity(context.getPackageManager()) == null) return;
 

@@ -150,10 +150,10 @@ public class FragmentSettingsPrivacy extends FragmentBase
             navigator.navigateSettingsPrivacyDistance();
 
         if (v.getId() == R.id.tvSettingsPrivacyPolicyDataStorage)
-            navigator.navigateWebView("http://ringoid.com/data-summary.html");
+            navigator.navigateWebView(getContext().getString(R.string.url_data_policy), getContext().getString(R.string.subtitle_data_policy));
 
         if (v.getId() == R.id.tvSettingsPrivacyPolicyNotice)
-            navigator.navigateWebView("http://ringoid.com/privacy-notice.html");
+            navigator.navigateWebView(getContext().getString(R.string.url_privacy), getContext().getString(R.string.subtitle_privacy));
 
     }
 

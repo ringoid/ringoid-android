@@ -25,9 +25,11 @@ public interface INavigator {
 
     void navigateSettingsPrivacy(boolean showPhotos);
 
-    void navigateWebView(String url);
+    void navigateWebView(String url, String subtitle);
 
     void navigateFeedback(Context context, int versionCode, String versionName, String sdkInt, String model);
+
+    void navigateUrlExternal(Context context, String url);
 
     void navigateSettingsPush();
 

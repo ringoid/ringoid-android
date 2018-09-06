@@ -84,11 +84,11 @@ public class FragmentSettings extends FragmentBase
             navigator.navigateSettingsPush();
 
         if (v.getId() == R.id.tvSettingsTerms)
-            navigator.navigateWebView("http://ringoid.com/terms.html");
+            navigator.navigateWebView(getContext().getString(R.string.url_terms), getContext().getString(R.string.subtitle_terms));
 
 
         if (v.getId() == R.id.tvSettingsLicenses)
-            navigator.navigateWebView("http://ringoid.com/licenses-android.html");
+            navigator.navigateWebView(getContext().getString(R.string.url_licenses), getContext().getString(R.string.subtitle_licenses));
 
         if (v.getId() == R.id.tvSettingsFeedback)
             navigator.navigateFeedback(getContext(),

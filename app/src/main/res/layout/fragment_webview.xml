@@ -5,11 +5,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.ringoid.view.ui.view.ViewToolbar
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        app:is_show_back="true" />
+        android:layout_height="wrap_content">
+
+        <com.ringoid.view.ui.view.ViewToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:is_show_back="true" />
+
+        <ImageView
+            android:id="@+id/ivBrowser"
+            style="@style/selectableImage"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_open_in_browser_black_24dp" />
+
+    </FrameLayout>
 
     <WebView
         android:id="@+id/wvContent"

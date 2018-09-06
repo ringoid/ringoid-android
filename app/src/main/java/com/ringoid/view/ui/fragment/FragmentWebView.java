@@ -11,17 +11,27 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
+import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.view.INavigator;
+
+import javax.inject.Inject;
 
 public class FragmentWebView extends FragmentBase
         implements View.OnClickListener {
 
     private static final String ARG_URL = "arg_url";
+    private static final String ARG_SUBTITLE = "arg_subtitle";
 
-    public static Fragment getInstance(String url) {
+    @Inject
+    INavigator navigator;
+
+    public static Fragment getInstance(String url, String subtitle) {
         Bundle args = new Bundle();
         args.putString(ARG_URL, url);
+        args.putString(ARG_SUBTITLE, subtitle);
         Fragment fragment = new FragmentWebView();
         fragment.setArguments(args);
         return fragment;
@@ -30,6 +40,7 @@ public class FragmentWebView extends FragmentBase
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ApplicationRingoid.getComponent().inject(this);
     }
 
     @Nullable
@@ -42,6 +53,9 @@ public class FragmentWebView extends FragmentBase
 
     private void initView(View view) {
         view.findViewById(R.id.ivBack).setOnClickListener(this);
+        view.findViewById(R.id.ivBrowser).setOnClickListener(this);
+
+        ((TextView) view.findViewById(R.id.tvSubtitle)).setText(getArguments().getString(ARG_SUBTITLE));
 
         WebView wvContent = view.findViewById(R.id.wvContent);
         wvContent.setWebViewClient(new WebViewClient());
@@ -51,7 +65,13 @@ public class FragmentWebView extends FragmentBase
 
     @Override
     public void onClick(View v) {
-        if (getActivity() == null) return;
-        getActivity().onBackPressed();
+        if (v.getId() == R.id.ivBack) {
+            if (getActivity() == null) return;
+            getActivity().onBackPressed();
+        }
+        if (v.getId() == R.id.ivBrowser) {
+            navigator.navigateUrlExternal(getContext(), getArguments().getString(ARG_URL));
+        }
     }
+
 }

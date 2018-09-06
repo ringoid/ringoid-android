@@ -1,4 +1,10 @@
 <resources>
+
+    <string name="url_terms" translatable="false">http://ringoid.com/terms.html</string>
+    <string name="url_licenses" translatable="false">http://ringoid.com/licenses-android.html</string>
+    <string name="url_privacy" translatable="false">http://ringoid.com/privacy-notice.html</string>
+    <string name="url_data_policy" translatable="false">http://ringoid.com/data-summary.html</string>
+
     <string name="app_name">Ringoid</string>
 
     <string name="hint_chat_enabled">Type a text message</string>
@@ -194,6 +200,10 @@
     <string name="dialog_report_message_chat">5-7 last messages will be forwarded to Ringoid support</string>
     <string name="dialog_report_confirm_report">report &amp; block></string>
     <string name="dialog_report_item_6">Harassment or threats, verbal abuse</string>
+    <string name="subtitle_terms">Terms of Service></string>
+    <string name="subtitle_licenses">Licenses</string>
+    <string name="subtitle_privacy">Privacy Policy</string>
+    <string name="subtitle_data_policy">Data Policy</string>
 
     <string-array name="pages_titles">
         <item></item>

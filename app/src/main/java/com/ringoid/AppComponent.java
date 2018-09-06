@@ -69,6 +69,7 @@ import com.ringoid.view.ui.fragment.FragmentSettings;
 import com.ringoid.view.ui.fragment.FragmentSettingsPrivacy;
 import com.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 import com.ringoid.view.ui.fragment.FragmentSettingsPush;
+import com.ringoid.view.ui.fragment.FragmentWebView;
 import com.ringoid.view.ui.fragment.FragmentWelcome;
 import com.ringoid.view.ui.view.ViewToolbar;
 
@@ -188,6 +189,8 @@ public interface AppComponent {
     void inject(CacheUser cacheUser);
 
     void inject(FragmentBase fragmentBase);
+
+    void inject(FragmentWebView param);
 
     void inject(FragmentSettingsPush param);
 
