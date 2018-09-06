@@ -6,11 +6,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.ringoid.view.ui.view.ViewToolbar
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        app:is_show_back="true" />
+        android:layout_height="wrap_content">
+
+        <com.ringoid.view.ui.view.ViewToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:is_show_back="true" />
+
+        <TextView
+            android:id="@+id/tvVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_margin="16dp"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="17sp"
+            tools:text="v123" />
+
+    </FrameLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -95,29 +111,6 @@
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_logout_gray_16dp"
                 android:text="@string/settings_logout" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="#f5f5f5" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="32dp"
-                android:src="@drawable/splash_center" />
-
-            <TextView
-                android:id="@+id/tvVersion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="24dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif-thin"
-                android:textSize="17sp"
-                tools:text="v123" />
 
             <View
                 android:layout_width="match_parent"
