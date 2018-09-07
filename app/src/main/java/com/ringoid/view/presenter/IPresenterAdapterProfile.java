@@ -12,15 +12,11 @@ public interface IPresenterAdapterProfile {
 
     boolean onClickItem(Context context, int position);
 
-    void onClickOK(boolean isShow);
-
-    void onClickLiked(boolean isShow);
-
-    boolean isDialogShowLikes();
-
     void onClickAboutHiddenMode(boolean isShow);
 
     void onClickHiddenModeOK(boolean isShow);
 
     void onClickHiddenModePrivacy(boolean isShow);
+
+    void onCLickLikes();
 }

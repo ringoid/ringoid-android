@@ -105,6 +105,7 @@ public class AdapterProfile extends AdapterBase {
         }
 
         private void onClickLikes() {
+            presenterAdapterProfile.onCLickLikes();
         }
 
     }

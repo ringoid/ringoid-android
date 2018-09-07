@@ -70,22 +70,6 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     }
 
     @Override
-    public void onClickOK(boolean isShow) {
-        cacheTutorial.setProfileDialogLikeShow(isShow);
-    }
-
-    @Override
-    public void onClickLiked(boolean isShow) {
-        cacheTutorial.setProfileDialogLikeShow(isShow);
-        navigatorPages.navigateLikes();
-    }
-
-    @Override
-    public boolean isDialogShowLikes() {
-        return cacheTutorial.isShowDialogLikes();
-    }
-
-    @Override
     public void onClickAboutHiddenMode(boolean isShow) {
         cacheTutorial.setDialogHiddenModeShow(isShow);
         navigator.navigateWelcome(false);
@@ -100,5 +84,10 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     public void onClickHiddenModePrivacy(boolean isShow) {
         cacheTutorial.setDialogHiddenModeShow(isShow);
         navigator.navigateSettingsPrivacy(true);
+    }
+
+    @Override
+    public void onCLickLikes() {
+        navigatorPages.navigateLikes();
     }
 }
