@@ -36,16 +36,6 @@ public class ViewDialogs implements IViewDialogs {
 
     @Override
     public void showDialogExplore() {
-        if (refDialogExplore != null && refDialogExplore.get() != null)
-            refDialogExplore.get().cancel();
-
-        if (!cacheTutorial.isShowDialogExplore()) return;
-
-        if (refContext == null || refContext.get() == null) return;
-
-        DialogNewFaces dialogNewFaces = new DialogNewFaces(refContext.get(), listenerDialogNewFaces);
-        dialogNewFaces.show();
-        refDialogExplore = new WeakReference<>(dialogNewFaces);
     }
 
     @Override
@@ -56,16 +46,6 @@ public class ViewDialogs implements IViewDialogs {
     @Override
     public void showDialogLikes() {
 
-        if (refDialogLikes != null && refDialogLikes.get() != null)
-            refDialogLikes.get().cancel();
-
-        if (!cacheTutorial.isShowDialogLikes()) return;
-
-        if (refContext == null || refContext.get() == null) return;
-
-        DialogWhoLikedYou dialog = new DialogWhoLikedYou(refContext.get(), listenerDialogLiked);
-        dialog.show();
-        refDialogLikes = new WeakReference<>(dialog);
     }
 
     private class ListenerDialogNewFaces implements IDialogNewFacesListener {

@@ -25,15 +25,12 @@ public class AdapterProfile extends AdapterBase {
     IPresenterAdapterProfile presenterAdapterProfile;
 
     private DialogHiddenMode dialogHiddenMode;
-    private DialogProfileLikes dialogProfileLikes;
 
     private ListenerDialogHidden listenerDialogHidden;
-    private IDialogProfileLikesListener listenerDialogProfileLikes;
 
     public AdapterProfile() {
         ApplicationRingoid.getComponent().inject(this);
 
-        listenerDialogProfileLikes = new ListenerDialogProfileLikes();
         listenerDialogHidden = new ListenerDialogHidden();
     }
 
@@ -108,25 +105,8 @@ public class AdapterProfile extends AdapterBase {
         }
 
         private void onClickLikes() {
-            if (dialogProfileLikes != null)
-                dialogProfileLikes.cancel();
-            if (!presenterAdapterProfile.isDialogShowLikes()) return;
-            dialogProfileLikes = new DialogProfileLikes(itemView.getContext(), listenerDialogProfileLikes);
-            dialogProfileLikes.show();
         }
 
-    }
-
-    private class ListenerDialogProfileLikes implements IDialogProfileLikesListener {
-        @Override
-        public void onSelectOK(boolean isShow) {
-            presenterAdapterProfile.onClickOK(isShow);
-        }
-
-        @Override
-        public void onSelectLiked(boolean isShow) {
-            presenterAdapterProfile.onClickLiked(isShow);
-        }
     }
 
     private class ListenerDialogHidden implements IDialogHiddenModeListener {
