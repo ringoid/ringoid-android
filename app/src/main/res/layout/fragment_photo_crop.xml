@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.ringoid.view.ui.view.ViewToolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            app:is_show_back="true" />
-
-        <ImageView
-            android:id="@+id/ivCropConfirm"
-            style="@style/selectableImage"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_crop_confirm_gray_24dp" />
-
-    </FrameLayout>
+    android:layout_height="match_parent">
 
     <com.steelkiwi.cropiwa.CropIwaView
         android:id="@+id/crop_view"
@@ -29,9 +10,9 @@
         android:layout_height="match_parent"
         app:ci_aspect_ratio_h="4"
         app:ci_aspect_ratio_w="3"
-        app:ci_border_color="@color/colorAccentGreen"
-        app:ci_border_width="2dp"
-        app:ci_crop_scale="0.75"
+        app:ci_border_color="@android:color/white"
+        app:ci_border_width="4dp"
+        app:ci_crop_scale="0.7"
         app:ci_crop_shape="rectangle"
         app:ci_draw_grid="false"
         app:ci_dynamic_aspect_ratio="false"
@@ -39,4 +20,15 @@
         app:ci_scale_enabled="true"
         app:ci_translation_enabled="true" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/ivBack"
+        style="@style/selectableImage"
+        android:src="@drawable/ic_arrow_back_black_24dp" />
+
+    <TextView
+        android:id="@+id/tvCropConfirm"
+        style="@style/buttonBase.Colored.Green"
+        android:layout_gravity="bottom"
+        android:text="@string/crop_confirm" />
+
+</FrameLayout>

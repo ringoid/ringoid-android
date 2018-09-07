@@ -230,6 +230,7 @@
     <string name="dialog_withdraw_confirm">withdraw consent</string>
     <string name="data_protection_subtitle">Data Protection</string>
     <string name="button_code_error">I didn\’t receive a code</string>
+    <string name="crop_confirm"><![CDATA[Crop & Upload]]></string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>

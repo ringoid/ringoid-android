@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.ringoid.R;
 import com.steelkiwi.cropiwa.CropIwaView;
@@ -38,11 +37,8 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
 
     private void initViews(View view) {
         initImage(view);
-        view.findViewById(R.id.ivCropConfirm).setOnClickListener(this);
+        view.findViewById(R.id.tvCropConfirm).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
-
-        TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
-        tvSubtitle.setText(R.string.crop_subtitle);
     }
 
     private void initImage(View view) {
@@ -56,7 +52,7 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.ivCropConfirm) {
+        if (v.getId() == R.id.tvCropConfirm) {
             getActivity().onBackPressed();
         }
         if (v.getId() == R.id.ivBack) {
