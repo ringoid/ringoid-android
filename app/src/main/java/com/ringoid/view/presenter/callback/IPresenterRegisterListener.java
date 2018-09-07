@@ -19,4 +19,6 @@ public interface IPresenterRegisterListener {
     void hideKeyboard();
 
     void clearCodeInput();
+
+    void showPhoneHint(String phone);
 }

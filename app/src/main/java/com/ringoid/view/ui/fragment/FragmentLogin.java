@@ -110,6 +110,7 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.tvLoginPhoneVerify).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.ivPasteSMS).setOnClickListener(this);
+        view.findViewById(R.id.tvCodeSMSError).setOnClickListener(this);
 
         view.findViewById(R.id.ivPasteSMS).setOnLongClickListener(this);
 
@@ -162,6 +163,11 @@ public class FragmentLogin extends FragmentBase
 
         if (view.getId() == R.id.ivBack)
             showPrev();
+
+        if (view.getId() == R.id.tvCodeSMSError) {
+            setPage(INDEX_PHONE_INPUT);
+            etPhone.setSelection(etPhone.getText().length());
+        }
 
         if (view.getId() == R.id.tvRegister)
             presenterRegister.onClickRegister();
@@ -257,6 +263,11 @@ public class FragmentLogin extends FragmentBase
         @Override
         public void clearCodeInput() {
             etCodeSMS.setText("");
+        }
+
+        @Override
+        public void showPhoneHint(String phone) {
+            ((TextView) getView().findViewById(R.id.tvPhoneHint)).setText(phone);
         }
 
         @Override

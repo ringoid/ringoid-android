@@ -18,7 +18,7 @@
     <color name="bottomMenuColorAccent">#33ff4646</color>
     <color name="bottomMenuColorAccentGreen">#3371da6a</color>
     <color name="divider">#e1e1e1</color>
-    <color name="gray_20">#fafafa</color>
+    <color name="gray_20">#f7f7f7</color>
     <color name="gray_fag_title" >#ebebeb</color>
 
 </resources>
