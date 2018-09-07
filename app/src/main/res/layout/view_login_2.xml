@@ -10,68 +10,56 @@
         style="@style/selectableImage"
         android:src="@drawable/ic_arrow_back_black_24dp" />
 
-    <ScrollView
+    <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:clipToPadding="false"
-        android:paddingTop="12dp">
+        android:layout_weight="1" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/login_sms"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+
+    <LinearLayout
+        android:id="@+id/vContainerSMSCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/border_rounded_gray"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etCodeSMS"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="48dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center|center_vertical"
+            android:hint="@string/hint_dots_4"
+            android:inputType="number"
+            android:paddingBottom="16dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:theme="@style/AppTheme.Green" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/login_sms" />
+        <ImageView
+            android:id="@+id/ivPasteSMS"
+            style="@style/selectableImage"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_content_paste_black_24dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="@string/login_sms"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+    </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/vContainerSMSCode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:background="@drawable/border_rounded_gray"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/etCodeSMS"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="48dp"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:gravity="center|center_vertical"
-                    android:hint="@string/hint_register_confirm"
-                    android:inputType="number"
-                    android:paddingBottom="16dp"
-                    android:paddingEnd="8dp"
-                    android:paddingStart="8dp"
-                    android:paddingTop="16dp"
-                    android:theme="@style/AppTheme.Green" />
-
-                <ImageView
-                    android:id="@+id/ivPasteSMS"
-                    style="@style/selectableImage"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_content_paste_black_24dp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
 
     <TextView
         android:id="@+id/tvCodeSMSConfirm"

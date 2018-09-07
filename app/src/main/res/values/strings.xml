@@ -205,6 +205,7 @@
     <string name="subtitle_data_policy">Data Policy</string>
     <string name="dialog_privacy_photos_title">Who can see your photos?</string>
     <string name="settings_data_protection">Data protection</string>
+    <string name="hint_dots_4">\u2022\u2022\u2022\u2022</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>

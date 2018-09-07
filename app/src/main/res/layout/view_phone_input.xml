@@ -15,8 +15,6 @@
         app:ccp_autoDetectCountry="false"
         app:ccp_autoDetectLanguage="true"
         app:ccp_defaultNameCode="US"
-        app:ccp_hintExampleNumber="true"
-        app:ccp_hintExampleNumberType="MOBILE"
         app:ccp_showFullName="true"
         app:ccp_showNameCode="false"
         app:ccp_showPhoneCode="true"

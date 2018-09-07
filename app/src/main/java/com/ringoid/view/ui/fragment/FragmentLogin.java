@@ -250,11 +250,6 @@ public class FragmentLogin extends FragmentBase
         }
 
         @Override
-        public void setDateHint(String hint) {
-            etYearBirth.setHint(hint);
-        }
-
-        @Override
         public void hideKeyboard() {
             FragmentLogin.this.hideKeyboard();
         }

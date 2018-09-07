@@ -34,6 +34,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/border_rounded_gray"
                 android:gravity="center"
+                android:hint="@string/hint_dots_4"
                 android:inputType="number"
                 android:padding="16dp" />
 
