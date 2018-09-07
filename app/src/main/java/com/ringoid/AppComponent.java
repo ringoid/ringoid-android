@@ -26,6 +26,7 @@ import com.ringoid.view.presenter.PresenterAdapterMessagesImages;
 import com.ringoid.view.presenter.PresenterAdapterProfile;
 import com.ringoid.view.presenter.PresenterBlacklistPhones;
 import com.ringoid.view.presenter.PresenterChat;
+import com.ringoid.view.presenter.PresenterDataProtection;
 import com.ringoid.view.presenter.PresenterExplore;
 import com.ringoid.view.presenter.PresenterItemImageLikeable;
 import com.ringoid.view.presenter.PresenterLikes;
@@ -60,6 +61,7 @@ import com.ringoid.view.ui.fragment.FragmentBase;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import com.ringoid.view.ui.fragment.FragmentChat;
+import com.ringoid.view.ui.fragment.FragmentDataProtection;
 import com.ringoid.view.ui.fragment.FragmentExplore;
 import com.ringoid.view.ui.fragment.FragmentLikes;
 import com.ringoid.view.ui.fragment.FragmentLogin;
@@ -84,6 +86,8 @@ public interface AppComponent {
     void inject(ActivityMain activityMain);
 
     void inject(PresenterActivityMain presenterActivityMain);
+
+    void inject(PresenterDataProtection param);
 
     void inject(CacheToken cacheToken);
 
@@ -190,6 +194,8 @@ public interface AppComponent {
     void inject(CacheUser cacheUser);
 
     void inject(FragmentBase fragmentBase);
+
+    void inject(FragmentDataProtection param);
 
     void inject(FragmentWebView param);
 

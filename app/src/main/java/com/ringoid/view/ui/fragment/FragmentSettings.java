@@ -79,7 +79,7 @@ public class FragmentSettings extends FragmentBase
         tvPrivacyDistance = view.findViewById(R.id.tvPrivacyDistance);
 
         view.findViewById(R.id.ivBack).setOnClickListener(this);
-        view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
+        view.findViewById(R.id.tvDataProtection).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsTerms).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsFeedback).setOnClickListener(this);
         view.findViewById(R.id.tvLogout).setOnClickListener(this);
@@ -112,8 +112,8 @@ public class FragmentSettings extends FragmentBase
         if (v.getId() == R.id.llPrivacyDistance)
             presenterSettings.onClickPrivacyDistance();
 
-        if (v.getId() == R.id.tvPrivacy)
-            navigator.navigateSettingsPrivacy(false);
+        if (v.getId() == R.id.tvDataProtection)
+            navigator.navigateSettingsDataProtection();
 
         if (v.getId() == R.id.tvPush)
             navigator.navigateSettingsPush();

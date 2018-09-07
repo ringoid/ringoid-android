@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.ringoid.view.ui.view.ViewToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        app:is_show_back="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llCustomerID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingStart="56dp"
+                android:paddingTop="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/customer_id"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+
+                <TextView
+                    android:id="@+id/tvCustomerID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                    tools:text="123123" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="#f5f5f5" />
+
+            <TextView
+                android:id="@+id/tvEraseData"
+                style="@style/settings_menu_item"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                android:drawableStart="@drawable/ic_erase_data_gray_24dp"
+                android:text="@string/data_protection_erase_data" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="#f5f5f5" />
+
+            <TextView
+                android:id="@+id/tvDownloadData"
+                style="@style/settings_menu_item"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                android:drawableStart="@drawable/ic_cloud_download_black_24dp"
+                android:text="@string/data_protection_download" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="#f5f5f5" />
+
+            <TextView
+                android:id="@+id/tvFAQ"
+                style="@style/settings_menu_item"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                android:drawableStart="@drawable/ic_settings_about_24dp"
+                android:text="@string/data_protection_faq" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="#f5f5f5" />
+
+            <TextView
+                android:id="@+id/tvPrivacy"
+                style="@style/settings_menu_item"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                android:drawableStart="@drawable/ic_privacy_policy_24"
+                android:text="@string/data_protection_privacy" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="#f5f5f5" />
+
+            <TextView
+                android:id="@+id/tvMailOfficer"
+                style="@style/settings_menu_item"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                android:drawableStart="@drawable/ic_mail_outline_black_24dp"
+                android:text="@string/data_protection_email_officer" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="#f5f5f5" />
+
+            <TextView
+                android:id="@+id/tvWithdraw"
+                style="@style/settings_menu_item"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                android:drawableStart="@drawable/ic_remove_red_24dp"
+                android:text="@string/data_protection_withdraw"
+                android:textColor="@color/colorAccent" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

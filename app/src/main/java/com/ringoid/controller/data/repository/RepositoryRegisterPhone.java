@@ -93,6 +93,7 @@ public class RepositoryRegisterPhone implements IRepositoryRegisterPhone {
                     && response.body().isSuccess()) {
 
                 cacheRegister.setSessionId(response.body().getSessionId());
+                cacheUser.setCustomerID(response.body().getCustomerID());
                 notifySuccess();
             } else notifyError();
         }

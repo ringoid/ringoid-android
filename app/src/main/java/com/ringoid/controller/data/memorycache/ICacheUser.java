@@ -13,4 +13,8 @@ public interface ICacheUser {
     void setRegistered(boolean registered);
 
     boolean isRegistered();
+
+    void setCustomerID(String customerID);
+
+    String getCustomerID();
 }

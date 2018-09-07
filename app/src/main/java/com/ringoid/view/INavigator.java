@@ -29,6 +29,8 @@ public interface INavigator {
 
     void navigateFeedback(Context context, int versionCode, String versionName, String sdkInt, String model);
 
+    void navigateEmailProtectionOfficer(Context context);
+
     void navigateUrlExternal(Context context, String url);
 
     void navigateSettingsPush();
@@ -42,4 +44,6 @@ public interface INavigator {
     void onActivityResult(int requestCode, int resultCode, Intent data);
 
     void navigateProfileUpdate();
+
+    void navigateSettingsDataProtection();
 }

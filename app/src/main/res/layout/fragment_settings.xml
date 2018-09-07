@@ -144,10 +144,10 @@
                 android:background="#f5f5f5" />
 
             <TextView
-                android:id="@+id/tvPrivacy"
+                android:id="@+id/tvDataProtection"
                 style="@style/settings_menu_item"
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
-                android:drawableStart="@drawable/ic_privacy_policy"
+                android:drawableStart="@drawable/ic_privacy_policy_24"
                 android:text="@string/settings_data_protection" />
 
             <View
@@ -161,6 +161,11 @@
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_settings_terms_24dp"
                 android:text="@string/settings_terms" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="#f5f5f5" />
 
             <TextView
                 android:id="@+id/tvSettingsLicenses"
@@ -180,6 +185,12 @@
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_settings_feedback_24dp"
                 android:text="@string/settings_feedback" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="#f5f5f5" />
 
             <TextView
                 style="@style/settings_menu_item"

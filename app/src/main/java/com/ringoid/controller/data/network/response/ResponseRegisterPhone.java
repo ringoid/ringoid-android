@@ -3,6 +3,7 @@ package com.ringoid.controller.data.network.response;
 
 public class ResponseRegisterPhone extends ResponseBase {
     private String sessionId;
+    private String customerId;
 
     public String getSessionId() {
         return sessionId;
@@ -14,5 +15,9 @@ public class ResponseRegisterPhone extends ResponseBase {
 
     public boolean isErrorCode() {
         return errorCode.equals("CountryCallingCodeClientError");
+    }
+
+    public String getCustomerID() {
+        return customerId;
     }
 }

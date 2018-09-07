@@ -7,6 +7,7 @@ public class DataUser implements Serializable {
     private String code;
     private String phone;
     private boolean registered;
+    private String customerID;
 
     public DataUser(String code, String phone) {
         this.code = code;
@@ -28,5 +29,13 @@ public class DataUser implements Serializable {
 
     public void setRegistered(boolean registered) {
         this.registered = registered;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
+
+    public String getCustomerID() {
+        return customerID;
     }
 }

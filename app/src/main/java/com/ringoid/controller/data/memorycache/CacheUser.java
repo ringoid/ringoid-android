@@ -72,6 +72,21 @@ public class CacheUser implements ICacheUser {
         saveData();
     }
 
+    @Override
+    public String getCustomerID() {
+        DataUser data = getData();
+        if (data == null) return null;
+        return data.getCustomerID();
+    }
+
+    @Override
+    public void setCustomerID(String customerID) {
+        DataUser data = getData();
+        if (data == null) return;
+        data.setCustomerID(customerID);
+        saveData();
+    }
+
     private DataUser getData() {
         if (data == null) data = cacheStorage.readObject(FileEnum.USER, DataUser.class);
         return data;

@@ -57,7 +57,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tvPrivacy"
+            android:id="@+id/tvDataProtection"
             style="@style/buttonBase"
             android:text="@string/privacy"
             android:textColor="@android:color/black"

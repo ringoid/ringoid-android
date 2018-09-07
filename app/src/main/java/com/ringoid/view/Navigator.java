@@ -9,10 +9,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.ringoid.R;
 import com.ringoid.view.ui.fragment.FragmentBase;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import com.ringoid.view.ui.fragment.FragmentChat;
+import com.ringoid.view.ui.fragment.FragmentDataProtection;
 import com.ringoid.view.ui.fragment.FragmentLogin;
 import com.ringoid.view.ui.fragment.FragmentPages;
 import com.ringoid.view.ui.fragment.FragmentPhotoCrop;
@@ -126,6 +128,16 @@ public class Navigator implements INavigator {
                 .commit();
     }
 
+    @Override
+    public void navigateSettingsDataProtection() {
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+
+        refFragmentManager.get()
+                .beginTransaction()
+                .replace(viewId, new FragmentDataProtection(), CURRENT_FRAGMENT_PAGE)
+                .commit();
+    }
+
     private void navigatePhotoCrop(Uri data) {
 
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
@@ -197,6 +209,18 @@ public class Navigator implements INavigator {
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:support@ringoid.com"));
         intent.putExtra(Intent.EXTRA_SUBJECT, String.format("Ringoid Android App %d(%s) Feedback %s, %s", versionCode, versionName, model, sdkInt));
         intent.putExtra(Intent.EXTRA_TEXT, "");
+
+        if (intent.resolveActivity(context.getPackageManager()) == null) return;
+
+        context.startActivity(intent);
+    }
+
+    @Override
+    public void navigateEmailProtectionOfficer(Context context) {
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:data.protection@ringoid.com"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.app_name));
+        intent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.message_protection_officer));
 
         if (intent.resolveActivity(context.getPackageManager()) == null) return;
 
