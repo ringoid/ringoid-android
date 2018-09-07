@@ -25,14 +25,12 @@ public class FragmentPages extends FragmentBase
 
     @Inject
     IPresenterPagesContainer presenterPagesContainer;
+
     @Inject
     IStatusBarViewHelper statusBarViewHelper;
-    private TextView tvSubtitle;
-    private AlertDialog dialogInvite;
+
     private ListenerPresenter listenerPresenter;
-    private View flToolbar;
     private ViewGroup llBottomAppBar;
-    private ImageView ivPrivacy;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,30 +47,21 @@ public class FragmentPages extends FragmentBase
         initViews(view);
 
         presenterPagesContainer.onViewCreate(getChildFragmentManager(), R.id.flContent);
-        view.findViewById(R.id.llToolbarTitle).setOnClickListener(this);
         return view;
     }
 
     private void initViews(View view) {
 
-        tvSubtitle = view.findViewById(R.id.tvSubtitle);
-
-        flToolbar = view.findViewById(R.id.flToolbar);
         llBottomAppBar = view.findViewById(R.id.llBottomAppBar);
 
         view.findViewById(R.id.ivMenuLikes).setOnClickListener(this);
         view.findViewById(R.id.ivMenuProfile).setOnClickListener(this);
         view.findViewById(R.id.ivMenuMessages).setOnClickListener(this);
         view.findViewById(R.id.ivMenuExplore).setOnClickListener(this);
-        view.findViewById(R.id.tvSettings).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-
-        if (view.getId() == R.id.tvSettings)
-            presenterPagesContainer.onClickSettings();
-
         if (view.getId() == R.id.ivMenuLikes)
             presenterPagesContainer.onClickPageLikes();
 
@@ -84,10 +73,6 @@ public class FragmentPages extends FragmentBase
 
         if (view.getId() == R.id.ivMenuExplore)
             presenterPagesContainer.onClickPageExplore();
-
-        if (view.getId() == R.id.llToolbarTitle)
-            presenterPagesContainer.onClickToolbar();
-
     }
 
     private void hideStatusbar() {
@@ -110,11 +95,6 @@ public class FragmentPages extends FragmentBase
 
         @Override
         public void setPosition(boolean toolbarScroll, int topPos, int bottomPos, float alpha) {
-            if (toolbarScroll) {
-                flToolbar.setTranslationY(topPos);
-                flToolbar.setAlpha(alpha);
-            }
-
             llBottomAppBar.setTranslationY(bottomPos);
 
             llBottomAppBar.setAlpha(alpha);
@@ -122,12 +102,6 @@ public class FragmentPages extends FragmentBase
 
         @Override
         public void scrollComplete(boolean toolbarScroll, int scrollSum, int alpha) {
-            if (toolbarScroll)
-                flToolbar.animate()
-                        .alpha(alpha)
-                        .translationY(-scrollSum)
-                        .setDuration(250);
-
             llBottomAppBar.animate()
                     .alpha(alpha)
                     .translationY(scrollSum)
@@ -138,23 +112,12 @@ public class FragmentPages extends FragmentBase
         public void hideToolbar() {
 
             hideStatusbar();
-
-            int translation = (int) getContext().getResources().getDimension(R.dimen.toolbar_height);
-            flToolbar.animate()
-                    .alpha(0)
-                    .translationY(-translation)
-                    .setDuration(250);
         }
 
         @Override
         public void showToolbar() {
 
             showStatusbar();
-
-            flToolbar.animate()
-                    .alpha(1)
-                    .translationY(0)
-                    .setDuration(250);
         }
 
         @Override

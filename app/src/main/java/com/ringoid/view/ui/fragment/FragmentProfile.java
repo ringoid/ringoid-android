@@ -38,6 +38,8 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         view.findViewById(R.id.fabProfile).setOnClickListener(this);
+        view.findViewById(R.id.tvSettings).setOnClickListener(this);
+        view.findViewById(R.id.llToolbarTitle).setOnClickListener(this);
 
         initList(view);
         return view;
@@ -61,5 +63,11 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
     public void onClick(View v) {
         if (v.getId() == R.id.fabProfile)
             presenterProfile.onClickPhotoAdd((AppCompatActivity) getActivity());
+
+        if (v.getId() == R.id.llToolbarTitle)
+            presenterProfile.onClickToolbar();
+
+        if (v.getId() == R.id.tvSettings)
+            presenterProfile.onClickSettings();
     }
 }

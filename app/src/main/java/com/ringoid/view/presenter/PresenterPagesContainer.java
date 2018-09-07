@@ -9,7 +9,6 @@ import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
-import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheSettingsPrivacyListener;
 import com.ringoid.view.INavigator;
@@ -51,9 +50,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     @Inject
     IPresenterLikes presenterLikes;
-
-    @Inject
-    ICacheTutorial cacheTutorial;
 
     @Inject
     ISettingsHelper settingsHelper;
@@ -165,32 +161,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Override
     public void setListener(IPresenterPagesContainerListener listener) {
         this.refListener = new WeakReference<>(listener);
-    }
-
-    @Override
-    public void onClickSettings() {
-        navigator.navigateSettings();
-    }
-
-    @Override
-    public void onClickPrivacy() {
-        navigator.navigateSettingsPrivacy(true);
-    }
-
-    @Override
-    public void onClickToolbar() {
-        if (navigatorPages.isPageExplore() && cacheTutorial.isShowDialogExplore()) {
-            viewDialogs.showDialogExplore();
-            return;
-        }
-
-        if (navigatorPages.isPageLikes() && cacheTutorial.isShowDialogLikes()) {
-            viewDialogs.showDialogLikes();
-            return;
-        }
-
-
-        navigator.navigateWelcome(false);
     }
 
     private class ListenerCacheScroll implements ICacheScrollListener {
