@@ -62,12 +62,20 @@ public class FragmentDataProtection extends FragmentBase
         view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
         view.findViewById(R.id.tvMailOfficer).setOnClickListener(this);
         view.findViewById(R.id.tvWithdraw).setOnClickListener(this);
+
+        TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
+        tvSubtitle.setText(R.string.data_protection_subtitle);
     }
 
     @Override
     public void onClick(View v) {
+
+        if (v.getId() == R.id.ivBack)
+            getActivity().onBackPressed();
+
         if (v.getId() == R.id.llCustomerID)
             presenterDataProtection.onClickCustomerId();
+
         if (v.getId() == R.id.tvEraseData)
             showDialogEraseData();
 
@@ -81,7 +89,7 @@ public class FragmentDataProtection extends FragmentBase
             navigator.navigateWebView(getString(R.string.url_privacy), getString(R.string.subtitle_privacy));
 
         if (v.getId() == R.id.tvMailOfficer)
-            navigator.navigateEmailProtectionOfficer(getContext());
+            presenterDataProtection.onClickMailOffices(getContext());
 
         if (v.getId() == R.id.tvWithdraw)
             showDialogWithdraw();
@@ -90,7 +98,7 @@ public class FragmentDataProtection extends FragmentBase
 
     private void showDialogWithdraw() {
         if (dialogWithdraw != null) dialogWithdraw.cancel();
-        dialogWithdraw = new DialogWithdraw(getContext(),listenerDialogWithdraw);
+        dialogWithdraw = new DialogWithdraw(getContext(), listenerDialogWithdraw);
         dialogWithdraw.show();
     }
 

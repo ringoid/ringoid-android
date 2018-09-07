@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheUser;
+import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterDataProtectionListener;
 
@@ -28,6 +29,9 @@ public class PresenterDataProtection implements IPresenterDataProtection {
 
     @Inject
     WeakReference<Context> refContext;
+
+    @Inject
+    INavigator navigator;
 
     private WeakReference<IPresenterDataProtectionListener> refListener;
 
@@ -56,6 +60,11 @@ public class PresenterDataProtection implements IPresenterDataProtection {
     public void onClickCustomerId() {
         copyToClipboard();
         viewPopup.showToast(R.string.message_copy_to_clipboard);
+    }
+
+    @Override
+    public void onClickMailOffices(Context context) {
+        navigator.navigateEmailProtectionOfficer(context, cacheUser.getCustomerID());
     }
 
     private void copyToClipboard() {

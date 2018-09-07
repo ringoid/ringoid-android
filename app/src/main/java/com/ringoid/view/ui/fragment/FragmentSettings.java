@@ -126,11 +126,7 @@ public class FragmentSettings extends FragmentBase
             navigator.navigateWebView(getContext().getString(R.string.url_licenses), getContext().getString(R.string.subtitle_licenses));
 
         if (v.getId() == R.id.tvSettingsFeedback)
-            navigator.navigateFeedback(getContext(),
-                    BuildConfig.VERSION_CODE,
-                    BuildConfig.VERSION_NAME,
-                    Build.VERSION.RELEASE + ", " + Build.VERSION.SDK_INT,
-                    Build.MODEL + " " + Build.MANUFACTURER + " " + Build.PRODUCT);
+            navigator.navigateFeedback(getContext());
 
         if (v.getId() == R.id.tvLogout)
             showDialogLogout();

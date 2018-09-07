@@ -4,11 +4,13 @@ package com.ringoid.view;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.ringoid.BuildConfig;
 import com.ringoid.R;
 import com.ringoid.view.ui.fragment.FragmentBase;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
@@ -28,6 +30,7 @@ import com.ringoid.view.ui.fragment.FragmentWelcome;
 import java.lang.ref.WeakReference;
 
 public class Navigator implements INavigator {
+
     private static final String CURRENT_FRAGMENT_PAGE = "current_fragment";
     private static final int SELECT_FILE = 173;
 
@@ -204,10 +207,9 @@ public class Navigator implements INavigator {
     }
 
     @Override
-    public void navigateFeedback(Context context, int versionCode, String versionName, String sdkInt, String model) {
-
+    public void navigateFeedback(Context context) {
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:support@ringoid.com"));
-        intent.putExtra(Intent.EXTRA_SUBJECT, String.format("Ringoid Android App %d(%s) Feedback %s, %s", versionCode, versionName, model, sdkInt));
+        intent.putExtra(Intent.EXTRA_SUBJECT, getEmailSubject());
         intent.putExtra(Intent.EXTRA_TEXT, "");
 
         if (intent.resolveActivity(context.getPackageManager()) == null) return;
@@ -215,12 +217,23 @@ public class Navigator implements INavigator {
         context.startActivity(intent);
     }
 
+    private String getEmailSubject() {
+        return String.format("Ringoid Android App %d(%s) %s %s %s, %s, %s",
+                BuildConfig.VERSION_CODE,
+                BuildConfig.VERSION_NAME,
+                Build.MODEL,
+                Build.MANUFACTURER,
+                Build.PRODUCT,
+                Build.VERSION.RELEASE,
+                Build.VERSION.SDK_INT);
+    }
+
     @Override
-    public void navigateEmailProtectionOfficer(Context context) {
+    public void navigateEmailProtectionOfficer(Context context, String customerId) {
 
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:data.protection@ringoid.com"));
-        intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.app_name));
-        intent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.message_protection_officer));
+        intent.putExtra(Intent.EXTRA_SUBJECT, getEmailSubject());
+        intent.putExtra(Intent.EXTRA_TEXT, String.format(context.getString(R.string.message_protection_officer), customerId));
 
         if (intent.resolveActivity(context.getPackageManager()) == null) return;
 

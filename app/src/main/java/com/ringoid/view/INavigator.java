@@ -27,9 +27,9 @@ public interface INavigator {
 
     void navigateWebView(String url, String subtitle);
 
-    void navigateFeedback(Context context, int versionCode, String versionName, String sdkInt, String model);
+    void navigateFeedback(Context context);
 
-    void navigateEmailProtectionOfficer(Context context);
+    void navigateEmailProtectionOfficer(Context context, String customerID);
 
     void navigateUrlExternal(Context context, String url);
 
