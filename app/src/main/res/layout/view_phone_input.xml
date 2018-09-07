@@ -53,7 +53,7 @@
                 android:paddingBottom="16dp"
                 android:paddingEnd="8dp"
                 android:paddingTop="16dp"
-                android:textSize="17sp"
+                android:textSize="20sp"
                 android:theme="@style/AppTheme.Green"
                 tools:drawableEnd="@drawable/ic_check_green_16dp" />
 
@@ -63,6 +63,7 @@
             android:id="@+id/vContainerNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:background="@drawable/border_rounded_right_gray"
             android:orientation="horizontal">
@@ -74,13 +75,13 @@
                 android:layout_marginEnd="48dp"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
-                android:hint="@string/blacklist_phone_hint"
+                android:hint="@string/hint_numbers"
                 android:inputType="phone"
                 android:paddingBottom="16dp"
                 android:paddingEnd="8dp"
                 android:paddingStart="16dp"
                 android:paddingTop="16dp"
-                android:textSize="17sp"
+                android:textSize="20sp"
                 android:theme="@style/AppTheme.Green"
                 tools:drawableEnd="@drawable/ic_error_red_16dp" />
 

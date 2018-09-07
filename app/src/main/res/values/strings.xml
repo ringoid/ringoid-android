@@ -21,7 +21,7 @@
     <string name="settings_terms">Terms of Service</string>
     <string name="settings_delete_account">Delete account</string>
     <string name="settings_about">About</string>
-    <string name="blacklist_phone_hint">Phone number</string>
+    <string name="hint_numbers">Number</string>
     <string name="blacklist_phone_add">Block it!</string>
     <string name="blacklist_description">Don\'t show my photos to users (and don\'t show their photos to me, and don\'t allow them to like or message me) who have linked their Ringoid accounts to the following phone numbers</string>
     <string name="chat_empty_title">Send emoji</string>

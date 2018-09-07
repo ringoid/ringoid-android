@@ -19,7 +19,8 @@
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
         android:text="@string/blacklist_description"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+        android:textSize="15sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvItems"
