@@ -14,8 +14,8 @@
         style="@style/settings_menu_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        tools:text="123" />
+        android:textSize="24sp"
+        tools:text="900 123 45 67" />
 
     <ImageView
         android:id="@+id/ivRemove"

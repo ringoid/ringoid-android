@@ -36,7 +36,8 @@
                 android:gravity="center"
                 android:hint="@string/hint_dots_4"
                 android:inputType="number"
-                android:padding="16dp" />
+                android:padding="16dp"
+                android:textSize="30sp" />
 
             <TextView
                 android:layout_width="match_parent"

@@ -46,6 +46,7 @@
             android:paddingEnd="8dp"
             android:paddingStart="8dp"
             android:paddingTop="16dp"
+            android:textSize="30sp"
             android:theme="@style/AppTheme.Green" />
 
         <ImageView

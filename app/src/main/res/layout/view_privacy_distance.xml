@@ -11,68 +11,87 @@
         android:layout_gravity="center_vertical"
         app:is_show_back="true" />
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:text="@string/settings_privacy_distance_message" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvDistance0"
-        style="@style/settings_menu_item"
-        android:text="@string/settings_privacy_distance_0" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:text="@string/settings_privacy_distance_message"
+                android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/tvDistance10"
-        style="@style/settings_menu_item"
-        android:text="@string/settings_privacy_distance_1" />
+            <TextView
+                android:id="@+id/tvDistance0"
+                style="@style/settings_menu_item"
+                android:text="@string/settings_privacy_distance_0"
+                android:textSize="24sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
 
-    <TextView
-        android:id="@+id/tvDistance25"
-        style="@style/settings_menu_item"
-        android:text="@string/settings_privacy_distance_25" />
+            <TextView
+                android:id="@+id/tvDistance10"
+                style="@style/settings_menu_item"
+                android:text="@string/settings_privacy_distance_1"
+                android:textSize="24sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
 
-    <TextView
-        android:id="@+id/tvDistance50"
-        style="@style/settings_menu_item"
-        android:text="@string/settings_privacy_distance_2" />
+            <TextView
+                android:id="@+id/tvDistance25"
+                style="@style/settings_menu_item"
+                android:text="@string/settings_privacy_distance_25"
+                android:textSize="24sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
 
-    <TextView
-        android:id="@+id/tvDistance100"
-        style="@style/settings_menu_item"
-        android:text="@string/settings_privacy_distance_3" />
+            <TextView
+                android:id="@+id/tvDistance50"
+                style="@style/settings_menu_item"
+                android:text="@string/settings_privacy_distance_2"
+                android:textSize="24sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
 
-    <TextView
-        android:id="@+id/tvDistance250"
-        style="@style/settings_menu_item"
-        android:text="@string/settings_privacy_distance_4" />
+            <TextView
+                android:id="@+id/tvDistance100"
+                style="@style/settings_menu_item"
+                android:text="@string/settings_privacy_distance_3"
+                android:textSize="24sp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
+
+            <TextView
+                android:id="@+id/tvDistance250"
+                style="@style/settings_menu_item"
+                android:text="@string/settings_privacy_distance_4"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
