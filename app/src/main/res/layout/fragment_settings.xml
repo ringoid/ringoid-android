@@ -128,7 +128,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
+                android:layout_height="2dp"
                 android:background="#f5f5f5" />
 
             <TextView
@@ -140,7 +140,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
+                android:layout_height="2dp"
                 android:background="#f5f5f5" />
 
             <TextView
@@ -152,7 +152,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
+                android:layout_height="2dp"
                 android:background="#f5f5f5" />
 
             <TextView
@@ -164,7 +164,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
+                android:layout_height="2dp"
                 android:background="#f5f5f5" />
 
             <TextView
@@ -176,7 +176,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
+                android:layout_height="2dp"
                 android:background="#f5f5f5" />
 
             <TextView
@@ -189,7 +189,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
+                android:layout_height="2dp"
                 android:background="#f5f5f5" />
 
             <TextView
@@ -200,7 +200,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
+                android:layout_height="2dp"
                 android:background="#f5f5f5" />
 
             <TextView
@@ -212,14 +212,14 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
+                android:layout_height="2dp"
                 android:background="#f5f5f5" />
 
             <TextView
                 android:id="@+id/tvAccountDelete"
                 style="@style/settings_menu_item"
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
-                android:drawableStart="@drawable/ic_remove_red_16dp"
+                android:drawableStart="@drawable/ic_remove_red_24dp"
                 android:text="@string/settings_delete_account"
                 android:textColor="#fb7a7a" />
 
