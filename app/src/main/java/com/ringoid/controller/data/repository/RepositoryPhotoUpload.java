@@ -24,6 +24,9 @@ public class RepositoryPhotoUpload implements IRepositoryPhotoUpload {
     @Inject
     IApiRingoid apiRingoid;
 
+    @Inject
+    IRepositoryProfilePhotos repositoryProfilePhotos;
+
     private ListenerRequest listenerRequest;
     private Call<Void> request;
     private WeakReference<IRepositoryPhotoUploadListener> refListener;
@@ -32,7 +35,6 @@ public class RepositoryPhotoUpload implements IRepositoryPhotoUpload {
         ApplicationRingoid.getComponent().inject(this);
         listenerRequest = new ListenerRequest();
     }
-
 
     @Override
     public void request() {
@@ -64,8 +66,10 @@ public class RepositoryPhotoUpload implements IRepositoryPhotoUpload {
     private class ListenerRequest implements Callback<Void> {
         @Override
         public void onResponse(Call<Void> call, Response<Void> response) {
-            if (response.isSuccessful())
+            if (response.isSuccessful()) {
+                repositoryProfilePhotos.request();
                 notifySuccess();
+            }
         }
 
         @Override
