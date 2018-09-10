@@ -137,6 +137,7 @@ public class Navigator implements INavigator {
 
         refFragmentManager.get()
                 .beginTransaction()
+                .addToBackStack(null)
                 .replace(viewId, new FragmentDataProtection(), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }

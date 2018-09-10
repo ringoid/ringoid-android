@@ -62,6 +62,7 @@ public class FragmentDataProtection extends FragmentBase
         view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
         view.findViewById(R.id.tvMailOfficer).setOnClickListener(this);
         view.findViewById(R.id.tvWithdraw).setOnClickListener(this);
+        view.findViewById(R.id.ivBack).setOnClickListener(this);
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.data_protection_subtitle);
