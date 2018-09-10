@@ -11,6 +11,7 @@ import com.ringoid.controller.data.memorycache.CacheExplore;
 import com.ringoid.controller.data.memorycache.CacheLikes;
 import com.ringoid.controller.data.memorycache.CacheLocale;
 import com.ringoid.controller.data.memorycache.CacheMessages;
+import com.ringoid.controller.data.memorycache.CachePhotoUpload;
 import com.ringoid.controller.data.memorycache.CacheProfile;
 import com.ringoid.controller.data.memorycache.CacheRegister;
 import com.ringoid.controller.data.memorycache.CacheScroll;
@@ -24,6 +25,7 @@ import com.ringoid.controller.data.memorycache.ICacheExplore;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheLocale;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
+import com.ringoid.controller.data.memorycache.ICachePhotoUpload;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
@@ -33,6 +35,8 @@ import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
+import com.ringoid.controller.data.repository.IRepositoryPhotoUpload;
+import com.ringoid.controller.data.repository.IRepositoryPhotoUploadUri;
 import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
 import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.IRepositoryRegisterLogout;
@@ -40,6 +44,8 @@ import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.IRepositoryRegisterUserDetails;
 import com.ringoid.controller.data.repository.IRepositorySettingsGet;
 import com.ringoid.controller.data.repository.IRepositorySettingsSave;
+import com.ringoid.controller.data.repository.RepositoryPhotoUpload;
+import com.ringoid.controller.data.repository.RepositoryPhotoUploadUri;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegisterLogout;
 import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
@@ -74,6 +80,7 @@ import com.ringoid.view.presenter.IPresenterItemImageLikeable;
 import com.ringoid.view.presenter.IPresenterLikes;
 import com.ringoid.view.presenter.IPresenterMessages;
 import com.ringoid.view.presenter.IPresenterPagesContainer;
+import com.ringoid.view.presenter.IPresenterPhotoCrop;
 import com.ringoid.view.presenter.IPresenterProfile;
 import com.ringoid.view.presenter.IPresenterRegister;
 import com.ringoid.view.presenter.IPresenterSettings;
@@ -98,6 +105,7 @@ import com.ringoid.view.presenter.PresenterItemImageLikeable;
 import com.ringoid.view.presenter.PresenterLikes;
 import com.ringoid.view.presenter.PresenterMessages;
 import com.ringoid.view.presenter.PresenterPagesContainer;
+import com.ringoid.view.presenter.PresenterPhotoCrop;
 import com.ringoid.view.presenter.PresenterProfile;
 import com.ringoid.view.presenter.PresenterRegister;
 import com.ringoid.view.presenter.PresenterSettings;
@@ -108,7 +116,9 @@ import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.presenter.util.ISettingsHelper;
 import com.ringoid.view.presenter.util.LogoutHelper;
 import com.ringoid.view.presenter.util.SettingsHelper;
+import com.ringoid.view.ui.util.IScreenHelper;
 import com.ringoid.view.ui.util.IStatusBarViewHelper;
+import com.ringoid.view.ui.util.ScreenHelper;
 import com.ringoid.view.ui.util.StatusBarViewHelper;
 
 import java.lang.ref.WeakReference;
@@ -171,6 +181,12 @@ class AppModule {
 
     @Provides
     @Singleton
+    IScreenHelper getScreenHelper() {
+        return new ScreenHelper();
+    }
+
+    @Provides
+    @Singleton
     INavigator getNavigator() {
         return new Navigator();
     }
@@ -212,6 +228,12 @@ class AppModule {
     @Singleton
     ICacheToken getCacheToken() {
         return new CacheToken();
+    }
+
+    @Provides
+    @Singleton
+    ICachePhotoUpload getCachePhotoUpload() {
+        return new CachePhotoUpload();
     }
 
     @Provides
@@ -302,6 +324,12 @@ class AppModule {
     @Singleton
     IPresenterDataProtection getPresenterDataProtection() {
         return new PresenterDataProtection();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterPhotoCrop getPresenterPhotoCrop() {
+        return new PresenterPhotoCrop();
     }
 
     @Provides
@@ -451,6 +479,18 @@ class AppModule {
     @Singleton
     IRepositoryRegisterPhone getRepositoryRegister() {
         return new RepositoryRegisterPhone();
+    }
+
+    @Provides
+    @Singleton
+    IRepositoryPhotoUploadUri getRepositoryPhotoUloadUri() {
+        return new RepositoryPhotoUploadUri();
+    }
+
+    @Provides
+    @Singleton
+    IRepositoryPhotoUpload getRepositoryPhotoUload() {
+        return new RepositoryPhotoUpload();
     }
 
     @Provides

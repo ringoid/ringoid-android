@@ -7,6 +7,8 @@ import com.ringoid.controller.data.memorycache.CacheToken;
 import com.ringoid.controller.data.memorycache.CacheTutorial;
 import com.ringoid.controller.data.memorycache.CacheUser;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
+import com.ringoid.controller.data.repository.RepositoryPhotoUpload;
+import com.ringoid.controller.data.repository.RepositoryPhotoUploadUri;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegisterLogout;
 import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
@@ -33,10 +35,10 @@ import com.ringoid.view.presenter.PresenterItemImageLikeable;
 import com.ringoid.view.presenter.PresenterLikes;
 import com.ringoid.view.presenter.PresenterMessages;
 import com.ringoid.view.presenter.PresenterPagesContainer;
+import com.ringoid.view.presenter.PresenterPhotoCrop;
 import com.ringoid.view.presenter.PresenterProfile;
 import com.ringoid.view.presenter.PresenterRegister;
 import com.ringoid.view.presenter.PresenterSettings;
-import com.ringoid.view.presenter.PresenterSettingsFAQ;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import com.ringoid.view.presenter.PresenterSettingsPush;
 import com.ringoid.view.presenter.util.LogoutHelper;
@@ -58,7 +60,6 @@ import com.ringoid.view.ui.adapter.ViewHolderItemLikes;
 import com.ringoid.view.ui.adapter.ViewHolderItemLikesImages;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessage;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessagesImages;
-import com.ringoid.view.ui.fragment.FragmentBase;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import com.ringoid.view.ui.fragment.FragmentChat;
@@ -68,6 +69,7 @@ import com.ringoid.view.ui.fragment.FragmentLikes;
 import com.ringoid.view.ui.fragment.FragmentLogin;
 import com.ringoid.view.ui.fragment.FragmentMessages;
 import com.ringoid.view.ui.fragment.FragmentPages;
+import com.ringoid.view.ui.fragment.FragmentPhotoCrop;
 import com.ringoid.view.ui.fragment.FragmentProfile;
 import com.ringoid.view.ui.fragment.FragmentSettings;
 import com.ringoid.view.ui.fragment.FragmentSettingsFAQ;
@@ -75,7 +77,7 @@ import com.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 import com.ringoid.view.ui.fragment.FragmentSettingsPush;
 import com.ringoid.view.ui.fragment.FragmentWebView;
 import com.ringoid.view.ui.fragment.FragmentWelcome;
-import com.ringoid.view.ui.view.ViewToolbar;
+import com.ringoid.view.ui.util.ScreenHelper;
 
 import javax.inject.Singleton;
 
@@ -84,7 +86,18 @@ import dagger.Component;
 @Component(modules = {AppModule.class})
 @Singleton
 public interface AppComponent {
-    void inject(ActivityMain activityMain);
+
+    void inject(ActivityMain param);
+
+    void inject(ScreenHelper param);
+
+    void inject(FragmentPhotoCrop param);
+
+    void inject(RepositoryPhotoUploadUri repositoryPhotoUploadUri);
+
+    void inject(RepositoryPhotoUpload repositoryPhotoUpload);
+
+    void inject(PresenterPhotoCrop param);
 
     void inject(InterceptorRetry param);
 
@@ -186,8 +199,6 @@ public interface AppComponent {
 
     void inject(FragmentSettingsFAQ fragmentSettingsPrivacy);
 
-    void inject(PresenterSettingsFAQ presenterSettingsPrivacy);
-
     void inject(FragmentSettingsPrivacyDistance item);
 
     void inject(PresenterSettingsPrivacyDistance item);
@@ -198,15 +209,11 @@ public interface AppComponent {
 
     void inject(CacheUser cacheUser);
 
-    void inject(FragmentBase fragmentBase);
-
     void inject(FragmentDataProtection param);
 
     void inject(FragmentWebView param);
 
     void inject(FragmentSettingsPush param);
-
-    void inject(ViewToolbar viewToolbar);
 
     void inject(ViewPopup viewPopup);
 

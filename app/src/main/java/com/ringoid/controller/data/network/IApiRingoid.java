@@ -6,17 +6,22 @@ import com.ringoid.controller.data.network.request.RequestParamRegisterLogout;
 import com.ringoid.controller.data.network.request.RequestParamRegisterPhone;
 import com.ringoid.controller.data.network.request.RequestParamRegisterUserDetails;
 import com.ringoid.controller.data.network.request.RequestParamSettingsUpdate;
+import com.ringoid.controller.data.network.request.RequestPhotoUploadUri;
 import com.ringoid.controller.data.network.response.ResponseBase;
+import com.ringoid.controller.data.network.response.ResponseProfilePhotoUri;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotos;
 import com.ringoid.controller.data.network.response.ResponseRegisterCodeConfirm;
 import com.ringoid.controller.data.network.response.ResponseRegisterPhone;
 import com.ringoid.controller.data.network.response.ResponseSettings;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface IApiRingoid {
 
@@ -48,4 +53,10 @@ public interface IApiRingoid {
     Call<ResponseProfilePhotos> profilePhotosGet(@Query("accessToken") String token,
                                                  @Query("resolution") String res);
 
+    @POST("https://a9o3cw1o7j.execute-api.eu-west-1.amazonaws.com/Prod/get_presigned")
+    Call<ResponseProfilePhotoUri> profilePhotoUri(@Body RequestPhotoUploadUri param);
+
+    @PUT
+    Call<Void> profilePhotoUpload(@Url String url,
+                                  @Body RequestBody image);
 }

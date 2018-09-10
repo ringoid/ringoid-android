@@ -53,7 +53,7 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
 
     @Override
     public String getUrl(int pos) {
-        return "file:///android_asset/" + cacheProfile.getImage(pos);
+        return cacheProfile.getImage(pos);
     }
 
     @Override

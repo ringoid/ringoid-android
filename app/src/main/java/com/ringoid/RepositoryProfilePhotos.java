@@ -6,6 +6,7 @@ import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotos;
 import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
+import com.ringoid.view.ui.util.IScreenHelper;
 
 import javax.inject.Inject;
 
@@ -15,7 +16,6 @@ import retrofit2.Response;
 
 class RepositoryProfilePhotos implements IRepositoryProfilePhotos {
 
-    public static final String res_640 = "640x480";
     @Inject
     ICacheProfile cacheProfile;
 
@@ -24,6 +24,9 @@ class RepositoryProfilePhotos implements IRepositoryProfilePhotos {
 
     @Inject
     IApiRingoid apiRingoid;
+
+    @Inject
+    IScreenHelper screenHelper;
 
     private Call<ResponseProfilePhotos> request;
     private Callback<ResponseProfilePhotos> requestListener;
@@ -37,7 +40,7 @@ class RepositoryProfilePhotos implements IRepositoryProfilePhotos {
     public void request() {
         if (request != null) request.cancel();
 
-        request = apiRingoid.profilePhotosGet(cacheToken.getToken(), res_640);
+        request = apiRingoid.profilePhotosGet(cacheToken.getToken(), screenHelper.getImageRatioString());
 
         request.enqueue(requestListener);
     }

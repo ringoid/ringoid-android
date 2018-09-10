@@ -25,7 +25,6 @@ public class InterceptorRetry implements Interceptor {
     private Gson gson;
 
     public InterceptorRetry(Gson gson) {
-        ApplicationRingoid.getComponent().inject(this);
         this.gson = gson;
     }
 
@@ -72,11 +71,17 @@ public class InterceptorRetry implements Interceptor {
         if (responseBase == null) return false;
 
         if (responseBase.isInvalidToken()) {
-            logoutHelper.logout();
+            getLogoutHelper().logout();
             return false;
         }
 
         return responseBase.isInternalServerError();
+    }
+
+    private ILogoutHelper getLogoutHelper() {
+        if (logoutHelper == null)
+            ApplicationRingoid.getComponent().inject(this);
+        return logoutHelper;
     }
 
 }
