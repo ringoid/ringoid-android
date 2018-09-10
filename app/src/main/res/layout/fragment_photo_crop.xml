@@ -16,14 +16,13 @@
         app:ci_crop_shape="rectangle"
         app:ci_draw_grid="false"
         app:ci_dynamic_aspect_ratio="false"
-        app:ci_overlay_color="#CCffffff"
         app:ci_scale_enabled="true"
         app:ci_translation_enabled="true" />
 
     <ImageView
         android:id="@+id/ivBack"
         style="@style/selectableImage"
-        android:src="@drawable/ic_arrow_back_black_24dp" />
+        android:src="@drawable/ic_arrow_back_white_24dp" />
 
     <TextView
         android:id="@+id/tvCropConfirm"
