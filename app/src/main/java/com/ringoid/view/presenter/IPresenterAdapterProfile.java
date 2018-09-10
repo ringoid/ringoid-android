@@ -23,4 +23,10 @@ public interface IPresenterAdapterProfile {
     void onCLickLikes();
 
     void setListener(IPresenterAdapterProfileListener listener);
+
+    String getImageId(int position);
+
+    boolean isImageLast();
+
+    void onImageRemove(String imageId);
 }

@@ -9,6 +9,7 @@ import com.ringoid.controller.data.memorycache.CacheUser;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
 import com.ringoid.controller.data.repository.RepositoryPhotoUpload;
 import com.ringoid.controller.data.repository.RepositoryPhotoUploadUri;
+import com.ringoid.controller.data.repository.RepositoryProfileImageRemove;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegisterLogout;
 import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
@@ -88,6 +89,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(RepositoryProfileImageRemove param);
 
     void inject(ScreenHelper param);
 

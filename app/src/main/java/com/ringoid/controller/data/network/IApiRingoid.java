@@ -1,6 +1,7 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.network;
 
+import com.ringoid.controller.data.network.request.RequestParamProfileImageRemove;
 import com.ringoid.controller.data.network.request.RequestParamRegisterCodeConfirm;
 import com.ringoid.controller.data.network.request.RequestParamRegisterLogout;
 import com.ringoid.controller.data.network.request.RequestParamRegisterPhone;
@@ -59,4 +60,7 @@ public interface IApiRingoid {
     @PUT
     Call<Void> profilePhotoUpload(@Url String url,
                                   @Body RequestBody image);
+
+    @POST("https://a9o3cw1o7j.execute-api.eu-west-1.amazonaws.com/Prod/delete_photo")
+    Call<ResponseBase>  profileImageRemove(@Body RequestParamProfileImageRemove param);
 }

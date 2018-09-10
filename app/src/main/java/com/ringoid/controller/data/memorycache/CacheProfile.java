@@ -44,6 +44,27 @@ public class CacheProfile implements ICacheProfile {
         listeners.put(listener.getClass().getName(), listener);
     }
 
+    @Override
+    public String getImageId(int position) {
+        return data == null ? null : data.get(position).getPhotoId();
+    }
+
+    @Override
+    public void removeItem(String imageId) {
+        if (data == null) return;
+        ProfilePhoto item = getItem(imageId);
+        if (!data.remove(item)) return;
+        notifyListeners();
+    }
+
+    private ProfilePhoto getItem(String imageId) {
+        if (data == null) return null;
+        for (ProfilePhoto item : data)
+            if (item.getPhotoId().equals(imageId))
+                return item;
+        return null;
+    }
+
     private void notifyListeners() {
 
         if (listeners == null) return;

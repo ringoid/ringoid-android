@@ -1,6 +1,7 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,7 +14,9 @@ import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterProfile;
 import com.ringoid.view.presenter.callback.IPresenterAdapterProfileListener;
 import com.ringoid.view.ui.dialog.DialogHiddenMode;
+import com.ringoid.view.ui.dialog.DialogImageRemove;
 import com.ringoid.view.ui.dialog.callback.IDialogHiddenModeListener;
+import com.ringoid.view.ui.dialog.callback.IDialogImageRemoveListener;
 import com.ringoid.view.ui.util.GlideApp;
 
 import javax.inject.Inject;
@@ -28,12 +31,15 @@ public class AdapterProfile extends AdapterBase {
     private DialogHiddenMode dialogHiddenMode;
 
     private ListenerDialogHidden listenerDialogHidden;
+    private ListenerDialogImageRemove listenerDialogImageRemove;
+    private DialogImageRemove dialogImageRemove;
 
     public AdapterProfile() {
         ApplicationRingoid.getComponent().inject(this);
         presenterAdapterProfile.setListener(listenerPresenter = new ListenerPresenter());
 
         listenerDialogHidden = new ListenerDialogHidden();
+        listenerDialogImageRemove = new ListenerDialogImageRemove();
     }
 
     @NonNull
@@ -47,16 +53,26 @@ public class AdapterProfile extends AdapterBase {
         return presenterAdapterProfile.getItemsNum();
     }
 
+    private void showDialogRemove(Context context, String imageId, int likesNum, boolean imageLast) {
+        if (dialogImageRemove != null)
+            dialogImageRemove.cancel();
+
+        dialogImageRemove = new DialogImageRemove(context, imageId, likesNum, listenerDialogImageRemove, imageLast);
+        dialogImageRemove.show();
+    }
+
     class ViewHolderItem extends ViewHolderBase implements View.OnClickListener {
         private ImageView ivItem;
         private TextView tvLikes;
 
         ViewHolderItem(ViewGroup parent) {
             super(parent, R.layout.view_image_profile);
+
             ivItem = itemView.findViewById(R.id.ivContent);
+            tvLikes = itemView.findViewById(R.id.tvLikes);
+
             itemView.findViewById(R.id.ivRemove).setOnClickListener(this);
             itemView.setOnClickListener(this);
-            tvLikes = itemView.findViewById(R.id.tvLikes);
             tvLikes.setOnClickListener(this);
         }
 
@@ -97,6 +113,13 @@ public class AdapterProfile extends AdapterBase {
                 if (presenterAdapterProfile.onClickItem(itemView.getContext(), getAdapterPosition())) {
                     showDialogHidden();
                 }
+
+            if (v.getId() == R.id.ivRemove) {
+                showDialogRemove(itemView.getContext(),
+                        presenterAdapterProfile.getImageId(getAdapterPosition()),
+                        presenterAdapterProfile.getLikesNum(getAdapterPosition()),
+                        presenterAdapterProfile.isImageLast());
+            }
         }
 
         private void showDialogHidden() {
@@ -133,6 +156,13 @@ public class AdapterProfile extends AdapterBase {
         @Override
         public void onUpdate() {
             notifyDataSetChanged();
+        }
+    }
+
+    private class ListenerDialogImageRemove implements IDialogImageRemoveListener {
+        @Override
+        public void onSuccess(String imageId) {
+            presenterAdapterProfile.onImageRemove(imageId);
         }
     }
 }

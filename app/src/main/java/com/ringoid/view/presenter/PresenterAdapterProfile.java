@@ -9,6 +9,7 @@ import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.listener.ICacheProfileListener;
+import com.ringoid.controller.data.repository.IRepositoryProfileImageRemove;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.IViewPopup;
@@ -37,6 +38,9 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
 
     @Inject
     ICacheTutorial cacheTutorial;
+
+    @Inject
+    IRepositoryProfileImageRemove repositoryProfileImageRemove;
 
     private ListenerCacheProfile listenerCacheProfile;
     private WeakReference<IPresenterAdapterProfileListener> refListener;
@@ -102,6 +106,22 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     @Override
     public void setListener(IPresenterAdapterProfileListener listener) {
         this.refListener = new WeakReference<>(listener);
+    }
+
+    @Override
+    public String getImageId(int position) {
+        return cacheProfile.getImageId(position);
+    }
+
+    @Override
+    public boolean isImageLast() {
+        return cacheProfile.getItemsNum() == 1;
+    }
+
+    @Override
+    public void onImageRemove(String imageId) {
+        cacheProfile.removeItem(imageId);
+        repositoryProfileImageRemove.request(imageId);
     }
 
     private void updateView() {

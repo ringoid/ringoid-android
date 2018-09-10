@@ -16,4 +16,8 @@ public interface ICacheProfile {
     void setData(ArrayList<ProfilePhoto> photos);
 
     void addListener(ICacheProfileListener listener);
+
+    String getImageId(int position);
+
+    void removeItem(String imageId);
 }

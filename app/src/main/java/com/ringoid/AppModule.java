@@ -37,6 +37,7 @@ import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
 import com.ringoid.controller.data.repository.IRepositoryPhotoUpload;
 import com.ringoid.controller.data.repository.IRepositoryPhotoUploadUri;
+import com.ringoid.controller.data.repository.IRepositoryProfileImageRemove;
 import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
 import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.IRepositoryRegisterLogout;
@@ -46,6 +47,7 @@ import com.ringoid.controller.data.repository.IRepositorySettingsGet;
 import com.ringoid.controller.data.repository.IRepositorySettingsSave;
 import com.ringoid.controller.data.repository.RepositoryPhotoUpload;
 import com.ringoid.controller.data.repository.RepositoryPhotoUploadUri;
+import com.ringoid.controller.data.repository.RepositoryProfileImageRemove;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegisterLogout;
 import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
@@ -479,6 +481,12 @@ class AppModule {
     @Singleton
     IRepositoryRegisterPhone getRepositoryRegister() {
         return new RepositoryRegisterPhone();
+    }
+
+    @Provides
+    @Singleton
+    IRepositoryProfileImageRemove getRepositoryProfileImageRemove() {
+        return new RepositoryProfileImageRemove();
     }
 
     @Provides

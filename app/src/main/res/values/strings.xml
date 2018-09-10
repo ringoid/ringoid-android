@@ -232,6 +232,11 @@
     <string name="button_code_error">I didn\’t receive a code</string>
     <string name="crop_confirm"><![CDATA[Crop & Upload]]></string>
     <string name="message_profile_empty">Upload your photos so users can like and message you</string>
+    <string name="dialog_image_delete_title">Delete photo?</string>
+    <string name="dialog_image_delete_message">This action is permanent and cannot be undone.</string>
+    <string name="dialog_image_delete_confirm">DELETE</string>
+    <string name="message_image_delete_likes">You will lose %d likes. Since your popularity ranking will decrease, users of the opposite sex may have less chances of discovering you.\n</string>
+    <string name="message_image_delete_last">You can later on upload new photos to allow users to like and message you.</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>
