@@ -6,6 +6,7 @@ import com.ringoid.controller.data.memorycache.CacheScroll;
 import com.ringoid.controller.data.memorycache.CacheToken;
 import com.ringoid.controller.data.memorycache.CacheTutorial;
 import com.ringoid.controller.data.memorycache.CacheUser;
+import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegisterLogout;
 import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
@@ -85,6 +86,8 @@ import dagger.Component;
 public interface AppComponent {
     void inject(ActivityMain activityMain);
 
+    void inject(InterceptorRetry param);
+
     void inject(PresenterActivityMain presenterActivityMain);
 
     void inject(PresenterDataProtection param);
@@ -98,6 +101,8 @@ public interface AppComponent {
     void inject(RepositoryRegisterPhone repositoryRegister);
 
     void inject(RepositoryRegisterCodeConfirm repositoryRegisterConfirm);
+
+    void inject(RepositoryProfilePhotos param);
 
     void inject(FragmentPages fragmentPages);
 

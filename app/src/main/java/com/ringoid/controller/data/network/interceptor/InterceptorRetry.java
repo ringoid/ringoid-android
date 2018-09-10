@@ -4,9 +4,13 @@ package com.ringoid.controller.data.network.interceptor;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.network.response.ResponseBase;
+import com.ringoid.view.presenter.util.ILogoutHelper;
 
 import java.io.IOException;
+
+import javax.inject.Inject;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -15,9 +19,13 @@ import okhttp3.ResponseBody;
 
 public class InterceptorRetry implements Interceptor {
 
+    @Inject
+    ILogoutHelper logoutHelper;
+
     private Gson gson;
 
     public InterceptorRetry(Gson gson) {
+        ApplicationRingoid.getComponent().inject(this);
         this.gson = gson;
     }
 
@@ -32,7 +40,7 @@ public class InterceptorRetry implements Interceptor {
 
             String body = getBody(response);
 
-            if (!isInternalServerError(body))
+            if (!checkInternalServerError(body))
                 return response.newBuilder().body(ResponseBody.create(response.body().contentType(), body)).build();
         }
 
@@ -56,12 +64,19 @@ public class InterceptorRetry implements Interceptor {
         return responseString;
     }
 
-    private boolean isInternalServerError(String jsonData) {
+    private boolean checkInternalServerError(String jsonData) {
         if (TextUtils.isEmpty(jsonData)) return false;
 
-        ResponseBase responseBase = new Gson().fromJson(jsonData, ResponseBase.class);
+        ResponseBase responseBase = gson.fromJson(jsonData, ResponseBase.class);
 
-        return responseBase != null && responseBase.isInternalServerError();
+        if (responseBase == null) return false;
+
+        if (responseBase.isInvalidToken()) {
+            logoutHelper.logout();
+            return false;
+        }
+
+        return responseBase.isInternalServerError();
     }
 
 }
