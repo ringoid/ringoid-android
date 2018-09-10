@@ -7,6 +7,7 @@ import com.ringoid.controller.data.network.request.RequestParamRegisterPhone;
 import com.ringoid.controller.data.network.request.RequestParamRegisterUserDetails;
 import com.ringoid.controller.data.network.request.RequestParamSettingsUpdate;
 import com.ringoid.controller.data.network.response.ResponseBase;
+import com.ringoid.controller.data.network.response.ResponseProfilePhotos;
 import com.ringoid.controller.data.network.response.ResponseRegisterCodeConfirm;
 import com.ringoid.controller.data.network.response.ResponseRegisterPhone;
 import com.ringoid.controller.data.network.response.ResponseSettings;
@@ -42,5 +43,9 @@ public interface IApiRingoid {
 
     @GET("/Prod/get_settings")
     Call<ResponseSettings> settingsGet(@Query("accessToken") String token);
+
+    @GET("https://a9o3cw1o7j.execute-api.eu-west-1.amazonaws.com/Prod/get_own_photos")
+    Call<ResponseProfilePhotos> profilePhotosGet(@Query("accessToken") String token,
+                                                 @Query("resolution") String res);
 
 }

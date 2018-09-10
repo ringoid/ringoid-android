@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterProfile;
+import com.ringoid.view.presenter.callback.IPresenterProfileListener;
 import com.ringoid.view.ui.adapter.AdapterProfile;
 import com.ringoid.view.ui.util.IndicatorHelper;
 
@@ -26,10 +27,15 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
     @Inject
     IPresenterProfile presenterProfile;
 
+    private IPresenterProfileListener listenerPresenter;
+    private IndicatorHelper dotsIndicatorHelper;
+    private View vPhotos, vEmpty;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ApplicationRingoid.getComponent().inject(this);
+        presenterProfile.setListener(listenerPresenter = new ListenerPresenter());
     }
 
     @Nullable
@@ -37,12 +43,22 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        vPhotos = view.findViewById(R.id.flPhotos);
+        vEmpty = view.findViewById(R.id.flEmpty);
+
         view.findViewById(R.id.fabProfile).setOnClickListener(this);
         view.findViewById(R.id.tvSettings).setOnClickListener(this);
         view.findViewById(R.id.llToolbarTitle).setOnClickListener(this);
 
         initList(view);
+        presenterProfile.onCreateView();
         return view;
+    }
+
+    private void setViewState() {
+        boolean photosVisible = presenterProfile.getItemsNum() != 0;
+        vPhotos.setVisibility(photosVisible ? View.VISIBLE : View.GONE);
+        vEmpty.setVisibility(photosVisible ? View.GONE : View.VISIBLE);
     }
 
     private void initList(View view) {
@@ -55,7 +71,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
 
-        IndicatorHelper dotsIndicatorHelper = IndicatorHelper.getLinesHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
+        dotsIndicatorHelper = IndicatorHelper.getLinesHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
         dotsIndicatorHelper.updateData(presenterProfile.getItemsNum());
     }
 
@@ -69,5 +85,15 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
 
         if (v.getId() == R.id.tvSettings)
             presenterProfile.onClickSettings();
+    }
+
+    private class ListenerPresenter implements IPresenterProfileListener {
+
+        @Override
+        public void updateView() {
+            if (getContext() == null) return;
+            dotsIndicatorHelper.updateData(presenterProfile.getItemsNum());
+            setViewState();
+        }
     }
 }

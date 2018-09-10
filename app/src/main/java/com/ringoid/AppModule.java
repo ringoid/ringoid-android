@@ -33,6 +33,7 @@ import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
+import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
 import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.IRepositoryRegisterLogout;
 import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
@@ -481,6 +482,12 @@ class AppModule {
     @Singleton
     IRepositorySettingsGet getRepositorySettingsGet() {
         return new RepositorySettingsGet();
+    }
+
+    @Provides
+    @Singleton
+    IRepositoryProfilePhotos getRepositoryProfilePhotos() {
+        return new RepositoryProfilePhotos();
     }
 
     //endregion

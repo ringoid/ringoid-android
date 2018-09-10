@@ -3,6 +3,8 @@ package com.ringoid.view.presenter;
 
 import android.content.Context;
 
+import com.ringoid.view.presenter.callback.IPresenterAdapterProfileListener;
+
 public interface IPresenterAdapterProfile {
     int getItemsNum();
 
@@ -19,4 +21,6 @@ public interface IPresenterAdapterProfile {
     void onClickHiddenModePrivacy(boolean isShow);
 
     void onCLickLikes();
+
+    void setListener(IPresenterAdapterProfileListener listener);
 }

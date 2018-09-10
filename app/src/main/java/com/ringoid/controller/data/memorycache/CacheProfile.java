@@ -1,37 +1,56 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.memorycache;
 
-import com.google.gson.Gson;
+import com.ringoid.controller.data.memorycache.listener.ICacheProfileListener;
+import com.ringoid.model.ProfilePhoto;
 
-import com.ringoid.model.DataProfile;
+import java.util.ArrayList;
+import java.util.WeakHashMap;
 
 public class CacheProfile implements ICacheProfile {
 
-    private final String JSON_DATA =
-            "{\"urls\":[" +
-                    "{\"url\":\"m1/01.jpg\",\"likes\":312}," +
-                    "{\"url\":\"m1/02.jpg\",\"likes\":54}," +
-                    "{\"url\":\"m1/03.jpg\",\"likes\":0}" +
-                    "]}";
 
-    private DataProfile data;
+    private ArrayList<ProfilePhoto> data;
+    private WeakHashMap<String, ICacheProfileListener> listeners;
 
     public CacheProfile() {
-        data = new Gson().fromJson(JSON_DATA, DataProfile.class);
+
     }
 
     @Override
     public int getItemsNum() {
-        return data == null ? 0 : data.getItemsNum();
+        return data == null ? 0 : data.size();
     }
 
     @Override
     public int getLikesNum(int position) {
-        return data.getLikes(position);
+        return data.get(position).getLikes();
     }
 
     @Override
     public String getImage(int pos) {
-        return data.getImage(pos);
+        return data.get(pos).getPhotoUri();
+    }
+
+    @Override
+    public void setData(ArrayList<ProfilePhoto> photos) {
+        this.data = photos;
+        notifyListeners();
+    }
+
+    @Override
+    public void addListener(ICacheProfileListener listener) {
+        if (listeners == null) listeners = new WeakHashMap<>();
+        listeners.put(listener.getClass().getName(), listener);
+    }
+
+    private void notifyListeners() {
+
+        if (listeners == null) return;
+        for (String name : listeners.keySet()) {
+            ICacheProfileListener listener = listeners.get(name);
+            if (listener == null) continue;
+            listener.onUpdate();
+        }
     }
 }

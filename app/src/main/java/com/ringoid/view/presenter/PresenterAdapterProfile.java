@@ -8,9 +8,13 @@ import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
+import com.ringoid.controller.data.memorycache.listener.ICacheProfileListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.IViewPopup;
+import com.ringoid.view.presenter.callback.IPresenterAdapterProfileListener;
+
+import java.lang.ref.WeakReference;
 
 import javax.inject.Inject;
 
@@ -34,8 +38,12 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     @Inject
     ICacheTutorial cacheTutorial;
 
+    private ListenerCacheProfile listenerCacheProfile;
+    private WeakReference<IPresenterAdapterProfileListener> refListener;
+
     public PresenterAdapterProfile() {
         ApplicationRingoid.getComponent().inject(this);
+        cacheProfile.addListener(listenerCacheProfile = new ListenerCacheProfile());
     }
 
     @Override
@@ -89,5 +97,22 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     @Override
     public void onCLickLikes() {
         navigatorPages.navigateLikes();
+    }
+
+    @Override
+    public void setListener(IPresenterAdapterProfileListener listener) {
+        this.refListener = new WeakReference<>(listener);
+    }
+
+    private void updateView() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onUpdate();
+    }
+
+    private class ListenerCacheProfile implements ICacheProfileListener {
+        @Override
+        public void onUpdate() {
+            updateView();
+        }
     }
 }

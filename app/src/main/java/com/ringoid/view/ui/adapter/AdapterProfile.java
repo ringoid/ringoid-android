@@ -11,10 +11,9 @@ import android.widget.TextView;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterProfile;
+import com.ringoid.view.presenter.callback.IPresenterAdapterProfileListener;
 import com.ringoid.view.ui.dialog.DialogHiddenMode;
-import com.ringoid.view.ui.dialog.DialogProfileLikes;
 import com.ringoid.view.ui.dialog.callback.IDialogHiddenModeListener;
-import com.ringoid.view.ui.dialog.callback.IDialogProfileLikesListener;
 import com.ringoid.view.ui.util.GlideApp;
 
 import javax.inject.Inject;
@@ -24,12 +23,15 @@ public class AdapterProfile extends AdapterBase {
     @Inject
     IPresenterAdapterProfile presenterAdapterProfile;
 
+    private ListenerPresenter listenerPresenter;
+
     private DialogHiddenMode dialogHiddenMode;
 
     private ListenerDialogHidden listenerDialogHidden;
 
     public AdapterProfile() {
         ApplicationRingoid.getComponent().inject(this);
+        presenterAdapterProfile.setListener(listenerPresenter = new ListenerPresenter());
 
         listenerDialogHidden = new ListenerDialogHidden();
     }
@@ -124,6 +126,13 @@ public class AdapterProfile extends AdapterBase {
         @Override
         public void onSelectPrivacy(boolean isShow) {
             presenterAdapterProfile.onClickHiddenModePrivacy(isShow);
+        }
+    }
+
+    private class ListenerPresenter implements IPresenterAdapterProfileListener {
+        @Override
+        public void onUpdate() {
+            notifyDataSetChanged();
         }
     }
 }

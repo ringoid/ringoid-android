@@ -34,21 +34,52 @@
 
     </FrameLayout>
 
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/rvItems"
+    <FrameLayout
+        android:id="@+id/flPhotos"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="gone"
         app:layout_constraintDimensionRatio="3:4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flToolbar"
-        tools:listitem="@layout/view_image_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/flToolbar">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvItems"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/view_image_profile" />
+
+        <FrameLayout
+            android:id="@+id/flDots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/flToolbar" />
+
+    </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/flDots"
+        android:id="@+id/flEmpty"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/flToolbar" />
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flToolbar"
+        tools:visibility="visible">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="64dp"
+            android:layout_marginStart="64dp"
+            android:gravity="center"
+            android:text="@string/message_profile_empty"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+            android:textSize="17sp" />
+
+    </FrameLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabProfile"

@@ -231,6 +231,7 @@
     <string name="data_protection_subtitle">Data Protection</string>
     <string name="button_code_error">I didn\’t receive a code</string>
     <string name="crop_confirm"><![CDATA[Crop & Upload]]></string>
+    <string name="message_profile_empty">Upload your photos so users can like and message you</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>
