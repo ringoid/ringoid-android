@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ringoid.BuildConfig;
@@ -25,7 +24,6 @@ import com.ringoid.view.ui.fragment.FragmentSettingsFAQ;
 import com.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 import com.ringoid.view.ui.fragment.FragmentSettingsPush;
 import com.ringoid.view.ui.fragment.FragmentWebView;
-import com.ringoid.view.ui.fragment.FragmentWelcome;
 
 import java.lang.ref.WeakReference;
 
@@ -263,20 +261,6 @@ public class Navigator implements INavigator {
                 .beginTransaction()
                 .addToBackStack(null)
                 .replace(viewId, new FragmentSettingsPush(), CURRENT_FRAGMENT_PAGE)
-                .commit();
-    }
-
-    @Override
-    public void navigateWelcome(boolean isLogin) {
-
-        if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        FragmentTransaction transaction = refFragmentManager.get()
-                .beginTransaction();
-
-        if (!isLogin)
-            transaction.addToBackStack(null);
-
-        transaction.replace(viewId, FragmentWelcome.getInstance(isLogin), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 }

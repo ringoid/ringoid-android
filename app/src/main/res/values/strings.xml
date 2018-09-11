@@ -3,7 +3,6 @@
     <string name="url_terms" translatable="false">http://ringoid.com/terms.html</string>
     <string name="url_licenses" translatable="false">http://ringoid.com/licenses-android.html</string>
     <string name="url_privacy" translatable="false">http://ringoid.com/privacy.html</string>
-    <string name="url_data_policy" translatable="false">http://ringoid.com/data-summary.html</string>
 
     <string name="app_name">Ringoid</string>
 
@@ -11,7 +10,6 @@
 
     <string name="checkbox_terms">I have read and understood\n\n<a href="http://ringoid.com/terms.html">Terms of Service</a> and\n\n<a href="http://ringoid.com/privacy.html">Privacy Policy</a></string>
 
-    <string name="hint_register_confirm">1234</string>
     <string name="error_phone">Please enter phone number</string>
     <string name="button_accept_terms">Accept and Continue</string>
     <string name="login_phone_title">Verify your phone number</string>
@@ -20,7 +18,6 @@
     <string name="error_agreement">To continue, please check all boxes</string>
     <string name="settings_terms">Terms of Service</string>
     <string name="settings_delete_account">Delete account</string>
-    <string name="settings_about">About</string>
     <string name="hint_numbers">Number</string>
     <string name="blacklist_phone_add">Block it!</string>
     <string name="blacklist_description">Don\'t show my photos to users (and don\'t show their photos to me, and don\'t allow them to like or message me) who have linked their Ringoid accounts to the following phone numbers</string>
@@ -56,12 +53,9 @@
     <string name="settings_privacy_location">Location</string>
     <string name="settings_privacy_age">Age</string>
     <string name="settings_privacy_activity">Activity</string>
-    <string name="settings_privacy_policy">Data protection</string>
     <string name="settings_privacy_item_value_only_me">Only me</string>
     <string name="settings_privacy_location_distance">Safety distance</string>
     <string name="settings_privacy_age_who">Who can see your age?</string>
-    <string name="settings_privacy_policy_data_storage">Personal data that Ringoid holds about you</string>
-    <string name="settings_privacy_policy_privacy">Privacy Policy</string>
     <string name="settings_privacy_subtitle">FAQ</string>
     <string name="settings_privacy_activity_likes">Who can see which photos you liked?</string>
     <string name="settings_privacy_activity_reports">Who can see which photos you reported?</string>
@@ -95,19 +89,6 @@
     <string name="settings_push_messages_message">New messages</string>
     <string name="settings_push_messages_description">Your match sent you a new message</string>
     <string name="settings_push_subtitle">Push Notifications</string>
-    <string name="skip">skip</string>
-    <string name="welcome_title_1">Safer Dating</string>
-    <string name="welcome_message_1_1"><![CDATA[Ringoid hides your <b>age</b>, location, distance, and online status from everyone.]]></string>
-    <string name="welcome_message_1_2"><![CDATA[To register, you need to enter only your phone number, year of birth, and sex.]]></string>
-    <string name="welcome_message_1_3"><![CDATA[You can show your photos only to people you liked first, <b>blacklist phone numbers</b>, and specify safety distance to prevent people from seeing your photos if they are too close.]]></string>
-    <string name="welcome_title_2">More Feedback</string>
-    <string name="welcome_message_2_1">Ringoid shows who liked you, and you can see how many likes your photos received.</string>
-    <string name="welcome_message_2_2">You can like as much per day as you want. If you like different photos of the same user, your profile will rise higher in their feeds.</string>
-    <string name="welcome_message_2_3"><![CDATA[All of that for <b>free</b>, including messaging your matches. Ringoid doesn\'t show ads and doesn\'t charge for services.]]></string>
-    <string name="welcome_title_3">More Visual</string>
-    <string name="welcome_message_3_1"><![CDATA[Ringoid sorts profiles by distance and <b>popularity (likes).</b>]]></string>
-    <string name="welcome_message_3_2">The more likes your photos received, the higher your popularity ranking in your area and the more people of the opposite sex can discover you.</string>
-    <string name="welcome_message_3_3">Photos with more likes are shown first. Only you can see how many likes your photos received.</string>
     <string name="settings_privacy_phones_subtitle">Blacklist</string>
     <string name="settings_privacy_phone_blacklist_add_subtitle">Add to the blacklist</string>
     <string name="settings_privacy_search_unregister">Can people who didn\'t register their phone numbers get access to your photos in Ringoid?</string>
@@ -126,9 +107,7 @@
     <string name="login_birth_gender_message">Your Sex</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="button_want_it">I want it!</string>
     <string name="settings_privacy_messages">Messages</string>
-    <string name="settings_privacy_messages_text">Who can message first?</string>
     <string name="settings_privacy_messages_emoji">Who can send first emojis?</string>
     <string name="settings_privacy_messages_pics">Who can send photos in a chat?</string>
     <string name="settings_privacy_messages_read">Who can see that you read messages?</string>
@@ -136,7 +115,6 @@
     <string name="settings_privacy_messages_online">Who can see that you are online?</string>
     <string name="settings_privacy_messages_online_last_time">Who can see when you were online last time?</string>
     <string name="settings_licenses">Licenses</string>
-    <string name="crop_subtitle">Crop photo</string>
     <string name="message_dialog_phone_valid" formatted="false">+%s %s looks invalid.\n\nMost likely we won\'t be able to send SMS with a verification code to validate it.\n\nDo you still want to proceed?</string>
     <string name="hint_phone_code">Code</string>
     <string name="dialog_phone_invalid_cancel">Correct phone number</string>
@@ -147,7 +125,6 @@
     <string name="settings_privacy_activity_views">Who can see which photos you viewed?</string>
     <string name="settings_privacy_activity_views_times">Who can see how many times you viewed photos?</string>
     <string name="settings_privacy_activity_views_notifications">Who receives a notification that you viewed their profile?</string>
-    <string name="settings_privacy_item_message_matched">A person with whom I matched or me</string>
     <string name="settings_privacy_messages_emoji_value">A person with whom I matched or me. After I sent emoji to my match, I allow them to reply with text messages</string>
     <string name="settings_privacy_messages_screenshots">Who can make screenshots of your messages?</string>
     <string name="settings_privacy_messages_screenshots_value">No one. Users with smartphones that run Android version 5.0 and higher can\'t make screenshots in Ringoid (except screenshots of their own photos and Settings).</string>
@@ -202,14 +179,12 @@
     <string name="subtitle_terms">Terms of Service></string>
     <string name="subtitle_licenses">Licenses</string>
     <string name="subtitle_privacy">Privacy Policy</string>
-    <string name="subtitle_data_policy">Data Policy</string>
     <string name="dialog_privacy_photos_title">Who can see your photos?</string>
     <string name="settings_data_protection">Data protection</string>
     <string name="hint_dots_4">\u2022\u2022\u2022\u2022</string>
     <string name="customer_id">Customer ID</string>
     <string name="data_protection_erase_data">Erase Data</string>
     <string name="data_protection_download">Download your personal data</string>
-    <string name="data_protection_data_collect">Data we don’t collect</string>
     <string name="data_protection_faq">FAQ</string>
     <string name="data_protection_privacy">Privacy Policy</string>
     <string name="data_protection_email_officer">Email Data Protection Officer</string>
@@ -250,10 +225,4 @@
         <item quantity="other">%d phone numbers</item>
     </plurals>
 
-    <string-array name="pages_titles">
-        <item></item>
-        <item>Who Liked You</item>
-        <item>Messages</item>
-        <item>New Faces</item>
-    </string-array>
 </resources>

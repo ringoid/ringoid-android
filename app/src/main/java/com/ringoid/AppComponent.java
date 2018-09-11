@@ -77,7 +77,6 @@ import com.ringoid.view.ui.fragment.FragmentSettingsFAQ;
 import com.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 import com.ringoid.view.ui.fragment.FragmentSettingsPush;
 import com.ringoid.view.ui.fragment.FragmentWebView;
-import com.ringoid.view.ui.fragment.FragmentWelcome;
 import com.ringoid.view.ui.util.ScreenHelper;
 
 import javax.inject.Singleton;
@@ -207,8 +206,6 @@ public interface AppComponent {
     void inject(PresenterSettingsPrivacyDistance item);
 
     void inject(FragmentBlacklistPhonesAdd fragmentBlacklistPhonesAdd);
-
-    void inject(FragmentWelcome fragmentWelcome);
 
     void inject(CacheUser cacheUser);
 

@@ -136,10 +136,6 @@ public class AdapterProfile extends AdapterBase {
     }
 
     private class ListenerDialogHidden implements IDialogHiddenModeListener {
-        @Override
-        public void onSelectAbout(boolean isShow) {
-            presenterAdapterProfile.onClickAboutHiddenMode(isShow);
-        }
 
         @Override
         public void onSelectOK(boolean isShow) {

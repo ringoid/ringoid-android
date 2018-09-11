@@ -50,7 +50,6 @@ public class PresenterProfile implements IPresenterProfile {
 
     @Override
     public void onClickToolbar() {
-        navigator.navigateWelcome(false);
     }
 
     @Override

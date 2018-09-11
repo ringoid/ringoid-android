@@ -6,8 +6,6 @@ public interface IPresenterItemImageLikeable {
 
     boolean isDialogHiddenShow();
 
-    void onClickAbout(boolean b);
-
     void onClickOK(boolean b);
 
     void onClickPrivacy(boolean b);

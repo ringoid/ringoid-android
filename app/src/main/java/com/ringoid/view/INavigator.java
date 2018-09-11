@@ -35,8 +35,6 @@ public interface INavigator {
 
     void navigateSettingsPush();
 
-    void navigateWelcome(boolean isLogin);
-
     void navigateBlacklistPhonesAdd();
 
     boolean onBackPressed();

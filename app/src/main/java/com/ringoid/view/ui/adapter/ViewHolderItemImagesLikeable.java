@@ -124,10 +124,6 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
     }
 
     private class ListenerDialogHiddenMode implements IDialogHiddenModeListener {
-        @Override
-        public void onSelectAbout(boolean b) {
-            presenterItemImageLikeable.onClickAbout(b);
-        }
 
         @Override
         public void onSelectOK(boolean b) {
