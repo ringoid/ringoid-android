@@ -4,7 +4,6 @@ package com.ringoid.view.presenter;
 import android.text.TextUtils;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.controller.data.memorycache.CacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
@@ -42,7 +41,6 @@ public class PresenterChat implements IPresenterChat {
 
         refListener.get().setImage("file:///android_asset/" + cacheMessages.getUrlSelectedUser());
         refListener.get().setDataExist(cacheChatMessages.isDataExist());
-        refListener.get().setSendEnabled(cacheChatMessages.isSendEnabled());
     }
 
     @Override
@@ -51,29 +49,14 @@ public class PresenterChat implements IPresenterChat {
     }
 
     @Override
-    public void onClickSmileShy() {
-        cacheChatMessages.addMessage(CacheChatMessages.SMILE_SHY);
-    }
-
-    @Override
-    public void onClickSmileLove() {
-        cacheChatMessages.addMessage(CacheChatMessages.SMILE_LOVE);
-    }
-
-    @Override
-    public void onClickSmileKiss() {
-        cacheChatMessages.addMessage(CacheChatMessages.SMILE_KISS);
-    }
-
-    @Override
-    public void onClickSmileHeart() {
-        cacheChatMessages.addMessage(CacheChatMessages.SMILE_HEART);
-    }
-
-    @Override
     public void onClickSend(String message) {
         if (TextUtils.isEmpty(message)) return;
         cacheChatMessages.addMessage(message);
+    }
+
+    @Override
+    public void onClickClear() {
+        cacheChatMessages.resetCache();
     }
 
     private class ListenerCacheChatMessages implements ICacheChatMessagesListener {

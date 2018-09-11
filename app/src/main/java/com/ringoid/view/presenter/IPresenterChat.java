@@ -8,13 +8,7 @@ public interface IPresenterChat {
 
     void setListener(IPresenterChatListener listener);
 
-    void onClickSmileShy();
-
-    void onClickSmileLove();
-
-    void onClickSmileKiss();
-
     void onClickSend(String message);
 
-    void onClickSmileHeart();
+    void onClickClear();
 }
