@@ -112,7 +112,7 @@ public class PresenterRegister implements IPresenterRegister {
 
     private void showPhoneHint() {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().showPhoneHint(cacheUser.getPhoneCode() + " " + cacheUser.getPhone());
+        refListener.get().showPhoneHint(String.format("+%d %s", cacheUser.getPhoneCode(), cacheUser.getPhone()));
     }
 
     private void clearCodeConfirm() {
