@@ -2,6 +2,7 @@ package com.ringoid.view.presenter;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.view.INavigator;
@@ -22,6 +23,9 @@ public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
 
     @Inject
     IViewDialogs viewDialogs;
+
+    @Inject
+    ICacheProfile cacheProfile;
 
     public PresenterItemImageLikeable() {
         ApplicationRingoid.getComponent().inject(this);
@@ -52,5 +56,15 @@ public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
     public void onClickPrivacy(boolean b) {
         cacheTutorial.setDialogHiddenModeShow(b);
         navigator.navigateSettingsPrivacy(true);
+    }
+
+    @Override
+    public boolean isPhotoSelfExist() {
+        return cacheProfile.isDataExist();
+    }
+
+    @Override
+    public void showDialogNoPhoto() {
+        viewDialogs.showDialogLikeNoPhoto();
     }
 }

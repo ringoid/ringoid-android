@@ -121,4 +121,12 @@ public class NavigatorPages implements INavigatorPages {
         Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
         return fragment != null && fragment instanceof FragmentProfile;
     }
+
+    @Override
+    public void clearPage() {
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
+        if (fragment == null) return;
+        refFragmentManager.get().beginTransaction().remove(fragment).commit();
+    }
 }

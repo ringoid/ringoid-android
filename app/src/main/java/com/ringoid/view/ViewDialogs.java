@@ -4,11 +4,8 @@ package com.ringoid.view;
 import android.content.Context;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.controller.data.memorycache.ICacheTutorial;
-import com.ringoid.view.ui.dialog.DialogNewFaces;
-import com.ringoid.view.ui.dialog.DialogWhoLikedYou;
-import com.ringoid.view.ui.dialog.callback.IDialogNewFacesListener;
-import com.ringoid.view.ui.dialog.callback.IDialogWhoLikedYouListener;
+import com.ringoid.view.ui.dialog.DialogLikeNoPhoto;
+import com.ringoid.view.ui.dialog.callback.IDialogLIkeNoPhotoListener;
 
 import java.lang.ref.WeakReference;
 
@@ -17,21 +14,15 @@ import javax.inject.Inject;
 public class ViewDialogs implements IViewDialogs {
 
     @Inject
-    ICacheTutorial cacheTutorial;
-
-    @Inject
     INavigator navigator;
 
-    private ListenerDialogNewFaces listenerDialogNewFaces;
-    private ListenerDialogLiked listenerDialogLiked;
     private WeakReference<Context> refContext;
-    private WeakReference<DialogNewFaces> refDialogExplore;
-    private WeakReference<DialogWhoLikedYou> refDialogLikes;
+    private WeakReference<DialogLikeNoPhoto> refDialogLikeNoPhoto;
+    private IDialogLIkeNoPhotoListener listenerDialogLikeNoPhoto;
 
     public ViewDialogs() {
         ApplicationRingoid.getComponent().inject(this);
-        listenerDialogNewFaces = new ListenerDialogNewFaces();
-        listenerDialogLiked = new ListenerDialogLiked();
+        listenerDialogLikeNoPhoto = new ListenerDialogLikeNoPhoto();
     }
 
     @Override
@@ -48,42 +39,22 @@ public class ViewDialogs implements IViewDialogs {
 
     }
 
-    private class ListenerDialogNewFaces implements IDialogNewFacesListener {
+    @Override
+    public void showDialogLikeNoPhoto() {
+        if (refDialogLikeNoPhoto != null && refDialogLikeNoPhoto.get() != null)
+            refDialogLikeNoPhoto.get().cancel();
 
-        @Override
-        public void onSelectAbout(boolean b) {
-            cacheTutorial.setDialogExploreShow(b);
-            navigator.navigateWelcome(false);
-        }
+        if (refContext == null || refContext.get() == null) return;
+        DialogLikeNoPhoto dialogLikeNoPhoto = new DialogLikeNoPhoto(refContext.get(), listenerDialogLikeNoPhoto);
+        dialogLikeNoPhoto.show();
+        refDialogLikeNoPhoto = new WeakReference<>(dialogLikeNoPhoto);
 
-        @Override
-        public void onSelectPush(boolean b) {
-            cacheTutorial.setDialogExploreShow(b);
-            navigator.navigateSettingsPush();
-        }
-
-        @Override
-        public void onSelectOK(boolean b) {
-            cacheTutorial.setDialogExploreShow(b);
-        }
     }
 
-    private class ListenerDialogLiked implements IDialogWhoLikedYouListener {
+    private class ListenerDialogLikeNoPhoto implements IDialogLIkeNoPhotoListener {
         @Override
-        public void onSelectAbout(boolean b) {
-            cacheTutorial.setProfileDialogLikeShow(b);
-            navigator.navigateWelcome(false);
-        }
-
-        @Override
-        public void onSelectPush(boolean b) {
-            cacheTutorial.setProfileDialogLikeShow(b);
-            navigator.navigateSettingsPush();
-        }
-
-        @Override
-        public void onSelectOK(boolean b) {
-            cacheTutorial.setProfileDialogLikeShow(b);
+        public void onConfirm() {
+            navigator.navigatePhotoAdd();
         }
     }
 }

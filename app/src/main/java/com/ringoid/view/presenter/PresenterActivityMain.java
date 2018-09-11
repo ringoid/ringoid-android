@@ -1,9 +1,9 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.ringoid.ApplicationRingoid;
@@ -37,16 +37,26 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     }
 
     @Override
-    public void onCreateView(Context context, View view, FragmentManager supportFragmentManager, int viewId) {
-        navigator.set(supportFragmentManager, viewId);
-        viewDialogs.set(context);
+    public void onCreateView(AppCompatActivity activity, View view, FragmentManager supportFragmentManager, int viewId) {
+        navigator.set(activity, supportFragmentManager, viewId);
+        viewDialogs.set(activity);
         viewPopup.setView(view);
 
-        if (cacheToken.isTokenExist()) {
-            if (cacheUser.isRegistered())
-                navigator.navigateFeed();
-            else navigator.navigateProfileUpdate();
-        } else navigator.navigateWelcome(true);
+        navigate();
+    }
+
+    private void navigate() {
+        if (!cacheToken.isTokenExist()) {
+            navigator.navigateWelcome(true);
+            return;
+        }
+
+        if (!cacheUser.isRegistered()) {
+            navigator.navigateProfileUpdate();
+            return;
+        }
+
+        navigator.navigateFeed();
     }
 
     @Override

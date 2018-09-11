@@ -106,6 +106,11 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
     }
 
     boolean isLikeable() {
+        if (!presenterItemImageLikeable.isPhotoSelfExist()) {
+            presenterItemImageLikeable.showDialogNoPhoto();
+            return false;
+        }
+
         if (!presenterItemImageLikeable.isHiddenMode()) return true;
         if (!presenterItemImageLikeable.isDialogHiddenShow()) return false;
 

@@ -15,7 +15,8 @@
         android:layout_gravity="bottom"
         android:background="@color/white95"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/ivMenuProfile"

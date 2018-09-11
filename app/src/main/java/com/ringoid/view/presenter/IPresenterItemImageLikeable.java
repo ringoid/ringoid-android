@@ -11,4 +11,8 @@ public interface IPresenterItemImageLikeable {
     void onClickOK(boolean b);
 
     void onClickPrivacy(boolean b);
+
+    boolean isPhotoSelfExist();
+
+    void showDialogNoPhoto();
 }

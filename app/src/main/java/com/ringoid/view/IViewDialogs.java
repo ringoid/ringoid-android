@@ -9,4 +9,6 @@ public interface IViewDialogs {
     void set(Context context);
 
     void showDialogLikes();
+
+    void showDialogLikeNoPhoto();
 }

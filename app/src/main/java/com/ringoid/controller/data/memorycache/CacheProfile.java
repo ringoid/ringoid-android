@@ -57,6 +57,11 @@ public class CacheProfile implements ICacheProfile {
         notifyListeners();
     }
 
+    @Override
+    public boolean isDataExist() {
+        return data != null && data.size() > 0;
+    }
+
     private ProfilePhoto getItem(String imageId) {
         if (data == null) return null;
         for (ProfilePhoto item : data)

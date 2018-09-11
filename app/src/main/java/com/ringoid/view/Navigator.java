@@ -36,6 +36,7 @@ public class Navigator implements INavigator {
 
     private WeakReference<FragmentManager> refFragmentManager;
     private int viewId;
+    private WeakReference<AppCompatActivity> refActivity;
 
     @Override
     public void navigateFeed() {
@@ -68,8 +69,9 @@ public class Navigator implements INavigator {
     }
 
     @Override
-    public void set(FragmentManager supportFragmentManager, int viewId) {
+    public void set(AppCompatActivity activity, FragmentManager supportFragmentManager, int viewId) {
         this.refFragmentManager = new WeakReference<>(supportFragmentManager);
+        this.refActivity = new WeakReference<>(activity);
         this.viewId = viewId;
     }
 
@@ -153,14 +155,16 @@ public class Navigator implements INavigator {
     }
 
     @Override
-    public void navigatePhotoAdd(AppCompatActivity activity) {
+    public void navigatePhotoAdd() {
+        if (refActivity == null || refActivity.get() == null) return;
+
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
 
-        if (intent.resolveActivity(activity.getPackageManager()) == null) return;
+        if (intent.resolveActivity(refActivity.get().getPackageManager()) == null) return;
 
-        activity.startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
+        refActivity.get().startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
     }
 
     @Override

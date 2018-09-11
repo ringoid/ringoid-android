@@ -6,7 +6,10 @@ import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotos;
 import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
+import com.ringoid.controller.data.repository.callback.IRepositoryProfilePhotosListener;
 import com.ringoid.view.ui.util.IScreenHelper;
+
+import java.lang.ref.WeakReference;
 
 import javax.inject.Inject;
 
@@ -30,6 +33,7 @@ class RepositoryProfilePhotos implements IRepositoryProfilePhotos {
 
     private Call<ResponseProfilePhotos> request;
     private Callback<ResponseProfilePhotos> requestListener;
+    private WeakReference<IRepositoryProfilePhotosListener> refListener;
 
     public RepositoryProfilePhotos() {
         ApplicationRingoid.getComponent().inject(this);
@@ -45,29 +49,46 @@ class RepositoryProfilePhotos implements IRepositoryProfilePhotos {
         request.enqueue(requestListener);
     }
 
+    @Override
+    public void setListener(IRepositoryProfilePhotosListener listener) {
+        this.refListener = new WeakReference<>(listener);
+    }
+
+    @Override
+    public void removeListener() {
+        this.refListener = null;
+    }
+
+    private void notifyError() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onError();
+    }
+
+    private void notifySuccess() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onSuccess();
+    }
+
     private class RequestListener implements Callback<ResponseProfilePhotos> {
         @Override
         public void onResponse(Call<ResponseProfilePhotos> call, Response<ResponseProfilePhotos> response) {
 
             if (response.isSuccessful()
                     && response.body() != null
-                    && response.body().isInvalidToken()) {
-
-                //notifyTokenInvalid();
-            }
-
-            if (response.isSuccessful()
-                    && response.body() != null
                     && response.body().isSuccess()) {
 
                 cacheProfile.setData(response.body().getPhotos());
+                notifySuccess();
+                return;
             }
+            notifyError();
 
         }
 
         @Override
         public void onFailure(Call<ResponseProfilePhotos> call, Throwable t) {
-
+            if (call.isCanceled()) return;
+            notifyError();
         }
     }
 

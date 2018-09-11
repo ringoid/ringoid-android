@@ -78,7 +78,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.fabProfile)
-            presenterProfile.onClickPhotoAdd((AppCompatActivity) getActivity());
+            presenterProfile.onClickPhotoAdd();
 
         if (v.getId() == R.id.llToolbarTitle)
             presenterProfile.onClickToolbar();

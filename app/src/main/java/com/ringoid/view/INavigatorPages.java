@@ -25,4 +25,6 @@ public interface INavigatorPages {
     boolean isPageLikes();
 
     boolean isPageProfile();
+
+    void clearPage();
 }

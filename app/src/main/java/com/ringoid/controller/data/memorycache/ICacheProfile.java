@@ -20,4 +20,6 @@ public interface ICacheProfile {
     String getImageId(int position);
 
     void removeItem(String imageId);
+
+    boolean isDataExist();
 }

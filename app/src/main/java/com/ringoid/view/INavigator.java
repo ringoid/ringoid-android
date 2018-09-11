@@ -11,13 +11,13 @@ public interface INavigator {
 
     void navigateLogin();
 
-    void set(FragmentManager supportFragmentManager, int viewId);
+    void set(AppCompatActivity activity, FragmentManager supportFragmentManager, int viewId);
 
     void navigateSettings();
 
     void navigateBlacklistPhones();
 
-    void navigatePhotoAdd(AppCompatActivity activity);
+    void navigatePhotoAdd();
 
     void navigateChat();
 

@@ -5,7 +5,7 @@ public interface IPresenterPagesContainerListener {
 
     void setPosition(boolean toolbarScroll, int topPos, int bottomPos, float alpha);
 
-    void showToolbar();
+    void statusbarShow();
 
     void setPageSelected(int num);
 
@@ -15,5 +15,9 @@ public interface IPresenterPagesContainerListener {
 
     void scrollComplete(boolean toolbarScroll, int scrollSum, int alpha);
 
-    void hideToolbar();
+    void statusbarHide();
+
+    void navigationHide();
+
+    void navigationShow();
 }

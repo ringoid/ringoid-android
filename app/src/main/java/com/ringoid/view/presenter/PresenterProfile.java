@@ -39,8 +39,8 @@ public class PresenterProfile implements IPresenterProfile {
     }
 
     @Override
-    public void onClickPhotoAdd(AppCompatActivity activity) {
-        navigator.navigatePhotoAdd(activity);
+    public void onClickPhotoAdd() {
+        navigator.navigatePhotoAdd();
     }
 
     @Override

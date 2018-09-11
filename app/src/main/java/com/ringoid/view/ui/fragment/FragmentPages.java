@@ -113,14 +113,22 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void hideToolbar() {
-
+        public void statusbarHide() {
             hideStatusbar();
         }
 
         @Override
-        public void showToolbar() {
+        public void navigationHide() {
+            llBottomAppBar.setVisibility(View.GONE);
+        }
 
+        @Override
+        public void navigationShow() {
+            llBottomAppBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void statusbarShow() {
             showStatusbar();
         }
 
