@@ -16,10 +16,13 @@ import com.ringoid.view.ui.util.IndicatorHelper;
 
 import javax.inject.Inject;
 
-public class ViewHolderItemLikes extends ViewHolderBase implements View.OnClickListener{
+public class ViewHolderItemLikes extends ViewHolderBase implements View.OnClickListener {
 
     @Inject
     IPresenterAdapterLikes presenterAdapterLikes;
+
+
+    private View vChatEmpty, vChatFull;
 
     private FrameLayout flDots;
     private IndicatorHelper dotsIndicatorHelper;
@@ -36,6 +39,12 @@ public class ViewHolderItemLikes extends ViewHolderBase implements View.OnClickL
 
         flDots.setOnClickListener(this);
         itemView.findViewById(R.id.ivImageMenu).setOnClickListener(this);
+
+        vChatEmpty = itemView.findViewById(R.id.fabChat);
+        vChatFull = itemView.findViewById(R.id.ivChat);
+        vChatFull.setOnClickListener(this);
+        vChatEmpty.setOnClickListener(this);
+
         initList();
     }
 
@@ -55,11 +64,12 @@ public class ViewHolderItemLikes extends ViewHolderBase implements View.OnClickL
     void setData(int position) {
         adapter.setPosition(position);
         dotsIndicatorHelper.updateData(presenterAdapterLikes.getItemsNum(position));
+        setChatButtonVisible(position);
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.flDots)
+        if (v.getId() == R.id.flDots)
             presenterAdapterLikes.onClickScrolls();
 
         if (v.getId() == R.id.ivImageMenu) {
@@ -68,5 +78,23 @@ public class ViewHolderItemLikes extends ViewHolderBase implements View.OnClickL
             dialogReport = new DialogReport(itemView.getContext());
             dialogReport.show();
         }
+
+        if (v.getId() == R.id.fabChat || v.getId() == R.id.ivChat) {
+            presenterAdapterLikes.onClickChat(getAdapterPosition());
+        }
+    }
+
+    private void setChatButtonVisible(int position) {
+
+        if (!presenterAdapterLikes.isLikedAnyPhoto(position)) {
+            vChatEmpty.setVisibility(View.GONE);
+            vChatFull.setVisibility(View.GONE);
+            return;
+        }
+
+        boolean isChatEmpty = presenterAdapterLikes.isChatEmpty(position);
+
+        vChatEmpty.setVisibility(isChatEmpty ? View.VISIBLE : View.GONE);
+        vChatFull.setVisibility(isChatEmpty ? View.GONE : View.VISIBLE);
     }
 }

@@ -19,7 +19,6 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
     ViewHolderItemLikesImages(ViewGroup parent) {
         super(parent, R.layout.view_image_likes);
         ApplicationRingoid.getComponent().inject(this);
-
     }
 
     @Override
@@ -52,6 +51,7 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
             super.onClickIconLike(isLiked);
         }
     }
+
 
     @Override
     public boolean onLongClick(View v) {

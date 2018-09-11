@@ -2,7 +2,6 @@
 package com.ringoid.controller.data.memorycache;
 
 import com.google.gson.Gson;
-
 import com.ringoid.controller.data.network.response.ResponseDataProfile;
 import com.ringoid.model.DataProfile;
 
@@ -52,6 +51,12 @@ public class CacheMessages implements ICacheMessages {
     @Override
     public boolean isDataExist() {
         return data != null && data.size() > 0;
+    }
+
+    @Override
+    public boolean isLikedAnyPhoto(int position) {
+        DataProfile item = data.get(position);
+        return item.isLikedAnyPhoto();
     }
 
     private DataProfile getSelectedUser() {

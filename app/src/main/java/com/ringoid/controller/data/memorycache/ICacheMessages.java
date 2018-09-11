@@ -13,4 +13,6 @@ public interface ICacheMessages {
     String getUrlSelectedUser();
 
     boolean isDataExist();
+
+    boolean isLikedAnyPhoto(int position);
 }

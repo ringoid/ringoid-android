@@ -4,7 +4,9 @@ package com.ringoid.view.presenter;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
+import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
+import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 
@@ -25,6 +27,12 @@ public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages
 
     @Inject
     IViewDialogs viewDialogs;
+
+    @Inject
+    INavigator navigator;
+
+    @Inject
+    ICacheMessages cacheMessages;
 
     public PresenterAdapterLikesImages() {
         ApplicationRingoid.getComponent().inject(this);

@@ -67,9 +67,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:inputType="text"
-            android:paddingEnd="16dp"
-            android:paddingStart="16dp"
+            android:inputType="textMultiLine"
+            android:padding="16dp"
             android:textSize="17sp"
             android:theme="@style/AppTheme.Green" />
 

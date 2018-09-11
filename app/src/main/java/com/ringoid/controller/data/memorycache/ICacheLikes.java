@@ -1,6 +1,8 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.memorycache;
 
+import com.ringoid.controller.data.memorycache.listener.ICacheLikesListener;
+
 public interface ICacheLikes {
 
     int getItemsNum();
@@ -18,4 +20,14 @@ public interface ICacheLikes {
     void changeLiked(int adapterPosition, int itemPosition);
 
     String getItemId(int adapterPosition, int itemPosition);
+
+    boolean isMessagesExist(int adapterPosition);
+
+    String getUserId(int adapterPosition);
+
+    void setMessagesExist(String userId);
+
+    void addListener(ICacheLikesListener listener);
+
+    boolean isLikedAnyPhoto(int position);
 }

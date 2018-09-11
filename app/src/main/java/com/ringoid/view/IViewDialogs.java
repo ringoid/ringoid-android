@@ -3,6 +3,8 @@ package com.ringoid.view;
 
 import android.content.Context;
 
+import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
+
 public interface IViewDialogs {
     void showDialogExplore();
 
@@ -11,4 +13,6 @@ public interface IViewDialogs {
     void showDialogLikes();
 
     void showDialogLikeNoPhoto();
+
+    void showDialogChatCompose(IDialogChatComposeListener listener);
 }
