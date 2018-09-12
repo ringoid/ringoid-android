@@ -8,7 +8,9 @@ interface IIndicator {
 
     void setDots(int num);
 
-    void initDots();
+    void initDots(int pos);
 
     void onScroll(int pos, int right);
+
+    void setPosition(int position);
 }

@@ -107,6 +107,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
             if (getContext() == null) return;
             updateView();
             layoutManager.scrollToPosition(position);
+            dotsIndicatorHelper.setPosition(position);
         }
     }
 

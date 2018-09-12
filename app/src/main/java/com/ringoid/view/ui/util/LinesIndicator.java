@@ -21,9 +21,9 @@ public class LinesIndicator implements IIndicator {
     }
 
     @Override
-    public void initDots() {
+    public void initDots(int pos) {
         savedPos = -1;
-        updateDots(0);
+        updateDots(pos);
     }
 
     private void updateDots(int pos) {
@@ -77,5 +77,10 @@ public class LinesIndicator implements IIndicator {
         if (right < llDots.getContext().getResources().getDisplayMetrics().widthPixels / 2)
             pos += 1;
         updateDots(pos);
+    }
+
+    @Override
+    public void setPosition(int position) {
+        updateDots(position);
     }
 }

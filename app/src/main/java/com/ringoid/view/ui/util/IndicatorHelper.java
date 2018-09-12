@@ -43,7 +43,11 @@ public class IndicatorHelper {
 
     public void updateData(int num) {
         indicator.setDots(num);
-        indicator.initDots();
+        indicator.initDots(layoutManager.findFirstVisibleItemPosition());
+    }
+
+    public void setPosition(int position) {
+        indicator.setPosition(position);
     }
 
     private class ScrollListener extends RecyclerView.OnScrollListener {
