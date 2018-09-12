@@ -3,4 +3,6 @@ package com.ringoid.view.presenter.callback;
 
 public interface IPresenterProfileListener {
     void updateView();
+
+    void scrollToPosition(int position);
 }

@@ -90,7 +90,7 @@ public class CacheProfile implements ICacheProfile {
         ProfilePhoto profilePhoto = new ProfilePhoto(fileUri, photoId);
         if (data == null) data = new ArrayList<>();
         data.add(profilePhoto);
-        notifyListeners();
+        notifyListenersAddPhotoLocal(data.size() - 1);
     }
 
     @Override
@@ -132,4 +132,16 @@ public class CacheProfile implements ICacheProfile {
             listener.onUpdate();
         }
     }
+
+
+    private void notifyListenersAddPhotoLocal(int position) {
+
+        if (listeners == null) return;
+        for (String name : listeners.keySet()) {
+            ICacheProfileListener listener = listeners.get(name);
+            if (listener == null) continue;
+            listener.onPhotoAdd(position);
+        }
+    }
+
 }

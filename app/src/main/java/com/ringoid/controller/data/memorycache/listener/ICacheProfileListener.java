@@ -3,4 +3,6 @@ package com.ringoid.controller.data.memorycache.listener;
 
 public interface ICacheProfileListener {
     void onUpdate();
+
+    void onPhotoAdd(int position);
 }

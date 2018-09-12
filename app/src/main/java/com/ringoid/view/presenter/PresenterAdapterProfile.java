@@ -138,5 +138,10 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
         public void onUpdate() {
             updateView();
         }
+
+        @Override
+        public void onPhotoAdd(int position) {
+
+        }
     }
 }

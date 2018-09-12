@@ -4,7 +4,6 @@ package com.ringoid.view.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +29,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
     private IPresenterProfileListener listenerPresenter;
     private IndicatorHelper dotsIndicatorHelper;
     private View vPhotos, vEmpty;
+    private LinearLayoutManager layoutManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
 
     private void initList(View view) {
         RecyclerView rvItems = view.findViewById(R.id.rvItems);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         AdapterProfile adapter = new AdapterProfile();
 
         rvItems.setLayoutManager(layoutManager);
@@ -94,6 +94,13 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
             if (getContext() == null) return;
             dotsIndicatorHelper.updateData(presenterProfile.getItemsNum());
             setViewState();
+        }
+
+        @Override
+        public void scrollToPosition(int position) {
+            if (getContext() == null) return;
+            updateView();
+            layoutManager.scrollToPosition(position);
         }
     }
 }

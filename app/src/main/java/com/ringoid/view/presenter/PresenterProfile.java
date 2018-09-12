@@ -1,8 +1,6 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
-import android.support.v7.app.AppCompatActivity;
-
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.listener.ICacheProfileListener;
@@ -54,7 +52,8 @@ public class PresenterProfile implements IPresenterProfile {
 
     @Override
     public void onCreateView() {
-        repositoryProfilePhotos.request();
+        if (!cacheProfile.isDataExist())
+            repositoryProfilePhotos.request();
     }
 
     @Override
@@ -67,10 +66,20 @@ public class PresenterProfile implements IPresenterProfile {
         refListener.get().updateView();
     }
 
+    private void scrollToPosition(int position) {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().scrollToPosition(position);
+    }
+
     private class ListenerCacheProfile implements ICacheProfileListener {
         @Override
         public void onUpdate() {
             updateView();
+        }
+
+        @Override
+        public void onPhotoAdd(int position) {
+            scrollToPosition(position);
         }
     }
 }
