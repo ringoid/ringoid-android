@@ -1,6 +1,8 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
+import com.ringoid.view.presenter.callback.IPresenterAdapterMessagesListener;
+
 public interface IPresenterAdapterMessages {
     int getItemsNum();
 
@@ -10,5 +12,11 @@ public interface IPresenterAdapterMessages {
 
     boolean isMessagesExist(int position);
 
-    void onClickScrolls();
+    void setListener(IPresenterAdapterMessagesListener listener);
+
+    boolean isChatEmpty(int position);
+
+    boolean isLikedAnyPhoto(int position);
+
+    void onClickChat(int adapterPosition);
 }

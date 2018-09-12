@@ -12,7 +12,7 @@ import java.util.WeakHashMap;
 public class CacheLikes implements ICacheLikes {
 
     private final String JSON_DATA = "{ \"data\":[" +
-            "{\"id\":\"123\", \"urls\":[{\"id\":\"111\",\"url\":\"f4/01.jpg\"}, {\"id\":\"112\",\"url\":\"f4/02.jpg\"},{\"url\":\"f4/03.jpg\"}, {\"id\":\"113\",\"url\":\"f4/04.jpg\"}]}," +
+            "{\"id\":\"123\", \"urls\":[{\"isLiked\":true,\"id\":\"111\",\"url\":\"f4/01.jpg\"}, {\"id\":\"112\",\"url\":\"f4/02.jpg\"},{\"url\":\"f4/03.jpg\"}, {\"id\":\"113\",\"url\":\"f4/04.jpg\"}]}," +
             "{\"id\":\"1234\",\"urls\":[{\"id\":\"121\",\"url\":\"f5/01.jpg\"}, {\"id\":\"122\",\"url\":\"f5/02.jpg\"},{\"url\":\"f5/03.jpg\"}, {\"id\":\"123\",\"url\":\"f5/04.png\"},{\"id\":\"124\",\"url\":\"f5/05.jpg\"}]}," +
             "{\"id\":\"1235\",\"urls\":[{\"id\":\"131\",\"url\":\"f9/01.jpg\"}, {\"id\":\"132\",\"url\":\"f9/02.jpg\"},{\"url\":\"f9/03.jpg\"}, {\"id\":\"133\",\"url\":\"f9/04.jpg\"}]}" +
             "]  }";

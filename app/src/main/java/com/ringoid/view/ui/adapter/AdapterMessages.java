@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.view.presenter.IPresenterAdapterMessages;
+import com.ringoid.view.presenter.callback.IPresenterAdapterMessagesListener;
 
 import javax.inject.Inject;
 
@@ -14,8 +15,11 @@ public class AdapterMessages extends AdapterBase {
     @Inject
     IPresenterAdapterMessages presenterAdapterMessages;
 
+    private IPresenterAdapterMessagesListener listenerPresenter;
+
     public AdapterMessages() {
         ApplicationRingoid.getComponent().inject(this);
+        presenterAdapterMessages.setListener(listenerPresenter = new ListenerPresenter());
     }
 
     @NonNull
@@ -29,4 +33,10 @@ public class AdapterMessages extends AdapterBase {
         return presenterAdapterMessages.getItemsNum();
     }
 
+    private class ListenerPresenter implements IPresenterAdapterMessagesListener {
+        @Override
+        public void onUpdate() {
+            notifyDataSetChanged();
+        }
+    }
 }
