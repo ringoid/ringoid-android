@@ -94,6 +94,8 @@ public class RepositoryRegisterCodeConfirm implements IRepositoryRegisterCodeCon
 
                 cacheToken.setToken(response.body().getToken());
                 cacheUser.setRegistered(response.body().isRegistered());
+                if (response.body().isRegistered())
+                    cacheUser.setUserOld();
                 notifySuccess();
             }
         }

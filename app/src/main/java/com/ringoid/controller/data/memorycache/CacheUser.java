@@ -87,6 +87,27 @@ public class CacheUser implements ICacheUser {
         saveData();
     }
 
+    @Override
+    public boolean isUserNew() {
+        DataUser data = getData();
+        if (data == null) return true;
+        return data.isUserNew();
+    }
+
+    @Override
+    public void setUserNew() {
+        DataUser data = getData();
+        if (data == null) return;
+        data.setUserNew();
+    }
+
+    @Override
+    public void setUserOld() {
+        DataUser data = getData();
+        if (data == null) return;
+        data.setUserOld();
+    }
+
     private DataUser getData() {
         if (data == null) data = cacheStorage.readObject(FileEnum.USER, DataUser.class);
         return data;

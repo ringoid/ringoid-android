@@ -12,7 +12,6 @@ import com.ringoid.controller.data.repository.callback.IRepositoryRegisterUserDe
 import com.ringoid.model.SEX;
 
 import java.lang.ref.WeakReference;
-import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -74,6 +73,7 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
                     && response.body().isSuccess()) {
 
                 cacheUser.setRegistered(true);
+                cacheUser.setUserNew();
                 notifySuccess();
             }
         }

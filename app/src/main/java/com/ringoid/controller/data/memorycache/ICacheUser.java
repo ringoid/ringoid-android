@@ -17,4 +17,10 @@ public interface ICacheUser {
     void setCustomerID(String customerID);
 
     String getCustomerID();
+
+    boolean isUserNew();
+
+    void setUserNew();
+
+    void setUserOld();
 }
