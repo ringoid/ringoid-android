@@ -54,7 +54,7 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
 
     @Override
     public void onClickScrolls() {
-        viewPopup.showToast(R.string.message_scroll_help);
+
     }
 
     @Override
@@ -103,6 +103,7 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
 
         @Override
         public void onSend(String message) {
+            viewPopup.showToast(R.string.message_sent);
             cacheLikes.setMessagesExist(userId);
         }
     }

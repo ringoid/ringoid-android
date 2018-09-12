@@ -32,6 +32,6 @@ public class PresenterAdapterExplore implements IPresenterAdapterExplore {
 
     @Override
     public void onClickScrolls() {
-        viewPopup.showToast(R.string.message_scroll_help);
+
     }
 }

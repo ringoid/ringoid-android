@@ -6,6 +6,7 @@ package com.ringoid.view;
 import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.ringoid.ApplicationRingoid;
 
@@ -31,10 +32,10 @@ public class ViewPopup implements IViewPopup {
     }
 
     @Override
-    public void showToast(int messageRes) {/*
+    public void showToast(int messageRes) {
         Context context = refContext.get();
         if (context == null) return;
-        Toast.makeText(context, messageRes, Toast.LENGTH_SHORT).show();*/
+        Toast.makeText(context, messageRes, Toast.LENGTH_SHORT).show();
     }
 
     @Override

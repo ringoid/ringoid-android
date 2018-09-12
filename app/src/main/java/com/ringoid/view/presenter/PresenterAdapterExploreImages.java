@@ -58,7 +58,7 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
 
     private void checkLikedAlready(int adapterPosition, int itemPosition) {
         if (!cacheExplore.isLiked(adapterPosition, itemPosition)) return;
-        viewPopup.showToast(R.string.message_explore_like_other);
+
     }
 
     private void checkLikesTutorial(int adapterPosition, int itemPosition) {
@@ -85,7 +85,7 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
             return;
         }
 
-        viewPopup.showToast(R.string.message_explore_like_other);
+
     }
 
     @Override

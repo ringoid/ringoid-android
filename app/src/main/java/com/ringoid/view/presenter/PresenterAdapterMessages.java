@@ -2,6 +2,7 @@
 package com.ringoid.view.presenter;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.listener.ICacheMessagesListener;
 import com.ringoid.view.INavigator;
@@ -105,6 +106,7 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
 
         @Override
         public void onSend(String message) {
+            viewPopup.showToast(R.string.message_sent);
             cacheMessages.setMessagesExist(userId);
         }
     }
