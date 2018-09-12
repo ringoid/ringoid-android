@@ -11,8 +11,6 @@ import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheSettingsPrivacyListener;
-import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
-import com.ringoid.controller.data.repository.callback.IRepositoryProfilePhotosListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.INavigatorPagesListener;
@@ -56,13 +54,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Inject
     ISettingsHelper settingsHelper;
 
-    @Inject
-    IRepositoryProfilePhotos repositoryProfilePhotos;
-
     private ListenerCacheSettings listenerCacheSettings;
     private INavigatorPagesListener listenerNavigatorPages;
     private ListenerCacheScroll listenerCacheScroll;
-    private ListenerRepositoryProfilePhotos listenerRepositoryProfilePhotos;
     private WeakReference<IPresenterPagesContainerListener> refListener;
 
     public PresenterPagesContainer() {
@@ -77,19 +71,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         navigatorPages.set(childFragmentManager, viewId);
         updateViewPrivacy();
         updateToolbar();
-        updateView();
-    }
-
-    private void updateView() {
-        navigatorPages.clearPage();
-        repositoryProfilePhotos.setListener(listenerRepositoryProfilePhotos = new ListenerRepositoryProfilePhotos());
-        repositoryProfilePhotos.request();
-        navigationHide();
-    }
-
-    private void navigationHide() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().navigationHide();
+        navigatorPages.navigateCurrentPage();
     }
 
     private void updateToolbar() {
@@ -217,21 +199,5 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
             refListener.get().setStatusBarColor(type);
         }
-    }
-
-    private class ListenerRepositoryProfilePhotos implements IRepositoryProfilePhotosListener {
-        @Override
-        public void onSuccess() {
-            if (refListener == null || refListener.get() == null) return;
-            repositoryProfilePhotos.removeListener();
-            refListener.get().navigationShow();
-
-            navigatorPages.navigateCurrentPage();
-        }
-
-        @Override
-        public void onError() {
-        }
-
     }
 }

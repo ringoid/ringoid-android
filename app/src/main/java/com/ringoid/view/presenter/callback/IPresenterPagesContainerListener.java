@@ -16,8 +16,4 @@ public interface IPresenterPagesContainerListener {
     void scrollComplete(boolean toolbarScroll, int scrollSum, int alpha);
 
     void statusbarHide();
-
-    void navigationHide();
-
-    void navigationShow();
 }

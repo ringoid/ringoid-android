@@ -118,16 +118,6 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void navigationHide() {
-            llBottomAppBar.setVisibility(View.GONE);
-        }
-
-        @Override
-        public void navigationShow() {
-            llBottomAppBar.setVisibility(View.VISIBLE);
-        }
-
-        @Override
         public void statusbarShow() {
             showStatusbar();
         }
