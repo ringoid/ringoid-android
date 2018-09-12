@@ -19,4 +19,8 @@ public interface ICachePhotoUpload {
     File getFile();
 
     void setFile(File file);
+
+    void setOriginPhotoId(String photoId);
+
+    String getPhotoId();
 }

@@ -1,10 +1,28 @@
 package com.ringoid.model;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
+import android.net.Uri;
+
 public class ProfilePhoto {
+    private static final int STATUS_UPLOADED = 2;
+    private static final int STATUS_UPLOADING = 1;
     private String photoId;
+    private String originPhotoId;
     private String photoUri;
     private int likes;
+    private boolean isLocal;
+    private int status;
+
+    public ProfilePhoto() {
+        isLocal = false;
+    }
+
+    public ProfilePhoto(Uri fileUri, String photoId) {
+        isLocal = true;
+        this.photoUri = fileUri.toString();
+        this.originPhotoId = photoId;
+        status = STATUS_UPLOADING;
+    }
 
     public String getPhotoId() {
         return photoId;
@@ -16,5 +34,21 @@ public class ProfilePhoto {
 
     public int getLikes() {
         return likes;
+    }
+
+    public String getOriginPhotoId() {
+        return originPhotoId;
+    }
+
+    public void setStatusUploaded() {
+        status = STATUS_UPLOADED;
+    }
+
+    public boolean isLocal() {
+        return isLocal;
+    }
+
+    public boolean isUploading() {
+        return status == STATUS_UPLOADING;
     }
 }

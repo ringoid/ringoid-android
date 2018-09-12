@@ -56,6 +56,8 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
                     && response.body().isSuccess()) {
 
                 cachePhotoUpload.setUploadUri(response.body().getUri());
+                cachePhotoUpload.setOriginPhotoId(response.body().getPhotoId());
+
                 repositoryPhotoUpload.request();
             }
 

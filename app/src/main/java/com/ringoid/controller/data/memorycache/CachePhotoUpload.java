@@ -10,6 +10,7 @@ public class CachePhotoUpload implements ICachePhotoUpload {
     private Uri uri;
     private String uploadUri;
     private File file;
+    private String photoId;
 
     @Override
     public void setUri(Uri file) {
@@ -44,5 +45,15 @@ public class CachePhotoUpload implements ICachePhotoUpload {
     @Override
     public void setFile(File file) {
         this.file = file;
+    }
+
+    @Override
+    public void setOriginPhotoId(String photoId) {
+        this.photoId = photoId;
+    }
+
+    @Override
+    public String getPhotoId() {
+        return photoId;
     }
 }

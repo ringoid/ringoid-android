@@ -118,6 +118,16 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
         repositoryProfileImageRemove.request(imageId);
     }
 
+    @Override
+    public boolean isPhotoLocal(int position) {
+        return cacheProfile.isPhotoLocal(position);
+    }
+
+    @Override
+    public boolean isPhotoUploading(int position) {
+        return cacheProfile.isPhotoUploading(position);
+    }
+
     private void updateView() {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().onUpdate();

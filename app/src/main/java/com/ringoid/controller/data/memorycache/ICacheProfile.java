@@ -1,6 +1,8 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.memorycache;
 
+import android.net.Uri;
+
 import com.ringoid.controller.data.memorycache.listener.ICacheProfileListener;
 import com.ringoid.model.ProfilePhoto;
 
@@ -22,4 +24,12 @@ public interface ICacheProfile {
     void removeItem(String imageId);
 
     boolean isDataExist();
+
+    void addPhotoLocal(Uri fileUri, String photoId);
+
+    void setPhotoLocalUploaded(String originPhotoId);
+
+    boolean isPhotoLocal(int position);
+
+    boolean isPhotoUploading(int position);
 }
