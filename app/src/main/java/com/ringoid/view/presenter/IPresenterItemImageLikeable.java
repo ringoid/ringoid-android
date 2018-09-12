@@ -10,7 +10,7 @@ public interface IPresenterItemImageLikeable {
 
     void onClickPrivacy(boolean b);
 
-    boolean isPhotoSelfExist();
+    boolean isUserOld();
 
     void showDialogNoPhoto();
 }

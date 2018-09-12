@@ -5,6 +5,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
+import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 
@@ -27,6 +28,9 @@ public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
     @Inject
     ICacheProfile cacheProfile;
 
+    @Inject
+    ICacheUser cacheUser;
+
     public PresenterItemImageLikeable() {
         ApplicationRingoid.getComponent().inject(this);
     }
@@ -41,7 +45,6 @@ public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
         return cacheTutorial.isShowDialogHiddenMode();
     }
 
-
     @Override
     public void onClickOK(boolean b) {
         cacheTutorial.setDialogHiddenModeShow(b);
@@ -54,8 +57,8 @@ public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
     }
 
     @Override
-    public boolean isPhotoSelfExist() {
-        return cacheProfile.isDataExist();
+    public boolean isUserOld() {
+        return !cacheUser.isUserNew();
     }
 
     @Override
