@@ -33,7 +33,7 @@
     <string name="settings_subtitle">Settings</string>
     <string name="dialog_report_title">Block this user?</string>
     <string name="dialog_report_item_1">Inappropriate content, sexually explicit, nudity, pornography</string>
-    <string name="dialog_report_item_2">Stolen photos, illegal content, fraud</string>
+    <string name="dialog_report_item_2">Stolen photos, Copyright infringement</string>
     <string name="dialog_report_message">They won\'t be able to see your photos, like or message you.</string>
     <string name="dialog_report_cancel">cancel</string>
     <string name="dialog_report_confirm">block</string>
