@@ -3,7 +3,9 @@ package com.ringoid.model;
 
 import android.net.Uri;
 
-public class ProfilePhoto {
+import java.io.Serializable;
+
+public class ProfilePhoto implements Serializable {
     private static final int STATUS_UPLOADED = 2;
     private static final int STATUS_UPLOADING = 1;
     private String photoId;

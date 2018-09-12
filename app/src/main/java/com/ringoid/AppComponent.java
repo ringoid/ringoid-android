@@ -2,6 +2,7 @@
 package com.ringoid;
 
 import com.ringoid.controller.data.memorycache.CacheBlacklist;
+import com.ringoid.controller.data.memorycache.CacheProfile;
 import com.ringoid.controller.data.memorycache.CacheScroll;
 import com.ringoid.controller.data.memorycache.CacheToken;
 import com.ringoid.controller.data.memorycache.CacheTutorial;
@@ -88,6 +89,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(CacheProfile param);
 
     void inject(RepositoryProfileImageRemove param);
 

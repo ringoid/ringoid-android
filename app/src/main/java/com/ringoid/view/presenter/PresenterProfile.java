@@ -54,6 +54,7 @@ public class PresenterProfile implements IPresenterProfile {
     public void onCreateView() {
         if (!cacheProfile.isDataExist())
             repositoryProfilePhotos.request();
+        else updateView();
     }
 
     @Override
