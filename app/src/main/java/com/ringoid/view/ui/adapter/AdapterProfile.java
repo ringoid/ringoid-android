@@ -62,6 +62,7 @@ public class AdapterProfile extends AdapterBase {
     }
 
     class ViewHolderItem extends ViewHolderBase implements View.OnClickListener {
+        private View ivRemove;
         private ImageView ivItem, ivStatus;
         private TextView tvLikes;
 
@@ -71,8 +72,9 @@ public class AdapterProfile extends AdapterBase {
             ivItem = itemView.findViewById(R.id.ivContent);
             ivStatus = itemView.findViewById(R.id.ivStatus);
             tvLikes = itemView.findViewById(R.id.tvLikes);
+            ivRemove = itemView.findViewById(R.id.ivRemove);
 
-            itemView.findViewById(R.id.ivRemove).setOnClickListener(this);
+            ivRemove.setOnClickListener(this);
             itemView.setOnClickListener(this);
             tvLikes.setOnClickListener(this);
         }
@@ -86,9 +88,11 @@ public class AdapterProfile extends AdapterBase {
 
         private void setStatus(int position) {
             ivStatus.setVisibility(View.GONE);
+            ivRemove.setVisibility(View.VISIBLE);
 
             if (presenterAdapterProfile.isPhotoLocal(position)) {
                 ivStatus.setVisibility(View.VISIBLE);
+                ivRemove.setVisibility(View.GONE);
                 ivStatus.setImageResource(presenterAdapterProfile.isPhotoUploading(position) ? R.drawable.ic_file_upload_gray_24dp : R.drawable.ic_file_upload_green_24dp);
             }
         }
