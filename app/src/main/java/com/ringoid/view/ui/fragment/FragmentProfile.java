@@ -4,6 +4,7 @@ package com.ringoid.view.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +31,8 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
     private IndicatorHelper dotsIndicatorHelper;
     private View vPhotos, vEmpty;
     private LinearLayoutManager layoutManager;
+    private SwipeRefreshLayout srlPhotos;
+    private ListenerRefreshLayout listenerRefreshLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +48,9 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
 
         vPhotos = view.findViewById(R.id.flPhotos);
         vEmpty = view.findViewById(R.id.flEmpty);
+        srlPhotos = view.findViewById(R.id.srlProfilePhotos);
 
+        srlPhotos.setOnRefreshListener(listenerRefreshLayout = new ListenerRefreshLayout());
         view.findViewById(R.id.fabProfile).setOnClickListener(this);
         view.findViewById(R.id.tvSettings).setOnClickListener(this);
         view.findViewById(R.id.llToolbarTitle).setOnClickListener(this);
@@ -93,6 +98,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         public void updateView() {
             if (getContext() == null) return;
             dotsIndicatorHelper.updateData(presenterProfile.getItemsNum());
+            srlPhotos.setRefreshing(false);
             setViewState();
         }
 
@@ -101,6 +107,13 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
             if (getContext() == null) return;
             updateView();
             layoutManager.scrollToPosition(position);
+        }
+    }
+
+    private class ListenerRefreshLayout implements SwipeRefreshLayout.OnRefreshListener {
+        @Override
+        public void onRefresh() {
+            presenterProfile.onSwipeRefresh();
         }
     }
 }

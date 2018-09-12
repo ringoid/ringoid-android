@@ -44,17 +44,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flToolbar">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvItems"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/srlProfilePhotos"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/view_image_profile" />
+            android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/flDots"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/flToolbar" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvItems"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/view_image_profile" />
+
+            <FrameLayout
+                android:id="@+id/flDots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/flToolbar" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
 
     </FrameLayout>
 

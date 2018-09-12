@@ -16,4 +16,6 @@ public interface IPresenterProfile {
     void onCreateView();
 
     void setListener(IPresenterProfileListener listener);
+
+    void onSwipeRefresh();
 }

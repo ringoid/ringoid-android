@@ -62,6 +62,11 @@ public class PresenterProfile implements IPresenterProfile {
         this.refListener = new WeakReference<>(listener);
     }
 
+    @Override
+    public void onSwipeRefresh() {
+        repositoryProfilePhotos.request();
+    }
+
     private void updateView() {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().updateView();
