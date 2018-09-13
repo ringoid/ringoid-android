@@ -33,7 +33,7 @@
                 android:id="@+id/tvDistance0"
                 style="@style/settings_menu_item"
                 android:text="@string/settings_privacy_distance_0"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:id="@+id/tvDistance10"
                 style="@style/settings_menu_item"
                 android:text="@string/settings_privacy_distance_1"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                 android:id="@+id/tvDistance25"
                 style="@style/settings_menu_item"
                 android:text="@string/settings_privacy_distance_25"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                 android:id="@+id/tvDistance50"
                 style="@style/settings_menu_item"
                 android:text="@string/settings_privacy_distance_2"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -77,7 +77,7 @@
                 android:id="@+id/tvDistance100"
                 style="@style/settings_menu_item"
                 android:text="@string/settings_privacy_distance_3"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                 android:id="@+id/tvDistance250"
                 style="@style/settings_menu_item"
                 android:text="@string/settings_privacy_distance_4"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
