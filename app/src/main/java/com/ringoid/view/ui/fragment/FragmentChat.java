@@ -22,6 +22,7 @@ import com.ringoid.view.ui.adapter.AdapterChatMessages;
 import com.ringoid.view.ui.dialog.DialogReport;
 import com.ringoid.view.ui.util.DividerItemDecoration;
 import com.ringoid.view.ui.util.GlideApp;
+import com.ringoid.view.ui.util.KeyboardUtils;
 
 import javax.inject.Inject;
 
@@ -29,6 +30,9 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
 
     @Inject
     IPresenterChat presenterChat;
+
+    @Inject
+    KeyboardUtils keyboardUtils;
 
     private ImageView ivUser;
     private ListenerPresenter listenerPresenter;
@@ -77,9 +81,17 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        keyboardUtils.keyboardShow(getContext(), etMessage);
+    }
+
+    @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.ivBack)
+        if (v.getId() == R.id.ivBack) {
+            keyboardUtils.keyboardHide(getContext(), getView());
             getActivity().onBackPressed();
+        }
 
         if (v.getId() == R.id.ivBlock)
             showMenu();
