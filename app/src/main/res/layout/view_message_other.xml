@@ -8,8 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="52dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/bg_chat_message_other"
         android:paddingBottom="12dp"
         android:paddingEnd="16dp"
@@ -21,9 +20,11 @@
             android:id="@+id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#686868"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
             android:visibility="gone"
-            tools:text="blabla" />
+            tools:text="blabla"
+            tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/ivMessage"
@@ -33,11 +34,5 @@
             android:visibility="gone" />
 
     </FrameLayout>
-
-    <ImageView
-        android:id="@+id/ivUser"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="16dp" />
 
 </FrameLayout>

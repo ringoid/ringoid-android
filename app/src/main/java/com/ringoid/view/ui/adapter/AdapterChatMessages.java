@@ -12,7 +12,6 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterChatMessages;
 import com.ringoid.view.presenter.callback.IPresenterAdapterChatMessagesListener;
-import com.ringoid.view.ui.util.GlideApp;
 
 import javax.inject.Inject;
 
@@ -49,32 +48,18 @@ public class AdapterChatMessages extends AdapterBase {
 
     private class ViewHolderItemChatMessage extends ViewHolderBase {
 
-        private ImageView ivUser, ivMessage;
+        private ImageView ivMessage;
         private TextView tvMessage;
 
         ViewHolderItemChatMessage(ViewGroup parent, int res) {
             super(parent, res);
-            ivUser = itemView.findViewById(R.id.ivUser);
             tvMessage = itemView.findViewById(R.id.tvMessage);
             ivMessage = itemView.findViewById(R.id.ivMessage);
         }
 
         @Override
         void setData(int position) {
-            setAvatar(position);
             setMessage(position);
-        }
-
-        private void setAvatar(int position) {
-            if (ivUser == null) return;
-            String url = presenterAdapterChatMessages.getUrl(position);
-            if (TextUtils.isEmpty(url))
-                ivUser.setImageDrawable(null);
-            else
-                GlideApp.with(itemView.getContext())
-                        .load(url)
-                        .circleCrop()
-                        .into(ivUser);
         }
 
         private void setMessage(int position) {

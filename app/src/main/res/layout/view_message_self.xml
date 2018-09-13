@@ -20,7 +20,8 @@
             android:id="@+id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#686868"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
             tools:text="blabla" />
 
 
