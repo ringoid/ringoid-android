@@ -23,37 +23,67 @@
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/splash_center" />
 
-            <CheckBox
-                android:id="@+id/cbTerms"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:gravity="top"
-                android:paddingStart="20dp"
-                android:text="@string/checkbox_terms"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-                android:textColor="@color/gray"
-                android:textColorLink="@color/gray"
-                android:textSize="17sp"
-                android:theme="@style/AppTheme.Green" />
+                android:orientation="horizontal"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
 
-            <CheckBox
-                android:id="@+id/cbAge"
+                <CheckBox
+                    android:id="@+id/cbTerms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="16dp"
+                    android:theme="@style/AppTheme.Green" />
+
+                <TextView
+
+                    android:id="@+id/tvTerms"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="16dp"
+                    android:text="@string/checkbox_terms"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/gray"
+                    android:textColorLink="@color/gray"
+                    android:textSize="17sp"
+                    android:theme="@style/AppTheme.Green" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:gravity="top"
-                android:paddingStart="20dp"
-                android:text="@string/checkbox_age"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-                android:textColor="@color/gray"
-                android:textColorLink="@color/gray"
-                android:textSize="17sp"
-                android:theme="@style/AppTheme.Green" />
+
+                android:orientation="horizontal"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <CheckBox
+                    android:id="@+id/cbAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="16dp"
+                    android:theme="@style/AppTheme.Green" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="16dp"
+                    android:text="@string/checkbox_age"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/gray"
+                    android:textColorLink="@color/gray"
+                    android:textSize="17sp"
+                    android:theme="@style/AppTheme.Green" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

@@ -100,7 +100,7 @@ public class FragmentLogin extends FragmentBase
         tvSexFemale = view.findViewById(R.id.tvSexFemale);
         tvSexMale = view.findViewById(R.id.tvSexMale);
 
-        cbTerms.setMovementMethod(new LinkMovementMethodInternal());
+        ((TextView) view.findViewById(R.id.tvTerms)).setMovementMethod(new LinkMovementMethodInternal());
 
         view.findViewById(R.id.tvRegister).setOnClickListener(this);
         view.findViewById(R.id.tvSexFemale).setOnClickListener(this);
