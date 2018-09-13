@@ -17,9 +17,9 @@ import com.steelkiwi.cropiwa.config.CropIwaSaveConfig;
 import com.steelkiwi.cropiwa.image.CropArea;
 import com.steelkiwi.cropiwa.image.CropIwaBitmapManager;
 import com.steelkiwi.cropiwa.image.CropIwaResultReceiver;
-import com.steelkiwi.cropiwa.util.LoadBitmapCommand;
 import com.steelkiwi.cropiwa.shape.CropIwaShapeMask;
 import com.steelkiwi.cropiwa.util.CropIwaLog;
+import com.steelkiwi.cropiwa.util.LoadBitmapCommand;
 
 /**
  * Created by yarolegovich on 02.02.2017.
@@ -81,7 +81,7 @@ public class CropIwaView extends FrameLayout {
             throw new IllegalStateException("imageConfig must be initialized before calling this method");
         }
         imageView = new CropIwaImageView(getContext(), imageConfig);
-        imageView.setBackgroundColor(Color.WHITE);
+        imageView.setBackgroundColor(Color.BLACK);
         gestureDetector = imageView.getImageTransformGestureDetector();
         addView(imageView);
     }
@@ -112,14 +112,14 @@ public class CropIwaView extends FrameLayout {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         //I think this "redundant" if statements improve code readability
         try {
-        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-            gestureDetector.onDown(ev);
-            return false;
-        }
-        if (overlayView.isResizing() || overlayView.isDraggingCropArea()) {
-            return false;
-        }
-        return true;
+            if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+                gestureDetector.onDown(ev);
+                return false;
+            }
+            if (overlayView.isResizing() || overlayView.isDraggingCropArea()) {
+                return false;
+            }
+            return true;
         } catch (IllegalArgumentException e) {
             //e.printStackTrace();
             return false;
@@ -208,6 +208,14 @@ public class CropIwaView extends FrameLayout {
         this.cropSaveCompleteListener = cropSaveCompleteListener;
     }
 
+    public interface CropSaveCompleteListener {
+        void onCroppedRegionSaved(Uri bitmapUri);
+    }
+
+    public interface ErrorListener {
+        void onError(Throwable e);
+    }
+
     private class BitmapLoadListener implements CropIwaBitmapManager.BitmapLoadListener {
 
         @Override
@@ -261,13 +269,5 @@ public class CropIwaView extends FrameLayout {
         private boolean shouldReInit() {
             return overlayConfig.isDynamicCrop() != (overlayView instanceof CropIwaDynamicOverlayView);
         }
-    }
-
-    public interface CropSaveCompleteListener {
-        void onCroppedRegionSaved(Uri bitmapUri);
-    }
-
-    public interface ErrorListener {
-        void onError(Throwable e);
     }
 }
