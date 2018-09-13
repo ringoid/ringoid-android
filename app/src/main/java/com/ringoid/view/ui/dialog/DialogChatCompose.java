@@ -53,6 +53,6 @@ public class DialogChatCompose implements View.OnClickListener {
 
     private void notifySend() {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().onSend(etMessage.getText().toString());
+        refListener.get().onSend(etMessage.getText().toString().trim());
     }
 }

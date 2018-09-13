@@ -50,6 +50,8 @@ public class PresenterChat implements IPresenterChat {
 
     @Override
     public void onClickSend(String message) {
+        message = message.trim();
+
         if (TextUtils.isEmpty(message)) return;
         cacheChatMessages.addMessage(message);
     }
