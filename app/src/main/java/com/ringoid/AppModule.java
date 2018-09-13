@@ -120,6 +120,7 @@ import com.ringoid.view.presenter.util.LogoutHelper;
 import com.ringoid.view.presenter.util.SettingsHelper;
 import com.ringoid.view.ui.util.IScreenHelper;
 import com.ringoid.view.ui.util.IStatusBarViewHelper;
+import com.ringoid.view.ui.util.KeyboardUtils;
 import com.ringoid.view.ui.util.ScreenHelper;
 import com.ringoid.view.ui.util.StatusBarViewHelper;
 
@@ -179,6 +180,12 @@ class AppModule {
     @Singleton
     ILogoutHelper getLogoutHelper() {
         return new LogoutHelper();
+    }
+
+    @Provides
+    @Singleton
+    KeyboardUtils getKeyboardUtils() {
+        return new KeyboardUtils();
     }
 
     @Provides

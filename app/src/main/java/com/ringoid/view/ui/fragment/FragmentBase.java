@@ -1,24 +1,27 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.fragment;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.ringoid.view.ui.util.KeyboardUtils;
+
+import javax.inject.Inject;
+
 public class FragmentBase extends Fragment {
+
+    @Inject
+    KeyboardUtils keyboardUtils;
+
     public boolean onBackPressed() {
         return false;
     }
 
     void showKeyboard(EditText editView) {
-        editView.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(editView, InputMethodManager.SHOW_IMPLICIT);
+        keyboardUtils.keyboardShow(getContext(), editView);
     }
 
     void hideKeyboard() {
-        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+        keyboardUtils.keyboardHide(getContext(), getView());
     }
 }
