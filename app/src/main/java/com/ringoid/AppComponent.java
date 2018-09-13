@@ -62,6 +62,7 @@ import com.ringoid.view.ui.adapter.ViewHolderItemLikes;
 import com.ringoid.view.ui.adapter.ViewHolderItemLikesImages;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessage;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessagesImages;
+import com.ringoid.view.ui.dialog.DialogChatCompose;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import com.ringoid.view.ui.fragment.FragmentChat;
@@ -89,6 +90,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(DialogChatCompose param);
 
     void inject(CacheProfile param);
 

@@ -2,27 +2,39 @@ package com.ringoid.view.ui.dialog;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.design.widget.BottomSheetDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 
+import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
+import com.ringoid.view.ui.util.KeyboardUtils;
 
 import java.lang.ref.WeakReference;
 
+import javax.inject.Inject;
+
 public class DialogChatCompose implements View.OnClickListener {
 
-    private TextView etMessage;
+    @Inject
+    KeyboardUtils keyboardUtils;
+
+    private View view;
+    private EditText etMessage;
     private WeakReference<IDialogChatComposeListener> refListener;
     private BottomSheetDialog dialog;
 
     public DialogChatCompose(Context context, IDialogChatComposeListener listener) {
+        ApplicationRingoid.getComponent().inject(this);
         this.refListener = new WeakReference<>(listener);
         dialog = new BottomSheetDialog(context);
-        View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_chat_compose, null);
+        view = LayoutInflater.from(context).inflate(R.layout.view_dialog_chat_compose, null);
         dialog.setContentView(view);
+        dialog.setOnShowListener(new ListenerDialogShow());
 
         etMessage = view.findViewById(R.id.etMessage);
         view.findViewById(R.id.flContent).setOnClickListener(this);
@@ -41,6 +53,8 @@ public class DialogChatCompose implements View.OnClickListener {
     public void onClick(View v) {
 
         if (v.getId() == R.id.ivSend) {
+            if (TextUtils.isEmpty(etMessage.getText().toString().trim())) return;
+            keyboardUtils.keyboardHide(dialog.getContext(), view);
             notifySend();
             cancel();
         }
@@ -54,5 +68,12 @@ public class DialogChatCompose implements View.OnClickListener {
     private void notifySend() {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().onSend(etMessage.getText().toString().trim());
+    }
+
+    private class ListenerDialogShow implements DialogInterface.OnShowListener {
+        @Override
+        public void onShow(DialogInterface dialog) {
+            keyboardUtils.keyboardShow(DialogChatCompose.this.dialog.getContext(), etMessage);
+        }
     }
 }
