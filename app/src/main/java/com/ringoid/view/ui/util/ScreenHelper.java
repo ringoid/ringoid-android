@@ -4,6 +4,7 @@ package com.ringoid.view.ui.util;
 import android.content.Context;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.model.IMAGE_SUPPORTED;
 
 import java.lang.ref.WeakReference;
 
@@ -21,10 +22,11 @@ public class ScreenHelper implements IScreenHelper {
     @Override
     public String getImageRatioString() {
         if (refContext == null || refContext.get() == null)
-            return "480x640";
+            return IMAGE_SUPPORTED.x1.getValue();
 
         int w = refContext.get().getResources().getDisplayMetrics().widthPixels;
 
-        return String.valueOf(w + "x" + (int) (w / 3f * 4));
+        IMAGE_SUPPORTED item = IMAGE_SUPPORTED.getClosestWidthUp(w);
+        return item.getValue();
     }
 }
