@@ -57,7 +57,7 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
 
     @Override
     public boolean isMessagesExist(int position) {
-        return position == 2;
+        return position == 2 || position == 1;
     }
 
     @Override

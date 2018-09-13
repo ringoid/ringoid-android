@@ -54,10 +54,17 @@ public class ViewHolderItemMessage extends ViewHolderItemLikeBase {
         super.setData(position);
         adapter.setPosition(position);
         dotsIndicatorHelper.updateData(presenterAdapterMessages.getItemsNum(position));
+        setMessageState(position);
+    }
+
+    private void setMessageState(int position) {
+        if (!presenterAdapterMessages.isMessagesExist(position)) {
+            ivMessage.setImageDrawable(null);
+            return;
+        }
+
         ivMessage.setImageResource(presenterAdapterMessages.isMessagesNew(position)
-                ? R.drawable.ic_message_full_green_24dp
-                : presenterAdapterMessages.isMessagesExist(position)
-                ? R.drawable.ic_message_dots_green_24dp
-                : R.drawable.ic_message_border_green_24dp);
+                ? R.drawable.ic_mail_green_24dp
+                : R.drawable.ic_mail_open_green_24dp);
     }
 }
