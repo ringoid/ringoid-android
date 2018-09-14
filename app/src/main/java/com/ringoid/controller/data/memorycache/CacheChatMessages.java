@@ -1,32 +1,40 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.memorycache;
 
-import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
-import com.ringoid.model.DataMessage;
+import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
+import com.ringoid.ApplicationRingoid;
+import com.ringoid.BuildConfig;
+import com.ringoid.controller.data.FileEnum;
+import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
+import com.ringoid.controller.device.ICacheStorage;
+import com.ringoid.model.DataMessage;
+import com.ringoid.model.ModelChat;
+
+import java.util.Random;
 import java.util.WeakHashMap;
+
+import javax.inject.Inject;
 
 public class CacheChatMessages implements ICacheChatMessages {
 
-    public static final String SMILE_SHY = ":wink:";
-    public static final String SMILE_LOVE = ":love:";
-    public static final String SMILE_KISS = ":kiss:";
-    public static final String SMILE_HEART = ":heart:";
+    @Inject
+    Random random;
+
+    @Inject
+    ICacheStorage cacheStorage;
 
     private WeakHashMap<String, ICacheChatMessagesListener> listeners;
-
-    private ArrayList<DataMessage> data;
-    private boolean isSendEnabled;
+    private ModelChat data;
 
     public CacheChatMessages() {
-        resetCache();
+        ApplicationRingoid.getComponent().inject(this);
     }
 
     @Override
     public void resetCache() {
-        isSendEnabled = false;
         data = null;
+        cacheStorage.removeData(FileEnum.CHAT_CACHE);
         notifyListeners();
     }
 
@@ -40,22 +48,25 @@ public class CacheChatMessages implements ICacheChatMessages {
     }
 
     @Override
-    public void addMessage(String message) {
-        if (data == null) data = new ArrayList<>();
-        data.add(new DataMessage(true, message, "file:///android_asset/m1/01.jpg"));
-        data.add(new DataMessage(false, "test", "file:///android_asset/f1/01.jpg"));
-        isSendEnabled = true;
+    public void addMessage(String userSelectedID, String message) {
+        getData().add(new DataMessage(true, message), userSelectedID);
+
+        if (random.nextBoolean() && BuildConfig.DEBUG)
+            getData().add(new DataMessage(false, "test"), userSelectedID);
+        cacheStorage.writeData(FileEnum.CHAT_CACHE, data);
         notifyListeners();
     }
 
-    @Override
-    public boolean isDataExist() {
-        return data != null && data.size() > 0;
+    @NonNull
+    private ModelChat getData() {
+        if (data == null) data = cacheStorage.readObject(FileEnum.CHAT_CACHE, ModelChat.class);
+        if (data == null) data = new ModelChat();
+        return data;
     }
 
     @Override
-    public boolean isSendEnabled() {
-        return isSendEnabled;
+    public boolean isDataExist(String userSelectedID) {
+        return getData().size(userSelectedID) > 0;
     }
 
     @Override
@@ -65,22 +76,22 @@ public class CacheChatMessages implements ICacheChatMessages {
     }
 
     @Override
-    public int getDataSize() {
-        return data == null ? 0 : data.size();
+    public int getDataSize(String userId) {
+        return getData().size(userId);
     }
 
     @Override
-    public boolean isSelf(int position) {
-        return data == null || position >= data.size() || position < 0 ? false : data.get(position).isSelf();
+    public boolean isSelf(String userSelectedID, int position) {
+        return position >= getData().size(userSelectedID) || position < 0 ? false : data.isSelf(userSelectedID, position);
     }
 
     @Override
-    public String getUrl(int position) {
-        return data == null || position >= data.size() || position < 0 ? null : data.get(position).getUrl();
+    public String getMessage(String userSelectedID, int position) {
+        return position >= getData().size(userSelectedID) || position < 0 ? null : data.getMessage(userSelectedID,position);
     }
 
     @Override
-    public String getMessage(int position) {
-        return data == null || position >= data.size() || position < 0 ? null : data.get(position).getMessage();
+    public void resetCache(String userSelectedID) {
+        getData().resetCache(userSelectedID);
     }
 }

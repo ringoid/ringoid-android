@@ -125,6 +125,7 @@ import com.ringoid.view.ui.util.ScreenHelper;
 import com.ringoid.view.ui.util.StatusBarViewHelper;
 
 import java.lang.ref.WeakReference;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -174,6 +175,12 @@ class AppModule {
     @Singleton
     WeakReference<Context> getContext() {
         return refContext;
+    }
+
+    @Provides
+    @Singleton
+    Random getRandom() {
+        return new Random();
     }
 
     @Provides

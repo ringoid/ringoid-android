@@ -24,14 +24,6 @@
             android:textSize="14sp"
             tools:text="blabla" />
 
-
-        <ImageView
-            android:id="@+id/ivMessage"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_smile_in_love"
-            android:visibility="gone" />
-
     </FrameLayout>
 
 </FrameLayout>

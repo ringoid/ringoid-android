@@ -6,19 +6,17 @@ import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListen
 public interface ICacheChatMessages {
     void resetCache();
 
-    void addMessage(String message);
+    void addMessage(String userSelectedID, String message);
 
-    boolean isDataExist();
-
-    boolean isSendEnabled();
+    boolean isDataExist(String userSelectedID);
 
     void addListener(ICacheChatMessagesListener listener);
 
-    int getDataSize();
+    int getDataSize(String urlSelectedUser);
 
-    boolean isSelf(int position);
+    boolean isSelf(String userSelectedID, int position);
 
-    String getUrl(int position);
+    String getMessage(String userSelectedID, int position);
 
-    String getMessage(int position);
+    void resetCache(String userSelectedID);
 }

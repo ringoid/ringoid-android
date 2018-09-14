@@ -8,15 +8,7 @@ public interface IPresenterAdapterChatMessages {
 
     boolean isMessageSelf(int position);
 
-    String getUrl(int position);
-
     String getMessage(int position);
 
     void setListener(IPresenterAdapterChatMessagesListener messagesListener);
-
-    boolean isMessageText(int position);
-
-    boolean isMessageSmile(int position);
-
-    int getMessageSmile(int position);
 }

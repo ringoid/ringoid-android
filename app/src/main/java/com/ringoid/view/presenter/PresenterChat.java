@@ -36,7 +36,6 @@ public class PresenterChat implements IPresenterChat {
 
     @Override
     public void onCreateView() {
-        cacheChatMessages.resetCache();
         setView();
         navigator.statusbarShow();
     }
@@ -45,7 +44,7 @@ public class PresenterChat implements IPresenterChat {
         if (refListener == null || refListener.get() == null) return;
 
         refListener.get().setImage("file:///android_asset/" + cacheMessages.getUrlSelectedUser());
-        refListener.get().setDataExist(cacheChatMessages.isDataExist());
+        refListener.get().setDataExist(cacheChatMessages.isDataExist(cacheMessages.getUserSelectedID()));
     }
 
     @Override
@@ -58,12 +57,12 @@ public class PresenterChat implements IPresenterChat {
         message = message.trim();
 
         if (TextUtils.isEmpty(message)) return;
-        cacheChatMessages.addMessage(message);
+        cacheChatMessages.addMessage(cacheMessages.getUserSelectedID(), message);
     }
 
     @Override
     public void onClickClear() {
-        cacheChatMessages.resetCache();
+        cacheChatMessages.resetCache(cacheMessages.getUserSelectedID());
     }
 
     private class ListenerCacheChatMessages implements ICacheChatMessagesListener {

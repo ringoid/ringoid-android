@@ -88,6 +88,11 @@ public class CacheMessages implements ICacheMessages {
         listeners.put(listener.getClass().getName(), listener);
     }
 
+    @Override
+    public String getUserSelectedID() {
+        return selectedUserId;
+    }
+
     private void notifyListeners() {
         if (listeners == null) return;
         for (String name : listeners.keySet()) {

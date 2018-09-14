@@ -25,4 +25,6 @@ public interface ICacheMessages {
     void setMessagesExist(String userId);
 
     void addListener(ICacheMessagesListener listener);
+
+    String getUserSelectedID();
 }

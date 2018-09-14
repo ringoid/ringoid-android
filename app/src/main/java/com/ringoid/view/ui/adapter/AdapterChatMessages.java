@@ -3,9 +3,7 @@ package com.ringoid.view.ui.adapter;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ringoid.ApplicationRingoid;
@@ -18,12 +16,12 @@ import javax.inject.Inject;
 public class AdapterChatMessages extends AdapterBase {
 
     private final PresenterListener listenerPresenter;
+
     @Inject
     IPresenterAdapterChatMessages presenterAdapterChatMessages;
 
     private int TYPE_SELF = 0,
             TYPE_OTHER = 1;
-
 
     public AdapterChatMessages() {
         ApplicationRingoid.getComponent().inject(this);
@@ -48,13 +46,11 @@ public class AdapterChatMessages extends AdapterBase {
 
     private class ViewHolderItemChatMessage extends ViewHolderBase {
 
-        private ImageView ivMessage;
         private TextView tvMessage;
 
         ViewHolderItemChatMessage(ViewGroup parent, int res) {
             super(parent, res);
             tvMessage = itemView.findViewById(R.id.tvMessage);
-            ivMessage = itemView.findViewById(R.id.ivMessage);
         }
 
         @Override
@@ -63,20 +59,8 @@ public class AdapterChatMessages extends AdapterBase {
         }
 
         private void setMessage(int position) {
-            tvMessage.setVisibility(View.GONE);
-            ivMessage.setVisibility(View.GONE);
-
-            if (presenterAdapterChatMessages.isMessageText(position)) {
-                String message = presenterAdapterChatMessages.getMessage(position);
-                tvMessage.setText(TextUtils.isEmpty(message) ? "" : message);
-                tvMessage.setVisibility(View.VISIBLE);
-            }
-
-            if (presenterAdapterChatMessages.isMessageSmile(position)) {
-                int res = presenterAdapterChatMessages.getMessageSmile(position);
-                ivMessage.setImageResource(res);
-                ivMessage.setVisibility(View.VISIBLE);
-            }
+            String message = presenterAdapterChatMessages.getMessage(position);
+            tvMessage.setText(TextUtils.isEmpty(message) ? "" : message);
         }
     }
 
