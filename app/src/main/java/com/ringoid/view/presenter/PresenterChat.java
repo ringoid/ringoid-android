@@ -7,6 +7,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
+import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.callback.IPresenterChatListener;
 
 import java.lang.ref.WeakReference;
@@ -23,6 +24,9 @@ public class PresenterChat implements IPresenterChat {
     @Inject
     ICacheChatMessages cacheChatMessages;
 
+    @Inject
+    INavigator navigator;
+
     private WeakReference<IPresenterChatListener> refListener;
 
     public PresenterChat() {
@@ -34,6 +38,7 @@ public class PresenterChat implements IPresenterChat {
     public void onCreateView() {
         cacheChatMessages.resetCache();
         setView();
+        navigator.statusbarShow();
     }
 
     private void setView() {

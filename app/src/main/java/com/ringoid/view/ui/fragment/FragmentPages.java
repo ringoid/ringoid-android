@@ -75,26 +75,6 @@ public class FragmentPages extends FragmentBase
             presenterPagesContainer.onClickPageExplore();
     }
 
-    private void hideStatusbar() {
-        if (getActivity() == null) return;
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
-        View decorView = getActivity().getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-    }
-
-    private void showStatusbar() {
-        if (getActivity() == null) return;
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
-        View decorView = getActivity().getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_VISIBLE;
-        decorView.setSystemUiVisibility(uiOptions);
-        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-    }
-
     private class ListenerPresenter implements IPresenterPagesContainerListener {
 
         @Override
@@ -110,16 +90,6 @@ public class FragmentPages extends FragmentBase
                     .alpha(alpha)
                     .translationY(scrollSum)
                     .setDuration(250);
-        }
-
-        @Override
-        public void statusbarHide() {
-            hideStatusbar();
-        }
-
-        @Override
-        public void statusbarShow() {
-            showStatusbar();
         }
 
         @Override

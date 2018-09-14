@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 
 import com.ringoid.BuildConfig;
 import com.ringoid.R;
@@ -140,6 +141,22 @@ public class Navigator implements INavigator {
                 .addToBackStack(null)
                 .replace(viewId, new FragmentDataProtection(), CURRENT_FRAGMENT_PAGE)
                 .commit();
+    }
+
+    @Override
+    public void statusbarShow() {
+        if (refActivity == null || refActivity.get() == null) return;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+
+        refActivity.get().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    @Override
+    public void statusbarHide() {
+        if (refActivity == null || refActivity.get() == null) return;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+
+        refActivity.get().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void navigatePhotoCrop(Uri data) {

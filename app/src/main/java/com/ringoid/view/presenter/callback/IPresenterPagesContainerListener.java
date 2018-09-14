@@ -5,8 +5,6 @@ public interface IPresenterPagesContainerListener {
 
     void setPosition(boolean toolbarScroll, int topPos, int bottomPos, float alpha);
 
-    void statusbarShow();
-
     void setPageSelected(int num);
 
     void setBottomSheetDrawables(int profile, int likes, int messages, int explore);
@@ -15,5 +13,4 @@ public interface IPresenterPagesContainerListener {
 
     void scrollComplete(boolean toolbarScroll, int scrollSum, int alpha);
 
-    void statusbarHide();
 }

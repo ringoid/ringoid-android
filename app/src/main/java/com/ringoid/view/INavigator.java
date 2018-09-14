@@ -44,4 +44,8 @@ public interface INavigator {
     void navigateProfileUpdate();
 
     void navigateSettingsDataProtection();
+
+    void statusbarShow();
+
+    void statusbarHide();
 }

@@ -77,10 +77,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     private void updateToolbar() {
         cacheScroll.resetCache();
 
-        if (refListener == null || refListener.get() == null) return;
         if (navigatorPages.isPageProfile())
-            refListener.get().statusbarShow();
-        else refListener.get().statusbarHide();
+            navigator.statusbarShow();
+        else navigator.statusbarHide();
     }
 
     private void updateViewBottomSheet() {
@@ -106,8 +105,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public void onClickPageLikes() {
         cacheScroll.resetCache();
 
-        if (refListener != null && refListener.get() != null)
-            refListener.get().statusbarHide();
+        navigator.statusbarHide();
 
         if (navigatorPages.isPageLikes()) {
             if (!presenterLikes.isPositionTop())
@@ -124,8 +122,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public void onClickPageProfile() {
         cacheScroll.resetCache();
 
-        if (refListener != null && refListener.get() != null)
-            refListener.get().statusbarShow();
+        navigator.statusbarShow();
 
         navigatorPages.navigateProfile();
     }
@@ -134,8 +131,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public void onClickPageMessages() {
         cacheScroll.resetCache();
 
-        if (refListener != null && refListener.get() != null)
-            refListener.get().statusbarHide();
+        navigator.statusbarHide();
 
         navigatorPages.navigateMessages();
     }
@@ -144,8 +140,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public void onClickPageExplore() {
         cacheScroll.resetCache();
 
-        if (refListener != null && refListener.get() != null)
-            refListener.get().statusbarHide();
+        navigator.statusbarHide();
 
         if (navigatorPages.isPageExplore()) {
             if (!presenterExplore.isPositionTop())
