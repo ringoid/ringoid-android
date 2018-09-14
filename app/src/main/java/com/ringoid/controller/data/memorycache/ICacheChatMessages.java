@@ -19,4 +19,8 @@ public interface ICacheChatMessages {
     String getMessage(String userSelectedID, int position);
 
     void resetCache(String userSelectedID);
+
+    boolean isMessageNew(String userId);
+
+    void setReaded(String userSelectedID);
 }

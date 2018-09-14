@@ -8,6 +8,7 @@ class ChatInstance implements Serializable {
 
     private String userId;
     private ArrayList<DataMessage> data;
+    private boolean isReaded;
 
     ChatInstance(String userSelectedID) {
         this.userId = userSelectedID;
@@ -16,6 +17,7 @@ class ChatInstance implements Serializable {
     public void add(DataMessage dataMessage) {
         if (data == null) data = new ArrayList<>();
         data.add(dataMessage);
+        if (!dataMessage.isSelf()) isReaded = false;
     }
 
     public boolean isWithUser(String userSelectedID) {
@@ -32,5 +34,13 @@ class ChatInstance implements Serializable {
 
     public boolean isSelf(int position) {
         return data == null || position < 0 || position >= data.size() ? null : data.get(position).isSelf();
+    }
+
+    public boolean isReaded() {
+        return isReaded;
+    }
+
+    public void setReaded() {
+        isReaded = true;
     }
 }

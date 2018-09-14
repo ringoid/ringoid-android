@@ -3,7 +3,9 @@ package com.ringoid.view.presenter;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
+import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheMessagesListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
@@ -29,15 +31,18 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
     @Inject
     IViewDialogs viewDialogs;
 
+    @Inject
+    ICacheChatMessages cacheChatMessages;
+
+    private ListenerCacheChatMessages listenerCacheChatMessages;
     private ICacheMessagesListener listenerCacheMessages;
-
     private WeakReference<IPresenterAdapterMessagesListener> refListener;
-
     private ListenerDialogChatCompose listenerDialogChatCompose;
 
     public PresenterAdapterMessages() {
         ApplicationRingoid.getComponent().inject(this);
         cacheMessages.addListener(listenerCacheMessages = new ListenerCacheMessages());
+        cacheChatMessages.addListener(listenerCacheChatMessages = new ListenerCacheChatMessages());
     }
 
     @Override
@@ -52,12 +57,12 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
 
     @Override
     public boolean isMessagesNew(int position) {
-        return position == 1;
+        return cacheChatMessages.isMessageNew(cacheMessages.getUserId(position));
     }
 
     @Override
     public boolean isMessagesExist(int position) {
-        return position == 2 || position == 1;
+        return cacheChatMessages.isDataExist(cacheMessages.getUserId(position));
     }
 
     @Override
@@ -67,7 +72,7 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
 
     @Override
     public boolean isChatEmpty(int position) {
-        return !cacheMessages.isMessagesExist(position);
+        return !cacheChatMessages.isDataExist(cacheMessages.getUserId(position));
     }
 
     @Override
@@ -107,7 +112,15 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
         @Override
         public void onSend(String message) {
             viewPopup.showToast(R.string.message_sent);
-            cacheMessages.setMessagesExist(userId);
+            cacheChatMessages.addMessage(userId, message);
+        }
+    }
+
+    private class ListenerCacheChatMessages implements ICacheChatMessagesListener {
+        @Override
+        public void onDataChange() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onUpdate();
         }
     }
 }

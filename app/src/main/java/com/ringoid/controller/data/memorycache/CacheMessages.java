@@ -63,24 +63,9 @@ public class CacheMessages implements ICacheMessages {
     }
 
     @Override
-    public boolean isMessagesExist(int position) {
-        DataProfile item = data.get(position);
-        return item.isMessagesExist();
-    }
-
-    @Override
     public String getUserId(int position) {
         return data.get(position).getId();
     }
-
-    @Override
-    public void setMessagesExist(String userId) {
-        DataProfile item = getUserById(userId);
-        if (item == null) return;
-        item.setMessagesExist(true);
-        notifyListeners();
-    }
-
 
     @Override
     public void addListener(ICacheMessagesListener listener) {
@@ -91,6 +76,11 @@ public class CacheMessages implements ICacheMessages {
     @Override
     public String getUserSelectedID() {
         return selectedUserId;
+    }
+
+    @Override
+    public void setUserSelected(String userId) {
+        selectedUserId = userId;
     }
 
     private void notifyListeners() {

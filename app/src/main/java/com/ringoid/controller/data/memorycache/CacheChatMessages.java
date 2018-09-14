@@ -54,7 +54,8 @@ public class CacheChatMessages implements ICacheChatMessages {
         if (random.nextBoolean() && BuildConfig.DEBUG)
             getData().add(new DataMessage(false, "test"), userSelectedID);
         cacheStorage.writeData(FileEnum.CHAT_CACHE, data);
-        notifyListeners();
+
+        setReaded(userSelectedID);
     }
 
     @NonNull
@@ -93,5 +94,18 @@ public class CacheChatMessages implements ICacheChatMessages {
     @Override
     public void resetCache(String userSelectedID) {
         getData().resetCache(userSelectedID);
+        notifyListeners();
+    }
+
+    @Override
+    public boolean isMessageNew(String userId) {
+        return !getData().isReaded(userId);
+    }
+
+    @Override
+    public void setReaded(String userSelectedID) {
+        getData().setReaded(userSelectedID);
+        cacheStorage.writeData(FileEnum.CHAT_CACHE, getData());
+        notifyListeners();
     }
 }

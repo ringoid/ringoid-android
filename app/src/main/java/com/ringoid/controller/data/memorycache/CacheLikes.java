@@ -58,6 +58,7 @@ public class CacheLikes implements ICacheLikes {
     @Override
     public void changeLiked(int adapterPosition, int itemPosition) {
         data.get(adapterPosition).changeLiked(itemPosition);
+        notifyListeners();
     }
 
     @Override
@@ -66,21 +67,8 @@ public class CacheLikes implements ICacheLikes {
     }
 
     @Override
-    public boolean isMessagesExist(int adapterPosition) {
-        return data.get(adapterPosition).isMessagesExist();
-    }
-
-    @Override
     public String getUserId(int adapterPosition) {
         return data.get(adapterPosition).getId();
-    }
-
-    @Override
-    public void setMessagesExist(String userId) {
-        DataProfile item = getUserById(userId);
-        if (item == null) return;
-        item.setMessagesExist(true);
-        notifyListeners();
     }
 
     @Override

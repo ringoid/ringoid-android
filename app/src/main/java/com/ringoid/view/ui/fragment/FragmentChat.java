@@ -115,7 +115,7 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
 
         @Override
         public void setImage(String url) {
-
+            if (getContext() == null) return;
             if (TextUtils.isEmpty(url))
                 ivUser.setImageDrawable(null);
             else

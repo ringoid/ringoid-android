@@ -38,6 +38,7 @@ public class PresenterChat implements IPresenterChat {
     public void onCreateView() {
         setView();
         navigator.statusbarShow();
+        cacheChatMessages.setReaded(cacheMessages.getUserSelectedID());
     }
 
     private void setView() {

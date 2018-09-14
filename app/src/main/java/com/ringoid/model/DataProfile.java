@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class DataProfile {
     private ArrayList<DataImage> urls;
     private String id;
-    private boolean messagesExist;
 
     public String getId() {
         return id;
@@ -34,14 +33,6 @@ public class DataProfile {
 
     public String getImageId(int itemPosition) {
         return urls.get(itemPosition).getId();
-    }
-
-    public boolean isMessagesExist() {
-        return messagesExist;
-    }
-
-    public void setMessagesExist(boolean flag) {
-        messagesExist = flag;
     }
 
     public boolean isLikedAnyPhoto() {

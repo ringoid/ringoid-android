@@ -3,8 +3,10 @@ package com.ringoid.view.presenter;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
+import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheLikesListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
@@ -33,6 +35,10 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
     @Inject
     IViewDialogs viewDialogs;
 
+    @Inject
+    ICacheChatMessages cacheChatMessages;
+
+    private ListenerCacheChatMessages listenerCacheChatMessages;
     private ListenerDialogChatCompose listenerDialogChatCompose;
     private ListenerCacheLikes listenerCacheLikes;
     private WeakReference<IPresenterAdapterLikesListener> refListener;
@@ -40,6 +46,7 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
     public PresenterAdapterLikes() {
         ApplicationRingoid.getComponent().inject(this);
         cacheLikes.addListener(listenerCacheLikes = new ListenerCacheLikes());
+        cacheChatMessages.addListener(listenerCacheChatMessages = new ListenerCacheChatMessages());
     }
 
     @Override
@@ -52,10 +59,6 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
         return cacheLikes.getItemsNum(position);
     }
 
-    @Override
-    public void onClickScrolls() {
-
-    }
 
     @Override
     public void setListener(IPresenterAdapterLikesListener listener) {
@@ -64,14 +67,14 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
 
     @Override
     public boolean isChatEmpty(int position) {
-        return !cacheLikes.isMessagesExist(position);
+        return !cacheChatMessages.isDataExist(cacheLikes.getUserId(position));
     }
 
     @Override
     public void onClickChat(int position) {
         boolean isChatEmpty = isChatEmpty(position);
 
-        cacheMessages.setUserSelected(position);
+        cacheMessages.setUserSelected(cacheLikes.getUserId(position));
 
         if (isChatEmpty) {
             viewDialogs.showDialogChatCompose(listenerDialogChatCompose = new ListenerDialogChatCompose(cacheLikes.getUserId(position)));
@@ -104,7 +107,15 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
         @Override
         public void onSend(String message) {
             viewPopup.showToast(R.string.message_sent);
-            cacheLikes.setMessagesExist(userId);
+            cacheChatMessages.addMessage(userId, message);
+        }
+    }
+
+    private class ListenerCacheChatMessages implements ICacheChatMessagesListener{
+        @Override
+        public void onDataChange() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onUpdate();
         }
     }
 }

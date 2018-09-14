@@ -52,4 +52,16 @@ public class ModelChat implements Serializable {
         if (item == null) return;
         data.remove(item);
     }
+
+    public boolean isReaded(String userId) {
+        ChatInstance item = getItem(userId);
+        if (item == null) return false;
+        return item.isReaded();
+    }
+
+    public void setReaded(String userSelectedID) {
+        ChatInstance item = getItem(userSelectedID);
+        if (item == null) return;
+        item.setReaded();
+    }
 }

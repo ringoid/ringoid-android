@@ -18,13 +18,11 @@ public interface ICacheMessages {
 
     boolean isLikedAnyPhoto(int position);
 
-    boolean isMessagesExist(int position);
-
     String getUserId(int position);
-
-    void setMessagesExist(String userId);
 
     void addListener(ICacheMessagesListener listener);
 
     String getUserSelectedID();
+
+    void setUserSelected(String userId);
 }

@@ -8,8 +8,6 @@ public interface IPresenterAdapterLikes {
 
     int getItemsNum(int position);
 
-    void onClickScrolls();
-
     void setListener(IPresenterAdapterLikesListener listener);
 
     void onClickChat(int adapterPosition);

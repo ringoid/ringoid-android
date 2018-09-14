@@ -21,11 +21,7 @@ public interface ICacheLikes {
 
     String getItemId(int adapterPosition, int itemPosition);
 
-    boolean isMessagesExist(int adapterPosition);
-
     String getUserId(int adapterPosition);
-
-    void setMessagesExist(String userId);
 
     void addListener(ICacheLikesListener listener);
 
