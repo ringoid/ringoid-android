@@ -1,7 +1,6 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.fragment;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.innovattic.rangeseekbar.RangeSeekBar;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.BuildConfig;
 import com.ringoid.R;
@@ -50,9 +50,10 @@ public class FragmentSettings extends FragmentBase
     private DialogAccountDelete dialogAccountDelete;
     private IDialogLogoutListener listenerDialogLogout;
     private ListenerPresenterSettings listenerPresenter;
-    private TextView tvPrivacyPhotos, tvPrivacyDistance, tvPrivacyPhoneBlacklistNum;
+    private TextView tvPrivacyPhotos, tvPrivacyDistance, tvPrivacyPhoneBlacklistNum, tvAge;
     private DialogPrivacyPhotos dialogPrivacyPhotos;
     private IDialogPrivacyPhotosListener listenerDialogPrivacyPhotos;
+    private RangeSeekBar seekBar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,6 +78,7 @@ public class FragmentSettings extends FragmentBase
         tvPrivacyPhotos = view.findViewById(R.id.tvPrivacyPhotos);
         tvPrivacyPhoneBlacklistNum = view.findViewById(R.id.tvPrivacyPhoneBlacklistNum);
         tvPrivacyDistance = view.findViewById(R.id.tvPrivacyDistance);
+        tvAge = view.findViewById(R.id.tvAgeValue);
 
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.tvDataProtection).setOnClickListener(this);
@@ -96,6 +98,10 @@ public class FragmentSettings extends FragmentBase
 
         TextView tvVersion = view.findViewById(R.id.tvVersion);
         tvVersion.setText(String.format("v %d (%s)", BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME));
+
+        seekBar = view.findViewById(R.id.sbAge);
+        seekBar.setSeekBarChangeListener(new ListenerSeekBarChange());
+        seekBar.setMax(56 - 18);
     }
 
     @Override
@@ -149,6 +155,11 @@ public class FragmentSettings extends FragmentBase
         dialogAccountDelete.show();
     }
 
+    private void setPrivacyAgeText(int min, int max) {
+        String valueMax = max + 18 >= 56 ? "55+" : String.valueOf(max + 18);
+        tvAge.setText(String.format("%d-%s", min + 18, valueMax));
+    }
+
     private class ListenerDialogLogout implements IDialogLogoutListener {
         @Override
         public void onConfirm() {
@@ -188,6 +199,13 @@ public class FragmentSettings extends FragmentBase
             dialogPrivacyPhotos = new DialogPrivacyPhotos(getContext(), selected, listenerDialogPrivacyPhotos);
             dialogPrivacyPhotos.show();
         }
+
+        @Override
+        public void setPrivacyAge(int privacyAgeMin, int privacyAgeMax) {
+            setPrivacyAgeText(privacyAgeMin, privacyAgeMax);
+            seekBar.setMinThumbValue(privacyAgeMin - 18);
+            seekBar.setMaxThumbValue(privacyAgeMax - 18);
+        }
     }
 
     private class ListenerDialogPrivacyPhotos implements IDialogPrivacyPhotosListener {
@@ -206,5 +224,23 @@ public class FragmentSettings extends FragmentBase
             presenterSettings.onClickPrivacyPhotosNoone();
         }
 
+    }
+
+    private class ListenerSeekBarChange implements RangeSeekBar.SeekBarChangeListener {
+        @Override
+        public void onStartedSeeking() {
+
+        }
+
+        @Override
+        public void onStoppedSeeking() {
+
+        }
+
+        @Override
+        public void onValueChanged(int min, int max) {
+            setPrivacyAgeText(min, max);
+            presenterSettings.onAgeSelected(min + 18, max + 18);
+        }
     }
 }

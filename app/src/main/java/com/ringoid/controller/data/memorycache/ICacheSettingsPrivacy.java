@@ -41,4 +41,10 @@ public interface ICacheSettingsPrivacy {
     boolean setCheckedPushMatches(boolean checked);
 
     boolean setPushLikes(boolean checked);
+
+    int getPrivacyAgeMin();
+
+    int getPrivacyAgeMax();
+
+    void setAgeSelected(int min, int max);
 }
