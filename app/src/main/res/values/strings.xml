@@ -21,10 +21,6 @@
     <string name="hint_numbers">Number</string>
     <string name="blacklist_phone_add">Block it!</string>
     <string name="blacklist_description">Users who linked Ringoid accounts to the following phone numbers can\'t see my photos, like or message me</string>
-    <string name="chat_empty_title">Send emoji</string>
-    <string name="chat_empty_lead">to show your interest</string>
-    <string name="hint_chat_disabled">Only your match can message first</string>
-    <string name="chat_subtitle">Messages</string>
     <string name="privacy">Privacy</string>
     <string name="settings_feedback">Send us email</string>
     <string name="settings_logout">Sign out</string>
@@ -210,10 +206,10 @@
     <string name="dialog_image_delete_title">Delete photo?</string>
     <string name="dialog_image_delete_message">This action is permanent and cannot be undone.</string>
     <string name="dialog_image_delete_confirm">DELETE</string>
-    <string name="message_image_delete_likes">You will lose %d likes. Since your popularity ranking will decrease, users of the opposite sex may have less chances of discovering you.\n\n</string>
-    <string name="message_image_delete_last">You can later on upload new photos to allow users to like and message you.</string>
+    <string name="message_image_delete_likes">You will lose %d likes.\n\nYour popularity ranking will decrease, and users of the opposite sex may have less chances of discovering you.\n\n</string>
+    <string name="message_image_delete_last">Later on you can upload new photos to allow users to like and message you.</string>
     <string name="dialog_like_no_photo_title">Upload your photo</string>
-    <string name="dialog_like_no_photo_message">After you upload your photo, you can like others.\n\nIf they like you too, it\'s a match, and you can message each other.\n\nYou will need to grant permission for the app to access your photo gallery.</string>
+    <string name="dialog_like_no_photo_message">After you upload your photo, you can like others.\n\nIf they like you too, it\'s a match, and you can message each other.\n\nYou may need to grant a permission to the app to pick an image from your gallery.</string>
     <string name="dialog_like_no_photo_confirm">upload</string>
     <string name="message_sent">Message sent</string>
 
