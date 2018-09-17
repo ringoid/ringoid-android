@@ -3,6 +3,7 @@ package com.ringoid.view.ui.adapter;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -44,13 +45,15 @@ public class AdapterChatMessages extends AdapterBase {
         return presenterAdapterChatMessages.isMessageSelf(position) ? TYPE_SELF : TYPE_OTHER;
     }
 
-    private class ViewHolderItemChatMessage extends ViewHolderBase {
+    private class ViewHolderItemChatMessage extends ViewHolderBase
+            implements View.OnLongClickListener {
 
         private TextView tvMessage;
 
         ViewHolderItemChatMessage(ViewGroup parent, int res) {
             super(parent, res);
             tvMessage = itemView.findViewById(R.id.tvMessage);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
@@ -61,6 +64,12 @@ public class AdapterChatMessages extends AdapterBase {
         private void setMessage(int position) {
             String message = presenterAdapterChatMessages.getMessage(position);
             tvMessage.setText(TextUtils.isEmpty(message) ? "" : message);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            presenterAdapterChatMessages.onLongClick(itemView.getContext(), getAdapterPosition());
+            return true;
         }
     }
 

@@ -1,13 +1,16 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
-import android.text.TextUtils;
+import android.content.Context;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
+import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterAdapterChatMessagesListener;
+import com.ringoid.view.ui.view.utils.ClipboardUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -20,6 +23,9 @@ public class PresenterAdapterChatMessages implements IPresenterAdapterChatMessag
 
     @Inject
     ICacheMessages cacheMessages;
+
+    @Inject
+    IViewPopup viewPopup;
 
     private CacheListener listenerCache;
     private WeakReference<IPresenterAdapterChatMessagesListener> refListener;
@@ -47,6 +53,13 @@ public class PresenterAdapterChatMessages implements IPresenterAdapterChatMessag
     @Override
     public void setListener(IPresenterAdapterChatMessagesListener messagesListener) {
         this.refListener = new WeakReference<>(messagesListener);
+    }
+
+    @Override
+    public void onLongClick(Context context, int adapterPosition) {
+        String message = getMessage(adapterPosition);
+        ClipboardUtils.copyToClipboard(context, context.getString(R.string.message_clipboard_chat_message), message);
+        viewPopup.showToast(R.string.message_copy_to_clipboard);
     }
 
     private class CacheListener implements ICacheChatMessagesListener {

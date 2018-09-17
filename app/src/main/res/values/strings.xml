@@ -217,6 +217,7 @@
     <string name="dialog_like_no_photo_confirm">upload</string>
     <string name="message_sent">Message sent</string>
     <string name="message_age_select">Age filter</string>
+    <string name="message_clipboard_chat_message">Chat message</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>
