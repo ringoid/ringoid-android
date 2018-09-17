@@ -52,23 +52,6 @@
                 android:layout_height="4dp"
                 android:background="#f5f5f5" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="#f5f5f5" />
-
-            <TextView
-                android:id="@+id/tvDownloadData"
-                style="@style/settings_menu_item"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
-                android:drawableStart="@drawable/ic_cloud_download_black_24dp"
-                android:text="@string/data_protection_download" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="#f5f5f5" />
-
             <TextView
                 android:id="@+id/tvFAQ"
                 style="@style/settings_menu_item"
@@ -99,19 +82,6 @@
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_mail_outline_black_24dp"
                 android:text="@string/data_protection_email_officer" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="#f5f5f5" />
-
-            <TextView
-                android:id="@+id/tvWithdraw"
-                style="@style/settings_menu_item"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
-                android:drawableStart="@drawable/ic_remove_red_24dp"
-                android:text="@string/data_protection_withdraw"
-                android:textColor="@color/colorAccent" />
 
         </LinearLayout>
 
