@@ -8,7 +8,7 @@ public interface IPresenterItemImageLikeable {
 
     void onClickOK(boolean b);
 
-    void onClickPrivacy(boolean b);
+    void onClickSettings(boolean b);
 
     boolean isUserOld();
 

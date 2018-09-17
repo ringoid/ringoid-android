@@ -16,7 +16,7 @@ public interface IPresenterAdapterProfile {
 
     void onClickHiddenModeOK(boolean isShow);
 
-    void onClickHiddenModePrivacy(boolean isShow);
+    void onClickHiddenModeSettings(boolean isShow);
 
     void onCLickLikes();
 

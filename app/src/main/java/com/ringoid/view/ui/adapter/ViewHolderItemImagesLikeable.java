@@ -131,8 +131,8 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
         }
 
         @Override
-        public void onSelectPrivacy(boolean b) {
-            presenterItemImageLikeable.onClickPrivacy(b);
+        public void onSelectSettings(boolean b) {
+            presenterItemImageLikeable.onClickSettings(b);
         }
     }
 }

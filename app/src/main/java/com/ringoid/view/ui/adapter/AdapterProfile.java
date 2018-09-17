@@ -158,8 +158,8 @@ public class AdapterProfile extends AdapterBase {
         }
 
         @Override
-        public void onSelectPrivacy(boolean isShow) {
-            presenterAdapterProfile.onClickHiddenModePrivacy(isShow);
+        public void onSelectSettings(boolean isShow) {
+            presenterAdapterProfile.onClickHiddenModeSettings(isShow);
         }
     }
 

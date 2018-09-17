@@ -76,8 +76,9 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     }
 
     @Override
-    public void onClickHiddenModePrivacy(boolean isShow) {
+    public void onClickHiddenModeSettings(boolean isShow) {
         cacheTutorial.setDialogHiddenModeShow(isShow);
+        navigator.navigateSettings();
     }
 
     @Override

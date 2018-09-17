@@ -5,5 +5,5 @@ public interface IDialogHiddenModeListener {
 
     void onSelectOK(boolean b);
 
-    void onSelectPrivacy(boolean b);
+    void onSelectSettings(boolean b);
 }

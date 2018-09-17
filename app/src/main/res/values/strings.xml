@@ -19,7 +19,6 @@
     <string name="hint_numbers">Number</string>
     <string name="blacklist_phone_add">Block it!</string>
     <string name="blacklist_description">Users who linked Ringoid accounts to the following phone numbers can\'t see my photos, like or message me</string>
-    <string name="privacy">Privacy</string>
     <string name="settings_feedback">Send us email</string>
     <string name="settings_logout">Sign out</string>
     <string name="settings_subtitle">Settings</string>
@@ -137,6 +136,7 @@
     <string name="about">About</string>
     <string name="dialog_about_title">Ringoid app for Android</string>
     <string name="dialog_about_message">Copyright © Ringoid Ltd, 2018.\n\nRINGOID LTD is registered in England with Company No. 09427326 and VAT Reg No: GB 208660511. \n\nRegistered Office: 97 Friars Mead, London, E14 3JY, England.\n\nRingoid is a pending registration trademark of Ringoid Ltd.\n\nRingoid Ltd is trading as Ringoid.\n\nRingoid is registered with the UK\'s Information Commissioner\'s Office with registration number ZA455969 and operates within compliance of the EU General Data Protection Regulation 2018.</string>
+    <string name="settings">settings</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>
