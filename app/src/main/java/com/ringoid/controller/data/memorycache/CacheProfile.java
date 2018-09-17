@@ -23,7 +23,7 @@ public class CacheProfile implements ICacheProfile {
     private ModelProfilePhotos data;
     private WeakHashMap<String, ICacheProfileListener> listeners;
 
-    public CacheProfile(){
+    public CacheProfile() {
         ApplicationRingoid.getComponent().inject(this);
     }
 
@@ -72,11 +72,22 @@ public class CacheProfile implements ICacheProfile {
 
     @Override
     public void removeItem(String imageId) {
-        if (getData() == null) return;
-        ProfilePhoto item = getItem(imageId);
-        if (!data.remove(item)) return;
+        int index = getItemIndex(imageId, -1);
+        if (index == -1) return;
+
+        if (!data.remove(index)) return;
+
         cacheStorage.writeData(FileEnum.CACHE_PROFILE, data);
-        notifyListeners();
+        notifyListenersRemove(index);
+    }
+
+    private int getItemIndex(String imageId, int defaultValue) {
+        if (getData() == null) return -1;
+
+        for (int i = 0; i < data.size(); ++i)
+            if (data.isEquals(i, imageId))
+                return i;
+        return -1;
     }
 
     @Override
@@ -132,6 +143,16 @@ public class CacheProfile implements ICacheProfile {
             ICacheProfileListener listener = listeners.get(name);
             if (listener == null) continue;
             listener.onPhotoAdd(position);
+        }
+    }
+
+
+    private void notifyListenersRemove(int index) {
+        if (listeners == null) return;
+        for (String name : listeners.keySet()) {
+            ICacheProfileListener listener = listeners.get(name);
+            if (listener == null) continue;
+            listener.onPhotoRemove(index);
         }
     }
 

@@ -85,7 +85,12 @@ public class PresenterProfile implements IPresenterProfile {
 
         @Override
         public void onPhotoAdd(int position) {
-            scrollToPosition(position);
+            onUpdate();
+        }
+
+        @Override
+        public void onPhotoRemove(int index) {
+            onUpdate();
         }
     }
 }

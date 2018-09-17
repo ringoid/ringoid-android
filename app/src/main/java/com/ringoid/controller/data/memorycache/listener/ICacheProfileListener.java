@@ -5,4 +5,6 @@ public interface ICacheProfileListener {
     void onUpdate();
 
     void onPhotoAdd(int position);
+
+    void onPhotoRemove(int index);
 }

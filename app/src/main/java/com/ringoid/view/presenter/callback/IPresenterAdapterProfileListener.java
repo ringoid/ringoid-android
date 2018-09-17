@@ -3,4 +3,8 @@ package com.ringoid.view.presenter.callback;
 
 public interface IPresenterAdapterProfileListener {
     void onUpdate();
+
+    void onUpdateRemove(int position);
+
+    void onUpdateAdd(int position);
 }

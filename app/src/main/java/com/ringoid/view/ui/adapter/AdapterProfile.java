@@ -108,13 +108,12 @@ public class AdapterProfile extends AdapterBase {
             if (TextUtils.isEmpty(url))
                 ivItem.setImageDrawable(null);
             else {
-                if (ivItem.getDrawable() == null)
-                    GlideApp.with(itemView.getContext())
-                            .load(url)
-                            //.override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                            .override(ivItem.getWidth(), ivItem.getHeight())
-                            .centerCrop()
-                            .into(ivItem);
+                GlideApp.with(itemView.getContext())
+                        .load(url)
+                        //.override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                        .override(ivItem.getWidth(), ivItem.getHeight())
+                        .centerCrop()
+                        .into(ivItem);
             }
         }
 
@@ -167,6 +166,16 @@ public class AdapterProfile extends AdapterBase {
         @Override
         public void onUpdate() {
             notifyDataSetChanged();
+        }
+
+        @Override
+        public void onUpdateRemove(int position) {
+            notifyItemRemoved(position);
+        }
+
+        @Override
+        public void onUpdateAdd(int position) {
+            notifyItemInserted(position);
         }
     }
 

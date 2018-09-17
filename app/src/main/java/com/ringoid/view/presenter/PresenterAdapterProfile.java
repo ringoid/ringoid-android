@@ -4,7 +4,6 @@ package com.ringoid.view.presenter;
 import android.content.Context;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
@@ -122,6 +121,17 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
         refListener.get().onUpdate();
     }
 
+    private void updateViewRemove(int position) {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onUpdateRemove(position);
+    }
+
+    private void updateViewAdd(int position) {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onUpdateAdd(position);
+
+    }
+
     private class ListenerCacheProfile implements ICacheProfileListener {
         @Override
         public void onUpdate() {
@@ -130,7 +140,13 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
 
         @Override
         public void onPhotoAdd(int position) {
-
+            updateViewAdd(position);
         }
+
+        @Override
+        public void onPhotoRemove(int position) {
+            updateViewRemove(position);
+        }
+
     }
 }

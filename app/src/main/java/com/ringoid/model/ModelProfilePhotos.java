@@ -85,4 +85,15 @@ public class ModelProfilePhotos implements Serializable {
     public boolean isUploading(int position) {
         return data == null ? false : data.get(position).isUploading();
     }
+
+    public boolean remove(int index) {
+        if (data == null) return false;
+        data.remove(index);
+        return true;
+    }
+
+    public boolean isEquals(int i, String imageId) {
+        return data != null && data.get(i).getPhotoId().equals(imageId);
+
+    }
 }
