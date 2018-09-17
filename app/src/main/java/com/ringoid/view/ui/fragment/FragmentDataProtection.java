@@ -15,7 +15,6 @@ import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.IPresenterDataProtection;
 import com.ringoid.view.presenter.callback.IPresenterDataProtectionListener;
 import com.ringoid.view.ui.dialog.DialogAccountDelete;
-import com.ringoid.view.ui.dialog.DialogEraseData;
 import com.ringoid.view.ui.dialog.DialogWithdraw;
 import com.ringoid.view.ui.dialog.callback.IDialogWithdrawListener;
 
@@ -30,7 +29,6 @@ public class FragmentDataProtection extends FragmentBase
     INavigator navigator;
     private TextView tvCustomerId;
     private IPresenterDataProtectionListener listenerPresenterDataProtection;
-    private DialogEraseData dialogEraseData;
     private DialogWithdraw dialogWithdraw;
     private DialogAccountDelete dialogAccountDelete;
     private IDialogWithdrawListener listenerDialogWithdraw;
@@ -56,7 +54,6 @@ public class FragmentDataProtection extends FragmentBase
         tvCustomerId = view.findViewById(R.id.tvCustomerID);
 
         view.findViewById(R.id.llCustomerID).setOnClickListener(this);
-        view.findViewById(R.id.tvEraseData).setOnClickListener(this);
         view.findViewById(R.id.tvDownloadData).setOnClickListener(this);
         view.findViewById(R.id.tvFAQ).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
@@ -76,9 +73,6 @@ public class FragmentDataProtection extends FragmentBase
 
         if (v.getId() == R.id.llCustomerID)
             presenterDataProtection.onClickCustomerId();
-
-        if (v.getId() == R.id.tvEraseData)
-            showDialogEraseData();
 
         if (v.getId() == R.id.tvDownloadData) {
             //todo implement
@@ -102,13 +96,6 @@ public class FragmentDataProtection extends FragmentBase
         dialogWithdraw = new DialogWithdraw(getContext(), listenerDialogWithdraw);
         dialogWithdraw.show();
     }
-
-    private void showDialogEraseData() {
-        if (dialogEraseData != null) dialogEraseData.cancel();
-        dialogEraseData = new DialogEraseData(getContext());
-        dialogEraseData.show();
-    }
-
 
     private void showDialogAccountDelete() {
         if (dialogAccountDelete != null)

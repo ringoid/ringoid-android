@@ -6,8 +6,6 @@
 
     <string name="app_name">Ringoid</string>
 
-    <string name="hint_chat_enabled">Type a text message</string>
-
     <string name="checkbox_terms">I have read and understood\n\n<a href="http://ringoid.com/terms.html">Terms of Service</a> and\n\n<a href="http://ringoid.com/privacy.html">Privacy Policy</a></string>
 
     <string name="error_phone">Please enter phone number</string>
@@ -21,10 +19,6 @@
     <string name="hint_numbers">Number</string>
     <string name="blacklist_phone_add">Block it!</string>
     <string name="blacklist_description">Users who linked Ringoid accounts to the following phone numbers can\'t see my photos, like or message me</string>
-    <string name="chat_empty_title">Send emoji</string>
-    <string name="chat_empty_lead">to show your interest</string>
-    <string name="hint_chat_disabled">Only your match can message first</string>
-    <string name="chat_subtitle">Messages</string>
     <string name="privacy">Privacy</string>
     <string name="settings_feedback">Send us email</string>
     <string name="settings_logout">Sign out</string>
@@ -148,13 +142,9 @@
     <string name="settings_privacy_phone_sessions_value">Only one. The most recent sign in will take over, and all other sessions will be signed out automatically.</string>
     <string name="settings_privacy_messages_logout_history">Who can recover messages after you delete history, block a user, sign out, reinstall the app or delete account?</string>
     <string name="settings_privacy_messages_logout_history_value">No one. There is no way to recover messages because the server doesn\'t store them in the database after they are delivered to apps.</string>
-    <string name="message_likes_other">You can like different photos of the same user so your profile will rise higher in their Messages.\n\nTo unlike, tap on the heart icon in the corner</string>
-    <string name="message_explore_like_other">You can like different photos of the same user so your profile will rise higher in their Who Liked You. \n\n To unlike, tap on the heart icon in the corner</string>
-    <string name="format_profile_photo_click_tutorial">Privacy: Who can see your photos?\n%s</string>
     <string name="dialog_profile_likes_title">How \"Likes\" work in Ringoid</string>
     <string name="dialog_profile_likes_message">Only you can see how many likes your photos received.\n\nThe more likes you have, the higher your popularity ranking in your area and the more people of the opposite sex can discover you.\n\nYou can\'t see who liked what photo(s) but you can see who liked you.\n\nPhotos with more likes are shown first.</string>
     <string name="dialog_profile_likes_button_likes">Who Liked You</string>
-    <string name="message_scroll_help">You can swipe photos left and right in a carousel.\n\nTo see different profiles, scroll up and down</string>
     <string name="message_dialog_show_again">Don\'t show this again</string>
     <string name="dialog_who_liked_you_title">How Who Liked You works</string>
     <string name="dialog_who_liked_you_message">You can see here photos of people who liked you.\n\n* Swipe photos left and right\n* Scroll profiles up and down\n* Tap anywhere to like a photo\n* To unlike, tap on the heart icon\n\nAs soon as you liked them, their profile will move to Messages, and you can text each other.\n\nYou can like different photos of the same user so your profile will rise higher in their Messages and they can notice you sooner.</string>
@@ -183,7 +173,6 @@
     <string name="settings_data_protection">Data protection and Privacy</string>
     <string name="hint_dots_4">\u2022\u2022\u2022\u2022</string>
     <string name="customer_id">Customer ID</string>
-    <string name="data_protection_erase_data">Erase Data</string>
     <string name="data_protection_download">Download your personal data</string>
     <string name="data_protection_faq">FAQ</string>
     <string name="data_protection_privacy">Privacy Policy</string>
@@ -192,14 +181,6 @@
     <string name="message_copy_to_clipboard">Copied to clipboard</string>
     <string name="message_clipboard_customer_id">Customer ID</string>
     <string name="message_protection_officer">Dear Data Protection Officer,\n\nMy Customer ID is %s\n\n</string>
-    <string name="dialog_erase_data_title">Erase</string>
-    <string name="dialog_erase_data_confirm">erase</string>
-    <string name="dialog_erase_data_settings">Reset my app settings to default</string>
-    <string name="dialog_erase_data_photos">Delete all my photos</string>
-    <string name="dialog_erase_data_likes">Unlike all photos I liked</string>
-    <string name="dialog_erase_data_chat">Delete history from all matches</string>
-    <string name="dialog_erase_data_matches">Block all my matches</string>
-    <string name="dialog_erase_data_block_liked">Block everyone who liked me</string>
     <string name="dialog_withdraw_title">Withdraw Consent?</string>
     <string name="dialog_withdraw_message">We are relying on your explicit consent to process your personal data (such as your phone number, year of birth, sex, and photos), to transfer your data outside the European Economic Area (EEA), and for the app to report crashes and its usage.\n\nYou can withdraw your consent at any time. \n\nIf you withdraw your consent, we won\'t be able to provide you with services and your account will have to be deleted.</string>
     <string name="dialog_withdraw_confirm">withdraw consent</string>

@@ -11,8 +11,6 @@
     <color name="toolbar_shadow">#e1e1e1</color>
     <color name="gray">#525252</color>
     <color name="menu_bottom_selected">#66cfcfcf</color>
-    <color name="gray30">#66525252</color>
-    <color name="chat_send_disabled">#d8d8d8</color>
     <color name="blue">#60a6e8</color>
     <color name="pink">#ff62ab</color>
     <color name="divider">#e1e1e1</color>
