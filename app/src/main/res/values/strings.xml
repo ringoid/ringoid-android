@@ -163,14 +163,13 @@
     <string name="dialog_report_item_3">Spam, advertising, commercial activity</string>
     <string name="dialog_report_item_4">Human or sex trafficking, criminal activity</string>
     <string name="dialog_report_item_5">Underage user, child exploitation</string>
-    <string name="dialog_report_message_chat">5-7 last messages will be forwarded to Ringoid support</string>
     <string name="dialog_report_confirm_report">report &amp; block</string>
     <string name="dialog_report_item_6">Harassment or threats, verbal abuse</string>
     <string name="subtitle_terms">Terms of Service</string>
     <string name="subtitle_licenses">Licenses</string>
     <string name="subtitle_privacy">Privacy Policy</string>
     <string name="dialog_privacy_photos_title">Who can see your photos?</string>
-    <string name="settings_data_protection">Data protection and Privacy</string>
+    <string name="settings_data_protection">Legal</string>
     <string name="hint_dots_4">\u2022\u2022\u2022\u2022</string>
     <string name="customer_id">Customer ID</string>
     <string name="data_protection_download">Download your personal data</string>
