@@ -99,19 +99,6 @@
 
             </RadioGroup>
 
-            <TextView
-                android:id="@+id/tvReportMessageChat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:paddingEnd="20dp"
-                android:paddingStart="20dp"
-                android:text="@string/dialog_report_message_chat"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                android:textColor="@color/colorAccent"
-                android:visibility="gone"
-                tools:visibility="visible" />
-
         </LinearLayout>
 
     </ScrollView>
