@@ -40,9 +40,9 @@ public class ViewPopup implements IViewPopup {
 
     @Override
     public void showToast(String message) {
-        /*Context context = refContext.get();
+        Context context = refContext.get();
         if (context == null) return;
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();*/
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

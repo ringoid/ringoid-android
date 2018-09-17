@@ -67,17 +67,6 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
 
     @Override
     public boolean onClickItem(Context context, int position) {
-
-        if (cacheTutorial.isShowDialogHiddenMode() && cacheSettingsPrivacy.isPrivacyPhotosNoone())
-            return true;
-
-        int messageRes = cacheSettingsPrivacy.isPrivacyPhotosOppositeSex()
-                ? R.string.settings_privacy_photos_all
-                : cacheSettingsPrivacy.isPrivacyPhotosLikes()
-                ? R.string.settings_privacy_photos_liked
-                : R.string.settings_privacy_photos_noone;
-        viewPopup.showToast(String.format(context.getResources().getString(R.string.format_profile_photo_click_tutorial),
-                context.getResources().getString(messageRes)));
         return false;
     }
 
