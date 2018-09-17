@@ -5,4 +5,6 @@ public interface IPresenterChatListener {
     void setImage(String url);
 
     void setDataExist(boolean exist);
+
+    void scrollToRecentMessage(int dataSize);
 }

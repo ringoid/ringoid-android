@@ -25,6 +25,8 @@ import com.ringoid.view.ui.dialog.callback.IDialogChatClearListener;
 import com.ringoid.view.ui.util.DividerItemDecoration;
 import com.ringoid.view.ui.util.GlideApp;
 import com.ringoid.view.ui.util.KeyboardUtils;
+import com.ringoid.view.ui.view.RecyclerViewMeasureListener;
+import com.ringoid.view.ui.view.callback.IMeasureListener;
 
 import javax.inject.Inject;
 
@@ -45,6 +47,7 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
 
     private DialogChatClear dialogChatClear;
     private IDialogChatClearListener listenerDialogClear;
+    private ListenerMeasure listenerMeasure;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
         ApplicationRingoid.getComponent().inject(this);
         presenterChat.setListener(listenerPresenter = new ListenerPresenter());
         listenerDialogClear = new ListenerDialogClear();
+        listenerMeasure = new ListenerMeasure();
     }
 
     @Nullable
@@ -66,10 +70,11 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
     }
 
     private void initList(View view) {
-        RecyclerView rvMessages = view.findViewById(R.id.rvMessages);
+        RecyclerViewMeasureListener rvMessages = view.findViewById(R.id.rvMessages);
         rvMessages.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMessages.setAdapter(new AdapterChatMessages());
         rvMessages.addItemDecoration(new DividerItemDecoration(getContext()));
+        rvMessages.setListener(listenerMeasure);
     }
 
     private void intiViews(View view) {
@@ -143,12 +148,24 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
         @Override
         public void setDataExist(boolean exist) {
         }
+
+        @Override
+        public void scrollToRecentMessage(int dataSize) {
+            rvMessages.scrollToPosition(Math.max(0, dataSize - 1));
+        }
     }
 
     private class ListenerDialogClear implements IDialogChatClearListener {
         @Override
         public void onConfirm() {
             presenterChat.onConfirmClear();
+        }
+    }
+
+    private class ListenerMeasure implements IMeasureListener{
+        @Override
+        public void onUpdate() {
+            presenterChat.onMeasure();
         }
     }
 }

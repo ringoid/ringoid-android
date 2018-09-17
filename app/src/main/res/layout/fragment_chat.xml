@@ -44,12 +44,13 @@
         android:layout_height="1dp"
         android:background="@color/divider" />
 
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.ringoid.view.ui.view.RecyclerViewMeasureListener xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/rvMessages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:clipToPadding="false"
+        android:paddingBottom="16dp"
         android:paddingTop="16dp" />
 
     <View

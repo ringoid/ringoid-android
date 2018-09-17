@@ -11,4 +11,6 @@ public interface IPresenterChat {
     void onClickSend(String message);
 
     void onConfirmClear();
+
+    void onMeasure();
 }

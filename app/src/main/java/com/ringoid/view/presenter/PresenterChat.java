@@ -41,6 +41,11 @@ public class PresenterChat implements IPresenterChat {
         cacheChatMessages.setReaded(cacheMessages.getUserSelectedID());
     }
 
+    private void scrollToRecentMessage() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().scrollToRecentMessage(cacheChatMessages.getDataSize(cacheMessages.getUserSelectedID()));
+    }
+
     private void setView() {
         if (refListener == null || refListener.get() == null) return;
 
@@ -59,11 +64,17 @@ public class PresenterChat implements IPresenterChat {
 
         if (TextUtils.isEmpty(message)) return;
         cacheChatMessages.addMessage(cacheMessages.getUserSelectedID(), message);
+        scrollToRecentMessage();
     }
 
     @Override
     public void onConfirmClear() {
         cacheChatMessages.resetCache(cacheMessages.getUserSelectedID());
+    }
+
+    @Override
+    public void onMeasure() {
+        scrollToRecentMessage();
     }
 
     private class ListenerCacheChatMessages implements ICacheChatMessagesListener {
