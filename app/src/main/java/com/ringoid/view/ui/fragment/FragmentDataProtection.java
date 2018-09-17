@@ -15,7 +15,6 @@ import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.IPresenterDataProtection;
 import com.ringoid.view.presenter.callback.IPresenterDataProtectionListener;
 import com.ringoid.view.ui.dialog.DialogAccountDelete;
-import com.ringoid.view.ui.dialog.DialogWithdraw;
 import com.ringoid.view.ui.dialog.callback.IDialogWithdrawListener;
 
 import javax.inject.Inject;
@@ -29,16 +28,13 @@ public class FragmentDataProtection extends FragmentBase
     INavigator navigator;
     private TextView tvCustomerId;
     private IPresenterDataProtectionListener listenerPresenterDataProtection;
-    private DialogWithdraw dialogWithdraw;
     private DialogAccountDelete dialogAccountDelete;
-    private IDialogWithdrawListener listenerDialogWithdraw;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ApplicationRingoid.getComponent().inject(this);
         presenterDataProtection.setListener(listenerPresenterDataProtection = new ListenerPresenter());
-        listenerDialogWithdraw = new ListenerDialogWithdraw();
     }
 
     @Nullable
@@ -54,11 +50,8 @@ public class FragmentDataProtection extends FragmentBase
         tvCustomerId = view.findViewById(R.id.tvCustomerID);
 
         view.findViewById(R.id.llCustomerID).setOnClickListener(this);
-        view.findViewById(R.id.tvDownloadData).setOnClickListener(this);
-        view.findViewById(R.id.tvFAQ).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
         view.findViewById(R.id.tvMailOfficer).setOnClickListener(this);
-        view.findViewById(R.id.tvWithdraw).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
@@ -74,27 +67,12 @@ public class FragmentDataProtection extends FragmentBase
         if (v.getId() == R.id.llCustomerID)
             presenterDataProtection.onClickCustomerId();
 
-        if (v.getId() == R.id.tvDownloadData) {
-            //todo implement
-        }
-        if (v.getId() == R.id.tvFAQ)
-            navigator.navigateSettingsPrivacy(false);
 
         if (v.getId() == R.id.tvPrivacy)
             navigator.navigateWebView(getString(R.string.url_privacy), getString(R.string.subtitle_privacy));
 
         if (v.getId() == R.id.tvMailOfficer)
             presenterDataProtection.onClickMailOffices(getContext());
-
-        if (v.getId() == R.id.tvWithdraw)
-            showDialogWithdraw();
-
-    }
-
-    private void showDialogWithdraw() {
-        if (dialogWithdraw != null) dialogWithdraw.cancel();
-        dialogWithdraw = new DialogWithdraw(getContext(), listenerDialogWithdraw);
-        dialogWithdraw.show();
     }
 
     private void showDialogAccountDelete() {
@@ -109,13 +87,6 @@ public class FragmentDataProtection extends FragmentBase
         @Override
         public void setCustomerId(String id) {
             tvCustomerId.setText(id);
-        }
-    }
-
-    private class ListenerDialogWithdraw implements IDialogWithdrawListener {
-        @Override
-        public void onConfirm() {
-            showDialogAccountDelete();
         }
     }
 

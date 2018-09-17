@@ -23,8 +23,6 @@ public interface INavigator {
 
     void navigateSettingsPrivacyDistance();
 
-    void navigateSettingsPrivacy(boolean showPhotos);
-
     void navigateWebView(String url, String subtitle);
 
     void navigateFeedback(Context context);

@@ -52,13 +52,6 @@
                 android:layout_height="4dp"
                 android:background="#f5f5f5" />
 
-            <TextView
-                android:id="@+id/tvFAQ"
-                style="@style/settings_menu_item"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
-                android:drawableStart="@drawable/ic_settings_about_24dp"
-                android:text="@string/data_protection_faq" />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"

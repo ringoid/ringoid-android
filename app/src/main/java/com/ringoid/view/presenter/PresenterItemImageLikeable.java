@@ -53,7 +53,6 @@ public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
     @Override
     public void onClickPrivacy(boolean b) {
         cacheTutorial.setDialogHiddenModeShow(b);
-        navigator.navigateSettingsPrivacy(true);
     }
 
     @Override

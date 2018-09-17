@@ -76,7 +76,6 @@ import com.ringoid.view.ui.fragment.FragmentPages;
 import com.ringoid.view.ui.fragment.FragmentPhotoCrop;
 import com.ringoid.view.ui.fragment.FragmentProfile;
 import com.ringoid.view.ui.fragment.FragmentSettings;
-import com.ringoid.view.ui.fragment.FragmentSettingsFAQ;
 import com.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 import com.ringoid.view.ui.fragment.FragmentSettingsPush;
 import com.ringoid.view.ui.fragment.FragmentWebView;
@@ -207,8 +206,6 @@ public interface AppComponent {
     void inject(AdapterChatMessages adapterChatMessages);
 
     void inject(PresenterAdapterChatMessages presenterAdapterChatMessages);
-
-    void inject(FragmentSettingsFAQ fragmentSettingsPrivacy);
 
     void inject(FragmentSettingsPrivacyDistance item);
 

@@ -44,7 +44,6 @@ public class DialogReport implements View.OnClickListener {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             dialog.findViewById(R.id.rgReport).setVisibility(isChecked ? View.VISIBLE : View.GONE);
-            dialog.findViewById(R.id.tvReportMessageChat).setVisibility(isChecked ? View.VISIBLE : View.GONE);
 
             ((TextView) dialog.findViewById(R.id.tvReport)).setText(isChecked ? R.string.dialog_report_confirm_report : R.string.dialog_report_confirm);
             ((TextView) dialog.findViewById(R.id.tvReport)).setTextColor(ContextCompat.getColor(dialog.getContext(), isChecked ? R.color.colorAccent : android.R.color.black));

@@ -92,21 +92,6 @@
         <item name="colorAccent">@color/colorAccentGreen</item>
     </style>
 
-    <style name="settings_privacy_menu_title" parent="settings_menu_item">
-        <item name="android:drawablePadding">12dp</item>
-        <item name="android:background">@color/gray_fag_title</item>
-        <item name="android:drawableEnd">@drawable/ic_keyboard_arrow_down_gray_24dp</item>
-        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="settings_privacy_items_container">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:visibility">visible</item>
-    </style>
-
     <style name="settings_privacy_item_message">
         <item name="android:textSize">15sp</item>
         <item name="android:layout_width">match_parent</item>
