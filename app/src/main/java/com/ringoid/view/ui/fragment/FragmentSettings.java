@@ -82,12 +82,10 @@ public class FragmentSettings extends FragmentBase
 
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.tvDataProtection).setOnClickListener(this);
-        view.findViewById(R.id.tvSettingsTerms).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsFeedback).setOnClickListener(this);
         view.findViewById(R.id.tvLogout).setOnClickListener(this);
         view.findViewById(R.id.tvAccountDelete).setOnClickListener(this);
         view.findViewById(R.id.tvPush).setOnClickListener(this);
-        view.findViewById(R.id.tvSettingsLicenses).setOnClickListener(this);
 
         view.findViewById(R.id.llPrivacyPhotos).setOnClickListener(this);
         view.findViewById(R.id.llBlacklist).setOnClickListener(this);
@@ -123,13 +121,6 @@ public class FragmentSettings extends FragmentBase
 
         if (v.getId() == R.id.tvPush)
             navigator.navigateSettingsPush();
-
-        if (v.getId() == R.id.tvSettingsTerms)
-            navigator.navigateWebView(getContext().getString(R.string.url_terms), getContext().getString(R.string.subtitle_terms));
-
-
-        if (v.getId() == R.id.tvSettingsLicenses)
-            navigator.navigateWebView(getContext().getString(R.string.url_licenses), getContext().getString(R.string.subtitle_licenses));
 
         if (v.getId() == R.id.tvSettingsFeedback)
             navigator.navigateFeedback(getContext());

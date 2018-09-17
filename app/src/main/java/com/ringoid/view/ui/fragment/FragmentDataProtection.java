@@ -15,7 +15,6 @@ import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.IPresenterDataProtection;
 import com.ringoid.view.presenter.callback.IPresenterDataProtectionListener;
 import com.ringoid.view.ui.dialog.DialogAccountDelete;
-import com.ringoid.view.ui.dialog.callback.IDialogWithdrawListener;
 
 import javax.inject.Inject;
 
@@ -49,10 +48,12 @@ public class FragmentDataProtection extends FragmentBase
     private void initViews(View view) {
         tvCustomerId = view.findViewById(R.id.tvCustomerID);
 
+        view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.llCustomerID).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
+        view.findViewById(R.id.tvSettingsTerms).setOnClickListener(this);
+        view.findViewById(R.id.tvSettingsLicenses).setOnClickListener(this);
         view.findViewById(R.id.tvMailOfficer).setOnClickListener(this);
-        view.findViewById(R.id.ivBack).setOnClickListener(this);
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.data_protection_subtitle);
@@ -73,6 +74,13 @@ public class FragmentDataProtection extends FragmentBase
 
         if (v.getId() == R.id.tvMailOfficer)
             presenterDataProtection.onClickMailOffices(getContext());
+
+        if (v.getId() == R.id.tvSettingsTerms)
+            navigator.navigateWebView(getContext().getString(R.string.url_terms), getContext().getString(R.string.subtitle_terms));
+
+
+        if (v.getId() == R.id.tvSettingsLicenses)
+            navigator.navigateWebView(getContext().getString(R.string.url_licenses), getContext().getString(R.string.subtitle_licenses));
     }
 
     private void showDialogAccountDelete() {
