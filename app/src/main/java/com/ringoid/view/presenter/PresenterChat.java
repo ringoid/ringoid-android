@@ -62,7 +62,7 @@ public class PresenterChat implements IPresenterChat {
     }
 
     @Override
-    public void onClickClear() {
+    public void onConfirmClear() {
         cacheChatMessages.resetCache(cacheMessages.getUserSelectedID());
     }
 

@@ -218,6 +218,9 @@
     <string name="message_sent">Message sent</string>
     <string name="message_age_select">Age filter</string>
     <string name="message_clipboard_chat_message">Chat message</string>
+    <string name="dialog_chat_clear_title">Clear history?</string>
+    <string name="dialog_chat_clear_message">The app will delete all messages between you and your match from its cache. There is no undo.\n\nA person with whom you matched may still retain in their app all messages that you both sent.</string>
+    <string name="dialog_chat_clear_confirm">clear</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>

@@ -19,7 +19,9 @@ import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterChat;
 import com.ringoid.view.presenter.callback.IPresenterChatListener;
 import com.ringoid.view.ui.adapter.AdapterChatMessages;
+import com.ringoid.view.ui.dialog.DialogChatClear;
 import com.ringoid.view.ui.dialog.DialogReport;
+import com.ringoid.view.ui.dialog.callback.IDialogChatClearListener;
 import com.ringoid.view.ui.util.DividerItemDecoration;
 import com.ringoid.view.ui.util.GlideApp;
 import com.ringoid.view.ui.util.KeyboardUtils;
@@ -41,11 +43,15 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
     private EditText etMessage;
     private View ivSend;
 
+    private DialogChatClear dialogChatClear;
+    private IDialogChatClearListener listenerDialogClear;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ApplicationRingoid.getComponent().inject(this);
         presenterChat.setListener(listenerPresenter = new ListenerPresenter());
+        listenerDialogClear = new ListenerDialogClear();
     }
 
     @Nullable
@@ -97,12 +103,18 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
             showMenu();
 
         if (v.getId() == R.id.ivClear)
-            presenterChat.onClickClear();
+            showDialogClear();
 
         if (v.getId() == R.id.ivSend) {
             presenterChat.onClickSend(etMessage.getText().toString());
             etMessage.setText("");
         }
+    }
+
+    private void showDialogClear() {
+        if (dialogChatClear != null) dialogChatClear.cancel();
+        dialogChatClear = new DialogChatClear(getContext(), listenerDialogClear);
+        dialogChatClear.show();
     }
 
     private void showMenu() {
@@ -133,4 +145,10 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
         }
     }
 
+    private class ListenerDialogClear implements IDialogChatClearListener {
+        @Override
+        public void onConfirm() {
+            presenterChat.onConfirmClear();
+        }
+    }
 }
