@@ -10,11 +10,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.BuildConfig;
 import com.ringoid.R;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.IPresenterDataProtection;
 import com.ringoid.view.presenter.callback.IPresenterDataProtectionListener;
-import com.ringoid.view.ui.dialog.DialogAccountDelete;
+import com.ringoid.view.ui.dialog.DialogAbout;
 
 import javax.inject.Inject;
 
@@ -23,11 +24,13 @@ public class FragmentDataProtection extends FragmentBase
 
     @Inject
     IPresenterDataProtection presenterDataProtection;
+
     @Inject
     INavigator navigator;
+
     private TextView tvCustomerId;
     private IPresenterDataProtectionListener listenerPresenterDataProtection;
-    private DialogAccountDelete dialogAccountDelete;
+    private DialogAbout dialogAbout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,15 +51,19 @@ public class FragmentDataProtection extends FragmentBase
     private void initViews(View view) {
         tvCustomerId = view.findViewById(R.id.tvCustomerID);
 
+        TextView tvVersion = view.findViewById(R.id.tvVersion);
+        tvVersion.setText(String.format("v %d (%s)", BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME));
+
+        TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
+        tvSubtitle.setText(R.string.data_protection_subtitle);
+
         view.findViewById(R.id.ivBack).setOnClickListener(this);
+        view.findViewById(R.id.llVersion).setOnClickListener(this);
         view.findViewById(R.id.llCustomerID).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsTerms).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsLicenses).setOnClickListener(this);
         view.findViewById(R.id.tvMailOfficer).setOnClickListener(this);
-
-        TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
-        tvSubtitle.setText(R.string.data_protection_subtitle);
     }
 
     @Override
@@ -65,9 +72,11 @@ public class FragmentDataProtection extends FragmentBase
         if (v.getId() == R.id.ivBack)
             getActivity().onBackPressed();
 
+        if (v.getId() == R.id.llVersion)
+            showDialogAbout();
+
         if (v.getId() == R.id.llCustomerID)
             presenterDataProtection.onClickCustomerId();
-
 
         if (v.getId() == R.id.tvPrivacy)
             navigator.navigateWebView(getString(R.string.url_privacy), getString(R.string.subtitle_privacy));
@@ -83,13 +92,11 @@ public class FragmentDataProtection extends FragmentBase
             navigator.navigateWebView(getContext().getString(R.string.url_licenses), getContext().getString(R.string.subtitle_licenses));
     }
 
-    private void showDialogAccountDelete() {
-        if (dialogAccountDelete != null)
-            dialogAccountDelete.cancel();
-        dialogAccountDelete = new DialogAccountDelete(getContext());
-        dialogAccountDelete.show();
+    private void showDialogAbout() {
+        if (dialogAbout != null) dialogAbout.cancel();
+        dialogAbout = new DialogAbout(getContext());
+        dialogAbout.show();
     }
-
 
     private class ListenerPresenter implements IPresenterDataProtectionListener {
         @Override

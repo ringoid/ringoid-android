@@ -6,27 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
+    <com.ringoid.view.ui.view.ViewToolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.ringoid.view.ui.view.ViewToolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            app:is_show_back="true" />
-
-        <TextView
-            android:id="@+id/tvVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:layout_margin="16dp"
-            android:fontFamily="sans-serif-thin"
-            android:textSize="17sp"
-            tools:text="v123" />
-
-    </FrameLayout>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        app:is_show_back="true" />
 
     <ScrollView
         android:layout_width="match_parent"
