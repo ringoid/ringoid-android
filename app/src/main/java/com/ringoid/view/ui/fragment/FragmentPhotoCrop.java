@@ -17,6 +17,7 @@ import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterPhotoCrop;
 import com.ringoid.view.presenter.IPresenterPhotoCropListener;
 import com.steelkiwi.cropiwa.CropIwaView;
+import com.steelkiwi.cropiwa.OnCropUpdateListener;
 import com.steelkiwi.cropiwa.config.CropIwaSaveConfig;
 
 import java.io.File;
@@ -32,6 +33,7 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
 
     private CropIwaView cropImageView;
     private ListenerPresenter listenerPresenter;
+    private View vCropConfirm;
 
     public static Fragment getInstance(Uri url) {
         Bundle bundle = new Bundle();
@@ -60,8 +62,19 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
 
     private void initViews(View view) {
         initImage(view);
-        view.findViewById(R.id.tvCropConfirm).setOnClickListener(this);
+        vCropConfirm = view.findViewById(R.id.tvCropConfirm);
+        vCropConfirm.setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
+
+    }
+
+    private void setViewConfirmWidth() {
+
+        ViewGroup.LayoutParams params = vCropConfirm.getLayoutParams();
+
+        params.width = cropImageView.getCropiwaCropWidth();
+
+        vCropConfirm.setLayoutParams(params);
     }
 
     private void initImage(View view) {
@@ -69,7 +82,7 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
         if (TextUtils.isEmpty(url)) return;
 
         cropImageView = view.findViewById(R.id.crop_view);
-
+        cropImageView.setListenerCropUpdate(new ListenerCropUpdate());
         cropImageView.setImageUri(Uri.parse(url));
         cropImageView.setCropSaveCompleteListener(new ListenerCrop());
     }
@@ -106,5 +119,12 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
 
     private class ListenerPresenter implements IPresenterPhotoCropListener {
 
+    }
+
+    private class ListenerCropUpdate implements OnCropUpdateListener {
+        @Override
+        public void onUpdate() {
+            setViewConfirmWidth();
+        }
     }
 }
