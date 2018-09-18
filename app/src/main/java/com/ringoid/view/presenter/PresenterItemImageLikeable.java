@@ -57,8 +57,8 @@ public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
     }
 
     @Override
-    public boolean isUserOld() {
-        return !cacheUser.isUserNew();
+    public boolean isUserNew() {
+        return cacheUser.isUserNew();
     }
 
     @Override
