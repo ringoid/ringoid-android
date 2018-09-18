@@ -89,7 +89,7 @@
 
     <TextView
         android:id="@+id/tvCodeSMSConfirm"
-        style="@style/buttonBase.Colored.Green"
+        style="@style/buttonBase.wide.Green"
         android:text="@string/button_continue" />
 
 </LinearLayout>

@@ -40,7 +40,7 @@
 
     <TextView
         android:id="@+id/tvLoginPhoneVerify"
-        style="@style/buttonBase.Colored.Green"
+        style="@style/buttonBase.wide.Green"
         android:text="@string/button_login_phone" />
 
 </LinearLayout>

@@ -90,7 +90,7 @@
 
     <TextView
         android:id="@+id/tvLoginTermsAgreement"
-        style="@style/buttonBase.Colored.Green"
+        style="@style/buttonBase.wide.Green"
         android:text="@string/button_accept_terms" />
 
 </LinearLayout>

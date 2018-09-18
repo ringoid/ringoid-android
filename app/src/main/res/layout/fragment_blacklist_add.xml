@@ -30,7 +30,7 @@
 
     <TextView
         android:id="@+id/tvBlacklistAdd"
-        style="@style/buttonBase.Colored"
+        style="@style/buttonBase.wide.Red"
         android:text="@string/blacklist_phone_add" />
 
 </LinearLayout>
