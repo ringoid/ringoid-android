@@ -81,4 +81,11 @@ public class CacheBlacklist implements ICacheBlacklist {
         notifyListeners();
     }
 
+    @Override
+    public void resetCache() {
+        data = null;
+        cacheStorage.removeData(FileEnum.BLACKLIST);
+        notifyListeners();
+    }
+
 }

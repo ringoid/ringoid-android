@@ -14,4 +14,6 @@ public interface ICacheBlacklist {
     DataBlacklistPhone getItem(int position);
 
     void remove(int position);
+
+    void resetCache();
 }

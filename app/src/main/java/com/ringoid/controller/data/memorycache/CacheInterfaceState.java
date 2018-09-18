@@ -35,6 +35,12 @@ public class CacheInterfaceState implements ICacheInterfaceState {
         return getData().getOriginPhotoId();
     }
 
+    @Override
+    public void resetCache() {
+        data = null;
+        cacheStorage.removeData(FileEnum.CACHE_INTERFACE);
+    }
+
     private ModelInterfaceState getData() {
         if (data == null)
             data = cacheStorage.readObject(FileEnum.CACHE_INTERFACE, ModelInterfaceState.class);

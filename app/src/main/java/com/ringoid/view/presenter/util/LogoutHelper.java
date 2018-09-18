@@ -2,6 +2,10 @@ package com.ringoid.view.presenter.util;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.memorycache.ICacheBlacklist;
+import com.ringoid.controller.data.memorycache.ICacheChatMessages;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
+import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
@@ -31,6 +35,18 @@ public class LogoutHelper implements ILogoutHelper {
     @Inject
     INavigatorPages navigatorPages;
 
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
+
+    @Inject
+    ICacheBlacklist cacheBlacklist;
+
+    @Inject
+    ICacheProfile cacheProfile;
+
+    @Inject
+    ICacheChatMessages cacheChatMessages;
+
     public LogoutHelper() {
         ApplicationRingoid.getComponent().inject(this);
     }
@@ -42,6 +58,10 @@ public class LogoutHelper implements ILogoutHelper {
             cacheToken.resetCache();
             cacheUser.resetCache();
             cacheTutorial.resetCache();
+            cacheBlacklist.resetCache();
+            cacheProfile.resetCache();
+            cacheChatMessages.resetCache();
+            cacheInterfaceState.resetCache();
             navigatorPages.resetCurrentPage();
         }
         navigator.navigateLogin();

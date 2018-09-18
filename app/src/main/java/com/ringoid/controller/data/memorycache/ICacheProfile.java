@@ -36,4 +36,6 @@ public interface ICacheProfile {
     String getOriginPhotoId(int pos);
 
     int getPosition(String originPhotoId);
+
+    void resetCache();
 }

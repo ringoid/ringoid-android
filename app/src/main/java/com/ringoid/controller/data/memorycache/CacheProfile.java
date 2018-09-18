@@ -133,6 +133,13 @@ public class CacheProfile implements ICacheProfile {
         return getData() == null ? 0 : data.getPosition(originPhotoId);
     }
 
+    @Override
+    public void resetCache() {
+        data = null;
+        cacheStorage.removeData(FileEnum.CACHE_PROFILE);
+        notifyListeners();
+    }
+
     private ProfilePhoto getItem(String imageId) {
         if (getData() == null) return null;
         return data.getItem(imageId);

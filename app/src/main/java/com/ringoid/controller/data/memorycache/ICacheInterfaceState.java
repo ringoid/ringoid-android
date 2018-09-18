@@ -5,4 +5,6 @@ public interface ICacheInterfaceState {
     void setProfileOriginPhotoId(String originPhotoId);
 
     String getOriginPhotoId();
+
+    void resetCache();
 }
