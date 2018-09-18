@@ -208,6 +208,14 @@ public class CropIwaView extends FrameLayout {
         this.cropSaveCompleteListener = cropSaveCompleteListener;
     }
 
+    public int getCropiwaCropWidth() {
+        return (int) overlayView.getCropRect().width();
+    }
+
+    public void setListenerCropUpdate(OnCropUpdateListener listener) {
+        imageView.setListenerCropUpdate(listener);
+    }
+
     public interface CropSaveCompleteListener {
         void onCroppedRegionSaved(Uri bitmapUri);
     }

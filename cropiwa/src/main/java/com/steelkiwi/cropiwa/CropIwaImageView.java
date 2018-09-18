@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import com.steelkiwi.cropiwa.config.ConfigChangeListener;
 import com.steelkiwi.cropiwa.config.CropIwaImageViewConfig;
 import com.steelkiwi.cropiwa.util.CropIwaUtils;
-import com.steelkiwi.cropiwa.util.MatrixUtils;
 import com.steelkiwi.cropiwa.util.MatrixAnimator;
+import com.steelkiwi.cropiwa.util.MatrixUtils;
 import com.steelkiwi.cropiwa.util.TensionInterpolator;
 
 /**
@@ -36,6 +36,7 @@ class CropIwaImageView extends ImageView implements OnNewBoundsListener, ConfigC
     private OnImagePositionedListener imagePositionedListener;
 
     private CropIwaImageViewConfig config;
+    private OnCropUpdateListener listenerCropUpdate;
 
     public CropIwaImageView(Context context, CropIwaImageViewConfig config) {
         super(context);
@@ -163,6 +164,16 @@ class CropIwaImageView extends ImageView implements OnNewBoundsListener, ConfigC
             updateImageBounds();
             invalidate();
         }
+        notifyListenerCropUpdated();
+    }
+
+    private void notifyListenerCropUpdated() {
+        if (listenerCropUpdate == null) return;
+        listenerCropUpdate.onUpdate();
+    }
+
+    public void setListenerCropUpdate(OnCropUpdateListener listener) {
+        this.listenerCropUpdate = listener;
     }
 
     private void animateToAllowedBounds() {
