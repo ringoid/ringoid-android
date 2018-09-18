@@ -73,6 +73,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
 
         rvItems.setLayoutManager(layoutManager);
         rvItems.setAdapter(adapter);
+        rvItems.addOnScrollListener(new ListenerScroll());
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
 
@@ -105,7 +106,6 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         @Override
         public void scrollToPosition(int position) {
             if (getContext() == null) return;
-            updateView();
             layoutManager.scrollToPosition(position);
             dotsIndicatorHelper.setPosition(position);
         }
@@ -115,6 +115,22 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         @Override
         public void onRefresh() {
             presenterProfile.onSwipeRefresh();
+        }
+    }
+
+    private class ListenerScroll extends RecyclerView.OnScrollListener {
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+
+            int pos = layoutManager.findFirstVisibleItemPosition();
+
+            int right = layoutManager.findViewByPosition(pos).getRight();
+
+            if (right < recyclerView.getContext().getResources().getDisplayMetrics().widthPixels / 2)
+                pos += 1;
+
+            presenterProfile.onShownItem(pos);
         }
     }
 }

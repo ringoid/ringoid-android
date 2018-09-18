@@ -32,4 +32,8 @@ public interface ICacheProfile {
     boolean isPhotoLocal(int position);
 
     boolean isPhotoUploading(int position);
+
+    String getOriginPhotoId(int pos);
+
+    int getPosition(String originPhotoId);
 }

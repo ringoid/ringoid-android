@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.ringoid.controller.data.memorycache.CacheBlacklist;
 import com.ringoid.controller.data.memorycache.CacheChatMessages;
 import com.ringoid.controller.data.memorycache.CacheExplore;
+import com.ringoid.controller.data.memorycache.CacheInterfaceState;
 import com.ringoid.controller.data.memorycache.CacheLikes;
 import com.ringoid.controller.data.memorycache.CacheLocale;
 import com.ringoid.controller.data.memorycache.CacheMessages;
@@ -22,6 +23,7 @@ import com.ringoid.controller.data.memorycache.CacheUser;
 import com.ringoid.controller.data.memorycache.ICacheBlacklist;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheExplore;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheLocale;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
@@ -329,6 +331,12 @@ class AppModule {
     @Singleton
     ICacheLocale getCacheLocale() {
         return new CacheLocale();
+    }
+
+    @Provides
+    @Singleton
+    ICacheInterfaceState getCacheInterfaceState() {
+        return new CacheInterfaceState();
     }
 
     //endregion

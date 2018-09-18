@@ -18,4 +18,6 @@ public interface IPresenterProfile {
     void setListener(IPresenterProfileListener listener);
 
     void onSwipeRefresh();
+
+    void onShownItem(int pos);
 }

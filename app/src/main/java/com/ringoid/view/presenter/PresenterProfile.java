@@ -2,6 +2,7 @@
 package com.ringoid.view.presenter;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.listener.ICacheProfileListener;
 import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
@@ -16,6 +17,9 @@ public class PresenterProfile implements IPresenterProfile {
 
     @Inject
     ICacheProfile cacheProfile;
+
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
 
     @Inject
     INavigator navigator;
@@ -67,9 +71,15 @@ public class PresenterProfile implements IPresenterProfile {
         repositoryProfilePhotos.request();
     }
 
+    @Override
+    public void onShownItem(int pos) {
+        cacheInterfaceState.setProfileOriginPhotoId(cacheProfile.getOriginPhotoId(pos));
+    }
+
     private void updateView() {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().updateView();
+        scrollToPosition(cacheProfile.getPosition(cacheInterfaceState.getOriginPhotoId()));
     }
 
     private void scrollToPosition(int position) {

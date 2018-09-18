@@ -123,6 +123,16 @@ public class CacheProfile implements ICacheProfile {
         return getData() == null ? false : data.isUploading(position);
     }
 
+    @Override
+    public String getOriginPhotoId(int pos) {
+        return getData() == null ? null : data.getOriginPhotoId(pos);
+    }
+
+    @Override
+    public int getPosition(String originPhotoId) {
+        return getData() == null ? 0 : data.getPosition(originPhotoId);
+    }
+
     private ProfilePhoto getItem(String imageId) {
         if (getData() == null) return null;
         return data.getItem(imageId);

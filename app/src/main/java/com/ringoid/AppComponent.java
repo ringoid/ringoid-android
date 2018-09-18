@@ -3,6 +3,7 @@ package com.ringoid;
 
 import com.ringoid.controller.data.memorycache.CacheBlacklist;
 import com.ringoid.controller.data.memorycache.CacheChatMessages;
+import com.ringoid.controller.data.memorycache.CacheInterfaceState;
 import com.ringoid.controller.data.memorycache.CacheProfile;
 import com.ringoid.controller.data.memorycache.CacheScroll;
 import com.ringoid.controller.data.memorycache.CacheToken;
@@ -90,6 +91,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(CacheInterfaceState param);
 
     void inject(CacheChatMessages param);
 

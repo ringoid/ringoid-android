@@ -96,4 +96,16 @@ public class ModelProfilePhotos implements Serializable {
         return data != null && data.get(i).getPhotoId().equals(imageId);
 
     }
+
+    public String getOriginPhotoId(int pos) {
+        return data == null || pos < 0 || pos >= data.size() ? null : data.get(pos).getOriginPhotoId();
+    }
+
+    public int getPosition(String originPhotoId) {
+        if (data == null) return 0;
+        for (int i = 0; i < data.size(); ++i)
+            if (data.get(i).getOriginPhotoId().equals(originPhotoId))
+                return i;
+        return 0;
+    }
 }

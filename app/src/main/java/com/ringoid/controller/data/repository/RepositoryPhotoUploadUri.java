@@ -16,8 +16,8 @@ import retrofit2.Response;
 
 public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
 
+    private static final String EXT_JPG = "jpg";
 
-    public static final String EXT_JPG = "jpg";
     @Inject
     IApiRingoid apiRingoid;
 
@@ -57,7 +57,6 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
 
                 cachePhotoUpload.setUploadUri(response.body().getUri());
                 cachePhotoUpload.setOriginPhotoId(response.body().getPhotoId());
-
                 repositoryPhotoUpload.request();
             }
 

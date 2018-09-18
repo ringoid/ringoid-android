@@ -2,6 +2,7 @@ package com.ringoid.controller.data.repository;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICachePhotoUpload;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheUser;
@@ -35,6 +36,9 @@ public class RepositoryPhotoUpload implements IRepositoryPhotoUpload {
     @Inject
     ICacheProfile cacheProfile;
 
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
+
     private ListenerRequest listenerRequest;
     private Call<Void> request;
     private WeakReference<IRepositoryPhotoUploadListener> refListener;
@@ -49,6 +53,7 @@ public class RepositoryPhotoUpload implements IRepositoryPhotoUpload {
         if (request != null) request.cancel();
 
         if (!cachePhotoUpload.isDataExist()) return;
+        cacheInterfaceState.setProfileOriginPhotoId(cachePhotoUpload.getPhotoId());
         cacheProfile.addPhotoLocal(cachePhotoUpload.getFileUri(), cachePhotoUpload.getPhotoId());
 
         RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), cachePhotoUpload.getFile());
