@@ -3,7 +3,12 @@ package com.ringoid.view.ui.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 
@@ -24,7 +29,7 @@ public class HelperAnimation implements IHelperAnimation {
     @Override
     public void showPopupLikes(ViewGroup container) {
         if (generatorLikes == null) {
-            Bitmap bitmap = BitmapFactory.decodeResource(container.getResources(), R.drawable.ic_favorite_red_24dp);
+            Bitmap bitmap = getBitmap(container.getContext(), R.drawable.ic_favorite_red_24dp);
             generatorLikes = new ParticleGenerator(bitmap);
 
             sourceLikes = new ConfettiSource(
@@ -35,6 +40,26 @@ public class HelperAnimation implements IHelperAnimation {
         showAnimation(container, generatorLikes, sourceLikes);
     }
 
+    private Bitmap getBitmap(Context context, int drawableRes) {
+        Drawable drawable = ContextCompat.getDrawable(context, drawableRes);
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && drawable instanceof VectorDrawable) {
+            return getBitmap((VectorDrawable) drawable);
+        } else {
+            throw new IllegalArgumentException("unsupported drawable type");
+        }
+    }
+
+    private Bitmap getBitmap(VectorDrawable drawable) {
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
+    }
+
     private int getY(ViewGroup container) {
         return container.getHeight() - (int) container.getResources().getDimension(R.dimen.animation_y_delta);
     }
@@ -42,7 +67,7 @@ public class HelperAnimation implements IHelperAnimation {
     @Override
     public void showPopupMessage(ViewGroup container) {
         if (generatorMessages == null) {
-            Bitmap bitmap = BitmapFactory.decodeResource(container.getResources(), R.drawable.ic_chat_bubble_green_24dp);
+            Bitmap bitmap = getBitmap(container.getContext(), R.drawable.ic_chat_bubble_green_24dp);
             generatorMessages = new ParticleGenerator(bitmap);
 
             sourceMessages = new ConfettiSource(
@@ -57,7 +82,7 @@ public class HelperAnimation implements IHelperAnimation {
     @Override
     public void showPopupMatches(ViewGroup container) {
         if (generatorMatches == null) {
-            Bitmap bitmap = BitmapFactory.decodeResource(container.getResources(), R.drawable.ic_match_red_24dp);
+            Bitmap bitmap = getBitmap(container.getContext(), R.drawable.ic_match_red_24dp);
             generatorMatches = new ParticleGenerator(bitmap);
 
             sourceMatches = new ConfettiSource(
