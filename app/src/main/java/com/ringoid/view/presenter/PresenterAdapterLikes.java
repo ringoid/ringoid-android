@@ -92,8 +92,15 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
     private class ListenerCacheLikes implements ICacheLikesListener {
         @Override
         public void onUpdate() {
-            if (refListener == null || refListener.get() == null) return;
-            refListener.get().onUpdate();
+        }
+
+        @Override
+        public void onLiked(int adapterPosition, int itemPosition) {
+        }
+
+        @Override
+        public void onUnliked(int adapterPosition, int itemPosition) {
+
         }
     }
 
@@ -111,7 +118,7 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
         }
     }
 
-    private class ListenerCacheChatMessages implements ICacheChatMessagesListener{
+    private class ListenerCacheChatMessages implements ICacheChatMessagesListener {
         @Override
         public void onDataChange() {
             if (refListener == null || refListener.get() == null) return;

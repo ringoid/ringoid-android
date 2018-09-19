@@ -12,7 +12,7 @@ import com.ringoid.R;
 import com.ringoid.view.ui.dialog.DialogReport;
 import com.ringoid.view.ui.util.IndicatorHelper;
 
-abstract class ViewHolderItemLikeBase extends ViewHolderBase
+public abstract class ViewHolderItemLikeBase extends ViewHolderBase
         implements View.OnClickListener {
 
     DialogReport dialogMenu;
@@ -86,4 +86,11 @@ abstract class ViewHolderItemLikeBase extends ViewHolderBase
         }
     }
 
+    public void setLiked(int position) {
+        setChatButtonVisible(position);
+    }
+
+    public void setUnliked(int position) {
+        setChatButtonVisible(position);
+    }
 }

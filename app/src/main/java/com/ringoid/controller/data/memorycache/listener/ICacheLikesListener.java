@@ -3,4 +3,8 @@ package com.ringoid.controller.data.memorycache.listener;
 
 public interface ICacheLikesListener {
     void onUpdate();
+
+    void onLiked(int adapterPosition, int itemPosition);
+
+    void onUnliked(int adapterPosition, int itemPosition);
 }

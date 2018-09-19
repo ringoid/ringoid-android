@@ -4,8 +4,10 @@ package com.ringoid.view.presenter;
 import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
+import com.ringoid.controller.data.memorycache.listener.ICacheLikesListener;
 import com.ringoid.view.presenter.callback.IPresenterLikesListener;
 
 import java.lang.ref.WeakReference;
@@ -20,10 +22,15 @@ public class PresenterLikes implements IPresenterLikes {
     @Inject
     ICacheTutorial cacheTutorial;
 
+    @Inject
+    ICacheLikes cacheLikes;
+
+    private ListenerCacheLikes listenerCacheLikes;
     private WeakReference<IPresenterLikesListener> refListener;
 
     public PresenterLikes() {
         ApplicationRingoid.getComponent().inject(this);
+        cacheLikes.addListener(listenerCacheLikes = new ListenerCacheLikes());
     }
 
     @Override
@@ -57,5 +64,25 @@ public class PresenterLikes implements IPresenterLikes {
     @Override
     public void setListener(IPresenterLikesListener listener) {
         this.refListener = new WeakReference<>(listener);
+    }
+
+    private class ListenerCacheLikes implements ICacheLikesListener{
+        @Override
+        public void onUpdate() {
+
+        }
+
+        @Override
+        public void onLiked(int adapterPosition, int itemPosition) {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onLike(adapterPosition);
+        }
+
+        @Override
+        public void onUnliked(int adapterPosition, int itemPosition) {
+
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onUnlike(adapterPosition);
+        }
     }
 }

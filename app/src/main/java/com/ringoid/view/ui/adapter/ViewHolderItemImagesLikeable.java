@@ -52,7 +52,7 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
     }
 
 
-    void showLikeAnimationSmall(boolean liked) {
+    private void showLikeAnimationSmall(boolean liked) {
         setLiked(liked);
 
         Animation animationScale = new ScaleAnimation(0.7f, 1f, 0.7f, 1f,
@@ -64,7 +64,7 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
     }
 
 
-    void showLikeAnimation() {
+    private void showLikeAnimation() {
         if (animationLike != null)
             animationLike.cancel();
         animationLike = new AnimationLike(ivLikeAnimated);

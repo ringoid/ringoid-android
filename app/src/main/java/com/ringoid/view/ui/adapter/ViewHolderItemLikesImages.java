@@ -52,7 +52,6 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
         }
     }
 
-
     @Override
     public boolean onLongClick(View v) {
         if (v == itemView) {

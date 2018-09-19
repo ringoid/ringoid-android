@@ -15,9 +15,10 @@ import android.view.ViewGroup;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterLikes;
-import com.ringoid.view.presenter.callback.IPresenterExploreListener;
 import com.ringoid.view.presenter.callback.IPresenterLikesListener;
 import com.ringoid.view.ui.adapter.AdapterLikes;
+import com.ringoid.view.ui.adapter.ViewHolderItemLikeBase;
+import com.ringoid.view.ui.adapter.ViewHolderItemLikes;
 
 import javax.inject.Inject;
 
@@ -101,6 +102,25 @@ public class FragmentLikes extends FragmentBase {
         @Override
         public void scrollTop() {
             rvItems.scrollToPosition(0);
+        }
+
+        @Override
+        public void onLike(int adapterPosition) {
+            RecyclerView.ViewHolder item = rvItems.findViewHolderForAdapterPosition(adapterPosition);
+            if (item == null) return;
+            ViewHolderItemLikeBase holder = (ViewHolderItemLikes) item;
+
+            holder.setLiked(adapterPosition);
+
+        }
+
+        @Override
+        public void onUnlike(int adapterPosition) {
+            RecyclerView.ViewHolder item = rvItems.findViewHolderForAdapterPosition(adapterPosition);
+            if (item == null) return;
+            ViewHolderItemLikeBase holder = (ViewHolderItemLikes) item;
+
+            holder.setUnliked(adapterPosition);
         }
     }
 }

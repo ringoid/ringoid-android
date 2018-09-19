@@ -45,31 +45,7 @@ public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages
 
     @Override
     public void onClickLike(int adapterPosition, int itemPosition) {
-        checkLikedAlready(adapterPosition, itemPosition);
         cacheLikes.setLiked(adapterPosition, itemPosition);
-        checkLikesTutorial(adapterPosition, itemPosition);
-        checkLikesDialog(adapterPosition, itemPosition);
-    }
-
-    private void checkLikesDialog(int adapterPosition, int itemPosition) {
-        cacheTutorial.setLikesNum(cacheLikes.getItemId(adapterPosition, itemPosition));
-
-        if (cacheTutorial.getImageLikes() < MAX_LIKES_DIALOG_SHOW) return;
-
-        cacheTutorial.resetLikesNum();
-        viewDialogs.showDialogLikes();
-    }
-
-    private void checkLikedAlready(int adapterPosition, int itemPosition) {
-        if (!cacheLikes.isLiked(adapterPosition, itemPosition)) return;
-
-    }
-
-    private void checkLikesTutorial(int adapterPosition, int itemPosition) {
-        if (cacheTutorial.isLikesShown() || cacheLikes.isLiked(adapterPosition, itemPosition))
-            return;
-        cacheTutorial.setLikesShown();
-        viewDialogs.showDialogLikes();
     }
 
     @Override

@@ -2,7 +2,6 @@
 package com.ringoid.view.presenter;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheExplore;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
@@ -41,31 +40,7 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
 
     @Override
     public void onClickLike(int adapterPosition, int itemPosition) {
-        checkLikedAlready(adapterPosition, itemPosition);
         cacheExplore.setLiked(adapterPosition, itemPosition);
-        checkLikesTutorial(adapterPosition, itemPosition);
-        checkLikesDialog(adapterPosition, itemPosition);
-    }
-
-    private void checkLikesDialog(int adapterPosition, int itemPosition) {
-        cacheTutorial.setLikesNum(cacheExplore.getItemId(adapterPosition, itemPosition));
-
-        if (cacheTutorial.getImageLikes() < MAX_LIKES_DIALOG_SHOW) return;
-
-        cacheTutorial.resetLikesNum();
-        viewDialogs.showDialogExplore();
-    }
-
-    private void checkLikedAlready(int adapterPosition, int itemPosition) {
-        if (!cacheExplore.isLiked(adapterPosition, itemPosition)) return;
-
-    }
-
-    private void checkLikesTutorial(int adapterPosition, int itemPosition) {
-        if (cacheTutorial.isExploreShown() || cacheExplore.isLiked(adapterPosition, itemPosition))
-            return;
-        cacheTutorial.setExploreShown();
-        viewDialogs.showDialogExplore();
     }
 
     @Override

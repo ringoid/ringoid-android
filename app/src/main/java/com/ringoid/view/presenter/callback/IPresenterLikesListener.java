@@ -5,4 +5,8 @@ public interface IPresenterLikesListener {
     boolean isPositionTop();
 
     void scrollTop();
+
+    void onLike(int adapterPosition);
+
+    void onUnlike(int adapterPosition);
 }

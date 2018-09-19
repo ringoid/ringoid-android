@@ -37,7 +37,7 @@ public class CacheLikes implements ICacheLikes {
     @Override
     public void setLiked(int adapterPosition, int itemPosition) {
         data.get(adapterPosition).setLiked(itemPosition);
-        notifyListeners();
+        notifyListenersLiked(adapterPosition, itemPosition);
     }
 
     @Override
@@ -58,7 +58,9 @@ public class CacheLikes implements ICacheLikes {
     @Override
     public void changeLiked(int adapterPosition, int itemPosition) {
         data.get(adapterPosition).changeLiked(itemPosition);
-        notifyListeners();
+        if (data.get(adapterPosition).isLiked(itemPosition))
+            notifyListenersLiked(adapterPosition,itemPosition);
+        else notifyListenersUnliked(adapterPosition,itemPosition);
     }
 
     @Override
@@ -91,13 +93,22 @@ public class CacheLikes implements ICacheLikes {
         }
     }
 
-    private DataProfile getUserById(String userId) {
-        if (data == null) return null;
-        for (DataProfile item : data) {
-            if (item.getId().equals(userId))
-                return item;
+    private void notifyListenersLiked(int adapterPosition, int itemPosition) {
+        if (listeners == null) return;
+        for (String name : listeners.keySet()) {
+            ICacheLikesListener listener = listeners.get(name);
+            if (listener == null) continue;
+            listener.onLiked(adapterPosition, itemPosition);
         }
-        return null;
+    }
+
+    private void notifyListenersUnliked(int adapterPosition, int itemPosition) {
+        if (listeners == null) return;
+        for (String name : listeners.keySet()) {
+            ICacheLikesListener listener = listeners.get(name);
+            if (listener == null) continue;
+            listener.onUnliked(adapterPosition, itemPosition);
+        }
     }
 
 }
