@@ -99,7 +99,6 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         public void updateView() {
             if (getContext() == null) return;
             dotsIndicatorHelper.updateData(presenterProfile.getItemsNum());
-            srlPhotos.setRefreshing(false);
             setViewState();
         }
 
@@ -108,6 +107,11 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
             if (getContext() == null) return;
             layoutManager.scrollToPosition(position);
             dotsIndicatorHelper.setPosition(position);
+        }
+
+        @Override
+        public void refreshComplete() {
+            srlPhotos.setRefreshing(false);
         }
     }
 

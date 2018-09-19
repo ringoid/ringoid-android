@@ -6,6 +6,7 @@ import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.listener.ICacheProfileListener;
 import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
+import com.ringoid.controller.data.repository.callback.IRepositoryProfilePhotosListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.callback.IPresenterProfileListener;
 
@@ -29,12 +30,14 @@ public class PresenterProfile implements IPresenterProfile {
     @Inject
     IRepositoryProfilePhotos repositoryProfilePhotos;
 
+    private ListenerRepositoryProfile listenerRepositoryProfile;
     private ListenerCacheProfile listenerCache;
     private WeakReference<IPresenterProfileListener> refListener;
 
     public PresenterProfile() {
         ApplicationRingoid.getComponent().inject(this);
         cacheProfile.addListener(listenerCache = new ListenerCacheProfile());
+        repositoryProfilePhotos.setListener(listenerRepositoryProfile = new ListenerRepositoryProfile());
     }
 
     @Override
@@ -94,6 +97,11 @@ public class PresenterProfile implements IPresenterProfile {
         refListener.get().scrollToPosition(position);
     }
 
+    private void notifyRefreshComplete() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().refreshComplete();
+    }
+
     private class ListenerCacheProfile implements ICacheProfileListener {
         @Override
         public void onUpdate() {
@@ -108,6 +116,18 @@ public class PresenterProfile implements IPresenterProfile {
         @Override
         public void onPhotoRemove(int index) {
             onUpdate();
+        }
+    }
+
+    private class ListenerRepositoryProfile implements IRepositoryProfilePhotosListener {
+        @Override
+        public void onSuccess() {
+            notifyRefreshComplete();
+        }
+
+        @Override
+        public void onError() {
+            notifyRefreshComplete();
         }
     }
 }

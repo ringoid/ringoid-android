@@ -5,4 +5,6 @@ public interface IPresenterProfileListener {
     void updateView();
 
     void scrollToPosition(int position);
+
+    void refreshComplete();
 }
