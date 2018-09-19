@@ -75,20 +75,9 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="settings_licenses">Licenses</string>
-    <string name="message_dialog_phone_valid" formatted="false">+%s %s looks invalid.\n\nMost likely we won\'t be able to send SMS with a verification code to validate it.\n\nDo you still want to proceed?</string>
     <string name="hint_phone_code">Code</string>
-    <string name="dialog_phone_invalid_cancel">Correct phone number</string>
-    <string name="dialog_phone_invalid_confirm">Try anyway</string>
     <string name="error_sms_code_len">Please enter 4 digits verification code</string>
-    <string name="dialog_profile_likes_title">How \"Likes\" work in Ringoid</string>
-    <string name="dialog_profile_likes_message">Only you can see how many likes your photos received.\n\nThe more likes you have, the higher your popularity ranking in your area and the more people of the opposite sex can discover you.\n\nYou can\'t see who liked what photo(s) but you can see who liked you.\n\nPhotos with more likes are shown first.</string>
-    <string name="dialog_profile_likes_button_likes">Who Liked You</string>
     <string name="message_dialog_show_again">Don\'t show this again</string>
-    <string name="dialog_who_liked_you_title">How Who Liked You works</string>
-    <string name="dialog_who_liked_you_message">You can see here photos of people who liked you.\n\n* Swipe photos left and right\n* Scroll profiles up and down\n* Tap anywhere to like a photo\n* To unlike, tap on the heart icon\n\nAs soon as you liked them, their profile will move to Messages, and you can text each other.\n\nYou can like different photos of the same user so your profile will rise higher in their Messages and they can notice you sooner.</string>
-    <string name="OK">ok</string>
-    <string name="dialog_new_faces_title">How New Faces works</string>
-    <string name="dialog_new_faces_message">Here you can discover people which you have not seen yet, sorted by distance and popularity (likes).\n\n* Swipe photos left and right\n* Scroll profiles up and down\n* Tap anywhere to like a photo\n* To unlike, tap on the heart icon\n\nIf they like you too, it will be a match and you can message each other.\n\nYou can like different photos of the same user so your profile will rise higher in their Who Liked You and they can notice you sooner.</string>
     <string name="dialog_hidden_mode_title">Only you can see your photos</string>
     <string name="dialog_hidden_mode_message">Others can\'t see your photos, like or message you. It is almost like you deleted your account, although you can still see Who Liked You already and browse New Faces.\n\nYou can change who can see your photos in Privacy, and allow others to see your photos, like and message you.</string>
     <string name="ignore">ignore</string>
@@ -128,7 +117,6 @@
     <string name="dialog_like_no_photo_message">After you upload your photo, you can like others.\n\nIf they like you too, it\'s a match, and you can message each other.\n\nYou may need to grant a permission to the app to pick an image from your gallery.</string>
     <string name="dialog_like_no_photo_confirm">upload</string>
     <string name="message_sent">Message sent</string>
-    <string name="message_age_select">Age filter</string>
     <string name="message_clipboard_chat_message">Chat message</string>
     <string name="dialog_chat_clear_title">Clear history?</string>
     <string name="dialog_chat_clear_message">The app will delete all messages between you and your match from its cache. There is no undo.\n\nA person with whom you matched may still retain in their app all messages that you both sent.</string>
