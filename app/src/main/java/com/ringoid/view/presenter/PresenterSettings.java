@@ -69,11 +69,6 @@ public class PresenterSettings implements IPresenterSettings {
         refListener.get().setPrivacyPhotos(cacheSettingsPrivacy.getPrivacyPhotos());
     }
 
-    private void notifyListenersPrivacyAge() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().setPrivacyAge(cacheSettingsPrivacy.getPrivacyAgeMin(),cacheSettingsPrivacy.getPrivacyAgeMax());
-    }
-
     @Override
     public void onClickPrivacyPhotosAll() {
         cacheSettingsPrivacy.setPrivacyPhotos(0);
@@ -108,19 +103,12 @@ public class PresenterSettings implements IPresenterSettings {
         navigator.navigateSettingsPrivacyDistance();
     }
 
-    @Override
-    public void onAgeSelected(int min, int max) {
-        cacheSettingsPrivacy.setAgeSelected(min,max);
-        settingsHelper.requestSave();
-    }
-
     private class ListenerCacheSettingsPrivacy implements ICacheSettingsPrivacyListener {
         @Override
         public void onUpdate() {
             notifyListenersPrivacyBlacklistNum();
             notifyListenersPrivacyDistance();
             notifyListenersPrivacyPhotos();
-            notifyListenersPrivacyAge();
         }
     }
 }

@@ -9,6 +9,4 @@ public interface IPresenterSettingsListener {
     void setPrivacyPhoneNum(int itemsNum);
 
     void showDialogPrivacyPhotos(int selected);
-
-    void setPrivacyAge(int privacyAgeMin, int privacyAgeMax);
 }

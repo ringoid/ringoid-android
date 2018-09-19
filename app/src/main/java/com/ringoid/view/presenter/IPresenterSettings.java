@@ -19,6 +19,4 @@ public interface IPresenterSettings {
     void onClickPrivacyBlacklist();
 
     void onClickPrivacyDistance();
-
-    void onAgeSelected(int min, int max);
 }
