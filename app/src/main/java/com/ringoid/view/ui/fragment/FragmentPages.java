@@ -1,7 +1,6 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.fragment;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,13 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.BuildConfig;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterPagesContainer;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
+import com.ringoid.view.ui.util.IHelperAnimation;
 import com.ringoid.view.ui.util.IStatusBarViewHelper;
 
 import javax.inject.Inject;
@@ -28,6 +28,9 @@ public class FragmentPages extends FragmentBase
 
     @Inject
     IStatusBarViewHelper statusBarViewHelper;
+
+    @Inject
+    IHelperAnimation helperAnimation;
 
     private ListenerPresenter listenerPresenter;
     private ViewGroup llBottomAppBar;
@@ -62,6 +65,13 @@ public class FragmentPages extends FragmentBase
 
     @Override
     public void onClick(View view) {
+
+        if (BuildConfig.DEBUG) {
+            listenerPresenter.showAnimationLike();
+            listenerPresenter.showAnimationMessage();
+            listenerPresenter.showAnimationMatches();
+        }
+
         if (view.getId() == R.id.ivMenuLikes)
             presenterPagesContainer.onClickPageLikes();
 
@@ -120,6 +130,21 @@ public class FragmentPages extends FragmentBase
         @Override
         public void setStatusBarColor(int type) {
             statusBarViewHelper.setColor((AppCompatActivity) getActivity(), type);
+        }
+
+        @Override
+        public void showAnimationLike() {
+            helperAnimation.showPopupLikes((ViewGroup) getView().findViewById(R.id.flPages));
+        }
+
+        @Override
+        public void showAnimationMessage() {
+            helperAnimation.showPopupMessage((ViewGroup) getView().findViewById(R.id.flPages));
+        }
+
+        @Override
+        public void showAnimationMatches() {
+            helperAnimation.showPopupMatches((ViewGroup) getView().findViewById(R.id.flPages));
         }
     }
 }

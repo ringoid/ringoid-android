@@ -13,4 +13,9 @@ public interface IPresenterPagesContainerListener {
 
     void scrollComplete(boolean toolbarScroll, int scrollSum, int alpha);
 
+    void showAnimationLike();
+
+    void showAnimationMessage();
+
+    void showAnimationMatches();
 }
