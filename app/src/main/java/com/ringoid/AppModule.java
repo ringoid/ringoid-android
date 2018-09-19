@@ -118,7 +118,9 @@ import com.ringoid.view.presenter.PresenterSettings;
 import com.ringoid.view.presenter.PresenterSettingsFAQ;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import com.ringoid.view.presenter.PresenterSettingsPush;
+import com.ringoid.view.presenter.util.HelperConnection;
 import com.ringoid.view.presenter.util.HelperThreadMain;
+import com.ringoid.view.presenter.util.IHelperConnection;
 import com.ringoid.view.presenter.util.IHelperThreadMain;
 import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.presenter.util.ISettingsHelper;
@@ -195,6 +197,12 @@ class AppModule {
     @Singleton
     IHelperThreadMain getHelperThreadMain() {
         return new HelperThreadMain(new Handler(Looper.getMainLooper()));
+    }
+
+    @Provides
+    @Singleton
+    IHelperConnection getHelperConnection() {
+        return new HelperConnection();
     }
 
     @Provides
