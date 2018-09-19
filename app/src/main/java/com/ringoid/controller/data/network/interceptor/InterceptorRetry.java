@@ -37,22 +37,26 @@ public class InterceptorRetry implements Interceptor {
         for (int i = 0; i < 3; ++i) {
             response = chain.proceed(request);
 
-            String body = getBody(response);
+            if (response == null || !response.isSuccessful()) return getEmptyResponse(response);
 
-            if (!checkInternalServerError(body))
-                return response.newBuilder().body(ResponseBody.create(response.body().contentType(), body)).build();
+            ResponseBody body = response.body();
+
+            if (body == null) return getEmptyResponse(response);
+
+            String bodyString = getBody(body);
+
+            if (!checkInternalServerError(bodyString))
+                return response.newBuilder().body(ResponseBody.create(body.contentType(), bodyString)).build();
         }
 
         return response;
     }
 
-    private String getBody(Response response) {
-        if (response == null || !response.isSuccessful()) return null;
+    private Response getEmptyResponse(Response response) {
+        return response.newBuilder().build();
+    }
 
-        ResponseBody body = response.body();
-
-        if (body == null) return null;
-
+    private String getBody(ResponseBody body) {
         String responseString = null;
 
         try {
