@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class ProfilePhoto implements Serializable {
     private static final int STATUS_UPLOADED = 2;
     private static final int STATUS_UPLOADING = 1;
+    private String clientPhotoId;
     private String photoId;
     private String originPhotoId;
     private String photoUri;
@@ -15,14 +16,15 @@ public class ProfilePhoto implements Serializable {
     private boolean isLocal;
     private int status;
 
+    //constructor for Gson
     public ProfilePhoto() {
         isLocal = false;
     }
 
-    public ProfilePhoto(Uri fileUri, String photoId) {
+    public ProfilePhoto(Uri fileUri, String clientPhotoId) {
         isLocal = true;
         this.photoUri = fileUri.toString();
-        this.originPhotoId = photoId;
+        this.clientPhotoId = clientPhotoId;
         status = STATUS_UPLOADING;
     }
 
@@ -42,6 +44,10 @@ public class ProfilePhoto implements Serializable {
         return originPhotoId;
     }
 
+    public void setOriginPhotoId(String originPhotoId) {
+        this.originPhotoId = originPhotoId;
+    }
+
     public void setStatusUploaded() {
         status = STATUS_UPLOADED;
     }
@@ -52,5 +58,13 @@ public class ProfilePhoto implements Serializable {
 
     public boolean isUploading() {
         return status == STATUS_UPLOADING;
+    }
+
+    public boolean isEqualsClientPhotoId(String clientPhotoId) {
+        return this.clientPhotoId != null && this.clientPhotoId.equals(clientPhotoId);
+    }
+
+    public boolean isEqualsOriginPhotoId(String originPhotoId) {
+        return this.originPhotoId != null && this.originPhotoId.equals(originPhotoId);
     }
 }

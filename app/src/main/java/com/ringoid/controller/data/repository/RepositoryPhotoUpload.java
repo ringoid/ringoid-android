@@ -53,8 +53,6 @@ public class RepositoryPhotoUpload implements IRepositoryPhotoUpload {
         if (request != null) request.cancel();
 
         if (!cachePhotoUpload.isDataExist()) return;
-        cacheInterfaceState.setProfileOriginPhotoId(cachePhotoUpload.getPhotoId());
-        cacheProfile.addPhotoLocal(cachePhotoUpload.getFileUri(), cachePhotoUpload.getPhotoId());
 
         RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), cachePhotoUpload.getFile());
 
@@ -82,7 +80,7 @@ public class RepositoryPhotoUpload implements IRepositoryPhotoUpload {
         public void onResponse(Call<Void> call, Response<Void> response) {
             if (response.isSuccessful()) {
                 cacheUser.setUserOld();
-                cacheProfile.setPhotoLocalUploaded(cachePhotoUpload.getPhotoId());
+                cacheProfile.setPhotoLocalUploaded(cachePhotoUpload.getOriginPhotoId());
                 notifySuccess();
             }
         }

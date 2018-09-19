@@ -20,7 +20,11 @@ public interface ICachePhotoUpload {
 
     void setFile(File file);
 
-    void setOriginPhotoId(String photoId);
+    void setOriginPhotoId(String clientPhotoId, String photoId);
 
-    String getPhotoId();
+    String getOriginPhotoId();
+
+    String getClientPhotoId();
+
+    void setClientPhotoID(String s);
 }

@@ -2,7 +2,9 @@ package com.ringoid.controller.data.repository;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICachePhotoUpload;
+import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.request.RequestPhotoUploadUri;
@@ -30,6 +32,12 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
     @Inject
     IRepositoryPhotoUpload repositoryPhotoUpload;
 
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
+
+    @Inject
+    ICacheProfile cacheProfile;
+
     private Callback<ResponseProfilePhotoUri> requestUriListener;
     private Call<ResponseProfilePhotoUri> request;
 
@@ -43,7 +51,7 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
         if (request != null)
             request.cancel();
 
-        request = apiRingoid.profilePhotoUri(new RequestPhotoUploadUri(cacheToken.getToken(), EXT_JPG));
+        request = apiRingoid.profilePhotoUri(new RequestPhotoUploadUri(cacheToken.getToken(), cachePhotoUpload.getClientPhotoId(), EXT_JPG));
         request.enqueue(requestUriListener);
 
     }
@@ -56,7 +64,10 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
                     && response.body().isSuccess()) {
 
                 cachePhotoUpload.setUploadUri(response.body().getUri());
-                cachePhotoUpload.setOriginPhotoId(response.body().getPhotoId());
+                cachePhotoUpload.setOriginPhotoId(response.body().getClientPhotoId(), response.body().getOriginPhotoId());
+                cacheInterfaceState.setProfileOriginPhotoId(response.body().getOriginPhotoId());
+                cacheProfile.updateLocalPhoto(response.body().getClientPhotoId(), response.body().getOriginPhotoId());
+
                 repositoryPhotoUpload.request();
             }
 

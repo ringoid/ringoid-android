@@ -47,7 +47,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         vPhotos = view.findViewById(R.id.flPhotos);
-        vEmpty = view.findViewById(R.id.flEmpty);
+        vEmpty = view.findViewById(R.id.tvEmpty);
         srlPhotos = view.findViewById(R.id.srlProfilePhotos);
 
         srlPhotos.setOnRefreshListener(listenerRefreshLayout = new ListenerRefreshLayout());

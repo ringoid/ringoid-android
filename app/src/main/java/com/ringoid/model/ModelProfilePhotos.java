@@ -101,11 +101,19 @@ public class ModelProfilePhotos implements Serializable {
         return data == null || pos < 0 || pos >= data.size() ? null : data.get(pos).getOriginPhotoId();
     }
 
-    public int getPosition(String originPhotoId) {
-        if (data == null) return 0;
+    public int getPositionByOriginPhotoId(String originPhotoId, int defaultValue) {
+        if (data == null) return defaultValue;
         for (int i = 0; i < data.size(); ++i)
-            if (data.get(i).getOriginPhotoId().equals(originPhotoId))
+            if (data.get(i).isEqualsOriginPhotoId(originPhotoId))
                 return i;
-        return 0;
+        return defaultValue;
+    }
+
+    public ProfilePhoto getItemByClientPhotoId(String clientPhotoId) {
+        if (data == null) return null;
+        for (ProfilePhoto item : data)
+            if (item.isEqualsClientPhotoId(clientPhotoId))
+                return item;
+        return null;
     }
 }

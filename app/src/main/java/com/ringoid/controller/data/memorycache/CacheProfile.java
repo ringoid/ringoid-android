@@ -43,7 +43,7 @@ public class CacheProfile implements ICacheProfile {
         if (getData() == null)
             data = new ModelProfilePhotos();
         data.add(photos);
-        cacheStorage.writeData(FileEnum.CACHE_PROFILE, data);
+        saveData();
         notifyListeners();
     }
 
@@ -77,7 +77,7 @@ public class CacheProfile implements ICacheProfile {
 
         if (!data.remove(index)) return;
 
-        cacheStorage.writeData(FileEnum.CACHE_PROFILE, data);
+        saveData();
         notifyListenersRemove(index);
     }
 
@@ -96,19 +96,23 @@ public class CacheProfile implements ICacheProfile {
     }
 
     @Override
-    public void addPhotoLocal(Uri fileUri, String photoId) {
-        ProfilePhoto profilePhoto = new ProfilePhoto(fileUri, photoId);
+    public void addPhotoLocal(Uri fileUri, String clientPhotoId) {
+        ProfilePhoto profilePhoto = new ProfilePhoto(fileUri, clientPhotoId);
         if (getData() == null) data = new ModelProfilePhotos();
         data.add(profilePhoto);
-        cacheStorage.writeData(FileEnum.CACHE_PROFILE, data);
+        saveData();
         notifyListenersAddPhotoLocal(data.size() - 1);
+    }
+
+    private void saveData() {
+        cacheStorage.writeData(FileEnum.CACHE_PROFILE, data);
     }
 
     @Override
     public void setPhotoLocalUploaded(String originPhotoId) {
         if (getData() == null) return;
         if (data.setPhotoLocalUploaded(originPhotoId)) {
-            cacheStorage.writeData(FileEnum.CACHE_PROFILE, data);
+            saveData();
             notifyListeners();
         }
     }
@@ -129,8 +133,8 @@ public class CacheProfile implements ICacheProfile {
     }
 
     @Override
-    public int getPosition(String originPhotoId) {
-        return getData() == null ? 0 : data.getPosition(originPhotoId);
+    public int getPosition(String originPhotoId, int defaultValue) {
+        return getData() == null ? defaultValue : data.getPositionByOriginPhotoId(originPhotoId, defaultValue);
     }
 
     @Override
@@ -140,9 +144,15 @@ public class CacheProfile implements ICacheProfile {
         notifyListeners();
     }
 
-    private ProfilePhoto getItem(String imageId) {
-        if (getData() == null) return null;
-        return data.getItem(imageId);
+    @Override
+    public void updateLocalPhoto(String clientPhotoId, String originPhotoId) {
+        if (getData() == null) return;
+
+        ProfilePhoto item = getData().getItemByClientPhotoId(clientPhotoId);
+        if (item == null) return;
+        item.setOriginPhotoId(originPhotoId);
+        saveData();
+        notifyListeners();
     }
 
     private void notifyListeners() {

@@ -99,6 +99,7 @@ public class CacheUser implements ICacheUser {
         DataUser data = getData();
         if (data == null) return;
         data.setUserNew();
+        saveData();
     }
 
     @Override
@@ -106,6 +107,7 @@ public class CacheUser implements ICacheUser {
         DataUser data = getData();
         if (data == null) return;
         data.setUserOld();
+        saveData();
     }
 
     private DataUser getData() {

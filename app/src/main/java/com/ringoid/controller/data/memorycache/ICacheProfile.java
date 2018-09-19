@@ -25,7 +25,7 @@ public interface ICacheProfile {
 
     boolean isDataExist();
 
-    void addPhotoLocal(Uri fileUri, String photoId);
+    void addPhotoLocal(Uri fileUri, String clientPhotoId);
 
     void setPhotoLocalUploaded(String originPhotoId);
 
@@ -35,7 +35,9 @@ public interface ICacheProfile {
 
     String getOriginPhotoId(int pos);
 
-    int getPosition(String originPhotoId);
+    int getPosition(String originPhotoId, int defaultValue);
 
     void resetCache();
+
+    void updateLocalPhoto(String clientPhotoId, String originPhotoId);
 }

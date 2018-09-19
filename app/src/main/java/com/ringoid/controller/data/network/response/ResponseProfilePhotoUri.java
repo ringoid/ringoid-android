@@ -4,12 +4,17 @@ package com.ringoid.controller.data.network.response;
 public class ResponseProfilePhotoUri extends ResponseBase {
     private String uri;
     private String originPhotoId;
+    private String clientPhotoId;
 
     public String getUri() {
         return uri;
     }
 
-    public String getPhotoId() {
+    public String getOriginPhotoId() {
         return originPhotoId;
+    }
+
+    public String getClientPhotoId() {
+        return clientPhotoId;
     }
 }
