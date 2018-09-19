@@ -47,23 +47,33 @@ public class LogoutHelper implements ILogoutHelper {
     @Inject
     ICacheChatMessages cacheChatMessages;
 
+    @Inject
+    IHelperThreadMain helperThreadMain;
+
     public LogoutHelper() {
         ApplicationRingoid.getComponent().inject(this);
     }
 
     @Override
     public void logout() {
-        repositoryRegisterLogout.request();
-        if (cacheUser.isRegistered()) {
-            cacheToken.resetCache();
-            cacheUser.resetCache();
-            cacheTutorial.resetCache();
-            cacheBlacklist.resetCache();
-            cacheProfile.resetCache();
-            cacheChatMessages.resetCache();
-            cacheInterfaceState.resetCache();
-            navigatorPages.resetCurrentPage();
+        helperThreadMain.post(new LogoutRunnable());
+    }
+
+    private class LogoutRunnable implements Runnable {
+        @Override
+        public void run() {
+            repositoryRegisterLogout.request();
+            if (cacheUser.isRegistered()) {
+                cacheToken.resetCache();
+                cacheUser.resetCache();
+                cacheTutorial.resetCache();
+                cacheBlacklist.resetCache();
+                cacheProfile.resetCache();
+                cacheChatMessages.resetCache();
+                cacheInterfaceState.resetCache();
+                navigatorPages.resetCurrentPage();
+            }
+            navigator.navigateLogin();
         }
-        navigator.navigateLogin();
     }
 }

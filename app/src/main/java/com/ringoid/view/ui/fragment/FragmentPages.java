@@ -66,6 +66,12 @@ public class FragmentPages extends FragmentBase
     @Override
     public void onClick(View view) {
 
+        if (BuildConfig.DEBUG) {
+            listenerPresenter.showAnimationLike();
+            listenerPresenter.showAnimationMessage();
+            listenerPresenter.showAnimationMatches();
+        }
+
         if (view.getId() == R.id.ivMenuLikes)
             presenterPagesContainer.onClickPageLikes();
 

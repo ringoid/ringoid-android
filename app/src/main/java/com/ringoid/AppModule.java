@@ -2,6 +2,8 @@
 package com.ringoid;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -116,6 +118,8 @@ import com.ringoid.view.presenter.PresenterSettings;
 import com.ringoid.view.presenter.PresenterSettingsFAQ;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import com.ringoid.view.presenter.PresenterSettingsPush;
+import com.ringoid.view.presenter.util.HelperThreadMain;
+import com.ringoid.view.presenter.util.IHelperThreadMain;
 import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.presenter.util.ISettingsHelper;
 import com.ringoid.view.presenter.util.LogoutHelper;
@@ -185,6 +189,12 @@ class AppModule {
     @Singleton
     Random getRandom() {
         return new Random();
+    }
+
+    @Provides
+    @Singleton
+    IHelperThreadMain getHelperThreadMain() {
+        return new HelperThreadMain(new Handler(Looper.getMainLooper()));
     }
 
     @Provides
