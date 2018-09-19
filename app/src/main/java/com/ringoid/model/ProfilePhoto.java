@@ -67,4 +67,8 @@ public class ProfilePhoto implements Serializable {
     public boolean isEqualsOriginPhotoId(String originPhotoId) {
         return this.originPhotoId != null && this.originPhotoId.equals(originPhotoId);
     }
+
+    public boolean isEqualsPhotoId(String imageId) {
+        return photoId != null && photoId.equals(imageId);
+    }
 }

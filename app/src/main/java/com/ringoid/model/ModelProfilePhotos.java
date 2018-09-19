@@ -93,8 +93,7 @@ public class ModelProfilePhotos implements Serializable {
     }
 
     public boolean isEquals(int i, String imageId) {
-        return data != null && data.get(i).getPhotoId().equals(imageId);
-
+        return data != null && data.get(i).isEqualsPhotoId(imageId);
     }
 
     public String getOriginPhotoId(int pos) {
