@@ -11,4 +11,6 @@ public interface IViewPopup {
     void showToast(String message);
 
     void showSnackbar(int messageRes, int messageAction, View.OnClickListener listener);
+
+    void showSnackbar(int messageRes);
 }

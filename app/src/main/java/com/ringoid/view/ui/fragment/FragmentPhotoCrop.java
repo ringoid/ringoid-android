@@ -89,24 +89,12 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.tvCropConfirm) {
-            onClickCrop();
-        }
+        if (v.getId() == R.id.tvCropConfirm)
+            presenterPhotoCrop.onCLickCrop();
+
         if (v.getId() == R.id.ivBack) {
             getActivity().onBackPressed();
         }
-    }
-
-    private void onClickCrop() {
-        File file = new File(
-                getContext().getFilesDir(),
-                System.currentTimeMillis() + ".jpg");
-        presenterPhotoCrop.setFile(file);
-
-        cropImageView.crop(new CropIwaSaveConfig.Builder(Uri.fromFile(file))
-                .setCompressFormat(Bitmap.CompressFormat.JPEG)
-                .setQuality(100)
-                .build());
     }
 
     private class ListenerCrop implements CropIwaView.CropSaveCompleteListener {
@@ -119,6 +107,18 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
 
     private class ListenerPresenter implements IPresenterPhotoCropListener {
 
+        @Override
+        public void crop() {
+            File file = new File(
+                    getContext().getFilesDir(),
+                    System.currentTimeMillis() + ".jpg");
+            presenterPhotoCrop.setFile(file);
+
+            cropImageView.crop(new CropIwaSaveConfig.Builder(Uri.fromFile(file))
+                    .setCompressFormat(Bitmap.CompressFormat.JPEG)
+                    .setQuality(100)
+                    .build());
+        }
     }
 
     private class ListenerCropUpdate implements OnCropUpdateListener {

@@ -4,12 +4,15 @@ package com.ringoid.view.presenter;
 import android.net.Uri;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICachePhotoUpload;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.repository.IRepositoryPhotoUpload;
 import com.ringoid.controller.data.repository.IRepositoryPhotoUploadUri;
 import com.ringoid.controller.data.repository.callback.IRepositoryPhotoUploadListener;
+import com.ringoid.view.IViewPopup;
+import com.ringoid.view.presenter.util.IHelperConnection;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -33,6 +36,12 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
 
     @Inject
     ICacheInterfaceState cacheInterfaceState;
+
+    @Inject
+    IHelperConnection helperConnection;
+
+    @Inject
+    IViewPopup viewPopup;
 
     private ListenerUpload listenerRequest;
     private WeakReference<IPresenterPhotoCropListener> refListener;
@@ -67,6 +76,19 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
         this.refListener = new WeakReference<>(listener);
     }
 
+    @Override
+    public void onCLickCrop() {
+        if (!helperConnection.isConnectionExist()) {
+            showErrorConnection();
+            return;
+        }
+
+        refListener.get().crop();
+    }
+
+    private void showErrorConnection() {
+        viewPopup.showSnackbar(R.string.error_network);
+    }
 
     private class ListenerUpload implements IRepositoryPhotoUploadListener {
 

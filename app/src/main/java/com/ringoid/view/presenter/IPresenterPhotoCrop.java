@@ -13,4 +13,6 @@ public interface IPresenterPhotoCrop {
     void setFile(File file);
 
     void setListener(IPresenterPhotoCropListener listener);
+
+    void onCLickCrop();
 }

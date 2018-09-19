@@ -4,6 +4,7 @@ package com.ringoid.view.presenter;
 import android.content.Context;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
@@ -14,6 +15,7 @@ import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterAdapterProfileListener;
+import com.ringoid.view.presenter.util.IHelperConnection;
 
 import java.lang.ref.WeakReference;
 
@@ -44,6 +46,9 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
 
     @Inject
     ICacheUser cacheUser;
+
+    @Inject
+    IHelperConnection helperConnection;
 
     private ListenerCacheProfile listenerCacheProfile;
     private WeakReference<IPresenterAdapterProfileListener> refListener;
@@ -106,10 +111,20 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
 
     @Override
     public void onImageRemove(String imageId) {
+        if (!helperConnection.isConnectionExist()) {
+            showErrorConnection();
+            return;
+        }
+
         cacheProfile.removeItem(imageId);
         if (!cacheProfile.isDataExist())
             cacheUser.setUserNew();
         repositoryProfileImageRemove.request(imageId);
+    }
+
+
+    private void showErrorConnection() {
+        viewPopup.showSnackbar(R.string.error_network);
     }
 
     @Override

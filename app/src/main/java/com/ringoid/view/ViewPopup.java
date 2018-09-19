@@ -52,7 +52,16 @@ public class ViewPopup implements IViewPopup {
 
         if (snackbar != null) snackbar.dismiss();
 
-        snackbar = Snackbar.make(view, messageRes, Snackbar.LENGTH_INDEFINITE).setAction(messageAction, listener);
+        snackbar = Snackbar.make(view, messageRes, Snackbar.LENGTH_INDEFINITE);
+
+        if (messageAction != 0 && listener != null)
+            snackbar.setAction(messageAction, listener);
+
         snackbar.show();
+    }
+
+    @Override
+    public void showSnackbar(int messageRes) {
+        showSnackbar(messageRes, 0, null);
     }
 }

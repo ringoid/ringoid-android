@@ -3,4 +3,5 @@ package com.ringoid.view.presenter;
 
 public interface IPresenterPhotoCropListener {
 
+    void crop();
 }

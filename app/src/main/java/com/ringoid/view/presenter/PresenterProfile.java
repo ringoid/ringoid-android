@@ -2,13 +2,16 @@
 package com.ringoid.view.presenter;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.listener.ICacheProfileListener;
 import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
 import com.ringoid.controller.data.repository.callback.IRepositoryProfilePhotosListener;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterProfileListener;
+import com.ringoid.view.presenter.util.IHelperConnection;
 
 import java.lang.ref.WeakReference;
 
@@ -30,6 +33,12 @@ public class PresenterProfile implements IPresenterProfile {
     @Inject
     IRepositoryProfilePhotos repositoryProfilePhotos;
 
+    @Inject
+    IHelperConnection helperConnection;
+
+    @Inject
+    IViewPopup viewPopup;
+
     private ListenerRepositoryProfile listenerRepositoryProfile;
     private ListenerCacheProfile listenerCache;
     private WeakReference<IPresenterProfileListener> refListener;
@@ -47,7 +56,15 @@ public class PresenterProfile implements IPresenterProfile {
 
     @Override
     public void onClickPhotoAdd() {
+        if (!helperConnection.isConnectionExist()) {
+            showErrorConnection();
+            return;
+        }
         navigator.navigatePhotoAdd();
+    }
+
+    private void showErrorConnection() {
+        viewPopup.showSnackbar(R.string.error_network);
     }
 
     @Override
@@ -73,6 +90,10 @@ public class PresenterProfile implements IPresenterProfile {
 
     @Override
     public void onSwipeRefresh() {
+        if (!helperConnection.isConnectionExist()) {
+            showErrorConnection();
+            return;
+        }
         repositoryProfilePhotos.request();
     }
 

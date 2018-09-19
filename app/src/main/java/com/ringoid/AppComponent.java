@@ -45,6 +45,7 @@ import com.ringoid.view.presenter.PresenterRegister;
 import com.ringoid.view.presenter.PresenterSettings;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import com.ringoid.view.presenter.PresenterSettingsPush;
+import com.ringoid.view.presenter.util.HelperConnection;
 import com.ringoid.view.presenter.util.LogoutHelper;
 import com.ringoid.view.presenter.util.SettingsHelper;
 import com.ringoid.view.ui.activity.ActivityMain;
@@ -91,6 +92,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(HelperConnection param);
 
     void inject(CacheInterfaceState param);
 
