@@ -23,4 +23,5 @@ public interface INavigatorPages {
 
     boolean isPageProfile();
 
+    boolean isPageMessages();
 }

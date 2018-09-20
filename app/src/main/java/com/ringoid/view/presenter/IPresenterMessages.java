@@ -11,4 +11,8 @@ public interface IPresenterMessages {
     void setListener(IPresenterMessagesListener listener);
 
     void onCreateView();
+
+    boolean isPositionTop();
+
+    void scrollTop();
 }

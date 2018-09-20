@@ -48,6 +48,18 @@ public class PresenterMessages implements IPresenterMessages {
         scrollToSavedPosition();
     }
 
+    @Override
+    public boolean isPositionTop() {
+        if (refListener == null || refListener.get() == null) return false;
+        return refListener.get().isPositionTop();
+    }
+
+    @Override
+    public void scrollTop() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().scrollToTop();
+    }
+
     private void scrollToSavedPosition() {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().scrollToPosition(cacheInterfaceState.getPositionScrollPageMessages());

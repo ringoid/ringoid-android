@@ -11,11 +11,11 @@ import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
+import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheSettingsPrivacyListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
-import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.presenter.util.ISettingsHelper;
@@ -52,6 +52,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     @Inject
     IPresenterLikes presenterLikes;
+
+    @Inject
+    IPresenterMessages presenterMessages;
 
     @Inject
     ISettingsHelper settingsHelper;
@@ -132,6 +135,12 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Override
     public void onClickPageMessages() {
         cacheScroll.resetCache();
+
+        if (navigatorPages.isPageMessages()) {
+            if (!presenterMessages.isPositionTop())
+                presenterMessages.scrollTop();
+            return;
+        }
 
         navigatorPages.navigateMessages();
     }
