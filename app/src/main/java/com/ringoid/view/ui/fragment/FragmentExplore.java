@@ -27,6 +27,7 @@ public class FragmentExplore extends FragmentBase {
 
     private IPresenterExploreListener listenerPresenter;
     private RecyclerView rvItems;
+    private LinearLayoutManager layoutManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class FragmentExplore extends FragmentBase {
 
     private void initViews(View view) {
         rvItems = view.findViewById(R.id.rvItems);
-        rvItems.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        rvItems.setLayoutManager(layoutManager = new LinearLayoutManager(view.getContext()));
         rvItems.setAdapter(new AdapterExplore());
         rvItems.addOnScrollListener(new OnScrollListener());
         rvItems.addItemDecoration(new ItemDecoration(getContext()));
@@ -65,7 +66,7 @@ public class FragmentExplore extends FragmentBase {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-            presenterExplore.onScrollState(newState);
+            presenterExplore.onScrollState(newState, layoutManager.findFirstVisibleItemPosition());
         }
     }
 
@@ -98,6 +99,11 @@ public class FragmentExplore extends FragmentBase {
         @Override
         public void scrollTop() {
             rvItems.scrollToPosition(0);
+        }
+
+        @Override
+        public void scrollToPosition(int position) {
+            rvItems.scrollToPosition(position);
         }
     }
 }

@@ -25,4 +25,8 @@ public interface ICacheInterfaceState {
     int getPositionScrollPageMessages();
 
     void setPositionScrollPageMessages(int firstVisibleItemPosition);
+
+    void setPositionScrollPageExplore(int firstVisibleItemPosition);
+
+    int getPositionScrollPageExplore();
 }

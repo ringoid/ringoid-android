@@ -8,7 +8,7 @@ public interface IPresenterExplore {
 
     void onCreateView();
 
-    void onScrollState(int newState);
+    void onScrollState(int newState, int firstVisibleItemPosition);
 
     boolean isPositionTop();
 

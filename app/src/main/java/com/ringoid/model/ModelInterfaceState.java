@@ -8,6 +8,7 @@ public class ModelInterfaceState implements Serializable {
     private int currentPage;
     private int positionScrollPageLikes;
     private int positionScrollPageMessages;
+    private int positionScrollPageExplore;
 
     public String getOriginPhotoId() {
         return originPhotoId;
@@ -39,5 +40,13 @@ public class ModelInterfaceState implements Serializable {
 
     public void setPositionScrollPageMessages(int position) {
         this.positionScrollPageMessages = position;
+    }
+
+    public void setPositionScrollPageExplore(int positionScrollPageExplore) {
+        this.positionScrollPageExplore = positionScrollPageExplore;
+    }
+
+    public int getPositionScrollPageExplore() {
+        return positionScrollPageExplore;
     }
 }

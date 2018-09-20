@@ -5,4 +5,6 @@ public interface IPresenterExploreListener {
     boolean isPositionTop();
 
     void scrollTop();
+
+    void scrollToPosition(int position);
 }

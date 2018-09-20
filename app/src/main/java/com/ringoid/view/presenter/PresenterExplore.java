@@ -4,6 +4,7 @@ package com.ringoid.view.presenter;
 import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.view.presenter.callback.IPresenterExploreListener;
@@ -20,6 +21,9 @@ public class PresenterExplore implements IPresenterExplore {
     @Inject
     ICacheTutorial cacheTutorial;
 
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
+
     private WeakReference<IPresenterExploreListener> refListener;
 
     public PresenterExplore() {
@@ -34,12 +38,19 @@ public class PresenterExplore implements IPresenterExplore {
     @Override
     public void onCreateView() {
         cacheTutorial.resetLikesNum();
+        scrollToSavedPosition();
+    }
+
+    private void scrollToSavedPosition() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().scrollToPosition(cacheInterfaceState.getPositionScrollPageExplore());
     }
 
     @Override
-    public void onScrollState(int newState) {
+    public void onScrollState(int newState, int firstVisibleItemPosition) {
         if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
         cacheScroll.onScrollIdle();
+        cacheInterfaceState.setPositionScrollPageExplore(firstVisibleItemPosition);
     }
 
     @Override
