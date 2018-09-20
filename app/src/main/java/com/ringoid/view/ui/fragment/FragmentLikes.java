@@ -97,12 +97,12 @@ public class FragmentLikes extends FragmentBase {
     private class ListenerPresenter implements IPresenterLikesListener {
         @Override
         public boolean isPositionTop() {
-            return rvItems.getScrollY() == 0;
+            return rvItems.computeVerticalScrollOffset() == 0;
         }
 
         @Override
         public void scrollTop() {
-            rvItems.scrollToPosition(0);
+            rvItems.smoothScrollToPosition(0);
         }
 
         @Override

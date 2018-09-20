@@ -74,7 +74,7 @@ public class FragmentMessages extends FragmentBase {
     private class ListenerPresenterMessages implements IPresenterMessagesListener {
         @Override
         public void scrollToTop() {
-            rvItems.scrollToPosition(0);
+            rvItems.smoothScrollToPosition(0);
         }
 
         @Override
@@ -84,7 +84,7 @@ public class FragmentMessages extends FragmentBase {
 
         @Override
         public boolean isPositionTop() {
-            return rvItems.getScrollY() == 0;
+            return rvItems.computeVerticalScrollOffset() == 0;
         }
     }
 }
