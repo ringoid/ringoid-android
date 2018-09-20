@@ -8,7 +8,7 @@ public interface IPresenterLikes {
 
     void onCreateView();
 
-    void onScrollState(int newState);
+    void onScrollState(int newState, int firstVisibleItemPosition);
 
     boolean isPositionTop();
 

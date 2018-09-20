@@ -66,6 +66,11 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
+    public int getCurrentPage() {
+        return getData().getCurrentPage();
+    }
+
+    @Override
     public void setCurrentPage(int i) {
         getData().setCurrentPage(i);
         saveData();
@@ -73,8 +78,14 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
-    public int getCurrentPage() {
-        return getData().getCurrentPage();
+    public int getPositionScrollPageLikes() {
+        return getData().getPositionScrollPageLikes();
+    }
+
+    @Override
+    public void setPositionScrollPageLikes(int position) {
+        getData().setPositionScrollPageLikes(position);
+        saveData();
     }
 
     private void notifyListenersPageUpdated() {

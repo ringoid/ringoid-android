@@ -30,6 +30,7 @@ public class FragmentLikes extends FragmentBase {
     private IPresenterLikesListener listenerPresenter;
 
     private RecyclerView rvItems;
+    private LinearLayoutManager layoutManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class FragmentLikes extends FragmentBase {
 
     private void initViews(View view) {
         rvItems = view.findViewById(R.id.rvItems);
-        rvItems.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        rvItems.setLayoutManager(layoutManager = new LinearLayoutManager(view.getContext()));
         rvItems.setAdapter(new AdapterLikes());
         rvItems.addOnScrollListener(new OnScrollListener());
         rvItems.addItemDecoration(new ItemDecoration(getContext()));
@@ -69,7 +70,7 @@ public class FragmentLikes extends FragmentBase {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-            presenterLikes.onScrollState(newState);
+            presenterLikes.onScrollState(newState, layoutManager.findFirstVisibleItemPosition());
         }
     }
 
@@ -121,6 +122,11 @@ public class FragmentLikes extends FragmentBase {
             ViewHolderItemLikeBase holder = (ViewHolderItemLikes) item;
 
             holder.setUnliked(adapterPosition);
+        }
+
+        @Override
+        public void scrollToPosition(int position) {
+            rvItems.scrollToPosition(position);
         }
     }
 }

@@ -4,6 +4,7 @@ package com.ringoid.view.presenter;
 import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
@@ -25,6 +26,9 @@ public class PresenterLikes implements IPresenterLikes {
     @Inject
     ICacheLikes cacheLikes;
 
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
+
     private ListenerCacheLikes listenerCacheLikes;
     private WeakReference<IPresenterLikesListener> refListener;
 
@@ -41,11 +45,18 @@ public class PresenterLikes implements IPresenterLikes {
     @Override
     public void onCreateView() {
         cacheTutorial.resetLikesNum();
+        scrollToSavedPosition();
+    }
+
+    private void scrollToSavedPosition() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().scrollToPosition(cacheInterfaceState.getPositionScrollPageLikes());
     }
 
     @Override
-    public void onScrollState(int newState) {
+    public void onScrollState(int newState, int firstVisibleItemPosition) {
         if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
+        cacheInterfaceState.setPositionScrollPageLikes(firstVisibleItemPosition);
         cacheScroll.onScrollIdle();
     }
 
@@ -60,13 +71,13 @@ public class PresenterLikes implements IPresenterLikes {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().scrollTop();
     }
-    
+
     @Override
     public void setListener(IPresenterLikesListener listener) {
         this.refListener = new WeakReference<>(listener);
     }
 
-    private class ListenerCacheLikes implements ICacheLikesListener{
+    private class ListenerCacheLikes implements ICacheLikesListener {
         @Override
         public void onUpdate() {
 
