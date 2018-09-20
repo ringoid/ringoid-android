@@ -162,7 +162,7 @@ public class Navigator implements INavigator {
 
 
         boolean isImmersiveModeEnabled =
-                ((uiOptions | View.SYSTEM_UI_FLAG_IMMERSIVE) == uiOptions);
+                ((uiOptions | View.SYSTEM_UI_FLAG_FULLSCREEN) == uiOptions);
 
         if (isImmersiveModeEnabled == newStatus) return;
 

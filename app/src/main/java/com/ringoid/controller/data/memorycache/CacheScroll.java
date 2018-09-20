@@ -13,8 +13,8 @@ import javax.inject.Inject;
 
 public class CacheScroll implements ICacheScroll {
 
-    private static final int SCROLL_UP = 1;
-    private static final int SCROLL_DOWN = 2;
+    public static final int SCROLL_UP = 1;
+    public static final int SCROLL_DOWN = 2;
 
     private final int maxScroll;
     @Inject
@@ -73,6 +73,6 @@ public class CacheScroll implements ICacheScroll {
 
     private void notifyListenersCompleteScroll() {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().onScrollComplete(scrollSum, scrollSum == maxScroll ? 0 : 1);
+        refListener.get().onScrollComplete(scrollSum, scrollSum == maxScroll ? 0 : 1, scrollDirection);
     }
 }

@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.controller.data.memorycache.CacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
@@ -79,7 +80,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
         if (navigatorPages.isPageProfile())
             navigator.statusbarShow();
-        else navigator.statusbarHide();
     }
 
     private void updateViewBottomSheet() {
@@ -105,8 +105,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public void onClickPageLikes() {
         cacheScroll.resetCache();
 
-        navigator.statusbarHide();
-
         if (navigatorPages.isPageLikes()) {
             if (!presenterLikes.isPositionTop())
                 presenterLikes.scrollTop();
@@ -131,16 +129,12 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public void onClickPageMessages() {
         cacheScroll.resetCache();
 
-        navigator.statusbarHide();
-
         navigatorPages.navigateMessages();
     }
 
     @Override
     public void onClickPageExplore() {
         cacheScroll.resetCache();
-
-        navigator.statusbarHide();
 
         if (navigatorPages.isPageExplore()) {
             if (!presenterExplore.isPositionTop())
@@ -158,6 +152,13 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         this.refListener = new WeakReference<>(listener);
     }
 
+    private void checkToolbar(int scrollDirection) {
+        if (scrollDirection == CacheScroll.SCROLL_UP)
+            navigator.statusbarShow();
+        else if (scrollDirection == CacheScroll.SCROLL_DOWN)
+            navigator.statusbarHide();
+    }
+
     private class ListenerCacheScroll implements ICacheScrollListener {
         @Override
         public void onScroll(int scrollSum, float alpha) {
@@ -168,10 +169,11 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         }
 
         @Override
-        public void onScrollComplete(int scrollSum, int alpha) {
+        public void onScrollComplete(int scrollSum, int alpha, int scrollDirection) {
             if (refListener == null || refListener.get() == null) return;
 
             refListener.get().scrollComplete(navigatorPages.isPageProfile(), scrollSum, alpha);
+            checkToolbar(scrollDirection);
         }
     }
 

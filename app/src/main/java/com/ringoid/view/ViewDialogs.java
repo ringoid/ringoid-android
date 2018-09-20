@@ -4,10 +4,10 @@ package com.ringoid.view;
 import android.content.Context;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.view.ui.dialog.DialogChatCompose;
 import com.ringoid.view.ui.dialog.DialogLikeNoPhoto;
 import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
 import com.ringoid.view.ui.dialog.callback.IDialogLIkeNoPhotoListener;
-import com.ringoid.view.ui.dialog.DialogChatCompose;
 
 import java.lang.ref.WeakReference;
 
@@ -63,6 +63,8 @@ public class ViewDialogs implements IViewDialogs {
             refDialogChatCompose.get().cancel();
 
         if (refContext == null || refContext.get() == null) return;
+
+        navigator.statusbarShow();
         DialogChatCompose dialogChatCompose = new DialogChatCompose(refContext.get(), listener);
         dialogChatCompose.show();
         refDialogChatCompose = new WeakReference<>(dialogChatCompose);
