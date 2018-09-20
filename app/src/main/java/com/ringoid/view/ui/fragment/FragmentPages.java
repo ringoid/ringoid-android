@@ -18,6 +18,8 @@ import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.ui.util.IHelperAnimation;
 import com.ringoid.view.ui.util.IStatusBarViewHelper;
 
+import java.util.Random;
+
 import javax.inject.Inject;
 
 public class FragmentPages extends FragmentBase
@@ -31,6 +33,9 @@ public class FragmentPages extends FragmentBase
 
     @Inject
     IHelperAnimation helperAnimation;
+
+    @Inject
+    Random random;
 
     private ListenerPresenter listenerPresenter;
     private ViewGroup llBottomAppBar;
@@ -67,9 +72,13 @@ public class FragmentPages extends FragmentBase
     public void onClick(View view) {
 
         if (BuildConfig.DEBUG) {
-            listenerPresenter.showAnimationLike();
-            listenerPresenter.showAnimationMessage();
-            listenerPresenter.showAnimationMatches();
+            float randomValue = random.nextFloat() * 3;
+
+            if (randomValue < 1)
+                listenerPresenter.showAnimationLike();
+            else if (randomValue < 2)
+                listenerPresenter.showAnimationMessage();
+            else listenerPresenter.showAnimationMatches();
         }
 
         if (view.getId() == R.id.ivMenuLikes)

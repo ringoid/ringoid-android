@@ -81,6 +81,7 @@ import com.ringoid.view.ui.fragment.FragmentSettings;
 import com.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 import com.ringoid.view.ui.fragment.FragmentSettingsPush;
 import com.ringoid.view.ui.fragment.FragmentWebView;
+import com.ringoid.view.ui.util.HelperAnimation;
 import com.ringoid.view.ui.util.ScreenHelper;
 
 import javax.inject.Singleton;
@@ -92,6 +93,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(HelperAnimation param);
 
     void inject(HelperConnection param);
 

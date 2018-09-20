@@ -17,27 +17,32 @@ import com.github.jinatonic.confetti.ConfettiSource;
 import com.github.jinatonic.confetti.ConfettoGenerator;
 import com.github.jinatonic.confetti.confetto.BitmapConfetto;
 import com.github.jinatonic.confetti.confetto.Confetto;
+import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 
 import java.util.Random;
 
+import javax.inject.Inject;
+
 public class HelperAnimation implements IHelperAnimation {
 
+    @Inject
+    Random random;
     private ParticleGenerator generatorLikes, generatorMessages, generatorMatches;
-    private ConfettiSource sourceLikes, sourceMessages, sourceMatches;
+    private ConfettiSource source;
+
+    public HelperAnimation() {
+        ApplicationRingoid.getComponent().inject(this);
+    }
 
     @Override
     public void showPopupLikes(ViewGroup container) {
         if (generatorLikes == null) {
             Bitmap bitmap = getBitmap(container.getContext(), R.drawable.ic_favorite_red_24dp);
             generatorLikes = new ParticleGenerator(bitmap);
-
-            sourceLikes = new ConfettiSource(
-                    container.getResources().getDisplayMetrics().widthPixels / 8 - getDeltaX(container.getContext()),
-                    getY(container));
         }
 
-        showAnimation(container, generatorLikes, sourceLikes);
+        showAnimation(container, generatorLikes);
     }
 
     private Bitmap getBitmap(Context context, int drawableRes) {
@@ -69,13 +74,9 @@ public class HelperAnimation implements IHelperAnimation {
         if (generatorMessages == null) {
             Bitmap bitmap = getBitmap(container.getContext(), R.drawable.ic_chat_bubble_green_24dp);
             generatorMessages = new ParticleGenerator(bitmap);
-
-            sourceMessages = new ConfettiSource(
-                    container.getResources().getDisplayMetrics().widthPixels / 8 * 5 - getDeltaX(container.getContext()),
-                    getY(container));
         }
 
-        showAnimation(container, generatorMessages, sourceMessages);
+        showAnimation(container, generatorMessages);
     }
 
 
@@ -84,34 +85,40 @@ public class HelperAnimation implements IHelperAnimation {
         if (generatorMatches == null) {
             Bitmap bitmap = getBitmap(container.getContext(), R.drawable.ic_match_red_24dp);
             generatorMatches = new ParticleGenerator(bitmap);
-
-            sourceMatches = new ConfettiSource(
-                    container.getResources().getDisplayMetrics().widthPixels / 8 * 3 - getDeltaX(container.getContext()),
-                    getY(container));
         }
 
-        showAnimation(container, generatorMatches, sourceMatches);
+        showAnimation(container, generatorMatches);
     }
 
     private int getDeltaX(Context context) {
         return (int) context.getResources().getDimension(R.dimen.dp12);
     }
 
-    private void showAnimation(ViewGroup container, ParticleGenerator generatorLikes, ConfettiSource confettiSource) {
-        new ConfettiManager(container.getContext(), generatorLikes, confettiSource, container)
+    private void showAnimation(ViewGroup container, ParticleGenerator generatorLikes) {
 
-                .setEmissionRate(10).setEmissionDuration(250) //todo replace with EMIT ONE PARTICLE method
+        if (source == null)
+            source = new ConfettiSource(
+                    0,
+                    getY(container));
 
-                .setVelocityY(-100)
+        new ConfettiManager(container.getContext(), generatorLikes, source, container)
+
+                .setNumInitialCount(1)
+
+                .setVelocityX(100, 50)
+                .setAccelerationX(-50, 25)
+                .setTargetVelocityX(0, 12.5f)
+
+                .setVelocityY(-220, 80)
                 .setTTL(3000)
-                .enableFadeOut(new CustomInterpolator())
+                .enableFadeOut(new CustomInterpolator(random.nextFloat() / 10f))
                 .animate();
     }
 
     private class ParticleGenerator implements ConfettoGenerator {
         private Bitmap bitmap;
 
-        public ParticleGenerator(Bitmap bitmap) {
+        ParticleGenerator(Bitmap bitmap) {
             this.bitmap = bitmap;
         }
 
@@ -122,9 +129,15 @@ public class HelperAnimation implements IHelperAnimation {
     }
 
     private class CustomInterpolator implements Interpolator {
+        private float randomStart;
+
+        CustomInterpolator(float random) {
+            this.randomStart = random;
+        }
+
         @Override
         public float getInterpolation(float input) {
-            return 1 - input;
+            return Math.max(0, 1 - randomStart - input);
         }
     }
 }
