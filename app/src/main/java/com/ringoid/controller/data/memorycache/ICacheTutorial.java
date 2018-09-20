@@ -5,16 +5,6 @@ package com.ringoid.controller.data.memorycache;
 
 public interface ICacheTutorial {
 
-    boolean isLikesShown();
-
-    void setLikesShown();
-
-    boolean isExploreShown();
-
-    void setExploreShown();
-
-    void setProfileDialogLikeShow(boolean isShow);
-
     boolean isShowDialogLikes();
 
     boolean isShowDialogHiddenMode();
@@ -23,13 +13,7 @@ public interface ICacheTutorial {
 
     boolean isShowDialogExplore();
 
-    void setDialogExploreShow(boolean isShow);
-
     void resetLikesNum();
-
-    void setLikesNum(String itemId);
-
-    int getImageLikes();
 
     void resetCache();
 }

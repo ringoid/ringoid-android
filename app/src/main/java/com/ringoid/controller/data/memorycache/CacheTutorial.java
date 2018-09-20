@@ -29,33 +29,6 @@ public class CacheTutorial implements ICacheTutorial {
         return dataTutorial;
     }
 
-    @Override
-    public boolean isLikesShown() {
-        return getData().isLikesShown;
-    }
-
-    @Override
-    public void setLikesShown() {
-        getData().isLikesShown = true;
-        updateData();
-    }
-
-    @Override
-    public boolean isExploreShown() {
-        return getData().isExploreShown;
-    }
-
-    @Override
-    public void setExploreShown() {
-        getData().isExploreShown = true;
-        updateData();
-    }
-
-    @Override
-    public void setProfileDialogLikeShow(boolean isShow) {
-        getData().isShowDialogProfileLikes = isShow;
-        updateData();
-    }
 
     @Override
     public boolean isShowDialogLikes() {
@@ -79,42 +52,14 @@ public class CacheTutorial implements ICacheTutorial {
     }
 
     @Override
-    public void setDialogExploreShow(boolean isShow) {
-        getData().isShowDialogExplore = isShow;
-        updateData();
-    }
-
-    @Override
     public void resetLikesNum() {
         getData().imageLikes = 0;
         getData().imageLikesId = null;
         updateData();
     }
 
-    @Override
-    public void setLikesNum(String itemId) {
-        if (getData().imageLikesId != null && getData().imageLikesId.equals(itemId)) {
-            increaseImageLikes();
-            return;
-        }
-
-        getData().imageLikes = 1;
-        getData().imageLikesId = itemId;
-        updateData();
-    }
-
-    private void increaseImageLikes() {
-        ++getData().imageLikes;
-        updateData();
-    }
-
     private void updateData() {
         cacheStorage.writeData(FileEnum.TUTORIAL, dataTutorial);
-    }
-
-    @Override
-    public int getImageLikes() {
-        return getData().imageLikes;
     }
 
     @Override
