@@ -19,4 +19,8 @@ public interface IPresenterSettings {
     void onClickPrivacyBlacklist();
 
     void onClickPrivacyDistance();
+
+    void onClickPrivacyLikesMatches();
+
+    void onClickPrivacyLikesLiked();
 }

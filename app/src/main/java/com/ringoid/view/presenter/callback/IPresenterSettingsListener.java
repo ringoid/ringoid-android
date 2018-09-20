@@ -9,4 +9,6 @@ public interface IPresenterSettingsListener {
     void setPrivacyPhoneNum(int itemsNum);
 
     void showDialogPrivacyPhotos(int selected);
+
+    void setPrivacyLikes(int selected);
 }

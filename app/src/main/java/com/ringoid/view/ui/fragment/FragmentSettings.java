@@ -19,8 +19,10 @@ import com.ringoid.view.presenter.callback.IPresenterSettingsListener;
 import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.ui.dialog.DialogAccountDelete;
 import com.ringoid.view.ui.dialog.DialogLogout;
+import com.ringoid.view.ui.dialog.DialogPrivacyLikes;
 import com.ringoid.view.ui.dialog.DialogPrivacyPhotos;
 import com.ringoid.view.ui.dialog.callback.IDialogLogoutListener;
+import com.ringoid.view.ui.dialog.callback.IDialogPrivacyLikesListener;
 import com.ringoid.view.ui.dialog.callback.IDialogPrivacyPhotosListener;
 import com.ringoid.view.ui.util.IStatusBarViewHelper;
 
@@ -48,9 +50,11 @@ public class FragmentSettings extends FragmentBase
     private DialogAccountDelete dialogAccountDelete;
     private IDialogLogoutListener listenerDialogLogout;
     private ListenerPresenterSettings listenerPresenter;
-    private TextView tvPrivacyPhotos, tvPrivacyDistance, tvPrivacyPhoneBlacklistNum;
+    private TextView tvPrivacyPhotos, tvPrivacyDistance, tvPrivacyPhoneBlacklistNum, tvPrivacyLikes;
     private DialogPrivacyPhotos dialogPrivacyPhotos;
+    private DialogPrivacyLikes dialogPrivacyLikes;
     private IDialogPrivacyPhotosListener listenerDialogPrivacyPhotos;
+    private IDialogPrivacyLikesListener listenerDialogPrivacyLikes;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +63,8 @@ public class FragmentSettings extends FragmentBase
         listenerDialogLogout = new ListenerDialogLogout();
         presenterSettings.setListener(listenerPresenter = new ListenerPresenterSettings());
         listenerDialogPrivacyPhotos = new ListenerDialogPrivacyPhotos();
+        listenerDialogPrivacyLikes = new ListenerDialogPrivacyLikes();
+
     }
 
     @Nullable
@@ -72,6 +78,7 @@ public class FragmentSettings extends FragmentBase
     }
 
     private void initView(View view) {
+        tvPrivacyLikes = view.findViewById(R.id.tvPrivacyLikes);
         tvPrivacyPhotos = view.findViewById(R.id.tvPrivacyPhotos);
         tvPrivacyPhoneBlacklistNum = view.findViewById(R.id.tvPrivacyPhoneBlacklistNum);
         tvPrivacyDistance = view.findViewById(R.id.tvPrivacyDistance);
@@ -83,6 +90,7 @@ public class FragmentSettings extends FragmentBase
         view.findViewById(R.id.tvAccountDelete).setOnClickListener(this);
         view.findViewById(R.id.tvPush).setOnClickListener(this);
 
+        view.findViewById(R.id.llPrivacyLikes).setOnClickListener(this);
         view.findViewById(R.id.llPrivacyPhotos).setOnClickListener(this);
         view.findViewById(R.id.llBlacklist).setOnClickListener(this);
         view.findViewById(R.id.llPrivacyDistance).setOnClickListener(this);
@@ -95,6 +103,9 @@ public class FragmentSettings extends FragmentBase
     public void onClick(View v) {
         if (v.getId() == R.id.ivBack && getActivity() != null)
             getActivity().onBackPressed();
+
+        if (v.getId() == R.id.llPrivacyLikes)
+            showDialogPrivacyLikes();
 
         if (v.getId() == R.id.llPrivacyPhotos)
             presenterSettings.onClickPrivacyPhotos();
@@ -119,6 +130,13 @@ public class FragmentSettings extends FragmentBase
 
         if (v.getId() == R.id.tvAccountDelete)
             showDialogAccountDelete();
+    }
+
+    private void showDialogPrivacyLikes() {
+        if (getContext() == null) return;
+        if (dialogPrivacyLikes != null) dialogPrivacyLikes.cancel();
+        dialogPrivacyLikes = new DialogPrivacyLikes(getContext(), listenerDialogPrivacyLikes);
+        dialogPrivacyLikes.show();
     }
 
     private void showDialogLogout() {
@@ -174,6 +192,12 @@ public class FragmentSettings extends FragmentBase
             dialogPrivacyPhotos = new DialogPrivacyPhotos(getContext(), selected, listenerDialogPrivacyPhotos);
             dialogPrivacyPhotos.show();
         }
+
+        @Override
+        public void setPrivacyLikes(int selected) {
+            if (getContext() == null) return;
+            tvPrivacyLikes.setText(selected == 0 ? R.string.privacy_likes_all : R.string.privacy_likes_matches);
+        }
     }
 
     private class ListenerDialogPrivacyPhotos implements IDialogPrivacyPhotosListener {
@@ -192,5 +216,17 @@ public class FragmentSettings extends FragmentBase
             presenterSettings.onClickPrivacyPhotosNoone();
         }
 
+    }
+
+    private class ListenerDialogPrivacyLikes implements IDialogPrivacyLikesListener {
+        @Override
+        public void onClickMatches() {
+            presenterSettings.onClickPrivacyLikesMatches();
+        }
+
+        @Override
+        public void onClickLiked() {
+            presenterSettings.onClickPrivacyLikesLiked();
+        }
     }
 }

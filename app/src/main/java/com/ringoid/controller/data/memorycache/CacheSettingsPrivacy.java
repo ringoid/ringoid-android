@@ -20,8 +20,7 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     private int pushLikesType;
     private boolean isPushEnabledMessages;
     private boolean isPushEnabledMatches;
-    private int ageMin;
-    private int ageMax;
+    private int privacyLikes;
 
     private WeakHashMap<String, ICacheSettingsPrivacyListener> listeners;
 
@@ -182,18 +181,14 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     }
 
     @Override
-    public int getPrivacyAgeMin() {
-        return ageMin;
+    public int getPrivacyLikes() {
+        return privacyLikes;
     }
 
     @Override
-    public int getPrivacyAgeMax() {
-        return ageMax;
+    public void setPrivacyLikes(int i) {
+        this.privacyLikes = i;
+        notifyListeners();
     }
 
-    @Override
-    public void setAgeSelected(int min, int max) {
-        ageMin = min;
-        ageMax = max;
-    }
 }
