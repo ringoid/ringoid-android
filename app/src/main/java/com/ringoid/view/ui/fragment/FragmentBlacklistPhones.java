@@ -50,7 +50,7 @@ public class FragmentBlacklistPhones extends FragmentBase
 
         RecyclerView rvItems = view.findViewById(R.id.rvItems);
         rvItems.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvItems.setAdapter(new AdapterBlacklistPhones());
+        rvItems.setAdapter(new AdapterBlacklistPhones(getContext()));
         rvItems.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);

@@ -132,6 +132,8 @@
     <string name="dialog_privacy_likes_title">Who can see that you liked them?</string>
     <string name="settings_privacy_likes_matches">Only users who liked me and I liked them</string>
     <string name="settings_privacy_likes_liked">Ringoid users of the opposite sex whom I liked</string>
+    <string name="dialog_remove_confirm">confirm</string>
+    <string name="format_dialog_remove_confirm" formatted="false">Remove +%s %s from the blacklist?</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>

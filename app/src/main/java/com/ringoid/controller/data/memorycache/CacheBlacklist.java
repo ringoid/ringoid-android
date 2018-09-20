@@ -73,18 +73,17 @@ public class CacheBlacklist implements ICacheBlacklist {
     }
 
     @Override
-    public void remove(int position) {
-        DataBlacklistPhones data = getData();
-        if (data == null) return;
-        data.remove(position);
-        saveData();
+    public void resetCache() {
+        data = null;
+        cacheStorage.removeData(FileEnum.BLACKLIST);
         notifyListeners();
     }
 
     @Override
-    public void resetCache() {
-        data = null;
-        cacheStorage.removeData(FileEnum.BLACKLIST);
+    public void remove(DataBlacklistPhone phone) {
+        if (data == null) return;
+        if (!data.remove(phone)) return;
+        saveData();
         notifyListeners();
     }
 

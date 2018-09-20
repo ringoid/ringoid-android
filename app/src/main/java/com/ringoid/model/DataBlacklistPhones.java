@@ -31,4 +31,8 @@ public class DataBlacklistPhones implements Serializable {
     public int size() {
         return data == null ? 0 : data.size();
     }
+
+    public boolean remove(DataBlacklistPhone phone) {
+        return data != null && data.remove(phone);
+    }
 }

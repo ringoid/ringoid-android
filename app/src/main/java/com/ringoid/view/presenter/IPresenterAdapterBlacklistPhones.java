@@ -1,6 +1,7 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
+import com.ringoid.model.DataBlacklistPhone;
 import com.ringoid.view.presenter.callback.IPresenterAdapterBlacklistPhonesListener;
 
 public interface IPresenterAdapterBlacklistPhones {
@@ -13,4 +14,6 @@ public interface IPresenterAdapterBlacklistPhones {
     void setListener(IPresenterAdapterBlacklistPhonesListener listener);
 
     String getPhoneCode(int position);
+
+    void onConfirmRemove(DataBlacklistPhone phone);
 }

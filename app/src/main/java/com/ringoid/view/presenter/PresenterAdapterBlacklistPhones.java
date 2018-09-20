@@ -4,6 +4,7 @@ package com.ringoid.view.presenter;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheBlacklist;
 import com.ringoid.controller.data.memorycache.listener.ICacheBlacklistListener;
+import com.ringoid.model.DataBlacklistPhone;
 import com.ringoid.view.presenter.callback.IPresenterAdapterBlacklistPhonesListener;
 
 import java.lang.ref.WeakReference;
@@ -34,7 +35,8 @@ public class PresenterAdapterBlacklistPhones implements IPresenterAdapterBlackli
 
     @Override
     public void onClickRemove(int position) {
-        cacheBlacklist.remove(position);
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().showDialogRemove(cacheBlacklist.getItem(position));
     }
 
     @Override
@@ -45,6 +47,11 @@ public class PresenterAdapterBlacklistPhones implements IPresenterAdapterBlackli
     @Override
     public String getPhoneCode(int position) {
         return cacheBlacklist.getItem(position).getCode();
+    }
+
+    @Override
+    public void onConfirmRemove(DataBlacklistPhone phone) {
+        cacheBlacklist.remove(phone);
     }
 
     private class ListenerCacheBlacklist implements ICacheBlacklistListener {
