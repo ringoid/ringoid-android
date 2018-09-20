@@ -14,11 +14,15 @@ public interface ICacheInterfaceState {
 
     void addListener(ICacheInterfaceStateListener listener);
 
+    int getCurrentPage();
+
     void setCurrentPage(int i);
 
-    int getCurrentPage();
+    int getPositionScrollPageLikes();
 
     void setPositionScrollPageLikes(int position);
 
-    int getPositionScrollPageLikes();
+    int getPositionScrollPageMessages();
+
+    void setPositionScrollPageMessages(int firstVisibleItemPosition);
 }

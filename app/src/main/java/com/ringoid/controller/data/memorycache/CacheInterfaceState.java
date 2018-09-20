@@ -88,6 +88,17 @@ public class CacheInterfaceState implements ICacheInterfaceState {
         saveData();
     }
 
+    @Override
+    public int getPositionScrollPageMessages() {
+        return getData().getPositionScrollPageMessages();
+    }
+
+    @Override
+    public void setPositionScrollPageMessages(int position) {
+        getData().setPositionScrollPageMessages(position);
+        saveData();
+    }
+
     private void notifyListenersPageUpdated() {
         if (listeners == null) return;
         for (String key : listeners.keySet()) {

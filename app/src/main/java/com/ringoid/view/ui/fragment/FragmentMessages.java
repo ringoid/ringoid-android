@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterMessages;
+import com.ringoid.view.presenter.callback.IPresenterMessagesListener;
 import com.ringoid.view.ui.adapter.AdapterMessages;
 import com.ringoid.view.ui.util.DividerItemDecoration;
 
@@ -23,10 +24,15 @@ public class FragmentMessages extends FragmentBase {
     @Inject
     IPresenterMessages presenterMessages;
 
+    private LinearLayoutManager layoutManager;
+    private ListenerPresenterMessages listenerPresenterMessages;
+    private RecyclerView rvItems;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ApplicationRingoid.getComponent().inject(this);
+        presenterMessages.setListener(listenerPresenterMessages = new ListenerPresenterMessages());
     }
 
     @Nullable
@@ -35,6 +41,7 @@ public class FragmentMessages extends FragmentBase {
         View view = inflater.inflate(R.layout.fragment_messages, container, false);
 
         initList(view);
+        presenterMessages.onCreateView();
 
         return view;
 
@@ -42,8 +49,8 @@ public class FragmentMessages extends FragmentBase {
 
     private void initList(View view) {
 
-        RecyclerView rvItems = view.findViewById(R.id.rvItems);
-        rvItems.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        rvItems = view.findViewById(R.id.rvItems);
+        rvItems.setLayoutManager(layoutManager = new LinearLayoutManager(view.getContext()));
         rvItems.setAdapter(new AdapterMessages());
         rvItems.addOnScrollListener(new OnScrollListener());
         rvItems.addItemDecoration(new DividerItemDecoration(getContext()));
@@ -60,8 +67,14 @@ public class FragmentMessages extends FragmentBase {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-            presenterMessages.onScrollState(newState);
+            presenterMessages.onScrollState(newState, layoutManager.findFirstVisibleItemPosition());
         }
     }
 
+    private class ListenerPresenterMessages implements IPresenterMessagesListener {
+        @Override
+        public void scrollToPosition(int positionScrollPageMessages) {
+            rvItems.scrollToPosition(positionScrollPageMessages);
+        }
+    }
 }
