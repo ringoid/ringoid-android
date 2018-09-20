@@ -8,7 +8,7 @@ import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.WindowManager;
+import android.view.View;
 
 import com.ringoid.BuildConfig;
 import com.ringoid.R;
@@ -144,19 +144,38 @@ public class Navigator implements INavigator {
 
     @Override
     public void statusbarShow() {
-        if (refActivity == null || refActivity.get() == null) return;
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
-
-        refActivity.get().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setImmersive(false);
     }
 
     @Override
     public void statusbarHide() {
+        setImmersive(true);
+    }
+
+    private void setImmersive(boolean newStatus) {
+
         if (refActivity == null || refActivity.get() == null) return;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
 
-        refActivity.get().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        int uiOptions = refActivity.get().getWindow().getDecorView().getSystemUiVisibility();
+        int newUiOptions = uiOptions;
+
+
+        boolean isImmersiveModeEnabled =
+                ((uiOptions | View.SYSTEM_UI_FLAG_IMMERSIVE) == uiOptions);
+
+        if (isImmersiveModeEnabled == newStatus) return;
+
+        newUiOptions ^= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        newUiOptions ^= View.SYSTEM_UI_FLAG_FULLSCREEN;
+        newUiOptions ^= View.SYSTEM_UI_FLAG_IMMERSIVE;
+        newUiOptions ^= View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+        newUiOptions ^= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+
+        refActivity.get().getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
+
     }
+
 
     private void navigatePhotoCrop(Uri data) {
 
