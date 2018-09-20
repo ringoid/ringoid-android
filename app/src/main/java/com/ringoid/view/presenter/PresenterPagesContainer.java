@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.CacheScroll;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
@@ -14,7 +15,7 @@ import com.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheSettingsPrivacyListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
-import com.ringoid.view.INavigatorPagesListener;
+import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.presenter.util.ISettingsHelper;
@@ -55,15 +56,18 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Inject
     ISettingsHelper settingsHelper;
 
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
+
     private ListenerCacheSettings listenerCacheSettings;
-    private INavigatorPagesListener listenerNavigatorPages;
+    private ICacheInterfaceStateListener listenerCacheInterfaceState;
     private ListenerCacheScroll listenerCacheScroll;
     private WeakReference<IPresenterPagesContainerListener> refListener;
 
     public PresenterPagesContainer() {
         ApplicationRingoid.getComponent().inject(this);
         cacheScroll.setListener(listenerCacheScroll = new ListenerCacheScroll());
-        navigatorPages.setLisener(listenerNavigatorPages = new ListenerNavigatorPages());
+        cacheInterfaceState.addListener(listenerCacheInterfaceState = new ListenerCacheInterfaceState());
         cacheSettingsPrivacy.addListener(listenerCacheSettings = new ListenerCacheSettings());
     }
 
@@ -177,7 +181,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         }
     }
 
-    private class ListenerNavigatorPages implements INavigatorPagesListener {
+    private class ListenerCacheInterfaceState implements ICacheInterfaceStateListener {
         @Override
         public void onPageSelected(int num) {
             if (refListener == null || refListener.get() == null) return;

@@ -19,6 +19,7 @@ import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.RepositoryRegisterUserDetails;
 import com.ringoid.controller.data.repository.RepositorySettingsGet;
 import com.ringoid.controller.data.repository.RepositorySettingsSave;
+import com.ringoid.view.NavigatorPages;
 import com.ringoid.view.ViewDialogs;
 import com.ringoid.view.ViewPopup;
 import com.ringoid.view.presenter.PresenterActivityMain;
@@ -93,6 +94,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(NavigatorPages param);
 
     void inject(HelperAnimation param);
 

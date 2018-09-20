@@ -3,14 +3,23 @@ package com.ringoid.model;
 
 import java.io.Serializable;
 
-public class ModelInterfaceState implements Serializable{
+public class ModelInterfaceState implements Serializable {
     private String originPhotoId;
+    private int currentPage;
+
+    public String getOriginPhotoId() {
+        return originPhotoId;
+    }
 
     public void setOriginPhotoId(String originPhotoId) {
         this.originPhotoId = originPhotoId;
     }
 
-    public String getOriginPhotoId() {
-        return originPhotoId;
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
     }
 }

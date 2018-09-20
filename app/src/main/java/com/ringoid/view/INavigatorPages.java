@@ -4,7 +4,6 @@ package com.ringoid.view;
 import android.support.v4.app.FragmentManager;
 
 public interface INavigatorPages {
-    void resetCurrentPage();
 
     void set(FragmentManager childFragmentManager, int viewId);
 
@@ -16,8 +15,6 @@ public interface INavigatorPages {
 
     void navigateExplore();
 
-    void setLisener(INavigatorPagesListener listener);
-
     void navigateCurrentPage();
 
     boolean isPageExplore();
@@ -26,5 +23,4 @@ public interface INavigatorPages {
 
     boolean isPageProfile();
 
-    void clearPage();
 }

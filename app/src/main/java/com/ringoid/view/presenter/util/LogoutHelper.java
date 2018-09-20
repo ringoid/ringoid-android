@@ -71,7 +71,6 @@ public class LogoutHelper implements ILogoutHelper {
                 cacheProfile.resetCache();
                 cacheChatMessages.resetCache();
                 cacheInterfaceState.resetCache();
-                navigatorPages.resetCurrentPage();
             }
             navigator.navigateLogin();
         }
