@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
+import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
+import com.ringoid.controller.data.repository.IRepositoryFeedLikes;
+import com.ringoid.controller.data.repository.IRepositoryFeedMessages;
 import com.ringoid.view.presenter.callback.IPresenterMessagesListener;
 
 import java.lang.ref.WeakReference;
@@ -19,6 +22,12 @@ public class PresenterMessages implements IPresenterMessages {
 
     @Inject
     ICacheInterfaceState cacheInterfaceState;
+
+    @Inject
+    ICacheMessages cacheMessages;
+
+    @Inject
+    IRepositoryFeedMessages repositoryFeedMessages;
 
     private WeakReference<IPresenterMessagesListener> refListener;
 
@@ -45,6 +54,9 @@ public class PresenterMessages implements IPresenterMessages {
 
     @Override
     public void onCreateView() {
+        if (!cacheMessages.isDataExist())
+            repositoryFeedMessages.request();
+
         scrollToSavedPosition();
     }
 

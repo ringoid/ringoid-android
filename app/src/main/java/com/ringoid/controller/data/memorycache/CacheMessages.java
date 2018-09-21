@@ -1,48 +1,51 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.memorycache;
 
-import com.google.gson.Gson;
+import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.FileEnum;
 import com.ringoid.controller.data.memorycache.listener.ICacheMessagesListener;
-import com.ringoid.controller.data.network.response.ResponseDataProfile;
+import com.ringoid.controller.device.ICacheStorage;
 import com.ringoid.model.DataProfile;
+import com.ringoid.model.ModelFeedMessages;
 
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 
+import javax.inject.Inject;
+
 public class CacheMessages implements ICacheMessages {
 
-    private final String JSON_DATA = "{ \"data\":[" +
-            "{\"messagesExist\":true,\"id\":123,\"urls\":[{\"isLiked\":true,\"url\":\"f6/01.jpg\"},{\"url\":\"f6/02.jpg\"},{\"url\":\"f6/03.jpg\"},{\"url\":\"f6/04.jpg\"},{\"url\":\"f6/05.jpg\"}]}," +
-            "{\"id\":174,\"urls\":[{\"url\":\"f8/01.jpg\"},{\"isLiked\":true,\"url\":\"f8/02.jpg\"},{\"url\":\"f8/03.jpg\"}]}," +
-            "{\"id\":5253,\"urls\":[{\"url\":\"f9/01.jpg\"},{\"url\":\"f9/02.jpg\"},{\"url\":\"f9/03.jpg\"},{\"isLiked\":true,\"url\":\"f9/04.jpg\"}]}" +
-            "]  }";
+    @Inject
+    ICacheStorage cacheStorage;
 
-    private ArrayList<DataProfile> data;
+    private ModelFeedMessages data;
     private String selectedUserId;
+
     private WeakHashMap<String, ICacheMessagesListener> listeners;
 
     public CacheMessages() {
-        data = new Gson().fromJson(JSON_DATA, ResponseDataProfile.class).getData();
+        ApplicationRingoid.getComponent().inject(this);
     }
 
     @Override
     public int getItemsNum() {
-        return data.size();
+        return getData().size();
     }
 
     @Override
     public int getItemsNum(int adapterPosition) {
-        return data.get(adapterPosition).getItemsNum();
+        return getData().get(adapterPosition).getItemsNum();
     }
 
     @Override
     public String getUrl(int adapterPosition, int itemPosition) {
-        return data.get(adapterPosition).getImage(itemPosition);
+        return getData().get(adapterPosition).getImage(itemPosition);
     }
 
     @Override
     public void setUserSelected(int position) {
-        this.selectedUserId = data.get(position).getId();
+        this.selectedUserId = getData().get(position).getId();
+
     }
 
     @Override
@@ -53,18 +56,18 @@ public class CacheMessages implements ICacheMessages {
 
     @Override
     public boolean isDataExist() {
-        return data != null && data.size() > 0;
+        return getData() != null && getData().size() > 0;
     }
 
     @Override
     public boolean isLikedAnyPhoto(int position) {
-        DataProfile item = data.get(position);
+        DataProfile item = getData().get(position);
         return item.isLikedAnyPhoto();
     }
 
     @Override
     public String getUserId(int position) {
-        return data.get(position).getId();
+        return getData().get(position).getId();
     }
 
     @Override
@@ -92,32 +95,43 @@ public class CacheMessages implements ICacheMessages {
         }
     }
 
-    private DataProfile getUserById(String userId) {
-        if (data == null) return null;
-        for (DataProfile item : data) {
-            if (item.getId().equals(userId))
-                return item;
-        }
-        return null;
-    }
-
     private DataProfile getSelectedUser() {
-        if (data == null) return null;
-        for (DataProfile item : data) {
-            if (item.getId().equals(selectedUserId))
-                return item;
-        }
-        return null;
+        return getData().getUserByID(selectedUserId);
     }
 
     @Override
     public void setSelected(int adapterPosition, int firstVisibleItemPosition) {
-        data.get(adapterPosition).setSelected(firstVisibleItemPosition);
+        getData().get(adapterPosition).setSelected(firstVisibleItemPosition);
+        saveData();
+    }
+
+    private ModelFeedMessages getData() {
+        if (data == null)
+            data = cacheStorage.readObject(FileEnum.CACHE_FEED_MESSAGES, ModelFeedMessages.class);
+        if (data == null) data = new ModelFeedMessages();
+        return data;
+    }
+
+    @Override
+    public void setData(ArrayList<DataProfile> data) {
+        this.data = new ModelFeedMessages(data);
+        saveData();
+        notifyListeners();
     }
 
     @Override
     public int getSelectedPhotoPosition(int position) {
-        return data.get(position).getSelectedPosition();
+        return getData().get(position).getSelectedPosition();
+    }
+
+    @Override
+    public void resetCache() {
+        this.data = null;
+        cacheStorage.removeData(FileEnum.CACHE_FEED_MESSAGES);
+    }
+
+    private void saveData() {
+        cacheStorage.writeData(FileEnum.CACHE_FEED_MESSAGES, data);
     }
 
 }
