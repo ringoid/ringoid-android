@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class DataProfile {
     private ArrayList<DataImage> urls;
     private String id;
+    private int selectedPosition;
 
     public String getId() {
         return id;
@@ -41,6 +42,14 @@ public class DataProfile {
             if (item.isLiked)
                 return true;
         return false;
+    }
+
+    public void setSelected(int firstVisibleItemPosition) {
+        this.selectedPosition = firstVisibleItemPosition;
+    }
+
+    public int getSelectedPosition() {
+        return selectedPosition;
     }
 
     private class DataImage {
