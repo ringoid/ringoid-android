@@ -5,7 +5,11 @@ import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheExplore;
+import com.ringoid.controller.data.memorycache.listener.ICacheExploreListener;
 import com.ringoid.view.IViewPopup;
+import com.ringoid.view.presenter.callback.IPresenterAdapterExploreListener;
+
+import java.lang.ref.WeakReference;
 
 import javax.inject.Inject;
 
@@ -17,8 +21,12 @@ public class PresenterAdapterExplore implements IPresenterAdapterExplore {
     @Inject
     IViewPopup viewPopup;
 
+    private ICacheExploreListener listenerCacheExplore;
+    private WeakReference<IPresenterAdapterExploreListener> refListener;
+
     public PresenterAdapterExplore() {
         ApplicationRingoid.getComponent().inject(this);
+        cacheExplore.addListener(listenerCacheExplore = new ListenerCacheExplore());
     }
 
     @Override
@@ -45,5 +53,18 @@ public class PresenterAdapterExplore implements IPresenterAdapterExplore {
     @Override
     public int getSelectedPhotoPosition(int position) {
         return cacheExplore.getSelectedPhotoPosition(position);
+    }
+
+    @Override
+    public void setListener(IPresenterAdapterExploreListener listener) {
+        this.refListener = new WeakReference<>(listener);
+    }
+
+    private class ListenerCacheExplore implements ICacheExploreListener {
+        @Override
+        public void onUpdate() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onUpdate();
+        }
     }
 }

@@ -5,6 +5,7 @@ import com.ringoid.model.DataBlacklistPhones;
 import com.ringoid.model.DataTutorial;
 import com.ringoid.model.DataUser;
 import com.ringoid.model.ModelChat;
+import com.ringoid.model.ModelFeedExplore;
 import com.ringoid.model.ModelFeedLikes;
 import com.ringoid.model.ModelFeedMessages;
 import com.ringoid.model.ModelInterfaceState;
@@ -19,7 +20,8 @@ public enum FileEnum {
     CHAT_CACHE("chat_cache", ModelChat.class),
     CACHE_INTERFACE("cache_interface", ModelInterfaceState.class),
     CACHE_FEED_LIKES("cache_feed_likes", ModelFeedLikes.class),
-    CACHE_FEED_MESSAGES("cache_feed_messages", ModelFeedMessages.class);
+    CACHE_FEED_MESSAGES("cache_feed_messages", ModelFeedMessages.class),
+    CACHE_FEED_EXPLORE("cache_feed_explore", ModelFeedExplore.class);
 
     private Class className;
     private String filename;

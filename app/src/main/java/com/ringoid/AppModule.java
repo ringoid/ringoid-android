@@ -39,6 +39,7 @@ import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
+import com.ringoid.controller.data.repository.IRepositoryFeedExplore;
 import com.ringoid.controller.data.repository.IRepositoryFeedLikes;
 import com.ringoid.controller.data.repository.IRepositoryFeedMessages;
 import com.ringoid.controller.data.repository.IRepositoryPhotoUpload;
@@ -51,6 +52,7 @@ import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.IRepositoryRegisterUserDetails;
 import com.ringoid.controller.data.repository.IRepositorySettingsGet;
 import com.ringoid.controller.data.repository.IRepositorySettingsSave;
+import com.ringoid.controller.data.repository.RepositoryFeedExplore;
 import com.ringoid.controller.data.repository.RepositoryFeedLikes;
 import com.ringoid.controller.data.repository.RepositoryFeedMessages;
 import com.ringoid.controller.data.repository.RepositoryPhotoUpload;
@@ -539,6 +541,11 @@ class AppModule {
     @Singleton
     IRepositoryFeedMessages getRepositoryFeedMessages() {
         return new RepositoryFeedMessages();
+    }
+    @Provides
+    @Singleton
+    IRepositoryFeedExplore getRepositoryFeedExplore() {
+        return new RepositoryFeedExplore();
     }
 
     @Provides

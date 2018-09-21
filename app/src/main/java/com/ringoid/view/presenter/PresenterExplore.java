@@ -4,9 +4,11 @@ package com.ringoid.view.presenter;
 import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.memorycache.ICacheExplore;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
+import com.ringoid.controller.data.repository.IRepositoryFeedExplore;
 import com.ringoid.view.presenter.callback.IPresenterExploreListener;
 
 import java.lang.ref.WeakReference;
@@ -24,6 +26,12 @@ public class PresenterExplore implements IPresenterExplore {
     @Inject
     ICacheInterfaceState cacheInterfaceState;
 
+    @Inject
+    IRepositoryFeedExplore repositoryFeedExplore;
+
+    @Inject
+    ICacheExplore cacheExplore;
+
     private WeakReference<IPresenterExploreListener> refListener;
 
     public PresenterExplore() {
@@ -39,6 +47,8 @@ public class PresenterExplore implements IPresenterExplore {
     public void onCreateView() {
         cacheTutorial.resetLikesNum();
         scrollToSavedPosition();
+        if (!cacheExplore.isDataExist())
+            repositoryFeedExplore.request();
     }
 
     private void scrollToSavedPosition() {
