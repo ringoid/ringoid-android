@@ -15,4 +15,8 @@ public interface IPresenterAdapterLikes {
     boolean isLikedAnyPhoto(int position);
 
     boolean isChatEmpty(int position);
+
+    void onScrollPhotoChanged(int newState, int adapterPosition, int firstVisibleItemPosition);
+
+    int getSelectedPhotoPosition(int position);
 }

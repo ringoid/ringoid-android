@@ -2,6 +2,7 @@
 package com.ringoid.view.ui.adapter;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
@@ -28,6 +29,7 @@ public class ViewHolderItemLikes extends ViewHolderItemLikeBase {
     protected void initList() {
         adapter = new AdapterLikesImages();
         rvItems.setAdapter(adapter);
+        rvItems.addOnScrollListener(new ListenerScrollPhotos());
         dotsIndicatorHelper = IndicatorHelper.getLinesAccentHelper(flDots, rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
     }
 
@@ -50,6 +52,15 @@ public class ViewHolderItemLikes extends ViewHolderItemLikeBase {
     void setData(int position) {
         super.setData(position);
         adapter.setPosition(position);
+        rvItems.scrollToPosition(presenterAdapterLikes.getSelectedPhotoPosition(position));
         dotsIndicatorHelper.updateData(presenterAdapterLikes.getItemsNum(position));
+    }
+
+    private class ListenerScrollPhotos extends RecyclerView.OnScrollListener {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            presenterAdapterLikes.onScrollPhotoChanged(newState, getAdapterPosition(), layoutManager.findFirstVisibleItemPosition());
+        }
     }
 }

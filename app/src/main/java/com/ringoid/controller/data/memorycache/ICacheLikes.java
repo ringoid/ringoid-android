@@ -26,4 +26,8 @@ public interface ICacheLikes {
     void addListener(ICacheLikesListener listener);
 
     boolean isLikedAnyPhoto(int position);
+
+    void setSelected(int adapterPosition, int firstVisibleItemPosition);
+
+    int getSelectedPhotoPosition(int position);
 }

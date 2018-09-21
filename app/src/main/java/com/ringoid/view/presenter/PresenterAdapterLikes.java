@@ -1,6 +1,8 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
@@ -68,6 +70,17 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
     @Override
     public boolean isChatEmpty(int position) {
         return !cacheChatMessages.isDataExist(cacheLikes.getUserId(position));
+    }
+
+    @Override
+    public void onScrollPhotoChanged(int newState, int adapterPosition, int firstVisibleItemPosition) {
+        if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
+        cacheLikes.setSelected(adapterPosition, firstVisibleItemPosition);
+    }
+
+    @Override
+    public int getSelectedPhotoPosition(int position) {
+        return cacheLikes.getSelectedPhotoPosition(position);
     }
 
     @Override

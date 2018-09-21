@@ -59,8 +59,8 @@ public class CacheLikes implements ICacheLikes {
     public void changeLiked(int adapterPosition, int itemPosition) {
         data.get(adapterPosition).changeLiked(itemPosition);
         if (data.get(adapterPosition).isLiked(itemPosition))
-            notifyListenersLiked(adapterPosition,itemPosition);
-        else notifyListenersUnliked(adapterPosition,itemPosition);
+            notifyListenersLiked(adapterPosition, itemPosition);
+        else notifyListenersUnliked(adapterPosition, itemPosition);
     }
 
     @Override
@@ -82,6 +82,16 @@ public class CacheLikes implements ICacheLikes {
     @Override
     public boolean isLikedAnyPhoto(int position) {
         return data.get(position).isLikedAnyPhoto();
+    }
+
+    @Override
+    public void setSelected(int adapterPosition, int firstVisibleItemPosition) {
+        data.get(adapterPosition).setSelected(firstVisibleItemPosition);
+    }
+
+    @Override
+    public int getSelectedPhotoPosition(int position) {
+        return data.get(position).getSelectedPosition();
     }
 
     private void notifyListeners() {
