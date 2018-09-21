@@ -1,6 +1,8 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
@@ -122,5 +124,16 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
             if (refListener == null || refListener.get() == null) return;
             refListener.get().onUpdate();
         }
+    }
+
+    @Override
+    public void onScrollPhotoChanged(int newState, int adapterPosition, int firstVisibleItemPosition) {
+        if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
+        cacheMessages.setSelected(adapterPosition, firstVisibleItemPosition);
+    }
+
+    @Override
+    public int getSelectedPhotoPosition(int position) {
+        return cacheMessages.getSelectedPhotoPosition(position);
     }
 }

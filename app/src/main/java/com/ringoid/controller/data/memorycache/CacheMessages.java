@@ -109,4 +109,15 @@ public class CacheMessages implements ICacheMessages {
         }
         return null;
     }
+
+    @Override
+    public void setSelected(int adapterPosition, int firstVisibleItemPosition) {
+        data.get(adapterPosition).setSelected(firstVisibleItemPosition);
+    }
+
+    @Override
+    public int getSelectedPhotoPosition(int position) {
+        return data.get(position).getSelectedPosition();
+    }
+
 }

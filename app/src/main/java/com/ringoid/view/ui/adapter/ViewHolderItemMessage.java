@@ -2,6 +2,7 @@
 package com.ringoid.view.ui.adapter;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -31,6 +32,7 @@ public class ViewHolderItemMessage extends ViewHolderItemLikeBase {
     protected void initList() {
         adapter = new AdapterMessagesImages();
         rvItems.setAdapter(adapter);
+        rvItems.addOnScrollListener(new ListenerScrollPhotos());
         dotsIndicatorHelper = IndicatorHelper.getLinesAccentGreenHelper(flDots, rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
     }
 
@@ -55,6 +57,8 @@ public class ViewHolderItemMessage extends ViewHolderItemLikeBase {
         adapter.setPosition(position);
         dotsIndicatorHelper.updateData(presenterAdapterMessages.getItemsNum(position));
         setMessageState(position);
+        rvItems.scrollToPosition(presenterAdapterMessages.getSelectedPhotoPosition(position));
+
     }
 
     private void setMessageState(int position) {
@@ -66,5 +70,13 @@ public class ViewHolderItemMessage extends ViewHolderItemLikeBase {
         ivMessage.setImageResource(presenterAdapterMessages.isMessagesNew(position)
                 ? R.drawable.ic_mail_green_24dp
                 : R.drawable.ic_mail_open_green_24dp);
+    }
+
+    private class ListenerScrollPhotos extends RecyclerView.OnScrollListener {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            presenterAdapterMessages.onScrollPhotoChanged(newState, getAdapterPosition(), layoutManager.findFirstVisibleItemPosition());
+        }
     }
 }

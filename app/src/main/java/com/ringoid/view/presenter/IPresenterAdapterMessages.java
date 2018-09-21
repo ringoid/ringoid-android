@@ -19,4 +19,8 @@ public interface IPresenterAdapterMessages {
     boolean isLikedAnyPhoto(int position);
 
     void onClickChat(int adapterPosition);
+
+    void onScrollPhotoChanged(int newState, int adapterPosition, int firstVisibleItemPosition);
+
+    int getSelectedPhotoPosition(int position);
 }

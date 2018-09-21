@@ -25,4 +25,8 @@ public interface ICacheMessages {
     String getUserSelectedID();
 
     void setUserSelected(String userId);
+
+    void setSelected(int adapterPosition, int firstVisibleItemPosition);
+
+    int getSelectedPhotoPosition(int position);
 }
