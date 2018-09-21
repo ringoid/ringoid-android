@@ -27,6 +27,7 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
     private AdapterExploreImages adapter;
 
     private DialogReport dialogReport;
+    private LinearLayoutManager layoutManager;
 
     public ViewHolderItemExplore(ViewGroup parent) {
         super(parent, R.layout.view_item_images_explore);
@@ -41,11 +42,12 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
 
     private void initList() {
         rvItems = itemView.findViewById(R.id.rvImages);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
+        layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
         adapter = new AdapterExploreImages();
 
         rvItems.setLayoutManager(layoutManager);
         rvItems.setAdapter(adapter);
+        rvItems.addOnScrollListener(new ListenerScrollPhotos());
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
         dotsIndicatorHelper = IndicatorHelper.getLinesHelper(flDots, rvItems, layoutManager);
@@ -55,6 +57,7 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
     void setData(int position) {
         adapter.setPosition(position);
         dotsIndicatorHelper.updateData(presenterAdapterExplore.getItemsNum(position));
+        rvItems.scrollToPosition(presenterAdapterExplore.getSelectedPhotoPosition(position));
     }
 
     @Override
@@ -66,6 +69,14 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
                 dialogReport.cancel();
             dialogReport = new DialogReport(itemView.getContext());
             dialogReport.show();
+        }
+    }
+
+    private class ListenerScrollPhotos extends RecyclerView.OnScrollListener {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            presenterAdapterExplore.onScrollPhotoChanged(newState, getAdapterPosition(), layoutManager.findFirstVisibleItemPosition());
         }
     }
 }

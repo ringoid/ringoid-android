@@ -62,4 +62,15 @@ public class CacheExplore implements ICacheExplore {
     public String getItemId(int adapterPosition, int itemPosition) {
         return data.get(adapterPosition).getImageId(itemPosition);
     }
+
+    @Override
+    public void setSelected(int adapterPosition, int firstVisibleItemPosition) {
+        data.get(adapterPosition).setSelected(firstVisibleItemPosition);
+    }
+
+    @Override
+    public int getSelectedPhotoPosition(int position) {
+        return data.get(position).getSelectedPosition();
+    }
+
 }

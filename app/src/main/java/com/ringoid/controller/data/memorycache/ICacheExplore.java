@@ -15,4 +15,8 @@ public interface ICacheExplore {
     void changeLiked(int adapterPosition, int itemPosition);
 
     String getItemId(int adapterPosition, int itemPosition);
+
+    void setSelected(int adapterPosition, int firstVisibleItemPosition);
+
+    int getSelectedPhotoPosition(int position);
 }

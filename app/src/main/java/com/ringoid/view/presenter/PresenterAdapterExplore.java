@@ -1,8 +1,9 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheExplore;
 import com.ringoid.view.IViewPopup;
 
@@ -33,5 +34,16 @@ public class PresenterAdapterExplore implements IPresenterAdapterExplore {
     @Override
     public void onClickScrolls() {
 
+    }
+
+    @Override
+    public void onScrollPhotoChanged(int newState, int adapterPosition, int firstVisibleItemPosition) {
+        if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
+        cacheExplore.setSelected(adapterPosition, firstVisibleItemPosition);
+    }
+
+    @Override
+    public int getSelectedPhotoPosition(int position) {
+        return cacheExplore.getSelectedPhotoPosition(position);
     }
 }

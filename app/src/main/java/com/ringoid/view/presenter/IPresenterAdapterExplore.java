@@ -7,4 +7,8 @@ public interface IPresenterAdapterExplore {
     int getItemsNum(int position);
 
     void onClickScrolls();
+
+    void onScrollPhotoChanged(int newState, int adapterPosition, int firstVisibleItemPosition);
+
+    int getSelectedPhotoPosition(int position);
 }
