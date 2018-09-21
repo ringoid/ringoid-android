@@ -105,6 +105,8 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
     private class ListenerCacheLikes implements ICacheLikesListener {
         @Override
         public void onUpdate() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onUpdate();
         }
 
         @Override

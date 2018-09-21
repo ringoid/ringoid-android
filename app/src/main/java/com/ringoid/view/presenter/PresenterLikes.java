@@ -9,6 +9,7 @@ import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.listener.ICacheLikesListener;
+import com.ringoid.controller.data.repository.IRepositoryFeedLikes;
 import com.ringoid.view.presenter.callback.IPresenterLikesListener;
 
 import java.lang.ref.WeakReference;
@@ -29,6 +30,9 @@ public class PresenterLikes implements IPresenterLikes {
     @Inject
     ICacheInterfaceState cacheInterfaceState;
 
+    @Inject
+    IRepositoryFeedLikes repositoryFeedLikes;
+
     private ListenerCacheLikes listenerCacheLikes;
     private WeakReference<IPresenterLikesListener> refListener;
 
@@ -46,6 +50,9 @@ public class PresenterLikes implements IPresenterLikes {
     public void onCreateView() {
         cacheTutorial.resetLikesNum();
         scrollToSavedPosition();
+        if (!cacheLikes.isDataExist()) {
+            repositoryFeedLikes.request();
+        }
     }
 
     private void scrollToSavedPosition() {

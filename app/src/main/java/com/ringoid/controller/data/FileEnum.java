@@ -5,6 +5,7 @@ import com.ringoid.model.DataBlacklistPhones;
 import com.ringoid.model.DataTutorial;
 import com.ringoid.model.DataUser;
 import com.ringoid.model.ModelChat;
+import com.ringoid.model.ModelFeedLikes;
 import com.ringoid.model.ModelInterfaceState;
 import com.ringoid.model.ModelProfilePhotos;
 
@@ -15,7 +16,8 @@ public enum FileEnum {
     BLACKLIST("blacklist", DataBlacklistPhones.class),
     CACHE_PROFILE("profile_photos", ModelProfilePhotos.class),
     CHAT_CACHE("chat_cache", ModelChat.class),
-    CACHE_INTERFACE("cache_interface", ModelInterfaceState.class);
+    CACHE_INTERFACE("cache_interface", ModelInterfaceState.class),
+    CACHE_FEED_LIKES("cache_feed_likes", ModelFeedLikes.class);
 
     private Class className;
     private String filename;

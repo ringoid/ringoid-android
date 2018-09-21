@@ -1,76 +1,80 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.memorycache;
 
-import com.google.gson.Gson;
+import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.FileEnum;
 import com.ringoid.controller.data.memorycache.listener.ICacheLikesListener;
-import com.ringoid.controller.data.network.response.ResponseDataProfile;
+import com.ringoid.controller.device.ICacheStorage;
 import com.ringoid.model.DataProfile;
+import com.ringoid.model.ModelFeedLikes;
 
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 
+import javax.inject.Inject;
+
 public class CacheLikes implements ICacheLikes {
 
-    private final String JSON_DATA = "{ \"data\":[" +
-            "{\"id\":\"123\", \"urls\":[{\"isLiked\":true,\"id\":\"111\",\"url\":\"f4/01.jpg\"}, {\"id\":\"112\",\"url\":\"f4/02.jpg\"},{\"url\":\"f4/03.jpg\"}, {\"id\":\"113\",\"url\":\"f4/04.jpg\"}]}," +
-            "{\"id\":\"1234\",\"urls\":[{\"id\":\"121\",\"url\":\"f5/01.jpg\"}, {\"id\":\"122\",\"url\":\"f5/02.jpg\"},{\"url\":\"f5/03.jpg\"}, {\"id\":\"123\",\"url\":\"f5/04.png\"},{\"id\":\"124\",\"url\":\"f5/05.jpg\"}]}," +
-            "{\"id\":\"1235\",\"urls\":[{\"id\":\"131\",\"url\":\"f9/01.jpg\"}, {\"id\":\"132\",\"url\":\"f9/02.jpg\"},{\"url\":\"f9/03.jpg\"}, {\"id\":\"133\",\"url\":\"f9/04.jpg\"}]}" +
-            "]  }";
+    @Inject
+    ICacheStorage cacheStorage;
 
-    private ArrayList<DataProfile> data;
+    private ModelFeedLikes data;
     private WeakHashMap<String, ICacheLikesListener> listeners;
 
+
     public CacheLikes() {
-        data = new Gson().fromJson(JSON_DATA, ResponseDataProfile.class).getData();
+        ApplicationRingoid.getComponent().inject(this);
     }
 
     @Override
     public int getItemsNum() {
-        return data.size();
+        return getData().size();
     }
 
     @Override
     public int getItemsNum(int adapterPosition) {
-        return data.get(adapterPosition).getItemsNum();
+        return getData().get(adapterPosition).getItemsNum();
     }
 
     @Override
     public void setLiked(int adapterPosition, int itemPosition) {
-        data.get(adapterPosition).setLiked(itemPosition);
+        getData().get(adapterPosition).setLiked(itemPosition);
+        saveData();
         notifyListenersLiked(adapterPosition, itemPosition);
     }
 
     @Override
     public boolean isLiked(int adapterPosition, int itemPosition) {
-        return data.get(adapterPosition).isLiked(itemPosition);
+        return getData().get(adapterPosition).isLiked(itemPosition);
     }
 
     @Override
     public String getUrl(int adapterPosition, int itemPosition) {
-        return data.get(adapterPosition).getImage(itemPosition);
+        return getData().get(adapterPosition).getImage(itemPosition);
     }
 
     @Override
     public boolean isDataExist() {
-        return data != null && data.size() > 0;
+        return getData() != null && getData().size() > 0;
     }
 
     @Override
     public void changeLiked(int adapterPosition, int itemPosition) {
-        data.get(adapterPosition).changeLiked(itemPosition);
-        if (data.get(adapterPosition).isLiked(itemPosition))
+        getData().get(adapterPosition).changeLiked(itemPosition);
+        if (getData().get(adapterPosition).isLiked(itemPosition))
             notifyListenersLiked(adapterPosition, itemPosition);
         else notifyListenersUnliked(adapterPosition, itemPosition);
+        saveData();
     }
 
     @Override
     public String getItemId(int adapterPosition, int itemPosition) {
-        return data.get(adapterPosition).getImageId(itemPosition);
+        return getData().get(adapterPosition).getImageId(itemPosition);
     }
 
     @Override
     public String getUserId(int adapterPosition) {
-        return data.get(adapterPosition).getId();
+        return getData().get(adapterPosition).getId();
     }
 
     @Override
@@ -81,17 +85,44 @@ public class CacheLikes implements ICacheLikes {
 
     @Override
     public boolean isLikedAnyPhoto(int position) {
-        return data.get(position).isLikedAnyPhoto();
+        return getData().get(position).isLikedAnyPhoto();
     }
 
     @Override
     public void setSelected(int adapterPosition, int firstVisibleItemPosition) {
-        data.get(adapterPosition).setSelected(firstVisibleItemPosition);
+        getData().get(adapterPosition).setSelected(firstVisibleItemPosition);
+        saveData();
     }
 
     @Override
     public int getSelectedPhotoPosition(int position) {
-        return data.get(position).getSelectedPosition();
+        return getData().get(position).getSelectedPosition();
+    }
+
+    private ModelFeedLikes getData() {
+        if (data == null)
+            data = cacheStorage.readObject(FileEnum.CACHE_FEED_LIKES, ModelFeedLikes.class);
+        if (data == null)
+            data = new ModelFeedLikes();
+        return data;
+    }
+
+    @Override
+    public void setData(ArrayList<DataProfile> data) {
+        this.data = new ModelFeedLikes(data);
+        saveData();
+        notifyListeners();
+    }
+
+    @Override
+    public void resetCache() {
+        this.data = null;
+        cacheStorage.removeData(FileEnum.CACHE_FEED_LIKES);
+        notifyListeners();
+    }
+
+    private void saveData() {
+        cacheStorage.writeData(FileEnum.CACHE_FEED_LIKES, data);
     }
 
     private void notifyListeners() {

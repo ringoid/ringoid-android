@@ -2,6 +2,9 @@
 package com.ringoid.controller.data.memorycache;
 
 import com.ringoid.controller.data.memorycache.listener.ICacheLikesListener;
+import com.ringoid.model.DataProfile;
+
+import java.util.ArrayList;
 
 public interface ICacheLikes {
 
@@ -30,4 +33,8 @@ public interface ICacheLikes {
     void setSelected(int adapterPosition, int firstVisibleItemPosition);
 
     int getSelectedPhotoPosition(int position);
+
+    void setData(ArrayList<DataProfile> data);
+
+    void resetCache();
 }

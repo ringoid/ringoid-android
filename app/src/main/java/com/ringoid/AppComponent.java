@@ -4,12 +4,14 @@ package com.ringoid;
 import com.ringoid.controller.data.memorycache.CacheBlacklist;
 import com.ringoid.controller.data.memorycache.CacheChatMessages;
 import com.ringoid.controller.data.memorycache.CacheInterfaceState;
+import com.ringoid.controller.data.memorycache.CacheLikes;
 import com.ringoid.controller.data.memorycache.CacheProfile;
 import com.ringoid.controller.data.memorycache.CacheScroll;
 import com.ringoid.controller.data.memorycache.CacheToken;
 import com.ringoid.controller.data.memorycache.CacheTutorial;
 import com.ringoid.controller.data.memorycache.CacheUser;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
+import com.ringoid.controller.data.repository.RepositoryFeedLikes;
 import com.ringoid.controller.data.repository.RepositoryPhotoUpload;
 import com.ringoid.controller.data.repository.RepositoryPhotoUploadUri;
 import com.ringoid.controller.data.repository.RepositoryProfileImageRemove;
@@ -94,6 +96,10 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(CacheLikes param);
+
+    void inject(RepositoryFeedLikes param);
 
     void inject(NavigatorPages param);
 

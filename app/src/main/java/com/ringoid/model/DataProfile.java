@@ -1,9 +1,10 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DataProfile {
+public class DataProfile implements Serializable {
     private ArrayList<DataImage> urls;
     private String id;
     private int selectedPosition;
@@ -52,7 +53,7 @@ public class DataProfile {
         return selectedPosition;
     }
 
-    private class DataImage {
+    private class DataImage implements Serializable {
         private String url;
         private String id;
         private boolean isLiked;
