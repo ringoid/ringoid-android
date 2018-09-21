@@ -15,6 +15,7 @@ import com.ringoid.view.ui.util.IndicatorHelper;
 public abstract class ViewHolderItemLikeBase extends ViewHolderBase
         implements View.OnClickListener {
 
+    LinearLayoutManager layoutManager;
     DialogReport dialogMenu;
     FrameLayout flDots;
     IndicatorHelper dotsIndicatorHelper;
@@ -35,7 +36,7 @@ public abstract class ViewHolderItemLikeBase extends ViewHolderBase
         vChatEmpty.setOnClickListener(this);
 
         rvItems = itemView.findViewById(R.id.rvImages);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
+        layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvItems.setLayoutManager(layoutManager);
         new PagerSnapHelper().attachToRecyclerView(rvItems);
 
