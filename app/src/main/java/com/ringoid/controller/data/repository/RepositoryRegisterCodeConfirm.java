@@ -48,7 +48,7 @@ public class RepositoryRegisterCodeConfirm implements IRepositoryRegisterCodeCon
 
     @Override
     public void request(String code) {
-        if (request != null) request.cancel();
+        if (request != null && !request.isExecuted()) return;
 
         request = apiRingoid.registerCodeConfirm(new RequestParamRegisterCodeConfirm(
                 cacheRegister.getSessionId(),
