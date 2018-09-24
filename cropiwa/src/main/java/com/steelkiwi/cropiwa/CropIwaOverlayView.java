@@ -20,18 +20,14 @@ import com.steelkiwi.cropiwa.shape.CropIwaShape;
 @SuppressLint("ViewConstructor")
 class CropIwaOverlayView extends View implements ConfigChangeListener, OnImagePositionedListener {
 
+    protected RectF cropRect;
+    protected CropIwaOverlayConfig config;
+    protected boolean shouldDrawOverlay;
     private Paint overlayPaint;
     private OnNewBoundsListener newBoundsListener;
     private CropIwaShape cropShape;
-
     private float cropScale;
-
     private RectF imageBounds;
-
-    protected RectF cropRect;
-    protected CropIwaOverlayConfig config;
-
-    protected boolean shouldDrawOverlay;
 
     public CropIwaOverlayView(Context context, CropIwaOverlayConfig config) {
         super(context);
@@ -151,25 +147,26 @@ class CropIwaOverlayView extends View implements ConfigChangeListener, OnImagePo
             }
         }
 
-        float centerX = viewWidth * 0.5f;
-        float centerY = viewHeight * 0.5f;
-        float halfWidth, halfHeight;
+        float height, width;
 
-        boolean calculateFromWidth =
-                aspectRatio.getHeight() < aspectRatio.getWidth()
-                        || (aspectRatio.isSquare() && viewWidth < viewHeight);
+        height = viewHeight;
+        width = viewHeight * aspectRatio.getRatio();
 
-        if (calculateFromWidth) {
-            halfWidth = viewWidth * cropScale * 0.5f;
-            halfHeight = halfWidth / aspectRatio.getRatio();
-        } else {
-            halfHeight = viewHeight * cropScale * 0.5f;
-            halfWidth = halfHeight * aspectRatio.getRatio();
+        if (width > viewWidth) {
+            float multiplier = viewWidth / width;
+            height = height * multiplier;
+            width = viewWidth;
         }
 
+        height *= cropScale;
+        width *= cropScale;
+
+        float centerX = viewWidth * 0.5f;
+        float centerY = viewHeight * 0.5f;
+
         cropRect.set(
-                centerX - halfWidth, centerY - halfHeight,
-                centerX + halfWidth, centerY + halfHeight);
+                centerX - width * 0.5f, centerY - height * 0.5f,
+                centerX + width * 0.5f, centerY + height * 0.5f);
     }
 
     @Nullable
