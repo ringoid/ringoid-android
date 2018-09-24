@@ -40,4 +40,6 @@ public interface ICacheProfile {
     void resetCache();
 
     void updateLocalPhoto(String clientPhotoId, String originPhotoId);
+
+    void removeItemByLocalPhotoId(String clientPhotoId);
 }

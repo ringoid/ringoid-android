@@ -155,6 +155,16 @@ public class CacheProfile implements ICacheProfile {
         notifyListeners();
     }
 
+    @Override
+    public void removeItemByLocalPhotoId(String clientPhotoId) {
+        if (getData() == null) return;
+        ProfilePhoto item = getData().getItemByClientPhotoId(clientPhotoId);
+        if (item == null) return;
+        getData().remove(item);
+        saveData();
+        notifyListeners();
+    }
+
     private void notifyListeners() {
         if (listeners == null) return;
         for (String name : listeners.keySet()) {

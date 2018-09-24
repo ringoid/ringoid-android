@@ -2,6 +2,7 @@ package com.ringoid.controller.data.repository;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICachePhotoUpload;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
@@ -9,6 +10,7 @@ import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.request.RequestPhotoUploadUri;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotoUri;
+import com.ringoid.view.IViewPopup;
 
 import javax.inject.Inject;
 
@@ -37,6 +39,9 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
 
     @Inject
     ICacheProfile cacheProfile;
+
+    @Inject
+    IViewPopup viewPopup;
 
     private Callback<ResponseProfilePhotoUri> requestUriListener;
     private Call<ResponseProfilePhotoUri> request;
@@ -69,13 +74,19 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
                 cacheProfile.updateLocalPhoto(response.body().getClientPhotoId(), response.body().getOriginPhotoId());
 
                 repositoryPhotoUpload.request();
-            }
+            } else onError();
 
         }
 
         @Override
         public void onFailure(Call<ResponseProfilePhotoUri> call, Throwable t) {
+            if (call.isCanceled()) return;
+            onError();
+        }
 
+        private void onError() {
+            cacheProfile.removeItemByLocalPhotoId(cachePhotoUpload.getClientPhotoId());
+            viewPopup.showToast(R.string.error_photo_upload);
         }
     }
 }
