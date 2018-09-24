@@ -1,6 +1,7 @@
 package com.ringoid.view;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
+import android.app.AlertDialog;
 import android.content.Context;
 
 import com.ringoid.ApplicationRingoid;
@@ -22,6 +23,7 @@ public class ViewDialogs implements IViewDialogs {
 
     private WeakReference<DialogLikeNoPhoto> refDialogLikeNoPhoto;
     private WeakReference<DialogChatCompose> refDialogChatCompose;
+    private WeakReference<AlertDialog> refDialogMessage;
 
     private IDialogLIkeNoPhotoListener listenerDialogLikeNoPhoto;
 
@@ -68,6 +70,19 @@ public class ViewDialogs implements IViewDialogs {
         DialogChatCompose dialogChatCompose = new DialogChatCompose(refContext.get(), listener);
         dialogChatCompose.show();
         refDialogChatCompose = new WeakReference<>(dialogChatCompose);
+    }
+
+    @Override
+    public void showDialogMessage(int messageId) {
+        if (refDialogMessage != null && refDialogMessage.get() != null)
+            refDialogMessage.get().cancel();
+
+        if (refContext == null || refContext.get() == null) return;
+        AlertDialog dialog = new AlertDialog.Builder(refContext.get())
+                .setMessage(messageId)
+                .create();
+        dialog.show();
+        refDialogMessage = new WeakReference<>(dialog);
     }
 
     private class ListenerDialogLikeNoPhoto implements IDialogLIkeNoPhotoListener {

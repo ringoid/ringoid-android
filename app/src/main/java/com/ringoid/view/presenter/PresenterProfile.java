@@ -9,6 +9,7 @@ import com.ringoid.controller.data.memorycache.listener.ICacheProfileListener;
 import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
 import com.ringoid.controller.data.repository.callback.IRepositoryProfilePhotosListener;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterProfileListener;
 import com.ringoid.view.presenter.util.IHelperConnection;
@@ -37,7 +38,7 @@ public class PresenterProfile implements IPresenterProfile {
     IHelperConnection helperConnection;
 
     @Inject
-    IViewPopup viewPopup;
+    IViewDialogs viewDialogs;
 
     private ListenerRepositoryProfile listenerRepositoryProfile;
     private ListenerCacheProfile listenerCache;
@@ -64,7 +65,7 @@ public class PresenterProfile implements IPresenterProfile {
     }
 
     private void showErrorConnection() {
-        viewPopup.showSnackbar(R.string.error_network);
+        viewDialogs.showDialogMessage(R.string.error_network);
     }
 
     @Override

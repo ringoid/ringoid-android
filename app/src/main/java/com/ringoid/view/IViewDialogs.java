@@ -15,4 +15,6 @@ public interface IViewDialogs {
     void showDialogLikeNoPhoto();
 
     void showDialogChatCompose(IDialogChatComposeListener listener);
+
+    void showDialogMessage(int messageId);
 }

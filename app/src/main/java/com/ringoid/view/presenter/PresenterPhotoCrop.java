@@ -12,7 +12,7 @@ import com.ringoid.controller.data.repository.IRepositoryPhotoUpload;
 import com.ringoid.controller.data.repository.IRepositoryPhotoUploadUri;
 import com.ringoid.controller.data.repository.callback.IRepositoryPhotoUploadListener;
 import com.ringoid.view.INavigator;
-import com.ringoid.view.IViewPopup;
+import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.presenter.util.IHelperConnection;
 
 import java.io.File;
@@ -42,7 +42,7 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
     IHelperConnection helperConnection;
 
     @Inject
-    IViewPopup viewPopup;
+    IViewDialogs viewDialogs;
 
     @Inject
     INavigator navigator;
@@ -99,7 +99,7 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
     }
 
     private void showErrorConnection() {
-        viewPopup.showSnackbar(R.string.error_network);
+        viewDialogs.showDialogMessage(R.string.error_network);
     }
 
     private class ListenerUpload implements IRepositoryPhotoUploadListener {

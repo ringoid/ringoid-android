@@ -13,6 +13,7 @@ import com.ringoid.controller.data.memorycache.listener.ICacheProfileListener;
 import com.ringoid.controller.data.repository.IRepositoryProfileImageRemove;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
+import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterAdapterProfileListener;
 import com.ringoid.view.presenter.util.IHelperConnection;
@@ -27,7 +28,7 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     ICacheProfile cacheProfile;
 
     @Inject
-    IViewPopup viewPopup;
+    IViewDialogs viewDialogs;
 
     @Inject
     ICacheSettingsPrivacy cacheSettingsPrivacy;
@@ -122,9 +123,8 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
         repositoryProfileImageRemove.request(imageId);
     }
 
-
     private void showErrorConnection() {
-        viewPopup.showSnackbar(R.string.error_network);
+        viewDialogs.showDialogMessage(R.string.error_network);
     }
 
     @Override
