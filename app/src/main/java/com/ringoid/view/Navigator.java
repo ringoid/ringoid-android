@@ -182,7 +182,6 @@ public class Navigator implements INavigator {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
-                .addToBackStack(null)
                 .replace(viewId, FragmentPhotoCrop.getInstance(data), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }

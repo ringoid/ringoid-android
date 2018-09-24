@@ -11,6 +11,7 @@ import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.repository.IRepositoryPhotoUpload;
 import com.ringoid.controller.data.repository.IRepositoryPhotoUploadUri;
 import com.ringoid.controller.data.repository.callback.IRepositoryPhotoUploadListener;
+import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.util.IHelperConnection;
 
@@ -43,6 +44,9 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
     @Inject
     IViewPopup viewPopup;
 
+    @Inject
+    INavigator navigator;
+
     private ListenerUpload listenerRequest;
     private WeakReference<IPresenterPhotoCropListener> refListener;
 
@@ -59,6 +63,7 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
         cacheProfile.addPhotoLocal(cachePhotoUpload.getFileUri(), cachePhotoUpload.getClientPhotoId());
 
         repositoryPhotoCrop.request();
+        onBackPressed();
     }
 
     @Override
@@ -84,6 +89,13 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
         }
 
         refListener.get().crop();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        cacheInterfaceState.setCurrentPage(0);
+        navigator.navigateFeed();
+        return true;
     }
 
     private void showErrorConnection() {

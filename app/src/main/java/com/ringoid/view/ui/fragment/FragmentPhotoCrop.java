@@ -97,11 +97,15 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
         }
     }
 
+    @Override
+    public boolean onBackPressed() {
+        return presenterPhotoCrop.onBackPressed();
+    }
+
     private class ListenerCrop implements CropIwaView.CropSaveCompleteListener {
         @Override
         public void onCroppedRegionSaved(Uri bitmapUri) {
             presenterPhotoCrop.onClickCrop(bitmapUri);
-            getActivity().onBackPressed();
         }
     }
 

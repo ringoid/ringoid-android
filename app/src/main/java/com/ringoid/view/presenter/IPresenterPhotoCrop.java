@@ -15,4 +15,7 @@ public interface IPresenterPhotoCrop {
     void setListener(IPresenterPhotoCropListener listener);
 
     void onCLickCrop();
+
+    boolean onBackPressed();
+
 }
