@@ -135,6 +135,7 @@
     <string name="dialog_remove_confirm">confirm</string>
     <string name="format_dialog_remove_confirm" formatted="false">Remove +%s %s from the blacklist?</string>
     <string name="error_photo_upload">Upload failed</string>
+    <string name="error_photo_max_size">Image is too large</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>

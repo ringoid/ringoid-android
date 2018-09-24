@@ -105,7 +105,7 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
     private class ListenerCrop implements CropIwaView.CropSaveCompleteListener {
         @Override
         public void onCroppedRegionSaved(Uri bitmapUri) {
-            presenterPhotoCrop.onClickCrop(bitmapUri);
+            presenterPhotoCrop.onCropCompleted(bitmapUri);
         }
     }
 

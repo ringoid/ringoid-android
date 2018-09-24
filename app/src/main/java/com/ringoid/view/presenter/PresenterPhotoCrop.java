@@ -23,6 +23,8 @@ import javax.inject.Inject;
 
 public class PresenterPhotoCrop implements IPresenterPhotoCrop {
 
+    private static long MAX_FILE_SIZE_BYTES = 4 * 1024 * 1024;
+
     @Inject
     IRepositoryPhotoUploadUri repositoryPhotoCrop;
 
@@ -56,7 +58,12 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
     }
 
     @Override
-    public void onClickCrop(Uri file) {
+    public void onCropCompleted(Uri file) {
+        if (cachePhotoUpload.getFile().length() > MAX_FILE_SIZE_BYTES) {
+            viewDialogs.showDialogMessage(R.string.error_photo_max_size);
+            return;
+        }
+
         cachePhotoUpload.setUri(file);
         cachePhotoUpload.setClientPhotoID(UUID.randomUUID().toString());
 
