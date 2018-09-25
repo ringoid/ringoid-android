@@ -9,4 +9,6 @@ public interface IPresenterMessagesListener {
     boolean isPositionTop();
 
     void completeRefresh();
+
+    void showViewNoPhoto(int messageRes);
 }

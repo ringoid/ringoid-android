@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/black">
+    android:layout_height="match_parent">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srlFeed"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/black">
 
         <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/rvItems"
@@ -15,5 +15,29 @@
             android:layout_height="match_parent" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/llNoPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvMessageNoPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tvPhotoAdd"
+            style="@style/buttonBase"
+            android:background="@drawable/rectangle_rounded_green"
+            android:text="@string/message_photo_upload"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
 
 </FrameLayout>

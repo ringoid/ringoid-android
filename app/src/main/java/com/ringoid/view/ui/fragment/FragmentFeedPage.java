@@ -11,14 +11,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.ringoid.R;
+import com.ringoid.view.INavigator;
 
-abstract class FragmentFeedPage extends FragmentBase {
+import javax.inject.Inject;
+
+abstract class FragmentFeedPage extends FragmentBase implements View.OnClickListener {
 
     RecyclerView rvItems;
     LinearLayoutManager layoutManager;
     SwipeRefreshLayout srlFeed;
+    View vPhotoEmpty;
+    TextView tvNoPhoto;
+
+    @Inject
+    INavigator navigator;
+
     private ListenerRefresh listenerRefresh;
 
     @Override
@@ -33,9 +43,13 @@ abstract class FragmentFeedPage extends FragmentBase {
         rvItems.addOnScrollListener(new OnScrollListener());
         rvItems.addItemDecoration(new ItemDecoration(getContext()));
 
+        vPhotoEmpty = view.findViewById(R.id.llNoPhoto);
+        tvNoPhoto = view.findViewById(R.id.tvMessageNoPhoto);
 
         srlFeed = view.findViewById(R.id.srlFeed);
         srlFeed.setOnRefreshListener(listenerRefresh);
+
+        view.findViewById(R.id.tvPhotoAdd).setOnClickListener(this);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container) {
@@ -47,6 +61,18 @@ abstract class FragmentFeedPage extends FragmentBase {
     protected abstract void onScroll(int dy);
 
     protected abstract void onSwipeToRefresh();
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.tvPhotoAdd)
+            navigator.navigatePhotoAdd();
+    }
+
+    void showErrorNoPhoto(int messageRes) {
+        srlFeed.setVisibility(View.GONE);
+        vPhotoEmpty.setVisibility(View.VISIBLE);
+        tvNoPhoto.setText(messageRes);
+    }
 
     private class OnScrollListener extends RecyclerView.OnScrollListener {
 

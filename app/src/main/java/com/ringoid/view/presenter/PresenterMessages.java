@@ -4,8 +4,10 @@ package com.ringoid.view.presenter;
 import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
+import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.listener.ICacheMessagesListener;
 import com.ringoid.controller.data.repository.IRepositoryFeedMessages;
@@ -28,6 +30,9 @@ public class PresenterMessages implements IPresenterMessages {
 
     @Inject
     IRepositoryFeedMessages repositoryFeedMessages;
+
+    @Inject
+    ICacheProfile cacheProfile;
 
     private ListenerCacheMessages listenerCacheMessages;
     private WeakReference<IPresenterMessagesListener> refListener;
@@ -56,10 +61,19 @@ public class PresenterMessages implements IPresenterMessages {
 
     @Override
     public void onCreateView() {
-        if (!cacheMessages.isDataExist())
-            repositoryFeedMessages.request();
+        if (!cacheProfile.isDataExist())
+            showViewNoPhoto();
+        else {
+            if (!cacheMessages.isDataExist())
+                repositoryFeedMessages.request();
 
-        scrollToSavedPosition();
+            scrollToSavedPosition();
+        }
+    }
+
+    private void showViewNoPhoto() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().showViewNoPhoto(R.string.message_no_photo_messages);
     }
 
     @Override

@@ -35,28 +35,25 @@ public class CacheProfile implements ICacheProfile {
     private ModelProfilePhotos getData() {
         if (data == null)
             data = cacheStorage.readObject(FileEnum.CACHE_PROFILE, ModelProfilePhotos.class);
+        if (data == null) data = new ModelProfilePhotos();
         return data;
     }
 
     @Override
     public void setData(ArrayList<ProfilePhoto> photos) {
-        if (getData() == null)
-            data = new ModelProfilePhotos();
-        data.add(photos);
+        getData().add(photos);
         saveData();
         notifyListeners();
     }
 
     @Override
     public int getLikesNum(int position) {
-        if (getData() == null) return 0;
-        return data.getLikes(position);
+        return getData().getLikes(position);
     }
 
     @Override
     public String getImage(int pos) {
-        if (getData() == null) return null;
-        return data.getPhotoUri(pos);
+        return getData().getPhotoUri(pos);
     }
 
     @Override
@@ -67,7 +64,7 @@ public class CacheProfile implements ICacheProfile {
 
     @Override
     public String getImageId(int position) {
-        return getData() == null ? null : data.getPhotoId(position);
+        return getData().getPhotoId(position);
     }
 
     @Override
@@ -75,33 +72,30 @@ public class CacheProfile implements ICacheProfile {
         int index = getItemIndex(imageId, -1);
         if (index == -1) return;
 
-        if (!data.remove(index)) return;
+        if (!getData().remove(index)) return;
 
         saveData();
         notifyListenersRemove(index);
     }
 
     private int getItemIndex(String imageId, int defaultValue) {
-        if (getData() == null) return -1;
-
-        for (int i = 0; i < data.size(); ++i)
-            if (data.isEquals(i, imageId))
+        for (int i = 0; i < getData().size(); ++i)
+            if (getData().isEquals(i, imageId))
                 return i;
         return -1;
     }
 
     @Override
     public boolean isDataExist() {
-        return data != null && data.size() > 0;
+        return getData().size() > 0;
     }
 
     @Override
     public void addPhotoLocal(Uri fileUri, String clientPhotoId) {
         ProfilePhoto profilePhoto = new ProfilePhoto(fileUri, clientPhotoId);
-        if (getData() == null) data = new ModelProfilePhotos();
-        data.add(profilePhoto);
+        getData().add(profilePhoto);
         saveData();
-        notifyListenersAddPhotoLocal(data.size() - 1);
+        notifyListenersAddPhotoLocal(getData().size() - 1);
     }
 
     private void saveData() {
@@ -110,8 +104,7 @@ public class CacheProfile implements ICacheProfile {
 
     @Override
     public void setPhotoLocalUploaded(String originPhotoId) {
-        if (getData() == null) return;
-        if (data.setPhotoLocalUploaded(originPhotoId)) {
+        if (getData().setPhotoLocalUploaded(originPhotoId)) {
             saveData();
             notifyListeners();
         }
@@ -119,22 +112,22 @@ public class CacheProfile implements ICacheProfile {
 
     @Override
     public boolean isPhotoLocal(int position) {
-        return getData() == null ? false : data.isLocal(position);
+        return getData().isLocal(position);
     }
 
     @Override
     public boolean isPhotoUploading(int position) {
-        return getData() == null ? false : data.isUploading(position);
+        return getData().isUploading(position);
     }
 
     @Override
     public String getOriginPhotoId(int pos) {
-        return getData() == null ? null : data.getOriginPhotoId(pos);
+        return getData().getOriginPhotoId(pos);
     }
 
     @Override
     public int getPosition(String originPhotoId, int defaultValue) {
-        return getData() == null ? defaultValue : data.getPositionByOriginPhotoId(originPhotoId, defaultValue);
+        return getData().getPositionByOriginPhotoId(originPhotoId, defaultValue);
     }
 
     @Override
@@ -146,8 +139,6 @@ public class CacheProfile implements ICacheProfile {
 
     @Override
     public void updateLocalPhoto(String clientPhotoId, String originPhotoId) {
-        if (getData() == null) return;
-
         ProfilePhoto item = getData().getItemByClientPhotoId(clientPhotoId);
         if (item == null) return;
         item.setOriginPhotoId(originPhotoId);
@@ -157,7 +148,6 @@ public class CacheProfile implements ICacheProfile {
 
     @Override
     public void removeItemByLocalPhotoId(String clientPhotoId) {
-        if (getData() == null) return;
         ProfilePhoto item = getData().getItemByClientPhotoId(clientPhotoId);
         if (item == null) return;
         getData().remove(item);

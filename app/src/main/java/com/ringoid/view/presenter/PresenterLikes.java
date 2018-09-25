@@ -4,8 +4,10 @@ package com.ringoid.view.presenter;
 import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
+import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.listener.ICacheLikesListener;
@@ -33,6 +35,9 @@ public class PresenterLikes implements IPresenterLikes {
     @Inject
     IRepositoryFeedLikes repositoryFeedLikes;
 
+    @Inject
+    ICacheProfile cacheProfile;
+
     private ListenerCacheLikes listenerCacheLikes;
     private WeakReference<IPresenterLikesListener> refListener;
 
@@ -49,10 +54,19 @@ public class PresenterLikes implements IPresenterLikes {
     @Override
     public void onCreateView() {
         cacheTutorial.resetLikesNum();
-        scrollToSavedPosition();
-        if (!cacheLikes.isDataExist()) {
-            repositoryFeedLikes.request();
+        if (!cacheProfile.isDataExist())
+            showViewNoPhoto();
+        else {
+            scrollToSavedPosition();
+            if (!cacheLikes.isDataExist()) {
+                repositoryFeedLikes.request();
+            }
         }
+    }
+
+    private void showViewNoPhoto() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().showViewNoPhoto(R.string.message_no_photo_likes);
     }
 
     private void scrollToSavedPosition() {

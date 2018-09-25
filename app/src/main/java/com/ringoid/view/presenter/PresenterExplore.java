@@ -4,8 +4,10 @@ package com.ringoid.view.presenter;
 import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheExplore;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
+import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.listener.ICacheExploreListener;
@@ -33,6 +35,9 @@ public class PresenterExplore implements IPresenterExplore {
     @Inject
     ICacheExplore cacheExplore;
 
+    @Inject
+    ICacheProfile cacheProfile;
+
     private ListenerCacheExplore listenerCacheExplore;
     private WeakReference<IPresenterExploreListener> refListener;
 
@@ -49,9 +54,18 @@ public class PresenterExplore implements IPresenterExplore {
     @Override
     public void onCreateView() {
         cacheTutorial.resetLikesNum();
-        scrollToSavedPosition();
-        if (!cacheExplore.isDataExist())
-            repositoryFeedExplore.request();
+        if (!cacheProfile.isDataExist()) {
+            showViewNoPhoto();
+        } else {
+            scrollToSavedPosition();
+            if (!cacheExplore.isDataExist())
+                repositoryFeedExplore.request();
+        }
+    }
+
+    private void showViewNoPhoto() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().showViewNoPhoto(R.string.message_no_photo_explore);
     }
 
     private void scrollToSavedPosition() {

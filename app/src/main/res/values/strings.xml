@@ -136,6 +136,10 @@
     <string name="format_dialog_remove_confirm" formatted="false">Remove +%s %s from the blacklist?</string>
     <string name="error_photo_upload">Upload failed</string>
     <string name="error_photo_max_size">Image is too large</string>
+    <string name="message_photo_upload">Upload Photo</string>
+    <string name="message_no_photo_likes">See who liked you</string>
+    <string name="message_no_photo_messages">See who messaged you</string>
+    <string name="message_no_photo_explore">See new profiles</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>

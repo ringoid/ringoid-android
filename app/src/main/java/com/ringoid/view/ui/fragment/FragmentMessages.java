@@ -71,6 +71,11 @@ public class FragmentMessages extends FragmentFeedPage {
         }
 
         @Override
+        public void showViewNoPhoto(int messageRes) {
+            showErrorNoPhoto(messageRes);
+        }
+
+        @Override
         public void scrollToTop() {
             rvItems.smoothScrollToPosition(0);
         }

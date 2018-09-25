@@ -13,4 +13,6 @@ public interface IPresenterLikesListener {
     void scrollToPosition(int position);
 
     void completeRefresh();
+
+    void showViewNoPhoto(int message_no_photo_likes);
 }

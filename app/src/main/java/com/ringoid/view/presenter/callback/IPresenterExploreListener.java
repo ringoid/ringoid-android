@@ -9,4 +9,6 @@ public interface IPresenterExploreListener {
     void scrollToPosition(int position);
 
     void completeRefresh();
+
+    void showViewNoPhoto(int messageRes);
 }

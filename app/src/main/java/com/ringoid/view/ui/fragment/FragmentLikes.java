@@ -101,5 +101,10 @@ public class FragmentLikes extends FragmentFeedPage {
         public void completeRefresh() {
             srlFeed.setRefreshing(false);
         }
+
+        @Override
+        public void showViewNoPhoto(int messageRes) {
+            showErrorNoPhoto(messageRes);
+        }
     }
 }
