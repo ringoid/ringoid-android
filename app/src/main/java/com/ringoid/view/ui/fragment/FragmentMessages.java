@@ -4,29 +4,23 @@ package com.ringoid.view.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterMessages;
 import com.ringoid.view.presenter.callback.IPresenterMessagesListener;
 import com.ringoid.view.ui.adapter.AdapterMessages;
-import com.ringoid.view.ui.util.DividerItemDecoration;
 
 import javax.inject.Inject;
 
-public class FragmentMessages extends FragmentBase {
+public class FragmentMessages extends FragmentFeedPage {
 
     @Inject
     IPresenterMessages presenterMessages;
 
-    private LinearLayoutManager layoutManager;
     private ListenerPresenterMessages listenerPresenterMessages;
-    private RecyclerView rvItems;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,40 +32,44 @@ public class FragmentMessages extends FragmentBase {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_messages, container, false);
-
-        initList(view);
+        View view = super.onCreateView(inflater, container);
+        initViews(view);
         presenterMessages.onCreateView();
-
         return view;
-
     }
 
-    private void initList(View view) {
-
-        rvItems = view.findViewById(R.id.rvItems);
-        rvItems.setLayoutManager(layoutManager = new LinearLayoutManager(view.getContext()));
+    void initViews(View view) {
+        super.initViews(view);
         rvItems.setAdapter(new AdapterMessages());
-        rvItems.addOnScrollListener(new OnScrollListener());
-        rvItems.addItemDecoration(new DividerItemDecoration(getContext()));
     }
 
-    private class OnScrollListener extends RecyclerView.OnScrollListener {
+    @Override
+    protected void onScroll(int dy) {
+        presenterMessages.onScroll(dy);
+    }
 
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-            presenterMessages.onScroll(dy);
-        }
+    @Override
+    protected void onScrollState(int newState, int firstVisibleItemPosition) {
+        presenterMessages.onScrollState(newState, firstVisibleItemPosition);
+    }
 
-        @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-            presenterMessages.onScrollState(newState, layoutManager.findFirstVisibleItemPosition());
-        }
+    @Override
+    protected void onSwipeToRefresh() {
+        presenterMessages.onSwipeRefresh();
     }
 
     private class ListenerPresenterMessages implements IPresenterMessagesListener {
+
+        @Override
+        public boolean isPositionTop() {
+            return rvItems.computeVerticalScrollOffset() == 0;
+        }
+
+        @Override
+        public void completeRefresh() {
+            srlFeed.setRefreshing(false);
+        }
+
         @Override
         public void scrollToTop() {
             rvItems.smoothScrollToPosition(0);
@@ -82,9 +80,5 @@ public class FragmentMessages extends FragmentBase {
             rvItems.scrollToPosition(positionScrollPageMessages);
         }
 
-        @Override
-        public boolean isPositionTop() {
-            return rvItems.computeVerticalScrollOffset() == 0;
-        }
     }
 }

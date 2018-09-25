@@ -7,7 +7,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
-import com.ringoid.controller.data.repository.IRepositoryFeedLikes;
+import com.ringoid.controller.data.memorycache.listener.ICacheMessagesListener;
 import com.ringoid.controller.data.repository.IRepositoryFeedMessages;
 import com.ringoid.view.presenter.callback.IPresenterMessagesListener;
 
@@ -29,10 +29,12 @@ public class PresenterMessages implements IPresenterMessages {
     @Inject
     IRepositoryFeedMessages repositoryFeedMessages;
 
+    private ListenerCacheMessages listenerCacheMessages;
     private WeakReference<IPresenterMessagesListener> refListener;
 
     public PresenterMessages() {
         ApplicationRingoid.getComponent().inject(this);
+        cacheMessages.addListener(listenerCacheMessages = new ListenerCacheMessages());
     }
 
     @Override
@@ -72,8 +74,25 @@ public class PresenterMessages implements IPresenterMessages {
         refListener.get().scrollToTop();
     }
 
+    @Override
+    public void onSwipeRefresh() {
+        repositoryFeedMessages.request();
+    }
+
     private void scrollToSavedPosition() {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().scrollToPosition(cacheInterfaceState.getPositionScrollPageMessages());
+    }
+
+    private void hideRefreshLayout() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().completeRefresh();
+    }
+
+    private class ListenerCacheMessages implements ICacheMessagesListener {
+        @Override
+        public void onUpdate() {
+            hideRefreshLayout();
+        }
     }
 }

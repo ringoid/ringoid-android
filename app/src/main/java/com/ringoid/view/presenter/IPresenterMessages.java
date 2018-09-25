@@ -15,4 +15,6 @@ public interface IPresenterMessages {
     boolean isPositionTop();
 
     void scrollTop();
+
+    void onSwipeRefresh();
 }

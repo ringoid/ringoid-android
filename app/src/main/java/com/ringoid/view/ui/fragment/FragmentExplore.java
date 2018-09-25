@@ -1,38 +1,30 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.fragment;
 
-import android.content.Context;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterExplore;
 import com.ringoid.view.presenter.callback.IPresenterExploreListener;
 import com.ringoid.view.ui.adapter.AdapterExplore;
 
 import javax.inject.Inject;
 
-public class FragmentExplore extends FragmentBase {
+public class FragmentExplore extends FragmentFeedPage {
 
     @Inject
     IPresenterExplore presenterExplore;
 
     private IPresenterExploreListener listenerPresenter;
-    private RecyclerView rvItems;
-    private LinearLayoutManager layoutManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ApplicationRingoid.getComponent().inject(this);
         presenterExplore.setListener(listenerPresenter = new ListenerPresenter());
     }
@@ -40,57 +32,34 @@ public class FragmentExplore extends FragmentBase {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_explore, container, false);
-
+        View view = super.onCreateView(inflater, container);
         initViews(view);
         presenterExplore.onCreateView();
         return view;
     }
 
-    private void initViews(View view) {
-        rvItems = view.findViewById(R.id.rvItems);
-        rvItems.setLayoutManager(layoutManager = new LinearLayoutManager(view.getContext()));
+    void initViews(View view) {
+        super.initViews(view);
         rvItems.setAdapter(new AdapterExplore());
-        rvItems.addOnScrollListener(new OnScrollListener());
-        rvItems.addItemDecoration(new ItemDecoration(getContext()));
     }
 
-    private class OnScrollListener extends RecyclerView.OnScrollListener {
-
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-            presenterExplore.onScroll(dy);
-        }
-
-        @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-            presenterExplore.onScrollState(newState, layoutManager.findFirstVisibleItemPosition());
-        }
+    @Override
+    protected void onScroll(int dy) {
+        presenterExplore.onScroll(dy);
     }
 
-    private class ItemDecoration extends RecyclerView.ItemDecoration {
+    @Override
+    protected void onScrollState(int newState, int firstVisibleItemPosition) {
+        presenterExplore.onScrollState(newState, firstVisibleItemPosition);
+    }
 
-        private int margin;
-
-        ItemDecoration(Context context) {
-            margin = (int) context.getResources().getDimension(R.dimen.divider);
-        }
-
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            super.getItemOffsets(outRect, view, parent, state);
-
-            int position = parent.getChildLayoutPosition(view);
-
-            if (position != 0)
-                outRect.top = margin;
-        }
-
+    @Override
+    protected void onSwipeToRefresh() {
+        presenterExplore.onSwipeRefresh();
     }
 
     private class ListenerPresenter implements IPresenterExploreListener {
+
         @Override
         public boolean isPositionTop() {
             return rvItems.computeVerticalScrollOffset() == 0;
@@ -105,6 +74,10 @@ public class FragmentExplore extends FragmentBase {
         public void scrollToPosition(int position) {
             rvItems.scrollToPosition(position);
         }
+
+        @Override
+        public void completeRefresh() {
+            srlFeed.setRefreshing(false);
+        }
     }
 }
-

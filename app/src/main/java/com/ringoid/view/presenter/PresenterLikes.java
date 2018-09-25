@@ -84,10 +84,20 @@ public class PresenterLikes implements IPresenterLikes {
         this.refListener = new WeakReference<>(listener);
     }
 
+    @Override
+    public void onSwipeToRefresh() {
+        repositoryFeedLikes.request();
+    }
+
+    private void hideRefreshLayout() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().completeRefresh();
+    }
+
     private class ListenerCacheLikes implements ICacheLikesListener {
         @Override
         public void onUpdate() {
-
+            hideRefreshLayout();
         }
 
         @Override

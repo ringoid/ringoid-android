@@ -7,4 +7,6 @@ public interface IPresenterMessagesListener {
     void scrollToPosition(int positionScrollPageMessages);
 
     boolean isPositionTop();
+
+    void completeRefresh();
 }

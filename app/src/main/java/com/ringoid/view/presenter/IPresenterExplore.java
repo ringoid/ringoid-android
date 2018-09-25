@@ -15,4 +15,6 @@ public interface IPresenterExplore {
     void scrollTop();
 
     void setListener(IPresenterExploreListener listener);
+
+    void onSwipeRefresh();
 }

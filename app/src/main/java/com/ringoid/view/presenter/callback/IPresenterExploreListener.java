@@ -7,4 +7,6 @@ public interface IPresenterExploreListener {
     void scrollTop();
 
     void scrollToPosition(int position);
+
+    void completeRefresh();
 }

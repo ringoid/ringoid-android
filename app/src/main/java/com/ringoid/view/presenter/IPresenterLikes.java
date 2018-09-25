@@ -15,4 +15,6 @@ public interface IPresenterLikes {
     void scrollTop();
 
     void setListener(IPresenterLikesListener listener);
+
+    void onSwipeToRefresh();
 }
