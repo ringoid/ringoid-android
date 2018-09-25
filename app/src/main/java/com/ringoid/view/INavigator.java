@@ -43,7 +43,9 @@ public interface INavigator {
 
     void navigateSettingsDataProtection();
 
-    void statusbarShow();
+    void statusbarShowFullscreen();
 
     void statusbarHide();
+
+    void statusbarShowResizeable();
 }

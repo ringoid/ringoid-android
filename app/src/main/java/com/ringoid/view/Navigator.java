@@ -39,6 +39,7 @@ public class Navigator implements INavigator {
     @Override
     public void navigateFeed() {
         clearBackStack();
+        statusbarShowFullscreen();
 
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
@@ -52,6 +53,8 @@ public class Navigator implements INavigator {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
 
         clearBackStack();
+        statusbarShowResizeable();
+
         refFragmentManager.get()
                 .beginTransaction()
                 .replace(viewId, new FragmentLogin(), CURRENT_FRAGMENT_PAGE)
@@ -75,8 +78,8 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateSettings() {
-
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        statusbarShowResizeable();
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -86,8 +89,8 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateBlacklistPhones() {
-
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        statusbarShowResizeable();
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -97,8 +100,8 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateBlacklistPhonesAdd() {
-
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        statusbarShowResizeable();
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -125,6 +128,7 @@ public class Navigator implements INavigator {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
 
         clearBackStack();
+        statusbarShowResizeable();
         refFragmentManager.get()
                 .beginTransaction()
                 .replace(viewId, FragmentLogin.getInstanceProfileUpdate(), CURRENT_FRAGMENT_PAGE)
@@ -134,7 +138,7 @@ public class Navigator implements INavigator {
     @Override
     public void navigateSettingsDataProtection() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
-
+        statusbarShowResizeable();
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -143,43 +147,44 @@ public class Navigator implements INavigator {
     }
 
     @Override
-    public void statusbarShow() {
-        setImmersive(false);
-    }
-
-    @Override
-    public void statusbarHide() {
-        setImmersive(true);
-    }
-
-    private void setImmersive(boolean newStatus) {
+    public void statusbarShowFullscreen() {
 
         if (refActivity == null || refActivity.get() == null) return;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
 
-        int uiOptions = refActivity.get().getWindow().getDecorView().getSystemUiVisibility();
-        int newUiOptions = uiOptions;
+        View decorView = refActivity.get().getWindow().getDecorView();
 
+        int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+    }
 
-        boolean isImmersiveModeEnabled =
-                ((uiOptions | View.SYSTEM_UI_FLAG_FULLSCREEN) == uiOptions);
+    @Override
+    public void statusbarHide() {
+        if (refActivity == null || refActivity.get() == null) return;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
 
-        if (isImmersiveModeEnabled == newStatus) return;
+        View decorView = refActivity.get().getWindow().getDecorView();
 
-        newUiOptions ^= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-        newUiOptions ^= View.SYSTEM_UI_FLAG_FULLSCREEN;
-        newUiOptions ^= View.SYSTEM_UI_FLAG_IMMERSIVE;
-        newUiOptions ^= View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-        newUiOptions ^= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+        decorView.setSystemUiVisibility(uiOptions);
 
-        refActivity.get().getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
+    }
 
+    @Override
+    public void statusbarShowResizeable() {
+        if (refActivity == null || refActivity.get() == null) return;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+
+        refActivity.get().getWindow().getDecorView().setSystemUiVisibility(0);
     }
 
 
     private void navigatePhotoCrop(Uri data) {
-
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        statusbarShowResizeable();
         refFragmentManager.get()
                 .beginTransaction()
                 .replace(viewId, FragmentPhotoCrop.getInstance(data), CURRENT_FRAGMENT_PAGE)
@@ -189,7 +194,7 @@ public class Navigator implements INavigator {
     @Override
     public void navigatePhotoAdd() {
         if (refActivity == null || refActivity.get() == null) return;
-
+        statusbarShowResizeable();
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -201,8 +206,8 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateChat() {
-
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        statusbarShowResizeable();
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -212,8 +217,8 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateSettingsPrivacyDistance() {
-
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        statusbarShowResizeable();
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -223,8 +228,8 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateWebView(String url, String subtitle) {
-
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        statusbarShowResizeable();
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -234,6 +239,7 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateFeedback(Context context) {
+        statusbarShowResizeable();
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:support@ringoid.com"));
         intent.putExtra(Intent.EXTRA_SUBJECT, getEmailSubject());
         intent.putExtra(Intent.EXTRA_TEXT, "");
@@ -256,7 +262,7 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateEmailProtectionOfficer(Context context, String customerId) {
-
+        statusbarShowResizeable();
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:data.protection@ringoid.com"));
         intent.putExtra(Intent.EXTRA_SUBJECT, getEmailSubject());
         intent.putExtra(Intent.EXTRA_TEXT, String.format(context.getString(R.string.message_protection_officer), customerId));
@@ -268,7 +274,7 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateUrlExternal(Context context, String url) {
-
+        statusbarShowResizeable();
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 
         if (intent.resolveActivity(context.getPackageManager()) == null) return;
@@ -278,7 +284,7 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateSettingsPush() {
-
+        statusbarShowResizeable();
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()

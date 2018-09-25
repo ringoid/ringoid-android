@@ -10,7 +10,9 @@
         android:id="@+id/flToolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
-        android:background="@android:color/white">
+        android:layout_marginTop="24dp"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.ringoid.view.ui.view.ViewToolbar
             android:layout_width="match_parent"

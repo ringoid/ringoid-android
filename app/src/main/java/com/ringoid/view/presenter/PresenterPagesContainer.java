@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
-import com.ringoid.controller.data.memorycache.CacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
@@ -86,7 +85,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         cacheScroll.resetCache();
 
         if (navigatorPages.isPageProfile())
-            navigator.statusbarShow();
+            navigator.statusbarShowFullscreen();
     }
 
     private void updateViewBottomSheet() {
@@ -127,7 +126,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public void onClickPageProfile() {
         cacheScroll.resetCache();
 
-        navigator.statusbarShow();
+        navigator.statusbarShowFullscreen();
 
         navigatorPages.navigateProfile();
     }
@@ -165,28 +164,23 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         this.refListener = new WeakReference<>(listener);
     }
 
-    private void checkToolbar(int scrollDirection) {
-        if (scrollDirection == CacheScroll.SCROLL_UP)
-            navigator.statusbarShow();
-        else if (scrollDirection == CacheScroll.SCROLL_DOWN)
+    private void checkToolbar(boolean isDown) {
+        if (!isDown)
+            navigator.statusbarShowFullscreen();
+        else
             navigator.statusbarHide();
     }
 
     private class ListenerCacheScroll implements ICacheScrollListener {
         @Override
-        public void onScroll(int scrollSum, float alpha) {
+        public void onScroll(boolean isDown) {
             if (refListener == null || refListener.get() == null) return;
-
-            refListener.get().setPosition(navigatorPages.isPageProfile(), -scrollSum, scrollSum, alpha);
-
+            refListener.get().setPosition(isDown);
+            checkToolbar(isDown);
         }
 
         @Override
         public void onScrollComplete(int scrollSum, int alpha, int scrollDirection) {
-            if (refListener == null || refListener.get() == null) return;
-
-            refListener.get().scrollComplete(navigatorPages.isPageProfile(), scrollSum, alpha);
-            checkToolbar(scrollDirection);
         }
     }
 

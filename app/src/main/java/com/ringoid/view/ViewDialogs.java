@@ -66,7 +66,7 @@ public class ViewDialogs implements IViewDialogs {
 
         if (refContext == null || refContext.get() == null) return;
 
-        navigator.statusbarShow();
+        navigator.statusbarShowFullscreen();
         DialogChatCompose dialogChatCompose = new DialogChatCompose(refContext.get(), listener);
         dialogChatCompose.show();
         refDialogChatCompose = new WeakReference<>(dialogChatCompose);

@@ -97,18 +97,8 @@ public class FragmentPages extends FragmentBase
     private class ListenerPresenter implements IPresenterPagesContainerListener {
 
         @Override
-        public void setPosition(boolean toolbarScroll, int topPos, int bottomPos, float alpha) {
-            llBottomAppBar.setTranslationY(bottomPos);
-
-            llBottomAppBar.setAlpha(alpha);
-        }
-
-        @Override
-        public void scrollComplete(boolean toolbarScroll, int scrollSum, int alpha) {
-            llBottomAppBar.animate()
-                    .alpha(alpha)
-                    .translationY(scrollSum)
-                    .setDuration(250);
+        public void setPosition(boolean isDown) {
+            llBottomAppBar.setTranslationY(isDown ? getResources().getDimension(R.dimen.toolbar_height) : 0);
         }
 
         @Override
