@@ -7,4 +7,5 @@
     <dimen name="divider">4dp</dimen>
     <dimen name="animation_y_delta">88dp</dimen>
     <dimen name="dp12">12dp</dimen>
+    <dimen name="toolbar_height_with_statusbar">80dp</dimen>
 </resources>

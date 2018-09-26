@@ -43,11 +43,6 @@ public class PresenterMessages implements IPresenterMessages {
     }
 
     @Override
-    public void onScroll(int dy) {
-        cacheScroll.onScroll(dy);
-    }
-
-    @Override
     public void onScrollState(int newState, int firstVisibleItemPosition) {
         if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
         cacheScroll.onScrollIdle();

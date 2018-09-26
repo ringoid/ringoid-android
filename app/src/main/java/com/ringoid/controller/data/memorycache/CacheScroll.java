@@ -8,6 +8,7 @@ import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
 
 import java.lang.ref.WeakReference;
+import java.util.WeakHashMap;
 
 import javax.inject.Inject;
 
@@ -17,19 +18,21 @@ public class CacheScroll implements ICacheScroll {
     public static final int SCROLL_DOWN = 2;
 
     private final int maxScroll;
+
     @Inject
     WeakReference<Context> refContext;
 
-    private WeakReference<ICacheScrollListener> refListener;
     private int scrollSum;
     private int scrollDirection;
+    private int position;
+    private WeakHashMap<String, ICacheScrollListener> listeners;
 
     public CacheScroll() {
         ApplicationRingoid.getComponent().inject(this);
 
         resetCache();
 
-        maxScroll = (int) refContext.get().getResources().getDimension(R.dimen.toolbar_height);
+        maxScroll = (int) refContext.get().getResources().getDimension(R.dimen.toolbar_height_with_statusbar);
     }
 
     @Override
@@ -38,41 +41,46 @@ public class CacheScroll implements ICacheScroll {
         notifyListeners();
     }
 
-    private void notifyListeners() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().onScroll(scrollSum > 0);
-    }
 
     @Override
-    public void onScroll(int dy) {
-
+    public void onScroll(int dy, int scrollSum) {
         scrollDirection = dy > 0 ? SCROLL_DOWN : SCROLL_UP;
 
-        scrollSum += dy;
+        this.scrollSum = scrollSum;
 
-        scrollSum = scrollSum >= 0
-                ? Math.min(scrollSum, maxScroll)
-                : 0;
+        position = position == 0 && scrollDirection == SCROLL_UP ? 0 : -scrollSum;
+        if (scrollSum > maxScroll)
+            position = scrollDirection == SCROLL_DOWN ? -maxScroll : 0;
 
         notifyListeners();
     }
 
     @Override
-    public void setListener(ICacheScrollListener listener) {
-        this.refListener = new WeakReference<>(listener);
-    }
-
-    @Override
     public void onScrollIdle() {
-        if (scrollDirection == SCROLL_DOWN)
-            scrollSum = maxScroll;
-        if (scrollDirection == SCROLL_UP)
-            scrollSum = 0;
         notifyListenersCompleteScroll();
     }
 
+    @Override
+    public void addListener(ICacheScrollListener listener) {
+        if (listeners == null) listeners = new WeakHashMap<>();
+        listeners.put(listener.getClass().getName(), listener);
+    }
+
     private void notifyListenersCompleteScroll() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().onScrollComplete(scrollSum, scrollSum == maxScroll ? 0 : 1, scrollDirection);
+        if (listeners == null) return;
+        for (String key : listeners.keySet()) {
+            ICacheScrollListener listener = listeners.get(key);
+            if (listener == null) continue;
+            listener.onScrollComplete(scrollSum, maxScroll, scrollDirection == SCROLL_DOWN);
+        }
+    }
+
+    private void notifyListeners() {
+        if (listeners == null) return;
+        for (String key : listeners.keySet()) {
+            ICacheScrollListener listener = listeners.get(key);
+            if (listener == null) continue;
+            listener.onScroll(scrollDirection == SCROLL_DOWN, position);
+        }
     }
 }

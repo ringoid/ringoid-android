@@ -2,7 +2,7 @@
 package com.ringoid.controller.data.memorycache.listener;
 
 public interface ICacheScrollListener {
-    void onScroll(boolean isDown);
+    void onScroll(boolean isDown, int scrollSum);
 
-    void onScrollComplete(int scrollSum, int alpha, int scrollDirection);
+    void onScrollComplete(int scrollSum, int maxScroll, boolean b);
 }

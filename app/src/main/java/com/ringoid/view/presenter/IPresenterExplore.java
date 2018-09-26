@@ -4,7 +4,6 @@ package com.ringoid.view.presenter;
 import com.ringoid.view.presenter.callback.IPresenterExploreListener;
 
 public interface IPresenterExplore {
-    void onScroll(int dy);
 
     void onCreateView();
 

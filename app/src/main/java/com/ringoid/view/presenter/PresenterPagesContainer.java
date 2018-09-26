@@ -1,6 +1,7 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
 
 import com.ringoid.ApplicationRingoid;
@@ -61,6 +62,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Inject
     ICacheInterfaceState cacheInterfaceState;
 
+    @Inject
+    WeakReference<Context> refContext;
+
     private ListenerCacheSettings listenerCacheSettings;
     private ICacheInterfaceStateListener listenerCacheInterfaceState;
     private ListenerCacheScroll listenerCacheScroll;
@@ -68,7 +72,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     public PresenterPagesContainer() {
         ApplicationRingoid.getComponent().inject(this);
-        cacheScroll.setListener(listenerCacheScroll = new ListenerCacheScroll());
+        cacheScroll.addListener(listenerCacheScroll = new ListenerCacheScroll());
         cacheInterfaceState.addListener(listenerCacheInterfaceState = new ListenerCacheInterfaceState());
         cacheSettingsPrivacy.addListener(listenerCacheSettings = new ListenerCacheSettings());
     }
@@ -164,23 +168,24 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         this.refListener = new WeakReference<>(listener);
     }
 
-    private void checkToolbar(boolean isDown) {
-        if (!isDown)
-            navigator.statusbarShowFullscreen();
-        else
+    private void checkStatubar(boolean isDown) {
+        if (isDown)
             navigator.statusbarHide();
+        else
+            navigator.statusbarShowFullscreen();
     }
 
     private class ListenerCacheScroll implements ICacheScrollListener {
         @Override
-        public void onScroll(boolean isDown) {
+        public void onScroll(boolean isDown, int position) {
+            checkStatubar(isDown);
+
             if (refListener == null || refListener.get() == null) return;
-            refListener.get().setPosition(isDown);
-            checkToolbar(isDown);
+            refListener.get().setPosition(position);
         }
 
         @Override
-        public void onScrollComplete(int scrollSum, int alpha, int scrollDirection) {
+        public void onScrollComplete(int scrollSum, int maxScroll, boolean isDown) {
         }
     }
 

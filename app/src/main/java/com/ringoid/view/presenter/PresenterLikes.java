@@ -47,11 +47,6 @@ public class PresenterLikes implements IPresenterLikes {
     }
 
     @Override
-    public void onScroll(int dy) {
-        cacheScroll.onScroll(dy);
-    }
-
-    @Override
     public void onCreateView() {
         cacheTutorial.resetLikesNum();
         if (!cacheProfile.isDataExist())

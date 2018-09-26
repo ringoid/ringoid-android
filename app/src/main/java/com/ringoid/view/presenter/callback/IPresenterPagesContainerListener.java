@@ -3,7 +3,7 @@ package com.ringoid.view.presenter.callback;
 
 public interface IPresenterPagesContainerListener {
 
-    void setPosition(boolean isDown);
+    void setPosition(int pos);
 
     void setPageSelected(int num);
 

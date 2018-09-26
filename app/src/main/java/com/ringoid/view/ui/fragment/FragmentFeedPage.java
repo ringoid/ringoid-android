@@ -13,12 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.presenter.IPresenterFeedPage;
+import com.ringoid.view.presenter.callback.IPresenterFeedPageListener;
 
 import javax.inject.Inject;
 
-abstract class FragmentFeedPage extends FragmentBase implements View.OnClickListener {
+public abstract class FragmentFeedPage extends FragmentBase implements View.OnClickListener {
 
     RecyclerView rvItems;
     LinearLayoutManager layoutManager;
@@ -29,12 +32,18 @@ abstract class FragmentFeedPage extends FragmentBase implements View.OnClickList
     @Inject
     INavigator navigator;
 
+    @Inject
+    IPresenterFeedPage presenterFeedPage;
+
     private ListenerRefresh listenerRefresh;
+    private IPresenterFeedPageListener listenerPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ApplicationRingoid.getComponent().inject(this);
         listenerRefresh = new ListenerRefresh();
+        presenterFeedPage.setListener(listenerPresenter = new ListenerPresenter());
     }
 
     void initViews(View view) {
@@ -58,8 +67,6 @@ abstract class FragmentFeedPage extends FragmentBase implements View.OnClickList
 
     protected abstract void onScrollState(int newState, int firstVisibleItemPosition);
 
-    protected abstract void onScroll(int dy);
-
     protected abstract void onSwipeToRefresh();
 
     @Override
@@ -74,12 +81,16 @@ abstract class FragmentFeedPage extends FragmentBase implements View.OnClickList
         tvNoPhoto.setText(messageRes);
     }
 
+    private void onScroll(int dy, int scrollSum) {
+        presenterFeedPage.onScroll(dy, scrollSum);
+    }
+
     private class OnScrollListener extends RecyclerView.OnScrollListener {
 
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            onScroll(dy);
+            onScroll(dy, rvItems.computeVerticalScrollOffset());
         }
 
         @Override
@@ -91,10 +102,11 @@ abstract class FragmentFeedPage extends FragmentBase implements View.OnClickList
 
     private class ItemDecoration extends RecyclerView.ItemDecoration {
 
-        private int margin;
+        private int margin, marginFirst;
 
         ItemDecoration(Context context) {
             margin = (int) context.getResources().getDimension(R.dimen.divider);
+            marginFirst = (int) getResources().getDimension(R.dimen.toolbar_height_with_statusbar);
         }
 
         @Override
@@ -105,6 +117,8 @@ abstract class FragmentFeedPage extends FragmentBase implements View.OnClickList
 
             if (position != 0)
                 outRect.top = margin;
+            else
+                outRect.top = marginFirst;
         }
 
     }
@@ -114,5 +128,13 @@ abstract class FragmentFeedPage extends FragmentBase implements View.OnClickList
         public void onRefresh() {
             onSwipeToRefresh();
         }
+    }
+
+    private class ListenerPresenter implements IPresenterFeedPageListener {
+        @Override
+        public void scrollSmoothBy(int y) {
+            rvItems.smoothScrollBy(0, y);
+        }
+
     }
 }

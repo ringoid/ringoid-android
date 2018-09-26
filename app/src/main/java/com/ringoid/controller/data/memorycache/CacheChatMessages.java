@@ -73,7 +73,7 @@ public class CacheChatMessages implements ICacheChatMessages {
     @Override
     public void addListener(ICacheChatMessagesListener listener) {
         if (listeners == null) listeners = new WeakHashMap<>();
-        listeners.put(listener.getClass().getSimpleName(), listener);
+        listeners.put(listener.getClass().getName(), listener);
     }
 
     @Override

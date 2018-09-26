@@ -42,6 +42,7 @@ import com.ringoid.view.presenter.PresenterBlacklistPhones;
 import com.ringoid.view.presenter.PresenterChat;
 import com.ringoid.view.presenter.PresenterDataProtection;
 import com.ringoid.view.presenter.PresenterExplore;
+import com.ringoid.view.presenter.PresenterFeedPage;
 import com.ringoid.view.presenter.PresenterItemImageLikeable;
 import com.ringoid.view.presenter.PresenterLikes;
 import com.ringoid.view.presenter.PresenterMessages;
@@ -78,6 +79,7 @@ import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import com.ringoid.view.ui.fragment.FragmentChat;
 import com.ringoid.view.ui.fragment.FragmentDataProtection;
 import com.ringoid.view.ui.fragment.FragmentExplore;
+import com.ringoid.view.ui.fragment.FragmentFeedPage;
 import com.ringoid.view.ui.fragment.FragmentLikes;
 import com.ringoid.view.ui.fragment.FragmentLogin;
 import com.ringoid.view.ui.fragment.FragmentMessages;
@@ -100,6 +102,10 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(FragmentFeedPage param);
+
+    void inject(PresenterFeedPage param);
 
     void inject(RepositoryFeedExplore param);
 

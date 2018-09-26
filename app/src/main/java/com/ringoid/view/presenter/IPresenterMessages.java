@@ -4,7 +4,6 @@ package com.ringoid.view.presenter;
 import com.ringoid.view.presenter.callback.IPresenterMessagesListener;
 
 public interface IPresenterMessages {
-    void onScroll(int dy);
 
     void onScrollState(int newState, int firstVisibleItemPosition);
 

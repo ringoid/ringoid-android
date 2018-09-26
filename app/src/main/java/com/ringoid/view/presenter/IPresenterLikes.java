@@ -4,7 +4,6 @@ package com.ringoid.view.presenter;
 import com.ringoid.view.presenter.callback.IPresenterLikesListener;
 
 public interface IPresenterLikes {
-    void onScroll(int dy);
 
     void onCreateView();
 

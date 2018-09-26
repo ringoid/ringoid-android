@@ -6,9 +6,9 @@ import com.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
 public interface ICacheScroll {
     void resetCache();
 
-    void onScroll(int dy);
-
-    void setListener(ICacheScrollListener listener);
+    void onScroll(int dy, int scrollSum);
 
     void onScrollIdle();
+
+    void addListener(ICacheScrollListener listener);
 }

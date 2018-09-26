@@ -11,11 +11,11 @@
     <LinearLayout
         android:id="@+id/llBottomAppBar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height"
-        android:layout_gravity="bottom"
+        android:layout_height="@dimen/toolbar_height_with_statusbar"
         android:background="@color/white95"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="24dp">
 
         <ImageView
             android:id="@+id/ivMenuProfile"

@@ -47,11 +47,6 @@ public class FragmentLikes extends FragmentFeedPage {
     }
 
     @Override
-    protected void onScroll(int dy) {
-        presenterLikes.onScroll(dy);
-    }
-
-    @Override
     protected void onScrollState(int newState, int firstVisibleItemPosition) {
         presenterLikes.onScrollState(newState, firstVisibleItemPosition);
     }
