@@ -19,7 +19,7 @@
             app:ci_aspect_ratio_w="3"
             app:ci_border_color="@color/colorAccentGreen"
             app:ci_border_width="4dp"
-            app:ci_crop_scale="0.75"
+            app:ci_crop_scale="0.85"
             app:ci_crop_shape="rectangle"
             app:ci_draw_grid="false"
             app:ci_dynamic_aspect_ratio="false"
