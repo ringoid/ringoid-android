@@ -57,7 +57,10 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
 
         srlFeed = view.findViewById(R.id.srlFeed);
         srlFeed.setOnRefreshListener(listenerRefresh);
-
+        srlFeed.setProgressViewOffset(false,
+                (int) getResources().getDimension(R.dimen.toolbar_height_with_statusbar),
+                (int) (getResources().getDimension(R.dimen.toolbar_height_with_statusbar) * 1.5f));
+        srlFeed.setColorSchemeResources(R.color.colorAccent);
         view.findViewById(R.id.tvPhotoAdd).setOnClickListener(this);
     }
 
