@@ -65,10 +65,6 @@ public class HelperAnimation implements IHelperAnimation {
         return bitmap;
     }
 
-    private int getY(ViewGroup container) {
-        return container.getHeight() - (int) container.getResources().getDimension(R.dimen.animation_y_delta);
-    }
-
     @Override
     public void showPopupMessage(ViewGroup container) {
         if (generatorMessages == null) {
@@ -98,8 +94,8 @@ public class HelperAnimation implements IHelperAnimation {
 
         if (source == null)
             source = new ConfettiSource(
-                    0,
-                    getY(container));
+                    (int) container.getResources().getDimension(R.dimen.animation_x_delta),
+                    container.getHeight() - (int) container.getResources().getDimension(R.dimen.animation_y_delta));
 
         new ConfettiManager(container.getContext(), generatorLikes, source, container)
 
