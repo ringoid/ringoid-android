@@ -10,6 +10,7 @@ import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.request.RequestPhotoUploadUri;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotoUri;
+import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 
 import javax.inject.Inject;
@@ -41,7 +42,7 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
     ICacheProfile cacheProfile;
 
     @Inject
-    IViewPopup viewPopup;
+    IViewDialogs viewDialogs;
 
     private Callback<ResponseProfilePhotoUri> requestUriListener;
     private Call<ResponseProfilePhotoUri> request;
@@ -86,7 +87,7 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
 
         private void onError() {
             cacheProfile.removeItemByLocalPhotoId(cachePhotoUpload.getClientPhotoId());
-            viewPopup.showToast(R.string.error_photo_upload);
+            viewDialogs.showDialogMessage(R.string.error_photo_upload);
         }
     }
 }

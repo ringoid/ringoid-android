@@ -9,6 +9,7 @@ import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.repository.callback.IRepositoryPhotoUploadListener;
+import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 
 import java.lang.ref.WeakReference;
@@ -42,7 +43,7 @@ public class RepositoryPhotoUpload implements IRepositoryPhotoUpload {
     ICacheInterfaceState cacheInterfaceState;
 
     @Inject
-    IViewPopup viewPopup;
+    IViewDialogs viewDialog;
 
     private ListenerRequest listenerRequest;
     private Call<Void> request;
@@ -93,7 +94,7 @@ public class RepositoryPhotoUpload implements IRepositoryPhotoUpload {
 
         private void onError() {
             cacheProfile.removeItemByLocalPhotoId(cachePhotoUpload.getClientPhotoId());
-            viewPopup.showToast(R.string.error_photo_upload);
+            viewDialog.showDialogMessage(R.string.error_photo_upload);
         }
 
         @Override
