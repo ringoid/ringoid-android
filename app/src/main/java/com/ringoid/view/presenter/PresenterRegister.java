@@ -125,6 +125,7 @@ public class PresenterRegister implements IPresenterRegister {
         }
 
         repositoryRegisterCodeConfirm.request(param);
+        setSMSInputStateEnabled(false);
     }
 
     @Override
@@ -179,6 +180,11 @@ public class PresenterRegister implements IPresenterRegister {
         refListener.get().hideKeyboard();
     }
 
+    private void setSMSInputStateEnabled(boolean isEnabled) {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().setSMSInputEnabled(isEnabled);
+    }
+
     private class ListenerRegisterPhone implements IRepositoryRegisterPhoneListener {
         @Override
         public void onSuccess() {
@@ -203,6 +209,7 @@ public class PresenterRegister implements IPresenterRegister {
     private class ListenerRegisterCodeConfirm implements IRepositoryRegisterCodeConfirmListener {
         @Override
         public void onSuccess() {
+            setSMSInputStateEnabled(true);
             if (cacheUser.isRegistered()) {
                 hideKeyboard();
                 navigator.navigateFeed();
@@ -211,12 +218,14 @@ public class PresenterRegister implements IPresenterRegister {
 
         @Override
         public void onErrorNoPendingClient() {
+            setSMSInputStateEnabled(true);
             if (refListener == null || refListener.get() == null) return;
             refListener.get().showPhoneInput();
         }
 
         @Override
         public void onErrorInvalidCode() {
+            setSMSInputStateEnabled(true);
             if (refListener == null || refListener.get() == null) return;
             refListener.get().clearCodeInput();
         }

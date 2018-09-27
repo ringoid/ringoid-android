@@ -20,4 +20,6 @@ public interface IPresenterRegisterListener {
     void showPhoneHint(String phone);
 
     void setPhoneInputEnabled(boolean isEnabled);
+
+    void setSMSInputEnabled(boolean isEnabled);
 }

@@ -61,8 +61,8 @@ public class FragmentLogin extends FragmentBase
     private View vContainerSMSCode;
     private EditText etYearBirth;
     private View tvSexFemale, tvSexMale;
-    private View pbPhoneVerify;
-    private View vPhoneConfirm;
+    private View pbPhoneVerify, pbSMSConfirm;
+    private View vPhoneConfirm, vSMSConfirm;
 
     public static FragmentLogin getInstanceProfileUpdate() {
         FragmentLogin fragment = new FragmentLogin();
@@ -102,7 +102,9 @@ public class FragmentLogin extends FragmentBase
         tvSexFemale = view.findViewById(R.id.tvSexFemale);
         tvSexMale = view.findViewById(R.id.tvSexMale);
         pbPhoneVerify = view.findViewById(R.id.pbPhoneVerify);
+        pbSMSConfirm = view.findViewById(R.id.pbSMSConfirm);
         vPhoneConfirm = view.findViewById(R.id.tvLoginPhoneVerify);
+        vSMSConfirm = view.findViewById(R.id.tvCodeSMSConfirm);
 
         ((TextView) view.findViewById(R.id.tvTerms)).setMovementMethod(new LinkMovementMethodInternal());
 
@@ -273,6 +275,12 @@ public class FragmentLogin extends FragmentBase
         public void setPhoneInputEnabled(boolean isEnabled) {
             vPhoneConfirm.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
             pbPhoneVerify.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
+        }
+
+        @Override
+        public void setSMSInputEnabled(boolean isEnabled) {
+            vSMSConfirm.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
+            pbSMSConfirm.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
         }
 
         @Override
