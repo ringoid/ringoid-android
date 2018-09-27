@@ -23,4 +23,6 @@ public interface ICacheUser {
     void setUserNew();
 
     void setUserOld();
+
+    boolean isPhoneEqual(String code, String phone);
 }

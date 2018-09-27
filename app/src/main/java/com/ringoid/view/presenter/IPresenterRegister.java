@@ -26,4 +26,6 @@ public interface IPresenterRegister {
     void setCheckedTerms(boolean isChecked);
 
     void setCheckedAge(boolean isChecked);
+
+    void onClickCodeSMSResend();
 }

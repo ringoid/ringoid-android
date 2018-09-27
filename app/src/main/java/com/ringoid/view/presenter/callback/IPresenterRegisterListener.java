@@ -22,4 +22,10 @@ public interface IPresenterRegisterListener {
     void setPhoneInputEnabled(boolean isEnabled);
 
     void setSMSInputEnabled(boolean isEnabled);
+
+    void setSMSResendDisabled(int timeSeconds);
+
+    void setSMSResendEnabled();
+
+    void showCodeInput();
 }

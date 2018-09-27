@@ -105,7 +105,8 @@
     <string name="message_clipboard_customer_id">Customer ID</string>
     <string name="message_protection_officer">Dear Data Protection Officer,\n\nMy Customer ID is %s\n\n</string>
     <string name="data_protection_subtitle">Legal</string>
-    <string name="button_code_error">I didn\’t receive a code</string>
+    <string name="message_sms_resend">Resend SMS</string>
+    <string name="message_SMS_resend_format">Resend SMS (%d)</string>
     <string name="crop_confirm"><![CDATA[Crop & Upload]]></string>
     <string name="message_profile_empty">Upload your photos so users can like and message you</string>
     <string name="dialog_image_delete_title">Delete photo?</string>
@@ -140,6 +141,7 @@
     <string name="message_no_photo_likes">See who liked you</string>
     <string name="message_no_photo_messages">See who messaged you</string>
     <string name="message_no_photo_explore">See new profiles</string>
+    <string name="button_phone_error">Wrong number?</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>

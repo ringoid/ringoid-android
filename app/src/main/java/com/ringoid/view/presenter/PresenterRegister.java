@@ -18,6 +18,8 @@ import com.ringoid.model.SEX;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
+import com.ringoid.view.ui.util.IHelperTimer;
+import com.ringoid.view.ui.util.listener.IHelperTimerListener;
 
 import java.lang.ref.WeakReference;
 
@@ -49,6 +51,10 @@ public class PresenterRegister implements IPresenterRegister {
     @Inject
     IViewPopup viewPopup;
 
+    @Inject
+    IHelperTimer helperTimer;
+
+    private ListenerTimer listenerTimer;
     private ListenerRegisterCodeConfirm listenerRegisterCodeConfirm;
     private ListenerRegisterPhone listenerRegisterPhone;
     private ListenerRegisterUserDetails listenerRegisterUserDetails;
@@ -61,6 +67,7 @@ public class PresenterRegister implements IPresenterRegister {
         repositoryRegisterCodeConfirm.setListener(listenerRegisterCodeConfirm = new ListenerRegisterCodeConfirm());
         repositoryRegisterUserDetails.setListener(listenerRegisterUserDetails = new ListenerRegisterUserDetails());
         listenerPopupPhoneConfirmError = new ListenerPhoneConfirmError();
+        helperTimer.setListener(listenerTimer = new ListenerTimer());
     }
 
     @Override
@@ -95,12 +102,24 @@ public class PresenterRegister implements IPresenterRegister {
         if (TextUtils.isEmpty(phone))
             return;
 
+        if (cacheUser.isPhoneEqual(code, phone) &&helperTimer.isTicking()) {
+            loginGoCodeInput();
+            return;
+        }
+
+        helperTimer.cancel();
         cacheUser.setPhone(code, phone);
         cacheRegister.setPhoneValid(isValid);
         repositoryRegisterPhone.request();
         clearCodeConfirm();
         showPhoneHint();
         setPhoneInputStateEnabled(false);
+    }
+
+
+    @Override
+    public void onClickCodeSMSResend() {
+        repositoryRegisterPhone.request();
     }
 
     private void setPhoneInputStateEnabled(boolean isEnabled) {
@@ -185,10 +204,24 @@ public class PresenterRegister implements IPresenterRegister {
         refListener.get().setSMSInputEnabled(isEnabled);
     }
 
+    private void updateStateSMSResend(long timeMillis) {
+        if (refListener == null || refListener.get() == null) return;
+
+        if (timeMillis == 0)
+            refListener.get().setSMSResendEnabled();
+        else refListener.get().setSMSResendDisabled((int) (timeMillis / 1000));
+    }
+
+    private void loginGoCodeInput() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().showCodeInput();
+    }
+
     private class ListenerRegisterPhone implements IRepositoryRegisterPhoneListener {
         @Override
         public void onSuccess() {
-            loginGoNext();
+            loginGoCodeInput();
+            helperTimer.start();
             setPhoneInputStateEnabled(true);
         }
 
@@ -245,6 +278,18 @@ public class PresenterRegister implements IPresenterRegister {
         public void onClick(View v) {
             if (refListener == null || refListener.get() == null) return;
             refListener.get().showPhoneInput();
+        }
+    }
+
+    private class ListenerTimer implements IHelperTimerListener {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            updateStateSMSResend(millisUntilFinished);
+        }
+
+        @Override
+        public void onFinish() {
+            updateStateSMSResend(0);
         }
     }
 }

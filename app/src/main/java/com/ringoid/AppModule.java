@@ -135,7 +135,9 @@ import com.ringoid.view.presenter.util.ISettingsHelper;
 import com.ringoid.view.presenter.util.LogoutHelper;
 import com.ringoid.view.presenter.util.SettingsHelper;
 import com.ringoid.view.ui.util.HelperAnimation;
+import com.ringoid.view.ui.util.HelperTimer;
 import com.ringoid.view.ui.util.IHelperAnimation;
+import com.ringoid.view.ui.util.IHelperTimer;
 import com.ringoid.view.ui.util.IScreenHelper;
 import com.ringoid.view.ui.util.IStatusBarViewHelper;
 import com.ringoid.view.ui.util.KeyboardUtils;
@@ -205,6 +207,12 @@ class AppModule {
     @Singleton
     IHelperThreadMain getHelperThreadMain() {
         return new HelperThreadMain(new Handler(Looper.getMainLooper()));
+    }
+
+    @Provides
+    @Singleton
+    IHelperTimer getHelperTimer() {
+        return new HelperTimer();
     }
 
     @Provides
@@ -550,6 +558,7 @@ class AppModule {
     IRepositoryFeedMessages getRepositoryFeedMessages() {
         return new RepositoryFeedMessages();
     }
+
     @Provides
     @Singleton
     IRepositoryFeedExplore getRepositoryFeedExplore() {

@@ -44,6 +44,7 @@ public class FragmentLogin extends FragmentBase
     private static final String ARG_PROFILE_UPDATE = "arg_profile_update";
     private static final int INDEX_PROFILE_UPDATE = 3;
     private static final int INDEX_PHONE_INPUT = 1;
+    private static final int INDEX_CODE_INPUT = 2;
 
     @Inject
     IPresenterRegister presenterRegister;
@@ -63,6 +64,7 @@ public class FragmentLogin extends FragmentBase
     private View tvSexFemale, tvSexMale;
     private View pbPhoneVerify, pbSMSConfirm;
     private View vPhoneConfirm, vSMSConfirm;
+    private TextView tvSMSResend;
 
     public static FragmentLogin getInstanceProfileUpdate() {
         FragmentLogin fragment = new FragmentLogin();
@@ -105,6 +107,7 @@ public class FragmentLogin extends FragmentBase
         pbSMSConfirm = view.findViewById(R.id.pbSMSConfirm);
         vPhoneConfirm = view.findViewById(R.id.tvLoginPhoneVerify);
         vSMSConfirm = view.findViewById(R.id.tvCodeSMSConfirm);
+        tvSMSResend = view.findViewById(R.id.tvCodeSMSResend);
 
         ((TextView) view.findViewById(R.id.tvTerms)).setMovementMethod(new LinkMovementMethodInternal());
 
@@ -114,9 +117,9 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.tvCodeSMSConfirm).setOnClickListener(this);
         view.findViewById(R.id.tvLoginTermsAgreement).setOnClickListener(this);
         view.findViewById(R.id.tvLoginPhoneVerify).setOnClickListener(this);
-        view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.ivPasteSMS).setOnClickListener(this);
-        view.findViewById(R.id.tvCodeSMSError).setOnClickListener(this);
+        view.findViewById(R.id.tvCodeSMSResend).setOnClickListener(this);
+        view.findViewById(R.id.tvCodePhoneError).setOnClickListener(this);
 
         view.findViewById(R.id.ivPasteSMS).setOnLongClickListener(this);
 
@@ -167,10 +170,11 @@ public class FragmentLogin extends FragmentBase
             presenterRegister.onClickCodeSMSConfirm(etCodeSMS.getText().toString());
         }
 
-        if (view.getId() == R.id.ivBack)
-            showPrev();
+        if (view.getId() == R.id.tvCodeSMSResend) {
+            presenterRegister.onClickCodeSMSResend();
+        }
 
-        if (view.getId() == R.id.tvCodeSMSError) {
+        if (view.getId() == R.id.tvCodePhoneError) {
             setPage(INDEX_PHONE_INPUT);
             etPhone.setSelection(etPhone.getText().length());
         }
@@ -231,10 +235,6 @@ public class FragmentLogin extends FragmentBase
 
     @Override
     public boolean onLongClick(View v) {
-        if (v.getId() == R.id.ivPasteSMS) {
-            //Toast.makeText(getContext(), R.string.message_paste, Toast.LENGTH_SHORT).show();
-            return true;
-        }
         return false;
     }
 
@@ -281,6 +281,27 @@ public class FragmentLogin extends FragmentBase
         public void setSMSInputEnabled(boolean isEnabled) {
             vSMSConfirm.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
             pbSMSConfirm.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
+        }
+
+        @Override
+        public void setSMSResendDisabled(int timeSeconds) {
+            if (getContext() == null) return;
+            tvSMSResend.setEnabled(false);
+            tvSMSResend.setText(String.format(getResources().getString(R.string.message_SMS_resend_format), timeSeconds));
+            tvSMSResend.setTextColor(getResources().getColor(R.color.gray));
+        }
+
+        @Override
+        public void setSMSResendEnabled() {
+            if (getContext() == null) return;
+            tvSMSResend.setEnabled(false);
+            tvSMSResend.setText(R.string.message_sms_resend);
+            tvSMSResend.setTextColor(getResources().getColor(R.color.blue));
+        }
+
+        @Override
+        public void showCodeInput() {
+            setPage(INDEX_CODE_INPUT);
         }
 
         @Override

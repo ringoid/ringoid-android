@@ -110,6 +110,15 @@ public class CacheUser implements ICacheUser {
         saveData();
     }
 
+    @Override
+    public boolean isPhoneEqual(String code, String phone) {
+        return getPhone() != null
+                && getPhone().equals(phone)
+                && getData() != null
+                && getData().getCode() != null
+                && getData().getCode().equals(code);
+    }
+
     private DataUser getData() {
         if (data == null) data = cacheStorage.readObject(FileEnum.USER, DataUser.class);
         return data;
