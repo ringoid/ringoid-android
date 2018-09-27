@@ -242,6 +242,12 @@ public class FragmentLogin extends FragmentBase
         presenterRegister.onClickLoginPhoneVerify(etPhoneCode.getText().toString(), vpiLogin.getPhone(), isValid);
     }
 
+    private void setButtonCodeConfirmState(int length) {
+        boolean isValid = length == 4;
+        vSMSConfirm.setEnabled(isValid);
+        vSMSConfirm.setBackgroundResource(isValid ? R.drawable.rectangle_rounded_green : R.drawable.rectangle_rounded_gray);
+    }
+
     private class ListenerPresenter implements IPresenterRegisterListener {
 
         @Override
@@ -288,7 +294,7 @@ public class FragmentLogin extends FragmentBase
             if (getContext() == null) return;
             tvSMSResend.setEnabled(false);
             tvSMSResend.setText(String.format(getResources().getString(R.string.message_SMS_resend_format), timeSeconds));
-            tvSMSResend.setTextColor(getResources().getColor(R.color.gray));
+            tvSMSResend.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
         @Override
@@ -369,6 +375,7 @@ public class FragmentLogin extends FragmentBase
         public void afterTextChanged(Editable s) {
 
             setDrawableState(s.length());
+            setButtonCodeConfirmState(s.length());
 
             if (s.length() <= 4) return;
             s.replace(0, s.length(), s, 0, 4);
