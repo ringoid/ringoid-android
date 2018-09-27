@@ -53,7 +53,6 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         srlPhotos.setOnRefreshListener(listenerRefreshLayout = new ListenerRefreshLayout());
         view.findViewById(R.id.fabProfile).setOnClickListener(this);
         view.findViewById(R.id.tvSettings).setOnClickListener(this);
-        view.findViewById(R.id.llToolbarTitle).setOnClickListener(this);
 
         initList(view);
         presenterProfile.onCreateView();
