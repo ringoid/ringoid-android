@@ -61,6 +61,8 @@ public class FragmentLogin extends FragmentBase
     private View vContainerSMSCode;
     private EditText etYearBirth;
     private View tvSexFemale, tvSexMale;
+    private View pbPhoneVerify;
+    private View vPhoneConfirm;
 
     public static FragmentLogin getInstanceProfileUpdate() {
         FragmentLogin fragment = new FragmentLogin();
@@ -99,6 +101,8 @@ public class FragmentLogin extends FragmentBase
         etYearBirth = view.findViewById(R.id.etYearBirth);
         tvSexFemale = view.findViewById(R.id.tvSexFemale);
         tvSexMale = view.findViewById(R.id.tvSexMale);
+        pbPhoneVerify = view.findViewById(R.id.pbPhoneVerify);
+        vPhoneConfirm = view.findViewById(R.id.tvLoginPhoneVerify);
 
         ((TextView) view.findViewById(R.id.tvTerms)).setMovementMethod(new LinkMovementMethodInternal());
 
@@ -239,11 +243,6 @@ public class FragmentLogin extends FragmentBase
     private class ListenerPresenter implements IPresenterRegisterListener {
 
         @Override
-        public void onError(int stringId) {
-            //Toast.makeText(getContext(), stringId, Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
         public void navigateNext() {
             showNext();
         }
@@ -271,14 +270,15 @@ public class FragmentLogin extends FragmentBase
         }
 
         @Override
-        public void setGenderSelected(SEX sex) {
-            tvSexFemale.setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
-            tvSexMale.setBackground(sex == SEX.MALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
+        public void setPhoneInputEnabled(boolean isEnabled) {
+            vPhoneConfirm.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
+            pbPhoneVerify.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
         }
 
         @Override
-        public void showToast(int stringRes) {
-            //Toast.makeText(getContext(), stringRes, Toast.LENGTH_SHORT).show();
+        public void setGenderSelected(SEX sex) {
+            tvSexFemale.setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
+            tvSexMale.setBackground(sex == SEX.MALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
         }
 
         @Override

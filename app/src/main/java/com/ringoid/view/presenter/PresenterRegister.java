@@ -26,6 +26,8 @@ import javax.inject.Inject;
 public class PresenterRegister implements IPresenterRegister {
 
 
+    private static final int SMS_CODE_LENGTH = 4;
+
     @Inject
     IRepositoryRegisterPhone repositoryRegisterPhone;
 
@@ -61,11 +63,6 @@ public class PresenterRegister implements IPresenterRegister {
         listenerPopupPhoneConfirmError = new ListenerPhoneConfirmError();
     }
 
-    private void notifyError(int stringId) {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().onError(stringId);
-    }
-
     @Override
     public void onClickFemale() {
         cacheRegister.setSexFemale();
@@ -87,27 +84,28 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Override
     public void onClickLoginTermsAgreement(boolean isAgreementChecked, boolean ageChecked) {
-        if (!isAgreementChecked || !ageChecked) {
-            notifyError(R.string.error_agreement);
+        if (!isAgreementChecked || !ageChecked)
             return;
-        }
 
         loginGoNext();
     }
 
     @Override
     public void onClickLoginPhoneVerify(String code, String phone, boolean isValid) {
-        if (TextUtils.isEmpty(phone)) {
-            notifyError(R.string.error_phone);
+        if (TextUtils.isEmpty(phone))
             return;
-        }
 
         cacheUser.setPhone(code, phone);
         cacheRegister.setPhoneValid(isValid);
         repositoryRegisterPhone.request();
         clearCodeConfirm();
         showPhoneHint();
-        loginGoNext();
+        setPhoneInputStateEnabled(false);
+    }
+
+    private void setPhoneInputStateEnabled(boolean isEnabled) {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().setPhoneInputEnabled(isEnabled);
     }
 
     private void showPhoneHint() {
@@ -122,17 +120,11 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Override
     public void onClickCodeSMSConfirm(String param) {
-        if (TextUtils.isEmpty(param) || param.length() != 4) {
-            showToastSMSError();
+        if (TextUtils.isEmpty(param) || param.length() != SMS_CODE_LENGTH) {
             return;
         }
 
         repositoryRegisterCodeConfirm.request(param);
-    }
-
-    private void showToastSMSError() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().showToast(R.string.error_sms_code_len);
     }
 
     @Override
@@ -190,18 +182,21 @@ public class PresenterRegister implements IPresenterRegister {
     private class ListenerRegisterPhone implements IRepositoryRegisterPhoneListener {
         @Override
         public void onSuccess() {
-
+            loginGoNext();
+            setPhoneInputStateEnabled(true);
         }
 
         @Override
         public void onError() {
             viewPopup.showSnackbar(R.string.message_phone_confirm_error, R.string.message_retry, listenerPopupPhoneConfirmError);
+            setPhoneInputStateEnabled(true);
         }
 
         @Override
         public void onErrorPhone() {
             if (refListener == null || refListener.get() == null) return;
             refListener.get().showPhoneInput();
+            setPhoneInputStateEnabled(true);
         }
     }
 
