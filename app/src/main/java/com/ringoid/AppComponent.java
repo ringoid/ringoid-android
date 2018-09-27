@@ -13,6 +13,7 @@ import com.ringoid.controller.data.memorycache.CacheToken;
 import com.ringoid.controller.data.memorycache.CacheTutorial;
 import com.ringoid.controller.data.memorycache.CacheUser;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
+import com.ringoid.controller.data.repository.RepositoryErrorUnknown;
 import com.ringoid.controller.data.repository.RepositoryFeedExplore;
 import com.ringoid.controller.data.repository.RepositoryFeedLikes;
 import com.ringoid.controller.data.repository.RepositoryFeedMessages;
@@ -41,6 +42,7 @@ import com.ringoid.view.presenter.PresenterAdapterProfile;
 import com.ringoid.view.presenter.PresenterBlacklistPhones;
 import com.ringoid.view.presenter.PresenterChat;
 import com.ringoid.view.presenter.PresenterDataProtection;
+import com.ringoid.view.presenter.PresenterDialogErrorUnknown;
 import com.ringoid.view.presenter.PresenterExplore;
 import com.ringoid.view.presenter.PresenterFeedPage;
 import com.ringoid.view.presenter.PresenterItemImageLikeable;
@@ -74,6 +76,7 @@ import com.ringoid.view.ui.adapter.ViewHolderItemLikesImages;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessage;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessagesImages;
 import com.ringoid.view.ui.dialog.DialogChatCompose;
+import com.ringoid.view.ui.dialog.DialogErrorUnknown;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import com.ringoid.view.ui.fragment.FragmentChat;
@@ -102,6 +105,12 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(RepositoryErrorUnknown param);
+
+    void inject(PresenterDialogErrorUnknown param);
+
+    void inject(DialogErrorUnknown param);
 
     void inject(FragmentFeedPage param);
 

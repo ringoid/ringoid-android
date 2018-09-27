@@ -10,7 +10,6 @@ import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
 import com.ringoid.controller.data.repository.callback.IRepositoryProfilePhotosListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
-import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterProfileListener;
 import com.ringoid.view.presenter.util.IHelperConnection;
 

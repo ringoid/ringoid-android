@@ -4,13 +4,11 @@ package com.ringoid.controller.data.network.interceptor;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.network.interceptor.listener.IInterceptorRetryListener;
 import com.ringoid.controller.data.network.response.ResponseBase;
-import com.ringoid.view.presenter.util.ILogoutHelper;
 
 import java.io.IOException;
-
-import javax.inject.Inject;
+import java.lang.ref.WeakReference;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -19,10 +17,8 @@ import okhttp3.ResponseBody;
 
 public class InterceptorRetry implements Interceptor {
 
-    @Inject
-    ILogoutHelper logoutHelper;
-
     private Gson gson;
+    private WeakReference<IInterceptorRetryListener> refListener;
 
     public InterceptorRetry(Gson gson) {
         this.gson = gson;
@@ -37,7 +33,10 @@ public class InterceptorRetry implements Interceptor {
         for (int i = 0; i < 3; ++i) {
             response = chain.proceed(request);
 
-            if (response == null || !response.isSuccessful()) return getEmptyResponse(response);
+            if (!response.isSuccessful()) {
+                notifyErrorUnknown();
+                return getEmptyResponse(response);
+            }
 
             ResponseBody body = response.body();
 
@@ -75,17 +74,25 @@ public class InterceptorRetry implements Interceptor {
         if (responseBase == null) return false;
 
         if (responseBase.isInvalidToken()) {
-            getLogoutHelper().logout();
+            notifyErrorTokenInvalid();
             return false;
         }
 
         return responseBase.isInternalServerError();
     }
 
-    private ILogoutHelper getLogoutHelper() {
-        if (logoutHelper == null)
-            ApplicationRingoid.getComponent().inject(this);
-        return logoutHelper;
+    public void setListener(IInterceptorRetryListener listener) {
+        this.refListener = new WeakReference<>(listener);
+    }
+
+    private void notifyErrorTokenInvalid() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onRequestTokenInvalid();
+    }
+
+    private void notifyErrorUnknown() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onRequestErrorUnknown();
     }
 
 }

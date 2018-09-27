@@ -39,6 +39,7 @@ import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
+import com.ringoid.controller.data.repository.IRepositoryErrorUnknown;
 import com.ringoid.controller.data.repository.IRepositoryFeedExplore;
 import com.ringoid.controller.data.repository.IRepositoryFeedLikes;
 import com.ringoid.controller.data.repository.IRepositoryFeedMessages;
@@ -52,6 +53,7 @@ import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.IRepositoryRegisterUserDetails;
 import com.ringoid.controller.data.repository.IRepositorySettingsGet;
 import com.ringoid.controller.data.repository.IRepositorySettingsSave;
+import com.ringoid.controller.data.repository.RepositoryErrorUnknown;
 import com.ringoid.controller.data.repository.RepositoryFeedExplore;
 import com.ringoid.controller.data.repository.RepositoryFeedLikes;
 import com.ringoid.controller.data.repository.RepositoryFeedMessages;
@@ -87,6 +89,7 @@ import com.ringoid.view.presenter.IPresenterAdapterProfile;
 import com.ringoid.view.presenter.IPresenterBlacklistPhones;
 import com.ringoid.view.presenter.IPresenterChat;
 import com.ringoid.view.presenter.IPresenterDataProtection;
+import com.ringoid.view.presenter.IPresenterDialogErrorUnknown;
 import com.ringoid.view.presenter.IPresenterExplore;
 import com.ringoid.view.presenter.IPresenterFeedPage;
 import com.ringoid.view.presenter.IPresenterItemImageLikeable;
@@ -113,6 +116,7 @@ import com.ringoid.view.presenter.PresenterAdapterProfile;
 import com.ringoid.view.presenter.PresenterBlacklistPhones;
 import com.ringoid.view.presenter.PresenterChat;
 import com.ringoid.view.presenter.PresenterDataProtection;
+import com.ringoid.view.presenter.PresenterDialogErrorUnknown;
 import com.ringoid.view.presenter.PresenterExplore;
 import com.ringoid.view.presenter.PresenterFeedPage;
 import com.ringoid.view.presenter.PresenterItemImageLikeable;
@@ -169,11 +173,21 @@ class AppModule {
 
     @Provides
     @Singleton
-    public IApiRingoid getApi() {
+    Gson getGSON() {
+        return new GsonBuilder().create();
+    }
 
-        Gson gson = new GsonBuilder().create();
+    @Provides
+    @Singleton
+    InterceptorRetry getInterceptorRequest() {
+        return new InterceptorRetry(getGSON());
+    }
 
-        Interceptor interceptorRetry = new InterceptorRetry(gson);
+    @Provides
+    @Singleton
+    OkHttpClient getOkHttp() {
+
+        Interceptor interceptorRetry = getInterceptorRequest();
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(1, TimeUnit.MINUTES)
@@ -181,12 +195,17 @@ class AppModule {
                 .addInterceptor(interceptorRetry);
 
         OkHttpClient client = builder.build();
+        return client;
+    }
 
+    @Provides
+    @Singleton
+    public IApiRingoid getApi() {
 
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.API_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(getOkHttp())
+                .addConverterFactory(GsonConverterFactory.create(getGSON()))
                 .build()
                 .create(IApiRingoid.class);
     }
@@ -394,6 +413,12 @@ class AppModule {
 
     @Provides
     @Singleton
+    IPresenterDialogErrorUnknown getPresenterDialogErrorNetwork() {
+        return new PresenterDialogErrorUnknown();
+    }
+
+    @Provides
+    @Singleton
     IPresenterFeedPage getPresenterFeedPage() {
         return new PresenterFeedPage();
     }
@@ -551,6 +576,12 @@ class AppModule {
     @Singleton
     IRepositoryFeedLikes getRepositoryFeedLikes() {
         return new RepositoryFeedLikes();
+    }
+
+    @Provides
+    @Singleton
+    IRepositoryErrorUnknown getRepositoryErrorNetwork() {
+        return new RepositoryErrorUnknown();
     }
 
     @Provides

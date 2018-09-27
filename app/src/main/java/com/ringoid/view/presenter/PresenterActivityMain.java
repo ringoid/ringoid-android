@@ -9,9 +9,12 @@ import android.view.View;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheUser;
+import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
+import com.ringoid.controller.data.network.interceptor.listener.IInterceptorRetryListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
+import com.ringoid.view.presenter.util.ILogoutHelper;
 
 import javax.inject.Inject;
 
@@ -32,8 +35,17 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     @Inject
     IViewPopup viewPopup;
 
+    @Inject
+    InterceptorRetry interceptorRequest;
+
+    @Inject
+    ILogoutHelper logoutHelper;
+
+    private ListenerInterceptor listenerInterceptor;
+
     public PresenterActivityMain() {
         ApplicationRingoid.getComponent().inject(this);
+        interceptorRequest.setListener(listenerInterceptor = new ListenerInterceptor());
     }
 
     @Override
@@ -67,5 +79,17 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         navigator.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private class ListenerInterceptor implements IInterceptorRetryListener {
+        @Override
+        public void onRequestTokenInvalid() {
+            logoutHelper.logout();
+        }
+
+        @Override
+        public void onRequestErrorUnknown() {
+            viewDialogs.showDialogErrorUnknown();
+        }
     }
 }

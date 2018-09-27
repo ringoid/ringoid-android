@@ -17,4 +17,6 @@ public interface IViewDialogs {
     void showDialogChatCompose(IDialogChatComposeListener listener);
 
     void showDialogMessage(int messageId);
+
+    void showDialogErrorUnknown();
 }

@@ -14,7 +14,6 @@ import com.ringoid.controller.data.repository.IRepositoryProfileImageRemove;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.IViewDialogs;
-import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterAdapterProfileListener;
 import com.ringoid.view.presenter.util.IHelperConnection;
 

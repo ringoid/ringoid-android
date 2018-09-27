@@ -6,6 +6,7 @@ import android.content.Context;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.view.ui.dialog.DialogChatCompose;
+import com.ringoid.view.ui.dialog.DialogErrorUnknown;
 import com.ringoid.view.ui.dialog.DialogLikeNoPhoto;
 import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
 import com.ringoid.view.ui.dialog.callback.IDialogLIkeNoPhotoListener;
@@ -23,6 +24,7 @@ public class ViewDialogs implements IViewDialogs {
 
     private WeakReference<DialogLikeNoPhoto> refDialogLikeNoPhoto;
     private WeakReference<DialogChatCompose> refDialogChatCompose;
+    private WeakReference<DialogErrorUnknown> refDialogErrorUnknown;
     private WeakReference<AlertDialog> refDialogMessage;
 
     private IDialogLIkeNoPhotoListener listenerDialogLikeNoPhoto;
@@ -83,6 +85,17 @@ public class ViewDialogs implements IViewDialogs {
                 .create();
         dialog.show();
         refDialogMessage = new WeakReference<>(dialog);
+    }
+
+    @Override
+    public void showDialogErrorUnknown() {
+        if (refDialogErrorUnknown != null && refDialogErrorUnknown.get() != null)
+            refDialogErrorUnknown.get().cancel();
+
+        if (refContext == null || refContext.get() == null) return;
+        DialogErrorUnknown dialog = new DialogErrorUnknown(refContext.get());
+        dialog.show();
+        refDialogErrorUnknown = new WeakReference<>(dialog);
     }
 
     private class ListenerDialogLikeNoPhoto implements IDialogLIkeNoPhotoListener {
