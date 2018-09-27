@@ -151,7 +151,7 @@ public class FragmentLogin extends FragmentBase
         }
 
         if (view.getId() == R.id.tvLoginPhoneVerify) {
-            if (TextUtils.isEmpty(etPhone.getText()) || TextUtils.isEmpty(etPhoneCode.getText()))
+            if (TextUtils.isEmpty(vpiLogin.getPhone()) || TextUtils.isEmpty(etPhoneCode.getText()))
                 return;
 
             setPhone(vpiLogin.isValid());
@@ -233,7 +233,7 @@ public class FragmentLogin extends FragmentBase
     }
 
     private void setPhone(boolean isValid) {
-        presenterRegister.onClickLoginPhoneVerify(etPhoneCode.getText().toString(), etPhone.getText().toString(), isValid);
+        presenterRegister.onClickLoginPhoneVerify(etPhoneCode.getText().toString(), vpiLogin.getPhone(), isValid);
     }
 
     private class ListenerPresenter implements IPresenterRegisterListener {

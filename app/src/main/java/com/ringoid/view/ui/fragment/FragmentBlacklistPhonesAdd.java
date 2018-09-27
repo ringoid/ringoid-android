@@ -76,7 +76,7 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tvBlacklistAdd) {
-            if (TextUtils.isEmpty(tvPhone.getText()) || TextUtils.isEmpty(etPhoneCode.getText()))
+            if (TextUtils.isEmpty(vpiBlacklist.getPhone()) || TextUtils.isEmpty(etPhoneCode.getText()))
                 return;
 
             confirmPhoneAdd();
@@ -87,7 +87,7 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     }
 
     private void confirmPhoneAdd() {
-        presenterBlacklistPhones.onClickBlacklistAdd(etPhoneCode.getText().toString(), tvPhone.getText().toString());
+        presenterBlacklistPhones.onClickBlacklistAdd(etPhoneCode.getText().toString(), vpiBlacklist.getPhone());
         tvPhone.setText("");
         getActivity().onBackPressed();
     }

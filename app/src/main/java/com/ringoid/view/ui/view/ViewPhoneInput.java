@@ -160,6 +160,18 @@ public class ViewPhoneInput extends LinearLayout
                 : R.color.colorAccent);
     }
 
+    public String getPhone() {
+        return removeLeadZero(etPhone.getText().toString());
+    }
+
+    private String removeLeadZero(String input) {
+        if (TextUtils.isEmpty(input)) return input;
+        while (input.startsWith("0")) {
+            input = input.substring(1, input.length());
+        }
+        return input;
+    }
+
     private class ListenerCode implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
