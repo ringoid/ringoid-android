@@ -110,10 +110,10 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         cacheScroll.resetCache();
 
         if (navigatorPages.isPageLikes()) {
-            if (!presenterFeedPage.isPositionTop())
+            if (!presenterFeedPage.isPositionTop()) {
                 presenterFeedPage.scrollTop();
-            else viewDialogs.showDialogLikes();
-
+                cacheInterfaceState.resetCachePositionLikes();
+            }
             return;
         }
 
@@ -134,8 +134,10 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         cacheScroll.resetCache();
 
         if (navigatorPages.isPageMessages()) {
-            if (!presenterFeedPage.isPositionTop())
+            if (!presenterFeedPage.isPositionTop()) {
                 presenterFeedPage.scrollTop();
+                cacheInterfaceState.resetCachePositionMessage();
+            }
             return;
         }
 
@@ -147,10 +149,10 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         cacheScroll.resetCache();
 
         if (navigatorPages.isPageExplore()) {
-            if (!presenterFeedPage.isPositionTop())
+            if (!presenterFeedPage.isPositionTop()) {
                 presenterFeedPage.scrollTop();
-            else viewDialogs.showDialogExplore();
-
+                cacheInterfaceState.resetCachePositionExplore();
+            }
             return;
         }
 

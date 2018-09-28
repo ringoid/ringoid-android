@@ -36,4 +36,10 @@ public interface ICacheInterfaceState {
     int getPositionScrollPageLikesOffset();
 
     int getPositionScrollPageMessagesOffset();
+
+    void resetCachePositionLikes();
+
+    void resetCachePositionMessage();
+
+    void resetCachePositionExplore();
 }

@@ -121,6 +121,21 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
+    public void resetCachePositionLikes() {
+        setPositionScrollPageLikes(0, 0);
+    }
+
+    @Override
+    public void resetCachePositionMessage() {
+        setPositionScrollPageMessages(0, 0);
+    }
+
+    @Override
+    public void resetCachePositionExplore() {
+        setPositionScrollPageExplore(0, 0);
+    }
+
+    @Override
     public int getPositionScrollPageExplore() {
         return getData().getPositionScrollPageExplore();
     }
