@@ -44,8 +44,8 @@ public class FragmentMessages extends FragmentFeedPage {
     }
 
     @Override
-    protected void onScrollState(int newState, int firstVisibleItemPosition) {
-        presenterMessages.onScrollState(newState, firstVisibleItemPosition);
+    protected void onScrollState(int newState, int firstVisibleItemPosition, int offset) {
+        presenterMessages.onScrollState(newState, firstVisibleItemPosition, offset);
     }
 
     @Override

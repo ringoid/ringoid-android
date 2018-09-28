@@ -68,7 +68,7 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
         return inflater.inflate(R.layout.fragment_feed_page, container, false);
     }
 
-    protected abstract void onScrollState(int newState, int firstVisibleItemPosition);
+    protected abstract void onScrollState(int newState, int firstVisibleItemPosition, int offset);
 
     protected abstract void onSwipeToRefresh();
 
@@ -99,7 +99,11 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-            onScrollState(newState, layoutManager.findFirstVisibleItemPosition());
+
+            int pos = layoutManager.findFirstVisibleItemPosition();
+            View firstItemView = layoutManager.findViewByPosition(pos);
+            int offset = firstItemView.getTop();
+            onScrollState(newState, pos, offset);
         }
     }
 
@@ -150,8 +154,8 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
         }
 
         @Override
-        public void scrollToPosition(int position) {
-            rvItems.scrollToPosition(position);
+        public void scrollToPosition(int position, int offset) {
+            layoutManager.scrollToPositionWithOffset(position, offset);
         }
 
         @Override

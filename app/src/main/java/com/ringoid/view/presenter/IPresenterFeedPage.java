@@ -14,7 +14,7 @@ public interface IPresenterFeedPage {
 
     boolean checkDataProfileExist(int messageNoDataRes);
 
-    void scrollToPosition(int position);
+    void scrollToPosition(int position, int offset);
 
     void hideRefreshLayout();
 }

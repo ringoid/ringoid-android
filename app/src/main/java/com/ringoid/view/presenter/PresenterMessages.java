@@ -46,10 +46,10 @@ public class PresenterMessages implements IPresenterMessages {
     }
 
     @Override
-    public void onScrollState(int newState, int firstVisibleItemPosition) {
+    public void onScrollState(int newState, int firstVisibleItemPosition, int offset) {
         if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
         cacheScroll.onScrollIdle();
-        cacheInterfaceState.setPositionScrollPageMessages(firstVisibleItemPosition);
+        cacheInterfaceState.setPositionScrollPageMessages(firstVisibleItemPosition, offset);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class PresenterMessages implements IPresenterMessages {
     @Override
     public void onCreateView() {
         if (presenterFeedPage.checkDataProfileExist(R.string.message_no_photo_messages)) {
-            presenterFeedPage.scrollToPosition(cacheInterfaceState.getPositionScrollPageMessages());
+            presenterFeedPage.scrollToPosition(cacheInterfaceState.getPositionScrollPageMessages(), cacheInterfaceState.getPositionScrollPageMessagesOffset());
             if (!cacheMessages.isDataExist())
                 repositoryFeedMessages.request();
         }

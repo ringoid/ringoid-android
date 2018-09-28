@@ -44,8 +44,8 @@ public class FragmentExplore extends FragmentFeedPage {
     }
 
     @Override
-    protected void onScrollState(int newState, int firstVisibleItemPosition) {
-        presenterExplore.onScrollState(newState, firstVisibleItemPosition);
+    protected void onScrollState(int newState, int firstVisibleItemPosition, int offset) {
+        presenterExplore.onScrollState(newState, firstVisibleItemPosition, offset);
     }
 
     @Override

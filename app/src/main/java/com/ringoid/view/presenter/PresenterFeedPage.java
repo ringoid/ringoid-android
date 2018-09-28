@@ -2,7 +2,6 @@ package com.ringoid.view.presenter;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
@@ -57,9 +56,9 @@ public class PresenterFeedPage implements IPresenterFeedPage {
     }
 
     @Override
-    public void scrollToPosition(int position) {
+    public void scrollToPosition(int position, int offset) {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().scrollToPosition(position);
+        refListener.get().scrollToPosition(position, offset);
     }
 
     private void showViewNoPhoto(int messageNoDataRes) {

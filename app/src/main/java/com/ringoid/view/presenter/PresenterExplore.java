@@ -50,17 +50,17 @@ public class PresenterExplore implements IPresenterExplore {
         cacheTutorial.resetLikesNum();
 
         if (presenterFeedPage.checkDataProfileExist(R.string.message_no_photo_explore)) {
-            presenterFeedPage.scrollToPosition(cacheInterfaceState.getPositionScrollPageExplore());
+            presenterFeedPage.scrollToPosition(cacheInterfaceState.getPositionScrollPageExplore(), cacheInterfaceState.getPositionScrollPageExploreOffset());
             if (!cacheExplore.isDataExist())
                 repositoryFeedExplore.request();
         }
     }
 
     @Override
-    public void onScrollState(int newState, int firstVisibleItemPosition) {
+    public void onScrollState(int newState, int firstVisibleItemPosition, int offset) {
         if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
         cacheScroll.onScrollIdle();
-        cacheInterfaceState.setPositionScrollPageExplore(firstVisibleItemPosition);
+        cacheInterfaceState.setPositionScrollPageExplore(firstVisibleItemPosition, offset);
     }
 
     @Override

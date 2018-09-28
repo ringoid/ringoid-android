@@ -8,7 +8,7 @@ public interface IPresenterFeedPageListener {
 
     void scrollTop();
 
-    void scrollToPosition(int position);
+    void scrollToPosition(int position, int offset);
 
     void completeRefresh();
 

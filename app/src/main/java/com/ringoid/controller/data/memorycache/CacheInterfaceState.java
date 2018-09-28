@@ -83,8 +83,8 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
-    public void setPositionScrollPageLikes(int position) {
-        getData().setPositionScrollPageLikes(position);
+    public void setPositionScrollPageLikes(int position, int offset) {
+        getData().setPositionScrollPageLikes(position, offset);
         saveData();
     }
 
@@ -94,15 +94,30 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
-    public void setPositionScrollPageMessages(int position) {
-        getData().setPositionScrollPageMessages(position);
+    public void setPositionScrollPageMessages(int position, int offset) {
+        getData().setPositionScrollPageMessages(position, offset);
         saveData();
     }
 
     @Override
-    public void setPositionScrollPageExplore(int firstVisibleItemPosition) {
-        getData().setPositionScrollPageExplore(firstVisibleItemPosition);
+    public void setPositionScrollPageExplore(int firstVisibleItemPosition, int offset) {
+        getData().setPositionScrollPageExplore(firstVisibleItemPosition, offset);
         saveData();
+    }
+
+    @Override
+    public int getPositionScrollPageExploreOffset() {
+        return getData().getPositionScrollPageExploreOffset();
+    }
+
+    @Override
+    public int getPositionScrollPageLikesOffset() {
+        return getData().getPositionScrollPageLikesOffset();
+    }
+
+    @Override
+    public int getPositionScrollPageMessagesOffset() {
+        return getData().getPositionScrollPageMessagesOffset();
     }
 
     @Override

@@ -7,7 +7,7 @@ public interface IPresenterExplore {
 
     void onCreateView();
 
-    void onScrollState(int newState, int firstVisibleItemPosition);
+    void onScrollState(int newState, int firstVisibleItemPosition, int offset);
 
     void setListener(IPresenterExploreListener listener);
 

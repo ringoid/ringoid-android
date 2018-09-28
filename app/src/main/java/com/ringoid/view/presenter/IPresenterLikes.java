@@ -7,7 +7,7 @@ public interface IPresenterLikes {
 
     void onCreateView();
 
-    void onScrollState(int newState, int firstVisibleItemPosition);
+    void onScrollState(int newState, int firstVisibleItemPosition, int offset);
 
     void setListener(IPresenterLikesListener listener);
 

@@ -53,7 +53,7 @@ public class PresenterLikes implements IPresenterLikes {
     public void onCreateView() {
         cacheTutorial.resetLikesNum();
         if (presenterFeedPage.checkDataProfileExist(R.string.message_no_photo_likes)) {
-            presenterFeedPage.scrollToPosition(cacheInterfaceState.getPositionScrollPageLikes());
+            presenterFeedPage.scrollToPosition(cacheInterfaceState.getPositionScrollPageLikes(), cacheInterfaceState.getPositionScrollPageLikesOffset());
             if (!cacheLikes.isDataExist()) {
                 repositoryFeedLikes.request();
             }
@@ -61,9 +61,9 @@ public class PresenterLikes implements IPresenterLikes {
     }
 
     @Override
-    public void onScrollState(int newState, int firstVisibleItemPosition) {
+    public void onScrollState(int newState, int firstVisibleItemPosition, int offset) {
         if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
-        cacheInterfaceState.setPositionScrollPageLikes(firstVisibleItemPosition);
+        cacheInterfaceState.setPositionScrollPageLikes(firstVisibleItemPosition, offset);
         cacheScroll.onScrollIdle();
     }
 

@@ -20,13 +20,20 @@ public interface ICacheInterfaceState {
 
     int getPositionScrollPageLikes();
 
-    void setPositionScrollPageLikes(int position);
+    void setPositionScrollPageLikes(int position, int offset);
+
+    int getPositionScrollPageExplore();
 
     int getPositionScrollPageMessages();
 
-    void setPositionScrollPageMessages(int firstVisibleItemPosition);
+    void setPositionScrollPageMessages(int firstVisibleItemPosition, int offset);
 
-    void setPositionScrollPageExplore(int firstVisibleItemPosition);
+    void setPositionScrollPageExplore(int firstVisibleItemPosition, int offset);
 
-    int getPositionScrollPageExplore();
+
+    int getPositionScrollPageExploreOffset();
+
+    int getPositionScrollPageLikesOffset();
+
+    int getPositionScrollPageMessagesOffset();
 }
