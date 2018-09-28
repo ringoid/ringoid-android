@@ -55,30 +55,5 @@ public class FragmentMessages extends FragmentFeedPage {
 
     private class ListenerPresenterMessages implements IPresenterMessagesListener {
 
-        @Override
-        public boolean isPositionTop() {
-            return rvItems.computeVerticalScrollOffset() == 0;
-        }
-
-        @Override
-        public void completeRefresh() {
-            srlFeed.setRefreshing(false);
-        }
-
-        @Override
-        public void showViewNoPhoto(int messageRes) {
-            showErrorNoPhoto(messageRes);
-        }
-
-        @Override
-        public void scrollToTop() {
-            rvItems.smoothScrollToPosition(0);
-        }
-
-        @Override
-        public void scrollToPosition(int positionScrollPageMessages) {
-            rvItems.scrollToPosition(positionScrollPageMessages);
-        }
-
     }
 }

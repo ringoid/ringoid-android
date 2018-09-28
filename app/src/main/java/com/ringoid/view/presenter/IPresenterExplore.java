@@ -9,10 +9,6 @@ public interface IPresenterExplore {
 
     void onScrollState(int newState, int firstVisibleItemPosition);
 
-    boolean isPositionTop();
-
-    void scrollTop();
-
     void setListener(IPresenterExploreListener listener);
 
     void onSwipeRefresh();

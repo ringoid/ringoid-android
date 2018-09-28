@@ -48,13 +48,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     IViewDialogs viewDialogs;
 
     @Inject
-    IPresenterExplore presenterExplore;
-
-    @Inject
-    IPresenterLikes presenterLikes;
-
-    @Inject
-    IPresenterMessages presenterMessages;
+    IPresenterFeedPage presenterFeedPage;
 
     @Inject
     ISettingsHelper settingsHelper;
@@ -116,8 +110,8 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         cacheScroll.resetCache();
 
         if (navigatorPages.isPageLikes()) {
-            if (!presenterLikes.isPositionTop())
-                presenterLikes.scrollTop();
+            if (!presenterFeedPage.isPositionTop())
+                presenterFeedPage.scrollTop();
             else viewDialogs.showDialogLikes();
 
             return;
@@ -140,8 +134,8 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         cacheScroll.resetCache();
 
         if (navigatorPages.isPageMessages()) {
-            if (!presenterMessages.isPositionTop())
-                presenterMessages.scrollTop();
+            if (!presenterFeedPage.isPositionTop())
+                presenterFeedPage.scrollTop();
             return;
         }
 
@@ -153,8 +147,8 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         cacheScroll.resetCache();
 
         if (navigatorPages.isPageExplore()) {
-            if (!presenterExplore.isPositionTop())
-                presenterExplore.scrollTop();
+            if (!presenterFeedPage.isPositionTop())
+                presenterFeedPage.scrollTop();
             else viewDialogs.showDialogExplore();
 
             return;

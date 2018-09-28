@@ -34,6 +34,9 @@ public class PresenterMessages implements IPresenterMessages {
     @Inject
     ICacheProfile cacheProfile;
 
+    @Inject
+    IPresenterFeedPage presenterFeedPage;
+
     private ListenerCacheMessages listenerCacheMessages;
     private WeakReference<IPresenterMessagesListener> refListener;
 
@@ -56,31 +59,11 @@ public class PresenterMessages implements IPresenterMessages {
 
     @Override
     public void onCreateView() {
-        if (!cacheProfile.isDataExist())
-            showViewNoPhoto();
-        else {
+        if (presenterFeedPage.checkDataProfileExist(R.string.message_no_photo_messages)) {
+            presenterFeedPage.scrollToPosition(cacheInterfaceState.getPositionScrollPageMessages());
             if (!cacheMessages.isDataExist())
                 repositoryFeedMessages.request();
-
-            scrollToSavedPosition();
         }
-    }
-
-    private void showViewNoPhoto() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().showViewNoPhoto(R.string.message_no_photo_messages);
-    }
-
-    @Override
-    public boolean isPositionTop() {
-        if (refListener == null || refListener.get() == null) return false;
-        return refListener.get().isPositionTop();
-    }
-
-    @Override
-    public void scrollTop() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().scrollToTop();
     }
 
     @Override
@@ -88,20 +71,10 @@ public class PresenterMessages implements IPresenterMessages {
         repositoryFeedMessages.request();
     }
 
-    private void scrollToSavedPosition() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().scrollToPosition(cacheInterfaceState.getPositionScrollPageMessages());
-    }
-
-    private void hideRefreshLayout() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().completeRefresh();
-    }
-
     private class ListenerCacheMessages implements ICacheMessagesListener {
         @Override
         public void onUpdate() {
-            hideRefreshLayout();
+            presenterFeedPage.hideRefreshLayout();
         }
     }
 }

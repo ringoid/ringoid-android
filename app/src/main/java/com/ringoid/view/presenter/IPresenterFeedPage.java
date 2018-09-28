@@ -3,8 +3,18 @@ package com.ringoid.view.presenter;
 
 import com.ringoid.view.presenter.callback.IPresenterFeedPageListener;
 
-public interface IPresenterFeedPage{
+public interface IPresenterFeedPage {
     void setListener(IPresenterFeedPageListener listener);
 
     void onScroll(int dy, int scrollSum);
+
+    boolean isPositionTop();
+
+    void scrollTop();
+
+    boolean checkDataProfileExist(int messageNoDataRes);
+
+    void scrollToPosition(int position);
+
+    void hideRefreshLayout();
 }

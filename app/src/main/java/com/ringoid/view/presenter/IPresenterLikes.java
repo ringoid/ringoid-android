@@ -9,10 +9,6 @@ public interface IPresenterLikes {
 
     void onScrollState(int newState, int firstVisibleItemPosition);
 
-    boolean isPositionTop();
-
-    void scrollTop();
-
     void setListener(IPresenterLikesListener listener);
 
     void onSwipeToRefresh();

@@ -139,5 +139,29 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
             rvItems.smoothScrollBy(0, y);
         }
 
+        @Override
+        public boolean isPositionTop() {
+            return rvItems.computeVerticalScrollOffset() == 0;
+        }
+
+        @Override
+        public void scrollTop() {
+            rvItems.scrollToPosition(0);
+        }
+
+        @Override
+        public void scrollToPosition(int position) {
+            rvItems.scrollToPosition(position);
+        }
+
+        @Override
+        public void completeRefresh() {
+            srlFeed.setRefreshing(false);
+        }
+
+        @Override
+        public void showViewNoPhoto(int messageRes) {
+            showErrorNoPhoto(messageRes);
+        }
     }
 }

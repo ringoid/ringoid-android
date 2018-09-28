@@ -11,9 +11,5 @@ public interface IPresenterMessages {
 
     void onCreateView();
 
-    boolean isPositionTop();
-
-    void scrollTop();
-
     void onSwipeRefresh();
 }

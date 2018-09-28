@@ -38,6 +38,9 @@ public class PresenterLikes implements IPresenterLikes {
     @Inject
     ICacheProfile cacheProfile;
 
+    @Inject
+    IPresenterFeedPage presenterFeedPage;
+
     private ListenerCacheLikes listenerCacheLikes;
     private WeakReference<IPresenterLikesListener> refListener;
 
@@ -49,24 +52,12 @@ public class PresenterLikes implements IPresenterLikes {
     @Override
     public void onCreateView() {
         cacheTutorial.resetLikesNum();
-        if (!cacheProfile.isDataExist())
-            showViewNoPhoto();
-        else {
-            scrollToSavedPosition();
+        if (presenterFeedPage.checkDataProfileExist(R.string.message_no_photo_likes)) {
+            presenterFeedPage.scrollToPosition(cacheInterfaceState.getPositionScrollPageLikes());
             if (!cacheLikes.isDataExist()) {
                 repositoryFeedLikes.request();
             }
         }
-    }
-
-    private void showViewNoPhoto() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().showViewNoPhoto(R.string.message_no_photo_likes);
-    }
-
-    private void scrollToSavedPosition() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().scrollToPosition(cacheInterfaceState.getPositionScrollPageLikes());
     }
 
     @Override
@@ -74,18 +65,6 @@ public class PresenterLikes implements IPresenterLikes {
         if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
         cacheInterfaceState.setPositionScrollPageLikes(firstVisibleItemPosition);
         cacheScroll.onScrollIdle();
-    }
-
-    @Override
-    public boolean isPositionTop() {
-        if (refListener == null || refListener.get() == null) return true;
-        return refListener.get().isPositionTop();
-    }
-
-    @Override
-    public void scrollTop() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().scrollTop();
     }
 
     @Override
@@ -98,15 +77,10 @@ public class PresenterLikes implements IPresenterLikes {
         repositoryFeedLikes.request();
     }
 
-    private void hideRefreshLayout() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().completeRefresh();
-    }
-
     private class ListenerCacheLikes implements ICacheLikesListener {
         @Override
         public void onUpdate() {
-            hideRefreshLayout();
+            presenterFeedPage.hideRefreshLayout();
         }
 
         @Override

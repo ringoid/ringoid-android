@@ -59,16 +59,6 @@ public class FragmentLikes extends FragmentFeedPage {
     private class ListenerPresenter implements IPresenterLikesListener {
 
         @Override
-        public boolean isPositionTop() {
-            return rvItems.computeVerticalScrollOffset() == 0;
-        }
-
-        @Override
-        public void scrollTop() {
-            rvItems.smoothScrollToPosition(0);
-        }
-
-        @Override
         public void onLike(int adapterPosition) {
             RecyclerView.ViewHolder item = rvItems.findViewHolderForAdapterPosition(adapterPosition);
             if (item == null) return;
@@ -87,19 +77,5 @@ public class FragmentLikes extends FragmentFeedPage {
             holder.setUnliked(adapterPosition);
         }
 
-        @Override
-        public void scrollToPosition(int position) {
-            rvItems.scrollToPosition(position);
-        }
-
-        @Override
-        public void completeRefresh() {
-            srlFeed.setRefreshing(false);
-        }
-
-        @Override
-        public void showViewNoPhoto(int messageRes) {
-            showErrorNoPhoto(messageRes);
-        }
     }
 }

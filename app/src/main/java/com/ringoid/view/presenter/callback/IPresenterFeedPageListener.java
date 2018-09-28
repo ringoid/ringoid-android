@@ -3,4 +3,14 @@ package com.ringoid.view.presenter.callback;
 
 public interface IPresenterFeedPageListener {
     void scrollSmoothBy(int y);
+
+    boolean isPositionTop();
+
+    void scrollTop();
+
+    void scrollToPosition(int position);
+
+    void completeRefresh();
+
+    void showViewNoPhoto(int messageRes);
 }

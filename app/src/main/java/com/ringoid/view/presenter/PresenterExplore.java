@@ -7,7 +7,6 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheExplore;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
-import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.listener.ICacheExploreListener;
@@ -36,7 +35,7 @@ public class PresenterExplore implements IPresenterExplore {
     ICacheExplore cacheExplore;
 
     @Inject
-    ICacheProfile cacheProfile;
+    IPresenterFeedPage presenterFeedPage;
 
     private ListenerCacheExplore listenerCacheExplore;
     private WeakReference<IPresenterExploreListener> refListener;
@@ -49,23 +48,12 @@ public class PresenterExplore implements IPresenterExplore {
     @Override
     public void onCreateView() {
         cacheTutorial.resetLikesNum();
-        if (!cacheProfile.isDataExist()) {
-            showViewNoPhoto();
-        } else {
-            scrollToSavedPosition();
+
+        if (presenterFeedPage.checkDataProfileExist(R.string.message_no_photo_explore)) {
+            presenterFeedPage.scrollToPosition(cacheInterfaceState.getPositionScrollPageExplore());
             if (!cacheExplore.isDataExist())
                 repositoryFeedExplore.request();
         }
-    }
-
-    private void showViewNoPhoto() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().showViewNoPhoto(R.string.message_no_photo_explore);
-    }
-
-    private void scrollToSavedPosition() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().scrollToPosition(cacheInterfaceState.getPositionScrollPageExplore());
     }
 
     @Override
@@ -73,18 +61,6 @@ public class PresenterExplore implements IPresenterExplore {
         if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
         cacheScroll.onScrollIdle();
         cacheInterfaceState.setPositionScrollPageExplore(firstVisibleItemPosition);
-    }
-
-    @Override
-    public boolean isPositionTop() {
-        if (refListener == null || refListener.get() == null) return true;
-        return refListener.get().isPositionTop();
-    }
-
-    @Override
-    public void scrollTop() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().scrollTop();
     }
 
     @Override
@@ -97,15 +73,10 @@ public class PresenterExplore implements IPresenterExplore {
         repositoryFeedExplore.request();
     }
 
-    private void hideRefreshLayout() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().completeRefresh();
-    }
-
     private class ListenerCacheExplore implements ICacheExploreListener {
         @Override
         public void onUpdate() {
-            hideRefreshLayout();
+            presenterFeedPage.hideRefreshLayout();
         }
     }
 }
