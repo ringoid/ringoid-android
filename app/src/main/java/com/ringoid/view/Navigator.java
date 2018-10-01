@@ -20,7 +20,7 @@ import com.ringoid.view.ui.fragment.FragmentDataProtection;
 import com.ringoid.view.ui.fragment.FragmentLogin;
 import com.ringoid.view.ui.fragment.FragmentPages;
 import com.ringoid.view.ui.fragment.FragmentPhotoCrop;
-import com.ringoid.view.ui.fragment.FragmentScreenDebug;
+import com.ringoid.view.ui.fragment.FragmentSettingsDebug;
 import com.ringoid.view.ui.fragment.FragmentSettings;
 import com.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 import com.ringoid.view.ui.fragment.FragmentSettingsPush;
@@ -189,7 +189,7 @@ public class Navigator implements INavigator {
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
-                .replace(viewId, new FragmentScreenDebug(), CURRENT_FRAGMENT_PAGE)
+                .replace(viewId, new FragmentSettingsDebug(), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 

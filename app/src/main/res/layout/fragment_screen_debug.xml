@@ -12,19 +12,20 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
     <TextView
-        android:text="Screenshots state: "
-        style="@style/settings_menu_item"/>
+        android:id="@+id/tvScreenshots"
+        style="@style/settings_menu_item"
+        android:text="Screenshots state: " />
 
     <TextView
-        android:text="request response not 200"
-        style="@style/settings_menu_item"/>
+        style="@style/settings_menu_item"
+        android:text="request response not 200" />
 
     <TextView
-        android:text="request response invalid token"
-        style="@style/settings_menu_item"/>
+        style="@style/settings_menu_item"
+        android:text="request response invalid token" />
 
     <TextView
-        android:text="request response timeout"
-        style="@style/settings_menu_item"/>
+        style="@style/settings_menu_item"
+        android:text="request response timeout" />
 
 </LinearLayout>
