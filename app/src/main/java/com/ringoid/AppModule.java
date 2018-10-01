@@ -147,11 +147,9 @@ import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperScreenshots;
 import com.ringoid.view.ui.util.IHelperTimer;
 import com.ringoid.view.ui.util.IScreenHelper;
-import com.ringoid.view.ui.util.IStatusBarViewHelper;
 import com.ringoid.view.ui.util.KeyboardUtils;
 import com.ringoid.view.ui.util.OkHttpProvider;
 import com.ringoid.view.ui.util.ScreenHelper;
-import com.ringoid.view.ui.util.StatusBarViewHelper;
 
 import java.lang.ref.WeakReference;
 import java.util.Random;
@@ -277,12 +275,6 @@ class AppModule {
     @Singleton
     IViewDialogs getViewDialogs() {
         return new ViewDialogs();
-    }
-
-    @Provides
-    @Singleton
-    IStatusBarViewHelper getStatusBarViewHelper() {
-        return new StatusBarViewHelper();
     }
 
     @Provides

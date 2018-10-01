@@ -4,7 +4,6 @@ package com.ringoid.view.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterPagesContainer;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.ui.util.IHelperAnimation;
-import com.ringoid.view.ui.util.IStatusBarViewHelper;
 
 import java.util.Random;
 
@@ -27,9 +25,6 @@ public class FragmentPages extends FragmentBase
 
     @Inject
     IPresenterPagesContainer presenterPagesContainer;
-
-    @Inject
-    IStatusBarViewHelper statusBarViewHelper;
 
     @Inject
     IHelperAnimation helperAnimation;
@@ -117,18 +112,12 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void setBottomSheetDrawables(int profile, int likes, int messages, int explore) {
+        public void setBottomSheetDrawables(int likes, int messages, int explore) {
             if (llBottomAppBar == null || llBottomAppBar.getChildCount() != 4) return;
-            ((ImageView) llBottomAppBar.getChildAt(0)).setImageResource(profile);
             ((ImageView) llBottomAppBar.getChildAt(1)).setImageResource(likes);
             ((ImageView) llBottomAppBar.getChildAt(2)).setImageResource(messages);
             ((ImageView) llBottomAppBar.getChildAt(3)).setImageResource(explore);
 
-        }
-
-        @Override
-        public void setStatusBarColor(int type) {
-            statusBarViewHelper.setColor((AppCompatActivity) getActivity(), type);
         }
 
         @Override

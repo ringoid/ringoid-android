@@ -22,7 +22,6 @@ import com.ringoid.view.ui.dialog.DialogLogout;
 import com.ringoid.view.ui.dialog.callback.IDialogLogoutListener;
 import com.ringoid.view.ui.dialog.callback.IDialogPrivacyLikesListener;
 import com.ringoid.view.ui.dialog.callback.IDialogPrivacyPhotosListener;
-import com.ringoid.view.ui.util.IStatusBarViewHelper;
 
 import javax.inject.Inject;
 
@@ -40,9 +39,6 @@ public class FragmentSettings extends FragmentBase
 
     @Inject
     IPresenterSettings presenterSettings;
-
-    @Inject
-    IStatusBarViewHelper statusBarViewHelper;
 
     private DialogLogout dialogLogout;
     private DialogAccountDelete dialogAccountDelete;

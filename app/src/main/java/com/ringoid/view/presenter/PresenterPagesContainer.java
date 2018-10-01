@@ -3,7 +3,6 @@ package com.ringoid.view.presenter;
 
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
@@ -93,12 +92,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     private void updateViewBottomSheet() {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().setBottomSheetDrawables(
-
-                cacheSettingsPrivacy.isPrivacyPhotosOppositeSex()
-                        ? R.drawable.ic_menu_profile_24dp
-                        : cacheSettingsPrivacy.isPrivacyPhotosLikes()
-                        ? R.drawable.ic_menu_profile_likes_24dp
-                        : R.drawable.ic_menu_profile_noone_24dp,
                 cacheLikes.isDataExist() ? R.drawable.ic_menu_favorite_red_24dp : R.drawable.ic_menu_favorite_24dp,
                 cacheMessages.isDataExist() ? R.drawable.ic_menu_message_dot_24dp : R.drawable.ic_menu_message_24dp,
                 R.drawable.ic_menu_explore_24dp
@@ -197,13 +190,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     private class ListenerCacheSettings implements ICacheSettingsPrivacyListener {
         @Override
         public void onUpdate() {
-
             updateViewBottomSheet();
-
-            if (refListener == null || refListener.get() == null) return;
-            int type = cacheSettingsPrivacy.getPrivacyPhotos();
-
-            refListener.get().setStatusBarColor(type);
         }
     }
 }

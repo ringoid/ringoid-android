@@ -7,9 +7,7 @@ public interface IPresenterPagesContainerListener {
 
     void setPageSelected(int num);
 
-    void setBottomSheetDrawables(int profile, int likes, int messages, int explore);
-
-    void setStatusBarColor(int type);
+    void setBottomSheetDrawables(int likes, int messages, int explore);
 
     void showAnimationLike();
 
