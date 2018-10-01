@@ -39,17 +39,26 @@
         android:layout_weight="2" />
 
     <TextView
+        android:id="@+id/tvTerms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/message_terms"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+
+    <TextView
         android:id="@+id/tvLoginPhoneVerify"
         style="@style/buttonBase.wide.Green"
         android:text="@string/button_login_phone" />
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/pbPhoneVerify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
-        android:indeterminate="true" />
+        android:indeterminate="true"
+        android:visibility="gone" />
 
 </LinearLayout>

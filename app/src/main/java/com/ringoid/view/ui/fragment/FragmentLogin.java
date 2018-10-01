@@ -18,8 +18,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -42,9 +40,9 @@ public class FragmentLogin extends FragmentBase
         implements View.OnClickListener, View.OnLongClickListener {
 
     private static final String ARG_PROFILE_UPDATE = "arg_profile_update";
-    private static final int INDEX_PROFILE_UPDATE = 3;
-    private static final int INDEX_PHONE_INPUT = 1;
-    private static final int INDEX_CODE_INPUT = 2;
+    private static final int INDEX_PHONE_INPUT = 0;
+    private static final int INDEX_CODE_INPUT = 1;
+    private static final int INDEX_PROFILE_UPDATE = 2;
 
     @Inject
     IPresenterRegister presenterRegister;
@@ -54,7 +52,6 @@ public class FragmentLogin extends FragmentBase
 
     private ViewFlipper vfLogin;
     private EditText etPhone, etCodeSMS;
-    private CheckBox cbAge, cbTerms;
     private ListenerPresenter listenerPresenter;
 
     private ViewPhoneInput vpiLogin;
@@ -94,11 +91,9 @@ public class FragmentLogin extends FragmentBase
     private void initViews(View view) {
         vContainerSMSCode = view.findViewById(R.id.vContainerSMSCode);
         vfLogin = view.findViewById(R.id.vfLogin);
-        cbTerms = view.findViewById(R.id.cbTerms);
         etPhone = view.findViewById(R.id.etTelNum);
         etPhoneCode = view.findViewById(R.id.etTelCode);
         etCodeSMS = view.findViewById(R.id.etCodeSMS);
-        cbAge = view.findViewById(R.id.cbAge);
         vpiLogin = view.findViewById(R.id.vpiLogin);
         etYearBirth = view.findViewById(R.id.etYearBirth);
         tvSexFemale = view.findViewById(R.id.tvSexFemale);
@@ -115,7 +110,6 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.tvSexFemale).setOnClickListener(this);
         view.findViewById(R.id.tvSexMale).setOnClickListener(this);
         view.findViewById(R.id.tvCodeSMSConfirm).setOnClickListener(this);
-        view.findViewById(R.id.tvLoginTermsAgreement).setOnClickListener(this);
         view.findViewById(R.id.tvLoginPhoneVerify).setOnClickListener(this);
         view.findViewById(R.id.ivPasteSMS).setOnClickListener(this);
         view.findViewById(R.id.tvCodeSMSResend).setOnClickListener(this);
@@ -129,9 +123,6 @@ public class FragmentLogin extends FragmentBase
         etCodeSMS.addTextChangedListener(new SMSTextChangedListener());
         etYearBirth.addTextChangedListener(new DateTextChangedListener());
 
-        cbTerms.setOnCheckedChangeListener(new ListenerCheckedChangeTerms());
-        cbAge.setOnCheckedChangeListener(new ListenerCheckedChangeAge());
-
         if (getArguments() != null && getArguments().getBoolean(ARG_PROFILE_UPDATE, false)) {
             setPage(INDEX_PROFILE_UPDATE);
         }
@@ -144,8 +135,7 @@ public class FragmentLogin extends FragmentBase
 
     @Override
     public boolean onBackPressed() {
-        if (!(vfLogin.getCurrentView().getId() == R.id.llLoginTerms
-                || vfLogin.getCurrentView().getId() == R.id.llLoginInfo)) {
+        if (!(vfLogin.getCurrentView().getId() == R.id.llLoginInfo)) {
             showPrev();
             return true;
         }
@@ -154,10 +144,6 @@ public class FragmentLogin extends FragmentBase
 
     @Override
     public void onClick(View view) {
-
-        if (view.getId() == R.id.tvLoginTermsAgreement) {
-            presenterRegister.onClickLoginTermsAgreement(cbTerms.isChecked(), cbAge.isChecked());
-        }
 
         if (view.getId() == R.id.tvLoginPhoneVerify) {
             if (TextUtils.isEmpty(vpiLogin.getPhone()) || TextUtils.isEmpty(etPhoneCode.getText()))
@@ -215,8 +201,6 @@ public class FragmentLogin extends FragmentBase
     }
 
     private void checkKeyboard() {
-        if (vfLogin.getCurrentView().getId() == R.id.llLoginTerms)
-            hideKeyboard();
 
         if (vfLogin.getCurrentView().getId() == R.id.llLoginPhone)
             showKeyboard(etPhone);
@@ -412,20 +396,6 @@ public class FragmentLogin extends FragmentBase
             vContainerSMSCode.setBackgroundResource(drawableRes);
             etCodeSMS.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
             etCodeSMS.setTextColor(color);
-        }
-    }
-
-    private class ListenerCheckedChangeTerms implements CompoundButton.OnCheckedChangeListener {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            presenterRegister.setCheckedTerms(isChecked);
-        }
-    }
-
-    private class ListenerCheckedChangeAge implements CompoundButton.OnCheckedChangeListener {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            presenterRegister.setCheckedAge(isChecked);
         }
     }
 

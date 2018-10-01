@@ -8,8 +8,6 @@ public interface ICacheRegister {
 
     void setSexMale();
 
-    boolean isDateBirthSelected();
-
     int getYearBirth();
 
     boolean setDateBirth(int year);
@@ -20,9 +18,9 @@ public interface ICacheRegister {
 
     void setPhoneValid(boolean isValid);
 
-    void setDateTerms(boolean isChecked);
+    void setDateTerms();
 
-    void setDateAge(boolean isChecked);
+    void setDateAge();
 
     long getDateTerms();
 

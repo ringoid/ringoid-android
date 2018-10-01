@@ -3,7 +3,6 @@
     <dimen name="indicator_padding_horizontal">4dp</dimen>
 
     <dimen name="dot_photo_list_margin">4dp</dimen>
-    <dimen name="toolbar_height">56dp</dimen>
     <dimen name="divider">4dp</dimen>
     <dimen name="animation_y_delta">32dp</dimen>
     <dimen name="animation_x_delta">8dp</dimen>

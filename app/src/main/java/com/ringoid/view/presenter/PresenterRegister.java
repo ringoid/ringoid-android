@@ -90,22 +90,17 @@ public class PresenterRegister implements IPresenterRegister {
     }
 
     @Override
-    public void onClickLoginTermsAgreement(boolean isAgreementChecked, boolean ageChecked) {
-        if (!isAgreementChecked || !ageChecked)
-            return;
-
-        loginGoNext();
-    }
-
-    @Override
     public void onClickLoginPhoneVerify(String code, String phone, boolean isValid) {
         if (TextUtils.isEmpty(phone))
             return;
 
-        if (cacheUser.isPhoneEqual(code, phone) &&helperTimer.isTicking()) {
+        if (cacheUser.isPhoneEqual(code, phone) && helperTimer.isTicking()) {
             loginGoCodeInput();
             return;
         }
+
+        cacheRegister.setDateTerms();
+        cacheRegister.setDateAge();
 
         helperTimer.cancel();
         cacheUser.setPhone(code, phone);
@@ -171,16 +166,6 @@ public class PresenterRegister implements IPresenterRegister {
         if (cacheRegister.getSex() != SEX.UNDEFINED.getValue())
             refListener.get().setGenderSelected(cacheRegister.getSex() == SEX.FEMALE.getValue() ? SEX.FEMALE : SEX.MALE);
         refListener.get().showDateBirth(cacheRegister.getYearBirth());
-    }
-
-    @Override
-    public void setCheckedTerms(boolean isChecked) {
-        cacheRegister.setDateTerms(isChecked);
-    }
-
-    @Override
-    public void setCheckedAge(boolean isChecked) {
-        cacheRegister.setDateAge(isChecked);
     }
 
     private void showDateBirth(int year) {

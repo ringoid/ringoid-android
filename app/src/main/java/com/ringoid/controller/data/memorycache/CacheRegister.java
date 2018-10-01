@@ -27,11 +27,6 @@ public class CacheRegister implements ICacheRegister {
     }
 
     @Override
-    public boolean isDateBirthSelected() {
-        return yearOfBirth != 0;
-    }
-
-    @Override
     public int getYearBirth() {
         return yearOfBirth;
     }
@@ -59,8 +54,8 @@ public class CacheRegister implements ICacheRegister {
     }
 
     @Override
-    public void setDateTerms(boolean isChecked) {
-        dateTerms = isChecked ? System.currentTimeMillis() : 0;
+    public void setDateTerms() {
+        dateTerms = System.currentTimeMillis();
     }
 
     @Override
@@ -69,8 +64,8 @@ public class CacheRegister implements ICacheRegister {
     }
 
     @Override
-    public void setDateAge(boolean isChecked) {
-        dateAge = isChecked ? System.currentTimeMillis() : 0;
+    public void setDateAge() {
+        dateAge = System.currentTimeMillis();
     }
 
     @Override
