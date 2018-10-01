@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.BuildConfig;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.view.INavigator;
@@ -97,6 +98,13 @@ public class FragmentSettings extends FragmentBase
 
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
         tvSubtitle.setText(R.string.settings_subtitle);
+
+        if (BuildConfig.DEBUG) {
+            View vDebug = view.findViewById(R.id.tvDebug);
+            vDebug.setVisibility(View.VISIBLE);
+            vDebug.setOnClickListener(this);
+        }
+
     }
 
     @Override
@@ -130,6 +138,11 @@ public class FragmentSettings extends FragmentBase
 
         if (v.getId() == R.id.tvAccountDelete)
             showDialogAccountDelete();
+
+        if (v.getId() == R.id.tvDebug) {
+            if (BuildConfig.DEBUG)
+                navigator.navigateScreenDebug();
+        }
     }
 
     private void showDialogPrivacyLikes() {

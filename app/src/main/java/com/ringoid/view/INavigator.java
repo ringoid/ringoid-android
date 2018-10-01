@@ -48,4 +48,6 @@ public interface INavigator {
     void statusbarHide();
 
     void statusbarShowResizeable();
+
+    void navigateScreenDebug();
 }

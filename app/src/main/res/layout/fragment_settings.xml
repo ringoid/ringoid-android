@@ -21,6 +21,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/tvDebug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="56dp"
+                android:paddingTop="16dp"
+                android:text="DEBUG menu"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:visibility="gone" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"

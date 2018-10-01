@@ -20,6 +20,7 @@ import com.ringoid.view.ui.fragment.FragmentDataProtection;
 import com.ringoid.view.ui.fragment.FragmentLogin;
 import com.ringoid.view.ui.fragment.FragmentPages;
 import com.ringoid.view.ui.fragment.FragmentPhotoCrop;
+import com.ringoid.view.ui.fragment.FragmentScreenDebug;
 import com.ringoid.view.ui.fragment.FragmentSettings;
 import com.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 import com.ringoid.view.ui.fragment.FragmentSettingsPush;
@@ -179,6 +180,17 @@ public class Navigator implements INavigator {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
 
         refActivity.get().getWindow().getDecorView().setSystemUiVisibility(0);
+    }
+
+    @Override
+    public void navigateScreenDebug() {
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        statusbarShowResizeable();
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, new FragmentScreenDebug(), CURRENT_FRAGMENT_PAGE)
+                .commit();
     }
 
 

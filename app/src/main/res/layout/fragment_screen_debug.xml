@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="DEBUG menu"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+
+    <TextView
+        android:text="Screenshots state: "
+        style="@style/settings_menu_item"/>
+
+    <TextView
+        android:text="request response not 200"
+        style="@style/settings_menu_item"/>
+
+    <TextView
+        android:text="request response invalid token"
+        style="@style/settings_menu_item"/>
+
+    <TextView
+        android:text="request response timeout"
+        style="@style/settings_menu_item"/>
+
+</LinearLayout>
