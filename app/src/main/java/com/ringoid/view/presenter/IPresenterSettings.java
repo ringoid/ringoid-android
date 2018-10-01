@@ -14,8 +14,6 @@ public interface IPresenterSettings {
 
     void onClickPrivacyPhotosNoone();
 
-    void onClickPrivacyPhotos();
-
     void onClickPrivacyBlacklist();
 
     void onClickPrivacyDistance();

@@ -26,10 +26,6 @@
     <string name="dialog_cancel">cancel</string>
     <string name="settings_rate">Rate in Google Play</string>
     <string name="push">Push Notifications</string>
-    <string name="settings_privacy_photos_message">Who can see your photos?</string>
-    <string name="settings_privacy_photos_all">Ringoid users of the opposite sex</string>
-    <string name="settings_privacy_photos_liked">Only users whom photos I liked</string>
-    <string name="settings_privacy_photos_noone">Only me</string>
     <string name="settings_privacy_phone_blacklist">Blacklist</string>
     <string name="settings_privacy_location_distance">Safety distance</string>
     <string name="settings_privacy_distance_message">Don\'t show my photos to Ringoid users, and don\'t allow them to like or message me if they are closer than</string>
@@ -88,7 +84,6 @@
     <string name="subtitle_terms">Terms of Service</string>
     <string name="subtitle_licenses">Licenses</string>
     <string name="subtitle_privacy">Privacy Policy</string>
-    <string name="dialog_privacy_photos_title">Who can see your photos?</string>
     <string name="settings_data_protection">Legal</string>
     <string name="hint_dots_4">\u2022\u2022\u2022\u2022</string>
     <string name="customer_id">Customer ID</string>
@@ -121,12 +116,6 @@
     <string name="settings">settings</string>
     <string name="error_network">Oops! Please check your Internet connection and try again.</string>
     <string name="message_error_unkown_format">Oops! Please check your Internet connection and try again. %s</string>
-    <string name="settings_privacy_likes">Who can see that you liked them?</string>
-    <string name="privacy_likes_all">Ringoid users of the opposite sex whom I liked</string>
-    <string name="privacy_likes_matches">Only users who liked me and I liked them</string>
-    <string name="dialog_privacy_likes_title">Who can see that you liked them?</string>
-    <string name="settings_privacy_likes_matches">Only users who liked me and I liked them</string>
-    <string name="settings_privacy_likes_liked">Ringoid users of the opposite sex whom I liked</string>
     <string name="dialog_remove_confirm">confirm</string>
     <string name="format_dialog_remove_confirm" formatted="false">Remove +%s %s from the blacklist?</string>
     <string name="error_photo_upload">Upload failed</string>

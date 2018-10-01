@@ -64,16 +64,6 @@ public class PresenterSettings implements IPresenterSettings {
                 : R.string.distance_4);
     }
 
-    private void notifyListenersPrivacyPhotos() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().setPrivacyPhotos(cacheSettingsPrivacy.getPrivacyPhotos());
-    }
-
-    private void notifyListenersPrivacyLikes() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().setPrivacyLikes(cacheSettingsPrivacy.getPrivacyLikes());
-    }
-
     @Override
     public void onClickPrivacyPhotosAll() {
         cacheSettingsPrivacy.setPrivacyPhotos(0);
@@ -90,12 +80,6 @@ public class PresenterSettings implements IPresenterSettings {
     public void onClickPrivacyPhotosNoone() {
         cacheSettingsPrivacy.setPrivacyPhotos(2);
         settingsHelper.requestSave();
-    }
-
-    @Override
-    public void onClickPrivacyPhotos() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().showDialogPrivacyPhotos(cacheSettingsPrivacy.getPrivacyPhotos());
     }
 
     @Override
@@ -124,8 +108,6 @@ public class PresenterSettings implements IPresenterSettings {
         public void onUpdate() {
             notifyListenersPrivacyBlacklistNum();
             notifyListenersPrivacyDistance();
-            notifyListenersPrivacyPhotos();
-            notifyListenersPrivacyLikes();
         }
     }
 
