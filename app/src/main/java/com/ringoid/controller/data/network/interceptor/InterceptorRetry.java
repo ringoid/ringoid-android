@@ -4,11 +4,14 @@ package com.ringoid.controller.data.network.interceptor;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.network.interceptor.listener.IInterceptorRetryListener;
 import com.ringoid.controller.data.network.response.ResponseBase;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+
+import javax.inject.Inject;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -17,11 +20,13 @@ import okhttp3.ResponseBody;
 
 public class InterceptorRetry implements Interceptor {
 
-    private Gson gson;
+    @Inject
+    Gson gson;
+
     private WeakReference<IInterceptorRetryListener> refListener;
 
-    public InterceptorRetry(Gson gson) {
-        this.gson = gson;
+    public InterceptorRetry() {
+        ApplicationRingoid.getComponent().inject(this);
     }
 
     @Override

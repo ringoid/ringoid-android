@@ -4,9 +4,9 @@ package com.ringoid.controller.data.repository;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheToken;
-import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.request.RequestParamSettingsUpdate;
 import com.ringoid.controller.data.network.response.ResponseBase;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import javax.inject.Inject;
 
@@ -20,7 +20,7 @@ public class RepositorySettingsSave implements IRepositorySettingsSave {
     ICacheSettingsPrivacy cacheSettingsPrivacy;
 
     @Inject
-    IApiRingoid apiRingoid;
+    ApiRingoidProvider apiRingoid;
 
     @Inject
     ICacheToken cacheToken;
@@ -37,7 +37,7 @@ public class RepositorySettingsSave implements IRepositorySettingsSave {
     public void request() {
         if (request != null) request.cancel();
 
-        request = apiRingoid.settingsUpdate(new RequestParamSettingsUpdate(
+        request = apiRingoid.getAPI().settingsUpdate(new RequestParamSettingsUpdate(
                 cacheToken.getToken(),
                 cacheSettingsPrivacy.getWhoCanSeePhotosString(),
                 cacheSettingsPrivacy.getDistance(),

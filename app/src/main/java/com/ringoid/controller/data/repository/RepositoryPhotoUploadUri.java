@@ -12,6 +12,7 @@ import com.ringoid.controller.data.network.request.RequestPhotoUploadUri;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotoUri;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import javax.inject.Inject;
 
@@ -24,7 +25,7 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
     private static final String EXT_JPG = "jpg";
 
     @Inject
-    IApiRingoid apiRingoid;
+    ApiRingoidProvider apiRingoid;
 
     @Inject
     ICacheToken cacheToken;
@@ -57,7 +58,7 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
         if (request != null)
             request.cancel();
 
-        request = apiRingoid.profilePhotoUri(new RequestPhotoUploadUri(cacheToken.getToken(), cachePhotoUpload.getClientPhotoId(), EXT_JPG));
+        request = apiRingoid.getAPI().profilePhotoUri(new RequestPhotoUploadUri(cacheToken.getToken(), cachePhotoUpload.getClientPhotoId(), EXT_JPG));
         request.enqueue(requestUriListener);
 
     }

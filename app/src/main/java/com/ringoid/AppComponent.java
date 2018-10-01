@@ -90,10 +90,13 @@ import com.ringoid.view.ui.fragment.FragmentPages;
 import com.ringoid.view.ui.fragment.FragmentPhotoCrop;
 import com.ringoid.view.ui.fragment.FragmentProfile;
 import com.ringoid.view.ui.fragment.FragmentSettings;
+import com.ringoid.view.ui.fragment.FragmentSettingsDebug;
 import com.ringoid.view.ui.fragment.FragmentSettingsPrivacyDistance;
 import com.ringoid.view.ui.fragment.FragmentSettingsPush;
 import com.ringoid.view.ui.fragment.FragmentWebView;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 import com.ringoid.view.ui.util.HelperAnimation;
+import com.ringoid.view.ui.util.OkHttpProvider;
 import com.ringoid.view.ui.util.ScreenHelper;
 
 import javax.inject.Singleton;
@@ -105,6 +108,12 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(ApiRingoidProvider param);
+
+    void inject(OkHttpProvider param);
+
+    void inject(FragmentSettingsDebug param);
 
     void inject(RepositoryErrorUnknown param);
 

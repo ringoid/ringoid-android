@@ -6,6 +6,7 @@ import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.request.RequestParamProfileImageRemove;
 import com.ringoid.controller.data.network.response.ResponseBase;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import javax.inject.Inject;
 
@@ -16,7 +17,7 @@ import retrofit2.Response;
 public class RepositoryProfileImageRemove implements IRepositoryProfileImageRemove {
 
     @Inject
-    IApiRingoid apiRingoid;
+    ApiRingoidProvider apiRingoid;
 
     @Inject
     ICacheToken cacheToken;
@@ -32,7 +33,7 @@ public class RepositoryProfileImageRemove implements IRepositoryProfileImageRemo
     @Override
     public void request(String imageId) {
         if (request != null) request.cancel();
-        request = apiRingoid.profileImageRemove(new RequestParamProfileImageRemove(cacheToken.getToken(), imageId));
+        request = apiRingoid.getAPI().profileImageRemove(new RequestParamProfileImageRemove(cacheToken.getToken(), imageId));
         request.enqueue(listenerRequest);
     }
 

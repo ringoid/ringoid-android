@@ -11,6 +11,7 @@ import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.repository.callback.IRepositoryPhotoUploadListener;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import java.lang.ref.WeakReference;
 
@@ -28,7 +29,7 @@ public class RepositoryPhotoUpload implements IRepositoryPhotoUpload {
     ICachePhotoUpload cachePhotoUpload;
 
     @Inject
-    IApiRingoid apiRingoid;
+    ApiRingoidProvider apiRingoid;
 
     @Inject
     IRepositoryProfilePhotos repositoryProfilePhotos;
@@ -62,7 +63,7 @@ public class RepositoryPhotoUpload implements IRepositoryPhotoUpload {
 
         RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), cachePhotoUpload.getFile());
 
-        request = apiRingoid.profilePhotoUpload(cachePhotoUpload.getUploadUri(), reqFile);
+        request = apiRingoid.getAPI().profilePhotoUpload(cachePhotoUpload.getUploadUri(), reqFile);
         request.enqueue(listenerRequest);
     }
 

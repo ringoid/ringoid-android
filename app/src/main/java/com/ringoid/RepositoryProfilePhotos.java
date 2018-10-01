@@ -3,10 +3,10 @@ package com.ringoid;
 
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheToken;
-import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotos;
 import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
 import com.ringoid.controller.data.repository.callback.IRepositoryProfilePhotosListener;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 import com.ringoid.view.ui.util.IScreenHelper;
 
 import java.lang.ref.WeakReference;
@@ -26,7 +26,7 @@ class RepositoryProfilePhotos implements IRepositoryProfilePhotos {
     ICacheToken cacheToken;
 
     @Inject
-    IApiRingoid apiRingoid;
+    ApiRingoidProvider apiRingoid;
 
     @Inject
     IScreenHelper screenHelper;
@@ -44,7 +44,7 @@ class RepositoryProfilePhotos implements IRepositoryProfilePhotos {
     public void request() {
         if (request != null) request.cancel();
 
-        request = apiRingoid.profilePhotosGet(cacheToken.getToken(), screenHelper.getImageRatioString());
+        request = apiRingoid.getAPI().profilePhotosGet(cacheToken.getToken(), screenHelper.getImageRatioString());
 
         request.enqueue(requestListener);
     }

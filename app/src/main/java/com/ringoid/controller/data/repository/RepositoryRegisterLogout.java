@@ -6,6 +6,7 @@ import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.request.RequestParamRegisterLogout;
 import com.ringoid.controller.data.network.response.ResponseBase;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import javax.inject.Inject;
 
@@ -16,7 +17,7 @@ import retrofit2.Response;
 public class RepositoryRegisterLogout implements IRepositoryRegisterLogout {
 
     @Inject
-    IApiRingoid apiRingoid;
+    ApiRingoidProvider apiRingoid;
 
     @Inject
     ICacheToken cacheToken;
@@ -34,7 +35,7 @@ public class RepositoryRegisterLogout implements IRepositoryRegisterLogout {
 
         if (request != null) request.cancel();
 
-        request = apiRingoid.registerLogout(new RequestParamRegisterLogout(
+        request = apiRingoid.getAPI().registerLogout(new RequestParamRegisterLogout(
                 cacheToken.getToken()));
         request.enqueue(requestListener);
     }

@@ -3,6 +3,7 @@ package com.ringoid.controller.data.repository;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.repository.callback.IRepositoryErrorUnknownListener;
+import com.ringoid.view.ui.util.OkHttpProvider;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -11,14 +12,13 @@ import javax.inject.Inject;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class RepositoryErrorUnknown implements IRepositoryErrorUnknown {
 
     @Inject
-    OkHttpClient okHttpClient;
+    OkHttpProvider okHttpClient;
 
     private ListenerRequest listenerRequest;
     private WeakReference<IRepositoryErrorUnknownListener> refListener;
@@ -30,13 +30,11 @@ public class RepositoryErrorUnknown implements IRepositoryErrorUnknown {
 
     @Override
     public void request() {
-        OkHttpClient client = new OkHttpClient();
-
         Request request = new Request.Builder()
                 .url("http://ringoid.com/status.html")
                 .build();
 
-        client.newCall(request).enqueue(listenerRequest);
+        okHttpClient.getClient().newCall(request).enqueue(listenerRequest);
     }
 
     @Override

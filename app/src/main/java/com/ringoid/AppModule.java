@@ -37,7 +37,6 @@ import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
-import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
 import com.ringoid.controller.data.repository.IRepositoryErrorUnknown;
 import com.ringoid.controller.data.repository.IRepositoryFeedExplore;
@@ -138,28 +137,27 @@ import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.presenter.util.ISettingsHelper;
 import com.ringoid.view.presenter.util.LogoutHelper;
 import com.ringoid.view.presenter.util.SettingsHelper;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 import com.ringoid.view.ui.util.HelperAnimation;
+import com.ringoid.view.ui.util.HelperScreenshots;
 import com.ringoid.view.ui.util.HelperTimer;
 import com.ringoid.view.ui.util.IHelperAnimation;
+import com.ringoid.view.ui.util.IHelperScreenshots;
 import com.ringoid.view.ui.util.IHelperTimer;
 import com.ringoid.view.ui.util.IScreenHelper;
 import com.ringoid.view.ui.util.IStatusBarViewHelper;
 import com.ringoid.view.ui.util.KeyboardUtils;
+import com.ringoid.view.ui.util.OkHttpProvider;
 import com.ringoid.view.ui.util.ScreenHelper;
 import com.ringoid.view.ui.util.StatusBarViewHelper;
 
 import java.lang.ref.WeakReference;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 class AppModule {
@@ -180,34 +178,19 @@ class AppModule {
     @Provides
     @Singleton
     InterceptorRetry getInterceptorRequest() {
-        return new InterceptorRetry(getGSON());
+        return new InterceptorRetry();
     }
 
     @Provides
     @Singleton
-    OkHttpClient getOkHttp() {
-
-        Interceptor interceptorRetry = getInterceptorRequest();
-
-        OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                .connectTimeout(1, TimeUnit.MINUTES)
-                .readTimeout(1, TimeUnit.MINUTES)
-                .addInterceptor(interceptorRetry);
-
-        OkHttpClient client = builder.build();
-        return client;
+    OkHttpProvider getOkHttp() {
+        return new OkHttpProvider();
     }
 
     @Provides
     @Singleton
-    public IApiRingoid getApi() {
-
-        return new Retrofit.Builder()
-                .baseUrl(BuildConfig.API_URL)
-                .client(getOkHttp())
-                .addConverterFactory(GsonConverterFactory.create(getGSON()))
-                .build()
-                .create(IApiRingoid.class);
+    public ApiRingoidProvider getApi() {
+        return new ApiRingoidProvider();
     }
 
     @Provides
@@ -232,6 +215,12 @@ class AppModule {
     @Singleton
     IHelperTimer getHelperTimer() {
         return new HelperTimer();
+    }
+
+    @Provides
+    @Singleton
+    IHelperScreenshots getHelperScreenshots() {
+        return new HelperScreenshots();
     }
 
     @Provides

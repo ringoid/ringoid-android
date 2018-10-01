@@ -6,6 +6,7 @@ import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.response.ResponseSettings;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import javax.inject.Inject;
 
@@ -22,7 +23,7 @@ public class RepositorySettingsGet implements IRepositorySettingsGet {
     ICacheToken cacheToken;
 
     @Inject
-    IApiRingoid apiRingoid;
+    ApiRingoidProvider apiRingoid;
 
 
     private Call<ResponseSettings> request;
@@ -38,7 +39,7 @@ public class RepositorySettingsGet implements IRepositorySettingsGet {
     public void request() {
         if (request != null) request.cancel();
 
-        request = apiRingoid.settingsGet(cacheToken.getToken());
+        request = apiRingoid.getAPI().settingsGet(cacheToken.getToken());
 
         request.enqueue(requestListener);
     }

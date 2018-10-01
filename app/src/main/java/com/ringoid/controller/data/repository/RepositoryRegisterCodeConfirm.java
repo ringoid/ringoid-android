@@ -9,6 +9,7 @@ import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.request.RequestParamRegisterCodeConfirm;
 import com.ringoid.controller.data.network.response.ResponseRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterCodeConfirmListener;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import java.lang.ref.WeakReference;
 
@@ -27,7 +28,7 @@ public class RepositoryRegisterCodeConfirm implements IRepositoryRegisterCodeCon
     ICacheUser cacheUser;
 
     @Inject
-    IApiRingoid apiRingoid;
+    ApiRingoidProvider apiRingoid;
 
     @Inject
     ICacheRegister cacheRegister;
@@ -50,7 +51,7 @@ public class RepositoryRegisterCodeConfirm implements IRepositoryRegisterCodeCon
     public void request(String code) {
         if (request != null && !request.isExecuted()) return;
 
-        request = apiRingoid.registerCodeConfirm(new RequestParamRegisterCodeConfirm(
+        request = apiRingoid.getAPI().registerCodeConfirm(new RequestParamRegisterCodeConfirm(
                 cacheRegister.getSessionId(),
                 code));
         request.enqueue(requestListener);

@@ -10,6 +10,7 @@ import com.ringoid.controller.data.network.request.RequestParamRegisterUserDetai
 import com.ringoid.controller.data.network.response.ResponseBase;
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterUserDetailsListener;
 import com.ringoid.model.SEX;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import java.lang.ref.WeakReference;
 
@@ -22,7 +23,7 @@ import retrofit2.Response;
 public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDetails {
 
     @Inject
-    IApiRingoid apiRingoid;
+    ApiRingoidProvider apiRingoid;
 
     @Inject
     ICacheToken cacheToken;
@@ -52,7 +53,7 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
 
         if (request != null) request.cancel();
 
-        request = apiRingoid.registerUserDetails(new RequestParamRegisterUserDetails(
+        request = apiRingoid.getAPI().registerUserDetails(new RequestParamRegisterUserDetails(
                 cacheToken.getToken(),
                 cacheRegister.getYearBirth(),
                 cacheRegister.getSex() == SEX.MALE.getValue() ? "male" : "female"));

@@ -9,6 +9,7 @@ import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.request.RequestParamRegisterPhone;
 import com.ringoid.controller.data.network.response.ResponseRegisterPhone;
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterPhoneListener;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import java.lang.ref.WeakReference;
 
@@ -27,7 +28,7 @@ public class RepositoryRegisterPhone implements IRepositoryRegisterPhone {
     ICacheUser cacheUser;
 
     @Inject
-    IApiRingoid apiRingoid;
+    ApiRingoidProvider apiRingoid;
 
     @Inject
     ICacheLocale cacheLocale;
@@ -46,7 +47,7 @@ public class RepositoryRegisterPhone implements IRepositoryRegisterPhone {
     public void request() {
         if (request != null) request.cancel();
 
-        request = apiRingoid.registerPhone(new RequestParamRegisterPhone(
+        request = apiRingoid.getAPI().registerPhone(new RequestParamRegisterPhone(
                 cacheUser.getPhoneCode(),
                 cacheUser.getPhone().replaceAll("[^0-9]", ""),
                 cacheRegister.getDateTerms(),
