@@ -4,9 +4,14 @@ package com.ringoid.view.ui.util;
 import android.view.Window;
 
 public interface IHelperScreenshots {
-    void init(Window window);
 
-    void changeStateScreenshots(Window window);
+    void enableScreenshots();
 
-    boolean isScreenshotsSecured(Window window);
+    void disableScreenshots();
+
+    void changeStateScreenshots();
+
+    boolean isScreenshotsSecured();
+
+    void set(Window window);
 }

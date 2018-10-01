@@ -4,25 +4,46 @@ package com.ringoid.view.ui.util;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.ringoid.BuildConfig;
+import java.lang.ref.WeakReference;
 
 public class HelperScreenshots implements IHelperScreenshots {
 
+    private boolean debugSessionScreenshotsEnabled;
+    private WeakReference<Window> refWindow;
+
+
     public HelperScreenshots() {
+        debugSessionScreenshotsEnabled = false;
     }
 
     @Override
-    public void init(Window window) {
-        window.setFlags(BuildConfig.DEBUG ? 0 : WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+    public void enableScreenshots() {
+        if (refWindow == null || refWindow.get() == null) return;
+        refWindow.get().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
     }
 
     @Override
-    public void changeStateScreenshots(Window window) {
-        window.setFlags(isScreenshotsSecured(window) ? 0 : WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+    public void disableScreenshots() {
+        if (debugSessionScreenshotsEnabled) return;
+        if (refWindow == null || refWindow.get() == null) return;
+        refWindow.get().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
     }
 
     @Override
-    public boolean isScreenshotsSecured(Window window) {
-        return (window.getAttributes().flags & WindowManager.LayoutParams.FLAG_SECURE) != 0;
+    public void changeStateScreenshots() {
+        if (refWindow == null || refWindow.get() == null) return;
+        refWindow.get().setFlags(isScreenshotsSecured() ? 0 : WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        debugSessionScreenshotsEnabled = isScreenshotsSecured();
+    }
+
+    @Override
+    public boolean isScreenshotsSecured() {
+        if (refWindow == null || refWindow.get() == null) return false;
+        return (refWindow.get().getAttributes().flags & WindowManager.LayoutParams.FLAG_SECURE) != 0;
+    }
+
+    @Override
+    public void set(Window window) {
+        this.refWindow = new WeakReference<>(window);
     }
 }

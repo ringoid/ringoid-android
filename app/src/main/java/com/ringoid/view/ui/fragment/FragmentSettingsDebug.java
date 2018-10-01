@@ -45,13 +45,13 @@ public class FragmentSettingsDebug extends FragmentBase implements View.OnClickL
     }
 
     private void updateStateScreenshots() {
-        tvScreenshots.setText(helperScreenshots.isScreenshotsSecured(getActivity().getWindow()) ? "Screenshots state:disabled" : "Screenshots state: enabled");
+        tvScreenshots.setText(helperScreenshots.isScreenshotsSecured() ? "Screenshots state:disabled" : "Screenshots state: enabled");
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tvScreenshots) {
-            helperScreenshots.changeStateScreenshots(getActivity().getWindow());
+            helperScreenshots.changeStateScreenshots();
             updateStateScreenshots();
         }
     }

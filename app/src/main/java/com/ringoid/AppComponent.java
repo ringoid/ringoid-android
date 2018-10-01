@@ -26,6 +26,7 @@ import com.ringoid.controller.data.repository.RepositoryRegisterPhone;
 import com.ringoid.controller.data.repository.RepositoryRegisterUserDetails;
 import com.ringoid.controller.data.repository.RepositorySettingsGet;
 import com.ringoid.controller.data.repository.RepositorySettingsSave;
+import com.ringoid.view.Navigator;
 import com.ringoid.view.NavigatorPages;
 import com.ringoid.view.ViewDialogs;
 import com.ringoid.view.ViewPopup;
@@ -108,6 +109,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(Navigator param);
 
     void inject(ApiRingoidProvider param);
 

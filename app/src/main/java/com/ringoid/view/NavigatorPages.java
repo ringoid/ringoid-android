@@ -10,6 +10,8 @@ import com.ringoid.view.ui.fragment.FragmentExplore;
 import com.ringoid.view.ui.fragment.FragmentLikes;
 import com.ringoid.view.ui.fragment.FragmentMessages;
 import com.ringoid.view.ui.fragment.FragmentProfile;
+import com.ringoid.view.ui.util.IHelperFullscreen;
+import com.ringoid.view.ui.util.IHelperScreenshots;
 
 import java.lang.ref.WeakReference;
 
@@ -21,6 +23,12 @@ public class NavigatorPages implements INavigatorPages {
 
     @Inject
     ICacheInterfaceState cacheInterfaceState;
+
+    @Inject
+    IHelperScreenshots helperScreenshots;
+
+    @Inject
+    IHelperFullscreen helperFullscreen;
 
     private WeakReference<FragmentManager> refFragmentManager;
     private int viewId;
@@ -37,6 +45,8 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateLikes() {
+        onPageShow(PAGE_ENUM.FEED_LIKES);
+
         cacheInterfaceState.setCurrentPage(1);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
@@ -45,8 +55,17 @@ public class NavigatorPages implements INavigatorPages {
                 .commit();
     }
 
+    private void onPageShow(PAGE_ENUM page) {
+        if (page == PAGE_ENUM.FEED_PROFILE) {
+            helperScreenshots.enableScreenshots();
+            helperFullscreen.statusbarShowFullscreen();
+        } else
+            helperScreenshots.disableScreenshots();
+    }
+
     @Override
     public void navigateProfile() {
+        onPageShow(PAGE_ENUM.FEED_PROFILE);
         cacheInterfaceState.setCurrentPage(0);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
@@ -57,6 +76,7 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateMessages() {
+        onPageShow(PAGE_ENUM.FEED_MESSAGES);
         cacheInterfaceState.setCurrentPage(2);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
@@ -67,6 +87,7 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateExplore() {
+        onPageShow(PAGE_ENUM.FEED_EXPLORE);
         cacheInterfaceState.setCurrentPage(3);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
@@ -114,6 +135,12 @@ public class NavigatorPages implements INavigatorPages {
 
         Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
         return fragment != null && fragment instanceof FragmentMessages;
+    }
+
+    @Override
+    public void updateCurrentPage() {
+        if (isPageProfile())
+            helperFullscreen.statusbarShowFullscreen();
     }
 
     private void clearPage() {

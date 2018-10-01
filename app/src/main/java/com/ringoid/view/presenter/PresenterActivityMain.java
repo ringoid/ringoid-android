@@ -15,6 +15,7 @@ import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.util.ILogoutHelper;
+import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperScreenshots;
 
 import javax.inject.Inject;
@@ -45,6 +46,9 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     @Inject
     IHelperScreenshots helperScreenshots;
 
+    @Inject
+    IHelperFullscreen helperFullscreen;
+
     private ListenerInterceptor listenerInterceptor;
 
     public PresenterActivityMain() {
@@ -57,7 +61,8 @@ public class PresenterActivityMain implements IPresenterActivityMain {
         navigator.set(activity, supportFragmentManager, viewId);
         viewDialogs.set(activity);
         viewPopup.setView(view);
-        helperScreenshots.init(activity.getWindow());
+        helperFullscreen.set(activity.getWindow());
+        helperScreenshots.set(activity.getWindow());
 
         navigate();
     }

@@ -10,6 +10,7 @@ import com.ringoid.view.ui.dialog.DialogErrorUnknown;
 import com.ringoid.view.ui.dialog.DialogLikeNoPhoto;
 import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
 import com.ringoid.view.ui.dialog.callback.IDialogLIkeNoPhotoListener;
+import com.ringoid.view.ui.util.IHelperFullscreen;
 
 import java.lang.ref.WeakReference;
 
@@ -19,6 +20,9 @@ public class ViewDialogs implements IViewDialogs {
 
     @Inject
     INavigator navigator;
+
+    @Inject
+    IHelperFullscreen helperFullscreen;
 
     private WeakReference<Context> refContext;
 
@@ -68,7 +72,7 @@ public class ViewDialogs implements IViewDialogs {
 
         if (refContext == null || refContext.get() == null) return;
 
-        navigator.statusbarShowFullscreen();
+        helperFullscreen.statusbarShowFullscreen();
         DialogChatCompose dialogChatCompose = new DialogChatCompose(refContext.get(), listener);
         dialogChatCompose.show();
         refDialogChatCompose = new WeakReference<>(dialogChatCompose);

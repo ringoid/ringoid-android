@@ -3,6 +3,7 @@ package com.ringoid.view.presenter;
 
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
@@ -19,6 +20,7 @@ import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.presenter.util.ISettingsHelper;
+import com.ringoid.view.ui.util.IHelperFullscreen;
 
 import java.lang.ref.WeakReference;
 
@@ -59,6 +61,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Inject
     WeakReference<Context> refContext;
 
+    @Inject
+    IHelperFullscreen helperFullscreen;
+
     private ListenerCacheSettings listenerCacheSettings;
     private ICacheInterfaceStateListener listenerCacheInterfaceState;
     private ListenerCacheScroll listenerCacheScroll;
@@ -82,8 +87,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     private void updateToolbar() {
         cacheScroll.resetCache();
 
-        if (navigatorPages.isPageProfile())
-            navigator.statusbarShowFullscreen();
+        navigatorPages.updateCurrentPage();
     }
 
     private void updateViewBottomSheet() {
@@ -123,9 +127,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Override
     public void onClickPageProfile() {
         cacheScroll.resetCache();
-
-        navigator.statusbarShowFullscreen();
-
         navigatorPages.navigateProfile();
     }
 
@@ -166,9 +167,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     private void checkStatubar(boolean isDown) {
         if (isDown)
-            navigator.statusbarHide();
+            helperFullscreen.statusbarHide();
         else
-            navigator.statusbarShowFullscreen();
+            helperFullscreen.statusbarShowFullscreen();
     }
 
     private class ListenerCacheScroll implements ICacheScrollListener {

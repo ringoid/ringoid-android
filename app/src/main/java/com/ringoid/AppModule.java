@@ -139,9 +139,11 @@ import com.ringoid.view.presenter.util.LogoutHelper;
 import com.ringoid.view.presenter.util.SettingsHelper;
 import com.ringoid.view.ui.util.ApiRingoidProvider;
 import com.ringoid.view.ui.util.HelperAnimation;
+import com.ringoid.view.ui.util.HelperFullscreen;
 import com.ringoid.view.ui.util.HelperScreenshots;
 import com.ringoid.view.ui.util.HelperTimer;
 import com.ringoid.view.ui.util.IHelperAnimation;
+import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperScreenshots;
 import com.ringoid.view.ui.util.IHelperTimer;
 import com.ringoid.view.ui.util.IScreenHelper;
@@ -221,6 +223,12 @@ class AppModule {
     @Singleton
     IHelperScreenshots getHelperScreenshots() {
         return new HelperScreenshots();
+    }
+
+    @Provides
+    @Singleton
+    IHelperFullscreen getHelperFullscreen() {
+        return new HelperFullscreen();
     }
 
     @Provides
