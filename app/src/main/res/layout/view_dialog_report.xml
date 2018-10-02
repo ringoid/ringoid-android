@@ -24,8 +24,7 @@
                 android:paddingEnd="20dp"
                 android:paddingStart="20dp"
                 android:text="@string/dialog_report_title"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                android:textColor="@color/gray" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -136,6 +135,7 @@
             android:paddingTop="12dp"
             android:text="@string/dialog_report_confirm"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
+            android:textColor="@color/colorAccent"
             android:textStyle="bold" />
 
     </LinearLayout>

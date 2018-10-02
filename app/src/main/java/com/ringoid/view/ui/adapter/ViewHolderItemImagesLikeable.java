@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterItemImageLikeable;
-import com.ringoid.view.ui.dialog.DialogHiddenMode;
 import com.ringoid.view.ui.dialog.callback.IDialogHiddenModeListener;
 import com.ringoid.view.ui.util.AnimationLike;
 import com.ringoid.view.ui.util.GlideApp;
@@ -32,8 +31,6 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
     private ListenerDialogHiddenMode listenerDialogHiddenMode;
     private AnimationLike animationLike;
     private View ivLikeAnimated;
-
-    private DialogHiddenMode dialogHiddenMode;
 
     ViewHolderItemImagesLikeable(ViewGroup container, int layoutRes) {
         super(container, layoutRes);
@@ -113,12 +110,6 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
 
         if (!presenterItemImageLikeable.isHiddenMode()) return true;
         if (!presenterItemImageLikeable.isDialogHiddenShow()) return false;
-
-        if (dialogHiddenMode != null) dialogHiddenMode.cancel();
-
-        dialogHiddenMode = new DialogHiddenMode(itemView.getContext(), listenerDialogHiddenMode);
-        dialogHiddenMode.show();
-
 
         return false;
     }

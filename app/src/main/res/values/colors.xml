@@ -7,12 +7,11 @@
 
     <color name="dot_active">#fff</color>
     <color name="dot_inactive">#33000000</color>
-    <color name="white95">#eeFFFFFF</color>
     <color name="gray">#525252</color>
     <color name="menu_bottom_selected">#2e3338</color>
     <color name="blue">#60a6e8</color>
     <color name="pink">#ff62ab</color>
-    <color name="divider">#e1e1e1</color>
+    <color name="divider">#494949</color>
     <color name="gray_20">#f7f7f7</color>
     <color name="gray_bg">#1f262c</color>
 

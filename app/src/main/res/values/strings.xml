@@ -66,10 +66,6 @@
     <string name="female">Female</string>
     <string name="settings_licenses">Licenses</string>
     <string name="hint_phone_code">Code</string>
-    <string name="message_dialog_show_again">Don\'t show this again</string>
-    <string name="dialog_hidden_mode_title">Only you can see your photos</string>
-    <string name="dialog_hidden_mode_message">Others can\'t see your photos, like or message you. It is almost like you deleted your account, although you can still see Who Liked You already and browse New Faces.\n\nYou can change who can see your photos in Privacy, and allow others to see your photos, like and message you.</string>
-    <string name="ignore">ignore</string>
     <string name="message_retry">Edit phone</string>
     <string name="message_phone_confirm_error">Error: cannot confirm phone number</string>
     <string name="push_likes_all">Every new like</string>
@@ -113,7 +109,6 @@
     <string name="about">About</string>
     <string name="dialog_about_title">Ringoid app for Android</string>
     <string name="dialog_about_message">Copyright © Ringoid Ltd, 2018.\n\nRINGOID LTD is registered in England with Company No. 09427326 and VAT Reg No: GB 208660511. \n\nRegistered Office: 97 Friars Mead, London, E14 3JY, England.\n\nRingoid is a pending registration trademark of Ringoid Ltd.\n\nRingoid Ltd is trading as Ringoid.\n\nRingoid is registered with the UK\'s Information Commissioner\'s Office with registration number ZA455969 and operates within compliance of the EU General Data Protection Regulation 2018.</string>
-    <string name="settings">settings</string>
     <string name="error_network">Oops! Please check your Internet connection and try again.</string>
     <string name="message_error_unkown_format">Oops! Please check your Internet connection and try again. %s</string>
     <string name="dialog_remove_confirm">confirm</string>

@@ -13,7 +13,6 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterProfile;
 import com.ringoid.view.presenter.callback.IPresenterAdapterProfileListener;
-import com.ringoid.view.ui.dialog.DialogHiddenMode;
 import com.ringoid.view.ui.dialog.DialogImageRemove;
 import com.ringoid.view.ui.dialog.callback.IDialogHiddenModeListener;
 import com.ringoid.view.ui.dialog.callback.IDialogImageRemoveListener;
@@ -27,8 +26,6 @@ public class AdapterProfile extends AdapterBase {
     IPresenterAdapterProfile presenterAdapterProfile;
 
     private ListenerPresenter listenerPresenter;
-
-    private DialogHiddenMode dialogHiddenMode;
 
     private ListenerDialogHidden listenerDialogHidden;
     private ListenerDialogImageRemove listenerDialogImageRemove;
@@ -123,24 +120,12 @@ public class AdapterProfile extends AdapterBase {
             if (v.getId() == R.id.tvLikes)
                 onClickLikes();
 
-            if (v == itemView)
-                if (presenterAdapterProfile.onClickItem(itemView.getContext(), getAdapterPosition())) {
-                    showDialogHidden();
-                }
-
             if (v.getId() == R.id.ivRemove) {
                 showDialogRemove(itemView.getContext(),
                         presenterAdapterProfile.getImageId(getAdapterPosition()),
                         presenterAdapterProfile.getLikesNum(getAdapterPosition()),
                         presenterAdapterProfile.isImageLast());
             }
-        }
-
-        private void showDialogHidden() {
-            if (dialogHiddenMode != null)
-                dialogHiddenMode.cancel();
-            dialogHiddenMode = new DialogHiddenMode(itemView.getContext(), listenerDialogHidden);
-            dialogHiddenMode.show();
         }
 
         private void onClickLikes() {
