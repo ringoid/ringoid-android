@@ -7,7 +7,7 @@
 
     <group android:translateX="4">
         <path
-            android:fillColor="#5d5e63"
+            android:fillColor="#fff"
             android:pathData="M8.05 10.925a2.875 2.875 0 1 1 0-5.75 2.875 2.875 0 0 1 0 5.75zM8.05 0A8.05 8.05 0 0 0 0 8.05C0 14.087 8.05 23 8.05 23s8.05-8.912 8.05-14.95A8.05 8.05 0 0 0 8.05 0z" />
     </group>
 

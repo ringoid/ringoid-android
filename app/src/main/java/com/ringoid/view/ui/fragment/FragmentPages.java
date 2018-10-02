@@ -97,7 +97,7 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void setPageSelected(int num) {
+        public void setPageSelected(int num, int iconResProfile, int iconResLikes, int iconResMatches, int iconResExplore) {
             if (llBottomAppBar == null) return;
             for (int i = 0; i < llBottomAppBar.getChildCount(); ++i) {
                 View view = llBottomAppBar.getChildAt(i);
@@ -107,8 +107,17 @@ public class FragmentPages extends FragmentBase
                     view.setBackgroundColor(getContext().getResources().getColor(R.color.menu_bottom_selected));
                 else
                     view.setBackground(null);
-
             }
+
+            setDrawables(iconResProfile, iconResLikes, iconResMatches, iconResExplore);
+        }
+
+        private void setDrawables(int iconResProfile, int iconResLikes, int iconResMatches, int iconResExplore) {
+            if (llBottomAppBar == null || llBottomAppBar.getChildCount() != 4) return;
+            ((ImageView) llBottomAppBar.getChildAt(0)).setImageResource(iconResProfile);
+            ((ImageView) llBottomAppBar.getChildAt(1)).setImageResource(iconResLikes);
+            ((ImageView) llBottomAppBar.getChildAt(2)).setImageResource(iconResMatches);
+            ((ImageView) llBottomAppBar.getChildAt(3)).setImageResource(iconResExplore);
         }
 
         @Override

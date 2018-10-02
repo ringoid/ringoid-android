@@ -27,6 +27,11 @@ import javax.inject.Inject;
 
 public class PresenterPagesContainer implements IPresenterPagesContainer {
 
+    private static final int INDEX_PAGE_PROFILE = 0;
+    private static final int INDEX_PAGE_LIKES = 1;
+    private static final int INDEX_PAGE_MATCHES = 2;
+    private static final int INDEX_PAGE_EXPLORE = 3;
+
     @Inject
     INavigatorPages navigatorPages;
 
@@ -87,15 +92,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         cacheScroll.resetCache();
 
         navigatorPages.updateCurrentPage();
-    }
-
-    private void updateViewBottomSheet() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().setBottomSheetDrawables(
-                cacheLikes.isDataExist() ? R.drawable.ic_menu_favorite_red_24dp : R.drawable.ic_menu_favorite_24dp,
-                cacheMessages.isDataExist() ? R.drawable.ic_menu_message_dot_24dp : R.drawable.ic_menu_message_24dp,
-                R.drawable.ic_menu_explore_24dp
-        );
     }
 
     private void updateViewPrivacy() {
@@ -165,6 +161,38 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
             helperFullscreen.statusbarShowFullscreen();
     }
 
+
+    /*
+                getIconResLikes(false) cacheLikes.isDataExist() ?
+                cacheMessages.isDataExist() ? R.drawable.ic_menu_message_dot_24dp : R.drawable.ic_menu_message_24dp,
+                R.drawable.ic_menu_explore_24dp*/
+
+    private int getIconResProfile(boolean isSelected) {
+        return isSelected ? R.drawable.ic_menu_profile_white_24dp : R.drawable.ic_menu_profile_24dp;
+    }
+
+    private int getIconResLikes(boolean isSelected) {
+        return isSelected
+                ? (cacheLikes.isDataExist()
+                ? R.drawable.ic_menu_favorite_white_dot_24dp
+                : R.drawable.ic_menu_favorite_white_24dp)
+                : (cacheLikes.isDataExist()
+                ? R.drawable.ic_menu_favorite_dot_24dp
+                : R.drawable.ic_menu_favorite_24dp);
+    }
+
+    private int getIconResMatches(boolean isSelected) {
+        return isSelected
+                ? (cacheMessages.isDataExist()
+                ? R.drawable.ic_menu_message_white_dot_24dp : R.drawable.ic_menu_message_white_24dp)
+                : cacheMessages.isDataExist()
+                ? R.drawable.ic_menu_message_dot_24dp : R.drawable.ic_menu_message_24dp;
+    }
+
+    private int getIconResExplore(boolean isSelected) {
+        return isSelected ? R.drawable.ic_menu_explore_white_24dp : R.drawable.ic_menu_explore_24dp;
+    }
+
     private class ListenerCacheScroll implements ICacheScrollListener {
         @Override
         public void onScroll(boolean isDown, int position) {
@@ -183,14 +211,17 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         @Override
         public void onPageSelected(int num) {
             if (refListener == null || refListener.get() == null) return;
-            refListener.get().setPageSelected(num);
+            refListener.get().setPageSelected(num,
+                    getIconResProfile(num == INDEX_PAGE_PROFILE),
+                    getIconResLikes(num == INDEX_PAGE_LIKES),
+                    getIconResMatches(num == INDEX_PAGE_MATCHES),
+                    getIconResExplore(num == INDEX_PAGE_EXPLORE));
         }
     }
 
     private class ListenerCacheSettings implements ICacheSettingsPrivacyListener {
         @Override
         public void onUpdate() {
-            updateViewBottomSheet();
         }
     }
 }

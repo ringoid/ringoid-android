@@ -12,7 +12,7 @@
         android:id="@+id/llBottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height_with_statusbar"
-        android:background="@color/white95"
+        android:background="#161d24"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingTop="24dp">
