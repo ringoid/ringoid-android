@@ -36,7 +36,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#f5f5f5" />
+                android:background="@color/divider" />
 
             <LinearLayout
                 android:id="@+id/llBlacklist"
@@ -100,7 +100,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#f5f5f5" />
+                android:background="@color/divider" />
 
             <TextView
                 android:id="@+id/tvPush"
@@ -112,7 +112,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#f5f5f5" />
+                android:background="@color/divider" />
 
             <TextView
                 android:id="@+id/tvDataProtection"
@@ -124,7 +124,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#f5f5f5" />
+                android:background="@color/divider" />
 
             <TextView
                 android:id="@+id/tvSettingsFeedback"
@@ -136,7 +136,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#f5f5f5" />
+                android:background="@color/divider" />
 
             <TextView
                 style="@style/settings_menu_item"
@@ -147,7 +147,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#f5f5f5" />
+                android:background="@color/divider" />
 
             <TextView
                 android:id="@+id/tvLogout"
@@ -159,7 +159,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#f5f5f5" />
+                android:background="@color/divider" />
 
             <TextView
                 android:id="@+id/tvAccountDelete"

@@ -51,8 +51,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="#f5f5f5" />
+                android:layout_height="2dp"
+                android:background="@color/divider" />
 
             <LinearLayout
                 android:id="@+id/llCustomerID"
@@ -82,8 +82,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="#f5f5f5" />
+                android:layout_height="2dp"
+                android:background="@color/divider" />
 
             <TextView
                 android:id="@+id/tvPrivacy"
@@ -94,8 +94,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="#f5f5f5" />
+                android:layout_height="2dp"
+                android:background="@color/divider" />
 
             <TextView
                 android:id="@+id/tvSettingsTerms"
@@ -106,8 +106,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="#f5f5f5" />
+                android:layout_height="2dp"
+                android:background="@color/divider" />
 
             <TextView
                 android:id="@+id/tvSettingsLicenses"
@@ -118,14 +118,14 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="#f5f5f5" />
+                android:layout_height="2dp"
+                android:background="@color/divider" />
 
             <TextView
                 android:id="@+id/tvMailOfficer"
                 style="@style/settings_menu_item"
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
-                android:drawableStart="@drawable/ic_mail_outline_black_24dp"
+                android:drawableStart="@drawable/ic_settings_feedback_24dp"
                 android:text="@string/data_protection_email_officer" />
 
         </LinearLayout>

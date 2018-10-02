@@ -9,7 +9,7 @@
         android:translateX="3.5"
         android:translateY="2">
         <path
-            android:fillColor="#525252"
+            android:fillColor="#fff"
             android:pathData="M13 15H4V8.5C4 6 6 4 8.5 4S13 6 13 8.5V15zm2-1V8.5c0-3.07-2.14-5.64-5-6.32V1.5a1.5 1.5 0 0 0-3 0v0.68c-2.87 0.68 -5 3.25-5 6.32V14l-2 2v1h17v-1l-2-2zm-6.5 6a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2z" />
     </group>
 

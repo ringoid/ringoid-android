@@ -22,6 +22,6 @@
         style="@style/selectableImage"
         android:layout_gravity="end|center_vertical"
         android:padding="16dp"
-        android:src="@drawable/ic_remove_gray_16dp" />
+        android:src="@drawable/ic_remove_white_16dp" />
 
 </FrameLayout>
