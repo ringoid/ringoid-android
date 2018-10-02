@@ -13,8 +13,6 @@ public interface ICacheMessages {
 
     String getUrl(int adapterPosition, int itemPosition);
 
-    void setUserSelected(int position);
-
     String getUrlSelectedUser();
 
     boolean isDataExist();
@@ -36,4 +34,6 @@ public interface ICacheMessages {
     void setData(ArrayList<DataProfile> data);
 
     void resetCache();
+
+    int getPosition(String userSelectedID, int noValue);
 }

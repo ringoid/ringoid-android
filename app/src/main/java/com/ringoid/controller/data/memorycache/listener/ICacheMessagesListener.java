@@ -3,4 +3,6 @@ package com.ringoid.controller.data.memorycache.listener;
 
 public interface ICacheMessagesListener {
     void onUpdate();
+
+    void onSelectedUserUpdate(String userSelectedID);
 }

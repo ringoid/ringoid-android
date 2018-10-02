@@ -22,8 +22,6 @@ public interface ICacheLikes {
 
     void changeLiked(int adapterPosition, int itemPosition);
 
-    String getItemId(int adapterPosition, int itemPosition);
-
     String getUserId(int adapterPosition);
 
     void addListener(ICacheLikesListener listener);
@@ -37,4 +35,6 @@ public interface ICacheLikes {
     void setData(ArrayList<DataProfile> data);
 
     void resetCache();
+
+    int getPosition(String userId, int noValue);
 }

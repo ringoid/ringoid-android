@@ -22,4 +22,13 @@ public class ModelFeedLikes implements Serializable {
     public DataProfile get(int position) {
         return data == null || position < 0 || position >= data.size() ? null : data.get(position);
     }
+
+    public int getPosition(String userId, int noValue) {
+        if (data == null) return noValue;
+        for (int i = 0; i < data.size(); ++i)
+            if (data.get(i).getId().equals(userId))
+                return i;
+
+        return noValue;
+    }
 }

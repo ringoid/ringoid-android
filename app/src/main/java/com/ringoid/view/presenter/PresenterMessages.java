@@ -19,6 +19,7 @@ import javax.inject.Inject;
 
 public class PresenterMessages implements IPresenterMessages {
 
+    private static final int NO_VALUE = -1;
     @Inject
     ICacheScroll cacheScroll;
 
@@ -75,6 +76,14 @@ public class PresenterMessages implements IPresenterMessages {
         @Override
         public void onUpdate() {
             presenterFeedPage.hideRefreshLayout();
+        }
+
+        @Override
+        public void onSelectedUserUpdate(String userSelectedID) {
+            if (refListener == null || refListener.get() == null) return;
+            int position = cacheMessages.getPosition(userSelectedID, NO_VALUE);
+            if (position == NO_VALUE) return;
+            refListener.get().scrollToPosition(position);
         }
     }
 }

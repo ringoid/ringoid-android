@@ -43,12 +43,6 @@ public class CacheMessages implements ICacheMessages {
     }
 
     @Override
-    public void setUserSelected(int position) {
-        this.selectedUserId = getData().get(position).getId();
-
-    }
-
-    @Override
     public String getUrlSelectedUser() {
         DataProfile user = getSelectedUser();
         return user == null ? null : user.getImage(0);
@@ -84,6 +78,16 @@ public class CacheMessages implements ICacheMessages {
     @Override
     public void setUserSelected(String userId) {
         selectedUserId = userId;
+        notifyListenersUserSelectedChange();
+    }
+
+    private void notifyListenersUserSelectedChange() {
+        if (listeners == null) return;
+        for (String name : listeners.keySet()) {
+            ICacheMessagesListener listener = listeners.get(name);
+            if (listener == null) continue;
+            listener.onSelectedUserUpdate(getUserSelectedID());
+        }
     }
 
     private void notifyListeners() {
@@ -128,6 +132,11 @@ public class CacheMessages implements ICacheMessages {
     public void resetCache() {
         this.data = null;
         cacheStorage.removeData(FileEnum.CACHE_FEED_MESSAGES);
+    }
+
+    @Override
+    public int getPosition(String userSelectedID, int noValue) {
+        return getData().getPosition(userSelectedID, noValue);
     }
 
     private void saveData() {

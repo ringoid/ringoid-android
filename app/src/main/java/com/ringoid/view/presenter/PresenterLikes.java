@@ -7,10 +7,12 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
+import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.listener.ICacheLikesListener;
+import com.ringoid.controller.data.memorycache.listener.ICacheMessagesListener;
 import com.ringoid.controller.data.repository.IRepositoryFeedLikes;
 import com.ringoid.view.presenter.callback.IPresenterLikesListener;
 
@@ -20,6 +22,8 @@ import javax.inject.Inject;
 
 public class PresenterLikes implements IPresenterLikes {
 
+    private static final int NO_VALUE = -1;
+
     @Inject
     ICacheScroll cacheScroll;
 
@@ -28,6 +32,9 @@ public class PresenterLikes implements IPresenterLikes {
 
     @Inject
     ICacheLikes cacheLikes;
+
+    @Inject
+    ICacheMessages cacheMessages;
 
     @Inject
     ICacheInterfaceState cacheInterfaceState;
@@ -41,12 +48,14 @@ public class PresenterLikes implements IPresenterLikes {
     @Inject
     IPresenterFeedPage presenterFeedPage;
 
+    private ListenerCacheMessages listenerCacheMessages;
     private ListenerCacheLikes listenerCacheLikes;
     private WeakReference<IPresenterLikesListener> refListener;
 
     public PresenterLikes() {
         ApplicationRingoid.getComponent().inject(this);
         cacheLikes.addListener(listenerCacheLikes = new ListenerCacheLikes());
+        cacheMessages.addListener(listenerCacheMessages = new ListenerCacheMessages());
     }
 
     @Override
@@ -94,6 +103,21 @@ public class PresenterLikes implements IPresenterLikes {
 
             if (refListener == null || refListener.get() == null) return;
             refListener.get().onUnlike(adapterPosition);
+        }
+    }
+
+    private class ListenerCacheMessages implements ICacheMessagesListener {
+        @Override
+        public void onUpdate() {
+
+        }
+
+        @Override
+        public void onSelectedUserUpdate(String userSelectedID) {
+            if (refListener == null || refListener.get() == null) return;
+            int position = cacheLikes.getPosition(userSelectedID, NO_VALUE);
+            if (position == NO_VALUE) return;
+            refListener.get().scrollToPosition(position);
         }
     }
 }

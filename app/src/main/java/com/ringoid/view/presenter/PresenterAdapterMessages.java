@@ -4,16 +4,11 @@ package com.ringoid.view.presenter;
 import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheMessagesListener;
-import com.ringoid.view.INavigator;
-import com.ringoid.view.IViewDialogs;
-import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterAdapterMessagesListener;
-import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
 import com.ringoid.view.ui.util.IHelperMessageCompose;
 
 import java.lang.ref.WeakReference;
@@ -82,22 +77,6 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
         helperMessageCompose.onClick(cacheMessages.getUserId(position));
     }
 
-    private class ListenerCacheMessages implements ICacheMessagesListener {
-        @Override
-        public void onUpdate() {
-            if (refListener == null || refListener.get() == null) return;
-            refListener.get().onUpdate();
-        }
-    }
-
-    private class ListenerCacheChatMessages implements ICacheChatMessagesListener {
-        @Override
-        public void onDataChange() {
-            if (refListener == null || refListener.get() == null) return;
-            refListener.get().onUpdate();
-        }
-    }
-
     @Override
     public void onScrollPhotoChanged(int newState, int adapterPosition, int firstVisibleItemPosition) {
         if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
@@ -107,5 +86,25 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
     @Override
     public int getSelectedPhotoPosition(int position) {
         return cacheMessages.getSelectedPhotoPosition(position);
+    }
+
+    private class ListenerCacheMessages implements ICacheMessagesListener {
+        @Override
+        public void onUpdate() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onUpdate();
+        }
+
+        @Override
+        public void onSelectedUserUpdate(String userSelectedID) {
+        }
+    }
+
+    private class ListenerCacheChatMessages implements ICacheChatMessagesListener {
+        @Override
+        public void onDataChange() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onUpdate();
+        }
     }
 }

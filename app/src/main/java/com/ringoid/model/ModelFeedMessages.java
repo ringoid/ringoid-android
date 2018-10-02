@@ -31,4 +31,13 @@ public class ModelFeedMessages implements Serializable {
         }
         return null;
     }
+
+    public int getPosition(String userSelectedID, int noValue) {
+        if (data == null) return noValue;
+        for (int i = 0; i < data.size(); ++i) {
+            if (data.get(i).getId().equals(userSelectedID))
+                return i;
+        }
+        return noValue;
+    }
 }

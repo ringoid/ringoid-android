@@ -6,4 +6,6 @@ public interface IPresenterLikesListener {
     void onLike(int adapterPosition);
 
     void onUnlike(int adapterPosition);
+
+    void scrollToPosition(int position);
 }

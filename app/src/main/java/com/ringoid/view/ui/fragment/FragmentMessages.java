@@ -55,5 +55,9 @@ public class FragmentMessages extends FragmentFeedPage {
 
     private class ListenerPresenterMessages implements IPresenterMessagesListener {
 
+        @Override
+        public void scrollToPosition(int position) {
+            layoutManager.scrollToPositionWithOffset(position,0);
+        }
     }
 }

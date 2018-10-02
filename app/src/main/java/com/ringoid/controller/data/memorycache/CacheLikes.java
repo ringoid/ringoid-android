@@ -68,11 +68,6 @@ public class CacheLikes implements ICacheLikes {
     }
 
     @Override
-    public String getItemId(int adapterPosition, int itemPosition) {
-        return getData().get(adapterPosition).getImageId(itemPosition);
-    }
-
-    @Override
     public String getUserId(int adapterPosition) {
         return getData().get(adapterPosition).getId();
     }
@@ -119,6 +114,11 @@ public class CacheLikes implements ICacheLikes {
         this.data = null;
         cacheStorage.removeData(FileEnum.CACHE_FEED_LIKES);
         notifyListeners();
+    }
+
+    @Override
+    public int getPosition(String userId, int noValue) {
+        return getData().getPosition(userId, noValue);
     }
 
     private void saveData() {
