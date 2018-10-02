@@ -1,7 +1,10 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@android:color/white" />
-
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#1f262c" />
+        </shape>
+    </item>
     <item>
 
         <bitmap
@@ -9,11 +12,5 @@
             android:src="@drawable/splash_center" />
     </item>
 
-    <item>
-
-        <bitmap
-            android:gravity="bottom"
-            android:src="@drawable/tm" />
-    </item>
 
 </layer-list>
