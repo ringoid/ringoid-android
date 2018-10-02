@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/ivBack"
             style="@style/selectableImage"
-            android:src="@drawable/ic_arrow_back_black_24dp" />
+            android:src="@drawable/ic_arrow_back_white_24dp" />
 
         <ImageView
             android:id="@+id/ivUser"
@@ -29,12 +29,12 @@
         <ImageView
             android:id="@+id/ivClear"
             style="@style/selectableImage"
-            android:src="@drawable/ic_erase_data_gray_24dp" />
+            android:src="@drawable/ic_erase_data_white_24dp" />
 
         <ImageView
             android:id="@+id/ivBlock"
             style="@style/selectableImage"
-            android:src="@drawable/ic_block_black_24dp" />
+            android:src="@drawable/ic_block_white_24dp" />
 
 
     </LinearLayout>
