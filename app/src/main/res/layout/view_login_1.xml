@@ -45,7 +45,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:text="@string/message_terms"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        android:theme="@style/AppTheme.Green" />
 
     <TextView
         android:id="@+id/tvLoginPhoneVerify"
@@ -59,6 +60,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
         android:indeterminate="true"
+        android:theme="@style/AppTheme.Green"
         android:visibility="gone" />
 
 </LinearLayout>

@@ -154,9 +154,9 @@ public class ViewPhoneInput extends LinearLayout
 
     private int getTextColor(boolean empty, boolean valid) {
         return getContext().getResources().getColor(empty
-                ? android.R.color.black
+                ? android.R.color.white
                 : valid
-                ? android.R.color.black
+                ? android.R.color.white
                 : R.color.colorAccent);
     }
 
