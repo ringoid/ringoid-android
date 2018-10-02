@@ -4,17 +4,13 @@ package com.ringoid.view.presenter;
 import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheLikesListener;
-import com.ringoid.view.INavigator;
-import com.ringoid.view.IViewDialogs;
-import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterAdapterLikesListener;
-import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
+import com.ringoid.view.ui.util.IHelperMessageCompose;
 
 import java.lang.ref.WeakReference;
 
@@ -26,22 +22,15 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
     ICacheLikes cacheLikes;
 
     @Inject
-    IViewPopup viewPopup;
-
-    @Inject
     ICacheMessages cacheMessages;
-
-    @Inject
-    INavigator navigator;
-
-    @Inject
-    IViewDialogs viewDialogs;
 
     @Inject
     ICacheChatMessages cacheChatMessages;
 
+    @Inject
+    IHelperMessageCompose helperMessageCompose;
+
     private ListenerCacheChatMessages listenerCacheChatMessages;
-    private ListenerDialogChatCompose listenerDialogChatCompose;
     private ListenerCacheLikes listenerCacheLikes;
     private WeakReference<IPresenterAdapterLikesListener> refListener;
 
@@ -85,16 +74,7 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
 
     @Override
     public void onClickChat(int position) {
-        boolean isChatEmpty = isChatEmpty(position);
-
-        cacheMessages.setUserSelected(cacheLikes.getUserId(position));
-
-        if (isChatEmpty) {
-            viewDialogs.showDialogChatCompose(listenerDialogChatCompose = new ListenerDialogChatCompose(cacheLikes.getUserId(position)));
-            return;
-        }
-
-        navigator.navigateChat();
+        helperMessageCompose.onClick(cacheLikes.getUserId(position));
     }
 
     @Override
@@ -116,20 +96,6 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
         @Override
         public void onUnliked(int adapterPosition, int itemPosition) {
 
-        }
-    }
-
-    private class ListenerDialogChatCompose implements IDialogChatComposeListener {
-        private String userId;
-
-        ListenerDialogChatCompose(String userId) {
-            this.userId = userId;
-        }
-
-        @Override
-        public void onSend(String message) {
-            viewPopup.showToast(R.string.message_sent);
-            cacheChatMessages.addMessage(userId, message);
         }
     }
 

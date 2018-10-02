@@ -14,6 +14,7 @@ import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterAdapterMessagesListener;
 import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
+import com.ringoid.view.ui.util.IHelperMessageCompose;
 
 import java.lang.ref.WeakReference;
 
@@ -21,25 +22,19 @@ import javax.inject.Inject;
 
 public class PresenterAdapterMessages implements IPresenterAdapterMessages {
 
-    @Inject
-    INavigator navigator;
 
     @Inject
     ICacheMessages cacheMessages;
 
     @Inject
-    IViewPopup viewPopup;
-
-    @Inject
-    IViewDialogs viewDialogs;
-
-    @Inject
     ICacheChatMessages cacheChatMessages;
+
+    @Inject
+    IHelperMessageCompose helperMessageCompose;
 
     private ListenerCacheChatMessages listenerCacheChatMessages;
     private ICacheMessagesListener listenerCacheMessages;
     private WeakReference<IPresenterAdapterMessagesListener> refListener;
-    private ListenerDialogChatCompose listenerDialogChatCompose;
 
     public PresenterAdapterMessages() {
         ApplicationRingoid.getComponent().inject(this);
@@ -84,16 +79,7 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
 
     @Override
     public void onClickChat(int position) {
-        boolean isChatEmpty = isChatEmpty(position);
-
-        cacheMessages.setUserSelected(position);
-
-        if (isChatEmpty) {
-            viewDialogs.showDialogChatCompose(listenerDialogChatCompose = new ListenerDialogChatCompose(cacheMessages.getUserId(position)));
-            return;
-        }
-
-        navigator.navigateChat();
+        helperMessageCompose.onClick(cacheMessages.getUserId(position));
     }
 
     private class ListenerCacheMessages implements ICacheMessagesListener {
@@ -101,20 +87,6 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
         public void onUpdate() {
             if (refListener == null || refListener.get() == null) return;
             refListener.get().onUpdate();
-        }
-    }
-
-    private class ListenerDialogChatCompose implements IDialogChatComposeListener {
-        private String userId;
-
-        ListenerDialogChatCompose(String userId) {
-            this.userId = userId;
-        }
-
-        @Override
-        public void onSend(String message) {
-            viewPopup.showToast(R.string.message_sent);
-            cacheChatMessages.addMessage(userId, message);
         }
     }
 

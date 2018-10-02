@@ -97,6 +97,7 @@ import com.ringoid.view.ui.fragment.FragmentSettingsPush;
 import com.ringoid.view.ui.fragment.FragmentWebView;
 import com.ringoid.view.ui.util.ApiRingoidProvider;
 import com.ringoid.view.ui.util.HelperAnimation;
+import com.ringoid.view.ui.util.HelperMessageCompose;
 import com.ringoid.view.ui.util.OkHttpProvider;
 import com.ringoid.view.ui.util.ScreenHelper;
 
@@ -109,6 +110,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(HelperMessageCompose param);
 
     void inject(Navigator param);
 

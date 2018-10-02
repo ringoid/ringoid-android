@@ -14,22 +14,8 @@ import javax.inject.Inject;
 
 public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages {
 
-    private static int MAX_LIKES_DIALOG_SHOW = 3;
-
     @Inject
     ICacheLikes cacheLikes;
-
-    @Inject
-    ICacheTutorial cacheTutorial;
-
-    @Inject
-    IViewPopup viewPopup;
-
-    @Inject
-    IViewDialogs viewDialogs;
-
-    @Inject
-    INavigator navigator;
 
     @Inject
     ICacheMessages cacheMessages;
@@ -60,13 +46,6 @@ public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages
 
     @Override
     public void onLongClick(int adapterPosition, int itemPosition) {
-        if (cacheTutorial.isShowDialogLikes()) {
-            viewDialogs.showDialogLikes();
-            return;
-        }
-
-
-
     }
 
     @Override
