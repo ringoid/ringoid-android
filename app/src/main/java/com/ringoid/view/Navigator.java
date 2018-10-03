@@ -166,9 +166,19 @@ public class Navigator implements INavigator {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SELECT_FILE && data != null) {
+        if (requestCode != SELECT_FILE) return;
+        if (data != null) {
             navigatePhotoCrop(data.getData());
+            return;
         }
+        if (isCurrentPageLogin())
+            navigateFeed();
+    }
+
+    private boolean isCurrentPageLogin() {
+        if (refFragmentManager == null || refFragmentManager.get() == null) return false;
+        Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_PAGE);
+        return fragment instanceof FragmentLogin;
     }
 
     @Override
