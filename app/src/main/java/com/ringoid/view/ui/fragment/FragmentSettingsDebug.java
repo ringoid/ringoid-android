@@ -11,14 +11,23 @@ import android.widget.TextView;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.controller.data.network.response.ResponseBase;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
 import com.ringoid.view.ui.util.IHelperScreenshots;
 
 import javax.inject.Inject;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class FragmentSettingsDebug extends FragmentBase implements View.OnClickListener {
 
     @Inject
     IHelperScreenshots helperScreenshots;
+
+    @Inject
+    ApiRingoidProvider providerApi;
+
     private TextView tvScreenshots;
 
     @Override
@@ -41,6 +50,10 @@ public class FragmentSettingsDebug extends FragmentBase implements View.OnClickL
         tvScreenshots = view.findViewById(R.id.tvScreenshots);
         tvScreenshots.setOnClickListener(this);
 
+        view.findViewById(R.id.tvTestTimeout).setOnClickListener(this);
+        view.findViewById(R.id.tvTestResponseNot200).setOnClickListener(this);
+        view.findViewById(R.id.tvTestTokenInvalid).setOnClickListener(this);
+
         updateStateScreenshots();
     }
 
@@ -53,6 +66,27 @@ public class FragmentSettingsDebug extends FragmentBase implements View.OnClickL
         if (v.getId() == R.id.tvScreenshots) {
             helperScreenshots.changeStateScreenshots();
             updateStateScreenshots();
+        }
+
+        if (v.getId() == R.id.tvTestTimeout)
+            providerApi.getAPI().testTimeout().enqueue(new ListenerBase());
+
+        if (v.getId() == R.id.tvTestResponseNot200)
+            providerApi.getAPI().testResponseNot200().enqueue(new ListenerBase());
+
+        if (v.getId() == R.id.tvTestTokenInvalid)
+            providerApi.getAPI().testTokenInvalid().enqueue(new ListenerBase());
+    }
+
+    private static class ListenerBase implements retrofit2.Callback<com.ringoid.controller.data.network.response.ResponseBase> {
+        @Override
+        public void onResponse(Call<ResponseBase> call, Response<ResponseBase> response) {
+
+        }
+
+        @Override
+        public void onFailure(Call<ResponseBase> call, Throwable t) {
+
         }
     }
 }

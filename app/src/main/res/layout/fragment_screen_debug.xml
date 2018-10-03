@@ -17,14 +17,17 @@
         android:text="Screenshots state: " />
 
     <TextView
+        android:id="@+id/tvTestResponseNot200"
         style="@style/settings_menu_item"
         android:text="request response not 200" />
 
     <TextView
+        android:id="@+id/tvTestTokenInvalid"
         style="@style/settings_menu_item"
         android:text="request response invalid token" />
 
     <TextView
+        android:id="@+id/tvTestTimeout"
         style="@style/settings_menu_item"
         android:text="request response timeout" />
 
