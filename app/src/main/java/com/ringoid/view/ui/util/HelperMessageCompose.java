@@ -30,6 +30,9 @@ public class HelperMessageCompose implements IHelperMessageCompose {
     @Inject
     ICacheMessages cacheMessages;
 
+    @Inject
+    IHelperMessageSend helperMessageSend;
+
     private ListenerDialogChatCompose listenerDialogChatCompose;
 
     public HelperMessageCompose() {
@@ -60,7 +63,7 @@ public class HelperMessageCompose implements IHelperMessageCompose {
         @Override
         public void onSend(String message) {
             viewPopup.showToast(R.string.message_sent);
-            cacheChatMessages.addMessage(userId, message);
+            helperMessageSend.sendMessage(userId, message);
         }
     }
 }

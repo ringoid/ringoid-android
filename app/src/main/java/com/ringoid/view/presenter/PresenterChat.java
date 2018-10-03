@@ -1,14 +1,13 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
-import android.text.TextUtils;
-
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.callback.IPresenterChatListener;
+import com.ringoid.view.ui.util.IHelperMessageSend;
 
 import java.lang.ref.WeakReference;
 
@@ -26,6 +25,9 @@ public class PresenterChat implements IPresenterChat {
 
     @Inject
     INavigator navigator;
+
+    @Inject
+    IHelperMessageSend helperMessageSend;
 
     private WeakReference<IPresenterChatListener> refListener;
 
@@ -59,10 +61,7 @@ public class PresenterChat implements IPresenterChat {
 
     @Override
     public void onClickSend(String message) {
-        message = message.trim();
-
-        if (TextUtils.isEmpty(message)) return;
-        cacheChatMessages.addMessage(cacheMessages.getUserSelectedID(), message);
+        helperMessageSend.sendMessage(cacheMessages.getUserSelectedID(), message);
         scrollToRecentMessage();
     }
 

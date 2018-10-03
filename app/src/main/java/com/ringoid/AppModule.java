@@ -141,11 +141,13 @@ import com.ringoid.view.ui.util.ApiRingoidProvider;
 import com.ringoid.view.ui.util.HelperAnimation;
 import com.ringoid.view.ui.util.HelperFullscreen;
 import com.ringoid.view.ui.util.HelperMessageCompose;
+import com.ringoid.view.ui.util.HelperMessageSend;
 import com.ringoid.view.ui.util.HelperScreenshots;
 import com.ringoid.view.ui.util.HelperTimer;
 import com.ringoid.view.ui.util.IHelperAnimation;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperMessageCompose;
+import com.ringoid.view.ui.util.IHelperMessageSend;
 import com.ringoid.view.ui.util.IHelperScreenshots;
 import com.ringoid.view.ui.util.IHelperTimer;
 import com.ringoid.view.ui.util.IScreenHelper;
@@ -223,6 +225,12 @@ class AppModule {
     @Singleton
     IHelperTimer getHelperTimer() {
         return new HelperTimer();
+    }
+
+    @Provides
+    @Singleton
+    IHelperMessageSend getHelperMessageSend() {
+        return new HelperMessageSend();
     }
 
     @Provides
