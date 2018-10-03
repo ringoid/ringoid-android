@@ -7,6 +7,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.ringoid.ApplicationRingoid;
@@ -47,6 +48,13 @@ public class DialogChatCompose implements View.OnClickListener {
 
     public void show() {
         dialog.show();
+        hideDim();
+    }
+
+    private void hideDim() {
+        WindowManager.LayoutParams lp = DialogChatCompose.this.dialog.getWindow().getAttributes();
+        lp.dimAmount = 0.0f; // Dim level. 0.0 - no dim, 1.0 - completely opaque
+        DialogChatCompose.this.dialog.getWindow().setAttributes(lp);
     }
 
     @Override
