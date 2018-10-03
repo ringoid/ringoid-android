@@ -120,7 +120,9 @@ public class PresenterLikes implements IPresenterLikes {
         public void onSelectedUserUpdate(String userSelectedID) {
             int position = cacheLikes.getPosition(userSelectedID, NO_VALUE);
             if (position == NO_VALUE) return;
-            presenterFeedPage.scrollToPosition(position, position == 0 ? 0 : (int) refContext.get().getResources().getDimension(R.dimen.toolbar_height_with_statusbar));
+            int offset = position == 0 ? 0 : (int) refContext.get().getResources().getDimension(R.dimen.toolbar_height_with_statusbar);
+            presenterFeedPage.scrollToPosition(position, offset);
+            cacheInterfaceState.setPositionScrollPageLikes(position, offset);
         }
     }
 }
