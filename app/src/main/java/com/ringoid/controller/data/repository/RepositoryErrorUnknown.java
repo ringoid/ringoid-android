@@ -3,6 +3,7 @@ package com.ringoid.controller.data.repository;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.repository.callback.IRepositoryErrorUnknownListener;
+import com.ringoid.view.presenter.util.IHelperThreadMain;
 import com.ringoid.view.ui.util.OkHttpProvider;
 
 import java.io.IOException;
@@ -19,6 +20,9 @@ public class RepositoryErrorUnknown implements IRepositoryErrorUnknown {
 
     @Inject
     OkHttpProvider okHttpClient;
+
+    @Inject
+    IHelperThreadMain helperThreadMain;
 
     private ListenerRequest listenerRequest;
     private WeakReference<IRepositoryErrorUnknownListener> refListener;
@@ -58,7 +62,21 @@ public class RepositoryErrorUnknown implements IRepositoryErrorUnknown {
         public void onResponse(Call call, Response response) throws IOException {
             if (response.isSuccessful()
                     && response.body() != null)
-                notifySuccess(response.body().string());
+                helperThreadMain.post(new RunnableResponse(response.body().string()));
+
+        }
+    }
+
+    private class RunnableResponse implements Runnable {
+        private String message;
+
+        public RunnableResponse(String string) {
+            this.message = string;
+        }
+
+        @Override
+        public void run() {
+            notifySuccess(message);
         }
     }
 }

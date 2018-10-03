@@ -4,9 +4,11 @@ package com.ringoid.controller.data.network.interceptor;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.network.interceptor.listener.IInterceptorRetryListener;
 import com.ringoid.controller.data.network.response.ResponseBase;
+import com.ringoid.view.presenter.util.IHelperThreadMain;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -22,6 +24,9 @@ public class InterceptorRetry implements Interceptor {
 
     @Inject
     Gson gson;
+
+    @Inject
+    IHelperThreadMain helperThreadMain;
 
     private WeakReference<IInterceptorRetryListener> refListener;
 
@@ -74,7 +79,12 @@ public class InterceptorRetry implements Interceptor {
     private boolean checkInternalServerError(String jsonData) {
         if (TextUtils.isEmpty(jsonData)) return false;
 
-        ResponseBase responseBase = gson.fromJson(jsonData, ResponseBase.class);
+        ResponseBase responseBase;
+        try {
+            responseBase = gson.fromJson(jsonData, ResponseBase.class);
+        } catch (JsonSyntaxException e) {
+            return false;
+        }
 
         if (responseBase == null) return false;
 
@@ -91,13 +101,26 @@ public class InterceptorRetry implements Interceptor {
     }
 
     private void notifyErrorTokenInvalid() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().onRequestTokenInvalid();
+        helperThreadMain.post(new RunnableTokenInvalid());
     }
 
     private void notifyErrorUnknown() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().onRequestErrorUnknown();
+        helperThreadMain.post(new RunnableErrorUnknown());
     }
 
+    private class RunnableTokenInvalid implements Runnable {
+        @Override
+        public void run() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onRequestTokenInvalid();
+        }
+    }
+
+    private class RunnableErrorUnknown implements Runnable {
+        @Override
+        public void run() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onRequestErrorUnknown();
+        }
+    }
 }

@@ -29,7 +29,7 @@ public class DialogErrorUnknown {
 
         dialog = new AlertDialog.Builder(context).create();
         View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_error_unknown, null);
-        dialog.setContentView(view);
+        dialog.setView(view);
 
         tvMessage = view.findViewById(R.id.tvMessage);
     }

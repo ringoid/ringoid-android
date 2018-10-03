@@ -51,9 +51,6 @@ public class LogoutHelper implements ILogoutHelper {
     ICacheChatMessages cacheChatMessages;
 
     @Inject
-    IHelperThreadMain helperThreadMain;
-
-    @Inject
     ICacheLikes cacheLikes;
 
     @Inject
@@ -68,26 +65,19 @@ public class LogoutHelper implements ILogoutHelper {
 
     @Override
     public void logout() {
-        helperThreadMain.post(new LogoutRunnable());
-    }
-
-    private class LogoutRunnable implements Runnable {
-        @Override
-        public void run() {
-            repositoryRegisterLogout.request();
-            if (cacheUser.isRegistered()) {
-                cacheToken.resetCache();
-                cacheUser.resetCache();
-                cacheTutorial.resetCache();
-                cacheBlacklist.resetCache();
-                cacheProfile.resetCache();
-                cacheChatMessages.resetCache();
-                cacheInterfaceState.resetCache();
-                cacheLikes.resetCache();
-                cacheMessages.resetCache();
-                cacheExplore.resetCache();
-            }
-            navigator.navigateLogin();
+        repositoryRegisterLogout.request();
+        if (cacheUser.isRegistered()) {
+            cacheToken.resetCache();
+            cacheUser.resetCache();
+            cacheTutorial.resetCache();
+            cacheBlacklist.resetCache();
+            cacheProfile.resetCache();
+            cacheChatMessages.resetCache();
+            cacheInterfaceState.resetCache();
+            cacheLikes.resetCache();
+            cacheMessages.resetCache();
+            cacheExplore.resetCache();
         }
+        navigator.navigateLogin();
     }
 }
