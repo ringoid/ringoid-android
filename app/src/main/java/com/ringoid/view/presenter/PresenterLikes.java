@@ -1,6 +1,7 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
@@ -47,6 +48,9 @@ public class PresenterLikes implements IPresenterLikes {
 
     @Inject
     IPresenterFeedPage presenterFeedPage;
+
+    @Inject
+    WeakReference<Context> refContext;
 
     private ListenerCacheMessages listenerCacheMessages;
     private ListenerCacheLikes listenerCacheLikes;
@@ -114,10 +118,9 @@ public class PresenterLikes implements IPresenterLikes {
 
         @Override
         public void onSelectedUserUpdate(String userSelectedID) {
-            if (refListener == null || refListener.get() == null) return;
             int position = cacheLikes.getPosition(userSelectedID, NO_VALUE);
             if (position == NO_VALUE) return;
-            refListener.get().scrollToPosition(position);
+            presenterFeedPage.scrollToPosition(position, position == 0 ? 0 : (int) refContext.get().getResources().getDimension(R.dimen.toolbar_height_with_statusbar));
         }
     }
 }

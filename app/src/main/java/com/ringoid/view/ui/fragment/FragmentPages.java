@@ -121,15 +121,6 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void setBottomSheetDrawables(int likes, int messages, int explore) {
-            if (llBottomAppBar == null || llBottomAppBar.getChildCount() != 4) return;
-            ((ImageView) llBottomAppBar.getChildAt(1)).setImageResource(likes);
-            ((ImageView) llBottomAppBar.getChildAt(2)).setImageResource(messages);
-            ((ImageView) llBottomAppBar.getChildAt(3)).setImageResource(explore);
-
-        }
-
-        @Override
         public void showAnimationLike() {
             helperAnimation.showPopupLikes((ViewGroup) getView().findViewById(R.id.flPages));
         }

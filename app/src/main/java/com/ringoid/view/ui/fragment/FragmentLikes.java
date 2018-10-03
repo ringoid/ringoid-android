@@ -77,10 +77,6 @@ public class FragmentLikes extends FragmentFeedPage {
             holder.setUnliked(adapterPosition);
         }
 
-        @Override
-        public void scrollToPosition(int position) {
-            layoutManager.scrollToPositionWithOffset(position,0);
-        }
 
     }
 }

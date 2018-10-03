@@ -17,6 +17,7 @@ import com.ringoid.controller.data.memorycache.listener.ICacheSettingsPrivacyLis
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.IViewDialogs;
+import com.ringoid.view.presenter.callback.IPresenterFeedPagePresenterListener;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.presenter.util.ISettingsHelper;
 import com.ringoid.view.ui.util.IHelperFullscreen;
@@ -68,6 +69,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Inject
     IHelperFullscreen helperFullscreen;
 
+    private ListenerPresenterFeedPage listenerPresenterFeedPage;
     private ListenerCacheSettings listenerCacheSettings;
     private ICacheInterfaceStateListener listenerCacheInterfaceState;
     private ListenerCacheScroll listenerCacheScroll;
@@ -78,6 +80,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         cacheScroll.addListener(listenerCacheScroll = new ListenerCacheScroll());
         cacheInterfaceState.addListener(listenerCacheInterfaceState = new ListenerCacheInterfaceState());
         cacheSettingsPrivacy.addListener(listenerCacheSettings = new ListenerCacheSettings());
+        presenterFeedPage.addListener(listenerPresenterFeedPage = new ListenerPresenterFeedPage());
     }
 
     @Override
@@ -222,6 +225,15 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     private class ListenerCacheSettings implements ICacheSettingsPrivacyListener {
         @Override
         public void onUpdate() {
+        }
+    }
+
+    private class ListenerPresenterFeedPage implements IPresenterFeedPagePresenterListener {
+
+        @Override
+        public void showToolbar() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().setPosition(0);
         }
     }
 }
