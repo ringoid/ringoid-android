@@ -24,7 +24,6 @@
     <string name="dialog_report_cancel">cancel</string>
     <string name="dialog_report_confirm">block</string>
     <string name="dialog_cancel">cancel</string>
-    <string name="settings_rate">Rate in Google Play</string>
     <string name="push">Push Notifications</string>
     <string name="settings_privacy_phone_blacklist">Blacklist</string>
     <string name="settings_privacy_location_distance">Safety distance</string>
