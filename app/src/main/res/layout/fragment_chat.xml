@@ -36,6 +36,10 @@
             style="@style/selectableImage"
             android:src="@drawable/ic_block_white_24dp" />
 
+        <ImageView
+            android:id="@+id/ivClose"
+            style="@style/selectableImage"
+            android:src="@drawable/ic_arrow_close_white_24dp" />
 
     </LinearLayout>
 

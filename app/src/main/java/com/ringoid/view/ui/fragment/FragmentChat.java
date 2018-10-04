@@ -85,6 +85,8 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
         ivSend = view.findViewById(R.id.ivSend);
 
         view.findViewById(R.id.ivBack).setOnClickListener(this);
+        view.findViewById(R.id.ivClose).setOnClickListener(this);
+        view.findViewById(R.id.ivUser).setOnClickListener(this);
         view.findViewById(R.id.ivBlock).setOnClickListener(this);
         view.findViewById(R.id.ivClear).setOnClickListener(this);
 
@@ -99,7 +101,9 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.ivBack) {
+        if (v.getId() == R.id.ivBack
+                || v.getId() == R.id.ivClose
+                || v.getId() == R.id.ivUser) {
             keyboardUtils.keyboardHide(getContext(), getView());
             getActivity().onBackPressed();
         }
@@ -162,7 +166,7 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
         }
     }
 
-    private class ListenerMeasure implements IMeasureListener{
+    private class ListenerMeasure implements IMeasureListener {
         @Override
         public void onUpdate() {
             presenterChat.onMeasure();
