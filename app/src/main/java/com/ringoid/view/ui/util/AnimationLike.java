@@ -28,8 +28,8 @@ public class AnimationLike {
         animationResize.setInterpolator(new OvershootInterpolator());
 
         Animation animationAlphaOut = new AlphaAnimation(0.9f, 0f);
-        animationAlphaOut.setDuration(50);
-        animationAlphaOut.setStartOffset(500);
+        animationAlphaOut.setDuration(80);
+        animationAlphaOut.setStartOffset(300);
         animationAlphaOut.setInterpolator(new DecelerateInterpolator());
 
         animation = new AnimationSet(false);
