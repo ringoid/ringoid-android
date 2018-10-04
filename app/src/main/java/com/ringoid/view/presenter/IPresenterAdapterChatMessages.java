@@ -15,4 +15,6 @@ public interface IPresenterAdapterChatMessages {
     void setListener(IPresenterAdapterChatMessagesListener messagesListener);
 
     void onLongClick(Context context, int adapterPosition);
+
+    void onClick(Context context, int adapterPosition);
 }

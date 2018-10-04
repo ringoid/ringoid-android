@@ -46,7 +46,7 @@ public class AdapterChatMessages extends AdapterBase {
     }
 
     private class ViewHolderItemChatMessage extends ViewHolderBase
-            implements View.OnLongClickListener {
+            implements View.OnLongClickListener, View.OnClickListener {
 
         private TextView tvMessage;
 
@@ -54,6 +54,7 @@ public class AdapterChatMessages extends AdapterBase {
             super(parent, res);
             tvMessage = itemView.findViewById(R.id.tvMessage);
             itemView.setOnLongClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
@@ -70,6 +71,11 @@ public class AdapterChatMessages extends AdapterBase {
         public boolean onLongClick(View v) {
             presenterAdapterChatMessages.onLongClick(itemView.getContext(), getAdapterPosition());
             return true;
+        }
+
+        @Override
+        public void onClick(View v) {
+            presenterAdapterChatMessages.onClick(itemView.getContext(), getAdapterPosition());
         }
     }
 
