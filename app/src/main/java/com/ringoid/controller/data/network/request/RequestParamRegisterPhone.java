@@ -9,7 +9,7 @@ public class RequestParamRegisterPhone {
     private long dtLA;
     private long dtPN;
     private boolean clientValidationFail;
-    private String local;
+    private String locale;
 
     public RequestParamRegisterPhone(int phoneCode, String s, long dateTerms, long dateAge, long datePrivacy, boolean b, String lang) {
         this.countryCallingCode = phoneCode;
@@ -18,7 +18,7 @@ public class RequestParamRegisterPhone {
         this.dtLA = dateAge;
         this.dtPN = datePrivacy;
         this.clientValidationFail = b;
-        this.local = lang;
+        this.locale = lang;
     }
 
 }
