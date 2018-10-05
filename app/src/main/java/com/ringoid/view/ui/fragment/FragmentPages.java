@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.BuildConfig;
 import com.ringoid.R;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterPagesContainer;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.ui.util.IHelperAnimation;
@@ -34,6 +35,11 @@ public class FragmentPages extends FragmentBase
 
     private ListenerPresenter listenerPresenter;
     private ViewGroup llBottomAppBar;
+
+    @Override
+    public PAGE_ENUM getPage() {
+        return PAGE_ENUM.FEED;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

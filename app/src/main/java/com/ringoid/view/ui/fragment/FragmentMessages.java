@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterMessages;
 import com.ringoid.view.presenter.callback.IPresenterMessagesListener;
 import com.ringoid.view.ui.adapter.AdapterMessages;
@@ -21,6 +22,11 @@ public class FragmentMessages extends FragmentFeedPage {
     IPresenterMessages presenterMessages;
 
     private ListenerPresenterMessages listenerPresenterMessages;
+
+    @Override
+    public PAGE_ENUM getPage() {
+        return PAGE_ENUM.FEED_MESSAGES;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

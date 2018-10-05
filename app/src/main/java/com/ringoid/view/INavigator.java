@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.ringoid.view.ui.fragment.FragmentBase;
+
 public interface INavigator {
     void navigateFeed();
 
@@ -44,4 +46,6 @@ public interface INavigator {
     void navigateSettingsDataProtection();
 
     void navigateScreenDebug();
+
+    void onResume(FragmentBase fragmentBase);
 }

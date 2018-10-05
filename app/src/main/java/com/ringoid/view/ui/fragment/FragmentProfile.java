@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterProfile;
 import com.ringoid.view.presenter.callback.IPresenterProfileListener;
 import com.ringoid.view.ui.adapter.AdapterProfile;
@@ -33,6 +34,11 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
     private LinearLayoutManager layoutManager;
     private SwipeRefreshLayout srlPhotos;
     private ListenerRefreshLayout listenerRefreshLayout;
+
+    @Override
+    public PAGE_ENUM getPage() {
+        return PAGE_ENUM.FEED_PROFILE;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

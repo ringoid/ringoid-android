@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterChat;
 import com.ringoid.view.presenter.callback.IPresenterChatListener;
 import com.ringoid.view.ui.adapter.AdapterChatMessages;
@@ -48,6 +49,12 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
     private DialogChatClear dialogChatClear;
     private IDialogChatClearListener listenerDialogClear;
     private ListenerMeasure listenerMeasure;
+
+
+    @Override
+    public PAGE_ENUM getPage() {
+        return PAGE_ENUM.CHAT;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

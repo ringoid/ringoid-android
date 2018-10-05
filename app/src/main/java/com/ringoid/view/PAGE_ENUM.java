@@ -1,11 +1,15 @@
 package com.ringoid.view;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
-enum PAGE_ENUM {
-    LOGIN,
-    PROFILE_UPDATE,
+public enum PAGE_ENUM {
+    UNKNOWN,
     FEED,
     CHAT,
+    FEED_PROFILE,
+    FEED_LIKES,
+    FEED_MESSAGES,
+    FEED_EXPLORE
+    /*SETTINGS_PUSH
     PHOTO_CROP,
     PHOTO_ADD,
     BLACKLIST_PHONES,
@@ -18,6 +22,6 @@ enum PAGE_ENUM {
     SETTINGS_DATA_PROTECTION,
     SETTINGS_DEBUG,
     SETTINGS_PRIVACY_DISTANCE,
-    FEED_LIKES, FEED_PROFILE, FEED_MESSAGES, FEED_EXPLORE, SETTINGS_PUSH
-
+    LOGIN,
+    PROFILE_UPDATE,*/
 }

@@ -51,45 +51,9 @@ public class Navigator implements INavigator {
         ApplicationRingoid.getComponent().inject(this);
     }
 
-    private void onPageShow(PAGE_ENUM page) {
-
-        if (page == PAGE_ENUM.CHAT)
-            helperScreenshots.disableScreenshots();
-        else
-            helperScreenshots.enableScreenshots();
-
-        if (page == PAGE_ENUM.FEED) {
-            clearBackStack();
-            helperFullscreen.statusbarShowFullscreen();
-        }
-
-        if (page == PAGE_ENUM.LOGIN
-                || page == PAGE_ENUM.PROFILE_UPDATE) {
-            clearBackStack();
-            helperFullscreen.statusbarShowResizeable();
-        }
-
-        if (page == PAGE_ENUM.WEBVIEW_EXTERNAL
-                || page == PAGE_ENUM.SETTINGS_PUSH
-                || page == PAGE_ENUM.EMAIL_OFFICER
-                || page == PAGE_ENUM.FEEDBACK
-                || page == PAGE_ENUM.WEBVIEW
-                || page == PAGE_ENUM.SETTINGS_PRIVACY_DISTANCE
-                || page == PAGE_ENUM.CHAT
-                || page == PAGE_ENUM.PHOTO_ADD
-                || page == PAGE_ENUM.PHOTO_CROP
-                || page == PAGE_ENUM.SETTINGS_DEBUG
-                || page == PAGE_ENUM.SETTINGS_DATA_PROTECTION
-                || page == PAGE_ENUM.SETTINGS
-                || page == PAGE_ENUM.BLACKLIST_PHONES
-                || page == PAGE_ENUM.BLACKLIST_PHONES_ADD)
-            if (refActivity != null && refActivity.get() != null)
-                helperFullscreen.statusbarShowResizeable();
-    }
-
     @Override
     public void navigateFeed() {
-        onPageShow(PAGE_ENUM.FEED);
+        clearBackStack();
 
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
@@ -101,7 +65,7 @@ public class Navigator implements INavigator {
     @Override
     public void navigateLogin() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        onPageShow(PAGE_ENUM.LOGIN);
+        clearBackStack();
 
         refFragmentManager.get()
                 .beginTransaction()
@@ -127,7 +91,6 @@ public class Navigator implements INavigator {
     @Override
     public void navigateSettings() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        onPageShow(PAGE_ENUM.SETTINGS);
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -138,7 +101,6 @@ public class Navigator implements INavigator {
     @Override
     public void navigateBlacklistPhones() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        onPageShow(PAGE_ENUM.BLACKLIST_PHONES);
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -149,7 +111,6 @@ public class Navigator implements INavigator {
     @Override
     public void navigateBlacklistPhonesAdd() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        onPageShow(PAGE_ENUM.BLACKLIST_PHONES_ADD);
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -184,8 +145,8 @@ public class Navigator implements INavigator {
     @Override
     public void navigateProfileUpdate() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        clearBackStack();
 
-        onPageShow(PAGE_ENUM.PROFILE_UPDATE);
         refFragmentManager.get()
                 .beginTransaction()
                 .replace(viewId, FragmentLogin.getInstanceProfileUpdate(), CURRENT_FRAGMENT_PAGE)
@@ -195,7 +156,6 @@ public class Navigator implements INavigator {
     @Override
     public void navigateSettingsDataProtection() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        onPageShow(PAGE_ENUM.SETTINGS_DATA_PROTECTION);
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -206,7 +166,6 @@ public class Navigator implements INavigator {
     @Override
     public void navigateScreenDebug() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        onPageShow(PAGE_ENUM.SETTINGS_DEBUG);
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -214,10 +173,30 @@ public class Navigator implements INavigator {
                 .commit();
     }
 
+    @Override
+    public void onResume(FragmentBase fragmentBase) {
+
+        PAGE_ENUM page = fragmentBase.getPage();
+
+        if (page == PAGE_ENUM.FEED_LIKES
+                || page == PAGE_ENUM.FEED_MESSAGES
+                || page == PAGE_ENUM.FEED_EXPLORE
+                || page == PAGE_ENUM.CHAT)
+            helperScreenshots.disableScreenshots();
+        else
+            helperScreenshots.enableScreenshots();
+
+        if (page == PAGE_ENUM.FEED_PROFILE
+                || page == PAGE_ENUM.FEED_LIKES
+                || page == PAGE_ENUM.FEED_MESSAGES
+                || page == PAGE_ENUM.FEED_EXPLORE)
+            helperFullscreen.statusbarShowFullscreen();
+        else
+            helperFullscreen.statusbarShowResizeable();
+    }
 
     private void navigatePhotoCrop(Uri data) {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        onPageShow(PAGE_ENUM.PHOTO_CROP);
         refFragmentManager.get()
                 .beginTransaction()
                 .replace(viewId, FragmentPhotoCrop.getInstance(data), CURRENT_FRAGMENT_PAGE)
@@ -227,7 +206,6 @@ public class Navigator implements INavigator {
     @Override
     public void navigatePhotoAdd() {
         if (refActivity == null || refActivity.get() == null) return;
-        onPageShow(PAGE_ENUM.PHOTO_ADD);
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -240,7 +218,6 @@ public class Navigator implements INavigator {
     @Override
     public void navigateChat() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        onPageShow(PAGE_ENUM.CHAT);
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -251,7 +228,6 @@ public class Navigator implements INavigator {
     @Override
     public void navigateSettingsPrivacyDistance() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        onPageShow(PAGE_ENUM.SETTINGS_PRIVACY_DISTANCE);
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -262,7 +238,6 @@ public class Navigator implements INavigator {
     @Override
     public void navigateWebView(String url, String subtitle) {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        onPageShow(PAGE_ENUM.WEBVIEW);
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
@@ -272,7 +247,6 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateFeedback(Context context) {
-        onPageShow(PAGE_ENUM.FEEDBACK);
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:support@ringoid.com"));
         intent.putExtra(Intent.EXTRA_SUBJECT, getEmailSubject());
         intent.putExtra(Intent.EXTRA_TEXT, "");
@@ -295,7 +269,6 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateEmailProtectionOfficer(Context context, String customerId) {
-        onPageShow(PAGE_ENUM.EMAIL_OFFICER);
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:data.protection@ringoid.com"));
         intent.putExtra(Intent.EXTRA_SUBJECT, getEmailSubject());
         intent.putExtra(Intent.EXTRA_TEXT, String.format(context.getString(R.string.message_protection_officer), customerId));
@@ -307,7 +280,6 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateUrlExternal(Context context, String url) {
-        onPageShow(PAGE_ENUM.WEBVIEW_EXTERNAL);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 
         if (intent.resolveActivity(context.getPackageManager()) == null) return;
@@ -317,7 +289,6 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateSettingsPush() {
-        onPageShow(PAGE_ENUM.SETTINGS_PUSH);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()

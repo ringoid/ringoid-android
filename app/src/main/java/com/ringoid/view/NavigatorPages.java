@@ -45,7 +45,6 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateLikes() {
-        onPageShow(PAGE_ENUM.FEED_LIKES);
 
         cacheInterfaceState.setCurrentPage(1);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
@@ -55,17 +54,9 @@ public class NavigatorPages implements INavigatorPages {
                 .commit();
     }
 
-    private void onPageShow(PAGE_ENUM page) {
-        if (page == PAGE_ENUM.FEED_PROFILE) {
-            helperScreenshots.enableScreenshots();
-            helperFullscreen.statusbarShowFullscreen();
-        } else
-            helperScreenshots.disableScreenshots();
-    }
 
     @Override
     public void navigateProfile() {
-        onPageShow(PAGE_ENUM.FEED_PROFILE);
         cacheInterfaceState.setCurrentPage(0);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
@@ -76,7 +67,6 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateMessages() {
-        onPageShow(PAGE_ENUM.FEED_MESSAGES);
         cacheInterfaceState.setCurrentPage(2);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
@@ -87,7 +77,6 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateExplore() {
-        onPageShow(PAGE_ENUM.FEED_EXPLORE);
         cacheInterfaceState.setCurrentPage(3);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
