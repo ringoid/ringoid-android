@@ -123,9 +123,9 @@ public class FragmentLogin extends FragmentBase
         etCodeSMS.addTextChangedListener(new SMSTextChangedListener());
         etYearBirth.addTextChangedListener(new DateTextChangedListener());
 
-        if (getArguments() != null && getArguments().getBoolean(ARG_PROFILE_UPDATE, false)) {
-            setPage(INDEX_PROFILE_UPDATE);
-        }
+        setPage(getArguments() != null && getArguments().getBoolean(ARG_PROFILE_UPDATE, false)
+                ? INDEX_PROFILE_UPDATE
+                : INDEX_PHONE_INPUT);
     }
 
     private void setPage(int index) {
@@ -135,10 +135,6 @@ public class FragmentLogin extends FragmentBase
 
     @Override
     public boolean onBackPressed() {
-        if (!(vfLogin.getCurrentView().getId() == R.id.llLoginInfo)) {
-            showPrev();
-            return true;
-        }
         return false;
     }
 
@@ -284,7 +280,7 @@ public class FragmentLogin extends FragmentBase
         @Override
         public void setSMSResendEnabled() {
             if (getContext() == null) return;
-            tvSMSResend.setEnabled(false);
+            tvSMSResend.setEnabled(true);
             tvSMSResend.setText(R.string.message_sms_resend);
             tvSMSResend.setTextColor(getResources().getColor(R.color.blue));
         }
