@@ -46,7 +46,6 @@ public class DialogReport implements View.OnClickListener {
             dialog.findViewById(R.id.rgReport).setVisibility(isChecked ? View.VISIBLE : View.GONE);
 
             ((TextView) dialog.findViewById(R.id.tvReport)).setText(isChecked ? R.string.dialog_report_confirm_report : R.string.dialog_report_confirm);
-            ((TextView) dialog.findViewById(R.id.tvReport)).setTextColor(ContextCompat.getColor(dialog.getContext(), isChecked ? R.color.colorAccent : android.R.color.black));
         }
     }
 }
