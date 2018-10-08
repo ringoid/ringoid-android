@@ -10,8 +10,10 @@ public class RequestParamRegisterPhone {
     private long dtPN;
     private boolean clientValidationFail;
     private String locale;
+    private String osVersion;
+    private String deviceModel;
 
-    public RequestParamRegisterPhone(int phoneCode, String s, long dateTerms, long dateAge, long datePrivacy, boolean b, String lang) {
+    public RequestParamRegisterPhone(int phoneCode, String s, long dateTerms, long dateAge, long datePrivacy, boolean b, String lang, String os, String device) {
         this.countryCallingCode = phoneCode;
         this.phone = s;
         this.dtTC = dateTerms;
@@ -19,6 +21,8 @@ public class RequestParamRegisterPhone {
         this.dtPN = datePrivacy;
         this.clientValidationFail = b;
         this.locale = lang;
+        this.deviceModel = device;
+        this.osVersion = os;
     }
 
 }

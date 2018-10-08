@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.BuildConfig;
 import com.ringoid.controller.data.network.interceptor.listener.IInterceptorRetryListener;
 import com.ringoid.controller.data.network.response.ResponseBase;
 import com.ringoid.view.presenter.util.IHelperThreadMain;
@@ -36,12 +37,17 @@ public class InterceptorRetry implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
+
         Request request = chain.request();
+        Request requestNew = request.newBuilder()
+                .header("X-Ringoid-Android-BuildNum", String.valueOf(BuildConfig.VERSION_CODE))
+                .method(request.method(), request.body())
+                .build();
 
         Response response = null;
 
         for (int i = 0; i < 3; ++i) {
-            response = chain.proceed(request);
+            response = chain.proceed(requestNew);
 
             if (!response.isSuccessful()) {
                 notifyErrorUnknown();

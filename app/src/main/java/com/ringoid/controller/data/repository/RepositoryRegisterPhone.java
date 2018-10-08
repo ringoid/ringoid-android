@@ -1,11 +1,12 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.repository;
 
+import android.os.Build;
+
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheLocale;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheUser;
-import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.request.RequestParamRegisterPhone;
 import com.ringoid.controller.data.network.response.ResponseRegisterPhone;
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterPhoneListener;
@@ -54,7 +55,10 @@ public class RepositoryRegisterPhone implements IRepositoryRegisterPhone {
                 cacheRegister.getDateAge(),
                 cacheRegister.getDatePrivacy(),
                 !cacheRegister.isPhoneValid(),
-                cacheLocale.getLang()));
+                cacheLocale.getLang(),
+                String.format("%s, %d", Build.VERSION.RELEASE, Build.VERSION.SDK_INT),
+                String.format("%s, %s, %s", Build.MODEL, Build.MANUFACTURER, Build.PRODUCT)));
+
         request.enqueue(requestListener);
 
     }
