@@ -15,8 +15,6 @@ public interface INavigator {
 
     void set(AppCompatActivity activity, FragmentManager supportFragmentManager, int viewId);
 
-    void navigateSettings();
-
     void navigateBlacklistPhones();
 
     void navigatePhotoAdd();

@@ -12,6 +12,7 @@ import com.ringoid.view.ui.fragment.FragmentLikes;
 import com.ringoid.view.ui.fragment.FragmentMatches;
 import com.ringoid.view.ui.fragment.FragmentMessages;
 import com.ringoid.view.ui.fragment.FragmentProfile;
+import com.ringoid.view.ui.fragment.FragmentSettings;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperScreenshots;
 
@@ -93,6 +94,7 @@ public class NavigatorPages implements INavigatorPages {
         if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_LIKES) navigateLikes();
         if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_MESSAGES) navigateMessages();
         if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_EXPLORE) navigateExplore();
+        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_SETTINGS) navigateSettings();
     }
 
     @Override
@@ -141,6 +143,17 @@ public class NavigatorPages implements INavigatorPages {
         refFragmentManager.get()
                 .beginTransaction()
                 .replace(viewId, new FragmentMatches(), CURRENT_FRAGMENT_TAB)
+                .commit();
+    }
+
+    @Override
+    public void navigateSettings() {
+        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_SETTINGS);
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, new FragmentSettings(), CURRENT_FRAGMENT_TAB)
                 .commit();
     }
 

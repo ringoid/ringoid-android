@@ -14,6 +14,7 @@ import com.ringoid.BuildConfig;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterSettings;
 import com.ringoid.view.presenter.callback.IPresenterSettingsListener;
 import com.ringoid.view.presenter.util.ILogoutHelper;
@@ -21,7 +22,6 @@ import com.ringoid.view.ui.dialog.DialogAccountDelete;
 import com.ringoid.view.ui.dialog.DialogLogout;
 import com.ringoid.view.ui.dialog.callback.IDialogLogoutListener;
 import com.ringoid.view.ui.dialog.callback.IDialogPrivacyLikesListener;
-import com.ringoid.view.ui.dialog.callback.IDialogPrivacyPhotosListener;
 
 import javax.inject.Inject;
 
@@ -39,13 +39,17 @@ public class FragmentSettings extends FragmentBase
 
     @Inject
     IPresenterSettings presenterSettings;
-
     private DialogLogout dialogLogout;
     private DialogAccountDelete dialogAccountDelete;
     private IDialogLogoutListener listenerDialogLogout;
     private ListenerPresenterSettings listenerPresenter;
     private TextView tvPrivacyDistance, tvPrivacyPhoneBlacklistNum;
     private IDialogPrivacyLikesListener listenerDialogPrivacyLikes;
+
+    @Override
+    public PAGE_ENUM getPage() {
+        return PAGE_ENUM.FEED_SETTINGS;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,7 +75,6 @@ public class FragmentSettings extends FragmentBase
         tvPrivacyPhoneBlacklistNum = view.findViewById(R.id.tvPrivacyPhoneBlacklistNum);
         tvPrivacyDistance = view.findViewById(R.id.tvPrivacyDistance);
 
-        view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.tvDataProtection).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsFeedback).setOnClickListener(this);
         view.findViewById(R.id.tvLogout).setOnClickListener(this);
@@ -80,9 +83,6 @@ public class FragmentSettings extends FragmentBase
 
         view.findViewById(R.id.llBlacklist).setOnClickListener(this);
         view.findViewById(R.id.llPrivacyDistance).setOnClickListener(this);
-
-        TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
-        tvSubtitle.setText(R.string.settings_subtitle);
 
         if (BuildConfig.DEBUG) {
             View vDebug = view.findViewById(R.id.tvDebug);
@@ -94,8 +94,6 @@ public class FragmentSettings extends FragmentBase
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.ivBack && getActivity() != null)
-            getActivity().onBackPressed();
 
         if (v.getId() == R.id.llBlacklist)
             presenterSettings.onClickPrivacyBlacklist();

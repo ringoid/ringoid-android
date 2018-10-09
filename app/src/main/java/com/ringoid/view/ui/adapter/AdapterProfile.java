@@ -14,7 +14,6 @@ import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterProfile;
 import com.ringoid.view.presenter.callback.IPresenterAdapterProfileListener;
 import com.ringoid.view.ui.dialog.DialogImageRemove;
-import com.ringoid.view.ui.dialog.callback.IDialogHiddenModeListener;
 import com.ringoid.view.ui.dialog.callback.IDialogImageRemoveListener;
 import com.ringoid.view.ui.util.GlideApp;
 
@@ -27,7 +26,6 @@ public class AdapterProfile extends AdapterBase {
 
     private ListenerPresenter listenerPresenter;
 
-    private ListenerDialogHidden listenerDialogHidden;
     private ListenerDialogImageRemove listenerDialogImageRemove;
     private DialogImageRemove dialogImageRemove;
 
@@ -35,7 +33,6 @@ public class AdapterProfile extends AdapterBase {
         ApplicationRingoid.getComponent().inject(this);
         presenterAdapterProfile.setListener(listenerPresenter = new ListenerPresenter());
 
-        listenerDialogHidden = new ListenerDialogHidden();
         listenerDialogImageRemove = new ListenerDialogImageRemove();
     }
 
@@ -132,19 +129,6 @@ public class AdapterProfile extends AdapterBase {
             presenterAdapterProfile.onCLickLikes();
         }
 
-    }
-
-    private class ListenerDialogHidden implements IDialogHiddenModeListener {
-
-        @Override
-        public void onSelectOK(boolean isShow) {
-            presenterAdapterProfile.onClickHiddenModeOK(isShow);
-        }
-
-        @Override
-        public void onSelectSettings(boolean isShow) {
-            presenterAdapterProfile.onClickHiddenModeSettings(isShow);
-        }
     }
 
     private class ListenerPresenter implements IPresenterAdapterProfileListener {

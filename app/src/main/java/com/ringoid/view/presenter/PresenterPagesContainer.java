@@ -33,6 +33,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public static final int INDEX_PAGE_PROFILE = 2;
     public static final int INDEX_PAGE_MESSAGES = 3;
     public static final int INDEX_PAGE_LIKES = 4;
+    public static final int INDEX_PAGE_SETTINGS = 5;
 
     @Inject
     INavigatorPages navigatorPages;
@@ -156,7 +157,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Override
     public void onClickPageSettings() {
         cacheScroll.resetCache();
-        navigator.navigateSettings();
+        navigatorPages.navigateSettings();
     }
 
     @Override
@@ -178,6 +179,10 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     private int getIconResProfile(boolean isSelected) {
         return isSelected ? R.drawable.ic_menu_profile_white_24dp : R.drawable.ic_menu_profile_24dp;
+    }
+
+    private int getIconResSettings(boolean isSelected) {
+        return isSelected ? R.drawable.ic_menu_settings_white_24dp : R.drawable.ic_menu_settings_24dp;
     }
 
     private int getIconResLikes(boolean isSelected) {
@@ -230,7 +235,8 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
                     getIconResMatches(num == INDEX_PAGE_MATCHES),
                     getIconResLikes(num == INDEX_PAGE_LIKES),
                     getIconResMessages(num == INDEX_PAGE_MESSAGES),
-                    getIconResExplore(num == INDEX_PAGE_EXPLORE));
+                    getIconResExplore(num == INDEX_PAGE_EXPLORE),
+                    getIconResSettings(num == INDEX_PAGE_SETTINGS));
         }
     }
 

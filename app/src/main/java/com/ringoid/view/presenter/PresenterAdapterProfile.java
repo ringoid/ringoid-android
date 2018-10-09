@@ -71,22 +71,6 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     }
 
     @Override
-    public boolean onClickItem(Context context, int position) {
-        return false;
-    }
-
-    @Override
-    public void onClickHiddenModeOK(boolean isShow) {
-        cacheTutorial.setDialogHiddenModeShow(isShow);
-    }
-
-    @Override
-    public void onClickHiddenModeSettings(boolean isShow) {
-        cacheTutorial.setDialogHiddenModeShow(isShow);
-        navigator.navigateSettings();
-    }
-
-    @Override
     public void onCLickLikes() {
         navigatorPages.navigateLikes();
     }

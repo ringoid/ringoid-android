@@ -112,7 +112,7 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void setPageSelected(int num, int iconResProfile, int iconResMatches, int iconResLikes, int iconResMessages, int iconResExplore) {
+        public void setPageSelected(int num, int iconResProfile, int iconResMatches, int iconResLikes, int iconResMessages, int iconResExplore, int iconResSettings) {
             if (llBottomAppBar == null) return;
             for (int i = 0; i < llBottomAppBar.getChildCount(); ++i) {
                 View view = llBottomAppBar.getChildAt(i);
@@ -124,15 +124,16 @@ public class FragmentPages extends FragmentBase
                     view.setBackground(null);
             }
 
-            setDrawables(iconResProfile, iconResMatches, iconResLikes, iconResMessages, iconResExplore);
+            setDrawables(iconResProfile, iconResMatches, iconResLikes, iconResMessages, iconResExplore, iconResSettings);
         }
 
-        private void setDrawables(int iconResProfile, int iconResMatches, int iconResLikes, int iconResMessages, int iconResExplore) {
+        private void setDrawables(int iconResProfile, int iconResMatches, int iconResLikes, int iconResMessages, int iconResExplore, int iconResSettings) {
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_PROFILE)).setImageResource(iconResProfile);
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_LIKES)).setImageResource(iconResLikes);
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_MATCHES)).setImageResource(iconResMatches);
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_MESSAGES)).setImageResource(iconResMessages);
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_EXPLORE)).setImageResource(iconResExplore);
+            ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_SETTINGS)).setImageResource(iconResSettings);
         }
 
         @Override

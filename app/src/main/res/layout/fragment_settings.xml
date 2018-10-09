@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <com.ringoid.view.ui.view.ViewToolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        app:is_show_back="true" />
+    android:orientation="vertical"
+    android:paddingTop="@dimen/toolbar_height_with_statusbar">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,7 +25,8 @@
                 android:paddingTop="16dp"
                 android:text="DEBUG menu"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:visibility="visible" />
 
             <View
                 android:layout_width="match_parent"

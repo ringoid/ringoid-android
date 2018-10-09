@@ -36,22 +36,6 @@ public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
     }
 
     @Override
-    public boolean isDialogHiddenShow() {
-        return cacheTutorial.isShowDialogHiddenMode();
-    }
-
-    @Override
-    public void onClickOK(boolean b) {
-        cacheTutorial.setDialogHiddenModeShow(b);
-    }
-
-    @Override
-    public void onClickSettings(boolean b) {
-        cacheTutorial.setDialogHiddenModeShow(b);
-        navigator.navigateSettings();
-    }
-
-    @Override
     public boolean isUserNew() {
         return cacheUser.isUserNew();
     }

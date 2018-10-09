@@ -28,4 +28,6 @@ public interface INavigatorPages {
     void updateCurrentPage();
 
     void navigateMatches();
+
+    void navigateSettings();
 }

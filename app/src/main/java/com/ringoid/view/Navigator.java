@@ -91,16 +91,6 @@ public class Navigator implements INavigator {
     }
 
     @Override
-    public void navigateSettings() {
-        if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        refFragmentManager.get()
-                .beginTransaction()
-                .addToBackStack(null)
-                .replace(viewId, new FragmentSettings(), CURRENT_FRAGMENT_PAGE)
-                .commit();
-    }
-
-    @Override
     public void navigateBlacklistPhones() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
@@ -193,6 +183,7 @@ public class Navigator implements INavigator {
                 || page == PAGE_ENUM.FEED_LIKES
                 || page == PAGE_ENUM.FEED_MESSAGES
                 || page == PAGE_ENUM.FEED_EXPLORE
+                || page == PAGE_ENUM.FEED_SETTINGS
                 || page == PAGE_ENUM.FEED_MATCHES)
             helperFullscreen.statusbarShowFullscreen();
         else

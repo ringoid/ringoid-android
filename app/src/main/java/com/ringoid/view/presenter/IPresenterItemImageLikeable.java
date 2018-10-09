@@ -3,12 +3,6 @@ package com.ringoid.view.presenter;
 
 public interface IPresenterItemImageLikeable {
 
-    boolean isDialogHiddenShow();
-
-    void onClickOK(boolean b);
-
-    void onClickSettings(boolean b);
-
     boolean isUserNew();
 
     void showDialogNoPhoto();

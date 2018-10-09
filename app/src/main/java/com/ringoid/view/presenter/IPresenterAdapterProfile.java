@@ -12,12 +12,6 @@ public interface IPresenterAdapterProfile {
 
     int getLikesNum(int position);
 
-    boolean onClickItem(Context context, int position);
-
-    void onClickHiddenModeOK(boolean isShow);
-
-    void onClickHiddenModeSettings(boolean isShow);
-
     void onCLickLikes();
 
     void setListener(IPresenterAdapterProfileListener listener);
