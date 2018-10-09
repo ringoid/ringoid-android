@@ -54,8 +54,7 @@ public class InterceptorRetry implements Interceptor {
             response = chain.proceed(requestNew);
 
 
-            if (!helperConnection.isConnectionExist())
-            {
+            if (!helperConnection.isConnectionExist()) {
                 notifyErrorConnection();
                 return getEmptyResponse(response);
             }
@@ -110,6 +109,11 @@ public class InterceptorRetry implements Interceptor {
             return false;
         }
 
+        if (responseBase.isErrorAppVersion()) {
+            notifyErrorAppVersion();
+            return false;
+        }
+
         return responseBase.isInternalServerError();
     }
 
@@ -130,6 +134,10 @@ public class InterceptorRetry implements Interceptor {
         helperThreadMain.post(new RunnableErrorConnection());
     }
 
+
+    private void notifyErrorAppVersion() {
+        helperThreadMain.post(new RunnableErrorAppVersion());
+    }
 
     private class RunnableTokenInvalid implements Runnable {
         @Override
@@ -152,6 +160,14 @@ public class InterceptorRetry implements Interceptor {
         public void run() {
             if (refListener == null || refListener.get() == null) return;
             refListener.get().onRequestErrorConnection();
+        }
+    }
+
+    private class RunnableErrorAppVersion implements Runnable {
+        @Override
+        public void run() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onRequestErrorAppVersion();
         }
     }
 }

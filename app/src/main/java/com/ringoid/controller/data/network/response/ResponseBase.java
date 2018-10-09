@@ -18,4 +18,8 @@ public class ResponseBase {
     public boolean isInternalServerError() {
         return errorCode.equals("InternalServerError");
     }
+
+    public boolean isErrorAppVersion() {
+        return errorCode.equals("TooOldAppVersionClientError");
+    }
 }

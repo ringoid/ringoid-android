@@ -64,13 +64,15 @@ public interface IApiRingoid {
     @POST("https://wlzvkc7yf5.execute-api.eu-west-1.amazonaws.com/Prod/delete_photo")
     Call<ResponseBase> profileImageRemove(@Body RequestParamProfileImageRemove param);
 
-    @POST("8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/timeout")
+    @POST("https://8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/timeout")
     Call<ResponseBase> testTimeout();
 
-    @POST("8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/invalidtoken")
+    @POST("https://8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/invalidtoken")
     Call<ResponseBase> testTokenInvalid();
 
-    @POST("8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/nonok")
+    @POST("https://8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/nonok")
     Call<ResponseBase> testResponseNot200();
 
+    @POST("https://8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/old_version")
+    Call<ResponseBase> testAppVersion();
 }

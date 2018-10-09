@@ -31,4 +31,9 @@
         style="@style/settings_menu_item"
         android:text="request response timeout" />
 
+    <TextView
+        android:id="@+id/tvTestAppVersionError"
+        style="@style/settings_menu_item"
+        android:text="request response appversion error" />
+
 </LinearLayout>
