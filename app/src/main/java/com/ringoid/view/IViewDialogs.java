@@ -3,7 +3,9 @@ package com.ringoid.view;
 
 import android.content.Context;
 
+import com.ringoid.view.presenter.PresenterActivityMain;
 import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
+import com.ringoid.view.ui.dialog.callback.IDialogErrorAppVersionListener;
 
 public interface IViewDialogs {
     void showDialogExplore();
@@ -19,4 +21,6 @@ public interface IViewDialogs {
     void showDialogMessage(int messageId);
 
     void showDialogErrorUnknown();
+
+    void showDialogErrorAppVersion(IDialogErrorAppVersionListener listener);
 }

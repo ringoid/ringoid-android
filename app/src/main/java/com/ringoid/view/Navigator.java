@@ -195,6 +195,12 @@ public class Navigator implements INavigator {
             helperFullscreen.statusbarShowResizeable();
     }
 
+    @Override
+    public void finish() {
+        if (refActivity == null || refActivity.get() == null) return;
+        refActivity.get().finish();
+    }
+
     private void navigatePhotoCrop(Uri data) {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()

@@ -5,4 +5,6 @@ public interface IInterceptorRetryListener {
     void onRequestTokenInvalid(); //logoutHelper.logout();
 
     void onRequestErrorUnknown();
+
+    void onRequestErrorAppVersion();
 }

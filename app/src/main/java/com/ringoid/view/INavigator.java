@@ -48,4 +48,6 @@ public interface INavigator {
     void navigateScreenDebug();
 
     void onResume(FragmentBase fragmentBase);
+
+    void finish();
 }

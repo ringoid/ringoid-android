@@ -6,9 +6,11 @@ import android.content.Context;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.view.ui.dialog.DialogChatCompose;
+import com.ringoid.view.ui.dialog.DialogErrorAppVersion;
 import com.ringoid.view.ui.dialog.DialogErrorUnknown;
 import com.ringoid.view.ui.dialog.DialogLikeNoPhoto;
 import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
+import com.ringoid.view.ui.dialog.callback.IDialogErrorAppVersionListener;
 import com.ringoid.view.ui.dialog.callback.IDialogLIkeNoPhotoListener;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 
@@ -30,6 +32,7 @@ public class ViewDialogs implements IViewDialogs {
     private WeakReference<DialogChatCompose> refDialogChatCompose;
     private WeakReference<DialogErrorUnknown> refDialogErrorUnknown;
     private WeakReference<AlertDialog> refDialogMessage;
+    private WeakReference<DialogErrorAppVersion> refDialogErrorAppVersion;
 
     private IDialogLIkeNoPhotoListener listenerDialogLikeNoPhoto;
 
@@ -100,6 +103,17 @@ public class ViewDialogs implements IViewDialogs {
         DialogErrorUnknown dialog = new DialogErrorUnknown(refContext.get());
         dialog.show();
         refDialogErrorUnknown = new WeakReference<>(dialog);
+    }
+
+    @Override
+    public void showDialogErrorAppVersion(IDialogErrorAppVersionListener listener) {
+        if (refDialogErrorAppVersion != null && refDialogErrorAppVersion.get() != null)
+            refDialogErrorAppVersion.get().cancel();
+
+        if (refContext == null || refContext.get() == null) return;
+        DialogErrorAppVersion dialog = new DialogErrorAppVersion(refContext.get(), listener);
+        dialog.show();
+        refDialogErrorAppVersion = new WeakReference<>(dialog);
     }
 
     private class ListenerDialogLikeNoPhoto implements IDialogLIkeNoPhotoListener {

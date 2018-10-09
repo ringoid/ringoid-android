@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.BuildConfig;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
@@ -15,6 +16,7 @@ import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.util.ILogoutHelper;
+import com.ringoid.view.ui.dialog.callback.IDialogErrorAppVersionListener;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperScreenshots;
 
@@ -49,11 +51,13 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     @Inject
     IHelperFullscreen helperFullscreen;
 
+    private ListenerDialogErrorAppVersion listenerDialogErrorAppVersion;
     private ListenerInterceptor listenerInterceptor;
 
     public PresenterActivityMain() {
         ApplicationRingoid.getComponent().inject(this);
         interceptorRequest.setListener(listenerInterceptor = new ListenerInterceptor());
+        listenerDialogErrorAppVersion = new ListenerDialogErrorAppVersion();
     }
 
     @Override
@@ -100,6 +104,20 @@ public class PresenterActivityMain implements IPresenterActivityMain {
         @Override
         public void onRequestErrorUnknown() {
             viewDialogs.showDialogErrorUnknown();
+        }
+
+        @Override
+        public void onRequestErrorAppVersion() {
+            viewDialogs.showDialogErrorAppVersion(listenerDialogErrorAppVersion);
+        }
+    }
+
+    private class ListenerDialogErrorAppVersion implements IDialogErrorAppVersionListener {
+        @Override
+        public void onConfirm() {
+            if (!BuildConfig.DEBUG)
+                throw new IllegalArgumentException();
+            navigator.finish();
         }
     }
 }
