@@ -27,9 +27,6 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     ICacheProfile cacheProfile;
 
     @Inject
-    IViewDialogs viewDialogs;
-
-    @Inject
     ICacheSettingsPrivacy cacheSettingsPrivacy;
 
     @Inject
@@ -112,7 +109,7 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     @Override
     public void onImageRemove(String imageId) {
         if (!helperConnection.isConnectionExist()) {
-            showErrorConnection();
+            navigator.navigateErrorConnection();
             return;
         }
 
@@ -120,10 +117,6 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
         if (!cacheProfile.isDataExist())
             cacheUser.setUserNew();
         repositoryProfileImageRemove.request(imageId);
-    }
-
-    private void showErrorConnection() {
-        viewDialogs.showDialogMessage(R.string.error_network);
     }
 
     @Override

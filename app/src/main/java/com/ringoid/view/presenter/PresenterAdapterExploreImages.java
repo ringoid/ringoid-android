@@ -68,9 +68,4 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
         cacheExplore.changeLiked(adapterPosition, itemPosition);
         return cacheExplore.isLiked(adapterPosition, itemPosition);
     }
-
-    @Override
-    public boolean isLikeable() {
-        return !cacheSettingsPrivacy.isPrivacyPhotosNoone();
-    }
 }

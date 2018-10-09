@@ -15,7 +15,6 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     private static final String PHOTOS_INCOGNITO = "INCOGNITO";
     private static final String PHOTOS_ONLY_ME = "ONLY_ME";
 
-    private int privacyPhotosType;
     private int distance;
     private int pushLikesType;
     private boolean isPushEnabledMessages;
@@ -23,17 +22,6 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     private int privacyLikes;
 
     private WeakHashMap<String, ICacheSettingsPrivacyListener> listeners;
-
-    @Override
-    public int getPrivacyPhotos() {
-        return privacyPhotosType;
-    }
-
-    @Override
-    public void setPrivacyPhotos(int i) {
-        this.privacyPhotosType = i;
-        notifyListeners();
-    }
 
     private void notifyListeners() {
         if (listeners == null) return;
@@ -56,21 +44,6 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     }
 
     @Override
-    public boolean isPrivacyPhotosOppositeSex() {
-        return privacyPhotosType == 0;
-    }
-
-    @Override
-    public boolean isPrivacyPhotosLikes() {
-        return privacyPhotosType == 1;
-    }
-
-    @Override
-    public boolean isPrivacyPhotosNoone() {
-        return privacyPhotosType == 2;
-    }
-
-    @Override
     public void addListener(ICacheSettingsPrivacyListener listener) {
         if (listeners == null) listeners = new WeakHashMap<>();
         listeners.put(listener.getClass().getName(), listener);
@@ -84,15 +57,6 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     @Override
     public boolean isCheckedPushMatches() {
         return isPushEnabledMatches;
-    }
-
-    @Override
-    public String getWhoCanSeePhotosString() {
-        return isPrivacyPhotosOppositeSex()
-                ? PHOTOS_OPPOSITE
-                : isPrivacyPhotosLikes()
-                ? PHOTOS_INCOGNITO
-                : PHOTOS_ONLY_ME;
     }
 
     @Override
@@ -125,15 +89,7 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
     }
 
     @Override
-    public void setData(String whoCanSeePhoto, int safeDistanceInMeter, String pushLikes, boolean pushMessages, boolean pushMatches) {
-        this.privacyPhotosType = whoCanSeePhoto.equals(PHOTOS_OPPOSITE)
-                ? 0
-                : whoCanSeePhoto.equals(PHOTOS_INCOGNITO)
-                ? 1
-                : whoCanSeePhoto.equals(PHOTOS_ONLY_ME)
-                ? 2
-                : 2;
-
+    public void setData(int safeDistanceInMeter, String pushLikes, boolean pushMessages, boolean pushMatches) {
         this.distance = safeDistanceInMeter;
 
         this.isPushEnabledMatches = pushMatches;
@@ -178,11 +134,6 @@ public class CacheSettingsPrivacy implements ICacheSettingsPrivacy {
         pushLikesType = checked ? 1 : 0;
         notifyListeners();
         return true;
-    }
-
-    @Override
-    public int getPrivacyLikes() {
-        return privacyLikes;
     }
 
     @Override

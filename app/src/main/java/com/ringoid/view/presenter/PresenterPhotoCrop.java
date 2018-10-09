@@ -91,7 +91,7 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
     @Override
     public void onCLickCrop() {
         if (!helperConnection.isConnectionExist()) {
-            showErrorConnection();
+            navigator.navigateErrorConnection();
             return;
         }
 
@@ -103,10 +103,6 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
         cacheInterfaceState.setCurrentPage(0);
         navigator.navigateFeed();
         return true;
-    }
-
-    private void showErrorConnection() {
-        viewDialogs.showDialogMessage(R.string.error_network);
     }
 
     private class ListenerUpload implements IRepositoryPhotoUploadListener {

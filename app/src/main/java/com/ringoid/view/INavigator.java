@@ -50,4 +50,6 @@ public interface INavigator {
     void onResume(FragmentBase fragmentBase);
 
     void finish();
+
+    void navigateErrorConnection();
 }

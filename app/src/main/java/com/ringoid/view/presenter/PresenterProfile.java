@@ -36,9 +36,6 @@ public class PresenterProfile implements IPresenterProfile {
     @Inject
     IHelperConnection helperConnection;
 
-    @Inject
-    IViewDialogs viewDialogs;
-
     private ListenerRepositoryProfile listenerRepositoryProfile;
     private ListenerCacheProfile listenerCache;
     private WeakReference<IPresenterProfileListener> refListener;
@@ -57,14 +54,10 @@ public class PresenterProfile implements IPresenterProfile {
     @Override
     public void onClickPhotoAdd() {
         if (!helperConnection.isConnectionExist()) {
-            showErrorConnection();
+            navigator.navigateErrorConnection();
             return;
         }
         navigator.navigatePhotoAdd();
-    }
-
-    private void showErrorConnection() {
-        viewDialogs.showDialogMessage(R.string.error_network);
     }
 
     @Override
@@ -91,7 +84,7 @@ public class PresenterProfile implements IPresenterProfile {
     @Override
     public void onSwipeRefresh() {
         if (!helperConnection.isConnectionExist()) {
-            showErrorConnection();
+            navigator.navigateErrorConnection();
             return;
         }
         repositoryProfilePhotos.request();

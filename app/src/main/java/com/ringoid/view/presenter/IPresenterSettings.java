@@ -8,12 +8,6 @@ public interface IPresenterSettings {
 
     void setListener(IPresenterSettingsListener listener);
 
-    void onClickPrivacyPhotosAll();
-
-    void onClickPrivacyPhotosLikes();
-
-    void onClickPrivacyPhotosNoone();
-
     void onClickPrivacyBlacklist();
 
     void onClickPrivacyDistance();

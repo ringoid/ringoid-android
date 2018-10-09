@@ -17,6 +17,7 @@ import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import com.ringoid.view.ui.fragment.FragmentChat;
 import com.ringoid.view.ui.fragment.FragmentDataProtection;
+import com.ringoid.view.ui.fragment.FragmentErrorConnection;
 import com.ringoid.view.ui.fragment.FragmentLogin;
 import com.ringoid.view.ui.fragment.FragmentPages;
 import com.ringoid.view.ui.fragment.FragmentPhotoCrop;
@@ -199,6 +200,16 @@ public class Navigator implements INavigator {
     public void finish() {
         if (refActivity == null || refActivity.get() == null) return;
         refActivity.get().finish();
+    }
+
+    @Override
+    public void navigateErrorConnection() {
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(viewId, new FragmentErrorConnection(), CURRENT_FRAGMENT_PAGE)
+                .commit();
     }
 
     private void navigatePhotoCrop(Uri data) {

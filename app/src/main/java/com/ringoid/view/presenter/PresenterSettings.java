@@ -65,24 +65,6 @@ public class PresenterSettings implements IPresenterSettings {
     }
 
     @Override
-    public void onClickPrivacyPhotosAll() {
-        cacheSettingsPrivacy.setPrivacyPhotos(0);
-        settingsHelper.requestSave();
-    }
-
-    @Override
-    public void onClickPrivacyPhotosLikes() {
-        cacheSettingsPrivacy.setPrivacyPhotos(1);
-        settingsHelper.requestSave();
-    }
-
-    @Override
-    public void onClickPrivacyPhotosNoone() {
-        cacheSettingsPrivacy.setPrivacyPhotos(2);
-        settingsHelper.requestSave();
-    }
-
-    @Override
     public void onClickPrivacyBlacklist() {
         navigator.navigateBlacklistPhones();
     }

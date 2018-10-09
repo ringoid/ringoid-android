@@ -108,10 +108,7 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
             return false;
         }
 
-        if (!presenterItemImageLikeable.isHiddenMode()) return true;
-        if (!presenterItemImageLikeable.isDialogHiddenShow()) return false;
-
-        return false;
+        return true;
     }
 
     private class ListenerDialogHiddenMode implements IDialogHiddenModeListener {

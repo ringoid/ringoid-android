@@ -39,7 +39,6 @@ public class RepositorySettingsSave implements IRepositorySettingsSave {
 
         request = apiRingoid.getAPI().settingsUpdate(new RequestParamSettingsUpdate(
                 cacheToken.getToken(),
-                cacheSettingsPrivacy.getWhoCanSeePhotosString(),
                 cacheSettingsPrivacy.getDistance(),
                 cacheSettingsPrivacy.isCheckedPushMessages(),
                 cacheSettingsPrivacy.isCheckedPushMatches(),

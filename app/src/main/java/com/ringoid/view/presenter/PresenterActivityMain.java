@@ -110,6 +110,11 @@ public class PresenterActivityMain implements IPresenterActivityMain {
         public void onRequestErrorAppVersion() {
             viewDialogs.showDialogErrorAppVersion(listenerDialogErrorAppVersion);
         }
+
+        @Override
+        public void onRequestErrorConnection() {
+            navigator.navigateErrorConnection();
+        }
     }
 
     private class ListenerDialogErrorAppVersion implements IDialogErrorAppVersionListener {

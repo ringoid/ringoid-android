@@ -36,11 +36,6 @@ public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
     }
 
     @Override
-    public boolean isHiddenMode() {
-        return cacheSettingsPrivacy.isPrivacyPhotosNoone();
-    }
-
-    @Override
     public boolean isDialogHiddenShow() {
         return cacheTutorial.isShowDialogHiddenMode();
     }

@@ -9,6 +9,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.BuildConfig;
 import com.ringoid.controller.data.network.interceptor.listener.IInterceptorRetryListener;
 import com.ringoid.controller.data.network.response.ResponseBase;
+import com.ringoid.view.presenter.util.IHelperConnection;
 import com.ringoid.view.presenter.util.IHelperThreadMain;
 
 import java.io.IOException;
@@ -29,6 +30,9 @@ public class InterceptorRetry implements Interceptor {
     @Inject
     IHelperThreadMain helperThreadMain;
 
+    @Inject
+    IHelperConnection helperConnection;
+
     private WeakReference<IInterceptorRetryListener> refListener;
 
     public InterceptorRetry() {
@@ -48,6 +52,13 @@ public class InterceptorRetry implements Interceptor {
 
         for (int i = 0; i < 3; ++i) {
             response = chain.proceed(requestNew);
+
+
+            if (!helperConnection.isConnectionExist())
+            {
+                notifyErrorConnection();
+                return getEmptyResponse(response);
+            }
 
             if (!response.isSuccessful()) {
                 notifyErrorUnknown();
@@ -114,6 +125,12 @@ public class InterceptorRetry implements Interceptor {
         helperThreadMain.post(new RunnableErrorUnknown());
     }
 
+
+    private void notifyErrorConnection() {
+        helperThreadMain.post(new RunnableErrorConnection());
+    }
+
+
     private class RunnableTokenInvalid implements Runnable {
         @Override
         public void run() {
@@ -127,6 +144,14 @@ public class InterceptorRetry implements Interceptor {
         public void run() {
             if (refListener == null || refListener.get() == null) return;
             refListener.get().onRequestErrorUnknown();
+        }
+    }
+
+    private class RunnableErrorConnection implements Runnable {
+        @Override
+        public void run() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onRequestErrorConnection();
         }
     }
 }

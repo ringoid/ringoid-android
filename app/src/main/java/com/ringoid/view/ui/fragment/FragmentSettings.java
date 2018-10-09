@@ -45,7 +45,6 @@ public class FragmentSettings extends FragmentBase
     private IDialogLogoutListener listenerDialogLogout;
     private ListenerPresenterSettings listenerPresenter;
     private TextView tvPrivacyDistance, tvPrivacyPhoneBlacklistNum;
-    private IDialogPrivacyPhotosListener listenerDialogPrivacyPhotos;
     private IDialogPrivacyLikesListener listenerDialogPrivacyLikes;
 
     @Override
@@ -54,7 +53,6 @@ public class FragmentSettings extends FragmentBase
         ApplicationRingoid.getComponent().inject(this);
         listenerDialogLogout = new ListenerDialogLogout();
         presenterSettings.setListener(listenerPresenter = new ListenerPresenterSettings());
-        listenerDialogPrivacyPhotos = new ListenerDialogPrivacyPhotos();
         listenerDialogPrivacyLikes = new ListenerDialogPrivacyLikes();
 
     }
@@ -160,24 +158,6 @@ public class FragmentSettings extends FragmentBase
             if (getContext() == null) return;
             tvPrivacyPhoneBlacklistNum.setText(String.format(getContext().getResources().getQuantityString(R.plurals.blacklist_phone_num, itemsNum), itemsNum));
         }
-    }
-
-    private class ListenerDialogPrivacyPhotos implements IDialogPrivacyPhotosListener {
-        @Override
-        public void onClickAll() {
-            presenterSettings.onClickPrivacyPhotosAll();
-        }
-
-        @Override
-        public void onClickLiked() {
-            presenterSettings.onClickPrivacyPhotosLikes();
-        }
-
-        @Override
-        public void onClickNoone() {
-            presenterSettings.onClickPrivacyPhotosNoone();
-        }
-
     }
 
     private class ListenerDialogPrivacyLikes implements IDialogPrivacyLikesListener {

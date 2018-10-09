@@ -1,6 +1,8 @@
 package com.ringoid.model;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -62,6 +64,8 @@ public class ModelProfilePhotos implements Serializable {
     public boolean setPhotoLocalUploaded(String originPhotoId) {
         if (data == null) return false;
         for (ProfilePhoto item : data) {
+            if (item == null || TextUtils.isEmpty(item.getOriginPhotoId()))
+                continue;
             if (item.getOriginPhotoId().equals(originPhotoId)) {
                 item.setStatusUploaded();
                 return true;

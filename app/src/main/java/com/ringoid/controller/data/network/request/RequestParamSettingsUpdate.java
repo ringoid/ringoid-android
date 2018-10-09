@@ -4,7 +4,6 @@ package com.ringoid.controller.data.network.request;
 public class RequestParamSettingsUpdate {
 
     private String accessToken;
-    private String whoCanSeePhoto; // possible values PHOTOS_OPPOSITE/INCOGNITO/ONLY_ME
     private int safeDistanceInMeter;
     private boolean pushMessages;
     private boolean pushMatches;
@@ -12,14 +11,12 @@ public class RequestParamSettingsUpdate {
 
     public RequestParamSettingsUpdate(
             String accessToken,
-            String whoCanSeePhoto,
             int safeDistanceInMeter,
             boolean pushMessages,
             boolean pushMatches,
             String pushLikes) {
 
         this.accessToken = accessToken;
-        this.whoCanSeePhoto = whoCanSeePhoto;
         this.safeDistanceInMeter = safeDistanceInMeter;
         this.pushMessages = pushMessages;
         this.pushMatches = pushMatches;

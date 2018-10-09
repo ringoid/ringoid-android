@@ -53,7 +53,6 @@ public class RepositorySettingsGet implements IRepositorySettingsGet {
                     && response.body().isSuccess()) {
 
                 cacheSettingsPrivacy.setData(
-                        response.body().getWhoCanSeePhoto(),
                         response.body().getSafeDistanceInMeter(),
                         response.body().getPushLikes(),
                         response.body().isPushMessages(),

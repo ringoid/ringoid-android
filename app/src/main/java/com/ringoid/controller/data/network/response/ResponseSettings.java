@@ -3,15 +3,10 @@ package com.ringoid.controller.data.network.response;
 
 public class ResponseSettings extends ResponseBase{
 
-    private String whoCanSeePhoto; // possible values PHOTOS_OPPOSITE/INCOGNITO/ONLY_ME
     private int safeDistanceInMeter;
     private boolean pushMessages;
     private boolean pushMatches;
     private String pushLikes; //possible values NONE/EVERY/10_NEW/100_NEW
-
-    public String getWhoCanSeePhoto() {
-        return whoCanSeePhoto;
-    }
 
     public int getSafeDistanceInMeter() {
         return safeDistanceInMeter;
