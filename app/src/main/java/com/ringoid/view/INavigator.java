@@ -52,4 +52,6 @@ public interface INavigator {
     void finish();
 
     void navigateErrorConnection();
+
+    void navigateErrorAppversion();
 }

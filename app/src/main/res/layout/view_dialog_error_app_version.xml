@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/dialog_error_app_version_message"
+        android:text="@string/message_error_app_version"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
 
     <LinearLayout
@@ -32,7 +32,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="12dp"
-            android:text="@string/dialog_error_app_version_confirm"
+            android:text="@string/message_error_app_version_confirm"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
             android:textColor="@color/colorAccent" />
 

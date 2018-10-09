@@ -55,10 +55,6 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
 
     @Override
     public void onLongClick(int adapterPosition, int itemPosition) {
-        if (cacheTutorial.isShowDialogExplore()) {
-            viewDialogs.showDialogExplore();
-            return;
-        }
 
 
     }

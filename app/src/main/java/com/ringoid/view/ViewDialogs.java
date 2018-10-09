@@ -32,7 +32,6 @@ public class ViewDialogs implements IViewDialogs {
     private WeakReference<DialogChatCompose> refDialogChatCompose;
     private WeakReference<DialogErrorUnknown> refDialogErrorUnknown;
     private WeakReference<AlertDialog> refDialogMessage;
-    private WeakReference<DialogErrorAppVersion> refDialogErrorAppVersion;
 
     private IDialogLIkeNoPhotoListener listenerDialogLikeNoPhoto;
 
@@ -42,17 +41,8 @@ public class ViewDialogs implements IViewDialogs {
     }
 
     @Override
-    public void showDialogExplore() {
-    }
-
-    @Override
     public void set(Context context) {
         this.refContext = new WeakReference<>(context);
-    }
-
-    @Override
-    public void showDialogLikes() {
-
     }
 
     @Override
@@ -103,17 +93,6 @@ public class ViewDialogs implements IViewDialogs {
         DialogErrorUnknown dialog = new DialogErrorUnknown(refContext.get());
         dialog.show();
         refDialogErrorUnknown = new WeakReference<>(dialog);
-    }
-
-    @Override
-    public void showDialogErrorAppVersion(IDialogErrorAppVersionListener listener) {
-        if (refDialogErrorAppVersion != null && refDialogErrorAppVersion.get() != null)
-            refDialogErrorAppVersion.get().cancel();
-
-        if (refContext == null || refContext.get() == null) return;
-        DialogErrorAppVersion dialog = new DialogErrorAppVersion(refContext.get(), listener);
-        dialog.show();
-        refDialogErrorAppVersion = new WeakReference<>(dialog);
     }
 
     private class ListenerDialogLikeNoPhoto implements IDialogLIkeNoPhotoListener {

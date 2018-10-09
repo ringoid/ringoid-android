@@ -82,6 +82,7 @@ import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import com.ringoid.view.ui.fragment.FragmentChat;
 import com.ringoid.view.ui.fragment.FragmentDataProtection;
+import com.ringoid.view.ui.fragment.FragmentErrorAppversion;
 import com.ringoid.view.ui.fragment.FragmentErrorConnection;
 import com.ringoid.view.ui.fragment.FragmentExplore;
 import com.ringoid.view.ui.fragment.FragmentFeedPage;
@@ -112,6 +113,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(FragmentErrorAppversion param);
 
     void inject(FragmentErrorConnection param);
 

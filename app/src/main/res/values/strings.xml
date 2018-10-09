@@ -120,8 +120,8 @@
     <string name="message_no_photo_explore">See new profiles</string>
     <string name="button_phone_error">Wrong number?</string>
     <string name="message_terms">By tapping \"Send verification code\" button, you confirm that you have read, understood, consent and agree to Ringoid\'s <a href="http://ringoid.com/terms.html">Terms of Service</a> and <a href="http://ringoid.com/privacy.html">Privacy Policy</a>, and that you are of legal age and adult, as defined by the country or state from where you are accessing Ringoid.</string>
-    <string name="dialog_error_app_version_confirm">Go to Google Play Store</string>
-    <string name="dialog_error_app_version_message">Please update the app to the latest version</string>
+    <string name="message_error_app_version_confirm">Go to Google Play Store</string>
+    <string name="message_error_app_version">Please update the app to the latest version</string>
     <string name="message_network_retry">reload this page</string>
     <string name="message_error_network">no network connection</string>
 

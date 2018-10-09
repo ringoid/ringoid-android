@@ -17,6 +17,7 @@ import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
 import com.ringoid.view.ui.fragment.FragmentChat;
 import com.ringoid.view.ui.fragment.FragmentDataProtection;
+import com.ringoid.view.ui.fragment.FragmentErrorAppversion;
 import com.ringoid.view.ui.fragment.FragmentErrorConnection;
 import com.ringoid.view.ui.fragment.FragmentLogin;
 import com.ringoid.view.ui.fragment.FragmentPages;
@@ -209,6 +210,17 @@ public class Navigator implements INavigator {
                 .beginTransaction()
                 .addToBackStack(null)
                 .replace(viewId, new FragmentErrorConnection(), CURRENT_FRAGMENT_PAGE)
+                .commit();
+    }
+
+    @Override
+    public void navigateErrorAppversion() {
+        clearBackStack();
+
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .replace(viewId, new FragmentErrorAppversion(), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 

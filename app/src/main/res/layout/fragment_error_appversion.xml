@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="24dp">
+
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/message_error_app_version" />
+
+    <TextView
+        android:id="@+id/tvConfirm"
+        style="@style/buttonBase.wide.Green"
+        android:layout_gravity="bottom"
+        android:text="@string/message_error_app_version_confirm" />
+
+</FrameLayout>

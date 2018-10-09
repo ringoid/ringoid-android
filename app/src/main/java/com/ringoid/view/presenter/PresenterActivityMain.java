@@ -51,13 +51,11 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     @Inject
     IHelperFullscreen helperFullscreen;
 
-    private ListenerDialogErrorAppVersion listenerDialogErrorAppVersion;
     private ListenerInterceptor listenerInterceptor;
 
     public PresenterActivityMain() {
         ApplicationRingoid.getComponent().inject(this);
         interceptorRequest.setListener(listenerInterceptor = new ListenerInterceptor());
-        listenerDialogErrorAppVersion = new ListenerDialogErrorAppVersion();
     }
 
     @Override
@@ -108,21 +106,12 @@ public class PresenterActivityMain implements IPresenterActivityMain {
 
         @Override
         public void onRequestErrorAppVersion() {
-            viewDialogs.showDialogErrorAppVersion(listenerDialogErrorAppVersion);
+            navigator.navigateErrorAppversion();
         }
 
         @Override
         public void onRequestErrorConnection() {
             navigator.navigateErrorConnection();
-        }
-    }
-
-    private class ListenerDialogErrorAppVersion implements IDialogErrorAppVersionListener {
-        @Override
-        public void onConfirm() {
-            if (!BuildConfig.DEBUG)
-                throw new IllegalArgumentException();
-            navigator.finish();
         }
     }
 }
