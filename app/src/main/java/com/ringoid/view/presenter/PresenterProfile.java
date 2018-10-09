@@ -61,11 +61,6 @@ public class PresenterProfile implements IPresenterProfile {
     }
 
     @Override
-    public void onClickSettings() {
-        navigator.navigateSettings();
-    }
-
-    @Override
     public void onClickToolbar() {
     }
 

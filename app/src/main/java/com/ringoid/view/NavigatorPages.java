@@ -6,8 +6,10 @@ import android.support.v4.app.FragmentManager;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
+import com.ringoid.view.presenter.PresenterPagesContainer;
 import com.ringoid.view.ui.fragment.FragmentExplore;
 import com.ringoid.view.ui.fragment.FragmentLikes;
+import com.ringoid.view.ui.fragment.FragmentMatches;
 import com.ringoid.view.ui.fragment.FragmentMessages;
 import com.ringoid.view.ui.fragment.FragmentProfile;
 import com.ringoid.view.ui.util.IHelperFullscreen;
@@ -46,7 +48,7 @@ public class NavigatorPages implements INavigatorPages {
     @Override
     public void navigateLikes() {
 
-        cacheInterfaceState.setCurrentPage(1);
+        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_LIKES);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
@@ -57,7 +59,7 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateProfile() {
-        cacheInterfaceState.setCurrentPage(0);
+        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_PROFILE);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
@@ -67,7 +69,7 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateMessages() {
-        cacheInterfaceState.setCurrentPage(2);
+        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_MESSAGES);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
@@ -77,7 +79,7 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateExplore() {
-        cacheInterfaceState.setCurrentPage(3);
+        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_EXPLORE);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
@@ -87,10 +89,10 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateCurrentPage() {
-        if (cacheInterfaceState.getCurrentPage() == 0) navigateProfile();
-        if (cacheInterfaceState.getCurrentPage() == 1) navigateLikes();
-        if (cacheInterfaceState.getCurrentPage() == 2) navigateMessages();
-        if (cacheInterfaceState.getCurrentPage() == 3) navigateExplore();
+        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_PROFILE) navigateProfile();
+        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_LIKES) navigateLikes();
+        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_MESSAGES) navigateMessages();
+        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_EXPLORE) navigateExplore();
     }
 
     @Override
@@ -130,6 +132,16 @@ public class NavigatorPages implements INavigatorPages {
     public void updateCurrentPage() {
         if (isPageProfile())
             helperFullscreen.statusbarShowFullscreen();
+    }
+
+    @Override
+    public void navigateMatches() {
+        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_MATCHES);
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .replace(viewId, new FragmentMatches(), CURRENT_FRAGMENT_TAB)
+                .commit();
     }
 
     private void clearPage() {

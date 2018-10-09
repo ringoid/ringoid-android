@@ -100,7 +100,7 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
 
     @Override
     public boolean onBackPressed() {
-        cacheInterfaceState.setCurrentPage(0);
+        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_PROFILE);
         navigator.navigateFeed();
         return true;
     }

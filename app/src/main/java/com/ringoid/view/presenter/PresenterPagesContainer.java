@@ -28,10 +28,11 @@ import javax.inject.Inject;
 
 public class PresenterPagesContainer implements IPresenterPagesContainer {
 
-    private static final int INDEX_PAGE_PROFILE = 0;
-    private static final int INDEX_PAGE_LIKES = 1;
-    private static final int INDEX_PAGE_MATCHES = 2;
-    private static final int INDEX_PAGE_EXPLORE = 3;
+    public static final int INDEX_PAGE_EXPLORE = 0;
+    public static final int INDEX_PAGE_MATCHES = 1;
+    public static final int INDEX_PAGE_PROFILE = 2;
+    public static final int INDEX_PAGE_MESSAGES = 3;
+    public static final int INDEX_PAGE_LIKES = 4;
 
     @Inject
     INavigatorPages navigatorPages;
@@ -153,8 +154,19 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     }
 
     @Override
+    public void onClickPageSettings() {
+        cacheScroll.resetCache();
+        navigator.navigateSettings();
+    }
+
+    @Override
     public void setListener(IPresenterPagesContainerListener listener) {
         this.refListener = new WeakReference<>(listener);
+    }
+
+    @Override
+    public void onClickPageMatches() {
+        navigatorPages.navigateMatches();
     }
 
     private void checkStatubar(boolean isDown) {
@@ -163,12 +175,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         else
             helperFullscreen.statusbarShowFullscreen();
     }
-
-
-    /*
-                getIconResLikes(false) cacheLikes.isDataExist() ?
-                cacheMessages.isDataExist() ? R.drawable.ic_menu_message_dot_24dp : R.drawable.ic_menu_message_24dp,
-                R.drawable.ic_menu_explore_24dp*/
 
     private int getIconResProfile(boolean isSelected) {
         return isSelected ? R.drawable.ic_menu_profile_white_24dp : R.drawable.ic_menu_profile_24dp;
@@ -184,12 +190,17 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
                 : R.drawable.ic_menu_favorite_24dp);
     }
 
-    private int getIconResMatches(boolean isSelected) {
+    private int getIconResMessages(boolean isSelected) {
         return isSelected
                 ? (cacheMessages.isDataExist()
                 ? R.drawable.ic_menu_message_white_dot_24dp : R.drawable.ic_menu_message_white_24dp)
                 : cacheMessages.isDataExist()
                 ? R.drawable.ic_menu_message_dot_24dp : R.drawable.ic_menu_message_24dp;
+    }
+
+
+    private int getIconResMatches(boolean isSelected) {
+        return isSelected ? R.drawable.ic_menu_matches_white_24dp : R.drawable.ic_menu_matches_24dp;
     }
 
     private int getIconResExplore(boolean isSelected) {
@@ -216,8 +227,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
             if (refListener == null || refListener.get() == null) return;
             refListener.get().setPageSelected(num,
                     getIconResProfile(num == INDEX_PAGE_PROFILE),
-                    getIconResLikes(num == INDEX_PAGE_LIKES),
                     getIconResMatches(num == INDEX_PAGE_MATCHES),
+                    getIconResLikes(num == INDEX_PAGE_LIKES),
+                    getIconResMessages(num == INDEX_PAGE_MESSAGES),
                     getIconResExplore(num == INDEX_PAGE_EXPLORE));
         }
     }

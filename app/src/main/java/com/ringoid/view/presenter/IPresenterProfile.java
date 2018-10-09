@@ -8,9 +8,6 @@ public interface IPresenterProfile {
 
     void onClickPhotoAdd();
 
-    void onClickSettings();
-
-
     void onClickToolbar();
 
     void onCreateView();

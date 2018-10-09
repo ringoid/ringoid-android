@@ -6,6 +6,7 @@ import com.ringoid.controller.data.FileEnum;
 import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
 import com.ringoid.controller.device.ICacheStorage;
 import com.ringoid.model.ModelInterfaceState;
+import com.ringoid.view.presenter.PresenterPagesContainer;
 
 import java.util.WeakHashMap;
 
@@ -56,7 +57,7 @@ public class CacheInterfaceState implements ICacheInterfaceState {
 
     @Override
     public void resetCurrentPage() {
-        setCurrentPage(3);
+        setCurrentPage(PresenterPagesContainer.INDEX_PAGE_EXPLORE);
     }
 
     @Override

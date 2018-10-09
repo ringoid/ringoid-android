@@ -183,6 +183,7 @@ public class Navigator implements INavigator {
         if (page == PAGE_ENUM.FEED_LIKES
                 || page == PAGE_ENUM.FEED_MESSAGES
                 || page == PAGE_ENUM.FEED_EXPLORE
+                || page == PAGE_ENUM.FEED_MATCHES
                 || page == PAGE_ENUM.CHAT)
             helperScreenshots.disableScreenshots();
         else
@@ -191,7 +192,8 @@ public class Navigator implements INavigator {
         if (page == PAGE_ENUM.FEED_PROFILE
                 || page == PAGE_ENUM.FEED_LIKES
                 || page == PAGE_ENUM.FEED_MESSAGES
-                || page == PAGE_ENUM.FEED_EXPLORE)
+                || page == PAGE_ENUM.FEED_EXPLORE
+                || page == PAGE_ENUM.FEED_MATCHES)
             helperFullscreen.statusbarShowFullscreen();
         else
             helperFullscreen.statusbarShowResizeable();

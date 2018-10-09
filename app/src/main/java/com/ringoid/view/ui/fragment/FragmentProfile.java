@@ -58,7 +58,6 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
 
         srlPhotos.setOnRefreshListener(listenerRefreshLayout = new ListenerRefreshLayout());
         view.findViewById(R.id.fabProfile).setOnClickListener(this);
-        view.findViewById(R.id.tvSettings).setOnClickListener(this);
 
         initList(view);
         presenterProfile.onCreateView();
@@ -93,9 +92,6 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
 
         if (v.getId() == R.id.llToolbarTitle)
             presenterProfile.onClickToolbar();
-
-        if (v.getId() == R.id.tvSettings)
-            presenterProfile.onClickSettings();
     }
 
     private class ListenerPresenter implements IPresenterProfileListener {
