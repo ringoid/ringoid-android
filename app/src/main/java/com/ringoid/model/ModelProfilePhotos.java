@@ -119,4 +119,19 @@ public class ModelProfilePhotos implements Serializable {
                 return item;
         return null;
     }
+
+    public boolean removeLocalPhotos() {
+        boolean isRemoved = false;
+
+        Iterator<ProfilePhoto> iterator = data.iterator();
+        while (iterator.hasNext()) {
+            ProfilePhoto item = iterator.next();
+            if (item.isLocal()) {
+                iterator.remove();
+                isRemoved = true;
+            }
+        }
+
+        return isRemoved;
+    }
 }

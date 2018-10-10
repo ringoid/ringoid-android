@@ -33,8 +33,11 @@ public class CacheProfile implements ICacheProfile {
     }
 
     private ModelProfilePhotos getData() {
-        if (data == null)
+        if (data == null) {
             data = cacheStorage.readObject(FileEnum.CACHE_PROFILE, ModelProfilePhotos.class);
+            if (data != null && data.removeLocalPhotos())
+                saveData();
+        }
         if (data == null) data = new ModelProfilePhotos();
         return data;
     }
