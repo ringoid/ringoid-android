@@ -90,11 +90,18 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateCurrentPage() {
-        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_PROFILE) navigateProfile();
-        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_LIKES) navigateLikes();
-        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_MESSAGES) navigateMessages();
-        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_EXPLORE) navigateExplore();
-        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_SETTINGS) navigateSettings();
+        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_PROFILE)
+            navigateProfile();
+        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_MATCHES)
+            navigateMatches();
+        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_LIKES)
+            navigateLikes();
+        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_MESSAGES)
+            navigateMessages();
+        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_EXPLORE)
+            navigateExplore();
+        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_SETTINGS)
+            navigateSettings();
     }
 
     @Override
