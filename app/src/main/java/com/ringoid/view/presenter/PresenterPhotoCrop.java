@@ -1,16 +1,12 @@
 package com.ringoid.view.presenter;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
-import android.net.Uri;
-
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
-import com.ringoid.controller.data.memorycache.ICachePhotoUpload;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
-import com.ringoid.controller.data.repository.IRepositoryPhotoUpload;
-import com.ringoid.controller.data.repository.IRepositoryPhotoUploadUri;
-import com.ringoid.controller.data.repository.callback.IRepositoryPhotoUploadListener;
+import com.ringoid.controller.data.repository.RepositoryPhotoUploadUri;
+import com.ringoid.model.PhotoUpload;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.presenter.util.IHelperConnection;
@@ -24,15 +20,6 @@ import javax.inject.Inject;
 public class PresenterPhotoCrop implements IPresenterPhotoCrop {
 
     private static long MAX_FILE_SIZE_BYTES = 4 * 1024 * 1024;
-
-    @Inject
-    IRepositoryPhotoUploadUri repositoryPhotoCrop;
-
-    @Inject
-    IRepositoryPhotoUpload repositoryPhotoUpload;
-
-    @Inject
-    ICachePhotoUpload cachePhotoUpload;
 
     @Inject
     ICacheProfile cacheProfile;
@@ -49,38 +36,28 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
     @Inject
     INavigator navigator;
 
-    private ListenerUpload listenerRequest;
     private WeakReference<IPresenterPhotoCropListener> refListener;
 
     public PresenterPhotoCrop() {
         ApplicationRingoid.getComponent().inject(this);
-        repositoryPhotoUpload.setListener(listenerRequest = new ListenerUpload());
     }
 
     @Override
-    public void onCropCompleted(Uri file) {
-        if (cachePhotoUpload.getFile().length() > MAX_FILE_SIZE_BYTES) {
+    public void onCropCompleted(File file) {
+
+        if (file.length() > MAX_FILE_SIZE_BYTES) {
             viewDialogs.showDialogMessage(R.string.error_photo_max_size);
             return;
         }
 
-        cachePhotoUpload.setUri(file);
-        cachePhotoUpload.setClientPhotoID(UUID.randomUUID().toString());
+        PhotoUpload photoUpload = new PhotoUpload();
+        photoUpload.setFile(file);
+        photoUpload.setClientPhotoID(UUID.randomUUID().toString());
 
-        cacheProfile.addPhotoLocal(cachePhotoUpload.getFileUri(), cachePhotoUpload.getClientPhotoId());
+        cacheProfile.addPhotoLocal(photoUpload.getFileUri(), photoUpload.getClientPhotoId());
 
-        repositoryPhotoCrop.request();
+        new RepositoryPhotoUploadUri(photoUpload).request();
         onBackPressed();
-    }
-
-    @Override
-    public void onCreateView() {
-
-    }
-
-    @Override
-    public void setFile(File file) {
-        cachePhotoUpload.setFile(file);
     }
 
     @Override
@@ -103,18 +80,5 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
         cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_PROFILE);
         navigator.navigateFeed();
         return true;
-    }
-
-    private class ListenerUpload implements IRepositoryPhotoUploadListener {
-
-        @Override
-        public void onSuccess() {
-
-        }
-
-        @Override
-        public void onError() {
-
-        }
     }
 }

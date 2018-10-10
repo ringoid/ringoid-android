@@ -4,14 +4,12 @@ package com.ringoid.controller.data.repository;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
-import com.ringoid.controller.data.memorycache.ICachePhotoUpload;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheToken;
-import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.request.RequestPhotoUploadUri;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotoUri;
+import com.ringoid.model.PhotoUpload;
 import com.ringoid.view.IViewDialogs;
-import com.ringoid.view.IViewPopup;
 import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import javax.inject.Inject;
@@ -20,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
+public class RepositoryPhotoUploadUri {
 
     private static final String EXT_JPG = "jpg";
 
@@ -31,12 +29,6 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
     ICacheToken cacheToken;
 
     @Inject
-    ICachePhotoUpload cachePhotoUpload;
-
-    @Inject
-    IRepositoryPhotoUpload repositoryPhotoUpload;
-
-    @Inject
     ICacheInterfaceState cacheInterfaceState;
 
     @Inject
@@ -45,22 +37,18 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
     @Inject
     IViewDialogs viewDialogs;
 
+    private PhotoUpload photoUpload;
     private Callback<ResponseProfilePhotoUri> requestUriListener;
-    private Call<ResponseProfilePhotoUri> request;
 
-    public RepositoryPhotoUploadUri() {
+    public RepositoryPhotoUploadUri(PhotoUpload photoUpload) {
+        this.photoUpload = photoUpload;
         ApplicationRingoid.getComponent().inject(this);
         requestUriListener = new ListenerRequestUri();
     }
 
-    @Override
     public void request() {
-        if (request != null)
-            request.cancel();
-
-        request = apiRingoid.getAPI().profilePhotoUri(new RequestPhotoUploadUri(cacheToken.getToken(), cachePhotoUpload.getClientPhotoId(), EXT_JPG));
-        request.enqueue(requestUriListener);
-
+        if (photoUpload == null) return;
+        apiRingoid.getAPI().profilePhotoUri(new RequestPhotoUploadUri(cacheToken.getToken(), photoUpload.getClientPhotoId(), EXT_JPG)).enqueue(requestUriListener);
     }
 
     private class ListenerRequestUri implements Callback<ResponseProfilePhotoUri> {
@@ -70,24 +58,23 @@ public class RepositoryPhotoUploadUri implements IRepositoryPhotoUploadUri {
             if (response.isSuccessful()
                     && response.body().isSuccess()) {
 
-                cachePhotoUpload.setUploadUri(response.body().getUri());
-                cachePhotoUpload.setOriginPhotoId(response.body().getClientPhotoId(), response.body().getOriginPhotoId());
+                photoUpload.setUploadUri(response.body().getUri());
+                photoUpload.setOriginPhotoId(response.body().getClientPhotoId(), response.body().getOriginPhotoId());
                 cacheInterfaceState.setProfileOriginPhotoId(response.body().getOriginPhotoId());
                 cacheProfile.updateLocalPhoto(response.body().getClientPhotoId(), response.body().getOriginPhotoId());
 
-                repositoryPhotoUpload.request();
+                new RepositoryPhotoUpload(photoUpload).request();
             } else onError();
 
         }
 
         @Override
         public void onFailure(Call<ResponseProfilePhotoUri> call, Throwable t) {
-            if (call.isCanceled()) return;
             onError();
         }
 
         private void onError() {
-            cacheProfile.removeItemByLocalPhotoId(cachePhotoUpload.getClientPhotoId());
+            cacheProfile.removeItemByLocalPhotoId(photoUpload.getClientPhotoId());
             viewDialogs.showDialogMessage(R.string.error_photo_upload);
         }
     }

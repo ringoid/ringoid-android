@@ -14,7 +14,6 @@ import com.ringoid.controller.data.memorycache.CacheInterfaceState;
 import com.ringoid.controller.data.memorycache.CacheLikes;
 import com.ringoid.controller.data.memorycache.CacheLocale;
 import com.ringoid.controller.data.memorycache.CacheMessages;
-import com.ringoid.controller.data.memorycache.CachePhotoUpload;
 import com.ringoid.controller.data.memorycache.CacheProfile;
 import com.ringoid.controller.data.memorycache.CacheRegister;
 import com.ringoid.controller.data.memorycache.CacheScroll;
@@ -29,7 +28,6 @@ import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheLocale;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
-import com.ringoid.controller.data.memorycache.ICachePhotoUpload;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
@@ -42,8 +40,6 @@ import com.ringoid.controller.data.repository.IRepositoryErrorUnknown;
 import com.ringoid.controller.data.repository.IRepositoryFeedExplore;
 import com.ringoid.controller.data.repository.IRepositoryFeedLikes;
 import com.ringoid.controller.data.repository.IRepositoryFeedMessages;
-import com.ringoid.controller.data.repository.IRepositoryPhotoUpload;
-import com.ringoid.controller.data.repository.IRepositoryPhotoUploadUri;
 import com.ringoid.controller.data.repository.IRepositoryProfileImageRemove;
 import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
 import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
@@ -56,8 +52,6 @@ import com.ringoid.controller.data.repository.RepositoryErrorUnknown;
 import com.ringoid.controller.data.repository.RepositoryFeedExplore;
 import com.ringoid.controller.data.repository.RepositoryFeedLikes;
 import com.ringoid.controller.data.repository.RepositoryFeedMessages;
-import com.ringoid.controller.data.repository.RepositoryPhotoUpload;
-import com.ringoid.controller.data.repository.RepositoryPhotoUploadUri;
 import com.ringoid.controller.data.repository.RepositoryProfileImageRemove;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegisterLogout;
@@ -312,12 +306,6 @@ class AppModule {
     @Singleton
     ICacheToken getCacheToken() {
         return new CacheToken();
-    }
-
-    @Provides
-    @Singleton
-    ICachePhotoUpload getCachePhotoUpload() {
-        return new CachePhotoUpload();
     }
 
     @Provides
@@ -611,18 +599,6 @@ class AppModule {
     @Singleton
     IRepositoryProfileImageRemove getRepositoryProfileImageRemove() {
         return new RepositoryProfileImageRemove();
-    }
-
-    @Provides
-    @Singleton
-    IRepositoryPhotoUploadUri getRepositoryPhotoUloadUri() {
-        return new RepositoryPhotoUploadUri();
-    }
-
-    @Provides
-    @Singleton
-    IRepositoryPhotoUpload getRepositoryPhotoUload() {
-        return new RepositoryPhotoUpload();
     }
 
     @Provides

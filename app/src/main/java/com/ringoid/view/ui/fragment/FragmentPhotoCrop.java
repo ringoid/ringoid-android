@@ -56,7 +56,6 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_photo_crop, container, false);
         initViews(view);
-        presenterPhotoCrop.onCreateView();
         return view;
     }
 
@@ -84,7 +83,6 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
         cropImageView = view.findViewById(R.id.crop_view);
         cropImageView.setListenerCropUpdate(new ListenerCropUpdate());
         cropImageView.setImageUri(Uri.parse(url));
-        cropImageView.setCropSaveCompleteListener(new ListenerCrop());
     }
 
     @Override
@@ -103,9 +101,16 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
     }
 
     private class ListenerCrop implements CropIwaView.CropSaveCompleteListener {
+
+        private File file;
+
+        ListenerCrop(File file) {
+            this.file = file;
+        }
+
         @Override
         public void onCroppedRegionSaved(Uri bitmapUri) {
-            presenterPhotoCrop.onCropCompleted(bitmapUri);
+            presenterPhotoCrop.onCropCompleted(file);
         }
     }
 
@@ -116,8 +121,8 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
             File file = new File(
                     getContext().getFilesDir(),
                     System.currentTimeMillis() + ".jpg");
-            presenterPhotoCrop.setFile(file);
 
+            cropImageView.setCropSaveCompleteListener(new ListenerCrop(file));
             cropImageView.crop(new CropIwaSaveConfig.Builder(Uri.fromFile(file))
                     .setCompressFormat(Bitmap.CompressFormat.JPEG)
                     .setQuality(100)
