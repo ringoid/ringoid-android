@@ -9,10 +9,13 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.hbb20.PhoneUtils;
 import com.hbb20.PresenterCountry;
@@ -72,6 +75,8 @@ public class ViewPhoneInput extends LinearLayout
 
         etPhone.addTextChangedListener(new PhoneInputTextWatcher());
 
+        etCode.setOnEditorActionListener(new ListenedCode());
+        etPhone.setOnEditorActionListener(new ListenerPhone());
     }
 
     public boolean setCountryLocal() {
@@ -172,6 +177,12 @@ public class ViewPhoneInput extends LinearLayout
         return input;
     }
 
+    private void notifyListenerPhoneDone() {
+        if (listener == null) return;
+        listener.onPhoneDone();
+
+    }
+
     private class ListenerCode implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -259,6 +270,28 @@ public class ViewPhoneInput extends LinearLayout
         @Override
         public void onCcpDialogCancel(DialogInterface dialogInterface) {
             if (listener != null) listener.onDialogClose();
+        }
+    }
+
+    private class ListenedCode implements TextView.OnEditorActionListener {
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                etPhone.requestFocus();
+                return true;
+            }
+            return false;
+        }
+    }
+
+    private class ListenerPhone implements TextView.OnEditorActionListener {
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                notifyListenerPhoneDone();
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -14,10 +14,12 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -123,6 +125,9 @@ public class FragmentLogin extends FragmentBase
         etCodeSMS.addTextChangedListener(new SMSTextChangedListener());
         etYearBirth.addTextChangedListener(new DateTextChangedListener());
 
+        etCodeSMS.setOnEditorActionListener(new ListenerSMSCode());
+        etYearBirth.setOnEditorActionListener(new ListenerYearBirth());
+
         setPage(getArguments() != null && getArguments().getBoolean(ARG_PROFILE_UPDATE, false)
                 ? INDEX_PROFILE_UPDATE
                 : INDEX_PHONE_INPUT);
@@ -142,10 +147,7 @@ public class FragmentLogin extends FragmentBase
     public void onClick(View view) {
 
         if (view.getId() == R.id.tvLoginPhoneVerify) {
-            if (TextUtils.isEmpty(vpiLogin.getPhone()) || TextUtils.isEmpty(etPhoneCode.getText()))
-                return;
-
-            setPhone(vpiLogin.isValid());
+            onClickPhoneConfirm();
         }
 
         if (view.getId() == R.id.tvCodeSMSConfirm) {
@@ -191,11 +193,6 @@ public class FragmentLogin extends FragmentBase
         etCodeSMS.setSelection(etCodeSMS.getText().length());
     }
 
-    private void showPrev() {
-        vfLogin.showPrevious();
-        checkKeyboard();
-    }
-
     private void checkKeyboard() {
 
         if (vfLogin.getCurrentView().getId() == R.id.llLoginPhone)
@@ -218,8 +215,11 @@ public class FragmentLogin extends FragmentBase
         return false;
     }
 
-    private void setPhone(boolean isValid) {
-        presenterRegister.onClickLoginPhoneVerify(etPhoneCode.getText().toString(), vpiLogin.getPhone(), isValid);
+    private void onClickPhoneConfirm() {
+        if (TextUtils.isEmpty(vpiLogin.getPhone()) || TextUtils.isEmpty(etPhoneCode.getText()))
+            return;
+
+        presenterRegister.onClickLoginPhoneVerify(etPhoneCode.getText().toString(), vpiLogin.getPhone(), vpiLogin.isValid());
     }
 
     private void setButtonCodeConfirmState(int length) {
@@ -338,6 +338,11 @@ public class FragmentLogin extends FragmentBase
         public void onDialogClose() {
             showKeyboard(etPhone);
         }
+
+        @Override
+        public void onPhoneDone() {
+            onClickPhoneConfirm();
+        }
     }
 
     private class SMSTextChangedListener implements TextWatcher {
@@ -440,6 +445,28 @@ public class FragmentLogin extends FragmentBase
 
         private boolean isValid(int year) {
             return year >= 1938 && year <= Calendar.getInstance().get(Calendar.YEAR) - 18;
+        }
+    }
+
+    private class ListenerSMSCode implements TextView.OnEditorActionListener {
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                presenterRegister.onClickCodeSMSConfirm(etCodeSMS.getText().toString());
+                return true;
+            }
+            return false;
+        }
+    }
+
+    private class ListenerYearBirth implements TextView.OnEditorActionListener {
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                hideKeyboard();
+                return true;
+            }
+            return false;
         }
     }
 }

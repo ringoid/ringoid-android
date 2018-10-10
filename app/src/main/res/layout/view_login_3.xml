@@ -35,6 +35,7 @@
                 android:background="@drawable/border_rounded_gray"
                 android:gravity="center"
                 android:hint="@string/hint_dots_4"
+                android:imeOptions="actionDone"
                 android:inputType="number"
                 android:padding="16dp"
                 android:textSize="30sp" />

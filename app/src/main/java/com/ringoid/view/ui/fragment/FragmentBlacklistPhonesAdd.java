@@ -76,17 +76,16 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tvBlacklistAdd) {
-            if (TextUtils.isEmpty(vpiBlacklist.getPhone()) || TextUtils.isEmpty(etPhoneCode.getText()))
-                return;
-
-            confirmPhoneAdd();
+            onClickConfirm();
         }
 
         if (v.getId() == R.id.ivBack && getActivity() != null)
             getActivity().onBackPressed();
     }
 
-    private void confirmPhoneAdd() {
+    private void onClickConfirm() {
+        if (TextUtils.isEmpty(vpiBlacklist.getPhone()) || TextUtils.isEmpty(etPhoneCode.getText()))
+            return;
         presenterBlacklistPhones.onClickBlacklistAdd(etPhoneCode.getText().toString(), vpiBlacklist.getPhone());
         tvPhone.setText("");
         getActivity().onBackPressed();
@@ -96,6 +95,11 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
         @Override
         public void onDialogClose() {
             showKeyboard(tvPhone);
+        }
+
+        @Override
+        public void onPhoneDone() {
+            onClickConfirm();
         }
     }
 
