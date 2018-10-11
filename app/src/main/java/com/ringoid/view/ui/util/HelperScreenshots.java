@@ -31,9 +31,7 @@ public class HelperScreenshots implements IHelperScreenshots {
 
     @Override
     public void changeStateScreenshots() {
-        if (refWindow == null || refWindow.get() == null) return;
-        refWindow.get().setFlags(isScreenshotsSecured() ? 0 : WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-        debugSessionScreenshotsEnabled = isScreenshotsSecured();
+        debugSessionScreenshotsEnabled = !debugSessionScreenshotsEnabled;
     }
 
     @Override
@@ -45,5 +43,10 @@ public class HelperScreenshots implements IHelperScreenshots {
     @Override
     public void set(Window window) {
         this.refWindow = new WeakReference<>(window);
+    }
+
+    @Override
+    public boolean isScreenshotsDebugEnabled() {
+        return debugSessionScreenshotsEnabled;
     }
 }

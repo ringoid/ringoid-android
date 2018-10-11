@@ -14,4 +14,6 @@ public interface IHelperScreenshots {
     boolean isScreenshotsSecured();
 
     void set(Window window);
+
+    boolean isScreenshotsDebugEnabled();
 }
