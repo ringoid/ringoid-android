@@ -451,7 +451,7 @@ public class FragmentLogin extends FragmentBase
     private class ListenerSMSCode implements TextView.OnEditorActionListener {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            if (actionId == EditorInfo.IME_ACTION_SEND) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 presenterRegister.onClickCodeSMSConfirm(etCodeSMS.getText().toString());
                 return true;
             }

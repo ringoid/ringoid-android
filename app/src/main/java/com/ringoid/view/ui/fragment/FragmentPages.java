@@ -113,6 +113,7 @@ public class FragmentPages extends FragmentBase
 
         @Override
         public void setPageSelected(int num, int iconResProfile, int iconResMatches, int iconResLikes, int iconResMessages, int iconResExplore, int iconResSettings) {
+            if (getContext() == null) return;
             if (llBottomAppBar == null) return;
             for (int i = 0; i < llBottomAppBar.getChildCount(); ++i) {
                 View view = llBottomAppBar.getChildAt(i);

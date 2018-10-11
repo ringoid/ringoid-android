@@ -89,7 +89,7 @@
     <string name="message_protection_officer">Dear Data Protection Officer,\n\nMy Customer ID is %s\n\n</string>
     <string name="data_protection_subtitle">Legal</string>
     <string name="message_sms_resend">Resend SMS</string>
-    <string name="message_SMS_resend_format">Resend SMS (%d)</string>
+    <string name="message_SMS_resend_format">Resend SMS (0:%d)</string>
     <string name="crop_confirm"><![CDATA[Crop & Upload]]></string>
     <string name="message_profile_empty">Upload your photos so users can like and message you</string>
     <string name="dialog_image_delete_title">Delete photo?</string>
@@ -124,6 +124,7 @@
     <string name="message_error_app_version">Please update the app to the latest version</string>
     <string name="message_network_retry">reload this page</string>
     <string name="message_error_network">no network connection</string>
+    <string name="message_no_photo_matches">See who matched with you</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>
