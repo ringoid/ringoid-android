@@ -106,21 +106,8 @@ public class CacheProfile implements ICacheProfile {
     }
 
     @Override
-    public void setPhotoLocalUploaded(String originPhotoId) {
-        if (getData().setPhotoLocalUploaded(originPhotoId)) {
-            saveData();
-            notifyListeners();
-        }
-    }
-
-    @Override
     public boolean isPhotoLocal(int position) {
         return getData().isLocal(position);
-    }
-
-    @Override
-    public boolean isPhotoUploading(int position) {
-        return getData().isUploading(position);
     }
 
     @Override

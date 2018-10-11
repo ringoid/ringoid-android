@@ -87,7 +87,6 @@ public class AdapterProfile extends AdapterBase {
             if (presenterAdapterProfile.isPhotoLocal(position)) {
                 ivStatus.setVisibility(View.VISIBLE);
                 ivRemove.setVisibility(View.GONE);
-                ivStatus.setImageResource(presenterAdapterProfile.isPhotoUploading(position) ? R.drawable.ic_file_upload_gray_24dp : R.drawable.ic_file_upload_green_24dp);
             }
         }
 

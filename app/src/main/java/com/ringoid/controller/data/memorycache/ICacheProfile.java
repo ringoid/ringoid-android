@@ -27,11 +27,7 @@ public interface ICacheProfile {
 
     void addPhotoLocal(Uri fileUri, String clientPhotoId);
 
-    void setPhotoLocalUploaded(String originPhotoId);
-
     boolean isPhotoLocal(int position);
-
-    boolean isPhotoUploading(int position);
 
     String getOriginPhotoId(int pos);
 

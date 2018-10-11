@@ -1,10 +1,7 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
-import android.content.Context;
-
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheSettingsPrivacy;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
@@ -13,7 +10,6 @@ import com.ringoid.controller.data.memorycache.listener.ICacheProfileListener;
 import com.ringoid.controller.data.repository.IRepositoryProfileImageRemove;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
-import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.presenter.callback.IPresenterAdapterProfileListener;
 import com.ringoid.view.presenter.util.IHelperConnection;
 
@@ -106,11 +102,6 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     @Override
     public boolean isPhotoLocal(int position) {
         return cacheProfile.isPhotoLocal(position);
-    }
-
-    @Override
-    public boolean isPhotoUploading(int position) {
-        return cacheProfile.isPhotoUploading(position);
     }
 
     private void updateView() {

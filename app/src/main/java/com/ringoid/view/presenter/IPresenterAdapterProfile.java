@@ -23,6 +23,4 @@ public interface IPresenterAdapterProfile {
     void onImageRemove(String imageId);
 
     boolean isPhotoLocal(int position);
-
-    boolean isPhotoUploading(int position);
 }

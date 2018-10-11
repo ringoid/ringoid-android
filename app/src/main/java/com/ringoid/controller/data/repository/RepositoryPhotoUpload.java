@@ -58,7 +58,6 @@ public class RepositoryPhotoUpload {
         public void onResponse(Call<Void> call, Response<Void> response) {
             if (response.isSuccessful()) {
                 cacheUser.setUserOld();
-                cacheProfile.setPhotoLocalUploaded(photoUpload.getOriginPhotoId());
             } else onError();
         }
 

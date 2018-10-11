@@ -6,8 +6,6 @@ import android.net.Uri;
 import java.io.Serializable;
 
 public class ProfilePhoto implements Serializable {
-    private static final int STATUS_UPLOADED = 2;
-    private static final int STATUS_UPLOADING = 1;
     private String clientPhotoId;
     private String photoId;
     private String originPhotoId;
@@ -25,7 +23,6 @@ public class ProfilePhoto implements Serializable {
         isLocal = true;
         this.photoUri = fileUri.toString();
         this.clientPhotoId = clientPhotoId;
-        status = STATUS_UPLOADING;
     }
 
     public String getPhotoId() {
@@ -48,16 +45,8 @@ public class ProfilePhoto implements Serializable {
         this.originPhotoId = originPhotoId;
     }
 
-    public void setStatusUploaded() {
-        status = STATUS_UPLOADED;
-    }
-
     public boolean isLocal() {
         return isLocal;
-    }
-
-    public boolean isUploading() {
-        return status == STATUS_UPLOADING;
     }
 
     public boolean isEqualsClientPhotoId(String clientPhotoId) {
