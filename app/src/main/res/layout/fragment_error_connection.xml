@@ -4,15 +4,29 @@
     android:layout_height="match_parent"
     android:paddingBottom="24dp">
 
-    <TextView
-        style="@style/Base.TextAppearance.AppCompat.Title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:text="@string/message_error_network" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_error_network_red_24dp" />
+
+        <TextView
+            android:layout_marginTop="24dp"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:text="@string/message_error_network" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvButtonRefresh"
