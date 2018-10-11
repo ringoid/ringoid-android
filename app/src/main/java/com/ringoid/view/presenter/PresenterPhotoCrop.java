@@ -19,7 +19,7 @@ import javax.inject.Inject;
 
 public class PresenterPhotoCrop implements IPresenterPhotoCrop {
 
-    private static long MAX_FILE_SIZE_BYTES = 4 * 1024 * 1024;
+    private static long MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
 
     @Inject
     ICacheProfile cacheProfile;
