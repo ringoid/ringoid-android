@@ -121,6 +121,7 @@
     <string name="message_error_app_version">Please update the app</string>
     <string name="message_network_retry">Reload this page</string>
     <string name="message_error_network">No network connection</string>
+    <string name="message_empty_matches">You will see your matches here</string>
 
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>
