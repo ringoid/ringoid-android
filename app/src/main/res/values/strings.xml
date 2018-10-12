@@ -16,7 +16,6 @@
     <string name="blacklist_description">Users who linked Ringoid accounts to the following phone numbers can\'t see my photos, like or message me</string>
     <string name="settings_feedback">Email support@ringoid.com</string>
     <string name="settings_logout">Sign out</string>
-    <string name="settings_subtitle">Settings</string>
     <string name="dialog_report_title">Block this user?</string>
     <string name="dialog_report_item_1">Inappropriate content</string>
     <string name="dialog_report_item_2">Stolen photos, Copyright infringement</string>
@@ -97,9 +96,6 @@
     <string name="dialog_image_delete_confirm">DELETE</string>
     <string name="message_image_delete_likes">You will lose %d likes.\n\n</string>
     <string name="message_image_delete_last">Later on you can upload new photos to allow users to like and message you.</string>
-    <string name="dialog_like_no_photo_title">Upload your photo</string>
-    <string name="dialog_like_no_photo_message">After you upload your photo, you can like others.\n\nIf they like you too, it\'s a match, and you can message each other.\n\nYou may need to grant a permission to the app to pick an image from your gallery.</string>
-    <string name="dialog_like_no_photo_confirm">upload</string>
     <string name="message_sent">Message sent</string>
     <string name="message_clipboard_chat_message">Chat message</string>
     <string name="dialog_chat_clear_title">Clear history?</string>
