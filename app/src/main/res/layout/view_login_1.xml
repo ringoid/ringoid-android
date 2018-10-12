@@ -38,15 +38,21 @@
         android:layout_height="0dp"
         android:layout_weight="2" />
 
-    <TextView
-        android:id="@+id/tvTerms"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:text="@string/message_terms"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:theme="@style/AppTheme.Green" />
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp">
+
+        <TextView
+            android:id="@+id/tvTerms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/message_terms"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+            android:theme="@style/AppTheme.Green" />
+
+    </ScrollView>
 
     <TextView
         android:id="@+id/tvLoginPhoneVerify"
