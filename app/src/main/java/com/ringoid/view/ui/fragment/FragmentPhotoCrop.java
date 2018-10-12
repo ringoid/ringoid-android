@@ -64,6 +64,7 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
         vCropConfirm = view.findViewById(R.id.tvCropConfirm);
         vCropConfirm.setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
+        view.findViewById(R.id.ivClose).setOnClickListener(this);
 
     }
 
@@ -90,7 +91,8 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
         if (v.getId() == R.id.tvCropConfirm)
             presenterPhotoCrop.onCLickCrop();
 
-        if (v.getId() == R.id.ivBack) {
+        if (v.getId() == R.id.ivBack
+                || v.getId() == R.id.ivClose) {
             getActivity().onBackPressed();
         }
     }
