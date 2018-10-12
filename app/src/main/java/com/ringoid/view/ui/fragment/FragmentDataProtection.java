@@ -58,6 +58,7 @@ public class FragmentDataProtection extends FragmentBase
         tvSubtitle.setText(R.string.data_protection_subtitle);
 
         view.findViewById(R.id.ivBack).setOnClickListener(this);
+        view.findViewById(R.id.ivClose).setOnClickListener(this);
         view.findViewById(R.id.llVersion).setOnClickListener(this);
         view.findViewById(R.id.llCustomerID).setOnClickListener(this);
         view.findViewById(R.id.tvPrivacy).setOnClickListener(this);
@@ -69,7 +70,8 @@ public class FragmentDataProtection extends FragmentBase
     @Override
     public void onClick(View v) {
 
-        if (v.getId() == R.id.ivBack)
+        if (v.getId() == R.id.ivBack
+                || v.getId() == R.id.ivClose)
             getActivity().onBackPressed();
 
         if (v.getId() == R.id.llVersion)

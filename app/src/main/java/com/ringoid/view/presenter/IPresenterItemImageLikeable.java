@@ -5,5 +5,4 @@ public interface IPresenterItemImageLikeable {
 
     boolean isUserNew();
 
-    void showDialogNoPhoto();
 }

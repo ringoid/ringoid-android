@@ -39,9 +39,4 @@ public class PresenterItemImageLikeable implements IPresenterItemImageLikeable {
     public boolean isUserNew() {
         return cacheUser.isUserNew();
     }
-
-    @Override
-    public void showDialogNoPhoto() {
-        viewDialogs.showDialogLikeNoPhoto();
-    }
 }

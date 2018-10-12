@@ -28,11 +28,6 @@
             android:src="@drawable/ic_menu_matches_24dp" />
 
         <ImageView
-            android:id="@+id/ivMenuProfile"
-            style="@style/bottomMenuItem"
-            android:src="@drawable/ic_menu_profile_24dp" />
-
-        <ImageView
             android:id="@+id/ivMenuMessages"
             style="@style/bottomMenuItem"
             android:src="@drawable/ic_menu_message_24dp" />
@@ -41,6 +36,11 @@
             android:id="@+id/ivMenuLikes"
             style="@style/bottomMenuItem"
             android:src="@drawable/ic_menu_favorite_24dp" />
+
+        <ImageView
+            android:id="@+id/ivMenuProfile"
+            style="@style/bottomMenuItem"
+            android:src="@drawable/ic_menu_profile_24dp" />
 
         <ImageView
             android:id="@+id/ivMenuSettings"

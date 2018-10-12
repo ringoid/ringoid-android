@@ -13,6 +13,14 @@ import com.ringoid.view.PAGE_ENUM;
 
 public class FragmentMatches extends FragmentFeedPage {
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container);
+        initViews(view);
+        showEmpty(R.string.message_empty_matches);
+        return view;
+    }
 
     @Override
     public PAGE_ENUM getPage() {

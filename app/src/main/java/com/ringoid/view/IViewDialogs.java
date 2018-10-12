@@ -9,8 +9,6 @@ public interface IViewDialogs {
 
     void set(Context context);
 
-    void showDialogLikeNoPhoto();
-
     void showDialogChatCompose(IDialogChatComposeListener listener);
 
     void showDialogMessage(int messageId);

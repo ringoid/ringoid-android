@@ -1,7 +1,10 @@
 package com.ringoid.view.presenter;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
+import android.content.Context;
+
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.repository.IRepositoryErrorUnknown;
 import com.ringoid.controller.data.repository.callback.IRepositoryErrorUnknownListener;
 import com.ringoid.view.presenter.callback.IPresenterDialogErrorUnknownListener;
@@ -29,8 +32,8 @@ public class PresenterDialogErrorUnknown implements IPresenterDialogErrorUnknown
     }
 
     @Override
-    public void onShow() {
-        repositoryErrorUnknown.request();
+    public void onShow(Context context) {
+        repositoryErrorUnknown.request(context.getString(R.string.url_error_unknown));
     }
 
     private class ListenerRepository implements IRepositoryErrorUnknownListener {

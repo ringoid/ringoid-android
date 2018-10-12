@@ -57,7 +57,7 @@ public class CacheInterfaceState implements ICacheInterfaceState {
 
     @Override
     public void resetCurrentPage() {
-        setCurrentPage(PresenterPagesContainer.INDEX_PAGE_EXPLORE);
+        setCurrentPage(PresenterPagesContainer.INDEX_PAGE_PROFILE);
     }
 
     @Override

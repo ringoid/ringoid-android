@@ -6,12 +6,8 @@ import android.content.Context;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.view.ui.dialog.DialogChatCompose;
-import com.ringoid.view.ui.dialog.DialogErrorAppVersion;
 import com.ringoid.view.ui.dialog.DialogErrorUnknown;
-import com.ringoid.view.ui.dialog.DialogLikeNoPhoto;
 import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
-import com.ringoid.view.ui.dialog.callback.IDialogErrorAppVersionListener;
-import com.ringoid.view.ui.dialog.callback.IDialogLIkeNoPhotoListener;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 
 import java.lang.ref.WeakReference;
@@ -28,33 +24,17 @@ public class ViewDialogs implements IViewDialogs {
 
     private WeakReference<Context> refContext;
 
-    private WeakReference<DialogLikeNoPhoto> refDialogLikeNoPhoto;
     private WeakReference<DialogChatCompose> refDialogChatCompose;
     private WeakReference<DialogErrorUnknown> refDialogErrorUnknown;
     private WeakReference<AlertDialog> refDialogMessage;
 
-    private IDialogLIkeNoPhotoListener listenerDialogLikeNoPhoto;
-
     public ViewDialogs() {
         ApplicationRingoid.getComponent().inject(this);
-        listenerDialogLikeNoPhoto = new ListenerDialogLikeNoPhoto();
     }
 
     @Override
     public void set(Context context) {
         this.refContext = new WeakReference<>(context);
-    }
-
-    @Override
-    public void showDialogLikeNoPhoto() {
-        if (refDialogLikeNoPhoto != null && refDialogLikeNoPhoto.get() != null)
-            refDialogLikeNoPhoto.get().cancel();
-
-        if (refContext == null || refContext.get() == null) return;
-        DialogLikeNoPhoto dialogLikeNoPhoto = new DialogLikeNoPhoto(refContext.get(), listenerDialogLikeNoPhoto);
-        dialogLikeNoPhoto.show();
-        refDialogLikeNoPhoto = new WeakReference<>(dialogLikeNoPhoto);
-
     }
 
     @Override
@@ -95,10 +75,4 @@ public class ViewDialogs implements IViewDialogs {
         refDialogErrorUnknown = new WeakReference<>(dialog);
     }
 
-    private class ListenerDialogLikeNoPhoto implements IDialogLIkeNoPhotoListener {
-        @Override
-        public void onConfirm() {
-            navigator.navigatePhotoAdd();
-        }
-    }
 }

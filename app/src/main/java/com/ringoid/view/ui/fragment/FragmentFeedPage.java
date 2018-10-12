@@ -26,8 +26,8 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
     RecyclerView rvItems;
     LinearLayoutManager layoutManager;
     SwipeRefreshLayout srlFeed;
-    View vPhotoEmpty;
-    TextView tvNoPhoto;
+    View vPhotoEmpty, vEmpty;
+    TextView tvNoPhoto, tvEmpty;
 
     @Inject
     INavigator navigator;
@@ -55,6 +55,9 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
         vPhotoEmpty = view.findViewById(R.id.llNoPhoto);
         tvNoPhoto = view.findViewById(R.id.tvMessageNoPhoto);
 
+        vEmpty = view.findViewById(R.id.flEmpty);
+        tvEmpty = view.findViewById(R.id.tvEmpty);
+
         srlFeed = view.findViewById(R.id.srlFeed);
         srlFeed.setOnRefreshListener(listenerRefresh);
         srlFeed.setProgressViewOffset(false,
@@ -79,9 +82,17 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
     }
 
     void showErrorNoPhoto(int messageRes) {
+        vEmpty.setVisibility(View.GONE);
         srlFeed.setVisibility(View.GONE);
         vPhotoEmpty.setVisibility(View.VISIBLE);
         tvNoPhoto.setText(messageRes);
+    }
+
+    void showEmpty(int messageRes) {
+        vEmpty.setVisibility(View.VISIBLE);
+        srlFeed.setVisibility(View.GONE);
+        vPhotoEmpty.setVisibility(View.GONE);
+        tvEmpty.setText(messageRes);
     }
 
     private void onScroll(int dy, int scrollSum) {

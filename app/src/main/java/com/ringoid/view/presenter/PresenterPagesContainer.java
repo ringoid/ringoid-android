@@ -30,9 +30,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     public static final int INDEX_PAGE_EXPLORE = 0;
     public static final int INDEX_PAGE_MATCHES = 1;
-    public static final int INDEX_PAGE_PROFILE = 2;
-    public static final int INDEX_PAGE_MESSAGES = 3;
-    public static final int INDEX_PAGE_LIKES = 4;
+    public static final int INDEX_PAGE_MESSAGES = 2;
+    public static final int INDEX_PAGE_LIKES = 3;
+    public static final int INDEX_PAGE_PROFILE = 4;
     public static final int INDEX_PAGE_SETTINGS = 5;
 
     @Inject
