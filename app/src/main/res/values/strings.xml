@@ -9,54 +9,37 @@
 
     <string name="login_phone_title">Enter your phone number</string>
     <string name="button_login_phone">Send Verification Code</string>
-    <string name="button_register_confirm">Complete registration</string>
+    <string name="button_register_confirm">Continue to upload photo</string>
     <string name="settings_terms">Terms of Service</string>
     <string name="settings_delete_account">Delete account</string>
     <string name="hint_numbers">Number</string>
-    <string name="blacklist_phone_add">Block it!</string>
-    <string name="blacklist_description">Users who linked Ringoid accounts to the following phone numbers can\'t see my photos, like or message me</string>
     <string name="settings_feedback">Email support@ringoid.com</string>
     <string name="settings_logout">Sign out</string>
     <string name="dialog_report_title">Block this user?</string>
+    <string name="dialog_report_switch">Report this user</string>
     <string name="dialog_report_item_1">Inappropriate content</string>
     <string name="dialog_report_item_2">Stolen photos, Copyright infringement</string>
+    <string name="dialog_report_item_3">Spam, Advertising, Commercial activity</string>
+    <string name="dialog_report_item_4">Human or sex trafficking, Criminal activity</string>
+    <string name="dialog_report_item_5">Underage user, Child exploitation</string>
+    <string name="dialog_report_item_6">Harassment or threats, Verbal abuse</string>
     <string name="dialog_report_message">They won\'t be able to see your photos, like or message you.</string>
     <string name="dialog_report_cancel">cancel</string>
     <string name="dialog_report_confirm">block</string>
+    <string name="dialog_report_confirm_report">report &amp; block</string>
+
     <string name="dialog_cancel">cancel</string>
-    <string name="push">Push Notifications</string>
-    <string name="settings_privacy_phone_blacklist">Blacklist</string>
-    <string name="settings_privacy_location_distance">Safety distance</string>
-    <string name="settings_privacy_distance_message">Don\'t show my photos to Ringoid users, and don\'t allow them to like or message me if they are closer than</string>
-    <string name="settings_privacy_distance_0">0 meters (0 feet, 0 yards)</string>
-    <string name="settings_privacy_distance_1">10 meters (32 feet, 10 yards)</string>
-    <string name="settings_privacy_distance_25">25 meters (82 feet, 27 yards)</string>
-    <string name="settings_privacy_distance_2">50 meters (164 feet, 54 yards)</string>
-    <string name="settings_privacy_distance_3">100 meters (328 feet, 109 yards)</string>
-    <string name="settings_privacy_distance_4">250 meters (820 feet, 273 yards)</string>
-    <string name="privacy_distance_subtitle">Safety Distance</string>
-    <string name="distance_0">0 meters (0 feet, 0 yards)</string>
-    <string name="distance_1">10 meters (32 feet, 10 yards)</string>
-    <string name="distance_2">50 meters (164 feet, 54 yards)</string>
-    <string name="distance_3">100 meters (328 feet, 109 yards)</string>
-    <string name="distance_4">250 meters (820 feet, 273 yards)</string>
+
     <string name="dialog_logout_title">Sign out?</string>
     <string name="dialog_logout_message">You will need to have access to your phone number to sign in. You won\'t be able to return to your account in any other way.</string>
     <string name="dialog_logout_confirm">Sign out</string>
+
     <string name="dialog_account_delete_title">Delete account?</string>
-    <string name="dialog_account_delete_message">Your profile will be deactivated and your photos will be hidden from everyone immediately. No one will be able to see your photos, like or message you.</string>
-    <string name="dialog_account_delete_message_2">If you don\'t sign in within 30 days then your account will be deleted permanently.</string>
+    <string name="dialog_account_delete_message">Your profile will be deactivated immediately. No one will be able to see your photos, like or message you.</string>
+    <string name="dialog_account_delete_message_2">If you don\'t sign in within 30 days, your account will be deleted permanently.</string>
     <string name="dialog_account_delete_message_3">You will lose all likes that your photos received.</string>
     <string name="dialog_account_delete_confirm">Delete</string>
-    <string name="settings_push_likes_message">New likes</string>
-    <string name="settings_push_likes_description">Someone has liked you</string>
-    <string name="settings_push_matches_description">You just got a new match</string>
-    <string name="settings_push_matches_message">New matches</string>
-    <string name="settings_push_messages_message">New messages</string>
-    <string name="settings_push_messages_description">Your match sent you a new message</string>
-    <string name="settings_push_subtitle">Push Notifications</string>
-    <string name="settings_privacy_phones_subtitle">Blacklist</string>
-    <string name="settings_privacy_phone_blacklist_add_subtitle">Add to the blacklist</string>
+
     <string name="login_sms">Enter the code that was sent to</string>
     <string name="button_continue">Continue</string>
     <string name="login_birth_message">Year of Birth</string>
@@ -67,15 +50,6 @@
     <string name="hint_phone_code">Code</string>
     <string name="message_retry">Edit phone</string>
     <string name="message_phone_confirm_error">Error: cannot confirm phone number</string>
-    <string name="push_likes_all">Every new like</string>
-    <string name="push_likes_every_10">Every 10 new likes</string>
-    <string name="push_likes_every_100">Every 100 new likes</string>
-    <string name="dialog_report_switch">Report this user</string>
-    <string name="dialog_report_item_3">Spam, Advertising, Commercial activity</string>
-    <string name="dialog_report_item_4">Human or sex trafficking, Criminal activity</string>
-    <string name="dialog_report_item_5">Underage user, Child exploitation</string>
-    <string name="dialog_report_confirm_report">report &amp; block</string>
-    <string name="dialog_report_item_6">Harassment or threats, Verbal abuse</string>
     <string name="subtitle_terms">Terms of Service</string>
     <string name="subtitle_licenses">Licenses</string>
     <string name="subtitle_privacy">Privacy Policy</string>
@@ -96,7 +70,6 @@
     <string name="dialog_image_delete_message">This action is permanent and cannot be undone.</string>
     <string name="dialog_image_delete_confirm">DELETE</string>
     <string name="message_image_delete_likes">You will lose %d likes.\n\n</string>
-    <string name="message_image_delete_last">Later on you can upload new photos to allow users to like and message you.</string>
     <string name="message_sent">Message sent</string>
     <string name="message_clipboard_chat_message">Chat message</string>
     <string name="dialog_chat_clear_title">Clear history?</string>
@@ -108,21 +81,53 @@
     <string name="error_network">Oops! Please check your Internet connection and try again.</string>
     <string name="message_error_unkown_format">Oops! Please check your Internet connection and try again.\n\n%s</string>
     <string name="dialog_remove_confirm">confirm</string>
-    <string name="format_dialog_remove_confirm" formatted="false">Remove +%s %s from the blacklist?</string>
     <string name="error_photo_upload">Upload failed</string>
     <string name="error_photo_max_size">Image is too large</string>
     <string name="message_photo_upload">Upload photo</string>
     <string name="message_no_photo_likes">See who liked you</string>
     <string name="message_no_photo_messages">See who messaged you</string>
-    <string name="message_no_photo_explore">See new profiles</string>
+    <string name="message_no_photo_explore">Discover users of the opposite sex</string>
     <string name="button_phone_error">Wrong number?</string>
     <string name="message_terms">By tapping \"Send Verification Code\" button, you confirm that you have read, understood, consent and agree to Ringoid\'s <a href="http://ringoid.com/terms.html">Terms of Service</a> and <a href="http://ringoid.com/privacy.html">Privacy Policy</a>, and that you are of legal age and adult, as defined by the country or state from where you are accessing Ringoid.</string>
-    <string name="message_error_app_version_confirm">Go to Google Play Store</string>
+    <string name="message_error_app_version_confirm">Open Google Play Store</string>
     <string name="message_error_app_version">Please update the app</string>
     <string name="message_network_retry">Reload this page</string>
     <string name="message_error_network">No network connection</string>
     <string name="message_empty_matches">You will see your matches here</string>
 
+    <string name="push">Push Notifications</string>
+    <string name="settings_push_likes_message">New likes</string>
+    <string name="push_likes_all">Every new like</string>
+    <string name="push_likes_every_10">Every 10 new likes</string>
+    <string name="push_likes_every_100">Every 100 new likes</string>
+    <string name="settings_push_likes_description">Someone has liked you</string>
+    <string name="settings_push_matches_description">You just got a new match</string>
+    <string name="settings_push_matches_message">New matches</string>
+    <string name="settings_push_messages_message">New messages</string>
+    <string name="settings_push_messages_description">Your match sent you a new message</string>
+    <string name="settings_push_subtitle">Push Notifications</string>
+    <string name="settings_privacy_phones_subtitle">Blacklist</string>
+    <string name="settings_privacy_phone_blacklist_add_subtitle">Add to the blacklist</string>
+	
+    <string name="settings_privacy_location_distance">Safety distance</string>
+    <string name="settings_privacy_distance_message">Don\'t show my photos to Ringoid users, and don\'t allow them to like or message me if they are closer than</string>
+    <string name="settings_privacy_distance_0">0 meters (0 feet, 0 yards)</string>
+    <string name="settings_privacy_distance_1">10 meters (32 feet, 10 yards)</string>
+    <string name="settings_privacy_distance_25">25 meters (82 feet, 27 yards)</string>
+    <string name="settings_privacy_distance_2">50 meters (164 feet, 54 yards)</string>
+    <string name="settings_privacy_distance_3">100 meters (328 feet, 109 yards)</string>
+    <string name="settings_privacy_distance_4">250 meters (820 feet, 273 yards)</string>
+    <string name="privacy_distance_subtitle">Safety Distance</string>
+    <string name="distance_0">0 meters (0 feet, 0 yards)</string>
+    <string name="distance_1">10 meters (32 feet, 10 yards)</string>
+    <string name="distance_2">50 meters (164 feet, 54 yards)</string>
+    <string name="distance_3">100 meters (328 feet, 109 yards)</string>
+    <string name="distance_4">250 meters (820 feet, 273 yards)</string>
+	
+    <string name="settings_privacy_phone_blacklist">Blacklist</string>
+    <string name="blacklist_description">Users who linked Ringoid accounts to the following phone numbers can\'t see my photos, like or message me</string>
+    <string name="format_dialog_remove_confirm" formatted="false">Remove +%s %s from the blacklist?</string>
+    <string name="blacklist_phone_add">Block it!</string>
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>
         <item quantity="one">%d phone number</item>
