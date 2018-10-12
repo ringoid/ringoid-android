@@ -36,7 +36,7 @@ public class DialogErrorUnknown {
 
     public void show() {
         dialog.show();
-        presenterDialogErrorNetwork.onShow();
+        presenterDialogErrorNetwork.onShow(dialog.getContext());
     }
 
     public void cancel() {

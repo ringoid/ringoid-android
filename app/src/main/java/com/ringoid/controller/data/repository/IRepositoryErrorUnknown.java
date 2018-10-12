@@ -4,7 +4,7 @@ package com.ringoid.controller.data.repository;
 import com.ringoid.controller.data.repository.callback.IRepositoryErrorUnknownListener;
 
 public interface IRepositoryErrorUnknown {
-    void request();
+    void request(String url);
 
     void setListener(IRepositoryErrorUnknownListener listener);
 }

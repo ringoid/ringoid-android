@@ -33,9 +33,9 @@ public class RepositoryErrorUnknown implements IRepositoryErrorUnknown {
     }
 
     @Override
-    public void request() {
+    public void request(String url) {
         Request request = new Request.Builder()
-                .url("http://ringoid.com/status.html")
+                .url(url)
                 .build();
 
         okHttpClient.getClient().newCall(request).enqueue(listenerRequest);
