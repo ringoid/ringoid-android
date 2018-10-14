@@ -35,9 +35,9 @@
     <string name="dialog_logout_confirm">Sign out</string>
 
     <string name="dialog_account_delete_title">Delete account?</string>
-    <string name="dialog_account_delete_message">Your profile will be deactivated immediately. No one will be able to see your photos, like or message you.</string>
-    <string name="dialog_account_delete_message_2">If you don\'t sign in within 30 days, your account will be deleted permanently.</string>
-    <string name="dialog_account_delete_message_3">You will lose all likes that your photos received.</string>
+    <string name="dialog_account_delete_message">Your profile will be deactivated immediately.</string>
+    <string name="dialog_account_delete_message_2">No one will be able to see your photos, like or message you.</string>
+    <string name="dialog_account_delete_message_3">If you don\'t sign in within 30 days, your account will be deleted permanently.</string>
     <string name="dialog_account_delete_confirm">Delete</string>
 
     <string name="login_sms">Enter the code that was sent to</string>
@@ -82,7 +82,7 @@
     <string name="message_error_unkown_format">Oops! Please check your Internet connection and try again.\n\n%s</string>
     <string name="dialog_remove_confirm">confirm</string>
     <string name="error_photo_upload">Upload failed</string>
-    <string name="error_photo_max_size">Image is too large</string>
+    <string name="error_photo_max_size">Cropped photo is too large</string>
     <string name="message_photo_upload">Upload photo</string>
     <string name="message_no_photo_likes">See who liked you</string>
     <string name="message_no_photo_messages">See who messaged you</string>
@@ -93,7 +93,8 @@
     <string name="message_error_app_version">Please update the app</string>
     <string name="message_network_retry">Reload this page</string>
     <string name="message_error_network">No network connection</string>
-    <string name="message_empty_matches">You will see your matches here</string>
+    <string name="message_empty_matches">Your matches will be here</string>
+	
     <string name="push">Push Notifications</string>
     <string name="settings_push_likes_message">New likes</string>
     <string name="push_likes_all">Every new like</string>
