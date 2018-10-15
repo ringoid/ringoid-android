@@ -166,7 +166,9 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
 
         @Override
         public void scrollToPosition(int position, int offset) {
-            layoutManager.scrollToPositionWithOffset(position, offset);
+            layoutManager.scrollToPositionWithOffset(position, position == 0
+                    ? offset - (int) getContext().getResources().getDimension(R.dimen.toolbar_height_with_statusbar)
+                    : offset);
         }
 
         @Override
