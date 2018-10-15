@@ -36,7 +36,7 @@ public class DialogImageRemove implements View.OnClickListener {
         String message = "";
         if (likesNum > 0)
             message = String.format(view.getContext().getString(R.string.message_image_delete_likes), likesNum);
-        if (imageLast) message += view.getContext().getString(R.string.message_image_delete_last);
+
         tvMessage.setText(message);
     }
 

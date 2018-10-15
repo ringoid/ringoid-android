@@ -1,8 +1,6 @@
 package com.ringoid.model;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
-import android.text.TextUtils;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -61,19 +59,6 @@ public class ModelProfilePhotos implements Serializable {
         data.add(profilePhoto);
     }
 
-    public boolean setPhotoLocalUploaded(String originPhotoId) {
-        if (data == null) return false;
-        for (ProfilePhoto item : data) {
-            if (item == null || TextUtils.isEmpty(item.getOriginPhotoId()))
-                continue;
-            if (item.getOriginPhotoId().equals(originPhotoId)) {
-                item.setStatusUploaded();
-                return true;
-            }
-        }
-        return false;
-    }
-
     public ProfilePhoto getItem(String imageId) {
         if (data == null) return null;
         for (ProfilePhoto item : data)
@@ -84,10 +69,6 @@ public class ModelProfilePhotos implements Serializable {
 
     public boolean isLocal(int position) {
         return data == null ? false : data.get(position).isLocal();
-    }
-
-    public boolean isUploading(int position) {
-        return data == null ? false : data.get(position).isUploading();
     }
 
     public boolean remove(int index) {

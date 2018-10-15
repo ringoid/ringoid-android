@@ -37,13 +37,4 @@ public class FragmentMatches extends FragmentFeedPage {
 
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container);
-        initViews(view);
-        showErrorNoPhoto(R.string.message_no_photo_matches);
-        return view;
-    }
-
 }
