@@ -16,6 +16,8 @@ import com.ringoid.controller.data.memorycache.listener.ICacheLikesListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheMessagesListener;
 import com.ringoid.controller.data.repository.IRepositoryFeedLikes;
 import com.ringoid.view.presenter.callback.IPresenterLikesListener;
+import com.ringoid.view.ui.util.IHelperMessageCompose;
+import com.ringoid.view.ui.util.listener.IHelperMessageComposeListener;
 
 import java.lang.ref.WeakReference;
 
@@ -52,6 +54,10 @@ public class PresenterLikes implements IPresenterLikes {
     @Inject
     WeakReference<Context> refContext;
 
+    @Inject
+    IHelperMessageCompose helperMessageCompose;
+
+    private ListenerMessageCompose listenerMessageCompose;
     private ListenerCacheMessages listenerCacheMessages;
     private ListenerCacheLikes listenerCacheLikes;
     private WeakReference<IPresenterLikesListener> refListener;
@@ -60,6 +66,7 @@ public class PresenterLikes implements IPresenterLikes {
         ApplicationRingoid.getComponent().inject(this);
         cacheLikes.addListener(listenerCacheLikes = new ListenerCacheLikes());
         cacheMessages.addListener(listenerCacheMessages = new ListenerCacheMessages());
+        helperMessageCompose.addListener(listenerMessageCompose = new ListenerMessageCompose());
     }
 
     @Override
@@ -118,6 +125,14 @@ public class PresenterLikes implements IPresenterLikes {
 
         @Override
         public void onSelectedUserUpdate(String userSelectedID) {
+        }
+    }
+
+    private class ListenerMessageCompose implements IHelperMessageComposeListener {
+
+        @Override
+        public void scrollToPosition(String userSelectedID) {
+
             int position = cacheLikes.getPosition(userSelectedID, NO_VALUE);
             if (position == NO_VALUE) return;
             int offset = position == 0 ? 0 : (int) refContext.get().getResources().getDimension(R.dimen.toolbar_height_with_statusbar);

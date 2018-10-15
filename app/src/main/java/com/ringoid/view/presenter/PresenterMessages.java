@@ -13,6 +13,8 @@ import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.listener.ICacheMessagesListener;
 import com.ringoid.controller.data.repository.IRepositoryFeedMessages;
 import com.ringoid.view.presenter.callback.IPresenterMessagesListener;
+import com.ringoid.view.ui.util.IHelperMessageCompose;
+import com.ringoid.view.ui.util.listener.IHelperMessageComposeListener;
 
 import java.lang.ref.WeakReference;
 
@@ -42,12 +44,17 @@ public class PresenterMessages implements IPresenterMessages {
     @Inject
     WeakReference<Context> refContext;
 
+    @Inject
+    IHelperMessageCompose helperMessageCompose;
+
+    private ListenerMessageCompose listenerMessageCompose;
     private ListenerCacheMessages listenerCacheMessages;
     private WeakReference<IPresenterMessagesListener> refListener;
 
     public PresenterMessages() {
         ApplicationRingoid.getComponent().inject(this);
         cacheMessages.addListener(listenerCacheMessages = new ListenerCacheMessages());
+        helperMessageCompose.addListener(listenerMessageCompose = new ListenerMessageCompose());
     }
 
     @Override
@@ -84,6 +91,13 @@ public class PresenterMessages implements IPresenterMessages {
 
         @Override
         public void onSelectedUserUpdate(String userSelectedID) {
+        }
+    }
+
+    private class ListenerMessageCompose implements IHelperMessageComposeListener {
+
+        @Override
+        public void scrollToPosition(String userSelectedID) {
             int position = cacheMessages.getPosition(userSelectedID, NO_VALUE);
             if (position == NO_VALUE) return;
             int offset = position == 0 ? 0 : (int) refContext.get().getResources().getDimension(R.dimen.toolbar_height_with_statusbar);

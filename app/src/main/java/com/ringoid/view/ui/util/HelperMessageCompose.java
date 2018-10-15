@@ -4,11 +4,13 @@ package com.ringoid.view.ui.util;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
-import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
+import com.ringoid.view.ui.util.listener.IHelperMessageComposeListener;
+
+import java.util.WeakHashMap;
 
 import javax.inject.Inject;
 
@@ -28,12 +30,10 @@ public class HelperMessageCompose implements IHelperMessageCompose {
     ICacheChatMessages cacheChatMessages;
 
     @Inject
-    ICacheMessages cacheMessages;
-
-    @Inject
     IHelperMessageSend helperMessageSend;
 
     private ListenerDialogChatCompose listenerDialogChatCompose;
+    private WeakHashMap<String, IHelperMessageComposeListener> listeners;
 
     public HelperMessageCompose() {
         ApplicationRingoid.getComponent().inject(this);
@@ -43,14 +43,28 @@ public class HelperMessageCompose implements IHelperMessageCompose {
     public void onClick(String userId) {
         boolean isChatEmpty = !cacheChatMessages.isDataExist(userId);
 
-        cacheMessages.setUserSelected(userId);
-
         if (isChatEmpty) {
+            notifyListeners(userId);
             viewDialogs.showDialogChatCompose(listenerDialogChatCompose = new ListenerDialogChatCompose(userId));
             return;
         }
 
         navigator.navigateChat();
+    }
+
+    @Override
+    public void addListener(IHelperMessageComposeListener listener) {
+        if (listeners == null) listeners = new WeakHashMap<>();
+        listeners.put(listener.getClass().getName(), listener);
+    }
+
+    private void notifyListeners(String userId) {
+        if (listeners == null) return;
+        for (String name : listeners.keySet()) {
+            IHelperMessageComposeListener listener = listeners.get(name);
+            if (listener == null) continue;
+            listener.scrollToPosition(userId);
+        }
     }
 
     private class ListenerDialogChatCompose implements IDialogChatComposeListener {
