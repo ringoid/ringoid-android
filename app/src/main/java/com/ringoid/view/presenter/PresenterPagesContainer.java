@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.v4.app.FragmentManager;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.BuildConfig;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
@@ -157,6 +158,14 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Override
     public void onClickPageSettings() {
         cacheScroll.resetCache();
+        if (navigatorPages.isPageSettings()) {
+            if (!presenterFeedPage.isPositionTop()) {
+                presenterFeedPage.scrollTop();
+                cacheInterfaceState.resetCachePositionSettings();
+            } else if (BuildConfig.DEBUG)
+                navigator.navigateScreenDebug();
+            return;
+        }
         navigatorPages.navigateSettings();
     }
 

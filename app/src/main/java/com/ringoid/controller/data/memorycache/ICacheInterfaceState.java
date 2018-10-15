@@ -42,4 +42,6 @@ public interface ICacheInterfaceState {
     void resetCachePositionMessage();
 
     void resetCachePositionExplore();
+
+    void resetCachePositionSettings();
 }

@@ -164,6 +164,14 @@ public class NavigatorPages implements INavigatorPages {
                 .commit();
     }
 
+    @Override
+    public boolean isPageSettings() {
+        if (refFragmentManager == null || refFragmentManager.get() == null) return false;
+
+        Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
+        return fragment != null && fragment instanceof FragmentSettings;
+    }
+
     private void clearPage() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);

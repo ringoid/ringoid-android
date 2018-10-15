@@ -4,14 +4,17 @@ package com.ringoid.model;
 import java.io.Serializable;
 
 public class ModelInterfaceState implements Serializable {
+
     private String originPhotoId;
     private int currentPage;
     private int positionScrollPageLikes;
     private int positionScrollPageMessages;
     private int positionScrollPageExplore;
+    private int positionScrollPageSettings;
     private int positionScrollPageLikesOffset;
     private int positionScrollPageMessagesOffset;
     private int positionScrollPageExploreOffset;
+    private int positionScrollPageSettingsOffset;
 
     public String getOriginPhotoId() {
         return originPhotoId;
@@ -29,17 +32,9 @@ public class ModelInterfaceState implements Serializable {
         this.currentPage = currentPage;
     }
 
-    public int getPositionScrollPageLikes() {
-        return positionScrollPageLikes;
-    }
-
     public void setPositionScrollPageLikes(int positionScrollPageLikes, int offset) {
         this.positionScrollPageLikes = positionScrollPageLikes;
         this.positionScrollPageLikesOffset = offset;
-    }
-
-    public int getPositionScrollPageMessages() {
-        return positionScrollPageMessages;
     }
 
     public void setPositionScrollPageMessages(int position, int offset) {
@@ -50,6 +45,19 @@ public class ModelInterfaceState implements Serializable {
     public void setPositionScrollPageExplore(int positionScrollPageExplore, int offset) {
         this.positionScrollPageExplore = positionScrollPageExplore;
         this.positionScrollPageExploreOffset = offset;
+    }
+
+    public void setPositionScrollPageSettings(int firstVisibleItemPosition, int offset) {
+        this.positionScrollPageSettings = firstVisibleItemPosition;
+        this.positionScrollPageSettingsOffset = offset;
+    }
+
+    public int getPositionScrollPageMessages() {
+        return positionScrollPageMessages;
+    }
+
+    public int getPositionScrollPageLikes() {
+        return positionScrollPageLikes;
     }
 
     public int getPositionScrollPageExplore() {
@@ -66,5 +74,13 @@ public class ModelInterfaceState implements Serializable {
 
     public int getPositionScrollPageMessagesOffset() {
         return positionScrollPageMessagesOffset;
+    }
+
+    public int getPositionScrollPageSettings() {
+        return positionScrollPageSettings;
+    }
+
+    public int getPositionScrollPageSettingsOffset() {
+        return positionScrollPageSettingsOffset;
     }
 }

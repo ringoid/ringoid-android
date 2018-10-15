@@ -106,6 +106,12 @@ public class CacheInterfaceState implements ICacheInterfaceState {
         saveData();
     }
 
+
+    private void setPositionScrollPageSettings(int firstVisibleItemPosition, int offset) {
+        getData().setPositionScrollPageSettings(firstVisibleItemPosition, offset);
+        saveData();
+    }
+
     @Override
     public int getPositionScrollPageExploreOffset() {
         return getData().getPositionScrollPageExploreOffset();
@@ -134,6 +140,11 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     @Override
     public void resetCachePositionExplore() {
         setPositionScrollPageExplore(0, 0);
+    }
+
+    @Override
+    public void resetCachePositionSettings() {
+        setPositionScrollPageSettings(0, 0);
     }
 
     @Override
