@@ -18,8 +18,8 @@
         app:ccp_contentColor="@android:color/white"
         app:ccp_defaultNameCode="US"
         app:ccp_showFullName="true"
-        app:ccp_showNameCode="false"
-        app:ccp_showPhoneCode="true"
+        app:ccp_showNameCode="true"
+        app:ccp_showPhoneCode="false"
         app:ccp_textSize="17sp" />
 
     <LinearLayout
