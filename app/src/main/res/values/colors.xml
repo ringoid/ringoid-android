@@ -12,6 +12,7 @@
     <color name="pink">#ff62ab</color>
     <color name="divider">#494949</color>
     <color name="gray_20">#f7f7f7</color>
+    <color name="app_button_material_light">#ffd6d7d7</color>
     <color name="gray_bg">#1f262c</color>
 
 </resources>
