@@ -128,6 +128,18 @@
     <string name="blacklist_description">Users who linked Ringoid accounts to the following phone numbers can\'t see my photos, like or message me</string>
     <string name="format_dialog_remove_confirm" formatted="false">Remove +%s %s from the blacklist?</string>
     <string name="blacklist_phone_add">Block it!</string>
+    <string name="settings_location">Location</string>
+    <string name="settings_location_value">Use my current location</string>
+    <string name="settings_distance">Maximum Distance</string>
+    <string name="settings_distance_value">100+ miles/km</string>
+    <string name="settings_age">Age Range</string>
+    <string name="settings_age_value">18-45+</string>
+    <string name="settings_who_liked_you">See Who Liked You</string>
+    <string name="settings_age_my">Don\'t Show My Age</string>
+    <string name="settings_distance_my">Make My Distance Invisible</string>
+    <string name="settings_likes_unlimited">Unlimited Likes</string>
+    <string name="settings_ad_hide">Hide Advertisements</string>
+    <string name="settings_push">Push Notifications</string>
     <plurals name="blacklist_phone_num">
         <item quantity="zero">%d phone numbers</item>
         <item quantity="one">%d phone number</item>

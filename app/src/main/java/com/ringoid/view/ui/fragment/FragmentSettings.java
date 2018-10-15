@@ -84,12 +84,6 @@ public class FragmentSettings extends FragmentBase
         view.findViewById(R.id.llBlacklist).setOnClickListener(this);
         view.findViewById(R.id.llPrivacyDistance).setOnClickListener(this);
 
-        if (BuildConfig.DEBUG) {
-            View vDebug = view.findViewById(R.id.tvDebug);
-            vDebug.setVisibility(View.VISIBLE);
-            vDebug.setOnClickListener(this);
-        }
-
     }
 
     @Override
@@ -115,11 +109,6 @@ public class FragmentSettings extends FragmentBase
 
         if (v.getId() == R.id.tvAccountDelete)
             showDialogAccountDelete();
-
-        if (v.getId() == R.id.tvDebug) {
-            if (BuildConfig.DEBUG)
-                navigator.navigateScreenDebug();
-        }
     }
 
     private void showDialogLogout() {
