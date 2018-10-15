@@ -148,6 +148,21 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
+    public void setPositionScrollSettings(int firsVisibleItemPosition, int offset) {
+        setPositionScrollPageSettings(firsVisibleItemPosition, offset);
+    }
+
+    @Override
+    public int getPositionScrollPageSettings() {
+        return getData().getPositionScrollPageSettings();
+    }
+
+    @Override
+    public int getPositionScrollPageSettingsOffset() {
+        return getData().getPositionScrollPageSettingsOffset();
+    }
+
+    @Override
     public int getPositionScrollPageExplore() {
         return getData().getPositionScrollPageExplore();
     }

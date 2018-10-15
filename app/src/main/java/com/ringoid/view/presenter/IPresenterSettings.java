@@ -8,11 +8,5 @@ public interface IPresenterSettings {
 
     void setListener(IPresenterSettingsListener listener);
 
-    void onClickPrivacyBlacklist();
-
-    void onClickPrivacyDistance();
-
-    void onClickPrivacyLikesMatches();
-
-    void onClickPrivacyLikesLiked();
+    void onScroll(int scrollY);
 }

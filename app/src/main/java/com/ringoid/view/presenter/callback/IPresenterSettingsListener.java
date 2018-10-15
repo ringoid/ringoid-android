@@ -3,7 +3,5 @@ package com.ringoid.view.presenter.callback;
 
 public interface IPresenterSettingsListener {
 
-    void setPrivacyDistance(int distanceId);
-
-    void setPrivacyPhoneNum(int itemsNum);
+    void scrollToPosition(int firstVisiblePosition, int offset);
 }

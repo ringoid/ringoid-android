@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_bg"
     android:paddingTop="@dimen/toolbar_height_with_statusbar">
 
     <ScrollView
+        android:id="@+id/svContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -14,67 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/llBlacklist"
-                style="@style/settings_menu_item"
-                android:orientation="horizontal"
-                android:paddingStart="56dp"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/settings_privacy_item_message"
-                        android:text="@string/settings_privacy_phone_blacklist" />
-
-                    <TextView
-                        android:id="@+id/tvPrivacyPhoneBlacklistNum"
-                        style="@style/settings_privacy_item_value"
-                        tools:text="1 phone number" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_keyboard_arrow_right_gray_24dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llPrivacyDistance"
-                style="@style/settings_menu_item"
-                android:orientation="horizontal"
-                android:paddingStart="56dp"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/settings_privacy_item_message"
-                        android:text="@string/settings_privacy_location_distance" />
-
-                    <TextView
-                        android:id="@+id/tvPrivacyDistance"
-                        style="@style/settings_privacy_item_value"
-                        tools:text="250m" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_keyboard_arrow_right_gray_24dp" />
-
-            </LinearLayout>
 
             <LinearLayout
                 style="@style/settings_menu_item"
@@ -132,25 +71,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider"
-                android:visibility="gone" />
-
-            <LinearLayout
-                style="@style/settings_menu_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="56dp">
-
-                <TextView
-                    style="@style/settings_privacy_item_message"
-                    android:text="@string/settings_location" />
-
-                <TextView
-                    style="@style/settings_privacy_item_value"
-                    android:text="@string/settings_location_value" />
-
-            </LinearLayout>
+                android:background="@color/divider" />
 
             <LinearLayout
                 style="@style/settings_menu_item"
@@ -260,8 +181,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider"
-                android:visibility="gone" />
+                android:background="@color/divider" />
 
             <LinearLayout
                 style="@style/settings_menu_item"

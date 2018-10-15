@@ -7,10 +7,10 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.ViewTreeObserver;
+import android.widget.ScrollView;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.BuildConfig;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.view.INavigator;
@@ -21,7 +21,6 @@ import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.ui.dialog.DialogAccountDelete;
 import com.ringoid.view.ui.dialog.DialogLogout;
 import com.ringoid.view.ui.dialog.callback.IDialogLogoutListener;
-import com.ringoid.view.ui.dialog.callback.IDialogPrivacyLikesListener;
 
 import javax.inject.Inject;
 
@@ -39,12 +38,12 @@ public class FragmentSettings extends FragmentBase
 
     @Inject
     IPresenterSettings presenterSettings;
+
     private DialogLogout dialogLogout;
     private DialogAccountDelete dialogAccountDelete;
     private IDialogLogoutListener listenerDialogLogout;
     private ListenerPresenterSettings listenerPresenter;
-    private TextView tvPrivacyDistance, tvPrivacyPhoneBlacklistNum;
-    private IDialogPrivacyLikesListener listenerDialogPrivacyLikes;
+    private ScrollView svContent;
 
     @Override
     public PAGE_ENUM getPage() {
@@ -57,7 +56,6 @@ public class FragmentSettings extends FragmentBase
         ApplicationRingoid.getComponent().inject(this);
         listenerDialogLogout = new ListenerDialogLogout();
         presenterSettings.setListener(listenerPresenter = new ListenerPresenterSettings());
-        listenerDialogPrivacyLikes = new ListenerDialogPrivacyLikes();
 
     }
 
@@ -72,34 +70,21 @@ public class FragmentSettings extends FragmentBase
     }
 
     private void initView(View view) {
-        tvPrivacyPhoneBlacklistNum = view.findViewById(R.id.tvPrivacyPhoneBlacklistNum);
-        tvPrivacyDistance = view.findViewById(R.id.tvPrivacyDistance);
 
         view.findViewById(R.id.tvDataProtection).setOnClickListener(this);
         view.findViewById(R.id.tvSettingsFeedback).setOnClickListener(this);
         view.findViewById(R.id.tvLogout).setOnClickListener(this);
         view.findViewById(R.id.tvAccountDelete).setOnClickListener(this);
-        view.findViewById(R.id.tvPush).setOnClickListener(this);
 
-        view.findViewById(R.id.llBlacklist).setOnClickListener(this);
-        view.findViewById(R.id.llPrivacyDistance).setOnClickListener(this);
-
+        svContent = view.findViewById(R.id.svContent);
+        svContent.getViewTreeObserver().addOnScrollChangedListener(new ListenerScroll());
     }
 
     @Override
     public void onClick(View v) {
 
-        if (v.getId() == R.id.llBlacklist)
-            presenterSettings.onClickPrivacyBlacklist();
-
-        if (v.getId() == R.id.llPrivacyDistance)
-            presenterSettings.onClickPrivacyDistance();
-
         if (v.getId() == R.id.tvDataProtection)
             navigator.navigateSettingsDataProtection();
-
-        if (v.getId() == R.id.tvPush)
-            navigator.navigateSettingsPush();
 
         if (v.getId() == R.id.tvSettingsFeedback)
             navigator.navigateFeedback(getContext());
@@ -135,27 +120,21 @@ public class FragmentSettings extends FragmentBase
     private class ListenerPresenterSettings implements IPresenterSettingsListener {
 
         @Override
-        public void setPrivacyDistance(int distanceId) {
+        public void scrollToPosition(int firstVisiblePosition, final int offset) {
             if (getContext() == null) return;
-            tvPrivacyDistance.setText(distanceId);
-        }
-
-        @Override
-        public void setPrivacyPhoneNum(int itemsNum) {
-            if (getContext() == null) return;
-            tvPrivacyPhoneBlacklistNum.setText(String.format(getContext().getResources().getQuantityString(R.plurals.blacklist_phone_num, itemsNum), itemsNum));
+            svContent.post(new Runnable() {
+                @Override
+                public void run() {
+                    svContent.scrollTo(0, offset);
+                }
+            });
         }
     }
 
-    private class ListenerDialogPrivacyLikes implements IDialogPrivacyLikesListener {
+    private class ListenerScroll implements ViewTreeObserver.OnScrollChangedListener {
         @Override
-        public void onClickMatches() {
-            presenterSettings.onClickPrivacyLikesMatches();
-        }
-
-        @Override
-        public void onClickLiked() {
-            presenterSettings.onClickPrivacyLikesLiked();
+        public void onScrollChanged() {
+            presenterSettings.onScroll(svContent.getScrollY());
         }
     }
 }

@@ -44,4 +44,10 @@ public interface ICacheInterfaceState {
     void resetCachePositionExplore();
 
     void resetCachePositionSettings();
+
+    void setPositionScrollSettings(int firsVisibleItemPosition, int offset);
+
+    int getPositionScrollPageSettings();
+
+    int getPositionScrollPageSettingsOffset();
 }
