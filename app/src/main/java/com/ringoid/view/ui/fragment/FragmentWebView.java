@@ -53,6 +53,7 @@ public class FragmentWebView extends FragmentBase
 
     private void initView(View view) {
         view.findViewById(R.id.ivBack).setOnClickListener(this);
+        view.findViewById(R.id.ivClose).setOnClickListener(this);
         view.findViewById(R.id.ivBrowser).setOnClickListener(this);
 
         ((TextView) view.findViewById(R.id.tvSubtitle)).setText(getArguments().getString(ARG_SUBTITLE));
@@ -65,7 +66,8 @@ public class FragmentWebView extends FragmentBase
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.ivBack) {
+        if (v.getId() == R.id.ivBack
+                || v.getId() == R.id.ivClose) {
             if (getActivity() == null) return;
             getActivity().onBackPressed();
         }
