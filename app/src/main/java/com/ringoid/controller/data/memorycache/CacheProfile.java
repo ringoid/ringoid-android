@@ -145,6 +145,11 @@ public class CacheProfile implements ICacheProfile {
         notifyListeners();
     }
 
+    @Override
+    public String getUrlThumbnail(int position) {
+        return getData().getUrlThumbnail(position);
+    }
+
     private void notifyListeners() {
         if (listeners == null) return;
         for (String name : listeners.keySet()) {

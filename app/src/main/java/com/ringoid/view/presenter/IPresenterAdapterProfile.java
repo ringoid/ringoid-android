@@ -1,8 +1,6 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
-import android.content.Context;
-
 import com.ringoid.view.presenter.callback.IPresenterAdapterProfileListener;
 
 public interface IPresenterAdapterProfile {
@@ -18,9 +16,9 @@ public interface IPresenterAdapterProfile {
 
     String getImageId(int position);
 
-    boolean isImageLast();
-
     void onImageRemove(String imageId);
 
     boolean isPhotoLocal(int position);
+
+    String getUrlThumbnail(int position);
 }

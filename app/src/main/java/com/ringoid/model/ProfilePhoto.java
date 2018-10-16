@@ -13,6 +13,11 @@ public class ProfilePhoto implements Serializable {
     private int likes;
     private boolean isLocal;
     private int status;
+    private String placeholderUrl;
+
+    public String getPlaceholderUrl() {
+        return placeholderUrl;
+    }
 
     //constructor for Gson
     public ProfilePhoto() {
@@ -59,5 +64,9 @@ public class ProfilePhoto implements Serializable {
 
     public boolean isEqualsPhotoId(String imageId) {
         return photoId != null && photoId.equals(imageId);
+    }
+
+    public void setPlaceholder(String photoUri) {
+        this.placeholderUrl = photoUri;
     }
 }

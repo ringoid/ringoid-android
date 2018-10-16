@@ -22,20 +22,22 @@ public class ModelProfilePhotos implements Serializable {
         Iterator<ProfilePhoto> iterator = data.iterator();
         while (iterator.hasNext()) {
             ProfilePhoto item = iterator.next();
-            if (isContains(photos, item))
-                iterator.remove();
+            if (item == null) continue;
+            ProfilePhoto photo = getPhotoWithSameLocalId(photos, item.getOriginPhotoId());
+            if (photo == null) continue;
+            photo.setPlaceholder(item.getPhotoUri());
+            iterator.remove();
         }
         data.addAll(photos);
     }
 
-    private boolean isContains(ArrayList<ProfilePhoto> photos, ProfilePhoto other) {
-        if (photos == null) return false;
+    private ProfilePhoto getPhotoWithSameLocalId(ArrayList<ProfilePhoto> photos, String id) {
+        if (photos == null) return null;
         for (ProfilePhoto item : photos)
-            if (item.getOriginPhotoId().equals(other.getOriginPhotoId()))
-                return true;
-        return false;
+            if (item.getOriginPhotoId() != null && item.getOriginPhotoId().equals(id))
+                return item;
+        return null;
     }
-
 
     public int getLikes(int position) {
         return data == null ? 0 : data.get(position).getLikes();
@@ -114,5 +116,9 @@ public class ModelProfilePhotos implements Serializable {
         }
 
         return isRemoved;
+    }
+
+    public String getUrlThumbnail(int position) {
+        return data == null ? null : data.get(position).getPlaceholderUrl();
     }
 }

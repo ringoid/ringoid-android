@@ -82,11 +82,6 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     }
 
     @Override
-    public boolean isImageLast() {
-        return cacheProfile.getItemsNum() == 1;
-    }
-
-    @Override
     public void onImageRemove(String imageId) {
         if (!helperConnection.isConnectionExist()) {
             navigator.navigateErrorConnection();
@@ -102,6 +97,11 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     @Override
     public boolean isPhotoLocal(int position) {
         return cacheProfile.isPhotoLocal(position);
+    }
+
+    @Override
+    public String getUrlThumbnail(int position) {
+        return cacheProfile.getUrlThumbnail(position);
     }
 
     private void updateView() {

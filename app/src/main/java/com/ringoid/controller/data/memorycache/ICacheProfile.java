@@ -38,4 +38,6 @@ public interface ICacheProfile {
     void updateLocalPhoto(String clientPhotoId, String originPhotoId);
 
     void removeItemByLocalPhotoId(String clientPhotoId);
+
+    String getUrlThumbnail(int position);
 }

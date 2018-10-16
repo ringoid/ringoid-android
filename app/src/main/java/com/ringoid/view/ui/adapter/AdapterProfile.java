@@ -2,13 +2,17 @@
 package com.ringoid.view.ui.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterProfile;
@@ -75,7 +79,7 @@ public class AdapterProfile extends AdapterBase {
 
         @Override
         void setData(int position) {
-            loadImage(position);
+            showImage(position);
             setLikes(position);
             setStatus(position);
         }
@@ -96,19 +100,34 @@ public class AdapterProfile extends AdapterBase {
             tvLikes.setText(String.valueOf(likes));
         }
 
-        private void loadImage(int position) {
+        private void showImage(int position) {
             String url = presenterAdapterProfile.getUrl(position);
+            String urlThumbnail = presenterAdapterProfile.getUrlThumbnail(position);
             if (TextUtils.isEmpty(url))
                 ivItem.setImageDrawable(null);
-            else {
+            else
+                imageLoad(position, url, urlThumbnail);
+        }
+
+        private void imageLoad(int position, String url, String urlThumbnail) {
+            if (!TextUtils.isEmpty(urlThumbnail)) {
+                loadImageGlide(urlThumbnail);
+
                 GlideApp.with(itemView.getContext())
                         .load(url)
-                        //.override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                        .override(ivItem.getWidth(), ivItem.getHeight())
-                        .centerCrop()
-                        .dontAnimate()
-                        .into(ivItem);
+                        .into(new LoadingTarget(position));
+                return;
             }
+
+            loadImageGlide(url);
+        }
+
+        private void loadImageGlide(String url) {
+            GlideApp.with(itemView.getContext())
+                    .load(url)
+                    .override(ivItem.getWidth(), ivItem.getHeight())
+                    .centerCrop()
+                    .into(ivItem);
         }
 
         @Override
@@ -127,6 +146,21 @@ public class AdapterProfile extends AdapterBase {
             presenterAdapterProfile.onCLickLikes();
         }
 
+
+        private class LoadingTarget extends SimpleTarget<Drawable> {
+
+            private int position;
+
+            LoadingTarget(int position) {
+                this.position = position;
+            }
+
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                if (getAdapterPosition() != position) return;
+                ivItem.setImageDrawable(resource);
+            }
+        }
     }
 
     private class ListenerPresenter implements IPresenterAdapterProfileListener {
