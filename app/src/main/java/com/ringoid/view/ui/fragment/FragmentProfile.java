@@ -97,17 +97,11 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
     private class ListenerPresenter implements IPresenterProfileListener {
 
         @Override
-        public void updateView() {
+        public void updateView(int position) {
             if (getContext() == null) return;
             dotsIndicatorHelper.updateData(presenterProfile.getItemsNum());
-            setViewState();
-        }
-
-        @Override
-        public void scrollToPosition(int position) {
-            if (getContext() == null) return;
-            layoutManager.scrollToPosition(position);
             dotsIndicatorHelper.setPosition(position);
+            setViewState();
         }
 
         @Override

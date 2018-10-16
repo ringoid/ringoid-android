@@ -16,6 +16,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterPhotoCrop;
 import com.ringoid.view.presenter.IPresenterPhotoCropListener;
+import com.ringoid.view.ui.util.GlideApp;
 import com.steelkiwi.cropiwa.CropIwaView;
 import com.steelkiwi.cropiwa.OnCropUpdateListener;
 import com.steelkiwi.cropiwa.config.CropIwaSaveConfig;
@@ -113,6 +114,7 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
         @Override
         public void onCroppedRegionSaved(Uri bitmapUri) {
             presenterPhotoCrop.onCropCompleted(file);
+            GlideApp.with(getContext()).load(file).preload();
         }
     }
 

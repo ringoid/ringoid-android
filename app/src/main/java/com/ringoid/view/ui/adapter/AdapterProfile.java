@@ -106,6 +106,7 @@ public class AdapterProfile extends AdapterBase {
                         //.override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                         .override(ivItem.getWidth(), ivItem.getHeight())
                         .centerCrop()
+                        .dontAnimate()
                         .into(ivItem);
             }
         }

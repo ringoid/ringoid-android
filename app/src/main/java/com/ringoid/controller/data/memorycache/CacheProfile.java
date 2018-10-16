@@ -98,7 +98,7 @@ public class CacheProfile implements ICacheProfile {
         ProfilePhoto profilePhoto = new ProfilePhoto(fileUri, clientPhotoId);
         getData().add(profilePhoto);
         saveData();
-        notifyListenersAddPhotoLocal(getData().size() - 1);
+        notifyListenersAddPhotoLocal(0);
     }
 
     private void saveData() {

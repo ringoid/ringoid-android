@@ -96,14 +96,7 @@ public class PresenterProfile implements IPresenterProfile {
 
     private void updateView(int position) {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().updateView();
-        scrollToPosition(position);
-    }
-
-    private void scrollToPosition(int position) {
-        if (position == DEFAULT_VALUE) return;
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().scrollToPosition(position);
+        refListener.get().updateView(position);
     }
 
     private void notifyRefreshComplete() {

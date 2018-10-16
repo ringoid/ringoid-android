@@ -56,7 +56,7 @@ public class ModelProfilePhotos implements Serializable {
 
     public void add(ProfilePhoto profilePhoto) {
         if (data == null) data = new ArrayList<>();
-        data.add(profilePhoto);
+        data.add(0, profilePhoto);
     }
 
     public ProfilePhoto getItem(String imageId) {
