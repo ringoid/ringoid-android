@@ -9,7 +9,7 @@
 
     <string name="login_phone_title">Enter your phone number</string>
     <string name="button_login_phone">Send Verification Code</string>
-    <string name="button_register_confirm">Continue to upload photo</string>
+    <string name="button_register_confirm">Continue to Upload photo</string>
     <string name="settings_terms">Terms of Service</string>
     <string name="settings_delete_account">Delete account</string>
     <string name="hint_numbers">Number</string>
@@ -22,7 +22,7 @@
     <string name="dialog_report_item_3">Spam, Advertising, Commercial activity</string>
     <string name="dialog_report_item_4">Human or sex trafficking, Criminal activity</string>
     <string name="dialog_report_item_5">Underage user, Child exploitation</string>
-    <string name="dialog_report_item_6">Harassment or threats, Verbal abuse</string>
+    <string name="dialog_report_item_6">Harassment or threats, Abuse</string>
     <string name="dialog_report_message">They won\'t be able to see your photos, like or message you.</string>
     <string name="dialog_report_cancel">cancel</string>
     <string name="dialog_report_confirm">block</string>
@@ -65,14 +65,14 @@
     <string name="message_sms_resend">Resend SMS</string>
     <string name="message_SMS_resend_format">Resend SMS (0:%02d)</string>
     <string name="crop_confirm"><![CDATA[Crop & Upload]]></string>
-    <string name="message_profile_empty">Upload your photos so users can like and message you</string>
+    <string name="message_profile_empty">Upload your photos so users can like you</string>
     <string name="dialog_image_delete_title">Delete photo?</string>
-    <string name="dialog_image_delete_message">This action is permanent and cannot be undone.</string>
+    <string name="dialog_image_delete_message">There is no undo.</string>
     <string name="dialog_image_delete_confirm">DELETE</string>
     <string name="message_sent">Message sent</string>
     <string name="message_clipboard_chat_message">Chat message</string>
     <string name="dialog_chat_clear_title">Clear history?</string>
-    <string name="dialog_chat_clear_message">There is no undo.\n\nYour match may still retain in their app all messages that you both sent.</string>
+    <string name="dialog_chat_clear_message">There is no undo.\n\nYour match may have a copy of messages you both sent.</string>
     <string name="dialog_chat_clear_confirm">clear</string>
     <string name="about">About</string>
     <string name="dialog_about_title">Ringoid app for Android</string>
