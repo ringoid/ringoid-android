@@ -18,7 +18,7 @@ public class HelperFullscreen implements IHelperFullscreen {
 
     @Override
     public void statusbarShowFullscreen() {
-
+/*
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
 
         if (refWindow == null || refWindow.get() == null) return;
@@ -26,26 +26,26 @@ public class HelperFullscreen implements IHelperFullscreen {
 
         int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
+        decorView.setSystemUiVisibility(uiOptions);*/
     }
 
     @Override
     public void statusbarHide() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+       /* if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
         if (refWindow == null || refWindow.get() == null) return;
         View decorView = refWindow.get().getDecorView();
 
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-        decorView.setSystemUiVisibility(uiOptions);
+        decorView.setSystemUiVisibility(uiOptions);*/
 
     }
 
     @Override
     public void statusbarShowResizeable() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+       /* if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
         if (refWindow == null || refWindow.get() == null) return;
-        refWindow.get().getDecorView().setSystemUiVisibility(0);
+        refWindow.get().getDecorView().setSystemUiVisibility(0);*/
     }
 }

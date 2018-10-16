@@ -108,7 +108,7 @@ public class FragmentPages extends FragmentBase
 
         @Override
         public void setPosition(int pos) {
-            llBottomAppBar.setTranslationY(pos);
+           // llBottomAppBar.setTranslationY(pos);
         }
 
         @Override
