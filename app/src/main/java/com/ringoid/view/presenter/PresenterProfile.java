@@ -2,14 +2,12 @@
 package com.ringoid.view.presenter;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.listener.ICacheProfileListener;
 import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
 import com.ringoid.controller.data.repository.callback.IRepositoryProfilePhotosListener;
 import com.ringoid.view.INavigator;
-import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.presenter.callback.IPresenterProfileListener;
 import com.ringoid.view.presenter.util.IHelperConnection;
 
@@ -117,7 +115,12 @@ public class PresenterProfile implements IPresenterProfile {
 
         @Override
         public void onPhotoRemove(int index) {
-            onUpdate();
+            updateView(getNextIndex(index, cacheProfile.getItemsNum()));
+        }
+
+        private int getNextIndex(int index, int itemsNum) {
+            if (itemsNum <= 1) return 0;
+            return Math.min(index, itemsNum - 1);
         }
     }
 
