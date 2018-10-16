@@ -9,7 +9,7 @@
 
     <string name="login_phone_title">Enter your phone number</string>
     <string name="button_login_phone">Send Verification Code</string>
-    <string name="button_register_confirm">Continue to upload photo</string>
+    <string name="button_register_confirm">Continue to Upload photo</string>
     <string name="settings_terms">Terms of Service</string>
     <string name="settings_delete_account">Delete account</string>
     <string name="hint_numbers">Number</string>
@@ -22,7 +22,7 @@
     <string name="dialog_report_item_3">Spam, Advertising, Commercial activity</string>
     <string name="dialog_report_item_4">Human or sex trafficking, Criminal activity</string>
     <string name="dialog_report_item_5">Underage user, Child exploitation</string>
-    <string name="dialog_report_item_6">Harassment or threats, Verbal abuse</string>
+    <string name="dialog_report_item_6">Harassment or threats, Abuse</string>
     <string name="dialog_report_message">They won\'t be able to see your photos, like or message you.</string>
     <string name="dialog_report_cancel">cancel</string>
     <string name="dialog_report_confirm">block</string>
