@@ -96,8 +96,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     private void updateToolbar() {
         cacheScroll.resetCache();
-
-        navigatorPages.updateCurrentPage();
     }
 
     private void updateViewPrivacy() {

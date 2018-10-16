@@ -138,12 +138,6 @@ public class NavigatorPages implements INavigatorPages {
     }
 
     @Override
-    public void updateCurrentPage() {
-        if (isPageProfile())
-            helperFullscreen.statusbarShowFullscreen();
-    }
-
-    @Override
     public void navigateMatches() {
         cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_MATCHES);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;

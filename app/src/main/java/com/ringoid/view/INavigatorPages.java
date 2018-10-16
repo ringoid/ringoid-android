@@ -25,8 +25,6 @@ public interface INavigatorPages {
 
     boolean isPageMessages();
 
-    void updateCurrentPage();
-
     void navigateMatches();
 
     void navigateSettings();
