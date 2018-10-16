@@ -2,6 +2,8 @@
 
 package com.ringoid.controller.data.memorycache;
 
+import android.text.TextUtils;
+
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.FileEnum;
 import com.ringoid.controller.device.ICacheStorage;
@@ -117,6 +119,16 @@ public class CacheUser implements ICacheUser {
                 && getData() != null
                 && getData().getCode() != null
                 && getData().getCode().equals(code);
+    }
+
+    @Override
+    public boolean isPhoneCodeExist() {
+        return getPhoneCode() != 0;
+    }
+
+    @Override
+    public boolean isPhoneExist() {
+        return !TextUtils.isEmpty(getPhone());
     }
 
     private DataUser getData() {

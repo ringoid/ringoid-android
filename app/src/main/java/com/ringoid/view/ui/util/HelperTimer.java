@@ -38,6 +38,11 @@ public class HelperTimer implements IHelperTimer {
         return timer != null && timer.isTicking();
     }
 
+    @Override
+    public long getMillis() {
+        return timer == null ? 0 : timer.millis;
+    }
+
     private void notifyFinish() {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().onFinish();
@@ -46,6 +51,7 @@ public class HelperTimer implements IHelperTimer {
     private class Timer extends CountDownTimer {
 
         private boolean isTicking;
+        private long millis;
 
         Timer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
@@ -54,12 +60,14 @@ public class HelperTimer implements IHelperTimer {
 
         @Override
         public void onTick(long millisUntilFinished) {
+            this.millis = millisUntilFinished;
             if (refListener == null || refListener.get() == null) return;
             refListener.get().onTick(millisUntilFinished);
         }
 
         @Override
         public void onFinish() {
+            this.millis = 0;
             isTicking = false;
             notifyFinish();
         }

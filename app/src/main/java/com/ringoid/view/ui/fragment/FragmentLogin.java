@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.Layout;
@@ -29,6 +30,7 @@ import com.ringoid.R;
 import com.ringoid.model.SEX;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.IPresenterRegister;
+import com.ringoid.view.presenter.PresenterRegister;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
 import com.ringoid.view.ui.view.ViewPhoneInput;
 import com.ringoid.view.ui.view.callback.IViewPhotoInputListener;
@@ -40,11 +42,6 @@ import javax.inject.Inject;
 
 public class FragmentLogin extends FragmentBase
         implements View.OnClickListener, View.OnLongClickListener {
-
-    private static final String ARG_PROFILE_UPDATE = "arg_profile_update";
-    private static final int INDEX_PHONE_INPUT = 0;
-    private static final int INDEX_CODE_INPUT = 1;
-    private static final int INDEX_PROFILE_UPDATE = 2;
 
     @Inject
     IPresenterRegister presenterRegister;
@@ -64,11 +61,21 @@ public class FragmentLogin extends FragmentBase
     private View pbPhoneVerify, pbSMSConfirm;
     private View vPhoneConfirm, vSMSConfirm;
     private TextView tvSMSResend;
+    private TextView tvPhoneHint;
+
+    public static Fragment getInstanceCodeConfirm() {
+        FragmentLogin fragment = new FragmentLogin();
+        Bundle args = new Bundle();
+        args.putInt(PresenterRegister.ARG_PAGE, PresenterRegister.INDEX_CODE_INPUT);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 
     public static FragmentLogin getInstanceProfileUpdate() {
         FragmentLogin fragment = new FragmentLogin();
         Bundle args = new Bundle();
-        args.putBoolean(ARG_PROFILE_UPDATE, true);
+        args.putInt(PresenterRegister.ARG_PAGE, PresenterRegister.INDEX_PROFILE_UPDATE);
         fragment.setArguments(args);
         return fragment;
     }
@@ -86,7 +93,7 @@ public class FragmentLogin extends FragmentBase
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         initViews(view);
-        presenterRegister.onCreateView();
+        presenterRegister.onCreateView(getArguments());
         return view;
     }
 
@@ -105,6 +112,7 @@ public class FragmentLogin extends FragmentBase
         vPhoneConfirm = view.findViewById(R.id.tvLoginPhoneVerify);
         vSMSConfirm = view.findViewById(R.id.tvCodeSMSConfirm);
         tvSMSResend = view.findViewById(R.id.tvCodeSMSResend);
+        tvPhoneHint = view.findViewById(R.id.tvPhoneHint);
 
         ((TextView) view.findViewById(R.id.tvTerms)).setMovementMethod(new LinkMovementMethodInternal());
 
@@ -127,13 +135,9 @@ public class FragmentLogin extends FragmentBase
 
         etCodeSMS.setOnEditorActionListener(new ListenerSMSCode());
         etYearBirth.setOnEditorActionListener(new ListenerYearBirth());
-
-        setPage(getArguments() != null && getArguments().getBoolean(ARG_PROFILE_UPDATE, false)
-                ? INDEX_PROFILE_UPDATE
-                : INDEX_PHONE_INPUT);
     }
 
-    private void setPage(int index) {
+    private void showPage(int index) {
         vfLogin.setDisplayedChild(index);
         checkKeyboard();
     }
@@ -158,10 +162,8 @@ public class FragmentLogin extends FragmentBase
             presenterRegister.onClickCodeSMSResend();
         }
 
-        if (view.getId() == R.id.tvCodePhoneError) {
-            setPage(INDEX_PHONE_INPUT);
-            etPhone.setSelection(etPhone.getText().length());
-        }
+        if (view.getId() == R.id.tvCodePhoneError)
+            presenterRegister.onClickWrongPhone();
 
         if (view.getId() == R.id.tvRegister)
             presenterRegister.onClickRegister();
@@ -231,11 +233,6 @@ public class FragmentLogin extends FragmentBase
     private class ListenerPresenter implements IPresenterRegisterListener {
 
         @Override
-        public void navigateNext() {
-            showNext();
-        }
-
-        @Override
         public void showDateBirth(int time) {
             String text = time == 0 ? "" : String.valueOf(time);
             if (text.equals(etYearBirth.getText().toString())) return;
@@ -254,7 +251,7 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void showPhoneHint(String phone) {
-            ((TextView) getView().findViewById(R.id.tvPhoneHint)).setText(phone);
+            tvPhoneHint.setText(phone);
         }
 
         @Override
@@ -286,8 +283,19 @@ public class FragmentLogin extends FragmentBase
         }
 
         @Override
-        public void showCodeInput() {
-            setPage(INDEX_CODE_INPUT);
+        public void setPage(int index) {
+            showPage(index);
+        }
+
+        @Override
+        public void setPhone(int phoneCode, String phone) {
+            vpiLogin.setPhone(phone);
+            vpiLogin.setCountryCode(phoneCode);
+        }
+
+        @Override
+        public void setPhoneSelectionEnd() {
+            etPhone.setSelection(etPhone.getText().length());
         }
 
         @Override
@@ -298,7 +306,7 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void showPhoneInput() {
-            setPage(INDEX_PHONE_INPUT);
+            setPage(PresenterRegister.INDEX_PHONE_INPUT);
         }
 
     }

@@ -169,6 +169,10 @@ public class ViewPhoneInput extends LinearLayout
         return removeLeadZero(etPhone.getText().toString());
     }
 
+    public void setPhone(String phone) {
+        etPhone.setText(phone);
+    }
+
     private String removeLeadZero(String input) {
         if (TextUtils.isEmpty(input)) return input;
         while (input.startsWith("0")) {

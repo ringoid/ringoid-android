@@ -146,6 +146,17 @@ public class Navigator implements INavigator {
     }
 
     @Override
+    public void navigateRegisterCodeConfirm() {
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        clearBackStack();
+
+        refFragmentManager.get()
+                .beginTransaction()
+                .replace(viewId, FragmentLogin.getInstanceCodeConfirm(), CURRENT_FRAGMENT_PAGE)
+                .commit();
+    }
+
+    @Override
     public void navigateSettingsDataProtection() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()

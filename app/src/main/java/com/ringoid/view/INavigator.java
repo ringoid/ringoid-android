@@ -52,4 +52,6 @@ public interface INavigator {
     void navigateErrorConnection();
 
     void navigateErrorAppversion();
+
+    void navigateRegisterCodeConfirm();
 }

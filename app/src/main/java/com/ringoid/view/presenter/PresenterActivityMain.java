@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.BuildConfig;
+import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
@@ -16,7 +16,6 @@ import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.util.ILogoutHelper;
-import com.ringoid.view.ui.dialog.callback.IDialogErrorAppVersionListener;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperScreenshots;
 
@@ -26,6 +25,9 @@ public class PresenterActivityMain implements IPresenterActivityMain {
 
     @Inject
     ICacheToken cacheToken;
+
+    @Inject
+    ICacheRegister cacheRegister;
 
     @Inject
     ICacheUser cacheUser;
@@ -71,7 +73,13 @@ public class PresenterActivityMain implements IPresenterActivityMain {
 
     private void navigate() {
         if (!cacheToken.isTokenExist()) {
+            if (cacheRegister.isSessionIdExist()) {
+                navigator.navigateRegisterCodeConfirm();
+                return;
+            }
+
             navigator.navigateLogin();
+
             return;
         }
 

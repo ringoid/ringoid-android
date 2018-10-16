@@ -1,6 +1,8 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
+import android.os.Bundle;
+
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
 
 public interface IPresenterRegister {
@@ -19,7 +21,9 @@ public interface IPresenterRegister {
 
     void onDataBirthSet(int year);
 
-    void onCreateView();
+    void onCreateView(Bundle arguments);
 
     void onClickCodeSMSResend();
+
+    void onClickWrongPhone();
 }

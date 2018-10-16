@@ -1,6 +1,7 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.presenter;
 
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -27,6 +28,10 @@ import javax.inject.Inject;
 
 public class PresenterRegister implements IPresenterRegister {
 
+    public static final int INDEX_PHONE_INPUT = 0;
+    public static final int INDEX_CODE_INPUT = 1;
+    public static final int INDEX_PROFILE_UPDATE = 2;
+    public static final String ARG_PAGE = "arg_profile_update";
 
     private static final int SMS_CODE_LENGTH = 4;
 
@@ -106,8 +111,6 @@ public class PresenterRegister implements IPresenterRegister {
         cacheUser.setPhone(code, phone);
         cacheRegister.setPhoneValid(isValid);
         repositoryRegisterPhone.request();
-        clearCodeConfirm();
-        showPhoneHint();
         setPhoneInputStateEnabled(false);
     }
 
@@ -117,19 +120,14 @@ public class PresenterRegister implements IPresenterRegister {
         repositoryRegisterPhone.request();
     }
 
+    @Override
+    public void onClickWrongPhone() {
+        setPhoneInput();
+    }
+
     private void setPhoneInputStateEnabled(boolean isEnabled) {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().setPhoneInputEnabled(isEnabled);
-    }
-
-    private void showPhoneHint() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().showPhoneHint(String.format("+%d %s", cacheUser.getPhoneCode(), cacheUser.getPhone()));
-    }
-
-    private void clearCodeConfirm() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().clearCodeInput();
     }
 
     @Override
@@ -157,26 +155,45 @@ public class PresenterRegister implements IPresenterRegister {
     }
 
     @Override
-    public void onCreateView() {
-        checkInputedData();
+    public void onCreateView(Bundle arguments) {
+        setInitPage(arguments);
     }
 
-    private void checkInputedData() {
+    private void setInitPage(Bundle arguments) {
+        if (arguments == null) return;
+
+        int page_index = arguments.getInt(ARG_PAGE, INDEX_PHONE_INPUT);
+
+        if (page_index == INDEX_CODE_INPUT)
+            loginGoCodeInput();
+
+        if (page_index == INDEX_PROFILE_UPDATE)
+            loginGoProfileUpdate();
+
+        if (page_index == INDEX_PHONE_INPUT)
+            setPhoneInput();
+    }
+
+    private void setPhoneInput() {
+        if (refListener == null || refListener.get() == null) return;
+        if (cacheUser.isPhoneCodeExist() && cacheUser.isPhoneExist()) {
+            refListener.get().setPhone(cacheUser.getPhoneCode(), cacheUser.getPhone());
+            refListener.get().setPhoneSelectionEnd();
+        }
+        refListener.get().setPage(PresenterRegister.INDEX_PHONE_INPUT);
+    }
+
+    private void loginGoProfileUpdate() {
         if (refListener == null || refListener.get() == null) return;
         if (cacheRegister.getSex() != SEX.UNDEFINED.getValue())
             refListener.get().setGenderSelected(cacheRegister.getSex() == SEX.FEMALE.getValue() ? SEX.FEMALE : SEX.MALE);
         refListener.get().showDateBirth(cacheRegister.getYearBirth());
+        refListener.get().setPage(INDEX_PROFILE_UPDATE);
     }
 
     private void showDateBirth(int year) {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().showDateBirth(year);
-    }
-
-    private void loginGoNext() {
-
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().navigateNext();
     }
 
     private void hideKeyboard() {
@@ -199,7 +216,10 @@ public class PresenterRegister implements IPresenterRegister {
 
     private void loginGoCodeInput() {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().showCodeInput();
+        refListener.get().clearCodeInput();
+        refListener.get().showPhoneHint(String.format("+%d %s", cacheUser.getPhoneCode(), cacheUser.getPhone()));
+        refListener.get().setPage(INDEX_CODE_INPUT);
+        updateStateSMSResend(helperTimer.getMillis());
     }
 
     private class ListenerRegisterPhone implements IRepositoryRegisterPhoneListener {
@@ -231,12 +251,13 @@ public class PresenterRegister implements IPresenterRegister {
             if (cacheUser.isRegistered()) {
                 hideKeyboard();
                 navigator.navigateFeed();
-            } else loginGoNext();
+            } else loginGoProfileUpdate();
         }
 
         @Override
         public void onErrorNoPendingClient() {
             setSMSInputStateEnabled(true);
+            cacheRegister.resetCache();
             if (refListener == null || refListener.get() == null) return;
             refListener.get().showPhoneInput();
         }

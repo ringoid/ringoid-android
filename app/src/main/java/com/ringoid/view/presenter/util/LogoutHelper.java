@@ -9,6 +9,7 @@ import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
+import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
@@ -59,6 +60,9 @@ public class LogoutHelper implements ILogoutHelper {
     @Inject
     ICacheExplore cacheExplore;
 
+    @Inject
+    ICacheRegister cacheRegister;
+
     public LogoutHelper() {
         ApplicationRingoid.getComponent().inject(this);
     }
@@ -77,6 +81,7 @@ public class LogoutHelper implements ILogoutHelper {
             cacheLikes.resetCache();
             cacheMessages.resetCache();
             cacheExplore.resetCache();
+            cacheRegister.resetCache();
         }
         navigator.navigateLogin();
     }

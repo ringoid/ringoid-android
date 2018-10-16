@@ -11,4 +11,6 @@ public interface IHelperTimer {
     void cancel();
 
     boolean isTicking();
+
+    long getMillis();
 }

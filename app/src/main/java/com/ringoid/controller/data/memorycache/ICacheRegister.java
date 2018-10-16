@@ -29,4 +29,8 @@ public interface ICacheRegister {
     long getDatePrivacy();
 
     boolean isPhoneValid();
+
+    boolean isSessionIdExist();
+
+    void resetCache();
 }

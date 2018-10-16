@@ -5,8 +5,6 @@ import com.ringoid.model.SEX;
 
 public interface IPresenterRegisterListener {
 
-    void navigateNext();
-
     void showDateBirth(int time);
 
     void setGenderSelected(SEX sex);
@@ -27,5 +25,9 @@ public interface IPresenterRegisterListener {
 
     void setSMSResendEnabled();
 
-    void showCodeInput();
+    void setPage(int indexProfileUpdate);
+
+    void setPhone(int phoneCode, String phone);
+
+    void setPhoneSelectionEnd();
 }

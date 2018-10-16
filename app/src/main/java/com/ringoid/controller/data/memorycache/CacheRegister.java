@@ -1,85 +1,125 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.memorycache;
 
+import android.text.TextUtils;
+
+import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.FileEnum;
+import com.ringoid.controller.device.ICacheStorage;
+import com.ringoid.model.ModelUserRegister;
 import com.ringoid.model.SEX;
+
+import javax.inject.Inject;
 
 public class CacheRegister implements ICacheRegister {
 
-    private int sex;
-    private int yearOfBirth;
-    private String sessionId;
-    private boolean isPhoneValid;
-    private long dateTerms, dateAge;
+    @Inject
+    ICacheStorage cacheStorage;
+
+    private ModelUserRegister data;
+
+    public CacheRegister() {
+        ApplicationRingoid.getComponent().inject(this);
+    }
+
+    private ModelUserRegister getData() {
+        if (data == null)
+            data = cacheStorage.readObject(FileEnum.CACHE_USER_REGISTER, ModelUserRegister.class);
+        if (data == null) data = new ModelUserRegister();
+        return data;
+    }
 
     @Override
     public int getSex() {
-        return sex;
+        return getData().sex;
     }
 
     @Override
     public void setSexFemale() {
-        this.sex = SEX.FEMALE.getValue();
+        getData().sex = SEX.FEMALE.getValue();
+        saveData();
     }
 
     @Override
     public void setSexMale() {
-        this.sex = SEX.MALE.getValue();
+        getData().sex = SEX.MALE.getValue();
+        saveData();
     }
 
     @Override
     public int getYearBirth() {
-        return yearOfBirth;
+        return getData().yearOfBirth;
     }
 
     @Override
     public boolean setDateBirth(int year) {
-        if (yearOfBirth == year) return false;
-        this.yearOfBirth = year;
+        if (getData().yearOfBirth == year) return false;
+        getData().yearOfBirth = year;
+        saveData();
         return true;
     }
 
     @Override
     public String getSessionId() {
-        return sessionId;
+        return getData().sessionId;
     }
 
     @Override
     public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
+        getData().sessionId = sessionId;
+        saveData();
     }
 
     @Override
     public long getDateTerms() {
-        return dateTerms;
+        return getData().dateTerms;
     }
 
     @Override
     public void setDateTerms() {
-        dateTerms = System.currentTimeMillis();
+        getData().dateTerms = System.currentTimeMillis();
+        saveData();
+    }
+
+    private void saveData() {
+        cacheStorage.writeData(FileEnum.CACHE_USER_REGISTER, data);
     }
 
     @Override
     public long getDateAge() {
-        return dateAge;
+        return getData().dateAge;
     }
 
     @Override
     public void setDateAge() {
-        dateAge = System.currentTimeMillis();
+        getData().dateAge = System.currentTimeMillis();
+        saveData();
     }
 
     @Override
     public long getDatePrivacy() {
-        return dateTerms;
+        return getData().dateTerms;
     }
 
     @Override
     public boolean isPhoneValid() {
-        return isPhoneValid;
+        return getData().isPhoneValid;
     }
 
     @Override
     public void setPhoneValid(boolean isValid) {
-        this.isPhoneValid = isValid;
+        getData().isPhoneValid = isValid;
+        saveData();
+    }
+
+    @Override
+    public boolean isSessionIdExist() {
+        return !TextUtils.isEmpty(getData().sessionId);
+    }
+
+    @Override
+    public void resetCache() {
+        this.data = null;
+        cacheStorage.removeData(FileEnum.CACHE_USER_REGISTER);
     }
 }
