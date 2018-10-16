@@ -17,7 +17,7 @@ public class DialogImageRemove implements View.OnClickListener {
     private String imageId;
     private WeakReference<IDialogImageRemoveListener> refListener;
 
-    public DialogImageRemove(Context context, String imageId, int likesNum, IDialogImageRemoveListener listener, boolean imageLast) {
+    public DialogImageRemove(Context context, String imageId, IDialogImageRemoveListener listener) {
         this.refListener = new WeakReference<>(listener);
         this.imageId = imageId;
 
@@ -25,19 +25,8 @@ public class DialogImageRemove implements View.OnClickListener {
         View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_image_remove, null);
         dialog.setView(view);
 
-        addMessages(view, likesNum, imageLast);
-
         view.findViewById(R.id.tvConfirm).setOnClickListener(this);
         view.findViewById(R.id.tvCancel).setOnClickListener(this);
-    }
-
-    private void addMessages(View view, int likesNum, boolean imageLast) {
-        TextView tvMessage = view.findViewById(R.id.tvMessage2);
-        String message = "";
-        if (likesNum > 0)
-            message = String.format(view.getContext().getString(R.string.message_image_delete_likes), likesNum);
-
-        tvMessage.setText(message);
     }
 
     public void cancel() {

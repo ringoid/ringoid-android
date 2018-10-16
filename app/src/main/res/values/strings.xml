@@ -69,7 +69,6 @@
     <string name="dialog_image_delete_title">Delete photo?</string>
     <string name="dialog_image_delete_message">This action is permanent and cannot be undone.</string>
     <string name="dialog_image_delete_confirm">DELETE</string>
-    <string name="message_image_delete_likes">You will lose %d likes.\n\n</string>
     <string name="message_sent">Message sent</string>
     <string name="message_clipboard_chat_message">Chat message</string>
     <string name="dialog_chat_clear_title">Clear history?</string>
@@ -108,8 +107,7 @@
     <string name="settings_push_subtitle">Push Notifications</string>
     <string name="settings_privacy_phones_subtitle">Blacklist</string>
     <string name="settings_privacy_phone_blacklist_add_subtitle">Add to the blacklist</string>
-	
-    <string name="settings_privacy_location_distance">Safety distance</string>
+
     <string name="settings_privacy_distance_message">Don\'t show my photos to Ringoid users, and don\'t allow them to like or message me if they are closer than</string>
     <string name="settings_privacy_distance_0">0 meters (0 feet, 0 yards)</string>
     <string name="settings_privacy_distance_1">10 meters (32 feet, 10 yards)</string>
@@ -118,13 +116,7 @@
     <string name="settings_privacy_distance_3">100 meters (328 feet, 109 yards)</string>
     <string name="settings_privacy_distance_4">250 meters (820 feet, 273 yards)</string>
     <string name="privacy_distance_subtitle">Safety Distance</string>
-    <string name="distance_0">0 meters (0 feet, 0 yards)</string>
-    <string name="distance_1">10 meters (32 feet, 10 yards)</string>
-    <string name="distance_2">50 meters (164 feet, 54 yards)</string>
-    <string name="distance_3">100 meters (328 feet, 109 yards)</string>
-    <string name="distance_4">250 meters (820 feet, 273 yards)</string>
-	
-    <string name="settings_privacy_phone_blacklist">Blacklist</string>
+
     <string name="blacklist_description">Users who linked Ringoid accounts to the following phone numbers can\'t see my photos, like or message me</string>
     <string name="format_dialog_remove_confirm" formatted="false">Remove +%s %s from the blacklist?</string>
     <string name="blacklist_phone_add">Block it!</string>
@@ -140,13 +132,5 @@
     <string name="settings_likes_unlimited">Unlimited Likes</string>
     <string name="settings_ad_hide">Hide Advertisements</string>
     <string name="settings_push">Push Notifications</string>
-    <plurals name="blacklist_phone_num">
-        <item quantity="zero">%d phone numbers</item>
-        <item quantity="one">%d phone number</item>
-        <item quantity="two">%d phone numbers</item>
-        <item quantity="few">%d phone numbers</item>
-        <item quantity="many">%d phone numbers</item>
-        <item quantity="other">%d phone numbers</item>
-    </plurals>
 
 </resources>

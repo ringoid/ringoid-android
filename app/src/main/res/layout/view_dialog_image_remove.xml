@@ -22,13 +22,6 @@
         android:text="@string/dialog_image_delete_message"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
 
-    <TextView
-        android:id="@+id/tvMessage2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

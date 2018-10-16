@@ -47,11 +47,11 @@ public class AdapterProfile extends AdapterBase {
         return presenterAdapterProfile.getItemsNum();
     }
 
-    private void showDialogRemove(Context context, String imageId, int likesNum, boolean imageLast) {
+    private void showDialogRemove(Context context, String imageId) {
         if (dialogImageRemove != null)
             dialogImageRemove.cancel();
 
-        dialogImageRemove = new DialogImageRemove(context, imageId, likesNum, listenerDialogImageRemove, imageLast);
+        dialogImageRemove = new DialogImageRemove(context, imageId, listenerDialogImageRemove);
         dialogImageRemove.show();
     }
 
@@ -118,9 +118,7 @@ public class AdapterProfile extends AdapterBase {
 
             if (v.getId() == R.id.ivRemove) {
                 showDialogRemove(itemView.getContext(),
-                        presenterAdapterProfile.getImageId(getAdapterPosition()),
-                        presenterAdapterProfile.getLikesNum(getAdapterPosition()),
-                        presenterAdapterProfile.isImageLast());
+                        presenterAdapterProfile.getImageId(getAdapterPosition()));
             }
         }
 
