@@ -100,7 +100,7 @@ public class PresenterMessages implements IPresenterMessages {
         public void scrollToPosition(String userSelectedID) {
             int position = cacheMessages.getPosition(userSelectedID, NO_VALUE);
             if (position == NO_VALUE) return;
-            int offset = position == 0 ? 0 : (int) refContext.get().getResources().getDimension(R.dimen.toolbar_height_with_statusbar);
+            int offset =  (int) refContext.get().getResources().getDimension(R.dimen.toolbar_height_with_statusbar);
             presenterFeedPage.scrollToPosition(position, offset);
             cacheInterfaceState.setPositionScrollPageMessages(position, offset);
         }
