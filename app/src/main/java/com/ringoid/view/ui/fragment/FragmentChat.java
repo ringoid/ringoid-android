@@ -36,9 +36,6 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
     @Inject
     IPresenterChat presenterChat;
 
-    @Inject
-    KeyboardUtils keyboardUtils;
-
     private ImageView ivUser;
     private ListenerPresenter listenerPresenter;
     private DialogReport dialogMenu;
@@ -103,7 +100,7 @@ public class FragmentChat extends FragmentBase implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        keyboardUtils.keyboardShow(getContext(), etMessage);
+        showKeyboard(etMessage);
     }
 
     @Override
