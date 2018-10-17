@@ -232,6 +232,7 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void showDateBirth(int time) {
+            if (getContext() == null) return;
             String text = time == 0 ? "" : String.valueOf(time);
             if (text.equals(etYearBirth.getText().toString())) return;
             etYearBirth.setText(text);
@@ -239,27 +240,32 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void hideKeyboard() {
+            if (getContext() == null) return;
             FragmentLogin.this.hideKeyboard();
         }
 
         @Override
         public void clearCodeInput() {
+            if (getContext() == null) return;
             etCodeSMS.setText("");
         }
 
         @Override
         public void showPhoneHint(String phone) {
+            if (getContext() == null) return;
             tvPhoneHint.setText(phone);
         }
 
         @Override
         public void setPhoneInputEnabled(boolean isEnabled) {
+            if (getContext() == null) return;
             vPhoneConfirm.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
             pbPhoneVerify.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
         }
 
         @Override
         public void setSMSInputEnabled(boolean isEnabled) {
+            if (getContext() == null) return;
             vSMSConfirm.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
             pbSMSConfirm.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
         }
@@ -282,23 +288,27 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void setPage(int index) {
+            if (getContext() == null) return;
             vfLogin.setDisplayedChild(index);
             checkKeyboard();
         }
 
         @Override
         public void setPhone(int phoneCode, String phone) {
+            if (getContext() == null) return;
             vpiLogin.setPhone(phone);
             vpiLogin.setCountryCode(phoneCode);
         }
 
         @Override
         public void setPhoneSelectionEnd() {
+            if (getContext() == null) return;
             etPhone.setSelection(etPhone.getText().length());
         }
 
         @Override
         public void setGenderSelected(SEX sex) {
+            if (getContext() == null) return;
             tvSexFemale.setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
             tvSexMale.setBackground(sex == SEX.MALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
         }
