@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -230,12 +231,6 @@ class CountryCodeDialog {
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-
-                if (CountryCodeDialog.this.codePicker.isSearchAllowed() && CountryCodeDialog.this.codePicker.isDialogKeyboardAutoPopup())
-                    showKeyboard(CountryCodeDialog.this.dialog.getContext(), (EditText) CountryCodeDialog.this.dialog.findViewById(R.id.editText_search));
-                else
-                    hideKeyboard(CountryCodeDialog.this.dialog.getContext());
-
                 if (CountryCodeDialog.this.codePicker.getDialogEventsListener() != null) {
                     CountryCodeDialog.this.codePicker.getDialogEventsListener().onCcpDialogOpen(CountryCodeDialog.this.dialog);
                 }
@@ -285,14 +280,9 @@ class CountryCodeDialog {
     }
 
     public void show() {
-
+        if (CountryCodeDialog.this.codePicker.isSearchAllowed() && CountryCodeDialog.this.codePicker.isDialogKeyboardAutoPopup())
+            dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         dialog.show();
-
     }
 
-    void showKeyboard(Context context, EditText editView) {
-        editView.requestFocus();
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(editView, InputMethodManager.SHOW_IMPLICIT);
-    }
 }
