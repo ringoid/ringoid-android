@@ -35,7 +35,6 @@ public class DialogChatCompose implements View.OnClickListener {
         dialog = new BottomSheetDialog(context);
         view = LayoutInflater.from(context).inflate(R.layout.view_dialog_chat_compose, null);
         dialog.setContentView(view);
-        dialog.setOnShowListener(new ListenerDialogShow());
         dialog.setOnCancelListener(new ListenerCancel());
 
         etMessage = view.findViewById(R.id.etMessage);
@@ -48,6 +47,7 @@ public class DialogChatCompose implements View.OnClickListener {
     }
 
     public void show() {
+        keyboardUtils.keyboardShow(dialog.getWindow());
         dialog.show();
         hideDim();
     }
@@ -76,13 +76,6 @@ public class DialogChatCompose implements View.OnClickListener {
     private void notifySend() {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().onSend(etMessage.getText().toString().trim());
-    }
-
-    private class ListenerDialogShow implements DialogInterface.OnShowListener {
-        @Override
-        public void onShow(DialogInterface dialog) {
-            keyboardUtils.keyboardShow(DialogChatCompose.this.dialog.getContext(), etMessage);
-        }
     }
 
     private class ListenerCancel implements DialogInterface.OnCancelListener {
