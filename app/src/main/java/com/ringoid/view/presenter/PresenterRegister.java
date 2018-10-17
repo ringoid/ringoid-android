@@ -180,7 +180,7 @@ public class PresenterRegister implements IPresenterRegister {
             refListener.get().setPhone(cacheUser.getPhoneCode(), cacheUser.getPhone());
             refListener.get().setPhoneSelectionEnd();
         }
-        refListener.get().setPage(PresenterRegister.INDEX_PHONE_INPUT);
+        refListener.get().setPage(INDEX_PHONE_INPUT);
     }
 
     private void loginGoProfileUpdate() {
@@ -239,7 +239,7 @@ public class PresenterRegister implements IPresenterRegister {
         @Override
         public void onErrorPhone() {
             if (refListener == null || refListener.get() == null) return;
-            refListener.get().showPhoneInput();
+            refListener.get().setPage(INDEX_PHONE_INPUT);
             setPhoneInputStateEnabled(true);
         }
     }
@@ -259,7 +259,7 @@ public class PresenterRegister implements IPresenterRegister {
             setSMSInputStateEnabled(true);
             cacheRegister.resetCache();
             if (refListener == null || refListener.get() == null) return;
-            refListener.get().showPhoneInput();
+            refListener.get().setPage(INDEX_PHONE_INPUT);
         }
 
         @Override
@@ -283,7 +283,7 @@ public class PresenterRegister implements IPresenterRegister {
         @Override
         public void onClick(View v) {
             if (refListener == null || refListener.get() == null) return;
-            refListener.get().showPhoneInput();
+            refListener.get().setPage(INDEX_PHONE_INPUT);
         }
     }
 

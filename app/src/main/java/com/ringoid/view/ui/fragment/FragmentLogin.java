@@ -80,6 +80,14 @@ public class FragmentLogin extends FragmentBase
         return fragment;
     }
 
+    public static FragmentLogin getInstancePhoneInput() {
+        FragmentLogin fragment = new FragmentLogin();
+        Bundle args = new Bundle();
+        args.putInt(PresenterRegister.ARG_PAGE, PresenterRegister.INDEX_PHONE_INPUT);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,11 +143,6 @@ public class FragmentLogin extends FragmentBase
 
         etCodeSMS.setOnEditorActionListener(new ListenerSMSCode());
         etYearBirth.setOnEditorActionListener(new ListenerYearBirth());
-    }
-
-    private void showPage(int index) {
-        vfLogin.setDisplayedChild(index);
-        checkKeyboard();
     }
 
     @Override
@@ -205,11 +208,6 @@ public class FragmentLogin extends FragmentBase
 
         if (vfLogin.getCurrentView().getId() == R.id.llLoginInfo)
             showKeyboard(etYearBirth);
-    }
-
-    private void showNext() {
-        vfLogin.showNext();
-        checkKeyboard();
     }
 
     @Override
@@ -284,7 +282,8 @@ public class FragmentLogin extends FragmentBase
 
         @Override
         public void setPage(int index) {
-            showPage(index);
+            vfLogin.setDisplayedChild(index);
+            checkKeyboard();
         }
 
         @Override
@@ -302,11 +301,6 @@ public class FragmentLogin extends FragmentBase
         public void setGenderSelected(SEX sex) {
             tvSexFemale.setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
             tvSexMale.setBackground(sex == SEX.MALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
-        }
-
-        @Override
-        public void showPhoneInput() {
-            setPage(PresenterRegister.INDEX_PHONE_INPUT);
         }
 
     }

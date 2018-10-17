@@ -9,8 +9,6 @@ public interface IPresenterRegisterListener {
 
     void setGenderSelected(SEX sex);
 
-    void showPhoneInput();
-
     void hideKeyboard();
 
     void clearCodeInput();

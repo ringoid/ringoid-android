@@ -71,7 +71,7 @@ public class Navigator implements INavigator {
 
         refFragmentManager.get()
                 .beginTransaction()
-                .replace(viewId, new FragmentLogin(), CURRENT_FRAGMENT_PAGE)
+                .replace(viewId, FragmentLogin.getInstancePhoneInput(), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 
