@@ -201,13 +201,13 @@ public class FragmentLogin extends FragmentBase
     private void checkKeyboard() {
 
         if (vfLogin.getCurrentView().getId() == R.id.llLoginPhone)
-            showKeyboard(etPhone);
+            etPhone.post(new RunnableKeyboard(etPhone));
 
         if (vfLogin.getCurrentView().getId() == R.id.llLoginSMS)
-            showKeyboard(etCodeSMS);
+            etCodeSMS.post(new RunnableKeyboard(etCodeSMS));
 
         if (vfLogin.getCurrentView().getId() == R.id.llLoginInfo)
-            showKeyboard(etYearBirth);
+            etYearBirth.post(new RunnableKeyboard(etYearBirth));
     }
 
     @Override
@@ -469,6 +469,19 @@ public class FragmentLogin extends FragmentBase
                 return true;
             }
             return false;
+        }
+    }
+
+    private class RunnableKeyboard implements Runnable {
+        private EditText editText;
+
+        public RunnableKeyboard(EditText editText) {
+            this.editText = editText;
+        }
+
+        @Override
+        public void run() {
+            showKeyboard(editText);
         }
     }
 }
