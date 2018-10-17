@@ -4,6 +4,7 @@ package com.ringoid.view.ui.util;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
+import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
@@ -32,6 +33,9 @@ public class HelperMessageCompose implements IHelperMessageCompose {
     @Inject
     IHelperMessageSend helperMessageSend;
 
+    @Inject
+    ICacheMessages cacheMessages;
+
     private ListenerDialogChatCompose listenerDialogChatCompose;
     private WeakHashMap<String, IHelperMessageComposeListener> listeners;
 
@@ -49,6 +53,7 @@ public class HelperMessageCompose implements IHelperMessageCompose {
             return;
         }
 
+        cacheMessages.setUserSelected(userId);
         navigator.navigateChat();
     }
 
