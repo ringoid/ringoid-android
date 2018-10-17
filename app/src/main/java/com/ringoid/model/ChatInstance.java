@@ -21,7 +21,7 @@ class ChatInstance implements Serializable {
     }
 
     public boolean isWithUser(String userSelectedID) {
-        return userId.equals(userSelectedID);
+        return userId != null && userId.equals(userSelectedID);
     }
 
     public int size() {
