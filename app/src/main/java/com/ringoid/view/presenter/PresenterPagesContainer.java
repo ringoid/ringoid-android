@@ -63,6 +63,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     IPresenterFeedPage presenterFeedPage;
 
     @Inject
+    IPresenterSettings presenterSettings;
+
+    @Inject
     ISettingsHelper settingsHelper;
 
     @Inject
@@ -168,8 +171,8 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public void onClickPageSettings() {
         cacheScroll.resetCache();
         if (navigatorPages.isPageSettings()) {
-            if (!presenterFeedPage.isPositionTop()) {
-                presenterFeedPage.scrollTop();
+            if (!presenterSettings.isPositionTop()) {
+                presenterSettings.scrollTop();
                 cacheInterfaceState.resetCachePositionSettings();
             } else if (BuildConfig.DEBUG)
                 navigator.navigateScreenDebug();

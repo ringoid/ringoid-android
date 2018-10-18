@@ -129,6 +129,11 @@ public class FragmentSettings extends FragmentBase
                 }
             });
         }
+
+        @Override
+        public boolean isPositionTop() {
+            return svContent.getScrollY() == 0;
+        }
     }
 
     private class ListenerScroll implements ViewTreeObserver.OnScrollChangedListener {

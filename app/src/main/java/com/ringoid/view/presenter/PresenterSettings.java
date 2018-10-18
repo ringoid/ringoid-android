@@ -48,4 +48,15 @@ public class PresenterSettings implements IPresenterSettings {
         cacheInterfaceState.setPositionScrollSettings(0, scrollY);
     }
 
+    @Override
+    public boolean isPositionTop() {
+        return refListener != null && refListener.get() != null && refListener.get().isPositionTop();
+    }
+
+    @Override
+    public void scrollTop() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().scrollToPosition(0, 0);
+    }
+
 }

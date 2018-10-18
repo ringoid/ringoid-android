@@ -9,4 +9,8 @@ public interface IPresenterSettings {
     void setListener(IPresenterSettingsListener listener);
 
     void onScroll(int scrollY);
+
+    boolean isPositionTop();
+
+    void scrollTop();
 }

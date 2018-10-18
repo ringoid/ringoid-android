@@ -4,4 +4,6 @@ package com.ringoid.view.presenter.callback;
 public interface IPresenterSettingsListener {
 
     void scrollToPosition(int firstVisiblePosition, int offset);
+
+    boolean isPositionTop();
 }
