@@ -148,31 +148,31 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
     private class ListenerPresenter implements IPresenterFeedPageListener {
         @Override
         public void scrollSmoothBy(int y) {
-            if (getContext() == null) return;
+            if (getContext() == null || rvItems == null) return;
             rvItems.smoothScrollBy(0, y);
         }
 
         @Override
         public boolean isPositionTop() {
-            if (getContext() == null) return false;
+            if (getContext() == null || rvItems == null) return false;
             return rvItems.computeVerticalScrollOffset() == 0;
         }
 
         @Override
         public void scrollTop() {
-            if (getContext() == null) return;
+            if (getContext() == null || rvItems == null) return;
             rvItems.scrollToPosition(0);
         }
 
         @Override
         public void scrollToPosition(int position, int offset) {
-            if (getContext() == null) return;
+            if (getContext() == null || layoutManager == null) return;
             layoutManager.scrollToPositionWithOffset(position, offset);
         }
 
         @Override
         public void completeRefresh() {
-            if (getContext() == null) return;
+            if (getContext() == null || srlFeed == null) return;
             srlFeed.setRefreshing(false);
         }
 
