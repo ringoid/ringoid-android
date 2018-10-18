@@ -7,4 +7,6 @@ public interface IRepositoryRegisterCodeConfirmListener {
     void onErrorNoPendingClient();
 
     void onErrorInvalidCode();
+
+    void onErrorUnknown();
 }

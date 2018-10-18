@@ -5,7 +5,6 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheUser;
-import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.request.RequestParamRegisterCodeConfirm;
 import com.ringoid.controller.data.network.response.ResponseRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterCodeConfirmListener;
@@ -72,38 +71,44 @@ public class RepositoryRegisterCodeConfirm implements IRepositoryRegisterCodeCon
         refListener.get().onErrorInvalidCode();
     }
 
+    private void notifyError() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onErrorUnknown();
+    }
+
     private class RequestListener implements Callback<ResponseRegisterCodeConfirm> {
 
         @Override
         public void onResponse(Call<ResponseRegisterCodeConfirm> call, Response<ResponseRegisterCodeConfirm> response) {
 
             if (response.isSuccessful()
-                    && response.body() != null
-                    && response.body().isInavlidVerificationCode()) {
-                notifyInvalidVerificationCode();
+                    && response.body() != null) {
+
+                if (response.body().isInavlidVerificationCode())
+                    notifyInvalidVerificationCode();
+
+                if (response.body().isNoPendingClient())
+                    notifyNoPendingClient();
+
+                if (response.body().isSuccess()) {
+
+                    cacheToken.setToken(response.body().getToken());
+                    cacheUser.setRegistered(response.body().isRegistered());
+                    if (response.body().isRegistered())
+                        cacheUser.setUserOld();
+                    notifySuccess();
+                }
+                return;
             }
 
-            if (response.isSuccessful()
-                    && response.body() != null
-                    && response.body().isNoPendingClient()) {
-                notifyNoPendingClient();
-            }
+            notifyError();
 
-            if (response.isSuccessful()
-                    && response.body() != null
-                    && response.body().isSuccess()) {
-
-                cacheToken.setToken(response.body().getToken());
-                cacheUser.setRegistered(response.body().isRegistered());
-                if (response.body().isRegistered())
-                    cacheUser.setUserOld();
-                notifySuccess();
-            }
         }
 
         @Override
         public void onFailure(Call<ResponseRegisterCodeConfirm> call, Throwable t) {
-
+            if (call.isCanceled()) return;
+            notifyError();
         }
     }
 }

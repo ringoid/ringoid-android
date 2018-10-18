@@ -17,6 +17,7 @@ import com.ringoid.controller.data.repository.callback.IRepositoryRegisterPhoneL
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterUserDetailsListener;
 import com.ringoid.model.SEX;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
 import com.ringoid.view.ui.util.IHelperTimer;
@@ -58,6 +59,9 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Inject
     IHelperTimer helperTimer;
+
+    @Inject
+    IViewDialogs viewDialogs;
 
     private ListenerTimer listenerTimer;
     private ListenerRegisterCodeConfirm listenerRegisterCodeConfirm;
@@ -267,6 +271,16 @@ public class PresenterRegister implements IPresenterRegister {
             setSMSInputStateEnabled(true);
             if (refListener == null || refListener.get() == null) return;
             refListener.get().clearCodeInput();
+        }
+
+        @Override
+        public void onErrorUnknown() {
+            setSMSInputStateEnabled(true);
+            cacheRegister.resetCache();
+            helperTimer.cancel();
+            if (refListener == null || refListener.get() == null) return;
+            viewDialogs.showDialogErrorUnknown();
+            refListener.get().setPage(INDEX_PHONE_INPUT);
         }
     }
 
