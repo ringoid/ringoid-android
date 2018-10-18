@@ -274,7 +274,7 @@ public class PresenterRegister implements IPresenterRegister {
         @Override
         public void onSuccess() {
             hideKeyboard();
-            navigator.navigatePhotoAdd();
+            navigator.navigateFeedProfilePhotoSelect();
         }
     }
 

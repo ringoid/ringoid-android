@@ -166,6 +166,16 @@ public class NavigatorPages implements INavigatorPages {
         return fragment != null && fragment instanceof FragmentSettings;
     }
 
+    @Override
+    public void navigateProfilePhotoAdd() {
+        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_PROFILE);
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .replace(viewId, FragmentProfile.getInstancePhotoAdd(), CURRENT_FRAGMENT_TAB)
+                .commit();
+    }
+
     private void clearPage() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);

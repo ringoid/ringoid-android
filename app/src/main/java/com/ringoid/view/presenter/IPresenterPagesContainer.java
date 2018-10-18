@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 
 public interface IPresenterPagesContainer {
-    void onViewCreate(FragmentManager childFragmentManager, int viewId);
+    void onViewCreate(FragmentManager childFragmentManager, int viewId, int action);
 
     void onClickPageLikes();
 

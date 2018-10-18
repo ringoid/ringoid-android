@@ -30,4 +30,6 @@ public interface INavigatorPages {
     void navigateSettings();
 
     boolean isPageSettings();
+
+    void navigateProfilePhotoAdd();
 }

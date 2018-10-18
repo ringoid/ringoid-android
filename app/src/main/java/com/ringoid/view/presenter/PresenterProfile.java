@@ -17,6 +17,7 @@ import javax.inject.Inject;
 
 public class PresenterProfile implements IPresenterProfile {
 
+    public static final int ACTION_PHOTO_ADD = 1;
     private static final int DEFAULT_VALUE = -1;
 
     @Inject
@@ -63,10 +64,13 @@ public class PresenterProfile implements IPresenterProfile {
     }
 
     @Override
-    public void onCreateView() {
+    public void onCreateView(int action) {
         if (!cacheProfile.isDataExist())
             repositoryProfilePhotos.request();
         else updateView();
+
+        if (action == ACTION_PHOTO_ADD)
+            onClickPhotoAdd();
     }
 
     @Override

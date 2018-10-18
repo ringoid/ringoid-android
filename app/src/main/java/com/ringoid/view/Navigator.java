@@ -157,6 +157,17 @@ public class Navigator implements INavigator {
     }
 
     @Override
+    public void navigateFeedProfilePhotoSelect() {
+        clearBackStack();
+
+        if (refFragmentManager == null || refFragmentManager.get() == null) return;
+        refFragmentManager.get()
+                .beginTransaction()
+                .replace(viewId, FragmentPages.getInstanceProfilePhotoUpload())
+                .commit();
+    }
+
+    @Override
     public void navigateSettingsDataProtection() {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()

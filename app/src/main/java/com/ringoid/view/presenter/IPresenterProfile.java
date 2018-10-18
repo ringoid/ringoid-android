@@ -10,7 +10,7 @@ public interface IPresenterProfile {
 
     void onClickToolbar();
 
-    void onCreateView();
+    void onCreateView(int action);
 
     void setListener(IPresenterProfileListener listener);
 

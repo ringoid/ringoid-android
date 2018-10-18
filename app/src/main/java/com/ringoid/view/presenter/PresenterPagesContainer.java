@@ -36,6 +36,8 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public static final int INDEX_PAGE_PROFILE = 4;
     public static final int INDEX_PAGE_SETTINGS = 5;
 
+    public static final int ACTION_PHOTO_ADD = 1;
+
     @Inject
     INavigatorPages navigatorPages;
 
@@ -87,10 +89,19 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     }
 
     @Override
-    public void onViewCreate(FragmentManager childFragmentManager, int viewId) {
+    public void onViewCreate(FragmentManager childFragmentManager, int viewId, int action) {
         navigatorPages.set(childFragmentManager, viewId);
         updateViewPrivacy();
         updateToolbar();
+
+        navigate(action);
+    }
+
+    private void navigate(Integer action) {
+        if (action == ACTION_PHOTO_ADD) {
+            navigatorPages.navigateProfilePhotoAdd();
+            return;
+        }
         navigatorPages.navigateCurrentPage();
     }
 

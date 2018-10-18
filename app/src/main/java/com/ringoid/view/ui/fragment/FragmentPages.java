@@ -25,6 +25,8 @@ import javax.inject.Inject;
 public class FragmentPages extends FragmentBase
         implements View.OnClickListener {
 
+    public static final String ARG_ACTION = "ARG_ACTION";
+
     @Inject
     IPresenterPagesContainer presenterPagesContainer;
 
@@ -36,6 +38,14 @@ public class FragmentPages extends FragmentBase
 
     private ListenerPresenter listenerPresenter;
     private ViewGroup llBottomAppBar;
+
+    public static FragmentPages getInstanceProfilePhotoUpload() {
+        FragmentPages fragment = new FragmentPages();
+        Bundle bundle = new Bundle();
+        bundle.putInt(ARG_ACTION, PresenterPagesContainer.ACTION_PHOTO_ADD);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
     public PAGE_ENUM getPage() {
@@ -56,7 +66,7 @@ public class FragmentPages extends FragmentBase
 
         initViews(view);
 
-        presenterPagesContainer.onViewCreate(getChildFragmentManager(), R.id.flContent);
+        presenterPagesContainer.onViewCreate(getChildFragmentManager(), R.id.flContent, getArguments() == null ? 0 : getArguments().getInt(ARG_ACTION, 0));
         return view;
     }
 
@@ -108,7 +118,7 @@ public class FragmentPages extends FragmentBase
 
         @Override
         public void setPosition(int pos) {
-           // llBottomAppBar.setTranslationY(pos);
+            // llBottomAppBar.setTranslationY(pos);
         }
 
         @Override

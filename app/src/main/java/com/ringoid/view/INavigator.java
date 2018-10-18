@@ -54,4 +54,6 @@ public interface INavigator {
     void navigateErrorAppversion();
 
     void navigateRegisterCodeConfirm();
+
+    void navigateFeedProfilePhotoSelect();
 }

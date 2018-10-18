@@ -17,6 +17,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterProfile;
+import com.ringoid.view.presenter.PresenterProfile;
 import com.ringoid.view.presenter.callback.IPresenterProfileListener;
 import com.ringoid.view.ui.adapter.AdapterProfile;
 import com.ringoid.view.ui.util.IndicatorHelper;
@@ -24,6 +25,8 @@ import com.ringoid.view.ui.util.IndicatorHelper;
 import javax.inject.Inject;
 
 public class FragmentProfile extends FragmentBase implements View.OnClickListener {
+
+    public static final String ARG_ACTION = "arg_action";
 
     @Inject
     IPresenterProfile presenterProfile;
@@ -34,6 +37,14 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
     private LinearLayoutManager layoutManager;
     private SwipeRefreshLayout srlPhotos;
     private ListenerRefreshLayout listenerRefreshLayout;
+
+    public static FragmentProfile getInstancePhotoAdd() {
+        FragmentProfile fragmentProfile = new FragmentProfile();
+        Bundle bundle = new Bundle();
+        bundle.putInt(ARG_ACTION, PresenterProfile.ACTION_PHOTO_ADD);
+        fragmentProfile.setArguments(bundle);
+        return fragmentProfile;
+    }
 
     @Override
     public PAGE_ENUM getPage() {
@@ -60,7 +71,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         view.findViewById(R.id.fabProfile).setOnClickListener(this);
 
         initList(view);
-        presenterProfile.onCreateView();
+        presenterProfile.onCreateView(getArguments() == null ? 0 : getArguments().getInt(ARG_ACTION, 0));
         return view;
     }
 
