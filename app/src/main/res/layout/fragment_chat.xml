@@ -70,6 +70,7 @@
 
         <EditText
             android:id="@+id/etMessage"
+            android:maxLines="@integer/message_compose_lines_max"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

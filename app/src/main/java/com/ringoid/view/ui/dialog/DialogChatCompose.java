@@ -3,12 +3,14 @@ package com.ringoid.view.ui.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
@@ -37,9 +39,18 @@ public class DialogChatCompose implements View.OnClickListener {
         dialog.setContentView(view);
         dialog.setOnCancelListener(new ListenerCancel());
 
+        setHideableOff();
+
         etMessage = view.findViewById(R.id.etMessage);
         view.findViewById(R.id.flContent).setOnClickListener(this);
         view.findViewById(R.id.ivSend).setOnClickListener(this);
+    }
+
+    private void setHideableOff() {
+        FrameLayout view = dialog.findViewById(R.id.design_bottom_sheet);
+        if (view == null) return;
+        BottomSheetBehavior mBehavior = BottomSheetBehavior.from(view);
+        mBehavior.setHideable(false);
     }
 
     public void cancel() {

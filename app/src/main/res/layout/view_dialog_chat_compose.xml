@@ -19,6 +19,7 @@
             android:background="@null"
             android:imeOptions="flagNoPersonalizedLearning"
             android:inputType="textMultiLine"
+            android:maxLines="@integer/message_compose_lines_max"
             android:padding="16dp"
             android:theme="@style/AppTheme.Green" />
 
