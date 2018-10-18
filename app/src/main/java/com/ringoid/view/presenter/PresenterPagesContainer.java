@@ -208,20 +208,14 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     private int getIconResLikes(boolean isSelected) {
         return isSelected
-                ? (cacheLikes.isDataExist()
-                ? R.drawable.ic_menu_favorite_white_dot_24dp
-                : R.drawable.ic_menu_favorite_white_24dp)
-                : (cacheLikes.isDataExist()
-                ? R.drawable.ic_menu_favorite_dot_24dp
-                : R.drawable.ic_menu_favorite_24dp);
+                ? R.drawable.ic_menu_favorite_white_24dp
+                : R.drawable.ic_menu_favorite_24dp;
     }
 
     private int getIconResMessages(boolean isSelected) {
         return isSelected
-                ? (cacheMessages.isDataExist()
-                ? R.drawable.ic_menu_message_white_dot_24dp : R.drawable.ic_menu_message_white_24dp)
-                : cacheMessages.isDataExist()
-                ? R.drawable.ic_menu_message_dot_24dp : R.drawable.ic_menu_message_24dp;
+                ? R.drawable.ic_menu_message_white_24dp
+                : R.drawable.ic_menu_message_24dp;
     }
 
 
