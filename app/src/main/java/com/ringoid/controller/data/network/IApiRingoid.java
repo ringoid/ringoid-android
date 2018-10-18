@@ -75,4 +75,8 @@ public interface IApiRingoid {
 
     @POST("https://8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/old_version")
     Call<ResponseBase> testAppVersion();
+
+    @POST("https://8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/internalerror")
+    Call<ResponseBase> testInternalServerError();
+
 }

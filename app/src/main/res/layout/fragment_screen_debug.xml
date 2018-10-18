@@ -36,4 +36,9 @@
         style="@style/settings_menu_item"
         android:text="request response appversion error" />
 
+    <TextView
+        android:id="@+id/tvTestInternalServerError"
+        style="@style/settings_menu_item"
+        android:text="test internal server error" />
+
 </LinearLayout>
