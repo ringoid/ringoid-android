@@ -55,6 +55,7 @@ public class FragmentSettingsDebug extends FragmentBase implements View.OnClickL
         view.findViewById(R.id.tvTestTokenInvalid).setOnClickListener(this);
         view.findViewById(R.id.tvTestAppVersionError).setOnClickListener(this);
         view.findViewById(R.id.tvTestInternalServerError).setOnClickListener(this);
+        view.findViewById(R.id.tvTestUnknownHost).setOnClickListener(this);
 
         updateStateScreenshots();
     }
@@ -84,6 +85,9 @@ public class FragmentSettingsDebug extends FragmentBase implements View.OnClickL
 
         if (v.getId() == R.id.tvTestInternalServerError)
             providerApi.getAPI().testInternalServerError().enqueue(new ListenerBase());
+
+        if (v.getId() == R.id.tvTestUnknownHost)
+            providerApi.getAPI().testUnknownHost().enqueue(new ListenerBase());
     }
 
     private static class ListenerBase implements retrofit2.Callback<com.ringoid.controller.data.network.response.ResponseBase> {

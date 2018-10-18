@@ -79,4 +79,7 @@ public interface IApiRingoid {
     @POST("https://8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/internalerror")
     Call<ResponseBase> testInternalServerError();
 
+    @POST("https://lhksdfgkjsgfhjsdgfsdgjsdfgjsdlfksd.com")
+    Call<ResponseBase> testUnknownHost();
+
 }
