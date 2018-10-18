@@ -60,9 +60,6 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
 
         srlFeed = view.findViewById(R.id.srlFeed);
         srlFeed.setOnRefreshListener(listenerRefresh);
-        srlFeed.setProgressViewOffset(false,
-                (int) getResources().getDimension(R.dimen.toolbar_height_with_statusbar),
-                (int) (getResources().getDimension(R.dimen.toolbar_height_with_statusbar) * 1.5f));
         srlFeed.setColorSchemeResources(R.color.colorAccent);
         view.findViewById(R.id.tvPhotoAdd).setOnClickListener(this);
     }
@@ -120,11 +117,11 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
 
     private class ItemDecoration extends RecyclerView.ItemDecoration {
 
-        private int margin, marginFirst;
+        private int margin;
 
         ItemDecoration(Context context) {
             margin = (int) context.getResources().getDimension(R.dimen.divider);
-            marginFirst = (int) getResources().getDimension(R.dimen.toolbar_height_with_statusbar);
+
         }
 
         @Override
@@ -136,7 +133,7 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
             if (position != 0)
                 outRect.top = margin;
             else
-                outRect.top = marginFirst;
+                outRect.top = 0;
         }
 
     }
@@ -170,9 +167,7 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
         @Override
         public void scrollToPosition(int position, int offset) {
             if (getContext() == null) return;
-            layoutManager.scrollToPositionWithOffset(position, position == 0
-                    ? offset - (int) getContext().getResources().getDimension(R.dimen.toolbar_height_with_statusbar)
-                    : offset);
+            layoutManager.scrollToPositionWithOffset(position, offset);
         }
 
         @Override

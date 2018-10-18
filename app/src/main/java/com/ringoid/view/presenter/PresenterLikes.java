@@ -135,7 +135,7 @@ public class PresenterLikes implements IPresenterLikes {
 
             int position = cacheLikes.getPosition(userSelectedID, NO_VALUE);
             if (position == NO_VALUE) return;
-            int offset = (int) refContext.get().getResources().getDimension(R.dimen.toolbar_height_with_statusbar);
+            int offset = 0;
             presenterFeedPage.scrollToPosition(position, offset);
             cacheInterfaceState.setPositionScrollPageLikes(position, offset);
         }

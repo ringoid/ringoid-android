@@ -139,17 +139,17 @@ public class FragmentPages extends FragmentBase
 
         @Override
         public void showAnimationLike() {
-            helperAnimation.showPopupLikes((ViewGroup) getView().findViewById(R.id.flPages));
+            helperAnimation.showPopupLikes((ViewGroup) getView().findViewById(R.id.flAnimationPopup));
         }
 
         @Override
         public void showAnimationMessage() {
-            helperAnimation.showPopupMessage((ViewGroup) getView().findViewById(R.id.flPages));
+            helperAnimation.showPopupMessage((ViewGroup) getView().findViewById(R.id.flAnimationPopup));
         }
 
         @Override
         public void showAnimationMatches() {
-            helperAnimation.showPopupMatches((ViewGroup) getView().findViewById(R.id.flPages));
+            helperAnimation.showPopupMatches((ViewGroup) getView().findViewById(R.id.flAnimationPopup));
         }
     }
 }
