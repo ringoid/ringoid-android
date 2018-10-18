@@ -336,6 +336,7 @@ public class FragmentLogin extends FragmentBase
                 URLSpan[] link = buffer.getSpans(off, off, URLSpan.class);
                 if (link.length != 0) {
                     String url = link[0].getURL();
+                    hideKeyboard();
                     navigator.navigateWebView(url, getContext().getString(url.equals(getString(R.string.url_terms)) ? R.string.subtitle_terms : R.string.subtitle_privacy));
                     return true;
                 }
