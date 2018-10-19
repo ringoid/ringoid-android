@@ -20,6 +20,7 @@
     <ImageView
         android:id="@+id/ivImageMenu"
         style="@style/menuImageEnd"
+        android:layout_marginTop="4dp"
         android:src="@drawable/ic_block_gray_24dp"
         app:layout_constraintEnd_toEndOf="parent" />
 
