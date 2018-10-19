@@ -8,6 +8,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.view.ui.dialog.DialogChatCompose;
 import com.ringoid.view.ui.dialog.DialogErrorUnknown;
 import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
+import com.ringoid.view.ui.dialog.callback.IDialogErrorUnknownListener;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 
 import java.lang.ref.WeakReference;
@@ -28,8 +29,11 @@ public class ViewDialogs implements IViewDialogs {
     private WeakReference<DialogErrorUnknown> refDialogErrorUnknown;
     private WeakReference<AlertDialog> refDialogMessage;
 
+    private DialogErrorUnknownListener dialogErrorUnknownListener;
+
     public ViewDialogs() {
         ApplicationRingoid.getComponent().inject(this);
+        dialogErrorUnknownListener = new DialogErrorUnknownListener();
     }
 
     @Override
@@ -69,9 +73,16 @@ public class ViewDialogs implements IViewDialogs {
             refDialogErrorUnknown.get().cancel();
 
         if (refContext == null || refContext.get() == null) return;
-        DialogErrorUnknown dialog = new DialogErrorUnknown(refContext.get());
+        DialogErrorUnknown dialog = new DialogErrorUnknown(refContext.get(), dialogErrorUnknownListener);
         dialog.show();
         refDialogErrorUnknown = new WeakReference<>(dialog);
     }
 
+    private class DialogErrorUnknownListener implements IDialogErrorUnknownListener {
+        @Override
+        public void onConfirm() {
+            if (refContext == null || refContext.get() == null) return;
+            navigator.navigateFeedback(refContext.get());
+        }
+    }
 }
