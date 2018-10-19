@@ -29,7 +29,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/dialog_about_message"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textSize="17sp" />
 
         </LinearLayout>
 
