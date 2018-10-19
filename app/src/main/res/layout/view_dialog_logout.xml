@@ -55,7 +55,7 @@
             android:paddingTop="12dp"
             android:text="@string/dialog_logout_confirm"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorWarning" />
 
 
     </LinearLayout>

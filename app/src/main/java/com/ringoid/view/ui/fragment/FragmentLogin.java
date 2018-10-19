@@ -405,7 +405,7 @@ public class FragmentLogin extends FragmentBase
                             ? android.R.color.white
                             : length == 4
                             ? android.R.color.white
-                            : R.color.colorAccent);
+                            : R.color.colorWarning);
 
             vContainerSMSCode.setBackgroundResource(drawableRes);
             etCodeSMS.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
@@ -434,7 +434,7 @@ public class FragmentLogin extends FragmentBase
             boolean isValid = isValid(year);
 
             etYearBirth.setBackgroundResource(isValid ? R.drawable.border_rounded_green : R.drawable.border_rounded_red);
-            etYearBirth.setTextColor(ContextCompat.getColor(getContext(), isValid ? android.R.color.white : R.color.colorAccent));
+            etYearBirth.setTextColor(ContextCompat.getColor(getContext(), isValid ? android.R.color.white : R.color.colorWarning));
 
             Drawable drawable = ContextCompat.getDrawable(getContext(), isValid ? R.drawable.ic_check_green_16dp : R.drawable.ic_error_red_16dp);
             etYearBirth.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);

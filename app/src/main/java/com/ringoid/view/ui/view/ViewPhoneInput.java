@@ -162,7 +162,7 @@ public class ViewPhoneInput extends LinearLayout
                 ? android.R.color.white
                 : valid
                 ? android.R.color.white
-                : R.color.colorAccent);
+                : R.color.colorWarning);
     }
 
     public String getPhone() {
