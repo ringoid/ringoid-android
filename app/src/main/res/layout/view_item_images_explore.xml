@@ -21,6 +21,7 @@
         style="@style/menuImageEnd"
         android:layout_marginTop="4dp"
         android:src="@drawable/ic_block_gray_24dp"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
