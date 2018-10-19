@@ -4,7 +4,7 @@
 
     <dimen name="dot_photo_list_margin">4dp</dimen>
     <dimen name="divider">4dp</dimen>
-    <dimen name="animation_y_delta">32dp</dimen>
+    <dimen name="animation_y_delta">80dp</dimen>
     <dimen name="animation_x_delta">8dp</dimen>
     <dimen name="dp12">12dp</dimen>
     <dimen name="toolbar_height_with_statusbar">56dp</dimen>
