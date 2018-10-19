@@ -248,11 +248,6 @@ class CountryCodeAdapter extends RecyclerView.Adapter<CountryCodeAdapter.Country
                 divider.setVisibility(View.GONE);
                 textView_name.setVisibility(View.VISIBLE);
                 textView_code.setVisibility(View.VISIBLE);
-                if (codePicker.isCcpDialogShowPhoneCode()) {
-                    textView_code.setVisibility(View.VISIBLE);
-                } else {
-                    textView_code.setVisibility(View.GONE);
-                }
 
                 if (codePicker.getCcpDialogShowNameCode()) {
                     textView_name.setText(PresenterCountry.getName(codePicker.getContext(), codePicker.getLanguageToApply(), CCPCountry) + " (" + CCPCountry.getNameCode().toUpperCase() + ")");
