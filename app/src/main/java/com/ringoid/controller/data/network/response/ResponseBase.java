@@ -12,14 +12,14 @@ public class ResponseBase {
     }
 
     public boolean isInvalidToken() {
-        return errorCode.equals("InvalidAccessTokenClientError");
+        return !isSuccess() && errorCode.equals("InvalidAccessTokenClientError");
     }
 
     public boolean isInternalServerError() {
-        return errorCode.equals("InternalServerError");
+        return !isSuccess() && errorCode.equals("InternalServerError");
     }
 
     public boolean isErrorAppVersion() {
-        return errorCode.equals("TooOldAppVersionClientError");
+        return !isSuccess() && errorCode.equals("TooOldAppVersionClientError");
     }
 }
