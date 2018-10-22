@@ -67,6 +67,14 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+
+    <style name="buttonBase.Dialog">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="buttonBase.wide">
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>

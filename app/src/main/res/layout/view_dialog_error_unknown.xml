@@ -18,17 +18,13 @@
 
         <TextView
             android:id="@+id/tvCancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/buttonBase.Dialog"
             android:text="@string/dialog_cancel"
             android:textColor="@color/app_button_material_light" />
 
         <TextView
             android:id="@+id/tvConfirm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/buttonBase.Dialog"
             android:text="@string/dialog_unknown_confirm"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
