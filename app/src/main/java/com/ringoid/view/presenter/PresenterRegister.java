@@ -20,6 +20,7 @@ import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
+import com.ringoid.view.ui.dialog.callback.IDialogErrorUnknownListener;
 import com.ringoid.view.ui.util.IHelperTimer;
 import com.ringoid.view.ui.util.listener.IHelperTimerListener;
 
@@ -69,6 +70,7 @@ public class PresenterRegister implements IPresenterRegister {
     private ListenerRegisterUserDetails listenerRegisterUserDetails;
     private View.OnClickListener listenerPopupPhoneConfirmError;
     private WeakReference<IPresenterRegisterListener> refListener;
+    private IDialogErrorUnknownListener listenerDialogErrorUnknown;
 
     public PresenterRegister() {
         ApplicationRingoid.getComponent().inject(this);
@@ -77,6 +79,7 @@ public class PresenterRegister implements IPresenterRegister {
         repositoryRegisterUserDetails.setListener(listenerRegisterUserDetails = new ListenerRegisterUserDetails());
         listenerPopupPhoneConfirmError = new ListenerPhoneConfirmError();
         helperTimer.setListener(listenerTimer = new ListenerTimer());
+        listenerDialogErrorUnknown = new DialogErrorUnknownListener();
     }
 
     @Override
@@ -280,8 +283,7 @@ public class PresenterRegister implements IPresenterRegister {
             cacheRegister.resetCache();
             helperTimer.cancel();
             if (refListener == null || refListener.get() == null) return;
-            viewDialogs.showDialogErrorUnknown();
-            refListener.get().setPage(INDEX_PHONE_INPUT);
+            viewDialogs.showDialogErrorUnknown(listenerDialogErrorUnknown);
         }
     }
 
@@ -311,6 +313,19 @@ public class PresenterRegister implements IPresenterRegister {
         @Override
         public void onFinish() {
             updateStateSMSResend(0);
+        }
+    }
+
+    private class DialogErrorUnknownListener implements IDialogErrorUnknownListener {
+        @Override
+        public void onDismiss() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().setPage(INDEX_PHONE_INPUT);
+        }
+
+        @Override
+        public void onConfirm() {
+
         }
     }
 }

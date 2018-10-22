@@ -4,6 +4,7 @@ package com.ringoid.view;
 import android.content.Context;
 
 import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
+import com.ringoid.view.ui.dialog.callback.IDialogErrorUnknownListener;
 
 public interface IViewDialogs {
 
@@ -13,5 +14,5 @@ public interface IViewDialogs {
 
     void showDialogMessage(int messageId);
 
-    void showDialogErrorUnknown();
+    void showDialogErrorUnknown(IDialogErrorUnknownListener listenerDialogErrorUnknown);
 }

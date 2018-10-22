@@ -68,17 +68,22 @@ public class ViewDialogs implements IViewDialogs {
     }
 
     @Override
-    public void showDialogErrorUnknown() {
+    public void showDialogErrorUnknown(IDialogErrorUnknownListener listenerDialogErrorUnknown) {
         if (refDialogErrorUnknown != null && refDialogErrorUnknown.get() != null)
             refDialogErrorUnknown.get().cancel();
 
         if (refContext == null || refContext.get() == null) return;
-        DialogErrorUnknown dialog = new DialogErrorUnknown(refContext.get(), dialogErrorUnknownListener);
+        DialogErrorUnknown dialog = new DialogErrorUnknown(refContext.get(), dialogErrorUnknownListener,listenerDialogErrorUnknown);
         dialog.show();
         refDialogErrorUnknown = new WeakReference<>(dialog);
     }
 
     private class DialogErrorUnknownListener implements IDialogErrorUnknownListener {
+        @Override
+        public void onDismiss() {
+
+        }
+
         @Override
         public void onConfirm() {
             if (refContext == null || refContext.get() == null) return;

@@ -109,7 +109,7 @@ public class PresenterActivityMain implements IPresenterActivityMain {
 
         @Override
         public void onRequestErrorUnknown() {
-            viewDialogs.showDialogErrorUnknown();
+            viewDialogs.showDialogErrorUnknown(null);
         }
 
         @Override

@@ -3,6 +3,7 @@ package com.ringoid.view.ui.dialog;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.Html;
 import android.text.Layout;
 import android.text.method.LinkMovementMethod;
@@ -29,15 +30,15 @@ public class DialogErrorUnknown implements View.OnClickListener {
     @Inject
     INavigator navigator;
 
-    private IDialogErrorUnknownListener listener;
+    private IDialogErrorUnknownListener[] listeners;
     private AlertDialog dialog;
     private ListenerPresenter listenerPresenter;
     private TextView tvMessage;
 
-    public DialogErrorUnknown(Context context, IDialogErrorUnknownListener listener) {
+    public DialogErrorUnknown(Context context, IDialogErrorUnknownListener... listeners) {
         ApplicationRingoid.getComponent().inject(this);
         presenterDialogErrorNetwork.setListener(listenerPresenter = new ListenerPresenter());
-        this.listener = listener;
+        this.listeners = listeners;
 
         dialog = new AlertDialog.Builder(context).create();
         View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_error_unknown, null);
@@ -45,7 +46,7 @@ public class DialogErrorUnknown implements View.OnClickListener {
         view.findViewById(R.id.tvCancel).setOnClickListener(this);
         view.findViewById(R.id.tvConfirm).setOnClickListener(this);
         dialog.setView(view);
-
+        dialog.setOnDismissListener(new ListenerDialogDismiss());
         tvMessage = view.findViewById(R.id.tvMessage);
         tvMessage.setMovementMethod(new LinkMovementMethodInternal());
     }
@@ -61,10 +62,25 @@ public class DialogErrorUnknown implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.tvConfirm) {
-            if (listener != null) listener.onConfirm();
-        }
+        if (v.getId() == R.id.tvConfirm)
+            notifyListenersConfirm();
         cancel();
+    }
+
+    private void notifyListenersConfirm() {
+        if (listeners == null) return;
+        for (IDialogErrorUnknownListener listener : listeners) {
+            if (listener == null) continue;
+            listener.onConfirm();
+        }
+    }
+
+    private void notifyListenersDismiss() {
+        if (listeners == null) return;
+        for (IDialogErrorUnknownListener listener : listeners) {
+            if (listener == null) continue;
+            listener.onDismiss();
+        }
     }
 
     private class ListenerPresenter implements IPresenterDialogErrorUnknownListener {
@@ -103,4 +119,12 @@ public class DialogErrorUnknown implements View.OnClickListener {
             return super.onTouchEvent(widget, buffer, event);
         }
     }
+
+    private class ListenerDialogDismiss implements DialogInterface.OnDismissListener {
+        @Override
+        public void onDismiss(DialogInterface dialog) {
+            notifyListenersDismiss();
+        }
+    }
+
 }
