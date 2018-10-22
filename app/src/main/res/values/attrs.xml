@@ -10,4 +10,9 @@
         <attr name="item_privacy_subtitle" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="viewRange">
+        <attr name="title" format="string" />
+        <attr name="value" format="string" />
+    </declare-styleable>
+
 </resources>
