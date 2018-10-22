@@ -37,6 +37,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
     private LinearLayoutManager layoutManager;
     private SwipeRefreshLayout srlPhotos;
     private ListenerRefreshLayout listenerRefreshLayout;
+    private RecyclerView rvItems;
 
     public static FragmentProfile getInstancePhotoAdd() {
         FragmentProfile fragmentProfile = new FragmentProfile();
@@ -82,7 +83,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
     }
 
     private void initList(View view) {
-        RecyclerView rvItems = view.findViewById(R.id.rvItems);
+        rvItems = view.findViewById(R.id.rvItems);
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         AdapterProfile adapter = new AdapterProfile();
 
@@ -118,6 +119,11 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         @Override
         public void refreshComplete() {
             srlPhotos.setRefreshing(false);
+        }
+
+        @Override
+        public void scrollToPosition(int pos) {
+            rvItems.scrollToPosition(pos);
         }
     }
 

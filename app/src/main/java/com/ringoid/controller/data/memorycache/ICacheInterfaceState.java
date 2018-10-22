@@ -8,6 +8,8 @@ public interface ICacheInterfaceState {
 
     String getOriginPhotoId();
 
+    void resetOriginPhotoId();
+
     void resetCache();
 
     void resetCurrentPage();

@@ -54,6 +54,7 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
         photoUpload.setFile(file);
         photoUpload.setClientPhotoID(UUID.randomUUID().toString());
 
+        cacheInterfaceState.resetOriginPhotoId();
         cacheProfile.addPhotoLocal(photoUpload.getFileUri(), photoUpload.getClientPhotoId());
 
         new RepositoryPhotoUploadUri(photoUpload).request();

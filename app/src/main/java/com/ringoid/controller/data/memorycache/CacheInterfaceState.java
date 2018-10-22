@@ -30,6 +30,12 @@ public class CacheInterfaceState implements ICacheInterfaceState {
         saveData();
     }
 
+    @Override
+    public void resetOriginPhotoId() {
+        getData().setOriginPhotoId(null);
+        saveData();
+    }
+
     private void saveData() {
         cacheStorage.writeData(FileEnum.CACHE_INTERFACE, data);
     }

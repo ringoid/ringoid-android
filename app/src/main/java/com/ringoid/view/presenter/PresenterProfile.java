@@ -93,7 +93,11 @@ public class PresenterProfile implements IPresenterProfile {
     }
 
     private void updateView() {
-        updateView(cacheProfile.getPosition(cacheInterfaceState.getOriginPhotoId(), DEFAULT_VALUE));
+        int pos = cacheProfile.getPosition(cacheInterfaceState.getOriginPhotoId(), DEFAULT_VALUE);
+        updateView(pos);
+
+        if (refListener != null && refListener.get() != null)
+            refListener.get().scrollToPosition(pos);
     }
 
     private void updateView(int position) {
