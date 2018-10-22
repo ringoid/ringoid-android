@@ -30,6 +30,7 @@ public class HelperTimer implements IHelperTimer {
     public void cancel() {
         if (timer == null) return;
         timer.cancel();
+        timer = null;
         notifyFinish();
     }
 

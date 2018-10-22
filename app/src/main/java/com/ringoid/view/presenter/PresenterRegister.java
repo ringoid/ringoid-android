@@ -243,6 +243,7 @@ public class PresenterRegister implements IPresenterRegister {
         @Override
         public void onErrorPhone() {
             if (refListener == null || refListener.get() == null) return;
+            cacheRegister.resetCache();
             refListener.get().setPage(INDEX_PHONE_INPUT);
             setPhoneInputStateEnabled(true);
         }
