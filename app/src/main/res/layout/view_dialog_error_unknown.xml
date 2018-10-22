@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="@string/error_network"
+        android:textColor="@color/grey_middle"
         android:textSize="17sp" />
 
     <LinearLayout
@@ -20,7 +21,7 @@
             android:id="@+id/tvCancel"
             style="@style/buttonBase.Dialog"
             android:text="@string/dialog_cancel"
-            android:textColor="@color/app_button_material_light" />
+            android:textColor="@color/grey_middle" />
 
         <TextView
             android:id="@+id/tvConfirm"

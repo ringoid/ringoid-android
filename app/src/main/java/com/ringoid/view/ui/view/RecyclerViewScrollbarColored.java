@@ -31,7 +31,7 @@ public class RecyclerViewScrollbarColored extends RecyclerView {
     }
 
     private void init() {
-        scrollBarColor = getResources().getColor(R.color.app_button_material_light);
+        scrollBarColor = getResources().getColor(R.color.grey_middle);
     }
 
     public void setScrollBarColor(@ColorInt int scrollBarColor) {

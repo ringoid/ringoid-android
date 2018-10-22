@@ -13,14 +13,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/dialog_logout_title"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+        android:textColor="@android:color/white" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/dialog_logout_message"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        android:textColor="@color/grey_middle"
+        android:textSize="17sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +35,7 @@
             android:id="@+id/tvCancel"
             style="@style/buttonBase.Dialog"
             android:text="@string/dialog_cancel"
-            android:textColor="@color/app_button_material_light" />
+            android:textColor="@color/grey_middle" />
 
         <TextView
             android:id="@+id/tvConfirm"

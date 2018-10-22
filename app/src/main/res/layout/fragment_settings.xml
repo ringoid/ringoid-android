@@ -25,7 +25,7 @@
                 <TextView
                     style="@style/settings_privacy_item_message"
                     android:text="@string/settings_location"
-                    android:textColor="@color/app_button_material_light" />
+                    android:textColor="@color/grey_middle" />
 
                 <TextView
                     style="@style/settings_privacy_item_value"
@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:text="@string/settings_distance_value"
-                        android:textColor="@color/app_button_material_light"
+                        android:textColor="@color/grey_middle"
                         android:textSize="17sp" />
 
                 </FrameLayout>
@@ -101,7 +101,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:text="@string/settings_who_liked_you"
-                    android:textColor="@color/app_button_material_light" />
+                    android:textColor="@color/grey_middle" />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -122,7 +122,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:text="@string/settings_age_my"
-                    android:textColor="@color/app_button_material_light" />
+                    android:textColor="@color/grey_middle" />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -143,7 +143,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:text="@string/settings_distance_my"
-                    android:textColor="@color/app_button_material_light" />
+                    android:textColor="@color/grey_middle" />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:text="@string/settings_likes_unlimited"
-                    android:textColor="@color/app_button_material_light" />
+                    android:textColor="@color/grey_middle" />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -185,7 +185,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:text="@string/settings_ad_hide"
-                    android:textColor="@color/app_button_material_light" />
+                    android:textColor="@color/grey_middle" />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -211,7 +211,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:text="@string/settings_push"
-                    android:textColor="@color/app_button_material_light" />
+                    android:textColor="@color/grey_middle" />
 
                 <Switch
                     android:layout_width="wrap_content"

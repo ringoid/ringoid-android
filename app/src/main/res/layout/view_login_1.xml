@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:text="@string/message_terms"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-            android:textColor="@color/app_button_material_light"
+            android:textColor="@color/grey_middle"
             android:theme="@style/AppTheme.Green" />
 
     </ScrollView>

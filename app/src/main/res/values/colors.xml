@@ -6,16 +6,15 @@
     <color name="colorAccentGreen">#64aa0a</color>
 
     <color name="dot_active">#fff</color>
-    <color name="dot_inactive">#33000000</color>
     <color name="menu_bottom_selected">#2e3338</color>
     <color name="blue">#60a6e8</color>
     <color name="pink">#ff62ab</color>
     <color name="divider">#3e3f42</color>
     <color name="gray_20">#f7f7f7</color>
-    <color name="app_button_material_light">#ffd6d7d7</color>
     <color name="gray_bg">#1f262c</color>
     <color name="colorWarning">#f90</color>
     <color name="app_red_dark">#af1820</color>
     <color name="app_pink">#ec567c</color>
+    <color name="grey_middle">#bdc1c6</color>
 
 </resources>

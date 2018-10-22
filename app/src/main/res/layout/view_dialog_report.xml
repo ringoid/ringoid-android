@@ -24,7 +24,8 @@
                 android:paddingEnd="20dp"
                 android:paddingStart="20dp"
                 android:text="@string/dialog_report_title"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:textColor="@android:color/white" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -33,7 +34,9 @@
                 android:paddingEnd="20dp"
                 android:paddingStart="20dp"
                 android:text="@string/dialog_report_message"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@color/grey_middle"
+                android:textSize="17sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -50,9 +53,12 @@
                 android:paddingStart="20dp"
                 android:paddingTop="16dp"
                 android:text="@string/dialog_report_switch"
+                android:textColor="@color/grey_middle"
+                android:textSize="17sp"
                 android:theme="@style/AppTheme.Warning" />
 
             <RadioGroup
+
                 android:id="@+id/rgReport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,31 +72,41 @@
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/dialog_report_item_1" />
+                    android:text="@string/dialog_report_item_1"
+                    android:textColor="@color/grey_middle"
+                    android:textSize="17sp" />
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/dialog_report_item_2" />
+                    android:text="@string/dialog_report_item_2"
+                    android:textColor="@color/grey_middle"
+                    android:textSize="17sp" />
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/dialog_report_item_3" />
+                    android:text="@string/dialog_report_item_3"
+                    android:textColor="@color/grey_middle"
+                    android:textSize="17sp" />
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/dialog_report_item_4" />
+                    android:text="@string/dialog_report_item_4"
+                    android:textColor="@color/grey_middle"
+                    android:textSize="17sp" />
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/dialog_report_item_5" />
+                    android:text="@string/dialog_report_item_5"
+                    android:textColor="@color/grey_middle"
+                    android:textSize="17sp" />
 
                 <RadioButton
                     android:layout_width="match_parent"
@@ -114,7 +130,7 @@
             android:id="@+id/tvCancel"
             style="@style/buttonBase.Dialog"
             android:text="@string/dialog_report_cancel"
-            android:textColor="@color/app_button_material_light" />
+            android:textColor="@color/grey_middle" />
 
         <TextView
             android:id="@+id/tvReport"
