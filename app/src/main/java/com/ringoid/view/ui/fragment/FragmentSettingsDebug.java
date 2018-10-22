@@ -1,6 +1,7 @@
 package com.ringoid.view.ui.fragment;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,12 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.network.response.ResponseBase;
 import com.ringoid.view.ui.util.ApiRingoidProvider;
 import com.ringoid.view.ui.util.IHelperScreenshots;
+
+import java.lang.ref.WeakReference;
 
 import javax.inject.Inject;
 
@@ -61,7 +65,7 @@ public class FragmentSettingsDebug extends FragmentBase implements View.OnClickL
     }
 
     private void updateStateScreenshots() {
-        tvScreenshots.setText(helperScreenshots.isScreenshotsDebugEnabled() ? "Screenshots state: enabled":"Screenshots state: disabled" );
+        tvScreenshots.setText(helperScreenshots.isScreenshotsDebugEnabled() ? "Screenshots state: enabled" : "Screenshots state: disabled");
     }
 
     @Override
@@ -72,25 +76,32 @@ public class FragmentSettingsDebug extends FragmentBase implements View.OnClickL
         }
 
         if (v.getId() == R.id.tvTestTimeout)
-            providerApi.getAPI().testTimeout().enqueue(new ListenerBase());
+            providerApi.getAPI().testTimeout().enqueue(new ListenerBase(getContext()));
 
         if (v.getId() == R.id.tvTestResponseNot200)
-            providerApi.getAPI().testResponseNot200().enqueue(new ListenerBase());
+            providerApi.getAPI().testResponseNot200().enqueue(new ListenerBase(getContext()));
 
         if (v.getId() == R.id.tvTestTokenInvalid)
-            providerApi.getAPI().testTokenInvalid().enqueue(new ListenerBase());
+            providerApi.getAPI().testTokenInvalid().enqueue(new ListenerBase(getContext()));
 
         if (v.getId() == R.id.tvTestAppVersionError)
-            providerApi.getAPI().testAppVersion().enqueue(new ListenerBase());
+            providerApi.getAPI().testAppVersion().enqueue(new ListenerBase(getContext()));
 
         if (v.getId() == R.id.tvTestInternalServerError)
-            providerApi.getAPI().testInternalServerError().enqueue(new ListenerBase());
+            providerApi.getAPI().testInternalServerError().enqueue(new ListenerBase(getContext()));
 
         if (v.getId() == R.id.tvTestUnknownHost)
-            providerApi.getAPI().testUnknownHost().enqueue(new ListenerBase());
+            providerApi.getAPI().testUnknownHost().enqueue(new ListenerBase(getContext()));
     }
 
     private static class ListenerBase implements retrofit2.Callback<com.ringoid.controller.data.network.response.ResponseBase> {
+
+        private WeakReference<Context> refContext;
+
+        ListenerBase(Context context) {
+            this.refContext = new WeakReference<>(context);
+        }
+
         @Override
         public void onResponse(Call<ResponseBase> call, Response<ResponseBase> response) {
 
@@ -98,7 +109,8 @@ public class FragmentSettingsDebug extends FragmentBase implements View.OnClickL
 
         @Override
         public void onFailure(Call<ResponseBase> call, Throwable t) {
-
+            if (refContext == null || refContext.get() == null) return;
+            Toast.makeText(refContext.get(), t.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 }
