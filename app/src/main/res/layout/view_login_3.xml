@@ -38,7 +38,8 @@
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:padding="16dp"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:theme="@style/AppTheme.Green" />
 
             <TextView
                 android:layout_width="match_parent"

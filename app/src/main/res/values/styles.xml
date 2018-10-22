@@ -11,6 +11,16 @@
         <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
 
+
+    <style name="AppTheme.Warning">
+        <item name="colorAccent">@color/colorWarning</item>
+    </style>
+
+
+    <style name="AppTheme.Green">
+        <item name="colorAccent">@color/colorAccentGreen</item>
+    </style>
+
     <style name="bottomMenuItem">
         <item name="android:padding">16dp</item>
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
@@ -90,10 +100,6 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
 
-    </style>
-
-    <style name="AppTheme.Green">
-        <item name="colorAccent">@color/colorAccentGreen</item>
     </style>
 
     <style name="settings_privacy_item_message">

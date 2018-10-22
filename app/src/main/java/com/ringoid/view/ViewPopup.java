@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 
 import java.lang.ref.WeakReference;
 
@@ -57,8 +58,10 @@ public class ViewPopup implements IViewPopup {
 
         snackbar = Snackbar.make(view, messageRes, Snackbar.LENGTH_INDEFINITE);
 
-        if (messageAction != 0 && listener != null)
+        if (messageAction != 0 && listener != null) {
             snackbar.setAction(messageAction, listener);
+            snackbar.setActionTextColor(refContext.get().getResources().getColor(R.color.colorWarning));
+        }
 
         snackbar.show();
     }

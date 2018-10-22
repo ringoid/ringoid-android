@@ -267,7 +267,7 @@
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_remove_red_24dp"
                 android:text="@string/settings_delete_account"
-                android:textColor="#fb7a7a" />
+                android:textColor="@color/colorWarning" />
 
         </LinearLayout>
 
