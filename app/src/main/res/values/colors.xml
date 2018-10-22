@@ -15,5 +15,7 @@
     <color name="app_button_material_light">#ffd6d7d7</color>
     <color name="gray_bg">#1f262c</color>
     <color name="colorWarning">#f90</color>
+    <color name="app_red_dark">#af1820</color>
+    <color name="app_pink">#ec567c</color>
 
 </resources>

@@ -18,6 +18,7 @@ public class FragmentMatches extends FragmentFeedPage {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container);
         initViews(view);
+        rvItems.setScrollBarColor(getContext().getResources().getColor(R.color.app_red_dark));
         showEmpty(R.string.message_empty_matches);
         return view;
     }

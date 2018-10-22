@@ -82,9 +82,11 @@ public abstract class ViewHolderItemImagesLikeable extends ViewHolderBase
 
     void setLiked(boolean isLikes) {
         ivLike.setImageResource(isLikes
-                ? R.drawable.ic_favorite_red_24dp
+                ? getLikeFullRes()
                 : getLikeEmptyRes());
     }
+
+    protected abstract int getLikeFullRes();
 
     protected abstract int getLikeEmptyRes();
 

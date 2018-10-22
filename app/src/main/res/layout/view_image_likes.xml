@@ -13,7 +13,7 @@
         android:id="@+id/ivLike"
         style="@style/menuImageStart"
         android:layout_marginTop="4dp"
-        android:src="@drawable/ic_favorite_border_white_24dp"
+        android:src="@drawable/ic_favorite_border_pink_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +30,7 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_favorite_red_96dp"
+            android:src="@drawable/ic_favorite_pink_96dp"
             android:visibility="invisible" />
 
     </FrameLayout>

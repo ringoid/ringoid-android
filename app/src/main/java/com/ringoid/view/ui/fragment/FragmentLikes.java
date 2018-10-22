@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterLikes;
 import com.ringoid.view.presenter.callback.IPresenterLikesListener;
@@ -50,6 +51,7 @@ public class FragmentLikes extends FragmentFeedPage {
     void initViews(View view) {
         super.initViews(view);
         rvItems.setAdapter(new AdapterLikes());
+        rvItems.setScrollBarColor(getContext().getResources().getColor(R.color.app_pink));
     }
 
     @Override

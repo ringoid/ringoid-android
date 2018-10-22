@@ -18,12 +18,13 @@ import com.ringoid.R;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.IPresenterFeedPage;
 import com.ringoid.view.presenter.callback.IPresenterFeedPageListener;
+import com.ringoid.view.ui.view.RecyclerViewScrollbarColored;
 
 import javax.inject.Inject;
 
 public abstract class FragmentFeedPage extends FragmentBase implements View.OnClickListener {
 
-    RecyclerView rvItems;
+    RecyclerViewScrollbarColored rvItems;
     LinearLayoutManager layoutManager;
     SwipeRefreshLayout srlFeed;
     View vPhotoEmpty, vEmpty;

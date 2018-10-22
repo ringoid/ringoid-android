@@ -65,4 +65,9 @@ public class ViewHolderItemExploreImages extends ViewHolderItemImagesLikeable
     protected int getLikeEmptyRes() {
         return R.drawable.ic_favorite_border_white_24dp;
     }
+
+    @Override
+    protected int getLikeFullRes() {
+        return R.drawable.ic_favorite_red_24dp;
+    }
 }
