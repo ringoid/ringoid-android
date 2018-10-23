@@ -77,6 +77,8 @@ public class FragmentSettings extends FragmentBase
         view.findViewById(R.id.tvSettingsFeedback).setOnClickListener(this);
         view.findViewById(R.id.tvLogout).setOnClickListener(this);
         view.findViewById(R.id.tvAccountDelete).setOnClickListener(this);
+        view.findViewById(R.id.ivClose).setOnClickListener(this);
+        view.findViewById(R.id.ivBack).setOnClickListener(this);
 
         svContent = view.findViewById(R.id.svContent);
         svContent.getViewTreeObserver().addOnScrollChangedListener(new ListenerScroll());
@@ -100,6 +102,10 @@ public class FragmentSettings extends FragmentBase
 
         if (v.getId() == R.id.tvAccountDelete)
             showDialogAccountDelete();
+
+        if (v.getId() == R.id.ivClose
+                || v.getId() == R.id.ivBack)
+            getActivity().onBackPressed();
     }
 
     private void showDialogLogout() {

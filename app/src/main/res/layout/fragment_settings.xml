@@ -15,6 +15,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.ringoid.view.ui.view.ViewToolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:is_show_back="true"
+                app:toolbar_title="@string/title_settings">
+
+                <ImageView
+                    android:id="@+id/ivClose"
+                    style="@style/selectableImage"
+                    android:layout_gravity="end"
+                    android:src="@drawable/ic_arrow_close_white_24dp" />
+
+            </com.ringoid.view.ui.view.ViewToolbar>
+
+
             <LinearLayout
                 style="@style/settings_menu_item"
                 android:layout_width="match_parent"
