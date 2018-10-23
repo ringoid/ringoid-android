@@ -34,11 +34,11 @@ public class IndicatorHelper {
                 new LinesIndicator(R.drawable.indicator_line_accent_green, R.drawable.indicator_line_grey));
     }
 
-    public static IndicatorHelper getLinesAccentHelper(FrameLayout viewContainer, RecyclerView recyclerView, LinearLayoutManager layoutManager) {
+    public static IndicatorHelper getLinesPinkHelper(FrameLayout viewContainer, RecyclerView recyclerView, LinearLayoutManager layoutManager) {
         return new IndicatorHelper(viewContainer,
                 recyclerView,
                 layoutManager,
-                new LinesIndicator(R.drawable.indicator_line_accent, R.drawable.indicator_line_grey));
+                new LinesIndicator(R.drawable.indicator_line_pink, R.drawable.indicator_line_grey));
     }
 
     public void updateData(int num) {
