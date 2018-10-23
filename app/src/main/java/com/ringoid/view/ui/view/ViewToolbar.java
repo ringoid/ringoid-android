@@ -58,13 +58,20 @@ public class ViewToolbar extends FrameLayout {
         String title = params.getString(PARAM_TITLE);
         String subtitle = params.getString(PARAM_SUBTITLE);
 
+        setText(title, subtitle);
+    }
+
+    private void setText(String title, String subtitle) {
         ((TextView) findViewById(R.id.tvTitle)).setText(TextUtils.isEmpty(title) ? "" : title);
         ((TextView) findViewById(R.id.tvSubtitle)).setText(TextUtils.isEmpty(subtitle) ? "" : subtitle);
         findViewById(R.id.tvSubtitle).setVisibility(TextUtils.isEmpty(subtitle) ? GONE : VISIBLE);
-
     }
 
     private int getParamInt(Bundle params, String param, int defaultValue) {
         return params == null ? defaultValue : params.getInt(param, defaultValue);
+    }
+
+    public void setText(int title, int subtitle) {
+        setText(getResources().getString(title), getResources().getString(subtitle));
     }
 }
