@@ -12,7 +12,7 @@ public interface IViewDialogs {
 
     void set(Context context, View view);
 
-    void showDialogChatCompose(IDialogChatComposeListener listener);
+    void showDialogChatCompose(String message, IDialogChatComposeListener listener);
 
     void showDialogMessage(int messageId);
 

@@ -13,6 +13,7 @@ import com.ringoid.controller.data.memorycache.CacheExplore;
 import com.ringoid.controller.data.memorycache.CacheInterfaceState;
 import com.ringoid.controller.data.memorycache.CacheLikes;
 import com.ringoid.controller.data.memorycache.CacheLocale;
+import com.ringoid.controller.data.memorycache.CacheMessageCompose;
 import com.ringoid.controller.data.memorycache.CacheMessages;
 import com.ringoid.controller.data.memorycache.CacheProfile;
 import com.ringoid.controller.data.memorycache.CacheRegister;
@@ -27,6 +28,7 @@ import com.ringoid.controller.data.memorycache.ICacheExplore;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheLocale;
+import com.ringoid.controller.data.memorycache.ICacheMessageCompose;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
@@ -391,6 +393,12 @@ class AppModule {
     @Singleton
     ICacheInterfaceState getCacheInterfaceState() {
         return new CacheInterfaceState();
+    }
+
+    @Provides
+    @Singleton
+    ICacheMessageCompose getCacheMessageCompose() {
+        return new CacheMessageCompose();
     }
 
     //endregion

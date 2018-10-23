@@ -3,4 +3,6 @@ package com.ringoid.view.ui.dialog.callback;
 
 public interface IDialogChatComposeListener {
     void onSend(String message);
+
+    void onDismiss(String message);
 }

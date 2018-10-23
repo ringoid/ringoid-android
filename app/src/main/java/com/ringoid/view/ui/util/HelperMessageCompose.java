@@ -4,6 +4,7 @@ package com.ringoid.view.ui.util;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
+import com.ringoid.controller.data.memorycache.ICacheMessageCompose;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.model.DataProfile;
 import com.ringoid.view.INavigator;
@@ -37,6 +38,9 @@ public class HelperMessageCompose implements IHelperMessageCompose {
     @Inject
     ICacheMessages cacheMessages;
 
+    @Inject
+    ICacheMessageCompose cacheMessageCompose;
+
     private ListenerDialogChatCompose listenerDialogChatCompose;
     private WeakHashMap<String, IHelperMessageComposeListener> listeners;
 
@@ -50,7 +54,8 @@ public class HelperMessageCompose implements IHelperMessageCompose {
 
         if (isChatEmpty) {
             notifyListeners(user.getId());
-            viewDialogs.showDialogChatCompose(listenerDialogChatCompose = new ListenerDialogChatCompose(user.getId()));
+            viewDialogs.showDialogChatCompose(cacheMessageCompose.getMessage(), listenerDialogChatCompose = new ListenerDialogChatCompose(user.getId()));
+            cacheMessageCompose.resetCache();
             return;
         }
 
@@ -84,6 +89,11 @@ public class HelperMessageCompose implements IHelperMessageCompose {
         public void onSend(String message) {
             viewPopup.showToast(R.string.message_sent);
             helperMessageSend.sendMessage(userId, message);
+        }
+
+        @Override
+        public void onDismiss(String message) {
+            cacheMessageCompose.setMessage(message);
         }
     }
 }

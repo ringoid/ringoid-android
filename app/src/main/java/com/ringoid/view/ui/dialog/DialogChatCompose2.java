@@ -36,7 +36,7 @@ public class DialogChatCompose2 implements View.OnClickListener {
 
     private EditTextPreIme etMessage;
 
-    public DialogChatCompose2(Context context, View container, IDialogChatComposeListener listener) {
+    public DialogChatCompose2(Context context, View container, String message, IDialogChatComposeListener listener) {
         ApplicationRingoid.getComponent().inject(this);
 
         this.refListener = new WeakReference<>(listener);
@@ -46,6 +46,8 @@ public class DialogChatCompose2 implements View.OnClickListener {
         popupView.findViewById(R.id.ivSend).setOnClickListener(this);
         etMessage = popupView.findViewById(R.id.etMessage);
         etMessage.setListener(new ListenerViewPreIme());
+        if (!TextUtils.isEmpty(message))
+            etMessage.setText(message);
 
         dialog = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         dialog.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
@@ -71,6 +73,7 @@ public class DialogChatCompose2 implements View.OnClickListener {
     private void notifySend() {
         if (refListener == null || refListener.get() == null) return;
         refListener.get().onSend(etMessage.getText().toString().trim());
+        etMessage.setText("");
     }
 
     @Override
@@ -82,10 +85,16 @@ public class DialogChatCompose2 implements View.OnClickListener {
         }
     }
 
+    private void notifyDismiss() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onDismiss(etMessage.getText().toString().trim());
+    }
+
     private class ListenerDismiss implements PopupWindow.OnDismissListener {
         @Override
         public void onDismiss() {
             keyboardUtils.keyboardHide(viewContainer.getContext(), viewContainer);
+            notifyDismiss();
         }
     }
 

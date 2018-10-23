@@ -45,14 +45,14 @@ public class ViewDialogs implements IViewDialogs {
     }
 
     @Override
-    public void showDialogChatCompose(IDialogChatComposeListener listener) {
+    public void showDialogChatCompose(String message, IDialogChatComposeListener listener) {
 
         if (refDialogChatCompose != null && refDialogChatCompose.get() != null)
             refDialogChatCompose.get().cancel();
 
         if (refContext == null || refContext.get() == null) return;
 
-        DialogChatCompose2 dialogChatCompose = new DialogChatCompose2(refContext.get(), refView.get(), listener);
+        DialogChatCompose2 dialogChatCompose = new DialogChatCompose2(refContext.get(), refView.get(), message, listener);
         dialogChatCompose.show();
         refDialogChatCompose = new WeakReference<>(dialogChatCompose);
     }
