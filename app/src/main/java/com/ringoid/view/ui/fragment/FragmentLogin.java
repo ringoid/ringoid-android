@@ -349,7 +349,7 @@ public class FragmentLogin extends FragmentBase
     private class ListenerViewPhoneInput implements IViewPhotoInputListener {
         @Override
         public void onDialogClose() {
-            showKeyboard(etPhone);
+            etPhone.post(new RunnableKeyboard(etPhone));
         }
 
         @Override
