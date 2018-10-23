@@ -5,6 +5,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
+import com.ringoid.model.DataProfile;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
@@ -44,16 +45,16 @@ public class HelperMessageCompose implements IHelperMessageCompose {
     }
 
     @Override
-    public void onClick(String userId) {
-        boolean isChatEmpty = !cacheChatMessages.isDataExist(userId);
+    public void onClick(DataProfile user) {
+        boolean isChatEmpty = !cacheChatMessages.isDataExist(user.getId());
 
         if (isChatEmpty) {
-            notifyListeners(userId);
-            viewDialogs.showDialogChatCompose(listenerDialogChatCompose = new ListenerDialogChatCompose(userId));
+            notifyListeners(user.getId());
+            viewDialogs.showDialogChatCompose(listenerDialogChatCompose = new ListenerDialogChatCompose(user.getId()));
             return;
         }
 
-        cacheMessages.setUserSelected(userId);
+        cacheMessages.setUserSelected(user);
         navigator.navigateChat();
     }
 

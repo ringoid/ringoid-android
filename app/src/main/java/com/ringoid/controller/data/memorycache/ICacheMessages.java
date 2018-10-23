@@ -25,7 +25,7 @@ public interface ICacheMessages {
 
     String getUserSelectedID();
 
-    void setUserSelected(String userId);
+    void setUserSelected(DataProfile user);
 
     void setSelected(int adapterPosition, int firstVisibleItemPosition);
 
@@ -36,4 +36,6 @@ public interface ICacheMessages {
     void resetCache();
 
     int getPosition(String userSelectedID, int noValue);
+
+    DataProfile getUser(int position);
 }

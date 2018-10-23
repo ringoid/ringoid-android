@@ -74,7 +74,7 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
 
     @Override
     public void onClickChat(int position) {
-        helperMessageCompose.onClick(cacheLikes.getUserId(position));
+        helperMessageCompose.onClick(cacheLikes.getUser(position));
     }
 
     @Override

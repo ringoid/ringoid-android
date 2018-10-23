@@ -37,4 +37,6 @@ public interface ICacheLikes {
     void resetCache();
 
     int getPosition(String userId, int noValue);
+
+    DataProfile getUser(int position);
 }

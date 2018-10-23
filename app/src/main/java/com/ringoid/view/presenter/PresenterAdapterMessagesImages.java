@@ -31,6 +31,6 @@ public class PresenterAdapterMessagesImages implements IPresenterAdapterMessages
 
     @Override
     public void onClickItem(int position) {
-        helperMessageCompose.onClick(cacheMessages.getUserId(position));
+        helperMessageCompose.onClick(cacheMessages.getUser(position));
     }
 }

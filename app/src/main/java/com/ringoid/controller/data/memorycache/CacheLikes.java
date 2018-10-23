@@ -121,6 +121,11 @@ public class CacheLikes implements ICacheLikes {
         return getData().getPosition(userId, noValue);
     }
 
+    @Override
+    public DataProfile getUser(int position) {
+        return getData().get(position);
+    }
+
     private void saveData() {
         cacheStorage.writeData(FileEnum.CACHE_FEED_LIKES, data);
     }

@@ -19,7 +19,7 @@ public class CacheMessages implements ICacheMessages {
     ICacheStorage cacheStorage;
 
     private ModelFeedMessages data;
-    private String selectedUserId;
+    private DataProfile selectedUser;
 
     private WeakHashMap<String, ICacheMessagesListener> listeners;
 
@@ -44,8 +44,7 @@ public class CacheMessages implements ICacheMessages {
 
     @Override
     public String getUrlSelectedUser() {
-        DataProfile user = getSelectedUser();
-        return user == null ? null : user.getImage(0);
+        return selectedUser == null ? null : selectedUser.getImage(selectedUser.getSelectedPosition());
     }
 
     @Override
@@ -72,12 +71,12 @@ public class CacheMessages implements ICacheMessages {
 
     @Override
     public String getUserSelectedID() {
-        return selectedUserId;
+        return selectedUser == null ? null : selectedUser.getId();
     }
 
     @Override
-    public void setUserSelected(String userId) {
-        selectedUserId = userId;
+    public void setUserSelected(DataProfile user) {
+        selectedUser = user;
         notifyListenersUserSelectedChange();
     }
 
@@ -97,10 +96,6 @@ public class CacheMessages implements ICacheMessages {
             if (listener == null) continue;
             listener.onUpdate();
         }
-    }
-
-    private DataProfile getSelectedUser() {
-        return getData().getUserByID(selectedUserId);
     }
 
     @Override
@@ -137,6 +132,11 @@ public class CacheMessages implements ICacheMessages {
     @Override
     public int getPosition(String userSelectedID, int noValue) {
         return getData().getPosition(userSelectedID, noValue);
+    }
+
+    @Override
+    public DataProfile getUser(int position) {
+        return getData().get(position);
     }
 
     private void saveData() {

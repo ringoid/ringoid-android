@@ -74,7 +74,7 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
 
     @Override
     public void onClickChat(int position) {
-        helperMessageCompose.onClick(cacheMessages.getUserId(position));
+        helperMessageCompose.onClick(cacheMessages.getUser(position));
     }
 
     @Override
