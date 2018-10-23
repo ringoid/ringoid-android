@@ -133,5 +133,6 @@
     <string name="settings_ad_hide">Hide Advertisements</string>
     <string name="settings_push">Push Notifications</string>
     <string name="dialog_unknown_confirm">Email to support@ringoid.com</string>
+    <string name="title_settings">Settings</string>
 
 </resources>

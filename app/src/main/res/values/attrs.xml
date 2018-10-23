@@ -2,6 +2,8 @@
 <resources>
     <declare-styleable name="toolbarRingoid">
         <attr name="is_show_back" format="boolean" />
+        <attr name="toolbar_title" format="string" />
+        <attr name="toolbar_subtitle" format="string" />
 
     </declare-styleable>
 
