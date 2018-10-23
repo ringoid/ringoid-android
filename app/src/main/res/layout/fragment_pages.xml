@@ -43,11 +43,6 @@
             style="@style/bottomMenuItem"
             android:src="@drawable/ic_menu_profile_24dp" />
 
-        <ImageView
-            android:id="@+id/ivMenuSettings"
-            style="@style/bottomMenuItem"
-            android:src="@drawable/ic_menu_settings_24dp" />
-
     </LinearLayout>
 
     <FrameLayout

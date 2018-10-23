@@ -167,7 +167,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         navigatorPages.navigateExplore();
     }
 
-    @Override
+   /* @Override
     public void onClickPageSettings() {
         cacheScroll.resetCache();
         if (navigatorPages.isPageSettings()) {
@@ -179,7 +179,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
             return;
         }
         navigatorPages.navigateSettings();
-    }
+    }*/
 
     @Override
     public void setListener(IPresenterPagesContainerListener listener) {

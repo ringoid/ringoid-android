@@ -79,7 +79,6 @@ public class FragmentPages extends FragmentBase
         view.findViewById(R.id.ivMenuMatches).setOnClickListener(this);
         view.findViewById(R.id.ivMenuMessages).setOnClickListener(this);
         view.findViewById(R.id.ivMenuExplore).setOnClickListener(this);
-        view.findViewById(R.id.ivMenuSettings).setOnClickListener(this);
     }
 
     @Override
@@ -109,9 +108,6 @@ public class FragmentPages extends FragmentBase
 
         if (view.getId() == R.id.ivMenuExplore)
             presenterPagesContainer.onClickPageExplore();
-
-        if (view.getId() == R.id.ivMenuSettings)
-            presenterPagesContainer.onClickPageSettings();
     }
 
     private class ListenerPresenter implements IPresenterPagesContainerListener {

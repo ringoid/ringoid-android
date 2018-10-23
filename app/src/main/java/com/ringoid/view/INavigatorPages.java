@@ -27,9 +27,5 @@ public interface INavigatorPages {
 
     void navigateMatches();
 
-    void navigateSettings();
-
-    boolean isPageSettings();
-
     void navigateProfilePhotoAdd();
 }
