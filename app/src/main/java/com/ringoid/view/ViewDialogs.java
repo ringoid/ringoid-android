@@ -3,12 +3,14 @@ package com.ringoid.view;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.view.View;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.view.ui.dialog.DialogChatCompose;
+import com.ringoid.view.ui.dialog.DialogChatCompose2;
 import com.ringoid.view.ui.dialog.DialogErrorUnknown;
 import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
 import com.ringoid.view.ui.dialog.callback.IDialogErrorUnknownListener;
+import com.ringoid.view.ui.dialog.callback.ViewDialogsListener;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 
 import java.lang.ref.WeakReference;
@@ -17,19 +19,19 @@ import javax.inject.Inject;
 
 public class ViewDialogs implements IViewDialogs {
 
-    @Inject
-    INavigator navigator;
 
     @Inject
     IHelperFullscreen helperFullscreen;
 
     private WeakReference<Context> refContext;
+    private WeakReference<View> refView;
 
-    private WeakReference<DialogChatCompose> refDialogChatCompose;
+    private WeakReference<DialogChatCompose2> refDialogChatCompose;
     private WeakReference<DialogErrorUnknown> refDialogErrorUnknown;
     private WeakReference<AlertDialog> refDialogMessage;
 
     private DialogErrorUnknownListener dialogErrorUnknownListener;
+    private WeakReference<ViewDialogsListener> refListener;
 
     public ViewDialogs() {
         ApplicationRingoid.getComponent().inject(this);
@@ -37,8 +39,9 @@ public class ViewDialogs implements IViewDialogs {
     }
 
     @Override
-    public void set(Context context) {
+    public void set(Context context, View view) {
         this.refContext = new WeakReference<>(context);
+        this.refView = new WeakReference<>(view);
     }
 
     @Override
@@ -49,7 +52,7 @@ public class ViewDialogs implements IViewDialogs {
 
         if (refContext == null || refContext.get() == null) return;
 
-        DialogChatCompose dialogChatCompose = new DialogChatCompose(refContext.get(), listener);
+        DialogChatCompose2 dialogChatCompose = new DialogChatCompose2(refContext.get(), refView.get(), listener);
         dialogChatCompose.show();
         refDialogChatCompose = new WeakReference<>(dialogChatCompose);
     }
@@ -73,9 +76,14 @@ public class ViewDialogs implements IViewDialogs {
             refDialogErrorUnknown.get().cancel();
 
         if (refContext == null || refContext.get() == null) return;
-        DialogErrorUnknown dialog = new DialogErrorUnknown(refContext.get(), dialogErrorUnknownListener,listenerDialogErrorUnknown);
+        DialogErrorUnknown dialog = new DialogErrorUnknown(refContext.get(), dialogErrorUnknownListener, listenerDialogErrorUnknown);
         dialog.show();
         refDialogErrorUnknown = new WeakReference<>(dialog);
+    }
+
+    @Override
+    public void setListener(ViewDialogsListener listener) {
+        this.refListener = new WeakReference<>(listener);
     }
 
     private class DialogErrorUnknownListener implements IDialogErrorUnknownListener {
@@ -86,8 +94,8 @@ public class ViewDialogs implements IViewDialogs {
 
         @Override
         public void onConfirm() {
-            if (refContext == null || refContext.get() == null) return;
-            navigator.navigateFeedback(refContext.get());
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onDialogErrorConfirm();
         }
     }
 }

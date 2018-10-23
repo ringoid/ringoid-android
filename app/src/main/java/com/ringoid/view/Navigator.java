@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.BuildConfig;
 import com.ringoid.R;
+import com.ringoid.view.ui.dialog.callback.ViewDialogsListener;
 import com.ringoid.view.ui.fragment.FragmentBase;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
@@ -45,12 +46,16 @@ public class Navigator implements INavigator {
     @Inject
     IHelperScreenshots helperScreenshots;
 
+    @Inject
+    IViewDialogs viewDialogs;
+
     private WeakReference<FragmentManager> refFragmentManager;
     private int viewId;
     private WeakReference<AppCompatActivity> refActivity;
 
     public Navigator() {
         ApplicationRingoid.getComponent().inject(this);
+        viewDialogs.setListener(new ListenerDialogs());
     }
 
     @Override
@@ -350,5 +355,13 @@ public class Navigator implements INavigator {
                 .addToBackStack(null)
                 .replace(viewId, new FragmentSettingsPush(), CURRENT_FRAGMENT_PAGE)
                 .commit();
+    }
+
+    private class ListenerDialogs implements ViewDialogsListener {
+        @Override
+        public void onDialogErrorConfirm() {
+            if (refActivity == null || refActivity.get() == null) return;
+            navigateFeedback(refActivity.get());
+        }
     }
 }

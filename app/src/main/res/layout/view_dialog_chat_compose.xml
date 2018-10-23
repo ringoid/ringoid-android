@@ -11,7 +11,7 @@
         android:background="#252d34"
         android:orientation="horizontal">
 
-        <EditText
+        <com.ringoid.view.ui.view.EditTextPreIme
             android:id="@+id/etMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

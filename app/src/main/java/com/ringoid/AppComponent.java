@@ -78,6 +78,7 @@ import com.ringoid.view.ui.adapter.ViewHolderItemLikesImages;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessage;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessagesImages;
 import com.ringoid.view.ui.dialog.DialogChatCompose;
+import com.ringoid.view.ui.dialog.DialogChatCompose2;
 import com.ringoid.view.ui.dialog.DialogErrorUnknown;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
@@ -114,6 +115,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(DialogChatCompose2 param);
 
     void inject(CacheRegister param);
 
