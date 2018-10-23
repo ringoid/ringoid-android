@@ -134,5 +134,15 @@
     <string name="settings_push">Push Notifications</string>
     <string name="dialog_unknown_confirm">Email to support@ringoid.com</string>
     <string name="title_settings">Settings</string>
+    <string name="title_profile">Your Photos</string>
+    <string name="title_matches">Matches</string>
+    <string name="title_likes">Who Likes You</string>
+    <string name="title_messages">Messages</string>
+    <string name="title_explore">New Faces</string>
+    <string name="subtitle_profile">Sorted by likes. That\'s how others see it too</string>
+    <string name="subtitle_matches">Tap to send a message</string>
+    <string name="subtitle_likes">Tap to match instantly, then tap on pen to message</string>
+    <string name="subtitle_messages">Tap to see messages and reply</string>
+    <string name="subtitle_explore">Scroll. Swipe. Tap to send a like</string>
 
 </resources>

@@ -17,6 +17,7 @@ import com.ringoid.view.presenter.IPresenterPagesContainer;
 import com.ringoid.view.presenter.PresenterPagesContainer;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.ui.util.IHelperAnimation;
+import com.ringoid.view.ui.view.ViewToolbar;
 
 import java.util.Random;
 
@@ -38,6 +39,7 @@ public class FragmentPages extends FragmentBase
 
     private ListenerPresenter listenerPresenter;
     private ViewGroup llBottomAppBar;
+    private ViewToolbar toolbar;
 
     public static FragmentPages getInstanceProfilePhotoUpload() {
         FragmentPages fragment = new FragmentPages();
@@ -74,11 +76,14 @@ public class FragmentPages extends FragmentBase
 
         llBottomAppBar = view.findViewById(R.id.llBottomAppBar);
 
+        toolbar = view.findViewById(R.id.toolbarPages);
+
         view.findViewById(R.id.ivMenuLikes).setOnClickListener(this);
         view.findViewById(R.id.ivMenuProfile).setOnClickListener(this);
         view.findViewById(R.id.ivMenuMatches).setOnClickListener(this);
         view.findViewById(R.id.ivMenuMessages).setOnClickListener(this);
         view.findViewById(R.id.ivMenuExplore).setOnClickListener(this);
+        view.findViewById(R.id.ivSettings).setOnClickListener(this);
     }
 
     @Override
@@ -108,6 +113,9 @@ public class FragmentPages extends FragmentBase
 
         if (view.getId() == R.id.ivMenuExplore)
             presenterPagesContainer.onClickPageExplore();
+
+        if (view.getId() == R.id.ivSettings)
+            presenterPagesContainer.onClickSettings();
     }
 
     private class ListenerPresenter implements IPresenterPagesContainerListener {
@@ -118,7 +126,7 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void setPageSelected(int num, int iconResProfile, int iconResMatches, int iconResLikes, int iconResMessages, int iconResExplore, int iconResSettings) {
+        public void setPageSelected(int num, int iconResProfile, int iconResMatches, int iconResLikes, int iconResMessages, int iconResExplore) {
             if (getContext() == null) return;
             if (llBottomAppBar == null) return;
             for (int i = 0; i < llBottomAppBar.getChildCount(); ++i) {
@@ -131,16 +139,15 @@ public class FragmentPages extends FragmentBase
                     view.setBackground(null);
             }
 
-            setDrawables(iconResProfile, iconResMatches, iconResLikes, iconResMessages, iconResExplore, iconResSettings);
+            setDrawables(iconResProfile, iconResMatches, iconResLikes, iconResMessages, iconResExplore);
         }
 
-        private void setDrawables(int iconResProfile, int iconResMatches, int iconResLikes, int iconResMessages, int iconResExplore, int iconResSettings) {
+        private void setDrawables(int iconResProfile, int iconResMatches, int iconResLikes, int iconResMessages, int iconResExplore) {
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_PROFILE)).setImageResource(iconResProfile);
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_LIKES)).setImageResource(iconResLikes);
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_MATCHES)).setImageResource(iconResMatches);
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_MESSAGES)).setImageResource(iconResMessages);
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_EXPLORE)).setImageResource(iconResExplore);
-            ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_SETTINGS)).setImageResource(iconResSettings);
         }
 
         @Override
@@ -156,6 +163,11 @@ public class FragmentPages extends FragmentBase
         @Override
         public void showAnimationMatches() {
             helperAnimation.showPopupMatches((ViewGroup) getView().findViewById(R.id.flAnimationPopup));
+        }
+
+        @Override
+        public void setToolbarText(int title, int subtitle) {
+            toolbar.setText(title, subtitle);
         }
     }
 }

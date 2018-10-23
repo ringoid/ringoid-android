@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.v4.app.FragmentManager;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.BuildConfig;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
@@ -34,7 +33,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     public static final int INDEX_PAGE_MESSAGES = 2;
     public static final int INDEX_PAGE_LIKES = 3;
     public static final int INDEX_PAGE_PROFILE = 4;
-    public static final int INDEX_PAGE_SETTINGS = 5;
 
     public static final int ACTION_PHOTO_ADD = 1;
 
@@ -191,6 +189,11 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         navigatorPages.navigateMatches();
     }
 
+    @Override
+    public void onClickSettings() {
+        navigator.navigateSettings();
+    }
+
     private void checkStatubar(boolean isDown) {
         if (isDown)
             helperFullscreen.statusbarHide();
@@ -200,10 +203,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     private int getIconResProfile(boolean isSelected) {
         return isSelected ? R.drawable.ic_menu_profile_white_24dp : R.drawable.ic_menu_profile_24dp;
-    }
-
-    private int getIconResSettings(boolean isSelected) {
-        return isSelected ? R.drawable.ic_menu_settings_white_24dp : R.drawable.ic_menu_settings_24dp;
     }
 
     private int getIconResLikes(boolean isSelected) {
@@ -225,6 +224,24 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     private int getIconResExplore(boolean isSelected) {
         return isSelected ? R.drawable.ic_menu_explore_white_24dp : R.drawable.ic_menu_explore_24dp;
+    }
+
+    private int getTitle(int num) {
+        return num == INDEX_PAGE_PROFILE ? R.string.title_profile
+                : num == INDEX_PAGE_MATCHES ? R.string.title_matches
+                : num == INDEX_PAGE_LIKES ? R.string.title_likes
+                : num == INDEX_PAGE_MESSAGES ? R.string.title_messages
+                : num == INDEX_PAGE_EXPLORE ? R.string.title_explore
+                : 0;
+    }
+
+    private int getSubtitle(int num) {
+        return num == INDEX_PAGE_PROFILE ? R.string.subtitle_profile
+                : num == INDEX_PAGE_MATCHES ? R.string.subtitle_matches
+                : num == INDEX_PAGE_LIKES ? R.string.subtitle_likes
+                : num == INDEX_PAGE_MESSAGES ? R.string.subtitle_messages
+                : num == INDEX_PAGE_EXPLORE ? R.string.subtitle_explore
+                : 0;
     }
 
     private class ListenerCacheScroll implements ICacheScrollListener {
@@ -250,8 +267,8 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
                     getIconResMatches(num == INDEX_PAGE_MATCHES),
                     getIconResLikes(num == INDEX_PAGE_LIKES),
                     getIconResMessages(num == INDEX_PAGE_MESSAGES),
-                    getIconResExplore(num == INDEX_PAGE_EXPLORE),
-                    getIconResSettings(num == INDEX_PAGE_SETTINGS));
+                    getIconResExplore(num == INDEX_PAGE_EXPLORE));
+            refListener.get().setToolbarText(getTitle(num), getSubtitle(num));
         }
     }
 
