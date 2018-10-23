@@ -13,7 +13,7 @@ public class KeyboardUtils {
     public void keyboardShow(Context context, EditText editView) {
         editView.requestFocus();
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(editView, InputMethodManager.SHOW_FORCED);
+        imm.showSoftInput(editView, InputMethodManager.SHOW_IMPLICIT);
     }
 
     public void keyboardHide(Context context, View view) {
