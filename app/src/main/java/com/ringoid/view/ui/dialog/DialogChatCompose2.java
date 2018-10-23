@@ -76,8 +76,8 @@ public class DialogChatCompose2 implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.ivSend) {
-            if (TextUtils.isEmpty(etMessage.getText().toString().trim())) return;
-            notifySend();
+            if (!TextUtils.isEmpty(etMessage.getText().toString().trim()))
+                notifySend();
             cancel();
         }
     }
