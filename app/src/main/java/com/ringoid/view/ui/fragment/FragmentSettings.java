@@ -79,6 +79,7 @@ public class FragmentSettings extends FragmentBase
         view.findViewById(R.id.tvAccountDelete).setOnClickListener(this);
         view.findViewById(R.id.ivClose).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
+        view.findViewById(R.id.tvTitle).setOnClickListener(this);
 
         svContent = view.findViewById(R.id.svContent);
         svContent.getViewTreeObserver().addOnScrollChangedListener(new ListenerScroll());
@@ -93,6 +94,9 @@ public class FragmentSettings extends FragmentBase
 
         if (v.getId() == R.id.tvDataProtection)
             navigator.navigateSettingsDataProtection();
+
+        if (v.getId() == R.id.tvTitle)
+            navigator.navigateScreenDebug();
 
         if (v.getId() == R.id.tvSettingsFeedback)
             navigator.navigateFeedback(getContext());

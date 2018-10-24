@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/dialog_report_item_1"
                     android:textColor="@color/grey_middle"
-                    android:textSize="17sp" />
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:layout_width="match_parent"
@@ -82,7 +82,7 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/dialog_report_item_2"
                     android:textColor="@color/grey_middle"
-                    android:textSize="17sp" />
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:layout_width="match_parent"
@@ -90,7 +90,7 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/dialog_report_item_3"
                     android:textColor="@color/grey_middle"
-                    android:textSize="17sp" />
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:layout_width="match_parent"
@@ -98,7 +98,7 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/dialog_report_item_4"
                     android:textColor="@color/grey_middle"
-                    android:textSize="17sp" />
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:layout_width="match_parent"
@@ -106,13 +106,15 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/dialog_report_item_5"
                     android:textColor="@color/grey_middle"
-                    android:textSize="17sp" />
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/dialog_report_item_6" />
+                    android:text="@string/dialog_report_item_6"
+                    android:textColor="@color/grey_middle"
+                    android:textSize="15sp" />
 
             </RadioGroup>
 

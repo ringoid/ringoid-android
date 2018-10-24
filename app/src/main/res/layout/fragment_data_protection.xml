@@ -10,13 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        app:is_show_back="true">
+        app:is_show_back="true"
+        app:toolbar_title="@string/title_legal">
 
         <ImageView
             android:id="@+id/ivClose"
             style="@style/selectableImage"
             android:layout_gravity="end"
-            android:src="@drawable/ic_arrow_close_white_24dp" />
+            android:src="@drawable/ic_arrow_close_grey_24dp" />
 
     </com.ringoid.view.ui.view.ViewToolbar>
 

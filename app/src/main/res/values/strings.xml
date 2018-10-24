@@ -144,5 +144,6 @@
     <string name="subtitle_likes">Tap to match instantly, then tap on pen to message</string>
     <string name="subtitle_messages">Tap to see messages and reply</string>
     <string name="subtitle_explore">Scroll. Swipe. Tap to send a like</string>
+    <string name="title_legal">Legal</string>
 
 </resources>

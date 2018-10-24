@@ -46,8 +46,10 @@ public class DialogChatCompose2 implements View.OnClickListener {
         popupView.findViewById(R.id.ivSend).setOnClickListener(this);
         etMessage = popupView.findViewById(R.id.etMessage);
         etMessage.setListener(new ListenerViewPreIme());
-        if (!TextUtils.isEmpty(message))
+        if (!TextUtils.isEmpty(message)) {
             etMessage.setText(message);
+            etMessage.setSelection(message.length());
+        }
 
         dialog = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         dialog.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);

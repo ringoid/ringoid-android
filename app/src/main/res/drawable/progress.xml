@@ -16,7 +16,7 @@
             <shape android:shape="line">
                 <stroke
                     android:width="4dp"
-                    android:color="@color/colorAccentGreen" />
+                    android:color="@color/grey_middle" />
             </shape>
         </clip>
     </item>

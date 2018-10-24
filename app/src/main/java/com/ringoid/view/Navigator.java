@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.BuildConfig;
 import com.ringoid.R;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.view.ui.dialog.callback.ViewDialogsListener;
 import com.ringoid.view.ui.fragment.FragmentBase;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
@@ -48,7 +49,8 @@ public class Navigator implements INavigator {
 
     @Inject
     IViewDialogs viewDialogs;
-
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
     private WeakReference<FragmentManager> refFragmentManager;
     private int viewId;
     private WeakReference<AppCompatActivity> refActivity;
@@ -174,7 +176,7 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateSettings() {
-
+        cacheInterfaceState.setPositionScrollSettings(0, 0);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()

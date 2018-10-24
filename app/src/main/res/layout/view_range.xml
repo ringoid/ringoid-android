@@ -15,7 +15,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorAccentGreen"
+            android:textColor="@color/grey_middle"
             android:textSize="17sp"
             tools:text="title" />
 
@@ -24,7 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:textSize="17sp"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
             tools:text="value" />
 
     </FrameLayout>
@@ -39,7 +40,7 @@
         app:rsb_minThumbDrawable="@drawable/ic_circle_accent_24dp"
         app:rsb_sidePadding="0dp"
         app:rsb_trackColor="@color/grey_middle"
-        app:rsb_trackSelectedColor="@color/colorAccentGreen"
+        app:rsb_trackSelectedColor="@color/grey_middle"
         app:rsb_trackSelectedThickness="4dp"
         app:rsb_trackThickness="4dp" />
 

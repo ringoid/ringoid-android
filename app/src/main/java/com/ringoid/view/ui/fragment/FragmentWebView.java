@@ -56,9 +56,10 @@ public class FragmentWebView extends FragmentBase
         view.findViewById(R.id.ivClose).setOnClickListener(this);
         view.findViewById(R.id.ivBrowser).setOnClickListener(this);
 
-        ((TextView) view.findViewById(R.id.tvSubtitle)).setText(getArguments().getString(ARG_SUBTITLE));
+        ((TextView) view.findViewById(R.id.tvTitle)).setText(getArguments().getString(ARG_SUBTITLE));
 
         WebView wvContent = view.findViewById(R.id.wvContent);
+        wvContent.setBackgroundColor(getResources().getColor(R.color.gray_bg));
         wvContent.setWebViewClient(new WebViewClient());
         wvContent.setWebChromeClient(new WebChromeClient());
         wvContent.loadUrl(getArguments().getString(ARG_URL));

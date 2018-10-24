@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/ivBack"
             style="@style/selectableImage"
-            android:src="@drawable/ic_arrow_back_white_24dp" />
+            android:src="@drawable/ic_arrow_back_grey_24dp" />
 
         <ImageView
             android:id="@+id/ivUser"
@@ -29,17 +29,17 @@
         <ImageView
             android:id="@+id/ivClear"
             style="@style/selectableImage"
-            android:src="@drawable/ic_erase_data_white_24dp" />
+            android:src="@drawable/ic_erase_data_grey_24dp" />
 
         <ImageView
             android:id="@+id/ivBlock"
             style="@style/selectableImage"
-            android:src="@drawable/ic_block_white_24dp" />
+            android:src="@drawable/ic_block_grey_24dp" />
 
         <ImageView
             android:id="@+id/ivClose"
             style="@style/selectableImage"
-            android:src="@drawable/ic_arrow_close_white_24dp" />
+            android:src="@drawable/ic_arrow_close_grey_24dp" />
 
     </LinearLayout>
 
@@ -70,14 +70,15 @@
 
         <EditText
             android:id="@+id/etMessage"
-            android:maxLines="@integer/message_compose_lines_max"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
             android:imeOptions="flagNoPersonalizedLearning"
             android:inputType="textMultiLine"
+            android:maxLines="@integer/message_compose_lines_max"
             android:padding="16dp"
+            android:textColor="@color/grey_middle"
             android:textSize="17sp"
             android:theme="@style/AppTheme.Green" />
 
