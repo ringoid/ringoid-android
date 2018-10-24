@@ -4,6 +4,7 @@ package com.ringoid.view.ui.util;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheMessageCompose;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.model.DataProfile;
@@ -41,6 +42,9 @@ public class HelperMessageCompose implements IHelperMessageCompose {
     @Inject
     ICacheMessageCompose cacheMessageCompose;
 
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
+
     private ListenerDialogChatCompose listenerDialogChatCompose;
     private WeakHashMap<String, IHelperMessageComposeListener> listeners;
 
@@ -56,6 +60,7 @@ public class HelperMessageCompose implements IHelperMessageCompose {
             notifyListeners(user.getId());
             viewDialogs.showDialogChatCompose(cacheMessageCompose.getMessage(), listenerDialogChatCompose = new ListenerDialogChatCompose(user.getId()));
             cacheMessageCompose.resetCache();
+            cacheInterfaceState.setDialogComposeShowState(true);
             return;
         }
 
@@ -94,6 +99,7 @@ public class HelperMessageCompose implements IHelperMessageCompose {
         @Override
         public void onDismiss(String message) {
             cacheMessageCompose.setMessage(message);
+            cacheInterfaceState.setDialogComposeShowState(false);
         }
     }
 }

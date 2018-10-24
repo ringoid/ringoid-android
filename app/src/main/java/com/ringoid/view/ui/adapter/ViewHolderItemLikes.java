@@ -56,6 +56,11 @@ public class ViewHolderItemLikes extends ViewHolderItemLikeBase {
         dotsIndicatorHelper.updateData(presenterAdapterLikes.getItemsNum(position));
     }
 
+    @Override
+    protected boolean isControlsVisible() {
+        return presenterAdapterLikes.isControlsVisible();
+    }
+
     private class ListenerScrollPhotos extends RecyclerView.OnScrollListener {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {

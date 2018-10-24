@@ -61,6 +61,11 @@ public class ViewHolderItemMessage extends ViewHolderItemLikeBase {
 
     }
 
+    @Override
+    protected boolean isControlsVisible() {
+        return presenterAdapterMessages.isControlsVisible();
+    }
+
     private void setMessageState(int position) {
         if (!presenterAdapterMessages.isMessagesExist(position)) {
             ivMessage.setImageDrawable(null);

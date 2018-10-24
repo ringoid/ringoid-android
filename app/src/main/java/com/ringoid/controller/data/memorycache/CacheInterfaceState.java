@@ -169,6 +169,17 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
+    public void setDialogComposeShowState(boolean isShown) {
+        getData().setDialogComposeShow(isShown);
+        notifyListenersDialogComposeState(isShown);
+    }
+
+    @Override
+    public boolean isDialogComposeShown() {
+        return getData().isDialogComposeShown();
+    }
+
+    @Override
     public int getPositionScrollPageExplore() {
         return getData().getPositionScrollPageExplore();
     }
@@ -182,4 +193,14 @@ public class CacheInterfaceState implements ICacheInterfaceState {
         }
     }
 
+
+    private void notifyListenersDialogComposeState(boolean isShown) {
+        if (listeners == null) return;
+        for (String key : listeners.keySet()) {
+            ICacheInterfaceStateListener listener = listeners.get(key);
+            if (listener == null) continue;
+            listener.onDialogComposeShowState(isShown);
+        }
+
+    }
 }

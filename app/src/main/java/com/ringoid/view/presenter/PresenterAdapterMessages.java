@@ -5,8 +5,10 @@ import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
+import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheMessagesListener;
 import com.ringoid.view.presenter.callback.IPresenterAdapterMessagesListener;
 import com.ringoid.view.ui.util.IHelperMessageCompose;
@@ -27,7 +29,11 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
     @Inject
     IHelperMessageCompose helperMessageCompose;
 
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
+
     private ListenerCacheChatMessages listenerCacheChatMessages;
+    private ICacheInterfaceStateListener listenerCacheInterfaceState;
     private ICacheMessagesListener listenerCacheMessages;
     private WeakReference<IPresenterAdapterMessagesListener> refListener;
 
@@ -35,6 +41,7 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
         ApplicationRingoid.getComponent().inject(this);
         cacheMessages.addListener(listenerCacheMessages = new ListenerCacheMessages());
         cacheChatMessages.addListener(listenerCacheChatMessages = new ListenerCacheChatMessages());
+        cacheInterfaceState.addListener(listenerCacheInterfaceState = new ListenerCacheInterfaceState());
     }
 
     @Override
@@ -88,6 +95,11 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
         return cacheMessages.getSelectedPhotoPosition(position);
     }
 
+    @Override
+    public boolean isControlsVisible() {
+        return !cacheInterfaceState.isDialogComposeShown();
+    }
+
     private class ListenerCacheMessages implements ICacheMessagesListener {
         @Override
         public void onUpdate() {
@@ -103,6 +115,19 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
     private class ListenerCacheChatMessages implements ICacheChatMessagesListener {
         @Override
         public void onDataChange() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onUpdate();
+        }
+    }
+
+    private class ListenerCacheInterfaceState implements ICacheInterfaceStateListener {
+        @Override
+        public void onPageSelected(int num) {
+
+        }
+
+        @Override
+        public void onDialogComposeShowState(boolean isShown) {
             if (refListener == null || refListener.get() == null) return;
             refListener.get().onUpdate();
         }

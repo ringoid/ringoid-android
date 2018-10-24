@@ -13,4 +13,6 @@ public interface IPresenterAdapterLikesImages {
     void onLongClick(int adapterPosition, int itemPosition);
 
     boolean onClickIconLike(int adapterPosition, int itemPosition);
+
+    boolean isControlsVisible();
 }

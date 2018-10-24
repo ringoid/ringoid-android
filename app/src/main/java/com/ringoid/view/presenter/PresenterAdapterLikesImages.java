@@ -2,13 +2,9 @@
 package com.ringoid.view.presenter;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
-import com.ringoid.controller.data.memorycache.ICacheTutorial;
-import com.ringoid.view.INavigator;
-import com.ringoid.view.IViewDialogs;
-import com.ringoid.view.IViewPopup;
 
 import javax.inject.Inject;
 
@@ -19,6 +15,9 @@ public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages
 
     @Inject
     ICacheMessages cacheMessages;
+
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
 
     public PresenterAdapterLikesImages() {
         ApplicationRingoid.getComponent().inject(this);
@@ -52,5 +51,10 @@ public class PresenterAdapterLikesImages implements IPresenterAdapterLikesImages
     public boolean onClickIconLike(int adapterPosition, int itemPosition) {
         cacheLikes.changeLiked(adapterPosition, itemPosition);
         return cacheLikes.isLiked(adapterPosition, itemPosition);
+    }
+
+    @Override
+    public boolean isControlsVisible() {
+        return !cacheInterfaceState.isDialogComposeShown();
     }
 }

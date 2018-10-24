@@ -15,6 +15,7 @@ public class ModelInterfaceState implements Serializable {
     private int positionScrollPageMessagesOffset;
     private int positionScrollPageExploreOffset;
     private int positionScrollPageSettingsOffset;
+    transient private boolean dialogComposeShow;
 
     public String getOriginPhotoId() {
         return originPhotoId;
@@ -82,5 +83,13 @@ public class ModelInterfaceState implements Serializable {
 
     public int getPositionScrollPageSettingsOffset() {
         return positionScrollPageSettingsOffset;
+    }
+
+    public void setDialogComposeShow(boolean dialogComposeShow) {
+        this.dialogComposeShow = dialogComposeShow;
+    }
+
+    public boolean isDialogComposeShown() {
+        return dialogComposeShow;
     }
 }

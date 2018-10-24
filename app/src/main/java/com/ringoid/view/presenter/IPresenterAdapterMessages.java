@@ -23,4 +23,6 @@ public interface IPresenterAdapterMessages {
     void onScrollPhotoChanged(int newState, int adapterPosition, int firstVisibleItemPosition);
 
     int getSelectedPhotoPosition(int position);
+
+    boolean isControlsVisible();
 }

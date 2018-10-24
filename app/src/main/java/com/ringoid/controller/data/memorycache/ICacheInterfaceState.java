@@ -52,4 +52,8 @@ public interface ICacheInterfaceState {
     int getPositionScrollPageSettings();
 
     int getPositionScrollPageSettingsOffset();
+
+    void setDialogComposeShowState(boolean isShown);
+
+    boolean isDialogComposeShown();
 }

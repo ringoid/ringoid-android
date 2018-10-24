@@ -15,6 +15,7 @@ import com.ringoid.view.ui.util.IndicatorHelper;
 public abstract class ViewHolderItemLikeBase extends ViewHolderBase
         implements View.OnClickListener {
 
+    View vMenu;
     LinearLayoutManager layoutManager;
     DialogReport dialogMenu;
     FrameLayout flDots;
@@ -26,14 +27,14 @@ public abstract class ViewHolderItemLikeBase extends ViewHolderBase
         super(container, layoutRes);
 
         flDots = itemView.findViewById(R.id.flDots);
-
-        itemView.findViewById(R.id.ivImageMenu).setOnClickListener(this);
-        flDots.setOnClickListener(this);
-
+        vMenu = itemView.findViewById(R.id.ivImageMenu);
         vChatEmpty = itemView.findViewById(R.id.fabChat);
         vChatFull = itemView.findViewById(R.id.ivChat);
+
         vChatFull.setOnClickListener(this);
         vChatEmpty.setOnClickListener(this);
+        vMenu.setOnClickListener(this);
+        flDots.setOnClickListener(this);
 
         rvItems = itemView.findViewById(R.id.rvImages);
         layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -55,11 +56,13 @@ public abstract class ViewHolderItemLikeBase extends ViewHolderBase
     @Override
     void setData(int position) {
         setChatButtonVisible(position);
+        flDots.setVisibility(isControlsVisible() ? View.VISIBLE : View.GONE);
+        vMenu.setVisibility(isControlsVisible() ? View.VISIBLE : View.GONE);
     }
 
     private void setChatButtonVisible(int position) {
 
-        if (!isLikedAnyPhoto(position)) {
+        if (!isLikedAnyPhoto(position) || !isControlsVisible()) {
             vChatEmpty.setVisibility(View.GONE);
             vChatFull.setVisibility(View.GONE);
             return;
@@ -70,6 +73,8 @@ public abstract class ViewHolderItemLikeBase extends ViewHolderBase
         vChatEmpty.setVisibility(isChatEmpty ? View.VISIBLE : View.GONE);
         vChatFull.setVisibility(isChatEmpty ? View.GONE : View.VISIBLE);
     }
+
+    protected abstract boolean isControlsVisible();
 
 
     @Override

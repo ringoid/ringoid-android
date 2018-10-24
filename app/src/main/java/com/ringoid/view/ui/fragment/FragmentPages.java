@@ -169,5 +169,10 @@ public class FragmentPages extends FragmentBase
         public void setToolbarText(int title, int subtitle) {
             toolbar.setText(title, subtitle);
         }
+
+        @Override
+        public void setToolbarShown(boolean isShow) {
+            llBottomAppBar.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        }
     }
 }

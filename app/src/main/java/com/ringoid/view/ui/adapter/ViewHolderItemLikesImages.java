@@ -33,6 +33,7 @@ public class ViewHolderItemLikesImages extends ViewHolderItemImagesLikeable
 
         super.setData(url);
 
+        ivLike.setVisibility(presenterAdapterLikesImages.isControlsVisible() ? View.VISIBLE : View.GONE);
         setLiked(presenterAdapterLikesImages.isLiked(adapterPosition, position));
     }
 

@@ -270,6 +270,12 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
                     getIconResExplore(num == INDEX_PAGE_EXPLORE));
             refListener.get().setToolbarText(getTitle(num), getSubtitle(num));
         }
+
+        @Override
+        public void onDialogComposeShowState(boolean isShown) {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().setToolbarShown(!isShown);
+        }
     }
 
     private class ListenerCacheSettings implements ICacheSettingsPrivacyListener {

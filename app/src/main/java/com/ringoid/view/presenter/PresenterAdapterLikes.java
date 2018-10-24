@@ -5,9 +5,11 @@ import android.support.v7.widget.RecyclerView;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheChatMessages;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
+import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheLikesListener;
 import com.ringoid.view.presenter.callback.IPresenterAdapterLikesListener;
 import com.ringoid.view.ui.util.IHelperMessageCompose;
@@ -30,6 +32,10 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
     @Inject
     IHelperMessageCompose helperMessageCompose;
 
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
+
+    private ListenerCacheInterfaceState listenerCacheInterfaceState;
     private ListenerCacheChatMessages listenerCacheChatMessages;
     private ListenerCacheLikes listenerCacheLikes;
     private WeakReference<IPresenterAdapterLikesListener> refListener;
@@ -38,6 +44,7 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
         ApplicationRingoid.getComponent().inject(this);
         cacheLikes.addListener(listenerCacheLikes = new ListenerCacheLikes());
         cacheChatMessages.addListener(listenerCacheChatMessages = new ListenerCacheChatMessages());
+        cacheInterfaceState.addListener(listenerCacheInterfaceState = new ListenerCacheInterfaceState());
     }
 
     @Override
@@ -73,6 +80,11 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
     }
 
     @Override
+    public boolean isControlsVisible() {
+        return !cacheInterfaceState.isDialogComposeShown();
+    }
+
+    @Override
     public void onClickChat(int position) {
         helperMessageCompose.onClick(cacheLikes.getUser(position));
     }
@@ -102,6 +114,19 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
     private class ListenerCacheChatMessages implements ICacheChatMessagesListener {
         @Override
         public void onDataChange() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onUpdate();
+        }
+    }
+
+    private class ListenerCacheInterfaceState implements ICacheInterfaceStateListener {
+        @Override
+        public void onPageSelected(int num) {
+
+        }
+
+        @Override
+        public void onDialogComposeShowState(boolean isShown) {
             if (refListener == null || refListener.get() == null) return;
             refListener.get().onUpdate();
         }
