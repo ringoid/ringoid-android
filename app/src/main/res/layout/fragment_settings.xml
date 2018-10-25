@@ -5,30 +5,30 @@
     android:layout_height="match_parent"
     android:background="@color/gray_bg">
 
+    <com.ringoid.view.ui.view.ViewToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:is_show_back="true"
+        app:toolbar_title="@string/title_settings">
+
+        <ImageView
+            android:id="@+id/ivClose"
+            style="@style/selectableImage"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_arrow_close_grey_24dp" />
+
+    </com.ringoid.view.ui.view.ViewToolbar>
+
     <ScrollView
         android:id="@+id/svContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbar_height_with_statusbar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <com.ringoid.view.ui.view.ViewToolbar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:is_show_back="true"
-                app:toolbar_title="@string/title_settings">
-
-                <ImageView
-                    android:id="@+id/ivClose"
-                    style="@style/selectableImage"
-                    android:layout_gravity="end"
-                    android:src="@drawable/ic_arrow_close_grey_24dp" />
-
-            </com.ringoid.view.ui.view.ViewToolbar>
-
 
             <LinearLayout
                 style="@style/settings_menu_item"
@@ -43,9 +43,9 @@
                     android:textColor="@color/grey_middle" />
 
                 <TextView
-                    android:textColor="@color/grey_dark"
                     style="@style/settings_privacy_item_value"
-                    android:text="@string/settings_location_value" />
+                    android:text="@string/settings_location_value"
+                    android:textColor="@color/grey_dark" />
 
             </LinearLayout>
 
