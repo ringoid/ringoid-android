@@ -16,4 +16,6 @@ public interface IPresenterPagesContainerListener {
     void setToolbarText(int title, int subtitle);
 
     void setToolbarShown(boolean isShow);
+
+    void setToolbarSettingsVisibility(boolean isVisible);
 }

@@ -40,6 +40,7 @@ public class FragmentPages extends FragmentBase
     private ListenerPresenter listenerPresenter;
     private ViewGroup llBottomAppBar;
     private ViewToolbar toolbar;
+    private View vSettings;
 
     public static FragmentPages getInstanceProfilePhotoUpload() {
         FragmentPages fragment = new FragmentPages();
@@ -77,13 +78,14 @@ public class FragmentPages extends FragmentBase
         llBottomAppBar = view.findViewById(R.id.llBottomAppBar);
 
         toolbar = view.findViewById(R.id.toolbarPages);
+        vSettings = view.findViewById(R.id.ivSettings);
 
         view.findViewById(R.id.ivMenuLikes).setOnClickListener(this);
         view.findViewById(R.id.ivMenuProfile).setOnClickListener(this);
         view.findViewById(R.id.ivMenuMatches).setOnClickListener(this);
         view.findViewById(R.id.ivMenuMessages).setOnClickListener(this);
         view.findViewById(R.id.ivMenuExplore).setOnClickListener(this);
-        view.findViewById(R.id.ivSettings).setOnClickListener(this);
+        vSettings.setOnClickListener(this);
     }
 
     @Override
@@ -173,6 +175,11 @@ public class FragmentPages extends FragmentBase
         @Override
         public void setToolbarShown(boolean isShow) {
             llBottomAppBar.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        }
+
+        @Override
+        public void setToolbarSettingsVisibility(boolean isVisible) {
+            vSettings.setVisibility(isVisible ? View.VISIBLE : View.GONE);
         }
     }
 }

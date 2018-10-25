@@ -269,6 +269,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
                     getIconResMessages(num == INDEX_PAGE_MESSAGES),
                     getIconResExplore(num == INDEX_PAGE_EXPLORE));
             refListener.get().setToolbarText(getTitle(num), getSubtitle(num));
+            refListener.get().setToolbarSettingsVisibility(num == INDEX_PAGE_PROFILE);
         }
 
         @Override
