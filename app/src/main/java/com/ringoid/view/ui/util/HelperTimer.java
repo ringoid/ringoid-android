@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference;
 public class HelperTimer implements IHelperTimer {
 
     private static final int INTERVAL_MILLIS = 1000;
-    private static final int TIME_MILLIS = 60000;
+    private static final int TIME_MILLIS = 81000;
     private WeakReference<IHelperTimerListener> refListener;
     private Timer timer;
 
