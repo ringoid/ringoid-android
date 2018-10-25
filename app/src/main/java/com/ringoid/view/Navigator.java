@@ -17,7 +17,6 @@ import com.ringoid.view.ui.dialog.callback.ViewDialogsListener;
 import com.ringoid.view.ui.fragment.FragmentBase;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
-import com.ringoid.view.ui.fragment.FragmentChat;
 import com.ringoid.view.ui.fragment.FragmentDataProtection;
 import com.ringoid.view.ui.fragment.FragmentErrorAppversion;
 import com.ringoid.view.ui.fragment.FragmentErrorConnection;
@@ -49,8 +48,10 @@ public class Navigator implements INavigator {
 
     @Inject
     IViewDialogs viewDialogs;
+
     @Inject
     ICacheInterfaceState cacheInterfaceState;
+
     private WeakReference<FragmentManager> refFragmentManager;
     private int viewId;
     private WeakReference<AppCompatActivity> refActivity;
@@ -275,16 +276,6 @@ public class Navigator implements INavigator {
         if (intent.resolveActivity(refActivity.get().getPackageManager()) == null) return;
 
         refActivity.get().startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
-    }
-
-    @Override
-    public void navigateChat() {
-        if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        refFragmentManager.get()
-                .beginTransaction()
-                .addToBackStack(null)
-                .replace(viewId, new FragmentChat(), CURRENT_FRAGMENT_PAGE)
-                .commit();
     }
 
     @Override

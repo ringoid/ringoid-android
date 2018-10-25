@@ -6,9 +6,8 @@ import android.content.Context;
 import android.view.View;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.view.ui.dialog.DialogChatCompose2;
+import com.ringoid.view.ui.dialog.DialogChatCompose;
 import com.ringoid.view.ui.dialog.DialogErrorUnknown;
-import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
 import com.ringoid.view.ui.dialog.callback.IDialogErrorUnknownListener;
 import com.ringoid.view.ui.dialog.callback.ViewDialogsListener;
 import com.ringoid.view.ui.util.IHelperFullscreen;
@@ -26,7 +25,7 @@ public class ViewDialogs implements IViewDialogs {
     private WeakReference<Context> refContext;
     private WeakReference<View> refView;
 
-    private WeakReference<DialogChatCompose2> refDialogChatCompose;
+    private WeakReference<DialogChatCompose> refDialogChatCompose;
     private WeakReference<DialogErrorUnknown> refDialogErrorUnknown;
     private WeakReference<AlertDialog> refDialogMessage;
 
@@ -45,14 +44,14 @@ public class ViewDialogs implements IViewDialogs {
     }
 
     @Override
-    public void showDialogChatCompose(String message, IDialogChatComposeListener listener) {
+    public void showDialogChatCompose() {
 
         if (refDialogChatCompose != null && refDialogChatCompose.get() != null)
             refDialogChatCompose.get().cancel();
 
         if (refContext == null || refContext.get() == null) return;
 
-        DialogChatCompose2 dialogChatCompose = new DialogChatCompose2(refContext.get(), refView.get(), message, listener);
+        DialogChatCompose dialogChatCompose = new DialogChatCompose(refContext.get(), refView.get());
         dialogChatCompose.show();
         refDialogChatCompose = new WeakReference<>(dialogChatCompose);
     }

@@ -19,8 +19,6 @@ public interface INavigator {
 
     void navigatePhotoAdd();
 
-    void navigateChat();
-
     void navigateSettingsPrivacyDistance();
 
     void navigateWebView(String url, String subtitle);

@@ -42,7 +42,6 @@ import com.ringoid.view.presenter.PresenterAdapterMessages;
 import com.ringoid.view.presenter.PresenterAdapterMessagesImages;
 import com.ringoid.view.presenter.PresenterAdapterProfile;
 import com.ringoid.view.presenter.PresenterBlacklistPhones;
-import com.ringoid.view.presenter.PresenterChat;
 import com.ringoid.view.presenter.PresenterDataProtection;
 import com.ringoid.view.presenter.PresenterDialogErrorUnknown;
 import com.ringoid.view.presenter.PresenterExplore;
@@ -78,11 +77,9 @@ import com.ringoid.view.ui.adapter.ViewHolderItemLikesImages;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessage;
 import com.ringoid.view.ui.adapter.ViewHolderItemMessagesImages;
 import com.ringoid.view.ui.dialog.DialogChatCompose;
-import com.ringoid.view.ui.dialog.DialogChatCompose2;
 import com.ringoid.view.ui.dialog.DialogErrorUnknown;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhonesAdd;
-import com.ringoid.view.ui.fragment.FragmentChat;
 import com.ringoid.view.ui.fragment.FragmentDataProtection;
 import com.ringoid.view.ui.fragment.FragmentErrorAppversion;
 import com.ringoid.view.ui.fragment.FragmentErrorConnection;
@@ -116,7 +113,7 @@ public interface AppComponent {
 
     void inject(ActivityMain param);
 
-    void inject(DialogChatCompose2 param);
+    void inject(DialogChatCompose param);
 
     void inject(CacheRegister param);
 
@@ -167,8 +164,6 @@ public interface AppComponent {
     void inject(CacheInterfaceState param);
 
     void inject(CacheChatMessages param);
-
-    void inject(DialogChatCompose param);
 
     void inject(CacheProfile param);
 
@@ -273,10 +268,6 @@ public interface AppComponent {
     void inject(AdapterMessagesImages adapterMessagesImages);
 
     void inject(PresenterAdapterMessagesImages presenterAdapterMessagesImages);
-
-    void inject(FragmentChat fragmentChat);
-
-    void inject(PresenterChat presenterChat);
 
     void inject(AdapterChatMessages adapterChatMessages);
 

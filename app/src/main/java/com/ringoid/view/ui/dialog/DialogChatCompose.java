@@ -2,97 +2,160 @@ package com.ringoid.view.ui.dialog;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
-import com.ringoid.view.ui.dialog.callback.IDialogChatComposeListener;
+import com.ringoid.controller.data.memorycache.ICacheChatMessages;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
+import com.ringoid.controller.data.memorycache.ICacheMessageCompose;
+import com.ringoid.controller.data.memorycache.ICacheMessages;
+import com.ringoid.view.IViewPopup;
+import com.ringoid.view.ui.adapter.AdapterChatMessages;
+import com.ringoid.view.ui.util.DividerItemDecoration;
+import com.ringoid.view.ui.util.IHelperMessageSend;
 import com.ringoid.view.ui.util.KeyboardUtils;
-
-import java.lang.ref.WeakReference;
+import com.ringoid.view.ui.view.EditTextPreIme;
+import com.ringoid.view.ui.view.callback.IEditTextPreImeListener;
 
 import javax.inject.Inject;
 
 public class DialogChatCompose implements View.OnClickListener {
 
+    PopupWindow dialog;
+
     @Inject
     KeyboardUtils keyboardUtils;
 
-    private View view;
-    private EditText etMessage;
-    private WeakReference<IDialogChatComposeListener> refListener;
-    private BottomSheetDialog dialog;
+    @Inject
+    IViewPopup viewPopup;
 
-    public DialogChatCompose(Context context, IDialogChatComposeListener listener) {
+    @Inject
+    IHelperMessageSend helperMessageSend;
+
+    @Inject
+    ICacheMessages cacheMessages;
+
+    @Inject
+    ICacheMessageCompose cacheMessageCompose;
+
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
+
+    @Inject
+    ICacheChatMessages cacheChatMessages;
+
+    private View viewContainer;
+
+    private EditTextPreIme etMessage;
+    private RecyclerView rvMessages;
+
+    public DialogChatCompose(Context context, View container) {
         ApplicationRingoid.getComponent().inject(this);
-        this.refListener = new WeakReference<>(listener);
-        dialog = new BottomSheetDialog(context);
-        view = LayoutInflater.from(context).inflate(R.layout.view_dialog_chat_compose, null);
-        dialog.setContentView(view);
-        dialog.setOnCancelListener(new ListenerCancel());
+        this.viewContainer = container;
 
-        setHideableOff();
+        View popupView = LayoutInflater.from(context).inflate(R.layout.view_dialog_chat_compose, null);
+        initViews(popupView);
 
-        etMessage = view.findViewById(R.id.etMessage);
-        view.findViewById(R.id.flContent).setOnClickListener(this);
+        dialog = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+        dialog.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        dialog.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+        dialog.setAnimationStyle(0);
+
+        dialog.setOutsideTouchable(true);
+        dialog.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog.setOnDismissListener(new ListenerDismiss());
+    }
+
+    private void initViews(View view) {
         view.findViewById(R.id.ivSend).setOnClickListener(this);
+        etMessage = view.findViewById(R.id.etMessage);
+        etMessage.setListener(new ListenerViewPreIme());
+
+        String message = cacheMessageCompose.getMessage();
+        if (!TextUtils.isEmpty(message)) {
+            etMessage.setText(message);
+            etMessage.setSelection(message.length());
+            cacheMessageCompose.resetCache();
+        }
+        initList(view);
+
     }
 
-    private void setHideableOff() {
-        FrameLayout view = dialog.findViewById(R.id.design_bottom_sheet);
-        if (view == null) return;
-        BottomSheetBehavior mBehavior = BottomSheetBehavior.from(view);
-        mBehavior.setHideable(false);
+    private void initList(View view) {
+        rvMessages = view.findViewById(R.id.rvItems);
+        rvMessages.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        rvMessages.setAdapter(new AdapterChatMessages());
+        rvMessages.addItemDecoration(new DividerItemDecoration(view.getContext()));
+        scrollToEnd();
     }
 
-    public void cancel() {
-        dialog.cancel();
+    private void scrollToEnd() {
+        int dataSize = cacheChatMessages.getDataSize(cacheMessages.getUserSelectedID());
+        rvMessages.scrollToPosition(Math.max(0, dataSize - 1));
     }
 
-    public void show() {
-        keyboardUtils.keyboardShow(dialog.getWindow());
-        dialog.show();
-        hideDim();
-    }
-
-    private void hideDim() {
-        WindowManager.LayoutParams lp = DialogChatCompose.this.dialog.getWindow().getAttributes();
-        lp.dimAmount = 0.0f; // Dim level. 0.0 - no dim, 1.0 - completely opaque
-        DialogChatCompose.this.dialog.getWindow().setAttributes(lp);
-    }
 
     @Override
     public void onClick(View v) {
-
         if (v.getId() == R.id.ivSend) {
-            if (TextUtils.isEmpty(etMessage.getText().toString().trim())) return;
-            notifySend();
-            cancel();
+            String message = getMessage();
+            if (!TextUtils.isEmpty(message)) {
+                viewPopup.showToast(R.string.message_sent);
+                helperMessageSend.sendMessage(cacheMessages.getUserSelectedID(), message);
+                etMessage.setText("");
+                scrollToEnd();
+            }
         }
-
-        if (v.getId() == R.id.flContent) {
-            cancel();
-        }
-
     }
 
-    private void notifySend() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().onSend(etMessage.getText().toString().trim());
+    private String getMessage() {
+        return etMessage.getText().toString().trim();
     }
 
-    private class ListenerCancel implements DialogInterface.OnCancelListener {
+    public void show() {
+        if (dialog == null) return;
+        dialog.showAtLocation(viewContainer, Gravity.BOTTOM, 0, 0);
+        cacheInterfaceState.setDialogComposeShowState(true);
+        etMessage.requestFocus();
+    }
+
+    public void cancel() {
+        if (dialog == null) return;
+        dialog.dismiss();
+    }
+
+    private class ListenerDismiss implements PopupWindow.OnDismissListener {
         @Override
-        public void onCancel(DialogInterface dialog) {
-            keyboardUtils.keyboardHide(view.getContext(), view);
+        public void onDismiss() {
+            keyboardUtils.keyboardHide(viewContainer.getContext(), viewContainer);
+
+            cacheMessageCompose.setMessage(getMessage());
+            cacheInterfaceState.setDialogComposeShowState(false);
+        }
+    }
+
+    private class ListenerViewPreIme implements IEditTextPreImeListener {
+
+        @Override
+        public boolean onKeyPreIme(int keyCode, KeyEvent event) {
+            if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+                dialog.dismiss();
+            }
+
+            return false;
         }
     }
 }
