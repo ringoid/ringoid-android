@@ -77,8 +77,7 @@
     <string name="about">About</string>
     <string name="dialog_about_title">Ringoid app for Android</string>
     <string name="dialog_about_message">Copyright © Ringoid Ltd, 2018.\n\nRINGOID LTD is registered in England with Company No. 09427326 and VAT Reg No: GB 208660511. \n\nRegistered Office: 97 Friars Mead, London, E14 3JY, England.\n\nRingoid is a pending registration trademark of Ringoid Ltd.\n\nRingoid Ltd is trading as Ringoid.\n\nRingoid is registered with the UK\'s Information Commissioner\'s Office with registration number ZA455969 and operates within compliance of the EU General Data Protection Regulation 2018.\n\nEmail: support@ringoid.com\nWeb: www.ringoid.com</string>
-    <string name="error_network">Oops!\n\nPlease check your Internet connection and try again.</string>
-    <string name="message_error_unkown_format">Oops!<br /><br />Something went wrong...<br /><br />%s</string>
+    <string name="message_error_unkown_format"><![CDATA[Oops!<br /><br />Something went wrong...<br /><br />%s]]></string>
     <string name="dialog_remove_confirm">confirm</string>
     <string name="error_photo_upload">Oops!\n\nUpload failed</string>
     <string name="error_photo_max_size">Oops!\n\nCropped photo is too large</string>
@@ -132,7 +131,7 @@
     <string name="settings_likes_unlimited">Unlimited Likes</string>
     <string name="settings_ad_hide">Hide Advertisements</string>
     <string name="settings_push">Push Notifications</string>
-    <string name="dialog_unknown_confirm">Email to support@ringoid.com</string>
+    <string name="dialog_unknown_confirm">email support</string>
     <string name="title_settings">Settings</string>
     <string name="title_profile">Your Photos</string>
     <string name="title_matches">Matches</string>
