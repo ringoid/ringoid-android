@@ -1,16 +1,16 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.adapter;
 
-import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterExplore;
 import com.ringoid.view.presenter.callback.IPresenterAdapterExploreListener;
 
 import javax.inject.Inject;
 
-public class AdapterExplore extends AdapterBase {
+public class AdapterExplore extends AdapterFeed {
 
     @Inject
     IPresenterAdapterExplore presenterAdapterExplore;
@@ -22,14 +22,23 @@ public class AdapterExplore extends AdapterBase {
         presenterAdapterExplore.setListener(listenerPresenter = new ListenerPresenter());
     }
 
-    @NonNull
     @Override
-    public ViewHolderBase onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    protected ViewHolderBase getViewHolder(ViewGroup parent) {
         return new ViewHolderItemExplore(parent);
     }
 
     @Override
-    public int getItemCount() {
+    protected int getFeedSubtitle() {
+        return R.string.subtitle_explore;
+    }
+
+    @Override
+    protected int getFeedTitle() {
+        return R.string.title_explore;
+    }
+
+    @Override
+    protected int getItemsNum() {
         return presenterAdapterExplore.getItemsNum();
     }
 

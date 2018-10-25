@@ -68,7 +68,7 @@ public class FragmentLikes extends FragmentFeedPage {
 
         @Override
         public void onLike(int adapterPosition) {
-            RecyclerView.ViewHolder item = rvItems.findViewHolderForAdapterPosition(adapterPosition);
+            RecyclerView.ViewHolder item = rvItems.findViewHolderForAdapterPosition(adapterPosition + 1);
             if (item == null) return;
             ViewHolderItemLikeBase holder = (ViewHolderItemLikes) item;
 
@@ -78,7 +78,7 @@ public class FragmentLikes extends FragmentFeedPage {
 
         @Override
         public void onUnlike(int adapterPosition) {
-            RecyclerView.ViewHolder item = rvItems.findViewHolderForAdapterPosition(adapterPosition);
+            RecyclerView.ViewHolder item = rvItems.findViewHolderForAdapterPosition(adapterPosition + 1);
             if (item == null) return;
             ViewHolderItemLikeBase holder = (ViewHolderItemLikes) item;
 

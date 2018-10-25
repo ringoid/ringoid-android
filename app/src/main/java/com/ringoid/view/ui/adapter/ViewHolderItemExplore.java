@@ -76,7 +76,7 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-            presenterAdapterExplore.onScrollPhotoChanged(newState, getAdapterPosition(), layoutManager.findFirstVisibleItemPosition());
+            presenterAdapterExplore.onScrollPhotoChanged(newState, getAdapterPosition() - 1, layoutManager.findFirstVisibleItemPosition());
         }
     }
 }

@@ -92,6 +92,11 @@ public class PresenterProfile implements IPresenterProfile {
         cacheInterfaceState.setProfileOriginPhotoId(cacheProfile.getOriginPhotoId(pos));
     }
 
+    @Override
+    public void onClickSettings() {
+        navigator.navigateSettings();
+    }
+
     private void updateView() {
         int pos = cacheProfile.getPosition(cacheInterfaceState.getOriginPhotoId(), DEFAULT_VALUE);
         updateView(pos);

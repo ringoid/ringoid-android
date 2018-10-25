@@ -13,9 +13,5 @@ public interface IPresenterPagesContainerListener {
 
     void showAnimationMatches();
 
-    void setToolbarText(int title, int subtitle);
-
     void setToolbarShown(boolean isShow);
-
-    void setToolbarSettingsVisibility(boolean isVisible);
 }

@@ -7,22 +7,7 @@
         android:id="@+id/flContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/toolbar_height_with_statusbar"
-        android:layout_marginTop="@dimen/toolbar_height_with_statusbar" />
-
-    <com.ringoid.view.ui.view.ViewToolbar
-        android:id="@+id/toolbarPages"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="16dp">
-
-        <ImageView
-            android:id="@+id/ivSettings"
-            style="@style/selectableImage"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_menu_settings_24dp" />
-
-    </com.ringoid.view.ui.view.ViewToolbar>
+        android:layout_marginBottom="@dimen/toolbar_height_with_statusbar" />
 
     <LinearLayout
         android:id="@+id/llBottomAppBar"

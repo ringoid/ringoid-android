@@ -17,4 +17,6 @@ public interface IPresenterProfile {
     void onSwipeRefresh();
 
     void onShownItem(int pos);
+
+    void onClickSettings();
 }

@@ -1,16 +1,16 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.adapter;
 
-import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterLikes;
 import com.ringoid.view.presenter.callback.IPresenterAdapterLikesListener;
 
 import javax.inject.Inject;
 
-public class AdapterLikes extends AdapterBase {
+public class AdapterLikes extends AdapterFeed {
 
     @Inject
     IPresenterAdapterLikes presenterAdapterLikes;
@@ -22,15 +22,24 @@ public class AdapterLikes extends AdapterBase {
         presenterAdapterLikes.setListener(listenerPresenter = new ListenerPresenter());
     }
 
-    @NonNull
     @Override
-    public ViewHolderBase onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolderItemLikes(parent);
+    protected int getFeedSubtitle() {
+        return R.string.subtitle_likes;
     }
 
     @Override
-    public int getItemCount() {
+    protected int getFeedTitle() {
+        return R.string.title_likes;
+    }
+
+    @Override
+    protected int getItemsNum() {
         return presenterAdapterLikes.getItemsNum();
+    }
+
+    @Override
+    protected ViewHolderBase getViewHolder(ViewGroup parent) {
+        return new ViewHolderItemLikes(parent);
     }
 
     private class ListenerPresenter implements IPresenterAdapterLikesListener {

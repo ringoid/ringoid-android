@@ -6,10 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.ringoid.view.ui.view.ViewToolbar
+        android:id="@+id/toolbarPages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        app:toolbar_subtitle="@string/subtitle_profile"
+        app:toolbar_title="@string/title_profile">
+
+        <ImageView
+            android:id="@+id/ivSettings"
+            style="@style/selectableImage"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_menu_settings_24dp" />
+
+    </com.ringoid.view.ui.view.ViewToolbar>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srlProfilePhotos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbar_height_with_statusbar">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
