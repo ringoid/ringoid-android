@@ -60,10 +60,13 @@ public class DialogChatCompose implements View.OnClickListener {
 
     private EditTextPreIme etMessage;
     private RecyclerView rvMessages;
+    private boolean isMessagesExist;
 
     public DialogChatCompose(Context context, View container) {
         ApplicationRingoid.getComponent().inject(this);
         this.viewContainer = container;
+
+        isMessagesExist = cacheChatMessages.isDataExist(cacheMessages.getUserSelectedID());
 
         View popupView = LayoutInflater.from(context).inflate(R.layout.view_dialog_chat_compose, null);
         initViews(popupView);
@@ -102,6 +105,7 @@ public class DialogChatCompose implements View.OnClickListener {
         rvMessages.setAdapter(new AdapterChatMessages());
         rvMessages.addItemDecoration(new DividerItemDecoration(view.getContext()));
         scrollToEnd();
+        rvMessages.setVisibility(isMessagesExist ? View.VISIBLE : View.GONE);
     }
 
     private void scrollToEnd() {
@@ -115,9 +119,11 @@ public class DialogChatCompose implements View.OnClickListener {
             String message = getMessage();
             if (!TextUtils.isEmpty(message)) {
                 viewPopup.showToast(R.string.message_sent);
-                helperMessageSend.sendMessage(cacheMessages.getUserSelectedID(), message);
                 etMessage.setText("");
+                helperMessageSend.sendMessage(cacheMessages.getUserSelectedID(), message);
                 scrollToEnd();
+                if (!isMessagesExist)
+                    cancel();
             }
         }
     }
