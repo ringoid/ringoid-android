@@ -37,6 +37,7 @@ import com.ringoid.view.ui.view.callback.IViewPhotoInputListener;
 import com.ringoid.view.ui.view.utils.ClipboardUtils;
 
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -274,7 +275,10 @@ public class FragmentLogin extends FragmentBase
         public void setSMSResendDisabled(int timeSeconds) {
             if (getContext() == null) return;
             tvSMSResend.setEnabled(false);
-            tvSMSResend.setText(String.format(getResources().getString(R.string.message_SMS_resend_format), timeSeconds));
+            int secInMinute = (int) TimeUnit.MINUTES.toSeconds(1);
+            tvSMSResend.setText(String.format(getResources().getString(R.string.message_SMS_resend_format),
+                    TimeUnit.SECONDS.toMinutes(timeSeconds),
+                    timeSeconds % secInMinute));
             tvSMSResend.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
