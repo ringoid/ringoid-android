@@ -118,12 +118,13 @@ public class DialogChatCompose implements View.OnClickListener {
         if (v.getId() == R.id.ivSend) {
             String message = getMessage();
             if (!TextUtils.isEmpty(message)) {
-                viewPopup.showToast(R.string.message_sent);
                 etMessage.setText("");
                 helperMessageSend.sendMessage(cacheMessages.getUserSelectedID(), message);
                 scrollToEnd();
-                if (!isMessagesExist)
+                if (!isMessagesExist) {
+                    viewPopup.showToast(R.string.message_sent);
                     cancel();
+                }
             }
         }
     }
