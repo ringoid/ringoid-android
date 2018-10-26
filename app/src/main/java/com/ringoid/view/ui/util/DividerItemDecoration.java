@@ -19,11 +19,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-
-        int position = parent.getChildLayoutPosition(view);
-
-        if (position != 0)
-            outRect.top = margin;
+        outRect.top = margin;
     }
 
 }

@@ -105,7 +105,6 @@ public class DialogChatCompose implements View.OnClickListener {
     }
 
     private void scrollToEnd() {
-        int dataSize = cacheChatMessages.getDataSize(cacheMessages.getUserSelectedID());
         rvMessages.scrollToPosition(0);
     }
 
