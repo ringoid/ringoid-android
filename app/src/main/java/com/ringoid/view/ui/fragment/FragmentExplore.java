@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterExplore;
 import com.ringoid.view.presenter.callback.IPresenterExploreListener;
@@ -47,6 +48,11 @@ public class FragmentExplore extends FragmentFeedPage {
     void initViews(View view) {
         super.initViews(view);
         rvItems.setAdapter(new AdapterExplore());
+    }
+
+    @Override
+    protected String getTitle() {
+        return getContext().getResources().getString(R.string.title_explore);
     }
 
     @Override

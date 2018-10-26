@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterMessages;
 import com.ringoid.view.presenter.callback.IPresenterMessagesListener;
@@ -26,6 +27,11 @@ public class FragmentMessages extends FragmentFeedPage {
     @Override
     public PAGE_ENUM getPage() {
         return PAGE_ENUM.FEED_MESSAGES;
+    }
+
+    @Override
+    protected String getTitle() {
+        return getContext().getResources().getString(R.string.title_messages);
     }
 
     @Override

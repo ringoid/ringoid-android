@@ -23,6 +23,12 @@ public class FragmentMatches extends FragmentFeedPage {
         return view;
     }
 
+
+    @Override
+    protected String getTitle() {
+        return getContext().getResources().getString(R.string.title_matches);
+    }
+
     @Override
     public PAGE_ENUM getPage() {
         return PAGE_ENUM.FEED_MATCHES;

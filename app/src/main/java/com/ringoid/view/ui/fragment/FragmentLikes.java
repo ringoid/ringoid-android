@@ -55,6 +55,11 @@ public class FragmentLikes extends FragmentFeedPage {
     }
 
     @Override
+    protected String getTitle() {
+        return getContext().getResources().getString(R.string.title_likes);
+    }
+
+    @Override
     protected void onScrollState(int newState, int firstVisibleItemPosition, int offset) {
         presenterLikes.onScrollState(newState, firstVisibleItemPosition, offset);
     }

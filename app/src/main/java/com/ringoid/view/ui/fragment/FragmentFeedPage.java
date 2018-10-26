@@ -19,6 +19,7 @@ import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.IPresenterFeedPage;
 import com.ringoid.view.presenter.callback.IPresenterFeedPageListener;
 import com.ringoid.view.ui.view.RecyclerViewScrollbarColored;
+import com.ringoid.view.ui.view.ViewToolbar;
 
 import javax.inject.Inject;
 
@@ -62,8 +63,16 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
         srlFeed = view.findViewById(R.id.srlFeed);
         srlFeed.setOnRefreshListener(listenerRefresh);
         srlFeed.setColorSchemeResources(R.color.colorAccent);
+
+        setToolbarText(view);
         view.findViewById(R.id.tvPhotoAdd).setOnClickListener(this);
     }
+
+    private void setToolbarText(View view) {
+        ((ViewToolbar) view.findViewById(R.id.toolbarPages)).setText(getTitle(), null);
+    }
+
+    protected abstract String getTitle();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container) {
         return inflater.inflate(R.layout.fragment_feed_page, container, false);

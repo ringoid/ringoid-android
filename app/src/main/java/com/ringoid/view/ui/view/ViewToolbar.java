@@ -61,7 +61,7 @@ public class ViewToolbar extends FrameLayout {
         setText(title, subtitle);
     }
 
-    private void setText(String title, String subtitle) {
+    public void setText(String title, String subtitle) {
         ((TextView) findViewById(R.id.tvTitle)).setText(TextUtils.isEmpty(title) ? "" : title);
         ((TextView) findViewById(R.id.tvSubtitle)).setText(TextUtils.isEmpty(subtitle) ? "" : subtitle);
         findViewById(R.id.tvSubtitle).setVisibility(TextUtils.isEmpty(subtitle) ? GONE : VISIBLE);
