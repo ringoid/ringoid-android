@@ -71,9 +71,6 @@
     <string name="dialog_image_delete_confirm">DELETE</string>
     <string name="message_sent">Message sent</string>
     <string name="message_clipboard_chat_message">Chat message</string>
-    <string name="dialog_chat_clear_title">Clear history?</string>
-    <string name="dialog_chat_clear_message">There is no undo.\n\nYour match may have a copy of messages you both sent.</string>
-    <string name="dialog_chat_clear_confirm">clear</string>
     <string name="about">About</string>
     <string name="dialog_about_title">Ringoid app for Android</string>
     <string name="dialog_about_message">Copyright © Ringoid Ltd, 2018.\n\nRINGOID LTD is registered in England with Company No. 09427326 and VAT Reg No: GB 208660511. \n\nRegistered Office: 97 Friars Mead, London, E14 3JY, England.\n\nRingoid is a pending registration trademark of Ringoid Ltd.\n\nRingoid Ltd is trading as Ringoid.\n\nRingoid is registered with the UK\'s Information Commissioner\'s Office with registration number ZA455969 and operates within compliance of the EU General Data Protection Regulation 2018.\n\nEmail: support@ringoid.com\nWeb: www.ringoid.com</string>
