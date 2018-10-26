@@ -137,7 +137,7 @@ public class PresenterLikes implements IPresenterLikes {
             if (position == NO_VALUE) return;
             int offset = 0;
             presenterFeedPage.scrollToPosition(position + 1, offset);
-            cacheInterfaceState.setPositionScrollPageLikes(position, offset);
+            cacheInterfaceState.setPositionScrollPageLikes(position + 1, offset);
         }
     }
 }
