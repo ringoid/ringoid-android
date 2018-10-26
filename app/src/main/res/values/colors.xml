@@ -17,5 +17,6 @@
     <color name="grey_middle">#bdc1c6</color>
     <color name="grey_dark">#5d5e63</color>
     <color name="grey_middle_20">#33000000</color>
+    <color name="bg_tabbar">#cc161d24</color>
 
 </resources>

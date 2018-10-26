@@ -126,7 +126,6 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
 
             heightBottom = Math.max(0,
                     getResources().getDisplayMetrics().heightPixels - (int) (getResources().getDisplayMetrics().widthPixels / 3f * 4)
-                            - (int) getResources().getDimension(R.dimen.toolbar_height_with_statusbar)
                             - (int) getResources().getDimension(R.dimen.statusbar));
 
         }
