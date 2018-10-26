@@ -96,7 +96,9 @@ public class DialogChatCompose implements View.OnClickListener {
 
     private void initList(View view) {
         rvMessages = view.findViewById(R.id.rvItems);
-        rvMessages.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        layoutManager.setReverseLayout(true);
+        rvMessages.setLayoutManager(layoutManager);
         rvMessages.setAdapter(new AdapterChatMessages());
         rvMessages.addItemDecoration(new DividerItemDecoration(view.getContext()));
         scrollToEnd();
@@ -104,7 +106,7 @@ public class DialogChatCompose implements View.OnClickListener {
 
     private void scrollToEnd() {
         int dataSize = cacheChatMessages.getDataSize(cacheMessages.getUserSelectedID());
-        rvMessages.scrollToPosition(Math.max(0, dataSize - 1));
+        rvMessages.scrollToPosition(0);
     }
 
 

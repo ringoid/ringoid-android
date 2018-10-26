@@ -16,7 +16,7 @@ class ChatInstance implements Serializable {
 
     public void add(DataMessage dataMessage) {
         if (data == null) data = new ArrayList<>();
-        data.add(dataMessage);
+        data.add(0, dataMessage);
         if (!dataMessage.isSelf()) isReaded = false;
     }
 
