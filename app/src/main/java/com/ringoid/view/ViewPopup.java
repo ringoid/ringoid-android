@@ -6,7 +6,9 @@ package com.ringoid.view;
 import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ringoid.ApplicationRingoid;
@@ -39,14 +41,12 @@ public class ViewPopup implements IViewPopup {
         if (context == null) return;
         Toast toast = Toast.makeText(context, messageRes, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-    }
 
-    @Override
-    public void showToast(String message) {
-        Context context = refContext.get();
-        if (context == null) return;
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        View view = LayoutInflater.from(refContext.get()).inflate(R.layout.view_toast, null);
+        ((TextView) view.findViewById(android.R.id.message)).setText(messageRes);
+        toast.setView(view);
+
+        toast.show();
     }
 
     @Override
@@ -64,10 +64,5 @@ public class ViewPopup implements IViewPopup {
         }
 
         snackbar.show();
-    }
-
-    @Override
-    public void showSnackbar(int messageRes) {
-        showSnackbar(messageRes, 0, null);
     }
 }
