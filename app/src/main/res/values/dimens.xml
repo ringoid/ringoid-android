@@ -8,4 +8,5 @@
     <dimen name="animation_x_delta">8dp</dimen>
     <dimen name="dp12">12dp</dimen>
     <dimen name="toolbar_height_with_statusbar">56dp</dimen>
+    <dimen name="statusbar">24dp</dimen>
 </resources>

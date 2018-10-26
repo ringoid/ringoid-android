@@ -118,10 +118,16 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
 
     private class ItemDecoration extends RecyclerView.ItemDecoration {
 
+        private int heightBottom;
         private int margin;
 
         ItemDecoration(Context context) {
             margin = (int) context.getResources().getDimension(R.dimen.divider);
+
+            heightBottom = Math.max(0,
+                    getResources().getDisplayMetrics().heightPixels - (int) (getResources().getDisplayMetrics().widthPixels / 3f * 4)
+                            - (int) getResources().getDimension(R.dimen.toolbar_height_with_statusbar)
+                            - (int) getResources().getDimension(R.dimen.statusbar));
 
         }
 
@@ -135,6 +141,9 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
                 outRect.top = margin;
             else
                 outRect.top = 0;
+
+            if (position == state.getItemCount() - 1)
+                outRect.bottom = heightBottom;
         }
 
     }
