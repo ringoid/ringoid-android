@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.ringoid.view.ui.dialog.callback.IDialogErrorUnknownListener;
+import com.ringoid.view.ui.dialog.callback.IDialogPhotoUploadedFirstListener;
 import com.ringoid.view.ui.dialog.callback.ViewDialogsListener;
 
 public interface IViewDialogs {
@@ -18,4 +19,6 @@ public interface IViewDialogs {
     void showDialogErrorUnknown(IDialogErrorUnknownListener listenerDialogErrorUnknown);
 
     void setListener(ViewDialogsListener listener);
+
+    void showDialogPhotoUploadedFirst(IDialogPhotoUploadedFirstListener listenerDialogPhotoUpload);
 }

@@ -144,5 +144,8 @@
     <string name="subtitle_messages">Tap to see messages and reply</string>
     <string name="subtitle_explore">Scroll. Swipe. Tap to send a like</string>
     <string name="title_legal">Legal</string>
+    <string name="dialog_photo_upload_first_message">Photo added</string>
+    <string name="dialog_photo_upload_first_photo_add">Add another photo</string>
+    <string name="dialog_photo_upload_first_feed">Browse New Faces</string>
 
 </resources>

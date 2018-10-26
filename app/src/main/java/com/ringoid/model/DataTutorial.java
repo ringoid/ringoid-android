@@ -5,21 +5,21 @@ import java.io.Serializable;
 
 public class DataTutorial implements Serializable {
 
-    public boolean isLikesShown;
-    public boolean isExploreShown;
-    public boolean isShowDialogProfileLikes;
-    public boolean isShowDialogHiddenMode;
-    public boolean isShowDialogExplore;
     public String imageLikesId;
     public int imageLikes;
+    private boolean showDialogPhotoAdded;
 
     public DataTutorial() {
-        isLikesShown = false;
-        isExploreShown = false;
-        isShowDialogHiddenMode = true;
-        isShowDialogProfileLikes = true;
-        isShowDialogExplore = true;
         imageLikes = 0;
         imageLikesId = null;
+        showDialogPhotoAdded = true;
+    }
+
+    public boolean isShowDialogPhotoAdded() {
+        return showDialogPhotoAdded;
+    }
+
+    public void setShowDialogPhotoAdded(boolean isShow) {
+        showDialogPhotoAdded = isShow;
     }
 }

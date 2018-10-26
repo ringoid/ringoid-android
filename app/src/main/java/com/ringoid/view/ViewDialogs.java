@@ -8,7 +8,9 @@ import android.view.View;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.view.ui.dialog.DialogChatCompose;
 import com.ringoid.view.ui.dialog.DialogErrorUnknown;
+import com.ringoid.view.ui.dialog.DialogPhotoUploadedFirst;
 import com.ringoid.view.ui.dialog.callback.IDialogErrorUnknownListener;
+import com.ringoid.view.ui.dialog.callback.IDialogPhotoUploadedFirstListener;
 import com.ringoid.view.ui.dialog.callback.ViewDialogsListener;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 
@@ -28,6 +30,7 @@ public class ViewDialogs implements IViewDialogs {
     private WeakReference<DialogChatCompose> refDialogChatCompose;
     private WeakReference<DialogErrorUnknown> refDialogErrorUnknown;
     private WeakReference<AlertDialog> refDialogMessage;
+    private WeakReference<DialogPhotoUploadedFirst> refDialogPhotoUploadedFirst;
 
     private DialogErrorUnknownListener dialogErrorUnknownListener;
     private WeakReference<ViewDialogsListener> refListener;
@@ -83,6 +86,17 @@ public class ViewDialogs implements IViewDialogs {
     @Override
     public void setListener(ViewDialogsListener listener) {
         this.refListener = new WeakReference<>(listener);
+    }
+
+    @Override
+    public void showDialogPhotoUploadedFirst(IDialogPhotoUploadedFirstListener listener) {
+        if (refDialogPhotoUploadedFirst != null && refDialogPhotoUploadedFirst.get() != null)
+            refDialogPhotoUploadedFirst.get().cancel();
+
+        if (refContext == null || refContext.get() == null) return;
+        DialogPhotoUploadedFirst dialog = new DialogPhotoUploadedFirst(refContext.get(), listener);
+        dialog.show();
+        refDialogPhotoUploadedFirst = new WeakReference<>(dialog);
     }
 
     private class DialogErrorUnknownListener implements IDialogErrorUnknownListener {

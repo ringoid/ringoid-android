@@ -29,28 +29,6 @@ public class CacheTutorial implements ICacheTutorial {
         return dataTutorial;
     }
 
-
-    @Override
-    public boolean isShowDialogLikes() {
-        return getData().isShowDialogProfileLikes;
-    }
-
-    @Override
-    public boolean isShowDialogHiddenMode() {
-        return getData().isShowDialogHiddenMode;
-    }
-
-    @Override
-    public void setDialogHiddenModeShow(boolean isShow) {
-        getData().isShowDialogHiddenMode = isShow;
-        updateData();
-    }
-
-    @Override
-    public boolean isShowDialogExplore() {
-        return getData().isShowDialogExplore;
-    }
-
     @Override
     public void resetLikesNum() {
         getData().imageLikes = 0;
@@ -66,5 +44,16 @@ public class CacheTutorial implements ICacheTutorial {
     public void resetCache() {
         dataTutorial = null;
         cacheStorage.removeData(FileEnum.TUTORIAL);
+    }
+
+    @Override
+    public boolean isShowDialogPhotoAdded() {
+        return getData().isShowDialogPhotoAdded();
+    }
+
+    @Override
+    public void setShowDialogPhotoAdded(boolean isShow) {
+        getData().setShowDialogPhotoAdded(isShow);
+        updateData();
     }
 }

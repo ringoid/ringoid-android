@@ -5,11 +5,13 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
+import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.repository.RepositoryPhotoUploadUri;
 import com.ringoid.model.PhotoUpload;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.presenter.util.IHelperConnection;
+import com.ringoid.view.ui.dialog.callback.IDialogPhotoUploadedFirstListener;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -36,10 +38,16 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
     @Inject
     INavigator navigator;
 
+    @Inject
+    ICacheTutorial cacheTutorial;
+
+    private IDialogPhotoUploadedFirstListener listenerDialogPhotoUpload;
+
     private WeakReference<IPresenterPhotoCropListener> refListener;
 
     public PresenterPhotoCrop() {
         ApplicationRingoid.getComponent().inject(this);
+        listenerDialogPhotoUpload = new DialogPhotoUploadedFirstListener();
     }
 
     @Override
@@ -57,8 +65,14 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
         cacheInterfaceState.resetOriginPhotoId();
         cacheProfile.addPhotoLocal(photoUpload.getFileUri(), photoUpload.getClientPhotoId());
 
+        checkDialogPhotoAdd();
         new RepositoryPhotoUploadUri(photoUpload).request();
         onBackPressed();
+    }
+
+    private void checkDialogPhotoAdd() {
+        if (!cacheTutorial.isShowDialogPhotoAdded()) return;
+        viewDialogs.showDialogPhotoUploadedFirst(listenerDialogPhotoUpload);
     }
 
     @Override
@@ -81,5 +95,20 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
         cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_PROFILE);
         navigator.navigateFeed();
         return true;
+    }
+
+    private class DialogPhotoUploadedFirstListener implements IDialogPhotoUploadedFirstListener {
+
+        @Override
+        public void onSelectFeed() {
+            cacheTutorial.setShowDialogPhotoAdded(false);
+            cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_EXPLORE);
+            navigator.navigateFeed();
+        }
+
+        @Override
+        public void onSelectUploadPhoto() {
+            navigator.navigatePhotoAdd();
+        }
     }
 }
