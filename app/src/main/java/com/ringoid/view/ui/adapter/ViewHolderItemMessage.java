@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.view.presenter.IPresenterAdapterMessages;
 import com.ringoid.view.ui.util.IndicatorHelper;
 
@@ -17,6 +18,9 @@ public class ViewHolderItemMessage extends ViewHolderItemLikeBase {
 
     @Inject
     IPresenterAdapterMessages presenterAdapterMessages;
+
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
 
     private AdapterMessagesImages adapter;
     private ImageView ivMessage;
@@ -67,7 +71,7 @@ public class ViewHolderItemMessage extends ViewHolderItemLikeBase {
     }
 
     private void setMessageState(int position) {
-        if (!presenterAdapterMessages.isMessagesExist(position)) {
+        if (!presenterAdapterMessages.isMessagesExist(position) || cacheInterfaceState.isDialogComposeShown()) {
             ivMessage.setImageDrawable(null);
             return;
         }
