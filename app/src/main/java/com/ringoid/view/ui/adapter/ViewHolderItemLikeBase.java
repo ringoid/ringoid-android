@@ -40,6 +40,7 @@ public abstract class ViewHolderItemLikeBase extends ViewHolderBase
         layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvItems.setLayoutManager(layoutManager);
         new PagerSnapHelper().attachToRecyclerView(rvItems);
+        rvItems.setScrollingTouchSlop(RecyclerView.TOUCH_SLOP_PAGING);
 
         initList();
 

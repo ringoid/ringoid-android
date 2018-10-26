@@ -94,6 +94,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         rvItems.addOnScrollListener(new ListenerScroll());
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
+        rvItems.setScrollingTouchSlop(RecyclerView.TOUCH_SLOP_PAGING);
 
         dotsIndicatorHelper = IndicatorHelper.getLinesHelper((FrameLayout) view.findViewById(R.id.flDots), rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
         dotsIndicatorHelper.updateData(presenterProfile.getItemsNum());

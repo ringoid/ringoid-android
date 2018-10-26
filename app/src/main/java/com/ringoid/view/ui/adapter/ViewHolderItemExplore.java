@@ -50,6 +50,7 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
         rvItems.addOnScrollListener(new ListenerScrollPhotos());
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
+        rvItems.setScrollingTouchSlop(RecyclerView.TOUCH_SLOP_PAGING);
         dotsIndicatorHelper = IndicatorHelper.getLinesHelper(flDots, rvItems, layoutManager);
     }
 
