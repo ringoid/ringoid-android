@@ -25,8 +25,8 @@ public class ViewHolderItemMessage extends ViewHolderItemLikeBase {
     private AdapterMessagesImages adapter;
     private ImageView ivMessage;
 
-    ViewHolderItemMessage(ViewGroup parent) {
-        super(parent, R.layout.view_item_messages_images);
+    ViewHolderItemMessage(ViewGroup parent, RecyclerView.RecycledViewPool viewPool) {
+        super(parent, R.layout.view_item_messages_images, viewPool);
         ApplicationRingoid.getComponent().inject(this);
 
         ivMessage = itemView.findViewById(R.id.ivMessage);

@@ -1,6 +1,7 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.adapter;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
@@ -16,10 +17,12 @@ public class AdapterMessages extends AdapterFeed {
     IPresenterAdapterMessages presenterAdapterMessages;
 
     private IPresenterAdapterMessagesListener listenerPresenter;
+    private RecyclerView.RecycledViewPool viewPool;
 
     public AdapterMessages() {
         ApplicationRingoid.getComponent().inject(this);
         presenterAdapterMessages.setListener(listenerPresenter = new ListenerPresenter());
+        viewPool = new RecyclerView.RecycledViewPool();
     }
 
     @Override
@@ -39,7 +42,7 @@ public class AdapterMessages extends AdapterFeed {
 
     @Override
     protected ViewHolderBase getViewHolder(ViewGroup parent) {
-        return new ViewHolderItemMessage(parent);
+        return new ViewHolderItemMessage(parent, viewPool);
     }
 
     private class ListenerPresenter implements IPresenterAdapterMessagesListener {

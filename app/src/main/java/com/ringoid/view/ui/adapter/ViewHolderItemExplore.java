@@ -29,7 +29,7 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
     private DialogReport dialogReport;
     private LinearLayoutManager layoutManager;
 
-    public ViewHolderItemExplore(ViewGroup parent) {
+    public ViewHolderItemExplore(ViewGroup parent, RecyclerView.RecycledViewPool viewPool) {
         super(parent, R.layout.view_item_images_explore);
         ApplicationRingoid.getComponent().inject(this);
 
@@ -37,10 +37,10 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
         flDots.setOnClickListener(this);
         itemView.findViewById(R.id.ivImageMenu).setOnClickListener(this);
 
-        initList();
+        initList(viewPool);
     }
 
-    private void initList() {
+    private void initList(RecyclerView.RecycledViewPool viewPool) {
         rvItems = itemView.findViewById(R.id.rvImages);
         layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
         adapter = new AdapterExploreImages();
@@ -48,6 +48,7 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
         rvItems.setLayoutManager(layoutManager);
         rvItems.setAdapter(adapter);
         rvItems.addOnScrollListener(new ListenerScrollPhotos());
+        rvItems.setRecycledViewPool(viewPool);
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
         rvItems.setScrollingTouchSlop(RecyclerView.TOUCH_SLOP_PAGING);

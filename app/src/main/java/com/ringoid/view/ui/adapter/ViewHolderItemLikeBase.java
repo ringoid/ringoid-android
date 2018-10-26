@@ -23,7 +23,7 @@ public abstract class ViewHolderItemLikeBase extends ViewHolderBase
     RecyclerView rvItems;
     View vChatEmpty, vChatFull;
 
-    ViewHolderItemLikeBase(ViewGroup container, int layoutRes) {
+    ViewHolderItemLikeBase(ViewGroup container, int layoutRes, RecyclerView.RecycledViewPool viewPool) {
         super(container, layoutRes);
 
         flDots = itemView.findViewById(R.id.flDots);
@@ -41,6 +41,7 @@ public abstract class ViewHolderItemLikeBase extends ViewHolderBase
         rvItems.setLayoutManager(layoutManager);
         new PagerSnapHelper().attachToRecyclerView(rvItems);
         rvItems.setScrollingTouchSlop(RecyclerView.TOUCH_SLOP_PAGING);
+        rvItems.setRecycledViewPool(viewPool);
 
         initList();
 

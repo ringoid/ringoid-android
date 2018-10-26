@@ -19,10 +19,9 @@ public class ViewHolderItemLikes extends ViewHolderItemLikeBase {
 
     private AdapterLikesImages adapter;
 
-    ViewHolderItemLikes(ViewGroup parent) {
-        super(parent, R.layout.view_item_images_likes);
+    ViewHolderItemLikes(ViewGroup parent, RecyclerView.RecycledViewPool viewPool) {
+        super(parent, R.layout.view_item_images_likes, viewPool);
         ApplicationRingoid.getComponent().inject(this);
-        initList();
     }
 
     @Override

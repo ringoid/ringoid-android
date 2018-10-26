@@ -1,6 +1,7 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.adapter;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
@@ -16,10 +17,12 @@ public class AdapterLikes extends AdapterFeed {
     IPresenterAdapterLikes presenterAdapterLikes;
 
     private ListenerPresenter listenerPresenter;
+    private RecyclerView.RecycledViewPool viewPool;
 
     public AdapterLikes() {
         ApplicationRingoid.getComponent().inject(this);
         presenterAdapterLikes.setListener(listenerPresenter = new ListenerPresenter());
+        viewPool = new RecyclerView.RecycledViewPool();
     }
 
     @Override
@@ -39,7 +42,7 @@ public class AdapterLikes extends AdapterFeed {
 
     @Override
     protected ViewHolderBase getViewHolder(ViewGroup parent) {
-        return new ViewHolderItemLikes(parent);
+        return new ViewHolderItemLikes(parent, viewPool);
     }
 
     private class ListenerPresenter implements IPresenterAdapterLikesListener {
