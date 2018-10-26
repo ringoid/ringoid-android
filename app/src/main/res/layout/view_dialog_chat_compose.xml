@@ -11,7 +11,7 @@
         android:id="@+id/rvItems"
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="@color/grey_middle_20"
+        android:background="@drawable/gradient_chat"
         android:clipToPadding="false"
         android:paddingBottom="4dp"
         android:paddingTop="4dp"
