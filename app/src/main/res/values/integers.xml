@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="message_compose_lines_max">5</integer>
+    <integer name="message_compose_lines_max">4</integer>
 </resources>
