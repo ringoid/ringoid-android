@@ -72,6 +72,7 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
 
     private void checkDialogPhotoAdd() {
         if (!cacheTutorial.isShowDialogPhotoAdded()) return;
+        cacheTutorial.setShowDialogPhotoAdded(false);
         viewDialogs.showDialogPhotoUploadedFirst(listenerDialogPhotoUpload);
     }
 
@@ -92,6 +93,7 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
 
     @Override
     public boolean onBackPressed() {
+        cacheTutorial.setShowDialogPhotoAdded(false);
         cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_PROFILE);
         navigator.navigateFeed();
         return true;
@@ -101,7 +103,6 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
 
         @Override
         public void onSelectFeed() {
-            cacheTutorial.setShowDialogPhotoAdded(false);
             cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_EXPLORE);
             navigator.navigateFeed();
         }
@@ -109,6 +110,7 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
         @Override
         public void onSelectUploadPhoto() {
             navigator.navigatePhotoAdd();
+            cacheTutorial.setShowDialogPhotoAdded(true);
         }
     }
 }

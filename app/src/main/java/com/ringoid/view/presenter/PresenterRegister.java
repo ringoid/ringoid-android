@@ -8,6 +8,7 @@ import android.view.View;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
+import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.IRepositoryRegisterPhone;
@@ -63,6 +64,9 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Inject
     IViewDialogs viewDialogs;
+
+    @Inject
+    ICacheTutorial cacheTutorial;
 
     private ListenerTimer listenerTimer;
     private ListenerRegisterCodeConfirm listenerRegisterCodeConfirm;
@@ -258,6 +262,7 @@ public class PresenterRegister implements IPresenterRegister {
             setSMSInputStateEnabled(true);
             if (cacheUser.isRegistered()) {
                 hideKeyboard();
+                cacheTutorial.setShowDialogPhotoAdded(false);
                 navigator.navigateFeed();
             } else loginGoProfileUpdate();
         }
