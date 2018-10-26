@@ -2,28 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="@string/dialog_photo_upload_first_message"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvFeed"
             style="@style/buttonBase.Dialog"
+            android:layout_width="match_parent"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
             android:text="@string/dialog_photo_upload_first_feed"
             android:textColor="@color/grey_middle" />
 
         <TextView
             android:id="@+id/tvPhotoAdd"
             style="@style/buttonBase.Dialog"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
             android:text="@string/dialog_photo_upload_first_photo_add"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
