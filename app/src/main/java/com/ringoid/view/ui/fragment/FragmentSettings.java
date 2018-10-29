@@ -45,7 +45,6 @@ public class FragmentSettings extends FragmentBase
     private IDialogLogoutListener listenerDialogLogout;
     private ListenerPresenterSettings listenerPresenter;
     private ScrollView svContent;
-    private RangeSeekBar seekbarAge;
 
     @Override
     public PAGE_ENUM getPage() {
@@ -84,9 +83,6 @@ public class FragmentSettings extends FragmentBase
         svContent = view.findViewById(R.id.svContent);
         svContent.getViewTreeObserver().addOnScrollChangedListener(new ListenerScroll());
 
-        view.findViewById(R.id.sbDistance).setEnabled(false);
-        seekbarAge = view.findViewById(R.id.vrAge).findViewById(R.id.rangeSeekBar);
-        seekbarAge.setSeekBarChangeListener(new DisabledSeekbarListener());
     }
 
     @Override
@@ -156,24 +152,6 @@ public class FragmentSettings extends FragmentBase
         @Override
         public void onScrollChanged() {
             presenterSettings.onScroll(svContent.getScrollY());
-        }
-    }
-
-    private class DisabledSeekbarListener implements RangeSeekBar.SeekBarChangeListener {
-        @Override
-        public void onStartedSeeking() {
-
-        }
-
-        @Override
-        public void onStoppedSeeking() {
-
-        }
-
-        @Override
-        public void onValueChanged(int i, int i1) {
-            if (seekbarAge.getMaxThumbValue() != 100) seekbarAge.setMaxThumbValue(100);
-            if (seekbarAge.getMinThumbValue() != 0) seekbarAge.setMinThumbValue(0);
         }
     }
 }
