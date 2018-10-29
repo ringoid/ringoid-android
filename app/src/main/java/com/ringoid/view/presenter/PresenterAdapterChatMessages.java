@@ -62,11 +62,6 @@ public class PresenterAdapterChatMessages implements IPresenterAdapterChatMessag
         viewPopup.showToast(R.string.message_copy_to_clipboard);
     }
 
-    @Override
-    public void onClick(Context context, int adapterPosition) {
-        onLongClick(context, adapterPosition);
-    }
-
     private class CacheListener implements ICacheChatMessagesListener {
         @Override
         public void onDataChange() {
