@@ -132,15 +132,15 @@
     <string name="message_photo_upload">Upload your photo</string>
 
     <string name="title_matches">Matches</string>
-    <string name="subtitle_matches">Tap to send a message</string>
+    <string name="subtitle_matches">Tap anywhere to compose a message</string>
     <string name="message_empty_matches">When you like someone and they like you too, it\'s a match, and you can message each other</string>
 
     <string name="title_explore">New Faces</string>
-    <string name="subtitle_explore">Scroll. Swipe. Tap to send a like</string>
+    <string name="subtitle_explore">Scroll. Swipe. Tap anywhere to send a like</string>
     <string name="message_no_photo_explore">Discover users of the opposite sex</string>
 
     <string name="title_messages">Messages</string>
-    <string name="subtitle_messages">Tap to see messages and reply</string>
+    <string name="subtitle_messages">Tap anywhere to show/hide messages</string>
     <string name="message_no_photo_messages">See who messages you</string>
 
     <string name="title_likes">Who Likes You</string>
