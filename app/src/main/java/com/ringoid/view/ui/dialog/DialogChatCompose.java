@@ -27,7 +27,9 @@ import com.ringoid.view.ui.util.DividerItemDecoration;
 import com.ringoid.view.ui.util.IHelperMessageSend;
 import com.ringoid.view.ui.util.KeyboardUtils;
 import com.ringoid.view.ui.view.EditTextPreIme;
+import com.ringoid.view.ui.view.RecyclerViewMeasureListener;
 import com.ringoid.view.ui.view.callback.IEditTextPreImeListener;
+import com.ringoid.view.ui.view.callback.IMeasureListener;
 
 import javax.inject.Inject;
 
@@ -59,7 +61,7 @@ public class DialogChatCompose implements View.OnClickListener {
     private View viewContainer;
 
     private EditTextPreIme etMessage;
-    private RecyclerView rvMessages;
+    private RecyclerViewMeasureListener rvMessages;
     private boolean isMessagesExist;
 
     public DialogChatCompose(Context context, View container) {
@@ -99,6 +101,7 @@ public class DialogChatCompose implements View.OnClickListener {
 
     private void initList(View view) {
         rvMessages = view.findViewById(R.id.rvItems);
+        rvMessages.setListener(new ListenerSizeChanged());
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         layoutManager.setReverseLayout(true);
         rvMessages.setLayoutManager(layoutManager);
@@ -164,6 +167,13 @@ public class DialogChatCompose implements View.OnClickListener {
             }
 
             return false;
+        }
+    }
+
+    private class ListenerSizeChanged implements IMeasureListener {
+        @Override
+        public void onUpdate() {
+            scrollToEnd();
         }
     }
 }
