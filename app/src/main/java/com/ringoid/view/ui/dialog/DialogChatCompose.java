@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -105,7 +104,7 @@ public class DialogChatCompose implements View.OnClickListener {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         layoutManager.setReverseLayout(true);
         rvMessages.setLayoutManager(layoutManager);
-        rvMessages.setAdapter(new AdapterChatMessages());
+        rvMessages.setAdapter(new AdapterChatMessages(new ListenerAdapter()));
         rvMessages.addItemDecoration(new DividerItemDecoration(view.getContext()));
         scrollToEnd();
         rvMessages.setVisibility(isMessagesExist ? View.VISIBLE : View.GONE);
@@ -174,6 +173,13 @@ public class DialogChatCompose implements View.OnClickListener {
         @Override
         public void onUpdate() {
             scrollToEnd();
+        }
+    }
+
+    private class ListenerAdapter implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            cancel();
         }
     }
 }
