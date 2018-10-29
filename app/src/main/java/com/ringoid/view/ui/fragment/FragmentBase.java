@@ -23,10 +23,12 @@ public class FragmentBase extends Fragment {
     }
 
     void showKeyboard(EditText editView) {
+        if (getContext() == null) return;
         keyboardUtils.keyboardShow(getContext(), editView);
     }
 
     void hideKeyboard() {
+        if (getContext() == null) return;
         keyboardUtils.keyboardHide(getContext(), getView());
     }
 
