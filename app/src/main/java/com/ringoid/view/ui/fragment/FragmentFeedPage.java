@@ -28,8 +28,9 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
     RecyclerViewScrollbarColored rvItems;
     LinearLayoutManager layoutManager;
     SwipeRefreshLayout srlFeed;
-    View vPhotoEmpty, vEmpty;
-    TextView tvNoPhoto, tvEmpty;
+
+    View vNoPhotoContainer, vToolbar;
+    TextView tvNoPhotoMessage, tvNoContentMessage;
 
     @Inject
     INavigator navigator;
@@ -54,11 +55,11 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
         rvItems.addOnScrollListener(new OnScrollListener());
         rvItems.addItemDecoration(new ItemDecoration(getContext()));
 
-        vPhotoEmpty = view.findViewById(R.id.llNoPhoto);
-        tvNoPhoto = view.findViewById(R.id.tvMessageNoPhoto);
+        vNoPhotoContainer = view.findViewById(R.id.llNoPhoto);
+        tvNoPhotoMessage = view.findViewById(R.id.tvMessageNoPhoto);
 
-        vEmpty = view.findViewById(R.id.flEmpty);
-        tvEmpty = view.findViewById(R.id.tvEmpty);
+        vToolbar = view.findViewById(R.id.toolbarPages);
+        tvNoContentMessage = view.findViewById(R.id.tvEmpty);
 
         srlFeed = view.findViewById(R.id.srlFeed);
         srlFeed.setOnRefreshListener(listenerRefresh);
@@ -89,17 +90,26 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
     }
 
     void showErrorNoPhoto(int messageRes) {
-        vEmpty.setVisibility(View.GONE);
         srlFeed.setVisibility(View.GONE);
-        vPhotoEmpty.setVisibility(View.VISIBLE);
-        tvNoPhoto.setText(messageRes);
+        tvNoContentMessage.setVisibility(View.GONE);
+        vNoPhotoContainer.setVisibility(View.VISIBLE);
+        tvNoPhotoMessage.setText(messageRes);
+        vToolbar.setVisibility(View.VISIBLE);
     }
 
     void showEmpty(int messageRes) {
-        vEmpty.setVisibility(View.VISIBLE);
         srlFeed.setVisibility(View.GONE);
-        vPhotoEmpty.setVisibility(View.GONE);
-        tvEmpty.setText(messageRes);
+        vNoPhotoContainer.setVisibility(View.GONE);
+        tvNoContentMessage.setVisibility(View.VISIBLE);
+        tvNoContentMessage.setText(messageRes);
+        vToolbar.setVisibility(View.VISIBLE);
+    }
+
+    void showContent() {
+        srlFeed.setVisibility(View.VISIBLE);
+        vNoPhotoContainer.setVisibility(View.GONE);
+        tvNoContentMessage.setVisibility(View.GONE);
+        vToolbar.setVisibility(View.GONE);
     }
 
     private void onScroll(int dy, int scrollSum) {
