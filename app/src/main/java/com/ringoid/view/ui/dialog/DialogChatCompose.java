@@ -2,17 +2,15 @@ package com.ringoid.view.ui.dialog;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
@@ -34,7 +32,7 @@ import javax.inject.Inject;
 
 public class DialogChatCompose implements View.OnClickListener {
 
-    PopupWindow dialog;
+    AlertDialog dialog;
 
     @Inject
     KeyboardUtils keyboardUtils;
@@ -72,14 +70,9 @@ public class DialogChatCompose implements View.OnClickListener {
         View popupView = LayoutInflater.from(context).inflate(R.layout.view_dialog_chat_compose, null);
         initViews(popupView);
 
-        dialog = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
-        dialog.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-        dialog.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
-        dialog.setAnimationStyle(0);
-
-        dialog.setOutsideTouchable(true);
-        dialog.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
+        dialog = new AlertDialog.Builder(popupView.getContext(), R.style.themeDialogFullscreen).create();
+        dialog.setView(popupView);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setOnDismissListener(new ListenerDismiss());
     }
 
@@ -137,9 +130,10 @@ public class DialogChatCompose implements View.OnClickListener {
 
     public void show() {
         if (dialog == null) return;
-        dialog.showAtLocation(viewContainer, Gravity.BOTTOM, 0, 0);
+        dialog.show();
         cacheInterfaceState.setDialogComposeShowState(true);
         etMessage.requestFocus();
+        keyboardUtils.keyboardShow(dialog.getWindow());
     }
 
     public void cancel() {
@@ -147,9 +141,10 @@ public class DialogChatCompose implements View.OnClickListener {
         dialog.dismiss();
     }
 
-    private class ListenerDismiss implements PopupWindow.OnDismissListener {
+    private class ListenerDismiss implements DialogInterface.OnDismissListener {
         @Override
-        public void onDismiss() {
+        public void onDismiss(DialogInterface dialog) {
+
             keyboardUtils.keyboardHide(viewContainer.getContext(), viewContainer);
 
             cacheMessageCompose.setMessage(getMessage());
@@ -176,7 +171,7 @@ public class DialogChatCompose implements View.OnClickListener {
         }
     }
 
-    private class ListenerAdapter implements View.OnClickListener{
+    private class ListenerAdapter implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             cancel();
