@@ -101,7 +101,6 @@ public class DialogChatCompose implements View.OnClickListener {
         rvMessages.setAdapter(new AdapterChatMessages(new ListenerAdapter()));
         rvMessages.addItemDecoration(new DividerItemDecoration(view.getContext()));
         scrollToEnd();
-        rvMessages.setVisibility(isMessagesExist ? View.VISIBLE : View.GONE);
     }
 
     private void scrollToEnd() {
