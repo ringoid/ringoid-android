@@ -44,8 +44,7 @@
 
                 <TextView
                     style="@style/settings_privacy_item_value"
-                    android:text="@string/settings_location_value"
-                    android:textColor="@color/grey_dark" />
+                    android:text="@string/settings_location_value" />
 
             </LinearLayout>
 
