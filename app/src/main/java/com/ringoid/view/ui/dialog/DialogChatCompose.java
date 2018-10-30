@@ -6,12 +6,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
@@ -26,6 +29,8 @@ import com.ringoid.view.ui.util.IHelperMessageSend;
 import com.ringoid.view.ui.util.KeyboardUtils;
 import com.ringoid.view.ui.view.EditTextPreIme;
 import com.ringoid.view.ui.view.callback.IEditTextPreImeListener;
+
+import java.lang.ref.WeakReference;
 
 import javax.inject.Inject;
 
@@ -88,7 +93,6 @@ public class DialogChatCompose implements View.OnClickListener {
             etMessage.setSelection(message.length());
             cacheMessageCompose.resetCache();
         }
-        initList(view);
 
     }
 
@@ -103,6 +107,7 @@ public class DialogChatCompose implements View.OnClickListener {
     }
 
     private void scrollToEnd() {
+        if (rvMessages == null) return;
         rvMessages.scrollToPosition(0);
     }
 
@@ -135,6 +140,32 @@ public class DialogChatCompose implements View.OnClickListener {
     public void cancel() {
         if (dialog == null) return;
         dialog.dismiss();
+    }
+
+    private void showMessages() {
+        new Handler().postDelayed(new RunnableListShow(this), 250);
+    }
+
+    private Dialog getDialog() {
+        return dialog;
+    }
+
+    private static class RunnableListShow implements Runnable {
+
+        private WeakReference<DialogChatCompose> refDialog;
+
+        RunnableListShow(DialogChatCompose dialog) {
+            this.refDialog = new WeakReference<>(dialog);
+        }
+
+        @Override
+        public void run() {
+            if (refDialog == null) return;
+            DialogChatCompose dialog = refDialog.get();
+            if (dialog == null) return;
+            LayoutInflater.from(dialog.getDialog().getContext()).inflate(R.layout.view_messages_in_dialog, (ViewGroup) dialog.getDialog().findViewById(R.id.flMessages), true);
+            dialog.initList(dialog.getDialog());
+        }
     }
 
     private class ListenerDismiss implements DialogInterface.OnDismissListener {
@@ -187,7 +218,7 @@ public class DialogChatCompose implements View.OnClickListener {
         public void onShow(DialogInterface dialog) {
             cacheInterfaceState.setDialogComposeShowState(true);
             etMessage.requestFocus();
+            showMessages();
         }
     }
-
 }
