@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -24,9 +25,7 @@ import com.ringoid.view.ui.util.DividerItemDecoration;
 import com.ringoid.view.ui.util.IHelperMessageSend;
 import com.ringoid.view.ui.util.KeyboardUtils;
 import com.ringoid.view.ui.view.EditTextPreIme;
-import com.ringoid.view.ui.view.RecyclerViewMeasureListener;
 import com.ringoid.view.ui.view.callback.IEditTextPreImeListener;
-import com.ringoid.view.ui.view.callback.IMeasureListener;
 
 import javax.inject.Inject;
 
@@ -58,7 +57,7 @@ public class DialogChatCompose implements View.OnClickListener {
     private View viewContainer;
 
     private EditTextPreIme etMessage;
-    private RecyclerViewMeasureListener rvMessages;
+    private RecyclerView rvMessages;
     private boolean isMessagesExist;
 
     public DialogChatCompose(Context context, View container) {
@@ -74,11 +73,12 @@ public class DialogChatCompose implements View.OnClickListener {
 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setOnDismissListener(new ListenerDismiss());
+        dialog.setOnShowListener(new ListenerShow());
+        keyboardUtils.keyboardShow(dialog.getWindow());
     }
 
     private void initViews(Dialog view) {
         view.findViewById(R.id.ivSend).setOnClickListener(this);
-        view.findViewById(R.id.rvItems).setOnTouchListener(new TouchListener());
         etMessage = view.findViewById(R.id.etMessage);
         etMessage.setListener(new ListenerViewPreIme());
 
@@ -94,13 +94,12 @@ public class DialogChatCompose implements View.OnClickListener {
 
     private void initList(Dialog view) {
         rvMessages = view.findViewById(R.id.rvItems);
-        rvMessages.setListener(new ListenerSizeChanged());
+        rvMessages.setOnTouchListener(new TouchListener());
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         layoutManager.setReverseLayout(true);
         rvMessages.setLayoutManager(layoutManager);
         rvMessages.setAdapter(new AdapterChatMessages(new ListenerAdapter()));
         rvMessages.addItemDecoration(new DividerItemDecoration(view.getContext()));
-        scrollToEnd();
     }
 
     private void scrollToEnd() {
@@ -131,9 +130,6 @@ public class DialogChatCompose implements View.OnClickListener {
     public void show() {
         if (dialog == null) return;
         dialog.show();
-        cacheInterfaceState.setDialogComposeShowState(true);
-        etMessage.requestFocus();
-        keyboardUtils.keyboardShow(dialog.getWindow());
     }
 
     public void cancel() {
@@ -164,13 +160,6 @@ public class DialogChatCompose implements View.OnClickListener {
         }
     }
 
-    private class ListenerSizeChanged implements IMeasureListener {
-        @Override
-        public void onUpdate() {
-            scrollToEnd();
-        }
-    }
-
     private class ListenerAdapter implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -179,13 +168,26 @@ public class DialogChatCompose implements View.OnClickListener {
     }
 
     private class TouchListener implements View.OnTouchListener {
+        private int last_action;
+
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (event.getAction() == MotionEvent.ACTION_UP
+                    && last_action == MotionEvent.ACTION_DOWN) {
                 cancel();
                 return true;
             }
+            last_action = event.getAction();
             return false;
         }
     }
+
+    private class ListenerShow implements DialogInterface.OnShowListener {
+        @Override
+        public void onShow(DialogInterface dialog) {
+            cacheInterfaceState.setDialogComposeShowState(true);
+            etMessage.requestFocus();
+        }
+    }
+
 }
