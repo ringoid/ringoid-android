@@ -30,7 +30,7 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_favorite_pink_96dp"
+            android:src="@drawable/ic_romance_pink_96dp"
             android:visibility="invisible" />
 
     </FrameLayout>

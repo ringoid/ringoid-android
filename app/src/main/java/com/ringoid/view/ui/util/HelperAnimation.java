@@ -79,7 +79,7 @@ public class HelperAnimation implements IHelperAnimation {
     @Override
     public void showPopupMatches(ViewGroup container) {
         if (generatorMatches == null) {
-            Bitmap bitmap = getBitmap(container.getContext(), R.drawable.ic_match_red_24dp);
+            Bitmap bitmap = getBitmap(container.getContext(), R.drawable.ic_romance_pink_24dp);
             generatorMatches = new ParticleGenerator(bitmap);
         }
 
