@@ -14,7 +14,6 @@ import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
-import com.ringoid.controller.data.repository.IRepositoryRegisterLogout;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
 
@@ -33,9 +32,6 @@ public class LogoutHelper implements ILogoutHelper {
 
     @Inject
     ICacheTutorial cacheTutorial;
-
-    @Inject
-    IRepositoryRegisterLogout repositoryRegisterLogout;
 
     @Inject
     INavigatorPages navigatorPages;
@@ -73,7 +69,6 @@ public class LogoutHelper implements ILogoutHelper {
 
     @Override
     public void logout() {
-        repositoryRegisterLogout.request();
         if (cacheUser.isRegistered()) {
             cacheToken.resetCache();
             cacheUser.resetCache();

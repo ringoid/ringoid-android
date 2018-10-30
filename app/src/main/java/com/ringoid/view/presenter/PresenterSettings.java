@@ -4,8 +4,11 @@ package com.ringoid.view.presenter;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheBlacklist;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
+import com.ringoid.controller.data.memorycache.ICacheToken;
+import com.ringoid.controller.data.repository.IRepositoryRegisterLogout;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.callback.IPresenterSettingsListener;
+import com.ringoid.view.presenter.util.ILogoutHelper;
 
 import java.lang.ref.WeakReference;
 
@@ -14,13 +17,13 @@ import javax.inject.Inject;
 public class PresenterSettings implements IPresenterSettings {
 
     @Inject
-    ICacheBlacklist cacheBlacklist;
-
-    @Inject
-    INavigator navigator;
-
-    @Inject
     ICacheInterfaceState cacheInterfaceState;
+
+    @Inject
+    ILogoutHelper logoutHelper;
+
+    @Inject
+    IRepositoryRegisterLogout repositoryRegisterLogout;
 
     private WeakReference<IPresenterSettingsListener> refListener;
 
@@ -49,14 +52,9 @@ public class PresenterSettings implements IPresenterSettings {
     }
 
     @Override
-    public boolean isPositionTop() {
-        return refListener != null && refListener.get() != null && refListener.get().isPositionTop();
-    }
-
-    @Override
-    public void scrollTop() {
-        if (refListener == null || refListener.get() == null) return;
-        refListener.get().scrollToPosition(0, 0);
+    public void onConfirmLogout() {
+        repositoryRegisterLogout.request();
+        logoutHelper.logout();
     }
 
 }

@@ -10,7 +10,5 @@ public interface IPresenterSettings {
 
     void onScroll(int scrollY);
 
-    boolean isPositionTop();
-
-    void scrollTop();
+    void onConfirmLogout();
 }

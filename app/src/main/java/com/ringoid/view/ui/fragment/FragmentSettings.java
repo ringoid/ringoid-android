@@ -10,15 +10,11 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ScrollView;
 
-import com.innovattic.rangeseekbar.RangeSeekBar;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
-import com.ringoid.controller.data.memorycache.ICacheToken;
-import com.ringoid.view.INavigator;
 import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterSettings;
 import com.ringoid.view.presenter.callback.IPresenterSettingsListener;
-import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.ui.dialog.DialogAccountDelete;
 import com.ringoid.view.ui.dialog.DialogLogout;
 import com.ringoid.view.ui.dialog.callback.IDialogLogoutListener;
@@ -27,15 +23,6 @@ import javax.inject.Inject;
 
 public class FragmentSettings extends FragmentBase
         implements View.OnClickListener {
-
-    @Inject
-    INavigator navigator;
-
-    @Inject
-    ICacheToken cacheToken;
-
-    @Inject
-    ILogoutHelper logoutHelper;
 
     @Inject
     IPresenterSettings presenterSettings;
@@ -125,7 +112,7 @@ public class FragmentSettings extends FragmentBase
     private class ListenerDialogLogout implements IDialogLogoutListener {
         @Override
         public void onConfirm() {
-            logoutHelper.logout();
+            presenterSettings.onConfirmLogout();
         }
     }
 
