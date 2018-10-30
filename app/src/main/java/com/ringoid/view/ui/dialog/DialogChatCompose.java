@@ -1,15 +1,15 @@
 package com.ringoid.view.ui.dialog;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.ringoid.ApplicationRingoid;
@@ -32,7 +32,7 @@ import javax.inject.Inject;
 
 public class DialogChatCompose implements View.OnClickListener {
 
-    AlertDialog dialog;
+    Dialog dialog;
 
     @Inject
     KeyboardUtils keyboardUtils;
@@ -67,17 +67,18 @@ public class DialogChatCompose implements View.OnClickListener {
 
         isMessagesExist = cacheChatMessages.isDataExist(cacheMessages.getUserSelectedID());
 
-        View popupView = LayoutInflater.from(context).inflate(R.layout.view_dialog_chat_compose, null);
-        initViews(popupView);
+        dialog = new Dialog(context, R.style.themeDialogFullscreen);
 
-        dialog = new AlertDialog.Builder(popupView.getContext(), R.style.themeDialogFullscreen).create();
-        dialog.setView(popupView);
+        dialog.setContentView(R.layout.view_dialog_chat_compose);
+        initViews(dialog);
+
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setOnDismissListener(new ListenerDismiss());
     }
 
-    private void initViews(View view) {
+    private void initViews(Dialog view) {
         view.findViewById(R.id.ivSend).setOnClickListener(this);
+        view.findViewById(R.id.rvItems).setOnTouchListener(new TouchListener());
         etMessage = view.findViewById(R.id.etMessage);
         etMessage.setListener(new ListenerViewPreIme());
 
@@ -91,7 +92,7 @@ public class DialogChatCompose implements View.OnClickListener {
 
     }
 
-    private void initList(View view) {
+    private void initList(Dialog view) {
         rvMessages = view.findViewById(R.id.rvItems);
         rvMessages.setListener(new ListenerSizeChanged());
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
@@ -175,6 +176,17 @@ public class DialogChatCompose implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             cancel();
+        }
+    }
+
+    private class TouchListener implements View.OnTouchListener {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                cancel();
+                return true;
+            }
+            return false;
         }
     }
 }
