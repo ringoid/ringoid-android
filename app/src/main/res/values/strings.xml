@@ -85,8 +85,7 @@
     <string name="message_error_app_version">Please update the app</string>
     <string name="message_network_retry">Reload this page</string>
     <string name="message_error_network">No network connection</string>
-	
-    <string name="push">Push Notifications</string>
+
     <string name="settings_push_likes_message">New likes</string>
     <string name="push_likes_all">Every new like</string>
     <string name="push_likes_every_10">Every 10 new likes</string>
@@ -116,16 +115,6 @@
 	
     <string name="settings_location">Location</string>
     <string name="settings_location_value">Use my current location</string>
-    <string name="settings_distance">Maximum Distance</string>
-    <string name="settings_distance_value">100+ miles/km</string>
-    <string name="settings_age">Age Range</string>
-    <string name="settings_age_value">18-45+</string>
-    <string name="settings_who_liked_you">See Who Likes You</string>
-    <string name="settings_age_my">Don\'t Show My Age</string>
-    <string name="settings_distance_my">Make My Distance Invisible</string>
-    <string name="settings_likes_unlimited">Unlimited Likes</string>
-    <string name="settings_ad_hide">Hide Advertisements</string>
-    <string name="settings_push">Push Notifications</string>
     <string name="dialog_unknown_confirm">email support</string>
     <string name="title_settings">Settings</string>
     <string name="title_legal">Legal</string>
@@ -151,7 +140,6 @@
     <string name="subtitle_profile">Sorted by likes here and everywhere</string>
     <string name="message_profile_empty">Upload your photos so users can like you</string>
 
-    <string name="dialog_photo_upload_first_message"></string>
     <string name="dialog_photo_upload_first_photo_add">Add another photo</string>
     <string name="dialog_photo_upload_first_feed">Discover New Faces</string>
 
