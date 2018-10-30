@@ -49,6 +49,7 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
         rvItems.setAdapter(adapter);
         rvItems.addOnScrollListener(new ListenerScrollPhotos());
         rvItems.setRecycledViewPool(viewPool);
+        rvItems.setNestedScrollingEnabled(false);
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
         rvItems.setScrollingTouchSlop(RecyclerView.TOUCH_SLOP_PAGING);

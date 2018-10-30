@@ -29,6 +29,7 @@ public class ViewHolderItemLikes extends ViewHolderItemLikeBase {
         adapter = new AdapterLikesImages();
         rvItems.setAdapter(adapter);
         rvItems.addOnScrollListener(new ListenerScrollPhotos());
+        rvItems.setNestedScrollingEnabled(false);
         dotsIndicatorHelper = IndicatorHelper.getLinesPinkHelper(flDots, rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
     }
 
