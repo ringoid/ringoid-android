@@ -12,6 +12,4 @@ public interface IPresenterPagesContainerListener {
     void showAnimationMessage();
 
     void showAnimationMatches();
-
-    void setToolbarShown(boolean isShow);
 }

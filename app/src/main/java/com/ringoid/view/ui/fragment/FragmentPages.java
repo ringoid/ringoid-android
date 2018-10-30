@@ -17,7 +17,6 @@ import com.ringoid.view.presenter.IPresenterPagesContainer;
 import com.ringoid.view.presenter.PresenterPagesContainer;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.ui.util.IHelperAnimation;
-import com.ringoid.view.ui.view.ViewToolbar;
 
 import java.util.Random;
 
@@ -156,11 +155,6 @@ public class FragmentPages extends FragmentBase
         @Override
         public void showAnimationMatches() {
             helperAnimation.showPopupMatches((ViewGroup) getView().findViewById(R.id.flAnimationPopup));
-        }
-
-        @Override
-        public void setToolbarShown(boolean isShow) {
-            llBottomAppBar.setVisibility(isShow ? View.VISIBLE : View.GONE);
         }
     }
 }

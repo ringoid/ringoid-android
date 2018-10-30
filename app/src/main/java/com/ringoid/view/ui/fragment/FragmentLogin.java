@@ -29,6 +29,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.model.SEX;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterRegister;
 import com.ringoid.view.presenter.PresenterRegister;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
@@ -63,6 +64,10 @@ public class FragmentLogin extends FragmentBase
     private View vPhoneConfirm, vSMSConfirm;
     private TextView tvSMSResend;
     private TextView tvPhoneHint;
+
+    public PAGE_ENUM getPage() {
+        return PAGE_ENUM.LOGIN;
+    }
 
     public static Fragment getInstanceCodeConfirm() {
         FragmentLogin fragment = new FragmentLogin();

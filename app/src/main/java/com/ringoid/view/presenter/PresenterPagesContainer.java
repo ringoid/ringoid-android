@@ -249,8 +249,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
         @Override
         public void onDialogComposeShowState(boolean isShown) {
-            if (refListener == null || refListener.get() == null) return;
-            refListener.get().setToolbarShown(!isShown);
+
         }
     }
 

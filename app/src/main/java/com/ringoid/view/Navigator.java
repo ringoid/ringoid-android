@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.BuildConfig;
@@ -229,6 +230,11 @@ public class Navigator implements INavigator {
             helperFullscreen.statusbarShowFullscreen();
         else
             helperFullscreen.statusbarShowResizeable();
+
+        if (refActivity != null && refActivity.get() != null)
+            refActivity.get().getWindow().setSoftInputMode(page == PAGE_ENUM.LOGIN
+                    ? WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                    : WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
     }
 
     @Override
