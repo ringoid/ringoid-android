@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/gray_bg_70"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="invisible">
 
         <com.ringoid.view.ui.view.EditTextPreIme
             android:id="@+id/etMessage"

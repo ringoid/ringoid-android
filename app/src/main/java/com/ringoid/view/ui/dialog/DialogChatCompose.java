@@ -165,6 +165,7 @@ public class DialogChatCompose implements View.OnClickListener {
             if (dialog == null) return;
             LayoutInflater.from(dialog.getDialog().getContext()).inflate(R.layout.view_messages_in_dialog, (ViewGroup) dialog.getDialog().findViewById(R.id.flMessages), true);
             dialog.initList(dialog.getDialog());
+            dialog.getDialog().findViewById(R.id.llCompose).setVisibility(View.VISIBLE);
         }
     }
 
