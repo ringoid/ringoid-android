@@ -82,6 +82,7 @@ import com.ringoid.view.presenter.IPresenterAdapterMessages;
 import com.ringoid.view.presenter.IPresenterAdapterMessagesImages;
 import com.ringoid.view.presenter.IPresenterAdapterProfile;
 import com.ringoid.view.presenter.IPresenterBlacklistPhones;
+import com.ringoid.view.presenter.IPresenterChat;
 import com.ringoid.view.presenter.IPresenterDataProtection;
 import com.ringoid.view.presenter.IPresenterDialogErrorUnknown;
 import com.ringoid.view.presenter.IPresenterExplore;
@@ -108,6 +109,7 @@ import com.ringoid.view.presenter.PresenterAdapterMessages;
 import com.ringoid.view.presenter.PresenterAdapterMessagesImages;
 import com.ringoid.view.presenter.PresenterAdapterProfile;
 import com.ringoid.view.presenter.PresenterBlacklistPhones;
+import com.ringoid.view.presenter.PresenterChat;
 import com.ringoid.view.presenter.PresenterDataProtection;
 import com.ringoid.view.presenter.PresenterDialogErrorUnknown;
 import com.ringoid.view.presenter.PresenterExplore;
@@ -408,6 +410,12 @@ class AppModule {
     @Singleton
     IPresenterDataProtection getPresenterDataProtection() {
         return new PresenterDataProtection();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterChat getPresenterChat() {
+        return new PresenterChat();
     }
 
     @Provides

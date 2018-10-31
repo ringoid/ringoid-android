@@ -23,4 +23,10 @@ public interface ICacheChatMessages {
     boolean isMessageNew(String userId);
 
     void setReaded(String userSelectedID);
+
+    int getScrollSavedPosition(String userSelectedID);
+
+    int getScrollSavedPositionOffset(String userSelectedID);
+
+    void setScrollSavedPosition(String userSelectedID, int pos, int offset);
 }

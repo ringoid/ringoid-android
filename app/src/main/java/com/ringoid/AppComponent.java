@@ -42,6 +42,7 @@ import com.ringoid.view.presenter.PresenterAdapterMessages;
 import com.ringoid.view.presenter.PresenterAdapterMessagesImages;
 import com.ringoid.view.presenter.PresenterAdapterProfile;
 import com.ringoid.view.presenter.PresenterBlacklistPhones;
+import com.ringoid.view.presenter.PresenterChat;
 import com.ringoid.view.presenter.PresenterDataProtection;
 import com.ringoid.view.presenter.PresenterDialogErrorUnknown;
 import com.ringoid.view.presenter.PresenterExplore;
@@ -112,6 +113,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(PresenterChat presenterChat);
 
     void inject(DialogChatCompose param);
 

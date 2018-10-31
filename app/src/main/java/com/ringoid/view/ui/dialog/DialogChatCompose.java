@@ -18,14 +18,10 @@ import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
-import com.ringoid.controller.data.memorycache.ICacheChatMessages;
-import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
-import com.ringoid.controller.data.memorycache.ICacheMessageCompose;
-import com.ringoid.controller.data.memorycache.ICacheMessages;
-import com.ringoid.view.IViewPopup;
+import com.ringoid.view.presenter.IPresenterChat;
+import com.ringoid.view.presenter.callback.IPresenterChatListener;
 import com.ringoid.view.ui.adapter.AdapterChatMessages;
 import com.ringoid.view.ui.util.DividerItemDecoration;
-import com.ringoid.view.ui.util.IHelperMessageSend;
 import com.ringoid.view.ui.util.KeyboardUtils;
 import com.ringoid.view.ui.view.EditTextPreIme;
 import com.ringoid.view.ui.view.callback.IEditTextPreImeListener;
@@ -42,34 +38,20 @@ public class DialogChatCompose implements View.OnClickListener {
     KeyboardUtils keyboardUtils;
 
     @Inject
-    IViewPopup viewPopup;
+    IPresenterChat presenterChat;
 
-    @Inject
-    IHelperMessageSend helperMessageSend;
-
-    @Inject
-    ICacheMessages cacheMessages;
-
-    @Inject
-    ICacheMessageCompose cacheMessageCompose;
-
-    @Inject
-    ICacheInterfaceState cacheInterfaceState;
-
-    @Inject
-    ICacheChatMessages cacheChatMessages;
+    private IPresenterChatListener listenerPresenter;
 
     private View viewContainer;
-
     private EditTextPreIme etMessage;
     private RecyclerView rvMessages;
-    private boolean isMessagesExist;
+    private LinearLayoutManager layoutManager;
 
     public DialogChatCompose(Context context, View container) {
         ApplicationRingoid.getComponent().inject(this);
-        this.viewContainer = container;
+        presenterChat.setListener(listenerPresenter = new ListenerPresenter());
 
-        isMessagesExist = cacheChatMessages.isDataExist(cacheMessages.getUserSelectedID());
+        this.viewContainer = container;
 
         dialog = new Dialog(context, R.style.themeDialogFullscreen);
 
@@ -87,30 +69,20 @@ public class DialogChatCompose implements View.OnClickListener {
         etMessage = view.findViewById(R.id.etMessage);
         etMessage.setListener(new ListenerViewPreIme());
 
-        String message = cacheMessageCompose.getMessage();
-        if (!TextUtils.isEmpty(message)) {
-            etMessage.setText(message);
-            etMessage.setSelection(message.length());
-            cacheMessageCompose.resetCache();
-        }
-
+        presenterChat.onDialogCreate();
     }
 
     private void initList(Dialog view) {
         rvMessages = view.findViewById(R.id.rvItems);
         rvMessages.setOnTouchListener(new TouchListener());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        layoutManager = new LinearLayoutManager(view.getContext());
         layoutManager.setReverseLayout(true);
         rvMessages.setLayoutManager(layoutManager);
         rvMessages.setAdapter(new AdapterChatMessages(new ListenerAdapter()));
         rvMessages.addItemDecoration(new DividerItemDecoration(view.getContext()));
+        rvMessages.addOnScrollListener(new OnScrollListener());
+        presenterChat.onListInited();
     }
-
-    private void scrollToEnd() {
-        if (rvMessages == null) return;
-        rvMessages.scrollToPosition(0);
-    }
-
 
     @Override
     public void onClick(View v) {
@@ -118,12 +90,7 @@ public class DialogChatCompose implements View.OnClickListener {
             String message = getMessage();
             if (!TextUtils.isEmpty(message)) {
                 etMessage.setText("");
-                helperMessageSend.sendMessage(cacheMessages.getUserSelectedID(), message);
-                scrollToEnd();
-                if (!isMessagesExist) {
-                    viewPopup.showToast(R.string.message_sent);
-                    cancel();
-                }
+                presenterChat.onClickMessageSend(message);
             }
         }
     }
@@ -175,8 +142,7 @@ public class DialogChatCompose implements View.OnClickListener {
 
             keyboardUtils.keyboardHide(viewContainer.getContext(), viewContainer);
 
-            cacheMessageCompose.setMessage(getMessage());
-            cacheInterfaceState.setDialogComposeShowState(false);
+            presenterChat.onDialogDismiss(getMessage());
         }
     }
 
@@ -217,9 +183,50 @@ public class DialogChatCompose implements View.OnClickListener {
     private class ListenerShow implements DialogInterface.OnShowListener {
         @Override
         public void onShow(DialogInterface dialog) {
-            cacheInterfaceState.setDialogComposeShowState(true);
+            presenterChat.onDialogShow();
             etMessage.requestFocus();
             showMessages();
+        }
+    }
+
+    private class OnScrollListener extends RecyclerView.OnScrollListener {
+
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+
+            int pos = layoutManager.findFirstVisibleItemPosition();
+            View firstItemView = layoutManager.findViewByPosition(pos);
+            if (firstItemView == null) return;
+            int offset = getDialog().findViewById(R.id.flMessages).getBottom() - firstItemView.getBottom();
+
+            presenterChat.onSCroll(newState, pos, offset);
+        }
+    }
+
+    private class ListenerPresenter implements IPresenterChatListener {
+        @Override
+        public void setMessageCompose(String message) {
+            if (etMessage == null) return;
+            etMessage.setText(message);
+            etMessage.setSelection(message.length());
+        }
+
+        @Override
+        public void scrollToEnd() {
+            if (rvMessages == null) return;
+            rvMessages.scrollToPosition(0);
+        }
+
+        @Override
+        public void finishView() {
+            cancel();
+        }
+
+        @Override
+        public void scrollToMessage(int position, int offset) {
+            if (layoutManager == null) return;
+            layoutManager.scrollToPositionWithOffset(position, offset);
         }
     }
 }

@@ -99,4 +99,27 @@ public class ModelChat implements Serializable {
         if (item == null) return;
         item.setReaded();
     }
+
+    public int getScrollSavedPosition(String userSelectedID) {
+        ChatInstance item = getItem(userSelectedID);
+        if (item == null) return 0;
+        String messageId = item.getScrollSavedMessageId();
+        return item.getPosition(messageId);
+    }
+
+    public int getScrollSavedOffset(String userSelectedID) {
+        ChatInstance item = getItem(userSelectedID);
+        return item == null ? 0 : item.getScrollSavedOffset();
+    }
+
+    public void setScrollSavedPosition(String userSelectedID, int pos, int offset) {
+        if (data == null) data = new ArrayList<>();
+
+        ChatInstance item = getItem(userSelectedID);
+        if (item == null) {
+            item = new ChatInstance(userSelectedID);
+            data.add(item);
+        }
+        item.setScrollSavedPostion(pos, offset);
+    }
 }

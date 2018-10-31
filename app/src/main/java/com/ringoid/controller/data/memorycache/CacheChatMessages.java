@@ -88,7 +88,7 @@ public class CacheChatMessages implements ICacheChatMessages {
 
     @Override
     public String getMessage(String userSelectedID, int position) {
-        return position >= getData().size(userSelectedID) || position < 0 ? null : data.getMessage(userSelectedID,position);
+        return position >= getData().size(userSelectedID) || position < 0 ? null : data.getMessage(userSelectedID, position);
     }
 
     @Override
@@ -107,5 +107,21 @@ public class CacheChatMessages implements ICacheChatMessages {
         getData().setReaded(userSelectedID);
         cacheStorage.writeData(FileEnum.CHAT_CACHE, getData());
         notifyListeners();
+    }
+
+    @Override
+    public int getScrollSavedPosition(String userSelectedID) {
+        return getData().getScrollSavedPosition(userSelectedID);
+    }
+
+    @Override
+    public int getScrollSavedPositionOffset(String userSelectedID) {
+        return getData().getScrollSavedOffset(userSelectedID);
+    }
+
+    @Override
+    public void setScrollSavedPosition(String userSelectedID, int pos, int offset) {
+        getData().setScrollSavedPosition(userSelectedID, pos, offset);
+        cacheStorage.writeData(FileEnum.CHAT_CACHE, getData());
     }
 }

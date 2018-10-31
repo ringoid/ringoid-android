@@ -2,9 +2,11 @@
 package com.ringoid.view.presenter.callback;
 
 public interface IPresenterChatListener {
-    void setImage(String url);
+    void setMessageCompose(String message);
 
-    void setDataExist(boolean exist);
+    void scrollToEnd();
 
-    void scrollToRecentMessage(int dataSize);
+    void finishView();
+
+    void scrollToMessage(int position, int offset);
 }
