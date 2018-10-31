@@ -128,7 +128,9 @@ public class PresenterProfile implements IPresenterProfile {
 
         @Override
         public void onPhotoRemove(int index) {
-            updateView(getNextIndex(index, cacheProfile.getItemsNum()));
+            int pos = getNextIndex(index, cacheProfile.getItemsNum());
+            updateView(pos);
+            onShownItem(pos);
         }
 
         private int getNextIndex(int index, int itemsNum) {
