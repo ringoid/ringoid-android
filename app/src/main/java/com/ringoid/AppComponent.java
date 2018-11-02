@@ -7,6 +7,7 @@ import com.ringoid.controller.data.memorycache.CacheExplore;
 import com.ringoid.controller.data.memorycache.CacheInterfaceState;
 import com.ringoid.controller.data.memorycache.CacheLikes;
 import com.ringoid.controller.data.memorycache.CacheMessages;
+import com.ringoid.controller.data.memorycache.CachePhotoUpload;
 import com.ringoid.controller.data.memorycache.CacheProfile;
 import com.ringoid.controller.data.memorycache.CacheRegister;
 import com.ringoid.controller.data.memorycache.CacheScroll;
@@ -18,8 +19,7 @@ import com.ringoid.controller.data.repository.RepositoryErrorUnknown;
 import com.ringoid.controller.data.repository.RepositoryFeedExplore;
 import com.ringoid.controller.data.repository.RepositoryFeedLikes;
 import com.ringoid.controller.data.repository.RepositoryFeedMessages;
-import com.ringoid.controller.data.repository.RepositoryPhotoUpload;
-import com.ringoid.controller.data.repository.RepositoryPhotoUploadUri;
+import com.ringoid.controller.data.repository.RepositoryPhotoUploadSync;
 import com.ringoid.controller.data.repository.RepositoryProfileImageRemove;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegisterLogout;
@@ -58,6 +58,7 @@ import com.ringoid.view.presenter.PresenterSettings;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import com.ringoid.view.presenter.PresenterSettingsPush;
 import com.ringoid.view.presenter.util.HelperConnection;
+import com.ringoid.view.presenter.util.HelperPhotoUpload;
 import com.ringoid.view.presenter.util.LogoutHelper;
 import com.ringoid.view.presenter.util.SettingsHelper;
 import com.ringoid.view.ui.activity.ActivityMain;
@@ -113,6 +114,12 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(RepositoryPhotoUploadSync param);
+
+    void inject(CachePhotoUpload param);
+
+    void inject(HelperPhotoUpload param);
 
     void inject(PresenterChat presenterChat);
 
@@ -175,10 +182,6 @@ public interface AppComponent {
     void inject(ScreenHelper param);
 
     void inject(FragmentPhotoCrop param);
-
-    void inject(RepositoryPhotoUploadUri repositoryPhotoUploadUri);
-
-    void inject(RepositoryPhotoUpload repositoryPhotoUpload);
 
     void inject(PresenterPhotoCrop param);
 

@@ -2,31 +2,17 @@ package com.ringoid.model;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import android.net.Uri;
-import android.text.TextUtils;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class PhotoUpload {
+public class PhotoUpload implements Serializable {
 
-    private String uploadUri;
     private File file;
-    private String originPhotoId;
     private String clientPhotoId;
-
-    public boolean isDataExist() {
-        return !TextUtils.isEmpty(uploadUri) && file != null;
-    }
 
     public Uri getFileUri() {
         return Uri.parse("file://" + file.getPath());
-    }
-
-    public String getUploadUri() {
-        return uploadUri;
-    }
-
-    public void setUploadUri(String uri) {
-        this.uploadUri = uri;
     }
 
     public File getFile() {
@@ -37,16 +23,7 @@ public class PhotoUpload {
         this.file = file;
     }
 
-    public void setOriginPhotoId(String clientPhotoId, String photoId) {
-        if (!clientPhotoId.equals(this.clientPhotoId)) return;
-        this.originPhotoId = photoId;
-    }
-
-    public String getOriginPhotoId() {
-        return originPhotoId;
-    }
-
-    public String getClientPhotoId() {
+    public synchronized String getClientPhotoId() {
         return clientPhotoId;
     }
 

@@ -6,16 +6,14 @@ import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
-import com.ringoid.controller.data.repository.RepositoryPhotoUploadUri;
-import com.ringoid.model.PhotoUpload;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.presenter.util.IHelperConnection;
+import com.ringoid.view.presenter.util.IHelperPhotoUpload;
 import com.ringoid.view.ui.dialog.callback.IDialogPhotoUploadedFirstListener;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
-import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -41,6 +39,9 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
     @Inject
     ICacheTutorial cacheTutorial;
 
+    @Inject
+    IHelperPhotoUpload helperPhotoUpload;
+
     private IDialogPhotoUploadedFirstListener listenerDialogPhotoUpload;
 
     private WeakReference<IPresenterPhotoCropListener> refListener;
@@ -58,15 +59,11 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
             return;
         }
 
-        PhotoUpload photoUpload = new PhotoUpload();
-        photoUpload.setFile(file);
-        photoUpload.setClientPhotoID(UUID.randomUUID().toString());
-
         cacheInterfaceState.resetOriginPhotoId();
-        cacheProfile.addPhotoLocal(photoUpload.getFileUri(), photoUpload.getClientPhotoId());
+        helperPhotoUpload.addPhotoLocal(file);
 
         checkDialogPhotoAdd();
-        new RepositoryPhotoUploadUri(photoUpload).request();
+
         onBackPressed();
     }
 

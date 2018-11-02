@@ -105,7 +105,7 @@ public class CacheUser implements ICacheUser {
     }
 
     @Override
-    public void setUserOld() {
+    public synchronized void setUserOld() {
         DataUser data = getData();
         if (data == null) return;
         data.setUserOld();

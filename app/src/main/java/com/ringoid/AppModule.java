@@ -15,6 +15,7 @@ import com.ringoid.controller.data.memorycache.CacheLikes;
 import com.ringoid.controller.data.memorycache.CacheLocale;
 import com.ringoid.controller.data.memorycache.CacheMessageCompose;
 import com.ringoid.controller.data.memorycache.CacheMessages;
+import com.ringoid.controller.data.memorycache.CachePhotoUpload;
 import com.ringoid.controller.data.memorycache.CacheProfile;
 import com.ringoid.controller.data.memorycache.CacheRegister;
 import com.ringoid.controller.data.memorycache.CacheScroll;
@@ -30,6 +31,7 @@ import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheLocale;
 import com.ringoid.controller.data.memorycache.ICacheMessageCompose;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
+import com.ringoid.controller.data.memorycache.ICachePhotoUpload;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
@@ -42,6 +44,7 @@ import com.ringoid.controller.data.repository.IRepositoryErrorUnknown;
 import com.ringoid.controller.data.repository.IRepositoryFeedExplore;
 import com.ringoid.controller.data.repository.IRepositoryFeedLikes;
 import com.ringoid.controller.data.repository.IRepositoryFeedMessages;
+import com.ringoid.controller.data.repository.IRepositoryPhotoUploadSync;
 import com.ringoid.controller.data.repository.IRepositoryProfileImageRemove;
 import com.ringoid.controller.data.repository.IRepositoryProfilePhotos;
 import com.ringoid.controller.data.repository.IRepositoryRegisterCodeConfirm;
@@ -54,6 +57,7 @@ import com.ringoid.controller.data.repository.RepositoryErrorUnknown;
 import com.ringoid.controller.data.repository.RepositoryFeedExplore;
 import com.ringoid.controller.data.repository.RepositoryFeedLikes;
 import com.ringoid.controller.data.repository.RepositoryFeedMessages;
+import com.ringoid.controller.data.repository.RepositoryPhotoUploadSync;
 import com.ringoid.controller.data.repository.RepositoryProfileImageRemove;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
 import com.ringoid.controller.data.repository.RepositoryRegisterLogout;
@@ -126,8 +130,10 @@ import com.ringoid.view.presenter.PresenterSettingsFAQ;
 import com.ringoid.view.presenter.PresenterSettingsPrivacyDistance;
 import com.ringoid.view.presenter.PresenterSettingsPush;
 import com.ringoid.view.presenter.util.HelperConnection;
+import com.ringoid.view.presenter.util.HelperPhotoUpload;
 import com.ringoid.view.presenter.util.HelperThreadMain;
 import com.ringoid.view.presenter.util.IHelperConnection;
+import com.ringoid.view.presenter.util.IHelperPhotoUpload;
 import com.ringoid.view.presenter.util.IHelperThreadMain;
 import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.presenter.util.ISettingsHelper;
@@ -215,6 +221,12 @@ class AppModule {
     @Singleton
     IHelperMessageCompose getHelperMessageCompose() {
         return new HelperMessageCompose();
+    }
+
+    @Provides
+    @Singleton
+    IHelperPhotoUpload getHelperPhotoUpload() {
+        return new HelperPhotoUpload();
     }
 
     @Provides
@@ -326,6 +338,12 @@ class AppModule {
     @Singleton
     ICacheBlacklist getCacheBlacklist() {
         return new CacheBlacklist();
+    }
+
+    @Provides
+    @Singleton
+    ICachePhotoUpload getCachePhotoUpload() {
+        return new CachePhotoUpload();
     }
 
     @Provides
@@ -577,6 +595,12 @@ class AppModule {
     @Singleton
     IRepositoryFeedLikes getRepositoryFeedLikes() {
         return new RepositoryFeedLikes();
+    }
+
+    @Provides
+    @Singleton
+    IRepositoryPhotoUploadSync getRepositoryPhotoUploadSync() {
+        return new RepositoryPhotoUploadSync();
     }
 
     @Provides

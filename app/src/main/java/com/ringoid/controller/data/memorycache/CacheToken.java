@@ -26,7 +26,7 @@ public class CacheToken implements ICacheToken {
     }
 
     @Override
-    public String getToken() {
+    public synchronized String getToken() {
         if (!TextUtils.isEmpty(token))
             return token;
 
