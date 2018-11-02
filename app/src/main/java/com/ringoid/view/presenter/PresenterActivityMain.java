@@ -15,6 +15,7 @@ import com.ringoid.controller.data.network.interceptor.listener.IInterceptorRetr
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
+import com.ringoid.view.presenter.util.IHelperPhotoUpload;
 import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperScreenshots;
@@ -53,6 +54,9 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     @Inject
     IHelperFullscreen helperFullscreen;
 
+    @Inject
+    IHelperPhotoUpload helperPhotoUpload;
+
     private ListenerInterceptor listenerInterceptor;
 
     public PresenterActivityMain() {
@@ -63,7 +67,7 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     @Override
     public void onCreateView(AppCompatActivity activity, View view, FragmentManager supportFragmentManager, int viewId) {
         navigator.set(activity, supportFragmentManager, viewId);
-        viewDialogs.set(activity,view);
+        viewDialogs.set(activity, view);
         viewPopup.setView(view);
         helperFullscreen.set(activity.getWindow());
         helperScreenshots.set(activity.getWindow());
@@ -88,6 +92,7 @@ public class PresenterActivityMain implements IPresenterActivityMain {
             return;
         }
 
+        helperPhotoUpload.checkState();
         navigator.navigateFeed();
     }
 

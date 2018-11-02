@@ -15,10 +15,10 @@ public class ModelProfilePhotos implements Serializable {
     public void add(ArrayList<ProfilePhoto> photos) {
 
         if (data == null) data = new ArrayList<>();
-        dedupblicate(data, photos);
+        dedublicate(data, photos);
     }
 
-    private void dedupblicate(ArrayList<ProfilePhoto> data, ArrayList<ProfilePhoto> photos) {
+    private void dedublicate(ArrayList<ProfilePhoto> data, ArrayList<ProfilePhoto> photos) {
         Iterator<ProfilePhoto> iterator = data.iterator();
         while (iterator.hasNext()) {
             ProfilePhoto item = iterator.next();
@@ -61,26 +61,14 @@ public class ModelProfilePhotos implements Serializable {
         data.add(0, profilePhoto);
     }
 
-    public ProfilePhoto getItem(String imageId) {
-        if (data == null) return null;
-        for (ProfilePhoto item : data)
-            if (item.getPhotoId().equals(imageId))
-                return item;
-        return null;
-    }
-
-    public boolean isLocal(int position) {
-        return data == null ? false : data.get(position).isLocal();
-    }
-
     public boolean remove(int index) {
         if (data == null) return false;
         data.remove(index);
         return true;
     }
 
-    public boolean isEquals(int i, String imageId) {
-        return data != null && data.get(i).isEqualsPhotoId(imageId);
+    public boolean isEquals(int i, String imageId, String localId, String originId) {
+        return data != null && data.get(i).isEquals(imageId, localId, originId);
     }
 
     public String getOriginPhotoId(int pos) {
@@ -120,5 +108,13 @@ public class ModelProfilePhotos implements Serializable {
 
     public String getUrlThumbnail(int position) {
         return data == null ? null : data.get(position).getPlaceholderUrl();
+    }
+
+    public String getPhotoLocalId(int position) {
+        return data == null || position < 0 || position >= data.size() ? null : data.get(position).getPhotoLocalId();
+    }
+
+    public String getPhotoOriginId(int position) {
+        return data == null || position < 0 || position >= data.size() ? null : data.get(position).getPhotoOriginId();
     }
 }

@@ -35,4 +35,12 @@ public class ModelPhotoUpload implements Serializable {
         }
         return false;
     }
+
+    public synchronized boolean isContains(String localId) {
+        if (data == null || localId == null) return false;
+        for (PhotoUpload item : data)
+            if (item.getClientPhotoId().equals(localId))
+                return true;
+        return false;
+    }
 }

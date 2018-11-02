@@ -9,6 +9,7 @@ import com.ringoid.model.ModelFeedExplore;
 import com.ringoid.model.ModelFeedLikes;
 import com.ringoid.model.ModelFeedMessages;
 import com.ringoid.model.ModelInterfaceState;
+import com.ringoid.model.ModelPhotoRemove;
 import com.ringoid.model.ModelPhotoUpload;
 import com.ringoid.model.ModelProfilePhotos;
 import com.ringoid.model.ModelUserRegister;
@@ -25,7 +26,8 @@ public enum FileEnum {
     CACHE_FEED_MESSAGES("cache_feed_messages", ModelFeedMessages.class),
     CACHE_FEED_EXPLORE("cache_feed_explore", ModelFeedExplore.class),
     CACHE_USER_REGISTER("cache_user_register", ModelUserRegister.class),
-    CACHE_PHOTO_UPLOAD("cache_photo_upload", ModelPhotoUpload.class);
+    CACHE_PHOTO_UPLOAD("cache_photo_upload", ModelPhotoUpload.class),
+    PHOTO_REMOVE("cache_photo_remove", ModelPhotoRemove.class);
 
     private Class className;
     private String filename;

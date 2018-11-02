@@ -13,4 +13,6 @@ public interface ICachePhotoUpload {
     PhotoUpload getItemFirst();
 
     void removeItem(String photoOriginId);
+
+    boolean isContains(String localId);
 }

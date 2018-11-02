@@ -7,6 +7,7 @@ import com.ringoid.controller.data.memorycache.CacheExplore;
 import com.ringoid.controller.data.memorycache.CacheInterfaceState;
 import com.ringoid.controller.data.memorycache.CacheLikes;
 import com.ringoid.controller.data.memorycache.CacheMessages;
+import com.ringoid.controller.data.memorycache.CachePhotoRemove;
 import com.ringoid.controller.data.memorycache.CachePhotoUpload;
 import com.ringoid.controller.data.memorycache.CacheProfile;
 import com.ringoid.controller.data.memorycache.CacheRegister;
@@ -114,6 +115,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(CachePhotoRemove param);
 
     void inject(RepositoryPhotoUploadSync param);
 

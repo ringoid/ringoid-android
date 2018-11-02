@@ -16,9 +16,11 @@ public interface IPresenterAdapterProfile {
 
     String getImageId(int position);
 
-    void onImageRemove(String imageId);
-
-    boolean isPhotoLocal(int position);
+    void onImageRemove(String imageId, String localId, String originId);
 
     String getUrlThumbnail(int position);
+
+    String getImageLocalId(int position);
+
+    String getImageOriginId(int position);
 }

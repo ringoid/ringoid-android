@@ -3,4 +3,6 @@ package com.ringoid.controller.data.repository;
 
 public interface IRepositoryPhotoUploadSync {
     void request();
+
+    void cancel(String originId);
 }

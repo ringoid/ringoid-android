@@ -2,5 +2,5 @@ package com.ringoid.view.ui.dialog.callback;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 public interface IDialogImageRemoveListener {
-    void onSuccess(String imageId);
+    void onSuccess(String imageId, String localId, String originId);
 }

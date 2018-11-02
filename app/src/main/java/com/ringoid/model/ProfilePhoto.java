@@ -15,10 +15,6 @@ public class ProfilePhoto implements Serializable {
     private int status;
     private String placeholderUrl;
 
-    public String getPlaceholderUrl() {
-        return placeholderUrl;
-    }
-
     //constructor for Gson
     public ProfilePhoto() {
         isLocal = false;
@@ -28,6 +24,10 @@ public class ProfilePhoto implements Serializable {
         isLocal = true;
         this.photoUri = fileUri.toString();
         this.clientPhotoId = clientPhotoId;
+    }
+
+    public String getPlaceholderUrl() {
+        return placeholderUrl;
     }
 
     public String getPhotoId() {
@@ -62,11 +62,21 @@ public class ProfilePhoto implements Serializable {
         return this.originPhotoId != null && this.originPhotoId.equals(originPhotoId);
     }
 
-    public boolean isEqualsPhotoId(String imageId) {
-        return photoId != null && photoId.equals(imageId);
+    public boolean isEquals(String imageId, String localId, String originId) {
+        return photoId != null && photoId.equals(imageId)
+                || clientPhotoId != null && clientPhotoId.equals(localId)
+                || originPhotoId != null && originPhotoId.equals(originId);
     }
 
     public void setPlaceholder(String photoUri) {
         this.placeholderUrl = photoUri;
+    }
+
+    public String getPhotoLocalId() {
+        return clientPhotoId;
+    }
+
+    public String getPhotoOriginId() {
+        return originPhotoId;
     }
 }

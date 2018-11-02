@@ -49,6 +49,11 @@ public class CachePhotoUpload implements ICachePhotoUpload {
         saveData();
     }
 
+    @Override
+    public boolean isContains(String localId) {
+        return getData().isContains(localId);
+    }
+
     private void saveData() {
         cacheStorage.writeData(FileEnum.CACHE_PHOTO_UPLOAD, data);
     }

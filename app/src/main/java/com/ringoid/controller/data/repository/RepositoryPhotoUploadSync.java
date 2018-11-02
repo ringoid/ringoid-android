@@ -54,6 +54,14 @@ public class RepositoryPhotoUploadSync implements IRepositoryPhotoUploadSync {
         request.execute();
     }
 
+    @Override
+    public void cancel(String originId) {
+        if (request == null) return;
+        request.cancel(true);
+        request = null;
+        request();
+    }
+
     private class AsyncRequest extends AsyncTask<Void, String, Void> {
 
         @Override

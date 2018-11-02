@@ -21,13 +21,11 @@ public interface ICacheProfile {
 
     String getImageId(int position);
 
-    void removeItem(String imageId);
+    void removeItem(String photoId, String localId, String originId);
 
     boolean isDataExist();
 
     void addPhotoLocal(Uri fileUri, String clientPhotoId);
-
-    boolean isPhotoLocal(int position);
 
     String getOriginPhotoId(int pos);
 
@@ -37,7 +35,9 @@ public interface ICacheProfile {
 
     void updateLocalPhoto(String clientPhotoId, String originPhotoId);
 
-    void removeItemByLocalPhotoId(String clientPhotoId);
-
     String getUrlThumbnail(int position);
+
+    String getPhotoLocalId(int position);
+
+    String getPhotoOriginId(int position);
 }

@@ -20,6 +20,9 @@ public class CacheProfile implements ICacheProfile {
     @Inject
     ICacheStorage cacheStorage;
 
+    @Inject
+    ICachePhotoRemove cachePhotoRemove;
+
     private ModelProfilePhotos data;
     private WeakHashMap<String, ICacheProfileListener> listeners;
 
@@ -44,8 +47,16 @@ public class CacheProfile implements ICacheProfile {
 
     @Override
     public void setData(ArrayList<ProfilePhoto> photos) {
-        getData().add(photos);
-        saveData();
+
+        if (photos != null && photos.size() > 0) {
+            for (ProfilePhoto item : photos) {
+                if (cachePhotoRemove.isContains(item.getPhotoId()))
+                    continue;
+                getData().add(item);
+            }
+            saveData();
+        }
+
         notifyListeners();
     }
 
@@ -71,8 +82,8 @@ public class CacheProfile implements ICacheProfile {
     }
 
     @Override
-    public void removeItem(String imageId) {
-        int index = getItemIndex(imageId, -1);
+    public void removeItem(String imageId, String localId, String originId) {
+        int index = getItemIndex(imageId, localId, originId, -1);
         if (index == -1) return;
 
         if (!getData().remove(index)) return;
@@ -81,9 +92,9 @@ public class CacheProfile implements ICacheProfile {
         notifyListenersRemove(index);
     }
 
-    private int getItemIndex(String imageId, int defaultValue) {
+    private int getItemIndex(String imageId, String localId, String originId, int defaultValue) {
         for (int i = 0; i < getData().size(); ++i)
-            if (getData().isEquals(i, imageId))
+            if (getData().isEquals(i, imageId, localId, originId))
                 return i;
         return -1;
     }
@@ -103,11 +114,6 @@ public class CacheProfile implements ICacheProfile {
 
     private void saveData() {
         cacheStorage.writeData(FileEnum.CACHE_PROFILE, data);
-    }
-
-    @Override
-    public boolean isPhotoLocal(int position) {
-        return getData().isLocal(position);
     }
 
     @Override
@@ -137,17 +143,18 @@ public class CacheProfile implements ICacheProfile {
     }
 
     @Override
-    public void removeItemByLocalPhotoId(String clientPhotoId) {
-        ProfilePhoto item = getData().getItemByClientPhotoId(clientPhotoId);
-        if (item == null) return;
-        getData().remove(item);
-        saveData();
-        notifyListeners();
+    public String getUrlThumbnail(int position) {
+        return getData().getUrlThumbnail(position);
     }
 
     @Override
-    public String getUrlThumbnail(int position) {
-        return getData().getUrlThumbnail(position);
+    public String getPhotoLocalId(int position) {
+        return getData().getPhotoLocalId(position);
+    }
+
+    @Override
+    public String getPhotoOriginId(int position) {
+        return getData().getPhotoOriginId(position);
     }
 
     private void notifyListeners() {

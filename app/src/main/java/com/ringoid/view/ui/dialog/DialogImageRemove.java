@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import com.ringoid.R;
 import com.ringoid.view.ui.dialog.callback.IDialogImageRemoveListener;
@@ -14,12 +13,14 @@ import java.lang.ref.WeakReference;
 
 public class DialogImageRemove implements View.OnClickListener {
     private AlertDialog dialog;
-    private String imageId;
+    private String imageId, localId, originId;
     private WeakReference<IDialogImageRemoveListener> refListener;
 
-    public DialogImageRemove(Context context, String imageId, IDialogImageRemoveListener listener) {
+    public DialogImageRemove(Context context, String imageId, String localId, String originId, IDialogImageRemoveListener listener) {
         this.refListener = new WeakReference<>(listener);
         this.imageId = imageId;
+        this.localId = localId;
+        this.originId = originId;
 
         dialog = new AlertDialog.Builder(context).create();
         View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_image_remove, null);
@@ -47,6 +48,6 @@ public class DialogImageRemove implements View.OnClickListener {
 
     private void notifySuccess() {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().onSuccess(imageId);
+        refListener.get().onSuccess(imageId, localId, originId);
     }
 }

@@ -12,6 +12,7 @@ import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.presenter.callback.IPresenterAdapterProfileListener;
 import com.ringoid.view.presenter.util.IHelperConnection;
+import com.ringoid.view.presenter.util.IHelperPhotoUpload;
 
 import java.lang.ref.WeakReference;
 
@@ -42,6 +43,9 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
 
     @Inject
     IHelperConnection helperConnection;
+
+    @Inject
+    IHelperPhotoUpload helperPhotoUpload;
 
     private ListenerCacheProfile listenerCacheProfile;
     private WeakReference<IPresenterAdapterProfileListener> refListener;
@@ -82,26 +86,28 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     }
 
     @Override
-    public void onImageRemove(String imageId) {
+    public void onImageRemove(String imageId, String localId, String originId) {
         if (!helperConnection.isConnectionExist()) {
             navigator.navigateErrorConnection();
             return;
         }
 
-        cacheProfile.removeItem(imageId);
-        if (!cacheProfile.isDataExist())
-            cacheUser.setUserNew();
-        repositoryProfileImageRemove.request(imageId);
-    }
-
-    @Override
-    public boolean isPhotoLocal(int position) {
-        return cacheProfile.isPhotoLocal(position);
+        helperPhotoUpload.remove(imageId, localId, originId);
     }
 
     @Override
     public String getUrlThumbnail(int position) {
         return cacheProfile.getUrlThumbnail(position);
+    }
+
+    @Override
+    public String getImageLocalId(int position) {
+        return cacheProfile.getPhotoLocalId(position);
+    }
+
+    @Override
+    public String getImageOriginId(int position) {
+        return cacheProfile.getPhotoOriginId(position);
     }
 
     private void updateView() {

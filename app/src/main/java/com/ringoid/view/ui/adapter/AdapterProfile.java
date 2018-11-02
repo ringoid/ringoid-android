@@ -51,24 +51,23 @@ public class AdapterProfile extends AdapterBase {
         return presenterAdapterProfile.getItemsNum();
     }
 
-    private void showDialogRemove(Context context, String imageId) {
+    private void showDialogRemove(Context context, String imageId, String localId, String originId) {
         if (dialogImageRemove != null)
             dialogImageRemove.cancel();
 
-        dialogImageRemove = new DialogImageRemove(context, imageId, listenerDialogImageRemove);
+        dialogImageRemove = new DialogImageRemove(context, imageId, localId, originId, listenerDialogImageRemove);
         dialogImageRemove.show();
     }
 
     class ViewHolderItem extends ViewHolderBase implements View.OnClickListener {
         private View ivRemove;
-        private ImageView ivItem, ivStatus;
+        private ImageView ivItem;
         private TextView tvLikes;
 
         ViewHolderItem(ViewGroup parent) {
             super(parent, R.layout.view_image_profile);
 
             ivItem = itemView.findViewById(R.id.ivContent);
-            ivStatus = itemView.findViewById(R.id.ivStatus);
             tvLikes = itemView.findViewById(R.id.tvLikes);
             ivRemove = itemView.findViewById(R.id.ivRemove);
 
@@ -81,17 +80,6 @@ public class AdapterProfile extends AdapterBase {
         void setData(int position) {
             showImage(position);
             setLikes(position);
-            setStatus(position);
-        }
-
-        private void setStatus(int position) {
-            ivStatus.setVisibility(View.GONE);
-            ivRemove.setVisibility(View.VISIBLE);
-
-            if (presenterAdapterProfile.isPhotoLocal(position)) {
-                ivStatus.setVisibility(View.VISIBLE);
-                ivRemove.setVisibility(View.GONE);
-            }
         }
 
         private void setLikes(int position) {
@@ -138,7 +126,10 @@ public class AdapterProfile extends AdapterBase {
 
             if (v.getId() == R.id.ivRemove) {
                 showDialogRemove(itemView.getContext(),
-                        presenterAdapterProfile.getImageId(getAdapterPosition()));
+                        presenterAdapterProfile.getImageId(getAdapterPosition()),
+                        presenterAdapterProfile.getImageLocalId(getAdapterPosition()),
+                        presenterAdapterProfile.getImageOriginId(getAdapterPosition())
+                );
             }
         }
 
@@ -182,8 +173,8 @@ public class AdapterProfile extends AdapterBase {
 
     private class ListenerDialogImageRemove implements IDialogImageRemoveListener {
         @Override
-        public void onSuccess(String imageId) {
-            presenterAdapterProfile.onImageRemove(imageId);
+        public void onSuccess(String imageId, String localId, String originId) {
+            presenterAdapterProfile.onImageRemove(imageId, localId, originId);
         }
     }
 }

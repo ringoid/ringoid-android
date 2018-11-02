@@ -5,4 +5,8 @@ import java.io.File;
 
 public interface IHelperPhotoUpload {
     void addPhotoLocal(File file);
+
+    void remove(String imageId, String localId, String originId);
+
+    void checkState();
 }
