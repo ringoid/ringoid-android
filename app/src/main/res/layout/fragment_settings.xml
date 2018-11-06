@@ -30,29 +30,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                style="@style/settings_menu_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="56dp">
-
-                <TextView
-                    style="@style/settings_privacy_item_message"
-                    android:text="@string/settings_location"
-                    android:textColor="@color/grey_middle" />
-
-                <TextView
-                    style="@style/settings_privacy_item_value"
-                    android:text="@string/settings_location_value" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/divider" />
-
             <TextView
                 android:id="@+id/tvDataProtection"
                 style="@style/settings_menu_item"
