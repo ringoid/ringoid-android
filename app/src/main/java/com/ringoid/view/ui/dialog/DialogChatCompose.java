@@ -66,6 +66,8 @@ public class DialogChatCompose implements View.OnClickListener {
 
     private void initViews(Dialog view) {
         view.findViewById(R.id.ivSend).setOnClickListener(this);
+        view.findViewById(R.id.ivClose).setOnClickListener(this);
+        view.findViewById(R.id.ivReport).setOnClickListener(this);
         etMessage = view.findViewById(R.id.etMessage);
         etMessage.setListener(new ListenerViewPreIme());
 
@@ -93,6 +95,11 @@ public class DialogChatCompose implements View.OnClickListener {
                 presenterChat.onClickMessageSend(message);
             }
         }
+
+        if (v.getId() == R.id.ivClose)
+            cancel();
+        if (v.getId() == R.id.ivReport)
+            presenterChat.onClickReport();
     }
 
     private String getMessage() {

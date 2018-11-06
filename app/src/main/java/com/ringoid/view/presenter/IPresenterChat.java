@@ -17,4 +17,6 @@ public interface IPresenterChat {
     void onListInited();
 
     void onSCroll(int newState, int pos, int offset);
+
+    void onClickReport();
 }

@@ -21,4 +21,6 @@ public interface IViewDialogs {
     void setListener(ViewDialogsListener listener);
 
     void showDialogPhotoUploadedFirst(IDialogPhotoUploadedFirstListener listenerDialogPhotoUpload);
+
+    void showDialogReport();
 }
