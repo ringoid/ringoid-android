@@ -28,6 +28,9 @@ public class RepositoryProfileImageRemove implements IRepositoryProfileImageRemo
     @Inject
     ICachePhotoRemove cachePhotoRemove;
 
+    @Inject
+    IRepositoryProfilePhotos repositoryProfile;
+
     public RepositoryProfileImageRemove() {
         ApplicationRingoid.getComponent().inject(this);
     }
@@ -59,6 +62,7 @@ public class RepositoryProfileImageRemove implements IRepositoryProfileImageRemo
             }
 
             cachePhotoRemove.remove(photoId, originId);
+            repositoryProfile.request();
 
             if (!cachePhotoRemove.isDataExist())
                 return;
