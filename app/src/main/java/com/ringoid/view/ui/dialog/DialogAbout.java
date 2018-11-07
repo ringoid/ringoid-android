@@ -8,12 +8,13 @@ import android.view.View;
 
 import com.ringoid.R;
 
-public class DialogAbout {
+public class DialogAbout implements View.OnClickListener {
     private AlertDialog dialog;
 
     public DialogAbout(Context context) {
         dialog = new AlertDialog.Builder(context).create();
         View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_about, null);
+        view.findViewById(R.id.flContent).setOnClickListener(this);
         dialog.setView(view);
     }
 
@@ -25,4 +26,8 @@ public class DialogAbout {
         dialog.show();
     }
 
+    @Override
+    public void onClick(View view) {
+        cancel();
+    }
 }

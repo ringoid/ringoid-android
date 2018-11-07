@@ -10,6 +10,7 @@ import com.ringoid.controller.data.memorycache.ICacheChatMessages;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheMessageCompose;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
+import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.presenter.callback.IPresenterChatListener;
 import com.ringoid.view.ui.util.IHelperMessageSend;
@@ -36,6 +37,9 @@ public class PresenterChat implements IPresenterChat {
 
     @Inject
     ICacheChatMessages cacheChatMessages;
+
+    @Inject
+    IViewDialogs viewDialogs;
 
     private WeakReference<IPresenterChatListener> refListener;
 
@@ -89,6 +93,11 @@ public class PresenterChat implements IPresenterChat {
     public void onSCroll(int newState, int pos, int offset) {
         if (newState != RecyclerView.SCROLL_STATE_IDLE) return;
         cacheChatMessages.setScrollSavedPosition(cacheMessages.getUserSelectedID(), pos, offset);
+    }
+
+    @Override
+    public void onClickReport() {
+        viewDialogs.showDialogReport();
     }
 
     private void setMessageComposeSaved() {

@@ -35,6 +35,7 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
     private CropIwaView cropImageView;
     private ListenerPresenter listenerPresenter;
     private View vCropConfirm;
+    private ListenerCrop listenerCrop;
 
     public static Fragment getInstance(Uri url) {
         Bundle bundle = new Bundle();
@@ -100,21 +101,26 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
 
     @Override
     public boolean onBackPressed() {
+        if (listenerCrop != null && listenerCrop.isCropping) return true;
         return presenterPhotoCrop.onBackPressed();
     }
 
     private class ListenerCrop implements CropIwaView.CropSaveCompleteListener {
 
         private File file;
+        private boolean isCropping;
 
         ListenerCrop(File file) {
             this.file = file;
+            isCropping = true;
         }
 
         @Override
         public void onCroppedRegionSaved(Uri bitmapUri) {
             presenterPhotoCrop.onCropCompleted(file);
             GlideApp.with(getContext()).load(file).preload();
+            isCropping = false;
+            listenerCrop = null;
         }
     }
 
@@ -126,7 +132,7 @@ public class FragmentPhotoCrop extends FragmentBase implements View.OnClickListe
                     getContext().getFilesDir(),
                     System.currentTimeMillis() + ".jpg");
 
-            cropImageView.setCropSaveCompleteListener(new ListenerCrop(file));
+            cropImageView.setCropSaveCompleteListener(listenerCrop = new ListenerCrop(file));
             cropImageView.crop(new CropIwaSaveConfig.Builder(Uri.fromFile(file))
                     .setCompressFormat(Bitmap.CompressFormat.JPEG)
                     .setQuality(100)

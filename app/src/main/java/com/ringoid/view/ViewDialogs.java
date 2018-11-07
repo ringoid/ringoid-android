@@ -9,6 +9,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.view.ui.dialog.DialogChatCompose;
 import com.ringoid.view.ui.dialog.DialogErrorUnknown;
 import com.ringoid.view.ui.dialog.DialogPhotoUploadedFirst;
+import com.ringoid.view.ui.dialog.DialogReport;
 import com.ringoid.view.ui.dialog.callback.IDialogErrorUnknownListener;
 import com.ringoid.view.ui.dialog.callback.IDialogPhotoUploadedFirstListener;
 import com.ringoid.view.ui.dialog.callback.ViewDialogsListener;
@@ -31,6 +32,7 @@ public class ViewDialogs implements IViewDialogs {
     private WeakReference<DialogErrorUnknown> refDialogErrorUnknown;
     private WeakReference<AlertDialog> refDialogMessage;
     private WeakReference<DialogPhotoUploadedFirst> refDialogPhotoUploadedFirst;
+    private WeakReference<DialogReport> refDialogReport;
 
     private DialogErrorUnknownListener dialogErrorUnknownListener;
     private WeakReference<ViewDialogsListener> refListener;
@@ -97,6 +99,17 @@ public class ViewDialogs implements IViewDialogs {
         DialogPhotoUploadedFirst dialog = new DialogPhotoUploadedFirst(refContext.get(), listener);
         dialog.show();
         refDialogPhotoUploadedFirst = new WeakReference<>(dialog);
+    }
+
+    @Override
+    public void showDialogReport() {
+        if (refDialogReport != null && refDialogReport.get() != null)
+            refDialogReport.get().cancel();
+
+        if (refContext == null || refContext.get() == null) return;
+        DialogReport dialogReport = new DialogReport(refContext.get());
+        dialogReport.show();
+        refDialogReport = new WeakReference<>(dialogReport);
     }
 
     private class DialogErrorUnknownListener implements IDialogErrorUnknownListener {
