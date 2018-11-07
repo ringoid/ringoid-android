@@ -56,4 +56,6 @@ public interface INavigator {
     void navigateFeedProfilePhotoSelect();
 
     void navigateSettings();
+
+    void restartView();
 }

@@ -50,8 +50,7 @@
             android:layout_height="wrap_content"
             android:text="@string/message_terms"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-            android:textColor="@color/grey_middle"
-            android:theme="@style/AppTheme.Green" />
+            android:textColor="@color/grey_middle" />
 
     </ScrollView>
 
@@ -67,7 +66,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
         android:indeterminate="true"
-        android:theme="@style/AppTheme.Green"
         android:visibility="gone" />
 
 </LinearLayout>

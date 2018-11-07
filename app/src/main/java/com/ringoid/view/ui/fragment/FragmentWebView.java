@@ -1,10 +1,12 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.fragment;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.ui.util.IHelperTheme;
 
 import javax.inject.Inject;
 
@@ -27,6 +30,9 @@ public class FragmentWebView extends FragmentBase
 
     @Inject
     INavigator navigator;
+
+    @Inject
+    IHelperTheme helperTheme;
 
     public static Fragment getInstance(String url, String subtitle) {
         Bundle args = new Bundle();
@@ -59,7 +65,7 @@ public class FragmentWebView extends FragmentBase
         ((TextView) view.findViewById(R.id.tvTitle)).setText(getArguments().getString(ARG_SUBTITLE));
 
         WebView wvContent = view.findViewById(R.id.wvContent);
-        wvContent.setBackgroundColor(getResources().getColor(R.color.gray_bg));
+        wvContent.setBackgroundColor(helperTheme.getColor(R.attr.pageBackground));
         wvContent.setWebViewClient(new WebViewClient());
         wvContent.setWebChromeClient(new WebChromeClient());
         wvContent.loadUrl(getArguments().getString(ARG_URL));

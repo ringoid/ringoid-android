@@ -7,18 +7,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheUser;
+import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
 import com.ringoid.controller.data.network.interceptor.InterceptorRetry;
 import com.ringoid.controller.data.network.interceptor.listener.IInterceptorRetryListener;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
+import com.ringoid.view.presenter.callback.IPresenterActivityMainListener;
 import com.ringoid.view.presenter.util.IHelperPhotoUpload;
 import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperScreenshots;
+
+import java.lang.ref.WeakReference;
 
 import javax.inject.Inject;
 
@@ -57,11 +62,17 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     @Inject
     IHelperPhotoUpload helperPhotoUpload;
 
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
+
     private ListenerInterceptor listenerInterceptor;
+    private ICacheInterfaceStateListener listenerCacheInterfaceState;
+    private WeakReference<IPresenterActivityMainListener> refListener;
 
     public PresenterActivityMain() {
         ApplicationRingoid.getComponent().inject(this);
         interceptorRequest.setListener(listenerInterceptor = new ListenerInterceptor());
+        cacheInterfaceState.addListener(listenerCacheInterfaceState = new ListenerCacheInterfaceState());
     }
 
     @Override
@@ -73,6 +84,16 @@ public class PresenterActivityMain implements IPresenterActivityMain {
         helperScreenshots.set(activity.getWindow());
 
         navigate();
+    }
+
+    @Override
+    public void setListener(IPresenterActivityMainListener listener) {
+        this.refListener = new WeakReference<>(listener);
+    }
+
+    @Override
+    public void onCreate() {
+        updateTheme();
     }
 
     private void navigate() {
@@ -106,6 +127,15 @@ public class PresenterActivityMain implements IPresenterActivityMain {
         navigator.onActivityResult(requestCode, resultCode, data);
     }
 
+    private void updateTheme() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().setTheme(cacheInterfaceState.getTheme());
+    }
+
+    private void restartView() {
+        navigator.restartView();
+    }
+
     private class ListenerInterceptor implements IInterceptorRetryListener {
         @Override
         public void onRequestTokenInvalid() {
@@ -125,6 +155,23 @@ public class PresenterActivityMain implements IPresenterActivityMain {
         @Override
         public void onRequestErrorConnection() {
             navigator.navigateErrorConnection();
+        }
+    }
+
+    private class ListenerCacheInterfaceState implements ICacheInterfaceStateListener {
+        @Override
+        public void onPageSelected(int num) {
+
+        }
+
+        @Override
+        public void onDialogComposeShowState(boolean isShown) {
+
+        }
+
+        @Override
+        public void onThemeUpdate() {
+            restartView();
         }
     }
 }

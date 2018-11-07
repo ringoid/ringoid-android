@@ -65,10 +65,6 @@ public class FragmentLogin extends FragmentBase
     private TextView tvSMSResend;
     private TextView tvPhoneHint;
 
-    public PAGE_ENUM getPage() {
-        return PAGE_ENUM.LOGIN;
-    }
-
     public static Fragment getInstanceCodeConfirm() {
         FragmentLogin fragment = new FragmentLogin();
         Bundle args = new Bundle();
@@ -76,7 +72,6 @@ public class FragmentLogin extends FragmentBase
         fragment.setArguments(args);
         return fragment;
     }
-
 
     public static FragmentLogin getInstanceProfileUpdate() {
         FragmentLogin fragment = new FragmentLogin();
@@ -92,6 +87,10 @@ public class FragmentLogin extends FragmentBase
         args.putInt(PresenterRegister.ARG_PAGE, PresenterRegister.INDEX_PHONE_INPUT);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public PAGE_ENUM getPage() {
+        return PAGE_ENUM.LOGIN;
     }
 
     @Override
@@ -138,6 +137,7 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.ivPasteSMS).setOnClickListener(this);
         view.findViewById(R.id.tvCodeSMSResend).setOnClickListener(this);
         view.findViewById(R.id.tvCodePhoneError).setOnClickListener(this);
+        view.findViewById(R.id.ivTheme).setOnClickListener(this);
 
         view.findViewById(R.id.ivPasteSMS).setOnLongClickListener(this);
 
@@ -187,6 +187,8 @@ public class FragmentLogin extends FragmentBase
             pasteSMSFromCLipboard();
         }
 
+        if (view.getId() == R.id.ivTheme)
+            presenterRegister.onClickTheme();
     }
 
     private void pasteSMSFromCLipboard() {

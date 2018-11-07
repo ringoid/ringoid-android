@@ -103,6 +103,7 @@ import com.ringoid.view.ui.util.ApiRingoidProvider;
 import com.ringoid.view.ui.util.HelperAnimation;
 import com.ringoid.view.ui.util.HelperMessageCompose;
 import com.ringoid.view.ui.util.HelperMessageSend;
+import com.ringoid.view.ui.util.HelperTheme;
 import com.ringoid.view.ui.util.OkHttpProvider;
 import com.ringoid.view.ui.util.ScreenHelper;
 
@@ -115,6 +116,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(HelperTheme param);
 
     void inject(CachePhotoRemove param);
 

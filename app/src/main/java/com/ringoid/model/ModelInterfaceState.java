@@ -1,6 +1,8 @@
 package com.ringoid.model;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
+import com.ringoid.R;
+
 import java.io.Serializable;
 
 public class ModelInterfaceState implements Serializable {
@@ -15,6 +17,7 @@ public class ModelInterfaceState implements Serializable {
     private int positionScrollPageMessagesOffset;
     private int positionScrollPageExploreOffset;
     private int positionScrollPageSettingsOffset;
+    private int themeId;
     transient private boolean dialogComposeShow;
 
     public String getOriginPhotoId() {
@@ -91,5 +94,13 @@ public class ModelInterfaceState implements Serializable {
 
     public boolean isDialogComposeShown() {
         return dialogComposeShow;
+    }
+
+    public void updateTheme() {
+        themeId = themeId == R.style.AppThemeLight ? R.style.AppThemeDark : R.style.AppThemeLight;
+    }
+
+    public int getThemeId() {
+        return themeId;
     }
 }

@@ -34,8 +34,7 @@
             android:paddingStart="16dp"
             android:paddingTop="4dp"
             android:textColor="@color/grey_middle"
-            android:textSize="17sp"
-            android:theme="@style/AppTheme.Green" />
+            android:textSize="17sp" />
 
         <ImageView
             android:id="@+id/ivSend"

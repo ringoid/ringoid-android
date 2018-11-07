@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.ringoid.view.presenter.callback.IPresenterActivityMainListener;
+
 public interface IPresenterActivityMain {
 
     boolean onBackPressed();
@@ -13,4 +15,8 @@ public interface IPresenterActivityMain {
     void onActivityResult(int requestCode, int resultCode, Intent data);
 
     void onCreateView(AppCompatActivity activity, View view, FragmentManager supportFragmentManager, int flContentRoot);
+
+    void setListener(IPresenterActivityMainListener listener);
+
+    void onCreate();
 }

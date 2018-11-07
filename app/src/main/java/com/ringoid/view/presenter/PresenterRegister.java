@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.controller.data.memorycache.ICacheUser;
@@ -67,6 +68,9 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Inject
     ICacheTutorial cacheTutorial;
+
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
 
     private ListenerTimer listenerTimer;
     private ListenerRegisterCodeConfirm listenerRegisterCodeConfirm;
@@ -134,6 +138,11 @@ public class PresenterRegister implements IPresenterRegister {
     @Override
     public void onClickWrongPhone() {
         setPhoneInput();
+    }
+
+    @Override
+    public void onClickTheme() {
+        cacheInterfaceState.updateTheme();
     }
 
     private void setPhoneInputStateEnabled(boolean isEnabled) {

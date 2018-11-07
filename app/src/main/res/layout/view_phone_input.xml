@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border_rounded_gray"
-        android:paddingBottom="8dp"
         android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         app:ccpDialog_textColor="@android:color/white"
         app:ccp_autoDetectCountry="false"
         app:ccp_autoDetectLanguage="true"
@@ -53,11 +53,10 @@
                 android:hint="@string/hint_phone_code"
                 android:imeOptions="actionNext"
                 android:inputType="number"
-                android:paddingBottom="16dp"
-                android:paddingEnd="8dp"
                 android:paddingTop="16dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="16dp"
                 android:textSize="20sp"
-                android:theme="@style/AppTheme.Green"
                 tools:drawableEnd="@drawable/ic_check_green_16dp" />
 
         </LinearLayout>
@@ -81,12 +80,11 @@
                 android:hint="@string/hint_numbers"
                 android:imeOptions="actionDone"
                 android:inputType="phone"
-                android:paddingBottom="16dp"
-                android:paddingEnd="8dp"
                 android:paddingStart="16dp"
                 android:paddingTop="16dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="16dp"
                 android:textSize="20sp"
-                android:theme="@style/AppTheme.Green"
                 tools:drawableEnd="@drawable/ic_error_red_16dp" />
 
             <ImageView

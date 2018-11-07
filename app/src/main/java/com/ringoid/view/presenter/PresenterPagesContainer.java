@@ -251,6 +251,11 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         public void onDialogComposeShowState(boolean isShown) {
 
         }
+
+        @Override
+        public void onThemeUpdate() {
+
+        }
     }
 
     private class ListenerCacheSettings implements ICacheSettingsPrivacyListener {

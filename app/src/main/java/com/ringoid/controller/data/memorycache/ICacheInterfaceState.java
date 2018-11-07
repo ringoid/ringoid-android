@@ -56,4 +56,8 @@ public interface ICacheInterfaceState {
     void setDialogComposeShowState(boolean isShown);
 
     boolean isDialogComposeShown();
+
+    void updateTheme();
+
+    int getTheme();
 }

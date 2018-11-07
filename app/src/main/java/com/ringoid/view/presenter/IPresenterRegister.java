@@ -26,4 +26,6 @@ public interface IPresenterRegister {
     void onClickCodeSMSResend();
 
     void onClickWrongPhone();
+
+    void onClickTheme();
 }

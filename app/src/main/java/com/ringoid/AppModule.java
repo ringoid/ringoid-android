@@ -147,12 +147,14 @@ import com.ringoid.view.ui.util.HelperFullscreen;
 import com.ringoid.view.ui.util.HelperMessageCompose;
 import com.ringoid.view.ui.util.HelperMessageSend;
 import com.ringoid.view.ui.util.HelperScreenshots;
+import com.ringoid.view.ui.util.HelperTheme;
 import com.ringoid.view.ui.util.HelperTimer;
 import com.ringoid.view.ui.util.IHelperAnimation;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperMessageCompose;
 import com.ringoid.view.ui.util.IHelperMessageSend;
 import com.ringoid.view.ui.util.IHelperScreenshots;
+import com.ringoid.view.ui.util.IHelperTheme;
 import com.ringoid.view.ui.util.IHelperTimer;
 import com.ringoid.view.ui.util.IScreenHelper;
 import com.ringoid.view.ui.util.KeyboardUtils;
@@ -217,6 +219,12 @@ class AppModule {
     @Singleton
     IHelperThreadMain getHelperThreadMain() {
         return new HelperThreadMain(new Handler(Looper.getMainLooper()));
+    }
+
+    @Provides
+    @Singleton
+    IHelperTheme getHelperTheme() {
+        return new HelperTheme();
     }
 
     @Provides

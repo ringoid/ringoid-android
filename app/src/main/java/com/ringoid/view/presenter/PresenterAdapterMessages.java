@@ -131,5 +131,10 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
             if (refListener == null || refListener.get() == null) return;
             refListener.get().onUpdate();
         }
+
+        @Override
+        public void onThemeUpdate() {
+
+        }
     }
 }

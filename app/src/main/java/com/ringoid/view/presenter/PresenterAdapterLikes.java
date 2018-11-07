@@ -130,5 +130,10 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
             if (refListener == null || refListener.get() == null) return;
             refListener.get().onUpdate();
         }
+
+        @Override
+        public void onThemeUpdate() {
+
+        }
     }
 }

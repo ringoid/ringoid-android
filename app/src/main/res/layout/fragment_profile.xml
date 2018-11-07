@@ -88,8 +88,7 @@
             android:layout_height="56dp"
             android:layout_marginBottom="16dp"
             android:alpha="0.8"
-            android:src="@drawable/ic_add_white_24dp"
-            android:theme="@style/AppTheme.Green" />
+            android:src="@drawable/ic_add_white_24dp" />
 
     </FrameLayout>
 

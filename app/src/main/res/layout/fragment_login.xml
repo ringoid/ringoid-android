@@ -16,4 +16,10 @@
 
     </ViewFlipper>
 
+    <ImageView
+        android:id="@+id/ivTheme"
+        style="@style/selectableImage"
+        android:layout_gravity="end"
+        android:src="@drawable/ic_theme_grey_24dp" />
+
 </FrameLayout>

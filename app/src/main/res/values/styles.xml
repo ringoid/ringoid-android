@@ -1,24 +1,26 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@android:color/black</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccentGreen</item>
+        <item name="pageBackground">@android:color/white</item>
+
     </style>
 
+    <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@android:color/black</item>
+        <item name="colorAccent">@color/colorAccentGreen</item>
+        <item name="pageBackground">@color/gray_bg</item>
+    </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
 
-
-    <style name="AppTheme.Warning">
+    <style name="AppThemeLight.Warning">
         <item name="colorAccent">@color/colorWarning</item>
-    </style>
-
-
-    <style name="AppTheme.Green">
-        <item name="colorAccent">@color/colorAccentGreen</item>
     </style>
 
     <style name="bottomMenuItem">

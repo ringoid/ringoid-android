@@ -180,8 +180,29 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
+    public void updateTheme() {
+        getData().updateTheme();
+        saveData();
+        notifyListenersThemeUpdated();
+    }
+
+    @Override
+    public int getTheme() {
+        return getData().getThemeId();
+    }
+
+    @Override
     public int getPositionScrollPageExplore() {
         return getData().getPositionScrollPageExplore();
+    }
+
+    private void notifyListenersThemeUpdated() {
+        if (listeners == null) return;
+        for (String key : listeners.keySet()) {
+            ICacheInterfaceStateListener listener = listeners.get(key);
+            if (listener == null) continue;
+            listener.onThemeUpdate();
+        }
     }
 
     private void notifyListenersPageUpdated() {

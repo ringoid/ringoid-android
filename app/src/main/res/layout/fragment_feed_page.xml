@@ -9,7 +9,7 @@
         android:id="@+id/srlFeed"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray_bg"
+        android:background="?pageBackground"
         tools:visibility="gone">
 
         <com.ringoid.view.ui.view.RecyclerViewScrollbarColored
@@ -19,6 +19,6 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <include layout="@layout/view_feed_content_error"/>
+    <include layout="@layout/view_feed_content_error" />
 
 </FrameLayout>

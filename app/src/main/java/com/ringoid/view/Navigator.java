@@ -14,6 +14,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.BuildConfig;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
+import com.ringoid.view.ui.activity.ActivityMain;
 import com.ringoid.view.ui.dialog.callback.ViewDialogsListener;
 import com.ringoid.view.ui.fragment.FragmentBase;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;
@@ -185,6 +186,15 @@ public class Navigator implements INavigator {
                 .addToBackStack(null)
                 .replace(viewId, new FragmentSettings())
                 .commit();
+    }
+
+    @Override
+    public void restartView() {
+        if (refActivity == null) return;
+        AppCompatActivity activity = refActivity.get();
+        activity.finish();
+        activity.startActivity(new Intent(activity, ActivityMain.class));
+        activity.overridePendingTransition(0, 0);
     }
 
     @Override

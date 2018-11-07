@@ -17,4 +17,7 @@
         <attr name="value" format="string" />
     </declare-styleable>
 
+
+    <attr name="pageBackground" format="color"/>
+
 </resources>

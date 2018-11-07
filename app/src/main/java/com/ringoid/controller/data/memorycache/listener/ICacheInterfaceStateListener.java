@@ -5,4 +5,6 @@ public interface ICacheInterfaceStateListener {
     void onPageSelected(int num);
 
     void onDialogComposeShowState(boolean isShown);
+
+    void onThemeUpdate();
 }
