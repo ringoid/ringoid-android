@@ -21,5 +21,10 @@
     <attr name="colorTextPrimary" format="color" />
     <attr name="drawableThemeLogin" format="reference" />
     <attr name="colorDivider" format="color" />
+    <attr name="drawableLegal" format="reference" />
+    <attr name="drawableSupport" format="reference" />
+    <attr name="drawableLogout" format="reference" />
+    <attr name="drawableServices" format="reference" />
+    <attr name="drawableLicenses" format="reference" />
 
 </resources>

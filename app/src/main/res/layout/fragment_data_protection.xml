@@ -101,7 +101,7 @@
             <TextView
                 android:id="@+id/tvPrivacy"
                 style="@style/settings_menu_item"
-                android:drawableStart="@drawable/ic_privacy_policy_24"
+                android:drawableStart="?drawableLegal"
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/data_protection_privacy" />
 
@@ -113,7 +113,7 @@
             <TextView
                 android:id="@+id/tvSettingsTerms"
                 style="@style/settings_menu_item"
-                android:drawableStart="@drawable/ic_settings_terms_24dp"
+                android:drawableStart="?drawableServices"
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/settings_terms" />
 
@@ -125,7 +125,7 @@
             <TextView
                 android:id="@+id/tvSettingsLicenses"
                 style="@style/settings_menu_item"
-                android:drawableStart="@drawable/ic_settings_licenses_24dp"
+                android:drawableStart="?drawableLicenses"
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/settings_licenses" />
 
@@ -137,7 +137,7 @@
             <TextView
                 android:id="@+id/tvMailOfficer"
                 style="@style/settings_menu_item"
-                android:drawableStart="@drawable/ic_settings_feedback_24dp"
+                android:drawableStart="?drawableSupport"
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/data_protection_email_officer" />
 
