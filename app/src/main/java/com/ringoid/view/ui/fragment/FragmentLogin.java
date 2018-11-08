@@ -415,12 +415,12 @@ public class FragmentLogin extends FragmentBase
                     ? resources.getDrawable(R.drawable.ic_check_green_16dp)
                     : resources.getDrawable(R.drawable.ic_error_red_16dp);
 
-            int color = resources.getColor(
+            int color =
                     TextUtils.isEmpty(etCodeSMS.getText())
                             ? helperTheme.getColor(R.attr.colorTextPrimary)
                             : length == 4
                             ? helperTheme.getColor(R.attr.colorTextPrimary)
-                            : R.color.colorWarning);
+                            : resources.getColor(R.color.colorWarning);
 
             vContainerSMSCode.setBackgroundResource(drawableRes);
             etCodeSMS.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
@@ -449,9 +449,9 @@ public class FragmentLogin extends FragmentBase
             boolean isValid = isValid(year);
 
             etYearBirth.setBackgroundResource(isValid ? R.drawable.border_rounded_green : R.drawable.border_rounded_red);
-            etYearBirth.setTextColor(ContextCompat.getColor(getContext(), isValid
+            etYearBirth.setTextColor(isValid
                     ? helperTheme.getColor(R.attr.colorTextPrimary)
-                    : R.color.colorWarning));
+                    : ContextCompat.getColor(getContext(), R.color.colorWarning));
 
             Drawable drawable = ContextCompat.getDrawable(getContext(), isValid ? R.drawable.ic_check_green_16dp : R.drawable.ic_error_red_16dp);
             etYearBirth.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
