@@ -20,5 +20,6 @@
 
     <attr name="pageBackground" format="color"/>
     <attr name="colorTextPrimary" format="color"/>
+    <attr name="drawableThemeLogin" format="reference"/>
 
 </resources>
