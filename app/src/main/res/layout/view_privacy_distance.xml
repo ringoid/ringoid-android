@@ -24,8 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:paddingEnd="16dp"
                 android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:text="@string/settings_privacy_distance_message"
                 android:textSize="15sp" />
 
@@ -38,7 +38,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <TextView
                 android:id="@+id/tvDistance10"
@@ -49,7 +49,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <TextView
                 android:id="@+id/tvDistance25"
@@ -60,7 +60,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <TextView
                 android:id="@+id/tvDistance50"
@@ -71,7 +71,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <TextView
                 android:id="@+id/tvDistance100"
@@ -82,7 +82,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <TextView
                 android:id="@+id/tvDistance250"

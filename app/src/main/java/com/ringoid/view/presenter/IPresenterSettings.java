@@ -11,4 +11,6 @@ public interface IPresenterSettings {
     void onScroll(int scrollY);
 
     void onConfirmLogout();
+
+    void onClickTheme();
 }

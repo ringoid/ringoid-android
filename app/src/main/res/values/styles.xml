@@ -8,6 +8,7 @@
         <item name="pageBackground">@android:color/white</item>
         <item name="colorTextPrimary">#000</item>
         <item name="drawableThemeLogin">@drawable/ic_theme_light_24dp</item>
+        <item name="colorDivider">@color/divider_light</item>
 
     </style>
 
@@ -19,6 +20,7 @@
         <item name="pageBackground">@color/gray_bg</item>
         <item name="colorTextPrimary">#fff</item>
         <item name="drawableThemeLogin">@drawable/ic_theme_dark_24dp</item>
+        <item name="colorDivider">@color/divider_dark</item>
 
     </style>
 
@@ -116,7 +118,7 @@
         <item name="android:paddingEnd">16dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">?colorTextPrimary</item>
 
     </style>
 

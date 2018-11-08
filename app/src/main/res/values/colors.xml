@@ -8,7 +8,8 @@
     <color name="dot_active">#fff</color>
     <color name="menu_bottom_selected">#2e3338</color>
     <color name="blue">#60a6e8</color>
-    <color name="divider">#3e3f42</color>
+    <color name="divider_dark">#3e3f42</color>
+    <color name="divider_light">#ebebeb</color>
     <color name="gray_bg">#1f262c</color>
     <color name="gray_bg_70">#aa1f262c</color>
     <color name="colorWarning">#f90</color>

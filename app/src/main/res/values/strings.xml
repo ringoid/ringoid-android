@@ -111,8 +111,7 @@
     <string name="blacklist_description">Users who linked Ringoid accounts to the following phone numbers can\'t see my photos, like or message me</string>
     <string name="format_dialog_remove_confirm" formatted="false">Remove +%s %s from the blacklist?</string>
     <string name="blacklist_phone_add">Block it!</string>
-	
-	
+
     <string name="settings_location">Location</string>
     <string name="settings_location_value">Use my current location</string>
     <string name="dialog_unknown_confirm">email support</string>
@@ -142,5 +141,7 @@
 
     <string name="dialog_photo_upload_first_photo_add">Add another photo</string>
     <string name="dialog_photo_upload_first_feed">Discover New Faces</string>
+    <string name="settings_theme_title">Dark Theme</string>
+    <string name="settings_theme_subtitle">Enable night mode</string>
 
 </resources>

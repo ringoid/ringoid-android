@@ -38,9 +38,9 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
                 android:orientation="vertical"
-                android:paddingBottom="16dp"
                 android:paddingStart="56dp"
-                android:paddingTop="16dp">
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -63,7 +63,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <LinearLayout
                 android:id="@+id/llCustomerID"
@@ -71,9 +71,9 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
                 android:orientation="vertical"
-                android:paddingBottom="16dp"
                 android:paddingStart="56dp"
-                android:paddingTop="16dp">
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -96,49 +96,49 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <TextView
                 android:id="@+id/tvPrivacy"
                 style="@style/settings_menu_item"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_privacy_policy_24"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/data_protection_privacy" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <TextView
                 android:id="@+id/tvSettingsTerms"
                 style="@style/settings_menu_item"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_settings_terms_24dp"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/settings_terms" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <TextView
                 android:id="@+id/tvSettingsLicenses"
                 style="@style/settings_menu_item"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_settings_licenses_24dp"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/settings_licenses" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <TextView
                 android:id="@+id/tvMailOfficer"
                 style="@style/settings_menu_item"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_settings_feedback_24dp"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/data_protection_email_officer" />
 
         </LinearLayout>

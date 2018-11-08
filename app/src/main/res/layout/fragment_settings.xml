@@ -29,47 +29,54 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <include layout="@layout/view_settings_theme" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?colorDivider" />
+
             <TextView
                 android:id="@+id/tvDataProtection"
                 style="@style/settings_menu_item"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_privacy_policy_24"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/settings_data_protection" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <TextView
                 android:id="@+id/tvSettingsFeedback"
                 style="@style/settings_menu_item"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_settings_feedback_24dp"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/settings_feedback" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <TextView
                 android:id="@+id/tvLogout"
                 style="@style/settings_menu_item"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_logout_gray_16dp"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/settings_logout" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider" />
+                android:background="?colorDivider" />
 
             <TextView
                 android:id="@+id/tvAccountDelete"
                 style="@style/settings_menu_item"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:drawableStart="@drawable/ic_remove_red_24dp"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/settings_delete_account"
                 android:textColor="@color/colorWarning" />
 

@@ -17,9 +17,9 @@
         <attr name="value" format="string" />
     </declare-styleable>
 
-
-    <attr name="pageBackground" format="color"/>
-    <attr name="colorTextPrimary" format="color"/>
-    <attr name="drawableThemeLogin" format="reference"/>
+    <attr name="pageBackground" format="color" />
+    <attr name="colorTextPrimary" format="color" />
+    <attr name="drawableThemeLogin" format="reference" />
+    <attr name="colorDivider" format="color" />
 
 </resources>

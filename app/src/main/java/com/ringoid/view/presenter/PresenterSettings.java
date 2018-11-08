@@ -2,11 +2,8 @@ package com.ringoid.view.presenter;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.controller.data.memorycache.ICacheBlacklist;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
-import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.repository.IRepositoryRegisterLogout;
-import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.callback.IPresenterSettingsListener;
 import com.ringoid.view.presenter.util.ILogoutHelper;
 
@@ -55,6 +52,11 @@ public class PresenterSettings implements IPresenterSettings {
     public void onConfirmLogout() {
         repositoryRegisterLogout.request();
         logoutHelper.logout();
+    }
+
+    @Override
+    public void onClickTheme() {
+        cacheInterfaceState.updateTheme();
     }
 
 }

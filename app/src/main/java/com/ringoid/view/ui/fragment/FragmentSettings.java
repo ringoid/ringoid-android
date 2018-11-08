@@ -66,6 +66,7 @@ public class FragmentSettings extends FragmentBase
         view.findViewById(R.id.ivClose).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.tvTitle).setOnClickListener(this);
+        view.findViewById(R.id.vTheme).setOnClickListener(this);
 
         svContent = view.findViewById(R.id.svContent);
         svContent.getViewTreeObserver().addOnScrollChangedListener(new ListenerScroll());
@@ -93,6 +94,9 @@ public class FragmentSettings extends FragmentBase
         if (v.getId() == R.id.ivClose
                 || v.getId() == R.id.ivBack)
             getActivity().onBackPressed();
+
+        if (v.getId() == R.id.vTheme)
+            presenterSettings.onClickTheme();
     }
 
     private void showDialogLogout() {
