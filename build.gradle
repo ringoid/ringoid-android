@@ -1,4 +1,4 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+    // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
     
@@ -30,7 +30,7 @@ task clean(type: Delete) {
 
 ext{
     PROD = ''
-    STAGE = '"https://mstyzyhb69.execute-api.eu-west-1.amazonaws.com"'
+    STAGE = '"https://6echscaw94.execute-api.eu-west-1.amazonaws.com"'
 
     SERVER = STAGE
 }

@@ -50,33 +50,33 @@ public interface IApiRingoid {
     @GET("/Prod/get_settings")
     Call<ResponseSettings> settingsGet(@Query("accessToken") String token);
 
-    @GET("https://wlzvkc7yf5.execute-api.eu-west-1.amazonaws.com/Prod/get_own_photos")
+    @GET("https://https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/get_own_photos")
     Call<ResponseProfilePhotos> profilePhotosGet(@Query("accessToken") String token,
                                                  @Query("resolution") String res);
 
-    @POST("https://wlzvkc7yf5.execute-api.eu-west-1.amazonaws.com/Prod/get_presigned")
+    @POST("https://https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/get_presigned")
     Call<ResponseProfilePhotoUri> profilePhotoUri(@Body RequestPhotoUploadUri param);
 
     @PUT
     Call<Void> profilePhotoUpload(@Url String url,
                                   @Body RequestBody image);
 
-    @POST("https://wlzvkc7yf5.execute-api.eu-west-1.amazonaws.com/Prod/delete_photo")
+    @POST("https://https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/delete_photo")
     Call<ResponseBase> profileImageRemove(@Body RequestParamProfileImageRemove param);
 
-    @POST("https://8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/timeout")
+    @POST("https://xvlq70j9zb.execute-api.eu-west-1.amazonaws.com/Prod/timeout")
     Call<ResponseBase> testTimeout();
 
-    @POST("https://8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/invalidtoken")
+    @POST("https://xvlq70j9zb.execute-api.eu-west-1.amazonaws.com/Prod/invalidtoken")
     Call<ResponseBase> testTokenInvalid();
 
-    @POST("https://8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/nonok")
+    @POST("https://xvlq70j9zb.execute-api.eu-west-1.amazonaws.com/Prod/nonok")
     Call<ResponseBase> testResponseNot200();
 
-    @POST("https://8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/old_version")
+    @POST("https://xvlq70j9zb.execute-api.eu-west-1.amazonaws.com/Prod/old_version")
     Call<ResponseBase> testAppVersion();
 
-    @POST("https://8wa5ijraug.execute-api.eu-west-1.amazonaws.com/Prod/internalerror")
+    @POST("https://xvlq70j9zb.execute-api.eu-west-1.amazonaws.com/Prod/internalerror")
     Call<ResponseBase> testInternalServerError();
 
     @POST("https://lhksdfgkjsgfhjsdgfsdgjsdfgjsdlfksd.com")
