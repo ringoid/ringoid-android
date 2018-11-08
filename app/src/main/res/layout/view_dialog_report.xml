@@ -25,7 +25,7 @@
                 android:paddingEnd="20dp"
                 android:text="@string/dialog_report_title"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                android:textColor="@android:color/white" />
+                android:textColor="?colorTextPrimary" />
 
             <TextView
                 android:layout_width="match_parent"

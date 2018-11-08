@@ -26,7 +26,7 @@
             android:id="@+id/tvConfirm"
             style="@style/buttonBase.Dialog"
             android:text="@string/dialog_unknown_confirm"
-            android:textColor="@android:color/white"
+            android:textColor="?colorTextPrimary"
             android:textStyle="bold" />
 
     </LinearLayout>

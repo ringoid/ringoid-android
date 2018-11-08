@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/dialog_image_delete_title"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-        android:textColor="@android:color/white" />
+        android:textColor="?colorTextPrimary" />
 
     <TextView
         android:layout_width="match_parent"

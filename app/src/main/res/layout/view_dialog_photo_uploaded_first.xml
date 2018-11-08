@@ -17,7 +17,7 @@
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
             android:text="@string/dialog_photo_upload_first_feed"
-            android:textColor="@color/grey_middle" />
+            android:textColor="?colorTextPrimary" />
 
         <TextView
             android:id="@+id/tvPhotoAdd"
@@ -27,7 +27,7 @@
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
             android:text="@string/dialog_photo_upload_first_photo_add"
-            android:textColor="@android:color/white"
+            android:textColor="?colorTextPrimary"
             android:textStyle="bold" />
 
     </LinearLayout>
