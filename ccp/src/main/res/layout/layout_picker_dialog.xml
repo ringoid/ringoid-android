@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_title">
 
-        <EditText
+        <com.hbb20.view.EditTextPreIme
             android:id="@+id/editText_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

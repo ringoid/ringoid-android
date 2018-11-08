@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -25,6 +26,7 @@ import com.hbb20.PresenterCountry;
 import com.hbb20.R;
 import com.hbb20.model.DataCountry;
 import com.hbb20.model.Language;
+import com.hbb20.view.callback.IEditTextPreImeListener;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -93,10 +95,11 @@ class CountryCodeDialog {
         TextView textViewTitle = view.findViewById(R.id.textView_title);
         RelativeLayout rlQueryHolder = view.findViewById(R.id.rl_query_holder);
         ImageView imgClearQuery = view.findViewById(R.id.img_clear_query);
-        EditText editText_search = view.findViewById(R.id.editText_search);
+        EditTextPreIme editText_search = view.findViewById(R.id.editText_search);
         TextView textView_noResult = view.findViewById(R.id.textView_noresult);
         RelativeLayout rlHolder = view.findViewById(R.id.rl_holder);
         ImageView imgDismiss = view.findViewById(R.id.img_dismiss);
+        editText_search.setListener(new ListenerPreIme());
 
         // type faces
         //set type faces
@@ -285,4 +288,13 @@ class CountryCodeDialog {
         dialog.show();
     }
 
+    private class ListenerPreIme implements IEditTextPreImeListener {
+        @Override
+        public boolean onKeyPreIme(int keyCode, KeyEvent event) {
+            if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+                cancel();
+            }
+            return false;
+        }
+    }
 }
