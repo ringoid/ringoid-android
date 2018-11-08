@@ -33,6 +33,7 @@ import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterRegister;
 import com.ringoid.view.presenter.PresenterRegister;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
+import com.ringoid.view.ui.util.IHelperTheme;
 import com.ringoid.view.ui.view.ViewPhoneInput;
 import com.ringoid.view.ui.view.callback.IViewPhotoInputListener;
 import com.ringoid.view.ui.view.utils.ClipboardUtils;
@@ -50,6 +51,9 @@ public class FragmentLogin extends FragmentBase
 
     @Inject
     INavigator navigator;
+
+    @Inject
+    IHelperTheme helperTheme;
 
     private ViewFlipper vfLogin;
     private EditText etPhone, etCodeSMS;
@@ -413,9 +417,9 @@ public class FragmentLogin extends FragmentBase
 
             int color = resources.getColor(
                     TextUtils.isEmpty(etCodeSMS.getText())
-                            ? android.R.color.white
+                            ? helperTheme.getColor(R.attr.colorTextPrimary)
                             : length == 4
-                            ? android.R.color.white
+                            ? helperTheme.getColor(R.attr.colorTextPrimary)
                             : R.color.colorWarning);
 
             vContainerSMSCode.setBackgroundResource(drawableRes);
@@ -445,7 +449,9 @@ public class FragmentLogin extends FragmentBase
             boolean isValid = isValid(year);
 
             etYearBirth.setBackgroundResource(isValid ? R.drawable.border_rounded_green : R.drawable.border_rounded_red);
-            etYearBirth.setTextColor(ContextCompat.getColor(getContext(), isValid ? android.R.color.white : R.color.colorWarning));
+            etYearBirth.setTextColor(ContextCompat.getColor(getContext(), isValid
+                    ? helperTheme.getColor(R.attr.colorTextPrimary)
+                    : R.color.colorWarning));
 
             Drawable drawable = ContextCompat.getDrawable(getContext(), isValid ? R.drawable.ic_check_green_16dp : R.drawable.ic_error_red_16dp);
             etYearBirth.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);

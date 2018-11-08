@@ -22,6 +22,7 @@ import com.ringoid.view.presenter.util.IHelperPhotoUpload;
 import com.ringoid.view.presenter.util.ILogoutHelper;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperScreenshots;
+import com.ringoid.view.ui.util.IHelperTheme;
 
 import java.lang.ref.WeakReference;
 
@@ -65,6 +66,9 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     @Inject
     ICacheInterfaceState cacheInterfaceState;
 
+    @Inject
+    IHelperTheme helperTheme;
+
     private ListenerInterceptor listenerInterceptor;
     private ICacheInterfaceStateListener listenerCacheInterfaceState;
     private WeakReference<IPresenterActivityMainListener> refListener;
@@ -82,6 +86,7 @@ public class PresenterActivityMain implements IPresenterActivityMain {
         viewPopup.setView(view);
         helperFullscreen.set(activity.getWindow());
         helperScreenshots.set(activity.getWindow());
+        helperTheme.set(activity);
 
         navigate();
     }

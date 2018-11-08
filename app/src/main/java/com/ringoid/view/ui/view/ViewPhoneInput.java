@@ -22,12 +22,20 @@ import com.hbb20.PresenterCountry;
 import com.hbb20.model.DataCountry;
 import com.hbb20.model.Language;
 import com.hbb20.view.CountryCodePicker;
+import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.view.ui.util.IHelperTheme;
 import com.ringoid.view.ui.view.callback.IViewPhotoInputListener;
 import com.ringoid.view.ui.view.utils.ClipboardUtils;
 
+import javax.inject.Inject;
+
 public class ViewPhoneInput extends LinearLayout
         implements View.OnClickListener, View.OnLongClickListener {
+
+    @Inject
+    IHelperTheme helperTheme;
+
     CountryCodePicker ccp;
     EditText etCode;
     private ListenerCountry listenerCountry;
@@ -51,6 +59,8 @@ public class ViewPhoneInput extends LinearLayout
     }
 
     private void addView(Context context) {
+        ApplicationRingoid.getComponent().inject(this);
+
         inflate(context, R.layout.view_phone_input, this);
         initViews();
     }
@@ -158,11 +168,11 @@ public class ViewPhoneInput extends LinearLayout
     }
 
     private int getTextColor(boolean empty, boolean valid) {
-        return getContext().getResources().getColor(empty
-                ? android.R.color.white
+        return empty
+                ? helperTheme.getColor(R.attr.colorTextPrimary)
                 : valid
-                ? android.R.color.white
-                : R.color.colorWarning);
+                ? helperTheme.getColor(R.attr.colorTextPrimary)
+                : getContext().getResources().getColor(R.color.colorWarning);
     }
 
     public String getPhone() {

@@ -19,5 +19,6 @@
 
 
     <attr name="pageBackground" format="color"/>
+    <attr name="colorTextPrimary" format="color"/>
 
 </resources>

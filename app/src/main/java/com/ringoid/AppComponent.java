@@ -106,6 +106,7 @@ import com.ringoid.view.ui.util.HelperMessageSend;
 import com.ringoid.view.ui.util.HelperTheme;
 import com.ringoid.view.ui.util.OkHttpProvider;
 import com.ringoid.view.ui.util.ScreenHelper;
+import com.ringoid.view.ui.view.ViewPhoneInput;
 
 import javax.inject.Singleton;
 
@@ -116,6 +117,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(ViewPhoneInput param);
 
     void inject(HelperTheme param);
 

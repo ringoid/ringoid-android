@@ -5,17 +5,14 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.TypedValue;
 
-import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
-
 import java.lang.ref.WeakReference;
 
 public class HelperTheme implements IHelperTheme {
 
     WeakReference<Context> refContext;
 
-    public HelperTheme() {
-        ApplicationRingoid.getComponent().inject(this);
+    public void set(Context context) {
+        this.refContext = new WeakReference<>(context);
     }
 
     @Override
@@ -24,7 +21,7 @@ public class HelperTheme implements IHelperTheme {
 
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = refContext.get().getTheme();
-        theme.resolveAttribute(R.attr.pageBackground, typedValue, true);
+        theme.resolveAttribute(res, typedValue, true);
         return typedValue.data;
     }
 }
