@@ -15,7 +15,7 @@ public class KeyboardUtils {
         editView.requestFocus();
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm == null) return;
-        imm.showSoftInput(editView, InputMethodManager.SHOW_IMPLICIT);
+        imm.showSoftInput(editView, InputMethodManager.SHOW_FORCED);
     }
 
     public void keyboardHide(Context context, View view) {
