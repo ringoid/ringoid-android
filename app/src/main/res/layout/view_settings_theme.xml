@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/ivTheme"
-        android:layout_width="34dp"
-        android:layout_height="24dp"
+        android:layout_width="40dp"
+        android:layout_height="32dp"
         android:layout_gravity="end"
         android:src="?drawableThemeLogin"
         app:layout_constraintBottom_toBottomOf="parent"
