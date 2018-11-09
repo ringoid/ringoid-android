@@ -28,4 +28,6 @@ public interface IPresenterRegisterListener {
     void setPhone(int phoneCode, String phone);
 
     void setPhoneSelectionEnd();
+
+    void setContryLocal();
 }

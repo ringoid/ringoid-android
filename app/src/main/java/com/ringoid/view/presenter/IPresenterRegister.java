@@ -28,4 +28,8 @@ public interface IPresenterRegister {
     void onClickWrongPhone();
 
     void onClickTheme();
+
+    void onCodeEdit(String s);
+
+    void onPhoneEdit(String s);
 }

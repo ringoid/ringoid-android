@@ -12,6 +12,7 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.Selection;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -854,8 +855,10 @@ public class CountryCodePicker extends RelativeLayout {
             }
 
             //text watcher stops working when it finds non digit character in previous phone code. This will reset its function
-            editText_registeredCarrierNumber.setText("");
-            editText_registeredCarrierNumber.setText(digitsValue);
+            if (!TextUtils.isEmpty(digitsValue)) {
+                editText_registeredCarrierNumber.setText("");
+                editText_registeredCarrierNumber.setText(digitsValue);
+            }
             editText_registeredCarrierNumber.setSelection(editText_registeredCarrierNumber.getText().length());
         } else {
             if (editText_registeredCarrierNumber == null) {

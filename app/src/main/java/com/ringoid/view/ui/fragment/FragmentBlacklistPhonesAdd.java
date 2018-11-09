@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
@@ -97,6 +96,16 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
         @Override
         public void onPhoneDone() {
             onClickConfirm();
+        }
+
+        @Override
+        public void onCodeEdit(String s) {
+
+        }
+
+        @Override
+        public void onPhoneEdit(String s) {
+
         }
     }
 

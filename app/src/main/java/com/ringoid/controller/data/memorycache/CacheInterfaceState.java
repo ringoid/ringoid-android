@@ -154,6 +154,50 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
+    public void resetCacheSavedPhone() {
+        getData().setPhone(null);
+        getData().setPhoneCode(null);
+        saveData();
+    }
+
+    @Override
+    public boolean isPhoneExist() {
+        return getData().getPhone() != null;
+    }
+
+    @Override
+    public int getPhoneCode() {
+        String sCode = getData().getPhoneCode();
+        if (sCode == null) return 0;
+        int code;
+
+        try {
+            code = Integer.valueOf(sCode.replaceAll("[^0-9]", ""));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+
+        return code;
+    }
+
+    @Override
+    public void setPhoneCode(String s) {
+        getData().setPhoneCode(s);
+        saveData();
+    }
+
+    @Override
+    public String getPhone() {
+        return getData().getPhone();
+    }
+
+    @Override
+    public void setPhone(String s) {
+        getData().setPhone(s);
+        saveData();
+    }
+
+    @Override
     public void resetCachePositionExplore() {
         setPositionScrollPageExplore(0, 0);
     }

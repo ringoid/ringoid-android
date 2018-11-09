@@ -146,7 +146,6 @@ public class FragmentLogin extends FragmentBase
         view.findViewById(R.id.ivPasteSMS).setOnLongClickListener(this);
 
         vpiLogin.setListener(new ListenerViewPhoneInput());
-        vpiLogin.setCountryLocal();
 
         etCodeSMS.addTextChangedListener(new SMSTextChangedListener());
         etYearBirth.addTextChangedListener(new DateTextChangedListener());
@@ -312,13 +311,19 @@ public class FragmentLogin extends FragmentBase
         public void setPhone(int phoneCode, String phone) {
             if (getContext() == null) return;
             vpiLogin.setPhone(phone);
-            vpiLogin.setCountryCode(phoneCode);
+            if (phoneCode != 0)
+                vpiLogin.setCountryCode(phoneCode);
         }
 
         @Override
         public void setPhoneSelectionEnd() {
             if (getContext() == null) return;
             etPhone.setSelection(etPhone.getText().length());
+        }
+
+        @Override
+        public void setContryLocal() {
+            vpiLogin.setCountryLocal();
         }
 
         @Override
@@ -370,6 +375,16 @@ public class FragmentLogin extends FragmentBase
         @Override
         public void onPhoneDone() {
             onClickPhoneConfirm();
+        }
+
+        @Override
+        public void onCodeEdit(String s) {
+            presenterRegister.onCodeEdit(s);
+        }
+
+        @Override
+        public void onPhoneEdit(String s) {
+            presenterRegister.onPhoneEdit(s);
         }
     }
 

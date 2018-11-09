@@ -25,6 +25,8 @@ public class ModelInterfaceState implements Serializable {
     private int themeId;
     transient private boolean dialogComposeShow;
     private PAGE_ENUM pageLikes;
+    private String phoneCode;
+    private String phone;
 
     public String getOriginPhotoId() {
         return originPhotoId;
@@ -122,5 +124,21 @@ public class ModelInterfaceState implements Serializable {
 
     public void setPageLikes(PAGE_ENUM page) {
         this.pageLikes = page;
+    }
+
+    public void setPhoneCode(String s) {
+        this.phoneCode = s;
+    }
+
+    public void setPhone(String s) {
+        this.phone = s;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getPhoneCode() {
+        return phoneCode;
     }
 }

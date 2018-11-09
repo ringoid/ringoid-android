@@ -5,4 +5,8 @@ public interface IViewPhotoInputListener {
     void onDialogClose();
 
     void onPhoneDone();
+
+    void onCodeEdit(String s);
+
+    void onPhoneEdit(String s);
 }

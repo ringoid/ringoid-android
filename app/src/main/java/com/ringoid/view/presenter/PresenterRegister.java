@@ -114,6 +114,8 @@ public class PresenterRegister implements IPresenterRegister {
         if (TextUtils.isEmpty(phone))
             return;
 
+        cacheInterfaceState.resetCacheSavedPhone();
+
         if (cacheUser.isPhoneEqual(code, phone) && helperTimer.isTicking()) {
             loginGoCodeInput();
             return;
@@ -143,6 +145,16 @@ public class PresenterRegister implements IPresenterRegister {
     @Override
     public void onClickTheme() {
         cacheInterfaceState.updateTheme();
+    }
+
+    @Override
+    public void onCodeEdit(String s) {
+        cacheInterfaceState.setPhoneCode(s);
+    }
+
+    @Override
+    public void onPhoneEdit(String s) {
+        cacheInterfaceState.setPhone(s);
     }
 
     private void setPhoneInputStateEnabled(boolean isEnabled) {
@@ -199,7 +211,12 @@ public class PresenterRegister implements IPresenterRegister {
         if (cacheUser.isPhoneCodeExist() && cacheUser.isPhoneExist()) {
             refListener.get().setPhone(cacheUser.getPhoneCode(), cacheUser.getPhone());
             refListener.get().setPhoneSelectionEnd();
+        } else if (cacheInterfaceState.isPhoneExist()) {
+            refListener.get().setPhone(cacheInterfaceState.getPhoneCode(), cacheInterfaceState.getPhone());
+            refListener.get().setPhoneSelectionEnd();
         }
+        else refListener.get().setContryLocal();
+
         refListener.get().setPage(INDEX_PHONE_INPUT);
     }
 

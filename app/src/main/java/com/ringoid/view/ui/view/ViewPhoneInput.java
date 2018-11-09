@@ -197,6 +197,16 @@ public class ViewPhoneInput extends LinearLayout
 
     }
 
+    private void notifyListenerCodeEdit() {
+        if (listener == null) return;
+        listener.onCodeEdit(etCode.getText().toString());
+    }
+
+    private void notifyListenerPhoneEdit() {
+        if (listener == null) return;
+        listener.onPhoneEdit(etPhone.getText().toString());
+    }
+
     private class ListenerCode implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -226,6 +236,8 @@ public class ViewPhoneInput extends LinearLayout
                             : ccpCountry != null
                             ? R.drawable.border_rounded_left_green
                             : R.drawable.border_rounded_left_red);
+
+            notifyListenerCodeEdit();
 
         }
     }
@@ -267,6 +279,8 @@ public class ViewPhoneInput extends LinearLayout
                     : isValid
                     ? R.drawable.border_rounded_right_green
                     : R.drawable.border_rounded_right_red);
+
+            notifyListenerPhoneEdit();
         }
     }
 

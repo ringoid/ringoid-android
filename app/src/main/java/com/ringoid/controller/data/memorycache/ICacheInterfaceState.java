@@ -64,4 +64,16 @@ public interface ICacheInterfaceState {
     void setPageLikes(PAGE_ENUM page);
 
     void resetCachePositionMatches();
+
+    void setPhoneCode(String s);
+
+    void setPhone(String s);
+
+    void resetCacheSavedPhone();
+
+    boolean isPhoneExist();
+
+    int getPhoneCode();
+
+    String getPhone();
 }
