@@ -109,7 +109,7 @@ public class ModelInterfaceState implements Serializable {
     }
 
     public void updateTheme() {
-        themeId = themeId == R.style.AppThemeLight ? R.style.AppThemeDark : R.style.AppThemeLight;
+        themeId = themeId == R.style.AppThemeLight || themeId == 0 ? R.style.AppThemeDark : R.style.AppThemeLight;
     }
 
     public int getThemeId() {
