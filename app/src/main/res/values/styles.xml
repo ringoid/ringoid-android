@@ -42,18 +42,18 @@
     </style>
 
     <style name="bottomMenuItem">
-        <item name="android:padding">16dp</item>
+        <item name="android:padding">12dp</item>
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">@dimen/toolbar_height_with_statusbar</item>
     </style>
 
     <style name="selectableImage">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:padding">16dp</item>
-        <item name="android:layout_width">56dp</item>
-        <item name="android:layout_height">56dp</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:layout_width">@dimen/toolbar_height_with_statusbar</item>
+        <item name="android:layout_height">@dimen/toolbar_height_with_statusbar</item>
     </style>
 
     <style name="menuImageEnd">
@@ -148,5 +148,15 @@
     </style>
 
     <style name="themeDialogFullscreen" />
+
+    <style name="itemTabLikes">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:textColor">?colorTextPrimary</item>
+    </style>
 
 </resources>

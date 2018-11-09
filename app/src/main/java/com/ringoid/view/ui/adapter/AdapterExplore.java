@@ -31,11 +31,6 @@ public class AdapterExplore extends AdapterFeed {
     }
 
     @Override
-    protected int getFeedSubtitle() {
-        return R.string.subtitle_explore;
-    }
-
-    @Override
     protected int getFeedTitle() {
         return R.string.title_explore;
     }

@@ -26,11 +26,6 @@ public class AdapterLikes extends AdapterFeed {
     }
 
     @Override
-    protected int getFeedSubtitle() {
-        return R.string.subtitle_likes;
-    }
-
-    @Override
     protected int getFeedTitle() {
         return R.string.title_likes;
     }

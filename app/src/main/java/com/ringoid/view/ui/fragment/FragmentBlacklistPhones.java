@@ -52,9 +52,6 @@ public class FragmentBlacklistPhones extends FragmentBase
         rvItems.setLayoutManager(new LinearLayoutManager(getContext()));
         rvItems.setAdapter(new AdapterBlacklistPhones(getContext()));
         rvItems.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
-
-        TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
-        tvSubtitle.setText(R.string.settings_privacy_phones_subtitle);
     }
 
 

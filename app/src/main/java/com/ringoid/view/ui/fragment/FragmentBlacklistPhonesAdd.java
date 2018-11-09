@@ -56,9 +56,6 @@ public class FragmentBlacklistPhonesAdd extends FragmentBase implements View.OnC
 
         view.findViewById(R.id.tvBlacklistAdd).setOnClickListener(this);
         view.findViewById(R.id.ivBack).setOnClickListener(this);
-
-        TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
-        tvSubtitle.setText(R.string.settings_privacy_phone_blacklist_add_subtitle);
     }
 
     @Override

@@ -66,9 +66,6 @@ public class FragmentSettingsPush extends FragmentBase implements View.OnClickLi
         view.findViewById(R.id.tvPushLikesAll).setOnClickListener(this);
         view.findViewById(R.id.tvPushLikesEvery10).setOnClickListener(this);
         view.findViewById(R.id.tvPushLikesEvery100).setOnClickListener(this);
-
-        TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
-        tvSubtitle.setText(R.string.settings_push_subtitle);
     }
 
     @Override

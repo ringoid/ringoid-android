@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/toolbar_height_with_statusbar"
     android:orientation="horizontal">
 
     <ImageView
@@ -12,7 +12,7 @@
     <LinearLayout
         android:id="@+id/llToolbarTitle"
         android:layout_width="wrap_content"
-        android:layout_height="56dp"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:gravity="center_vertical"
@@ -25,14 +25,6 @@
             android:text="@string/app_name"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/tvSubtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:textSize="15sp"
-            tools:text="@string/app_name" />
 
     </LinearLayout>
 

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/toolbar_height_with_statusbar"
     android:orientation="vertical"
     android:paddingStart="16dp">
 
@@ -13,12 +13,5 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
         android:textSize="24sp"
         tools:text="blabla" />
-
-    <TextView
-        android:id="@+id/tvSubtitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        tools:text="blablabla" />
 
 </LinearLayout>

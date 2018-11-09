@@ -2,7 +2,6 @@ package com.ringoid.view.ui.adapter;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import android.support.annotation.NonNull;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -34,8 +33,6 @@ abstract class AdapterFeed extends AdapterBase {
         holder.setData(position == 0 ? 0 : position - 1);
     }
 
-    protected abstract int getFeedSubtitle();
-
     protected abstract int getFeedTitle();
 
     protected abstract int getItemsNum();
@@ -43,20 +40,16 @@ abstract class AdapterFeed extends AdapterBase {
     protected abstract ViewHolderBase getViewHolder(ViewGroup parent);
 
     private class ViewHolderHeader extends ViewHolderBase {
-        private TextView tvTitle, tvSubtitle;
+        private TextView tvTitle;
 
         public ViewHolderHeader(ViewGroup parent) {
             super(parent, R.layout.view_feed_header);
             tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvSubtitle = itemView.findViewById(R.id.tvSubtitle);
         }
 
         @Override
         void setData(int position) {
             tvTitle.setText(getFeedTitle());
-            tvSubtitle.setText(getFeedSubtitle());
-            tvSubtitle.setVisibility(getItemsNum() == 0? View.GONE : View.VISIBLE);
-
         }
     }
 }

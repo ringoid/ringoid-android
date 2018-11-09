@@ -35,7 +35,6 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
     private IPresenterProfileListener listenerPresenter;
     private IndicatorHelper dotsIndicatorHelper;
     private View vPhotos, vEmpty;
-    private TextView tvSubtitle;
     private LinearLayoutManager layoutManager;
     private SwipeRefreshLayout srlPhotos;
     private ListenerRefreshLayout listenerRefreshLayout;
@@ -69,7 +68,6 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         vPhotos = view.findViewById(R.id.flPhotos);
         vEmpty = view.findViewById(R.id.tvEmpty);
         srlPhotos = view.findViewById(R.id.srlProfilePhotos);
-        tvSubtitle = view.findViewById(R.id.tvSubtitle);
 
         srlPhotos.setOnRefreshListener(listenerRefreshLayout = new ListenerRefreshLayout());
 
@@ -85,8 +83,6 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         boolean photosVisible = presenterProfile.getItemsNum() != 0;
         vPhotos.setVisibility(photosVisible ? View.VISIBLE : View.GONE);
         vEmpty.setVisibility(photosVisible ? View.GONE : View.VISIBLE);
-        tvSubtitle.setVisibility(photosVisible ? View.VISIBLE : View.GONE);
-        tvSubtitle.setText(photosVisible ? getString(R.string.subtitle_profile) : null);
     }
 
     private void initList(View view) {

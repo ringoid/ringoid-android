@@ -26,11 +26,6 @@ public class AdapterMessages extends AdapterFeed {
     }
 
     @Override
-    protected int getFeedSubtitle() {
-        return R.string.subtitle_messages;
-    }
-
-    @Override
     protected int getFeedTitle() {
         return R.string.title_messages;
     }

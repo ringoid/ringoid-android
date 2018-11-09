@@ -17,7 +17,6 @@ public class ViewToolbar extends FrameLayout {
 
     private static final String PARAM_SHOW_BACK = "param_show_back";
     private static final String PARAM_TITLE = "title";
-    private static final String PARAM_SUBTITLE = "subtitle";
 
     public ViewToolbar(Context context) {
         super(context);
@@ -48,7 +47,6 @@ public class ViewToolbar extends FrameLayout {
         Bundle result = new Bundle();
         result.putInt(PARAM_SHOW_BACK, a.getBoolean(R.styleable.toolbarRingoid_is_show_back, false) ? View.VISIBLE : View.GONE);
         result.putString(PARAM_TITLE, a.getString(R.styleable.toolbarRingoid_toolbar_title));
-        result.putString(PARAM_SUBTITLE, a.getString(R.styleable.toolbarRingoid_toolbar_subtitle));
         return result;
     }
 
@@ -56,22 +54,19 @@ public class ViewToolbar extends FrameLayout {
         findViewById(R.id.ivBack).setVisibility(getParamInt(params, PARAM_SHOW_BACK, View.GONE));
 
         String title = params.getString(PARAM_TITLE);
-        String subtitle = params.getString(PARAM_SUBTITLE);
 
-        setText(title, subtitle);
+        setText(title);
     }
 
-    public void setText(String title, String subtitle) {
+    public void setText(String title) {
         ((TextView) findViewById(R.id.tvTitle)).setText(TextUtils.isEmpty(title) ? "" : title);
-        ((TextView) findViewById(R.id.tvSubtitle)).setText(TextUtils.isEmpty(subtitle) ? "" : subtitle);
-        findViewById(R.id.tvSubtitle).setVisibility(TextUtils.isEmpty(subtitle) ? GONE : VISIBLE);
     }
 
     private int getParamInt(Bundle params, String param, int defaultValue) {
         return params == null ? defaultValue : params.getInt(param, defaultValue);
     }
 
-    public void setText(int title, int subtitle) {
-        setText(getResources().getString(title), getResources().getString(subtitle));
+    public void setText(int title) {
+        setText(getResources().getString(title));
     }
 }

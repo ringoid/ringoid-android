@@ -42,7 +42,6 @@ public class FragmentSettingsPrivacyDistance extends FragmentBase
 
     private void initView(View view) {
         view.findViewById(R.id.ivBack).setOnClickListener(this);
-        ((TextView) view.findViewById(R.id.tvSubtitle)).setText(R.string.privacy_distance_subtitle);
 
         tvDistance0 = view.findViewById(R.id.tvDistance0);
         tvDistance10 = view.findViewById(R.id.tvDistance10);

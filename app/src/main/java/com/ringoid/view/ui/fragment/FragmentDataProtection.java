@@ -54,9 +54,6 @@ public class FragmentDataProtection extends FragmentBase
         TextView tvVersion = view.findViewById(R.id.tvVersion);
         tvVersion.setText(String.format("v %d (%s)", BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME));
 
-        TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
-        tvSubtitle.setText(R.string.data_protection_subtitle);
-
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.ivClose).setOnClickListener(this);
         view.findViewById(R.id.llVersion).setOnClickListener(this);
