@@ -4,12 +4,12 @@
     android:id="@+id/flContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="@dimen/likesTitleHeight">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/ivClose"
@@ -22,7 +22,7 @@
             android:layout_gravity="end"
             android:src="@drawable/ic_block_gray_dark_24dp" />
 
-    </LinearLayout>
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/flMessages"
