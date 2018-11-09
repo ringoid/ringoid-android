@@ -1,17 +1,17 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterMessages;
 import com.ringoid.view.presenter.callback.IPresenterAdapterMessagesListener;
 
 import javax.inject.Inject;
 
-public class AdapterMessages extends AdapterFeed {
+public class AdapterMessages extends AdapterBase {
 
     @Inject
     IPresenterAdapterMessages presenterAdapterMessages;
@@ -25,19 +25,15 @@ public class AdapterMessages extends AdapterFeed {
         viewPool = new RecyclerView.RecycledViewPool();
     }
 
+    @NonNull
     @Override
-    protected int getFeedTitle() {
-        return R.string.title_messages;
-    }
-
-    @Override
-    protected int getItemsNum() {
-        return presenterAdapterMessages.getItemsNum();
-    }
-
-    @Override
-    protected ViewHolderBase getViewHolder(ViewGroup parent) {
+    public ViewHolderBase onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolderItemMessage(parent, viewPool);
+    }
+
+    @Override
+    public int getItemCount() {
+        return presenterAdapterMessages.getItemsNum();
     }
 
     private class ListenerPresenter implements IPresenterAdapterMessagesListener {

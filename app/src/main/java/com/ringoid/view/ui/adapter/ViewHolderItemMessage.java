@@ -53,7 +53,7 @@ public class ViewHolderItemMessage extends ViewHolderItemLikeBase {
 
     @Override
     protected void onClickChat() {
-        presenterAdapterMessages.onClickChat(getAdapterPosition() - 1);
+        presenterAdapterMessages.onClickChat(getAdapterPosition());
     }
 
     @Override
@@ -86,7 +86,7 @@ public class ViewHolderItemMessage extends ViewHolderItemLikeBase {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-            presenterAdapterMessages.onScrollPhotoChanged(newState, getAdapterPosition() - 1, layoutManager.findFirstVisibleItemPosition());
+            presenterAdapterMessages.onScrollPhotoChanged(newState, getAdapterPosition(), layoutManager.findFirstVisibleItemPosition());
         }
     }
 }

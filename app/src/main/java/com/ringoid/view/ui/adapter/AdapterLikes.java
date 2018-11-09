@@ -1,17 +1,17 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.view.ui.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterAdapterLikes;
 import com.ringoid.view.presenter.callback.IPresenterAdapterLikesListener;
 
 import javax.inject.Inject;
 
-public class AdapterLikes extends AdapterFeed {
+public class AdapterLikes extends AdapterBase {
 
     @Inject
     IPresenterAdapterLikes presenterAdapterLikes;
@@ -25,19 +25,15 @@ public class AdapterLikes extends AdapterFeed {
         viewPool = new RecyclerView.RecycledViewPool();
     }
 
+    @NonNull
     @Override
-    protected int getFeedTitle() {
-        return R.string.title_likes;
-    }
-
-    @Override
-    protected int getItemsNum() {
-        return presenterAdapterLikes.getItemsNum();
-    }
-
-    @Override
-    protected ViewHolderBase getViewHolder(ViewGroup parent) {
+    public ViewHolderBase onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolderItemLikes(parent, viewPool);
+    }
+
+    @Override
+    public int getItemCount() {
+        return presenterAdapterLikes.getItemsNum();
     }
 
     private class ListenerPresenter implements IPresenterAdapterLikesListener {
