@@ -21,6 +21,7 @@
     <attr name="colorDivider" format="color" />
     <attr name="colorTabBackground" format="color" />
     <attr name="colorTabBackgroundActive" format="color" />
+    <attr name="colorTextDialog" format="color" />
     <attr name="drawableThemeLogin" format="reference" />
     <attr name="drawableLegal" format="reference" />
     <attr name="drawableSupport" format="reference" />

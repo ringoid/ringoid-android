@@ -35,7 +35,7 @@
                 android:paddingEnd="20dp"
                 android:text="@string/dialog_report_message"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                android:textColor="@color/grey_middle"
+                android:textColor="?colorTextDialog"
                 android:textSize="17sp" />
 
             <View
@@ -53,7 +53,7 @@
                 android:paddingEnd="20dp"
                 android:paddingBottom="16dp"
                 android:text="@string/dialog_report_switch"
-                android:textColor="@color/grey_middle"
+                android:textColor="?colorTextDialog"
                 android:textSize="17sp"
                 android:theme="@style/AppThemeLight.Warning" />
 
@@ -73,7 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/dialog_report_item_1"
-                    android:textColor="@color/grey_middle"
+                    android:textColor="?colorTextDialog"
                     android:textSize="15sp" />
 
                 <RadioButton
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="@string/dialog_report_item_2"
-                    android:textColor="@color/grey_middle"
+                    android:textColor="?colorTextDialog"
                     android:textSize="15sp" />
 
                 <RadioButton
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="@string/dialog_report_item_3"
-                    android:textColor="@color/grey_middle"
+                    android:textColor="?colorTextDialog"
                     android:textSize="15sp" />
 
                 <RadioButton
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="@string/dialog_report_item_4"
-                    android:textColor="@color/grey_middle"
+                    android:textColor="?colorTextDialog"
                     android:textSize="15sp" />
 
                 <RadioButton
@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="@string/dialog_report_item_5"
-                    android:textColor="@color/grey_middle"
+                    android:textColor="?colorTextDialog"
                     android:textSize="15sp" />
 
                 <RadioButton
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="@string/dialog_report_item_6"
-                    android:textColor="@color/grey_middle"
+                    android:textColor="?colorTextDialog"
                     android:textSize="15sp" />
 
             </RadioGroup>
@@ -132,7 +132,7 @@
             android:id="@+id/tvCancel"
             style="@style/buttonBase.Dialog"
             android:text="@string/dialog_report_cancel"
-            android:textColor="@color/grey_middle" />
+            android:textColor="?colorTextDialog" />
 
         <TextView
             android:id="@+id/tvReport"

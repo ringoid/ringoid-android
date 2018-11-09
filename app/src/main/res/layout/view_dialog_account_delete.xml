@@ -21,7 +21,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/dialog_account_delete_message"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textColor="@color/grey_middle"
+        android:textColor="?colorTextDialog"
         android:textSize="17sp" />
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/dialog_account_delete_message_2"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textColor="@color/grey_middle"
+        android:textColor="?colorTextDialog"
         android:textSize="17sp" />
 
     <TextView
@@ -39,7 +39,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/dialog_account_delete_message_3"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textColor="@color/grey_middle"
+        android:textColor="?colorTextDialog"
         android:textSize="17sp" />
 
     <LinearLayout

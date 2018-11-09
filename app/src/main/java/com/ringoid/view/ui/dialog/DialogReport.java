@@ -9,14 +9,21 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.view.ui.util.IHelperTheme;
+
+import javax.inject.Inject;
 
 public class DialogReport implements View.OnClickListener {
 
+    @Inject
+    IHelperTheme helperTheme;
     private TextView tvReport;
     private AlertDialog dialog;
 
     public DialogReport(Context context) {
+        ApplicationRingoid.getComponent().inject(this);
         dialog = new AlertDialog.Builder(context).create();
         View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_report, null);
         dialog.setView(view);
@@ -45,7 +52,8 @@ public class DialogReport implements View.OnClickListener {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             dialog.findViewById(R.id.rgReport).setVisibility(isChecked ? View.VISIBLE : View.GONE);
-            tvReport.setTextColor(dialog.getContext().getResources().getColor(isChecked ? R.color.colorWarning : android.R.color.white));
+            tvReport.setTextColor(isChecked ? dialog.getContext().getResources().getColor(R.color.colorWarning)
+                    : helperTheme.getColor(R.attr.colorTextPrimary));
             ((TextView) dialog.findViewById(R.id.tvReport)).setText(isChecked ? R.string.dialog_report_confirm_report : R.string.dialog_report_confirm);
         }
     }
