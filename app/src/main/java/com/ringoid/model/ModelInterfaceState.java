@@ -10,6 +10,7 @@ public class ModelInterfaceState implements Serializable {
 
     private String originPhotoId;
     private int currentPage;
+
     private int positionScrollPageLikes;
     private int positionScrollPageMessages;
     private int positionScrollPageExplore;
@@ -18,6 +19,9 @@ public class ModelInterfaceState implements Serializable {
     private int positionScrollPageMessagesOffset;
     private int positionScrollPageExploreOffset;
     private int positionScrollPageSettingsOffset;
+    private int positionScrollPageMatches;
+    private int positionScrollPageMatchesOffset;
+
     private int themeId;
     transient private boolean dialogComposeShow;
     private PAGE_ENUM pageLikes;
@@ -56,6 +60,12 @@ public class ModelInterfaceState implements Serializable {
     public void setPositionScrollPageSettings(int firstVisibleItemPosition, int offset) {
         this.positionScrollPageSettings = firstVisibleItemPosition;
         this.positionScrollPageSettingsOffset = offset;
+    }
+
+
+    public void setPositionScrollPageMatches(int position, int offset) {
+        this.positionScrollPageMatches = position;
+        this.positionScrollPageMatchesOffset = offset;
     }
 
     public int getPositionScrollPageMessages() {

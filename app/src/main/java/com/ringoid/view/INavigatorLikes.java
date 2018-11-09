@@ -7,4 +7,6 @@ public interface INavigatorLikes {
     void navigatePage(PAGE_ENUM pageLikes);
 
     void set(FragmentManager childFragmentManager, int vContent);
+
+    boolean isPageCurrent(PAGE_ENUM pageLikes);
 }

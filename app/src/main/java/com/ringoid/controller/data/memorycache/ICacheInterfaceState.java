@@ -41,6 +41,8 @@ public interface ICacheInterfaceState {
 
     void resetCachePositionLikes();
 
+    void resetCachePositionMessages();
+
     void resetCachePositionExplore();
 
     void setPositionScrollSettings(int firsVisibleItemPosition, int offset);
@@ -60,4 +62,6 @@ public interface ICacheInterfaceState {
     PAGE_ENUM getPageLikes();
 
     void setPageLikes(PAGE_ENUM page);
+
+    void resetCachePositionMatches();
 }

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterMessages;
 import com.ringoid.view.presenter.callback.IPresenterMessagesListener;
 import com.ringoid.view.ui.adapter.AdapterMessages;
@@ -42,6 +43,11 @@ public class FragmentMessages extends FragmentInnerTab {
     void initViews(View view) {
         super.initViews(view);
         rvItems.setAdapter(new AdapterMessages());
+    }
+
+    @Override
+    public PAGE_ENUM getPage() {
+        return PAGE_ENUM.LIKES_MESSAGES;
     }
 
     @Override

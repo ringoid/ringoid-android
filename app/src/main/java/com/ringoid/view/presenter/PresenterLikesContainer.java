@@ -22,6 +22,9 @@ public class PresenterLikesContainer implements IPresenterLikesContainer {
     @Inject
     ICacheInterfaceState cacheInterfaceState;
 
+    @Inject
+    IPresenterFeedPage presenterFeedPage;
+
     private WeakReference<IPresenterLikesContainerListener> refListener;
 
     public PresenterLikesContainer() {
@@ -57,8 +60,25 @@ public class PresenterLikesContainer implements IPresenterLikesContainer {
     }
 
     private void navigateCurrentPage() {
+        if (navigatorLikes.isPageCurrent(cacheInterfaceState.getPageLikes())) {
+            if (!presenterFeedPage.isPositionTop()) {
+                presenterFeedPage.scrollTop();
+                resetScrollPosition(cacheInterfaceState.getPageLikes());
+            }
+            return;
+        }
         navigatorLikes.navigatePage(cacheInterfaceState.getPageLikes());
         notifyCurrentPage();
+    }
+
+    private void resetScrollPosition(PAGE_ENUM pageLikes) {
+        if (pageLikes == null) return;
+        if (pageLikes.equals(PAGE_ENUM.LIKES_LIKES))
+            cacheInterfaceState.resetCachePositionLikes();
+        if (pageLikes.equals(PAGE_ENUM.LIKES_MESSAGES))
+            cacheInterfaceState.resetCachePositionMessages();
+        if (pageLikes.equals(PAGE_ENUM.LIKES_MATCHES))
+            cacheInterfaceState.resetCachePositionMatches();
     }
 
     private void notifyCurrentPage() {

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ringoid.R;
+import com.ringoid.view.PAGE_ENUM;
 
 public class FragmentMatches extends FragmentInnerTab {
 
@@ -20,6 +21,11 @@ public class FragmentMatches extends FragmentInnerTab {
         rvItems.setScrollBarColor(getContext().getResources().getColor(R.color.app_red_dark));
         showEmpty(R.string.message_empty_matches);
         return view;
+    }
+
+    @Override
+    public PAGE_ENUM getPage() {
+        return PAGE_ENUM.LIKES_MATCHES;
     }
 
     @Override

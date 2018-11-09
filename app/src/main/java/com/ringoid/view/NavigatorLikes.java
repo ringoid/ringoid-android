@@ -3,6 +3,7 @@ package com.ringoid.view;
 
 import android.support.v4.app.FragmentManager;
 
+import com.ringoid.view.ui.fragment.FragmentBase;
 import com.ringoid.view.ui.fragment.FragmentLikes;
 import com.ringoid.view.ui.fragment.FragmentMatches;
 import com.ringoid.view.ui.fragment.FragmentMessages;
@@ -57,5 +58,14 @@ public class NavigatorLikes implements INavigatorLikes {
     public void set(FragmentManager childFragmentManager, int vContent) {
         this.refFragmentManager = new WeakReference<>(childFragmentManager);
         this.viewId = vContent;
+    }
+
+    @Override
+    public boolean isPageCurrent(PAGE_ENUM pageLikes) {
+        if (refFragmentManager == null || refFragmentManager.get() == null) return false;
+
+        FragmentBase fragment = (FragmentBase) refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
+        if (fragment == null) return false;
+        return fragment.getPage().equals(pageLikes);
     }
 }
