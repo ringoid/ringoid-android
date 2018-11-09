@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
-    android:paddingStart="16dp"
+    android:paddingStart="56dp"
     android:paddingTop="12dp"
     android:paddingEnd="16dp"
     android:paddingBottom="12dp">
@@ -15,21 +15,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/settings_theme_title"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
-
-    <TextView
-        android:id="@+id/tvThemeSubtitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_theme_subtitle"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-        app:layout_constraintTop_toBottomOf="@id/tvThemeTitle" />
-
+        android:textColor="?colorTextPrimary"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ivTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="34dp"
+        android:layout_height="24dp"
         android:layout_gravity="end"
         android:src="?drawableThemeLogin"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -16,6 +16,8 @@
         <item name="drawableLogout">@drawable/ic_logout_gray_light_16dp</item>
         <item name="drawableServices">@drawable/ic_settings_terms_light_24dp</item>
         <item name="drawableLicenses">@drawable/ic_settings_licenses_light_24dp</item>
+        <item name="drawableBack">@drawable/ic_arrow_back_grey_light_24dp</item>
+        <item name="drawableClose">@drawable/ic_arrow_close_grey_light_24dp</item>
 
     </style>
 
@@ -35,6 +37,8 @@
         <item name="drawableLogout">@drawable/ic_logout_gray_16dp</item>
         <item name="drawableServices">@drawable/ic_settings_terms_24dp</item>
         <item name="drawableLicenses">@drawable/ic_settings_licenses_24dp</item>
+        <item name="drawableBack">@drawable/ic_arrow_back_grey_24dp</item>
+        <item name="drawableClose">@drawable/ic_arrow_close_grey_24dp</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
@@ -133,22 +137,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">?colorTextPrimary</item>
 
-    </style>
-
-    <style name="settings_privacy_item_message">
-        <item name="android:textSize">17sp</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Body1</item>
-    </style>
-
-    <style name="settings_privacy_item_value">
-        <item name="android:textSize">15sp</item>
-        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Caption</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="themeDialogFullscreen" />

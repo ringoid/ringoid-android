@@ -27,5 +27,7 @@
     <attr name="drawableLogout" format="reference" />
     <attr name="drawableServices" format="reference" />
     <attr name="drawableLicenses" format="reference" />
+    <attr name="drawableBack" format="reference" />
+    <attr name="drawableClose" format="reference" />
 
 </resources>

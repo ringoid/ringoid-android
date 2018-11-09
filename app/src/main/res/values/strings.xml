@@ -61,7 +61,6 @@
     <string name="message_copy_to_clipboard">Copied to clipboard</string>
     <string name="message_clipboard_customer_id">Customer ID</string>
     <string name="message_protection_officer">Dear Data Protection Officer,\n\nMy Customer ID is %s\n\n</string>
-    <string name="data_protection_subtitle">Legal</string>
     <string name="message_sms_resend">Resend SMS</string>
     <string name="message_SMS_resend_format" formatted="false">Resend SMS (%d:%02d)</string>
     <string name="crop_confirm"><![CDATA[Crop & Upload]]></string>
@@ -77,7 +76,6 @@
     <string name="dialog_about_message">Copyright © Ringoid Ltd, 2018.\n\nRINGOID LTD is registered in England with Company No. 09427326 and VAT Reg No: GB 208660511. \n\nRegistered Office: 97 Friars Mead, London, E14 3JY, England.\n\nRingoid is a pending registration trademark of Ringoid Ltd.\n\nRingoid Ltd is trading as Ringoid.\n\nRingoid is registered with the UK\'s Information Commissioner\'s Office with registration number ZA455969 and operates within compliance of the EU General Data Protection Regulation 2018.\n\nEmail: support@ringoid.com\nWeb: www.ringoid.com</string>
     <string name="message_error_unkown_format"><![CDATA[Oops!<br /><br />Something went wrong...<br /><br />%s]]></string>
     <string name="dialog_remove_confirm">confirm</string>
-    <string name="error_photo_upload">Oops!\n\nUpload of photo has failed</string>
     <string name="error_photo_max_size">Oops!\n\nCropped photo is too large</string>
     <string name="button_phone_error">Wrong number?</string>
     <string name="message_terms">By tapping \"Send Verification Code\" button, you confirm that you have read, understood, consent and agree to Ringoid\'s <a href="http://ringoid.com/terms.html">Terms of Service</a> and <a href="http://ringoid.com/privacy.html">Privacy Policy</a>, and that you are of legal age and adult, as defined by the country or state from where you are accessing Ringoid.</string>
@@ -95,7 +93,6 @@
     <string name="settings_push_matches_message">New matches</string>
     <string name="settings_push_messages_message">New messages</string>
     <string name="settings_push_messages_description">Your match sent you a new message</string>
-    <string name="settings_push_subtitle">Push Notifications</string>
 
     <string name="settings_privacy_distance_message">Don\'t show my photos to Ringoid users, and don\'t allow them to like or message me if they are closer than</string>
     <string name="settings_privacy_distance_0">0 meters (0 feet, 0 yards)</string>
@@ -104,45 +101,31 @@
     <string name="settings_privacy_distance_2">50 meters (164 feet, 54 yards)</string>
     <string name="settings_privacy_distance_3">100 meters (328 feet, 109 yards)</string>
     <string name="settings_privacy_distance_4">250 meters (820 feet, 273 yards)</string>
-    <string name="privacy_distance_subtitle">Safety Distance</string>
 
-    <string name="settings_privacy_phones_subtitle">Blacklist</string>
-    <string name="settings_privacy_phone_blacklist_add_subtitle">Add to the blacklist</string>
     <string name="blacklist_description">Users who linked Ringoid accounts to the following phone numbers can\'t see my photos, like or message me</string>
     <string name="format_dialog_remove_confirm" formatted="false">Remove +%s %s from the blacklist?</string>
     <string name="blacklist_phone_add">Block it!</string>
 
-    <string name="settings_location">Location</string>
-    <string name="settings_location_value">Use my current location</string>
     <string name="dialog_unknown_confirm">email support</string>
     <string name="title_settings">Settings</string>
     <string name="title_legal">Legal</string>
     <string name="message_photo_upload">Upload your photo</string>
 
-    <string name="title_matches">Matches</string>
-    <string name="subtitle_matches">Tap anywhere to compose a message</string>
     <string name="message_empty_matches">When you like someone and they like you too, it\'s a match, and you can message each other</string>
 
     <string name="title_explore">New Faces</string>
-    <string name="subtitle_explore">Scroll. Swipe. Tap anywhere to send a like</string>
     <string name="message_no_photo_explore">Discover users of the opposite sex</string>
 
-    <string name="title_messages">Messages</string>
-    <string name="subtitle_messages">Tap anywhere to show/hide messages</string>
     <string name="message_no_photo_messages">See who messages you</string>
 
-    <string name="title_likes">Who Likes You</string>
-    <string name="subtitle_likes">Tap anywhere to match instantly</string>
     <string name="message_no_photo_likes">See who likes you</string>
 
     <string name="title_profile">Your Photos</string>
-    <string name="subtitle_profile">Sorted by likes here and everywhere</string>
     <string name="message_profile_empty">Upload your photos so users can like you</string>
 
     <string name="dialog_photo_upload_first_photo_add">Add another photo</string>
     <string name="dialog_photo_upload_first_feed">Discover New Faces</string>
-    <string name="settings_theme_title">Dark Theme</string>
-    <string name="settings_theme_subtitle">Enable night mode</string>
+    <string name="settings_theme_title">Dark Theme (Night Mode)</string>
     <string name="who_likes_you">Who Likes You</string>
     <string name="matches">Matches</string>
     <string name="messages">Messages</string>

@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/ivBack"
         style="@style/selectableImage"
-        android:src="@drawable/ic_arrow_back_grey_24dp" />
+        android:src="?drawableBack" />
 
     <LinearLayout
         android:id="@+id/llToolbarTitle"

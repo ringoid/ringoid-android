@@ -14,7 +14,7 @@
             android:id="@+id/ivClose"
             style="@style/selectableImage"
             android:layout_gravity="end"
-            android:src="@drawable/ic_arrow_close_grey_24dp" />
+            android:src="?drawableClose" />
 
     </com.ringoid.view.ui.view.ViewToolbar>
 
