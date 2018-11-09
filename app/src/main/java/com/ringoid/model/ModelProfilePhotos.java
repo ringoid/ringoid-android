@@ -12,31 +12,20 @@ public class ModelProfilePhotos implements Serializable {
         return data == null ? 0 : data.size();
     }
 
-    public void add(ArrayList<ProfilePhoto> photos) {
-
-        if (data == null) data = new ArrayList<>();
-        dedublicate(data, photos);
-    }
-
-    private void dedublicate(ArrayList<ProfilePhoto> data, ArrayList<ProfilePhoto> photos) {
+    private void dedublicate(ProfilePhoto param) {
         Iterator<ProfilePhoto> iterator = data.iterator();
         while (iterator.hasNext()) {
             ProfilePhoto item = iterator.next();
-            if (item == null) continue;
-            ProfilePhoto photo = getPhotoWithSameLocalId(photos, item.getOriginPhotoId());
-            if (photo == null) continue;
-            photo.setPlaceholder(item.getPhotoUri());
+            if (item == null
+                    || item.getOriginPhotoId() == null
+                    || !item.getOriginPhotoId().equals(param.getOriginPhotoId()))
+                continue;
+
+            param.setPlaceholder(item.getPhotoUri());
             iterator.remove();
         }
-        data.addAll(photos);
-    }
 
-    private ProfilePhoto getPhotoWithSameLocalId(ArrayList<ProfilePhoto> photos, String id) {
-        if (photos == null) return null;
-        for (ProfilePhoto item : photos)
-            if (item.getOriginPhotoId() != null && item.getOriginPhotoId().equals(id))
-                return item;
-        return null;
+        data.add(0, param);
     }
 
     public int getLikes(int position) {
@@ -58,7 +47,7 @@ public class ModelProfilePhotos implements Serializable {
 
     public void add(ProfilePhoto profilePhoto) {
         if (data == null) data = new ArrayList<>();
-        data.add(0, profilePhoto);
+        dedublicate(profilePhoto);
     }
 
     public boolean remove(int index) {
