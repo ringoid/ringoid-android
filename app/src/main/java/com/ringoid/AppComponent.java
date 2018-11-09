@@ -50,6 +50,7 @@ import com.ringoid.view.presenter.PresenterExplore;
 import com.ringoid.view.presenter.PresenterFeedPage;
 import com.ringoid.view.presenter.PresenterItemImageLikeable;
 import com.ringoid.view.presenter.PresenterLikes;
+import com.ringoid.view.presenter.PresenterLikesContainer;
 import com.ringoid.view.presenter.PresenterMessages;
 import com.ringoid.view.presenter.PresenterPagesContainer;
 import com.ringoid.view.presenter.PresenterPhotoCrop;
@@ -88,7 +89,9 @@ import com.ringoid.view.ui.fragment.FragmentErrorAppversion;
 import com.ringoid.view.ui.fragment.FragmentErrorConnection;
 import com.ringoid.view.ui.fragment.FragmentExplore;
 import com.ringoid.view.ui.fragment.FragmentFeedPage;
+import com.ringoid.view.ui.fragment.FragmentInnerTab;
 import com.ringoid.view.ui.fragment.FragmentLikes;
+import com.ringoid.view.ui.fragment.FragmentLikesContainer;
 import com.ringoid.view.ui.fragment.FragmentLogin;
 import com.ringoid.view.ui.fragment.FragmentMessages;
 import com.ringoid.view.ui.fragment.FragmentPages;
@@ -117,6 +120,12 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ActivityMain param);
+
+    void inject(FragmentInnerTab param);
+
+    void inject(PresenterLikesContainer param);
+
+    void inject(FragmentLikesContainer param);
 
     void inject(ViewPhoneInput param);
 

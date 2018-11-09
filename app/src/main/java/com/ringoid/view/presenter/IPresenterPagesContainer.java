@@ -12,11 +12,8 @@ public interface IPresenterPagesContainer {
 
     void onClickPageProfile();
 
-    void onClickPageMessages();
-
     void onClickPageExplore();
 
     void setListener(IPresenterPagesContainerListener listener);
 
-    void onClickPageMatches();
 }

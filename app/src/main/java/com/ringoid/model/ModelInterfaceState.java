@@ -2,6 +2,7 @@ package com.ringoid.model;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import com.ringoid.R;
+import com.ringoid.view.PAGE_ENUM;
 
 import java.io.Serializable;
 
@@ -19,6 +20,7 @@ public class ModelInterfaceState implements Serializable {
     private int positionScrollPageSettingsOffset;
     private int themeId;
     transient private boolean dialogComposeShow;
+    private PAGE_ENUM pageLikes;
 
     public String getOriginPhotoId() {
         return originPhotoId;
@@ -102,5 +104,13 @@ public class ModelInterfaceState implements Serializable {
 
     public int getThemeId() {
         return themeId;
+    }
+
+    public PAGE_ENUM getPageLikes() {
+        return pageLikes;
+    }
+
+    public void setPageLikes(PAGE_ENUM page) {
+        this.pageLikes = page;
     }
 }

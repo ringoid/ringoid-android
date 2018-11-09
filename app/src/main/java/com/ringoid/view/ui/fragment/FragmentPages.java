@@ -76,8 +76,6 @@ public class FragmentPages extends FragmentBase
 
         view.findViewById(R.id.ivMenuLikes).setOnClickListener(this);
         view.findViewById(R.id.ivMenuProfile).setOnClickListener(this);
-        view.findViewById(R.id.ivMenuMatches).setOnClickListener(this);
-        view.findViewById(R.id.ivMenuMessages).setOnClickListener(this);
         view.findViewById(R.id.ivMenuExplore).setOnClickListener(this);
     }
 
@@ -100,12 +98,6 @@ public class FragmentPages extends FragmentBase
         if (view.getId() == R.id.ivMenuProfile)
             presenterPagesContainer.onClickPageProfile();
 
-        if (view.getId() == R.id.ivMenuMessages)
-            presenterPagesContainer.onClickPageMessages();
-
-        if (view.getId() == R.id.ivMenuMatches)
-            presenterPagesContainer.onClickPageMatches();
-
         if (view.getId() == R.id.ivMenuExplore)
             presenterPagesContainer.onClickPageExplore();
     }
@@ -118,7 +110,10 @@ public class FragmentPages extends FragmentBase
         }
 
         @Override
-        public void setPageSelected(int num, int iconResProfile, int iconResMatches, int iconResLikes, int iconResMessages, int iconResExplore) {
+        public void setPageSelected(int num,
+                                    int iconResProfile,
+                                    int iconResLikes,
+                                    int iconResExplore) {
             if (getContext() == null) return;
             if (llBottomAppBar == null) return;
             for (int i = 0; i < llBottomAppBar.getChildCount(); ++i) {
@@ -131,14 +126,12 @@ public class FragmentPages extends FragmentBase
                     view.setBackground(null);
             }
 
-            setDrawables(iconResProfile, iconResMatches, iconResLikes, iconResMessages, iconResExplore);
+            setDrawables(iconResProfile, iconResLikes, iconResExplore);
         }
 
-        private void setDrawables(int iconResProfile, int iconResMatches, int iconResLikes, int iconResMessages, int iconResExplore) {
+        private void setDrawables(int iconResProfile, int iconResLikes, int iconResExplore) {
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_PROFILE)).setImageResource(iconResProfile);
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_LIKES)).setImageResource(iconResLikes);
-            ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_MATCHES)).setImageResource(iconResMatches);
-            ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_MESSAGES)).setImageResource(iconResMessages);
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_EXPLORE)).setImageResource(iconResExplore);
         }
 

@@ -70,10 +70,12 @@ import com.ringoid.controller.data.repository.RepositorySettingsSave;
 import com.ringoid.controller.device.CacheStorage;
 import com.ringoid.controller.device.ICacheStorage;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.INavigatorLikes;
 import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
 import com.ringoid.view.Navigator;
+import com.ringoid.view.NavigatorLikes;
 import com.ringoid.view.NavigatorPages;
 import com.ringoid.view.ViewDialogs;
 import com.ringoid.view.ViewPopup;
@@ -95,6 +97,7 @@ import com.ringoid.view.presenter.IPresenterExplore;
 import com.ringoid.view.presenter.IPresenterFeedPage;
 import com.ringoid.view.presenter.IPresenterItemImageLikeable;
 import com.ringoid.view.presenter.IPresenterLikes;
+import com.ringoid.view.presenter.IPresenterLikesContainer;
 import com.ringoid.view.presenter.IPresenterMessages;
 import com.ringoid.view.presenter.IPresenterPagesContainer;
 import com.ringoid.view.presenter.IPresenterPhotoCrop;
@@ -122,6 +125,7 @@ import com.ringoid.view.presenter.PresenterExplore;
 import com.ringoid.view.presenter.PresenterFeedPage;
 import com.ringoid.view.presenter.PresenterItemImageLikeable;
 import com.ringoid.view.presenter.PresenterLikes;
+import com.ringoid.view.presenter.PresenterLikesContainer;
 import com.ringoid.view.presenter.PresenterMessages;
 import com.ringoid.view.presenter.PresenterPagesContainer;
 import com.ringoid.view.presenter.PresenterPhotoCrop;
@@ -301,6 +305,12 @@ class AppModule {
 
     @Provides
     @Singleton
+    INavigatorLikes getNavigatorLikes() {
+        return new NavigatorLikes();
+    }
+
+    @Provides
+    @Singleton
     IViewPopup getViewPopup() {
         return new ViewPopup();
     }
@@ -444,6 +454,12 @@ class AppModule {
     @Singleton
     IPresenterDataProtection getPresenterDataProtection() {
         return new PresenterDataProtection();
+    }
+
+    @Provides
+    @Singleton
+    IPresenterLikesContainer getPresenterLikesContainer() {
+        return new PresenterLikesContainer();
     }
 
     @Provides

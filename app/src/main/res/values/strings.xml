@@ -143,5 +143,8 @@
     <string name="dialog_photo_upload_first_feed">Discover New Faces</string>
     <string name="settings_theme_title">Dark Theme</string>
     <string name="settings_theme_subtitle">Enable night mode</string>
+    <string name="who_likes_you">Who Likes You</string>
+    <string name="matches">Matches</string>
+    <string name="messages">Messages</string>
 
 </resources>

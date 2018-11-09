@@ -9,8 +9,7 @@ import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.view.presenter.PresenterPagesContainer;
 import com.ringoid.view.ui.fragment.FragmentExplore;
 import com.ringoid.view.ui.fragment.FragmentLikes;
-import com.ringoid.view.ui.fragment.FragmentMatches;
-import com.ringoid.view.ui.fragment.FragmentMessages;
+import com.ringoid.view.ui.fragment.FragmentLikesContainer;
 import com.ringoid.view.ui.fragment.FragmentProfile;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperScreenshots;
@@ -52,7 +51,7 @@ public class NavigatorPages implements INavigatorPages {
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
-                .replace(viewId, new FragmentLikes(), CURRENT_FRAGMENT_TAB)
+                .replace(viewId, new FragmentLikesContainer(), CURRENT_FRAGMENT_TAB)
                 .commit();
     }
 
@@ -64,16 +63,6 @@ public class NavigatorPages implements INavigatorPages {
         refFragmentManager.get()
                 .beginTransaction()
                 .replace(viewId, new FragmentProfile(), CURRENT_FRAGMENT_TAB)
-                .commit();
-    }
-
-    @Override
-    public void navigateMessages() {
-        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_MESSAGES);
-        if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        refFragmentManager.get()
-                .beginTransaction()
-                .replace(viewId, new FragmentMessages(), CURRENT_FRAGMENT_TAB)
                 .commit();
     }
 
@@ -91,16 +80,10 @@ public class NavigatorPages implements INavigatorPages {
     public void navigateCurrentPage() {
         if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_PROFILE)
             navigateProfile();
-        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_MATCHES)
-            navigateMatches();
         if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_LIKES)
             navigateLikes();
-        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_MESSAGES)
-            navigateMessages();
         if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_EXPLORE)
             navigateExplore();
-/*        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_SETTINGS)
-            navigateSettings();*/
     }
 
     @Override
@@ -118,32 +101,6 @@ public class NavigatorPages implements INavigatorPages {
 
         Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
         return fragment != null && fragment instanceof FragmentLikes;
-    }
-
-    @Override
-    public boolean isPageProfile() {
-        if (refFragmentManager == null || refFragmentManager.get() == null) return false;
-
-        Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
-        return fragment != null && fragment instanceof FragmentProfile;
-    }
-
-    @Override
-    public boolean isPageMessages() {
-        if (refFragmentManager == null || refFragmentManager.get() == null) return false;
-
-        Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
-        return fragment != null && fragment instanceof FragmentMessages;
-    }
-
-    @Override
-    public void navigateMatches() {
-        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_MATCHES);
-        if (refFragmentManager == null || refFragmentManager.get() == null) return;
-        refFragmentManager.get()
-                .beginTransaction()
-                .replace(viewId, new FragmentMatches(), CURRENT_FRAGMENT_TAB)
-                .commit();
     }
 
     @Override

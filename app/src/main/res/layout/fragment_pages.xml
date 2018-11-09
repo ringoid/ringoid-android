@@ -23,16 +23,6 @@
             android:src="@drawable/ic_menu_explore_24dp" />
 
         <ImageView
-            android:id="@+id/ivMenuMatches"
-            style="@style/bottomMenuItem"
-            android:src="@drawable/ic_menu_matches_24dp" />
-
-        <ImageView
-            android:id="@+id/ivMenuMessages"
-            style="@style/bottomMenuItem"
-            android:src="@drawable/ic_menu_message_24dp" />
-
-        <ImageView
             android:id="@+id/ivMenuLikes"
             style="@style/bottomMenuItem"
             android:src="@drawable/ic_menu_favorite_24dp" />

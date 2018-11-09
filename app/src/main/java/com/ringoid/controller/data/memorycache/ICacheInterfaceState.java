@@ -2,6 +2,7 @@ package com.ringoid.controller.data.memorycache;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
+import com.ringoid.view.PAGE_ENUM;
 
 public interface ICacheInterfaceState {
     void setProfileOriginPhotoId(String originPhotoId);
@@ -32,7 +33,6 @@ public interface ICacheInterfaceState {
 
     void setPositionScrollPageExplore(int firstVisibleItemPosition, int offset);
 
-
     int getPositionScrollPageExploreOffset();
 
     int getPositionScrollPageLikesOffset();
@@ -41,11 +41,7 @@ public interface ICacheInterfaceState {
 
     void resetCachePositionLikes();
 
-    void resetCachePositionMessage();
-
     void resetCachePositionExplore();
-
-    void resetCachePositionSettings();
 
     void setPositionScrollSettings(int firsVisibleItemPosition, int offset);
 
@@ -60,4 +56,8 @@ public interface ICacheInterfaceState {
     void updateTheme();
 
     int getTheme();
+
+    PAGE_ENUM getPageLikes();
+
+    void setPageLikes(PAGE_ENUM page);
 }

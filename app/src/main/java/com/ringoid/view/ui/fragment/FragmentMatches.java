@@ -9,9 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ringoid.R;
-import com.ringoid.view.PAGE_ENUM;
 
-public class FragmentMatches extends FragmentFeedPage {
+public class FragmentMatches extends FragmentInnerTab {
 
     @Nullable
     @Override
@@ -23,15 +22,9 @@ public class FragmentMatches extends FragmentFeedPage {
         return view;
     }
 
-
     @Override
-    protected String getTitle() {
-        return getContext().getResources().getString(R.string.title_matches);
-    }
+    protected void onShow(int state) {
 
-    @Override
-    public PAGE_ENUM getPage() {
-        return PAGE_ENUM.FEED_MATCHES;
     }
 
     @Override

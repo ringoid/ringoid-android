@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
-import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterLikes;
 import com.ringoid.view.presenter.callback.IPresenterLikesListener;
 import com.ringoid.view.ui.adapter.AdapterLikes;
@@ -20,17 +19,12 @@ import com.ringoid.view.ui.adapter.ViewHolderItemLikes;
 
 import javax.inject.Inject;
 
-public class FragmentLikes extends FragmentFeedPage {
+public class FragmentLikes extends FragmentInnerTab {
 
     @Inject
     IPresenterLikes presenterLikes;
 
     private IPresenterLikesListener listenerPresenter;
-
-    @Override
-    public PAGE_ENUM getPage() {
-        return PAGE_ENUM.FEED_LIKES;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,8 +49,8 @@ public class FragmentLikes extends FragmentFeedPage {
     }
 
     @Override
-    protected String getTitle() {
-        return getContext().getResources().getString(R.string.title_likes);
+    protected void onShow(int state) {
+
     }
 
     @Override

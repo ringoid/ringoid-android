@@ -6,6 +6,7 @@ import com.ringoid.controller.data.FileEnum;
 import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
 import com.ringoid.controller.device.ICacheStorage;
 import com.ringoid.model.ModelInterfaceState;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.PresenterPagesContainer;
 
 import java.util.WeakHashMap;
@@ -139,18 +140,8 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
-    public void resetCachePositionMessage() {
-        setPositionScrollPageMessages(0, 0);
-    }
-
-    @Override
     public void resetCachePositionExplore() {
         setPositionScrollPageExplore(0, 0);
-    }
-
-    @Override
-    public void resetCachePositionSettings() {
-        setPositionScrollPageSettings(0, 0);
     }
 
     @Override
@@ -189,6 +180,17 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     @Override
     public int getTheme() {
         return getData().getThemeId();
+    }
+
+    @Override
+    public PAGE_ENUM getPageLikes() {
+        return getData().getPageLikes();
+    }
+
+    @Override
+    public void setPageLikes(PAGE_ENUM page) {
+        getData().setPageLikes(page);
+        saveData();
     }
 
     @Override

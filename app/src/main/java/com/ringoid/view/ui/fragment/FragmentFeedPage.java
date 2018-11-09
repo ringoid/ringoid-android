@@ -5,134 +5,53 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
-import com.ringoid.view.INavigator;
-import com.ringoid.view.presenter.IPresenterFeedPage;
-import com.ringoid.view.presenter.callback.IPresenterFeedPageListener;
-import com.ringoid.view.ui.view.RecyclerViewScrollbarColored;
 import com.ringoid.view.ui.view.ViewToolbar;
 
-import javax.inject.Inject;
+public abstract class FragmentFeedPage extends FragmentInnerTab {
 
-public abstract class FragmentFeedPage extends FragmentBase implements View.OnClickListener {
-
-    RecyclerViewScrollbarColored rvItems;
-    LinearLayoutManager layoutManager;
-    SwipeRefreshLayout srlFeed;
-
-    View vNoPhotoContainer, vToolbar;
-    TextView tvNoPhotoMessage, tvNoContentMessage;
-
-    @Inject
-    INavigator navigator;
-
-    @Inject
-    IPresenterFeedPage presenterFeedPage;
-
-    private ListenerRefresh listenerRefresh;
-    private IPresenterFeedPageListener listenerPresenter;
+    View vToolbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ApplicationRingoid.getComponent().inject(this);
-        listenerRefresh = new ListenerRefresh();
-        presenterFeedPage.setListener(listenerPresenter = new ListenerPresenter());
     }
 
     void initViews(View view) {
-        rvItems = view.findViewById(R.id.rvItems);
-        rvItems.setLayoutManager(layoutManager = new LinearLayoutManager(view.getContext()));
-        rvItems.addOnScrollListener(new OnScrollListener());
-        rvItems.addItemDecoration(new ItemDecoration(getContext()));
-
-        vNoPhotoContainer = view.findViewById(R.id.llNoPhoto);
-        tvNoPhotoMessage = view.findViewById(R.id.tvMessageNoPhoto);
-
+        super.initViews(view);
         vToolbar = view.findViewById(R.id.toolbarPages);
-        tvNoContentMessage = view.findViewById(R.id.tvEmpty);
-
-        srlFeed = view.findViewById(R.id.srlFeed);
-        srlFeed.setOnRefreshListener(listenerRefresh);
-        srlFeed.setColorSchemeResources(R.color.colorAccent);
-
         setToolbarText(view);
-        view.findViewById(R.id.tvPhotoAdd).setOnClickListener(this);
+    }
+
+    @Override
+    protected void onShow(int state) {
+        if (state == STATE_NO_PHOTO || state == STATE_EMPTY)
+            vToolbar.setVisibility(View.VISIBLE);
+        else
+            vToolbar.setVisibility(View.GONE);
     }
 
     private void setToolbarText(View view) {
-        ((ViewToolbar) view.findViewById(R.id.toolbarPages)).setText(getTitle(), null);
+        ((ViewToolbar) view.findViewById(R.id.toolbarPages)).setText(getTitle());
     }
 
     protected abstract String getTitle();
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container) {
         return inflater.inflate(R.layout.fragment_feed_page, container, false);
     }
 
-    protected abstract void onScrollState(int newState, int firstVisibleItemPosition, int offset);
-
-    protected abstract void onSwipeToRefresh();
-
     @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.tvPhotoAdd)
-            navigator.navigatePhotoAdd();
-    }
-
-    void showErrorNoPhoto(int messageRes) {
-        srlFeed.setVisibility(View.GONE);
-        tvNoContentMessage.setVisibility(View.GONE);
-        vNoPhotoContainer.setVisibility(View.VISIBLE);
-        tvNoPhotoMessage.setText(messageRes);
-        vToolbar.setVisibility(View.VISIBLE);
-    }
-
-    void showEmpty(int messageRes) {
-        srlFeed.setVisibility(View.GONE);
-        vNoPhotoContainer.setVisibility(View.GONE);
-        tvNoContentMessage.setVisibility(View.VISIBLE);
-        tvNoContentMessage.setText(messageRes);
-        vToolbar.setVisibility(View.VISIBLE);
-    }
-
-    void showContent() {
-        srlFeed.setVisibility(View.VISIBLE);
-        vNoPhotoContainer.setVisibility(View.GONE);
-        tvNoContentMessage.setVisibility(View.GONE);
-        vToolbar.setVisibility(View.GONE);
-    }
-
-    private void onScroll(int dy, int scrollSum) {
-        presenterFeedPage.onScroll(dy, scrollSum);
-    }
-
-    private class OnScrollListener extends RecyclerView.OnScrollListener {
-
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-            onScroll(dy, rvItems.computeVerticalScrollOffset());
-        }
-
-        @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-
-            int pos = layoutManager.findFirstVisibleItemPosition();
-            View firstItemView = layoutManager.findViewByPosition(pos);
-            int offset = firstItemView.getTop();
-            onScrollState(newState, pos, offset);
-        }
+    RecyclerView.ItemDecoration getItemDecoration() {
+        return new ItemDecoration(getContext());
     }
 
     private class ItemDecoration extends RecyclerView.ItemDecoration {
@@ -166,48 +85,4 @@ public abstract class FragmentFeedPage extends FragmentBase implements View.OnCl
 
     }
 
-    private class ListenerRefresh implements SwipeRefreshLayout.OnRefreshListener {
-        @Override
-        public void onRefresh() {
-            onSwipeToRefresh();
-        }
-    }
-
-    private class ListenerPresenter implements IPresenterFeedPageListener {
-        @Override
-        public void scrollSmoothBy(int y) {
-            if (getContext() == null || rvItems == null) return;
-            rvItems.smoothScrollBy(0, y);
-        }
-
-        @Override
-        public boolean isPositionTop() {
-            if (getContext() == null || rvItems == null) return false;
-            return rvItems.computeVerticalScrollOffset() == 0;
-        }
-
-        @Override
-        public void scrollTop() {
-            if (getContext() == null || rvItems == null) return;
-            rvItems.scrollToPosition(0);
-        }
-
-        @Override
-        public void scrollToPosition(int position, int offset) {
-            if (getContext() == null || layoutManager == null) return;
-            layoutManager.scrollToPositionWithOffset(position, offset);
-        }
-
-        @Override
-        public void completeRefresh() {
-            if (getContext() == null || srlFeed == null) return;
-            srlFeed.setRefreshing(false);
-        }
-
-        @Override
-        public void showViewNoPhoto(int messageRes) {
-            if (getContext() == null) return;
-            showErrorNoPhoto(messageRes);
-        }
-    }
 }

@@ -11,8 +11,6 @@ public interface INavigatorPages {
 
     void navigateProfile();
 
-    void navigateMessages();
-
     void navigateExplore();
 
     void navigateCurrentPage();
@@ -20,12 +18,6 @@ public interface INavigatorPages {
     boolean isPageExplore();
 
     boolean isPageLikes();
-
-    boolean isPageProfile();
-
-    boolean isPageMessages();
-
-    void navigateMatches();
 
     void navigateProfilePhotoAdd();
 }

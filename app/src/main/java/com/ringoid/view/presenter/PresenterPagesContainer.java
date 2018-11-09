@@ -17,7 +17,6 @@ import com.ringoid.controller.data.memorycache.listener.ICacheSettingsPrivacyLis
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.IViewDialogs;
-import com.ringoid.view.presenter.callback.IPresenterFeedPagePresenterListener;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.presenter.util.ISettingsHelper;
 import com.ringoid.view.ui.util.IHelperFullscreen;
@@ -29,10 +28,8 @@ import javax.inject.Inject;
 public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     public static final int INDEX_PAGE_EXPLORE = 0;
-    public static final int INDEX_PAGE_MATCHES = 1;
-    public static final int INDEX_PAGE_MESSAGES = 2;
-    public static final int INDEX_PAGE_LIKES = 3;
-    public static final int INDEX_PAGE_PROFILE = 4;
+    public static final int INDEX_PAGE_LIKES = 1;
+    public static final int INDEX_PAGE_PROFILE = 2;
 
     public static final int ACTION_PHOTO_ADD = 1;
 
@@ -75,7 +72,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     @Inject
     IHelperFullscreen helperFullscreen;
 
-    private ListenerPresenterFeedPage listenerPresenterFeedPage;
     private ListenerCacheSettings listenerCacheSettings;
     private ICacheInterfaceStateListener listenerCacheInterfaceState;
     private ListenerCacheScroll listenerCacheScroll;
@@ -86,7 +82,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         cacheScroll.addListener(listenerCacheScroll = new ListenerCacheScroll());
         cacheInterfaceState.addListener(listenerCacheInterfaceState = new ListenerCacheInterfaceState());
         cacheSettingsPrivacy.addListener(listenerCacheSettings = new ListenerCacheSettings());
-        presenterFeedPage.addListener(listenerPresenterFeedPage = new ListenerPresenterFeedPage());
     }
 
     @Override
@@ -136,21 +131,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     }
 
     @Override
-    public void onClickPageMessages() {
-        cacheScroll.resetCache();
-
-        if (navigatorPages.isPageMessages()) {
-            if (!presenterFeedPage.isPositionTop()) {
-                presenterFeedPage.scrollTop();
-                cacheInterfaceState.resetCachePositionMessage();
-            }
-            return;
-        }
-
-        navigatorPages.navigateMessages();
-    }
-
-    @Override
     public void onClickPageExplore() {
         cacheScroll.resetCache();
 
@@ -165,28 +145,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         navigatorPages.navigateExplore();
     }
 
-   /* @Override
-    public void onClickPageSettings() {
-        cacheScroll.resetCache();
-        if (navigatorPages.isPageSettings()) {
-            if (!presenterSettings.isPositionTop()) {
-                presenterSettings.scrollTop();
-                cacheInterfaceState.resetCachePositionSettings();
-            } else if (BuildConfig.DEBUG)
-                navigator.navigateScreenDebug();
-            return;
-        }
-        navigatorPages.navigateSettings();
-    }*/
-
     @Override
     public void setListener(IPresenterPagesContainerListener listener) {
         this.refListener = new WeakReference<>(listener);
-    }
-
-    @Override
-    public void onClickPageMatches() {
-        navigatorPages.navigateMatches();
     }
 
     private void checkStatubar(boolean isDown) {
@@ -204,17 +165,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         return isSelected
                 ? R.drawable.ic_menu_favorite_white_24dp
                 : R.drawable.ic_menu_favorite_24dp;
-    }
-
-    private int getIconResMessages(boolean isSelected) {
-        return isSelected
-                ? R.drawable.ic_menu_message_white_24dp
-                : R.drawable.ic_menu_message_24dp;
-    }
-
-
-    private int getIconResMatches(boolean isSelected) {
-        return isSelected ? R.drawable.ic_menu_matches_white_24dp : R.drawable.ic_menu_matches_24dp;
     }
 
     private int getIconResExplore(boolean isSelected) {
@@ -241,9 +191,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
             if (refListener == null || refListener.get() == null) return;
             refListener.get().setPageSelected(num,
                     getIconResProfile(num == INDEX_PAGE_PROFILE),
-                    getIconResMatches(num == INDEX_PAGE_MATCHES),
                     getIconResLikes(num == INDEX_PAGE_LIKES),
-                    getIconResMessages(num == INDEX_PAGE_MESSAGES),
                     getIconResExplore(num == INDEX_PAGE_EXPLORE));
         }
 
@@ -261,15 +209,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     private class ListenerCacheSettings implements ICacheSettingsPrivacyListener {
         @Override
         public void onUpdate() {
-        }
-    }
-
-    private class ListenerPresenterFeedPage implements IPresenterFeedPagePresenterListener {
-
-        @Override
-        public void showToolbar() {
-            if (refListener == null || refListener.get() == null) return;
-            refListener.get().setPosition(0);
         }
     }
 }

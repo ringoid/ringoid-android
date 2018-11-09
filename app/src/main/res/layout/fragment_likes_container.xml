@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/flContentLikes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/likesTitleHeight">
+
+        <LinearLayout
+            android:id="@+id/llTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvLikes"
+                style="@style/itemTabLikes"
+                android:text="@string/who_likes_you" />
+
+            <TextView
+                android:id="@+id/tvMatches"
+                style="@style/itemTabLikes"
+                android:text="@string/matches" />
+
+            <TextView
+                android:id="@+id/tvMessages"
+                style="@style/itemTabLikes"
+                android:text="@string/messages" />
+
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
+
+</FrameLayout>

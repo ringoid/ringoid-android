@@ -6,10 +6,8 @@ import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheScroll;
 import com.ringoid.controller.data.memorycache.listener.ICacheScrollListener;
 import com.ringoid.view.presenter.callback.IPresenterFeedPageListener;
-import com.ringoid.view.presenter.callback.IPresenterFeedPagePresenterListener;
 
 import java.lang.ref.WeakReference;
-import java.util.WeakHashMap;
 
 import javax.inject.Inject;
 
@@ -23,7 +21,6 @@ public class PresenterFeedPage implements IPresenterFeedPage {
 
     private ListenerCacheScroll listenerCacheScroll;
     private WeakReference<IPresenterFeedPageListener> refListenerView;
-    private WeakHashMap<String, IPresenterFeedPagePresenterListener> listeners;
 
     public PresenterFeedPage() {
         ApplicationRingoid.getComponent().inject(this);
@@ -62,16 +59,6 @@ public class PresenterFeedPage implements IPresenterFeedPage {
     public void scrollToPosition(int position, int offset) {
         if (refListenerView == null || refListenerView.get() == null) return;
         refListenerView.get().scrollToPosition(position, offset);
-        showToolbar();
-    }
-
-    private void showToolbar() {
-        if (listeners == null) return;
-        for (String key : listeners.keySet()) {
-            IPresenterFeedPagePresenterListener listener = listeners.get(key);
-            if (listener == null) continue;
-            listener.showToolbar();
-        }
     }
 
     private void showViewNoPhoto(int messageNoDataRes) {
@@ -83,12 +70,6 @@ public class PresenterFeedPage implements IPresenterFeedPage {
     public void hideRefreshLayout() {
         if (refListenerView == null || refListenerView.get() == null) return;
         refListenerView.get().completeRefresh();
-    }
-
-    @Override
-    public void addListener(IPresenterFeedPagePresenterListener listener) {
-        if (listeners == null) listeners = new WeakHashMap<>();
-        listeners.put(listener.getClass().getName(), listener);
     }
 
     private class ListenerCacheScroll implements ICacheScrollListener {
