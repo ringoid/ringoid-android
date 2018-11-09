@@ -17,6 +17,7 @@ import com.ringoid.view.presenter.IPresenterPagesContainer;
 import com.ringoid.view.presenter.PresenterPagesContainer;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.ui.util.IHelperAnimation;
+import com.ringoid.view.ui.util.IHelperTheme;
 
 import java.util.Random;
 
@@ -32,6 +33,9 @@ public class FragmentPages extends FragmentBase
 
     @Inject
     IHelperAnimation helperAnimation;
+
+    @Inject
+    IHelperTheme helperTheme;
 
     @Inject
     Random random;
@@ -121,7 +125,7 @@ public class FragmentPages extends FragmentBase
                 if (view == null) continue;
 
                 if (i == num)
-                    view.setBackgroundColor(getContext().getResources().getColor(R.color.menu_bottom_selected));
+                    view.setBackgroundColor(helperTheme.getColor(R.attr.colorTabBackgroundActive));
                 else
                     view.setBackground(null);
             }

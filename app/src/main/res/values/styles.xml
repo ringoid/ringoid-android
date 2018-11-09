@@ -8,6 +8,8 @@
         <item name="pageBackground">@android:color/white</item>
         <item name="colorTextPrimary">#000</item>
         <item name="colorDivider">@color/divider_light</item>
+        <item name="colorTabBackground">#ccffffff</item>
+        <item name="colorTabBackgroundActive">@color/menu_bottom_selected_light</item>
         <item name="drawableThemeLogin">@drawable/ic_theme_light_24dp</item>
         <item name="drawableLegal">@drawable/ic_privacy_policy_light_24</item>
         <item name="drawableSupport">@drawable/ic_settings_feedback_light_24dp</item>
@@ -25,6 +27,8 @@
         <item name="pageBackground">@color/gray_bg</item>
         <item name="colorTextPrimary">#fff</item>
         <item name="colorDivider">@color/divider_dark</item>
+        <item name="colorTabBackground">@color/bg_tabbar</item>
+        <item name="colorTabBackgroundActive">@color/menu_bottom_selected</item>
         <item name="drawableThemeLogin">@drawable/ic_theme_dark_24dp</item>
         <item name="drawableLegal">@drawable/ic_privacy_policy_24</item>
         <item name="drawableSupport">@drawable/ic_settings_feedback_24dp</item>

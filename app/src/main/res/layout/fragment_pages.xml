@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height_with_statusbar"
         android:layout_gravity="bottom"
-        android:background="@color/bg_tabbar"
+        android:background="?colorTabBackground"
         android:gravity="center"
         android:orientation="horizontal">
 

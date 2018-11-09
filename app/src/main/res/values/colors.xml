@@ -7,6 +7,7 @@
 
     <color name="dot_active">#fff</color>
     <color name="menu_bottom_selected">#2e3338</color>
+    <color name="menu_bottom_selected_light">#b8b8b8</color>
     <color name="blue">#60a6e8</color>
     <color name="divider_dark">#3e3f42</color>
     <color name="divider_light">#ebebeb</color>
