@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
+import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
 import com.ringoid.view.INavigatorLikes;
 import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.callback.IPresenterLikesContainerListener;
@@ -26,9 +27,11 @@ public class PresenterLikesContainer implements IPresenterLikesContainer {
     IPresenterFeedPage presenterFeedPage;
 
     private WeakReference<IPresenterLikesContainerListener> refListener;
+    private ListenerCacheState listenerCacheState;
 
     public PresenterLikesContainer() {
         ApplicationRingoid.getComponent().inject(this);
+        cacheInterfaceState.addListener(listenerCacheState = new ListenerCacheState());
     }
 
     @Override
@@ -102,5 +105,23 @@ public class PresenterLikesContainer implements IPresenterLikesContainer {
                 : cacheInterfaceState.getPageLikes().equals(PAGE_ENUM.LIKES_MATCHES)
                 ? 1
                 : 2;
+    }
+
+    private class ListenerCacheState implements ICacheInterfaceStateListener {
+        @Override
+        public void onPageSelected(PAGE_ENUM num) {
+
+        }
+
+        @Override
+        public void onDialogComposeShowState(boolean isShown) {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().setTabbarShown(!isShown);
+        }
+
+        @Override
+        public void onThemeUpdate() {
+
+        }
     }
 }

@@ -3,4 +3,6 @@ package com.ringoid.view.presenter.callback;
 
 public interface IPresenterLikesContainerListener {
     void setPageSelected(int currentPageIndex);
+
+    void setTabbarShown(boolean isShown);
 }

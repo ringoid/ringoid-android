@@ -66,5 +66,11 @@ public class FragmentLikesContainer extends FragmentBase
                 tvTitle.setTypeface(null, currentPageIndex == i ? Typeface.BOLD : Typeface.NORMAL);
             }
         }
+
+        @Override
+        public void setTabbarShown(boolean isShown) {
+            llTitles.setVisibility(isShown?View.VISIBLE:View.GONE);
+        }
+
     }
 }

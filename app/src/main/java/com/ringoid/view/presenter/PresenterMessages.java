@@ -101,8 +101,8 @@ public class PresenterMessages implements IPresenterMessages {
             int position = cacheMessages.getPosition(userSelectedID, NO_VALUE);
             if (position == NO_VALUE) return;
             int offset = position == 0
-                    ? 0
-                    : (int) (refContext.get().getResources().getDimension(R.dimen.likesTitleHeight) - refContext.get().getResources().getDimension(R.dimen.divider));
+                    ? -(int) (refContext.get().getResources().getDimension(R.dimen.likesTitleHeight))
+                    : -(int) refContext.get().getResources().getDimension(R.dimen.divider);
             presenterFeedPage.scrollToPosition(position, offset);
             cacheInterfaceState.setPositionScrollPageMessages(position, offset);
         }
