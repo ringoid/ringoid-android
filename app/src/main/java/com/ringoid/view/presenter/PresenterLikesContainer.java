@@ -59,12 +59,21 @@ public class PresenterLikesContainer implements IPresenterLikesContainer {
         this.refListener = new WeakReference<>(listener);
     }
 
+    @Override
+    public void scrollTop() {
+        if (presenterFeedPage.isPositionTop()) return;
+        presenterFeedPage.scrollTop();
+        resetScrollPosition(cacheInterfaceState.getPageLikes());
+    }
+
+    @Override
+    public void showPageLikes() {
+        onClick(R.id.tvLikes);
+    }
+
     private void navigateCurrentPage() {
         if (navigatorLikes.isPageCurrent(cacheInterfaceState.getPageLikes())) {
-            if (!presenterFeedPage.isPositionTop()) {
-                presenterFeedPage.scrollTop();
-                resetScrollPosition(cacheInterfaceState.getPageLikes());
-            }
+            scrollTop();
             return;
         }
         navigatorLikes.navigatePage(cacheInterfaceState.getPageLikes());

@@ -8,7 +8,6 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.view.presenter.PresenterPagesContainer;
 import com.ringoid.view.ui.fragment.FragmentExplore;
-import com.ringoid.view.ui.fragment.FragmentLikes;
 import com.ringoid.view.ui.fragment.FragmentLikesContainer;
 import com.ringoid.view.ui.fragment.FragmentProfile;
 import com.ringoid.view.ui.util.IHelperFullscreen;
@@ -100,7 +99,7 @@ public class NavigatorPages implements INavigatorPages {
         if (refFragmentManager == null || refFragmentManager.get() == null) return false;
 
         Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
-        return fragment != null && fragment instanceof FragmentLikes;
+        return fragment != null && fragment instanceof FragmentLikesContainer;
     }
 
     @Override

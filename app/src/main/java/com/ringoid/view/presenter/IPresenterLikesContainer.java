@@ -11,4 +11,8 @@ public interface IPresenterLikesContainer {
     void onCreateView(FragmentManager childFragmentManager, int flContentLikes);
 
     void setListener(IPresenterLikesContainerListener listener);
+
+    void scrollTop();
+
+    void showPageLikes();
 }

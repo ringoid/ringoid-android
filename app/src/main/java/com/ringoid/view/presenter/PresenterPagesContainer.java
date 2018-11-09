@@ -58,6 +58,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     IPresenterFeedPage presenterFeedPage;
 
     @Inject
+    IPresenterLikesContainer presenterLikesContainer;
+
+    @Inject
     IPresenterSettings presenterSettings;
 
     @Inject
@@ -114,10 +117,10 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         cacheScroll.resetCache();
 
         if (navigatorPages.isPageLikes()) {
-            if (!presenterFeedPage.isPositionTop()) {
-                presenterFeedPage.scrollTop();
-                cacheInterfaceState.resetCachePositionLikes();
-            }
+            if (!presenterFeedPage.isPositionTop())
+                presenterLikesContainer.scrollTop();
+            else
+                presenterLikesContainer.showPageLikes();
             return;
         }
 
