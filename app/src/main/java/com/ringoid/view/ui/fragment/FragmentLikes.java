@@ -55,7 +55,13 @@ public class FragmentLikes extends FragmentInnerTab {
 
     @Override
     protected void onScrollState(int newState, int firstVisibleItemPosition, int offset) {
-        presenterLikes.onScrollState(newState, firstVisibleItemPosition, offset);
+        presenterLikes.onScrollState(newState, firstVisibleItemPosition, getOffset(offset, firstVisibleItemPosition));
+    }
+
+    private int getOffset(int offset, int firstVisibleItemPosition) {
+        if (firstVisibleItemPosition != 0)
+            return offset;
+        return (int) (offset - getContext().getResources().getDimension(R.dimen.likesTitleHeight));
     }
 
     @Override

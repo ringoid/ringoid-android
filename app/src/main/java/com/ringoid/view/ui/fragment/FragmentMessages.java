@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterMessages;
 import com.ringoid.view.presenter.callback.IPresenterMessagesListener;
 import com.ringoid.view.ui.adapter.AdapterMessages;
@@ -50,7 +51,13 @@ public class FragmentMessages extends FragmentInnerTab {
 
     @Override
     protected void onScrollState(int newState, int firstVisibleItemPosition, int offset) {
-        presenterMessages.onScrollState(newState, firstVisibleItemPosition, offset);
+        presenterMessages.onScrollState(newState, firstVisibleItemPosition, getOffset(offset, firstVisibleItemPosition));
+    }
+
+    private int getOffset(int offset, int firstVisibleItemPosition) {
+        if (firstVisibleItemPosition != 0)
+            return offset;
+        return (int) (offset - getContext().getResources().getDimension(R.dimen.likesTitleHeight));
     }
 
     @Override
