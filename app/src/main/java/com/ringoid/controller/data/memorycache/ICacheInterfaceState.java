@@ -17,9 +17,9 @@ public interface ICacheInterfaceState {
 
     void addListener(ICacheInterfaceStateListener listener);
 
-    int getCurrentPage();
+    PAGE_ENUM getCurrentPage();
 
-    void setCurrentPage(int i);
+    void setCurrentPage(PAGE_ENUM page);
 
     int getPositionScrollPageLikes();
 

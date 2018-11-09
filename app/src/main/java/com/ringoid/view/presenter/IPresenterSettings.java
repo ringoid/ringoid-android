@@ -13,4 +13,6 @@ public interface IPresenterSettings {
     void onConfirmLogout();
 
     void onClickTheme();
+
+    boolean onBackPressed();
 }

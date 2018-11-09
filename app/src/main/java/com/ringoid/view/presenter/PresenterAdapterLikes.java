@@ -11,6 +11,7 @@ import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheLikesListener;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.callback.IPresenterAdapterLikesListener;
 import com.ringoid.view.ui.util.IHelperMessageCompose;
 
@@ -121,7 +122,7 @@ public class PresenterAdapterLikes implements IPresenterAdapterLikes {
 
     private class ListenerCacheInterfaceState implements ICacheInterfaceStateListener {
         @Override
-        public void onPageSelected(int num) {
+        public void onPageSelected(PAGE_ENUM num) {
 
         }
 

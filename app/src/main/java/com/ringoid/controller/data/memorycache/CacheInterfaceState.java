@@ -7,7 +7,6 @@ import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateList
 import com.ringoid.controller.device.ICacheStorage;
 import com.ringoid.model.ModelInterfaceState;
 import com.ringoid.view.PAGE_ENUM;
-import com.ringoid.view.presenter.PresenterPagesContainer;
 
 import java.util.WeakHashMap;
 
@@ -64,7 +63,7 @@ public class CacheInterfaceState implements ICacheInterfaceState {
 
     @Override
     public void resetCurrentPage() {
-        setCurrentPage(PresenterPagesContainer.INDEX_PAGE_PROFILE);
+        setCurrentPage(PAGE_ENUM.FEED_PROFILE);
     }
 
     @Override
@@ -74,13 +73,13 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
-    public int getCurrentPage() {
+    public PAGE_ENUM getCurrentPage() {
         return getData().getCurrentPage();
     }
 
     @Override
-    public void setCurrentPage(int i) {
-        getData().setCurrentPage(i);
+    public void setCurrentPage(PAGE_ENUM page) {
+        getData().setCurrentPage(page);
         saveData();
         notifyListenersPageUpdated();
     }

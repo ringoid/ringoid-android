@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class ModelInterfaceState implements Serializable {
 
     private String originPhotoId;
-    private int currentPage;
+    private PAGE_ENUM currentPage;
 
     private int positionScrollPageLikes;
     private int positionScrollPageMessages;
@@ -34,11 +34,11 @@ public class ModelInterfaceState implements Serializable {
         this.originPhotoId = originPhotoId;
     }
 
-    public int getCurrentPage() {
+    public PAGE_ENUM getCurrentPage() {
         return currentPage;
     }
 
-    public void setCurrentPage(int currentPage) {
+    public void setCurrentPage(PAGE_ENUM currentPage) {
         this.currentPage = currentPage;
     }
 

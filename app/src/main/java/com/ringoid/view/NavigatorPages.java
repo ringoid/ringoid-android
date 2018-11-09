@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
-import com.ringoid.view.presenter.PresenterPagesContainer;
 import com.ringoid.view.ui.fragment.FragmentExplore;
 import com.ringoid.view.ui.fragment.FragmentLikesContainer;
 import com.ringoid.view.ui.fragment.FragmentProfile;
@@ -46,7 +45,7 @@ public class NavigatorPages implements INavigatorPages {
     @Override
     public void navigateLikes() {
 
-        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_LIKES);
+        cacheInterfaceState.setCurrentPage(PAGE_ENUM.FEED_LIKES);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
@@ -57,7 +56,7 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateProfile() {
-        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_PROFILE);
+        cacheInterfaceState.setCurrentPage(PAGE_ENUM.FEED_PROFILE);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
@@ -67,7 +66,7 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateExplore() {
-        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_EXPLORE);
+        cacheInterfaceState.setCurrentPage(PAGE_ENUM.FEED_EXPLORE);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
@@ -77,11 +76,11 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateCurrentPage() {
-        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_PROFILE)
+        if (cacheInterfaceState.getCurrentPage().equals(PAGE_ENUM.FEED_PROFILE))
             navigateProfile();
-        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_LIKES)
+        if (cacheInterfaceState.getCurrentPage().equals(PAGE_ENUM.FEED_LIKES))
             navigateLikes();
-        if (cacheInterfaceState.getCurrentPage() == PresenterPagesContainer.INDEX_PAGE_EXPLORE)
+        if (cacheInterfaceState.getCurrentPage().equals(PAGE_ENUM.FEED_EXPLORE))
             navigateExplore();
     }
 
@@ -104,7 +103,7 @@ public class NavigatorPages implements INavigatorPages {
 
     @Override
     public void navigateProfilePhotoAdd() {
-        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_PROFILE);
+        cacheInterfaceState.setCurrentPage(PAGE_ENUM.FEED_PROFILE);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()

@@ -17,6 +17,7 @@ import com.ringoid.controller.data.memorycache.listener.ICacheSettingsPrivacyLis
 import com.ringoid.view.INavigator;
 import com.ringoid.view.INavigatorPages;
 import com.ringoid.view.IViewDialogs;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.presenter.util.ISettingsHelper;
 import com.ringoid.view.ui.util.IHelperFullscreen;
@@ -27,11 +28,11 @@ import javax.inject.Inject;
 
 public class PresenterPagesContainer implements IPresenterPagesContainer {
 
+    public static final int ACTION_PHOTO_ADD = 1;
+
     public static final int INDEX_PAGE_EXPLORE = 0;
     public static final int INDEX_PAGE_LIKES = 1;
     public static final int INDEX_PAGE_PROFILE = 2;
-
-    public static final int ACTION_PHOTO_ADD = 1;
 
     @Inject
     INavigatorPages navigatorPages;
@@ -174,6 +175,14 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         return isSelected ? R.drawable.ic_menu_explore_white_24dp : R.drawable.ic_menu_explore_24dp;
     }
 
+    private int getIndex(PAGE_ENUM num) {
+        return num.equals(PAGE_ENUM.FEED_PROFILE)
+                ? INDEX_PAGE_PROFILE
+                : num.equals(PAGE_ENUM.FEED_LIKES)
+                ? INDEX_PAGE_LIKES
+                : INDEX_PAGE_EXPLORE;
+    }
+
     private class ListenerCacheScroll implements ICacheScrollListener {
         @Override
         public void onScroll(boolean isDown, int position) {
@@ -190,12 +199,12 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     private class ListenerCacheInterfaceState implements ICacheInterfaceStateListener {
         @Override
-        public void onPageSelected(int num) {
+        public void onPageSelected(PAGE_ENUM num) {
             if (refListener == null || refListener.get() == null) return;
-            refListener.get().setPageSelected(num,
-                    getIconResProfile(num == INDEX_PAGE_PROFILE),
-                    getIconResLikes(num == INDEX_PAGE_LIKES),
-                    getIconResExplore(num == INDEX_PAGE_EXPLORE));
+            refListener.get().setPageSelected(getIndex(num),
+                    getIconResProfile(num.equals(PAGE_ENUM.FEED_PROFILE)),
+                    getIconResLikes(num.equals(PAGE_ENUM.FEED_LIKES)),
+                    getIconResExplore(num.equals(PAGE_ENUM.FEED_EXPLORE)));
         }
 
         @Override

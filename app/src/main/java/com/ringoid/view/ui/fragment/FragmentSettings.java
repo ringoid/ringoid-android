@@ -74,6 +74,11 @@ public class FragmentSettings extends FragmentBase
     }
 
     @Override
+    public boolean onBackPressed() {
+        return presenterSettings.onBackPressed();
+    }
+
+    @Override
     public void onClick(View v) {
 
         if (v.getId() == R.id.tvDataProtection)

@@ -4,6 +4,8 @@ package com.ringoid.view.presenter;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.repository.IRepositoryRegisterLogout;
+import com.ringoid.view.INavigator;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.callback.IPresenterSettingsListener;
 import com.ringoid.view.presenter.util.ILogoutHelper;
 
@@ -21,6 +23,9 @@ public class PresenterSettings implements IPresenterSettings {
 
     @Inject
     IRepositoryRegisterLogout repositoryRegisterLogout;
+
+    @Inject
+    INavigator navigator;
 
     private WeakReference<IPresenterSettingsListener> refListener;
 
@@ -57,6 +62,13 @@ public class PresenterSettings implements IPresenterSettings {
     @Override
     public void onClickTheme() {
         cacheInterfaceState.updateTheme();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        cacheInterfaceState.setCurrentPage(PAGE_ENUM.FEED_PROFILE);
+        navigator.navigateFeed();
+        return true;
     }
 
 }

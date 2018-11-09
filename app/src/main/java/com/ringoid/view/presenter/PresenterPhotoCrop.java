@@ -8,6 +8,7 @@ import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.util.IHelperConnection;
 import com.ringoid.view.presenter.util.IHelperPhotoUpload;
 import com.ringoid.view.ui.dialog.callback.IDialogPhotoUploadedFirstListener;
@@ -91,7 +92,7 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
     @Override
     public boolean onBackPressed() {
         cacheTutorial.setShowDialogPhotoAdded(false);
-        cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_PROFILE);
+        cacheInterfaceState.setCurrentPage(PAGE_ENUM.FEED_PROFILE);
         navigator.navigateFeed();
         return true;
     }
@@ -100,7 +101,7 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
 
         @Override
         public void onSelectFeed() {
-            cacheInterfaceState.setCurrentPage(PresenterPagesContainer.INDEX_PAGE_EXPLORE);
+            cacheInterfaceState.setCurrentPage(PAGE_ENUM.FEED_EXPLORE);
             navigator.navigateFeed();
         }
 

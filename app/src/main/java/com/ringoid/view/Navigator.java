@@ -179,12 +179,13 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateSettings() {
+        cacheInterfaceState.setCurrentPage(PAGE_ENUM.FEED_SETTINGS);
         cacheInterfaceState.setPositionScrollSettings(0, 0);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()
                 .addToBackStack(null)
-                .replace(viewId, new FragmentSettings())
+                .replace(viewId, new FragmentSettings(), CURRENT_FRAGMENT_PAGE)
                 .commit();
     }
 

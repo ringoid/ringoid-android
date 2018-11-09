@@ -17,6 +17,7 @@ import com.ringoid.controller.data.network.interceptor.listener.IInterceptorRetr
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.callback.IPresenterActivityMainListener;
 import com.ringoid.view.presenter.util.IHelperPhotoUpload;
 import com.ringoid.view.presenter.util.ILogoutHelper;
@@ -119,7 +120,11 @@ public class PresenterActivityMain implements IPresenterActivityMain {
         }
 
         helperPhotoUpload.checkState();
-        navigator.navigateFeed();
+
+        if (cacheInterfaceState.getCurrentPage().equals(PAGE_ENUM.FEED_SETTINGS))
+            navigator.navigateSettings();
+        else
+            navigator.navigateFeed();
     }
 
     @Override
@@ -165,7 +170,7 @@ public class PresenterActivityMain implements IPresenterActivityMain {
 
     private class ListenerCacheInterfaceState implements ICacheInterfaceStateListener {
         @Override
-        public void onPageSelected(int num) {
+        public void onPageSelected(PAGE_ENUM num) {
 
         }
 
