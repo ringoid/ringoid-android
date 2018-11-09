@@ -9,26 +9,32 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/ivClose"
-            style="@style/selectableImage"
-            android:src="@drawable/ic_arrow_close_grey_24dp" />
+        <FrameLayout
+            android:id="@+id/flMessages"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-        <ImageView
-            android:id="@+id/ivReport"
-            style="@style/selectableImage"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_block_gray_dark_24dp" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivClose"
+                style="@style/selectableImage"
+                android:src="@drawable/ic_arrow_close_grey_24dp" />
+
+            <ImageView
+                android:id="@+id/ivReport"
+                style="@style/selectableImage"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_block_gray_dark_24dp" />
+
+        </FrameLayout>
 
     </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/flMessages"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
     <LinearLayout
         android:id="@+id/llCompose"
