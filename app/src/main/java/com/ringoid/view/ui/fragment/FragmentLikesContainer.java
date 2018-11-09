@@ -16,6 +16,7 @@ import com.ringoid.R;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.IPresenterLikesContainer;
 import com.ringoid.view.presenter.callback.IPresenterLikesContainerListener;
+import com.ringoid.view.ui.util.IHelperTheme;
 
 import javax.inject.Inject;
 
@@ -27,6 +28,9 @@ public class FragmentLikesContainer extends FragmentBase
 
     @Inject
     INavigator navigator;
+
+    @Inject
+    IHelperTheme helperTheme;
 
     private ListenerPresenter listenerPresenter;
     private LinearLayout llTitles;
@@ -69,7 +73,7 @@ public class FragmentLikesContainer extends FragmentBase
 
         @Override
         public void setTabbarShown(boolean isShown) {
-            llTitles.setVisibility(isShown?View.VISIBLE:View.GONE);
+            llTitles.setVisibility(isShown ? View.VISIBLE : View.GONE);
         }
 
     }
