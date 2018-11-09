@@ -50,18 +50,18 @@ public interface IApiRingoid {
     @GET("/Prod/get_settings")
     Call<ResponseSettings> settingsGet(@Query("accessToken") String token);
 
-    @GET("https://https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/get_own_photos")
+    @GET("https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/get_own_photos")
     Call<ResponseProfilePhotos> profilePhotosGet(@Query("accessToken") String token,
                                                  @Query("resolution") String res);
 
-    @POST("https://https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/get_presigned")
+    @POST("https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/get_presigned")
     Call<ResponseProfilePhotoUri> profilePhotoUri(@Body RequestPhotoUploadUri param);
 
     @PUT
     Call<Void> profilePhotoUpload(@Url String url,
                                   @Body RequestBody image);
 
-    @POST("https://https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/delete_photo")
+    @POST("https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/delete_photo")
     Call<ResponseBase> profileImageRemove(@Body RequestParamProfileImageRemove param);
 
     @POST("https://xvlq70j9zb.execute-api.eu-west-1.amazonaws.com/Prod/timeout")
