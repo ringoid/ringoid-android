@@ -14,7 +14,7 @@ public class DialogAbout implements View.OnClickListener {
     public DialogAbout(Context context) {
         dialog = new AlertDialog.Builder(context).create();
         View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_about, null);
-        view.findViewById(R.id.flContent).setOnClickListener(this);
+        view.findViewById(R.id.llContent).setOnClickListener(this);
         dialog.setView(view);
     }
 

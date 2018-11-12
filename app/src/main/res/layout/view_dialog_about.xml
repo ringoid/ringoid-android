@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/flContent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="20dp"
-    android:paddingEnd="20dp"
-    android:paddingStart="20dp"
-    android:paddingTop="24dp">
+    android:layout_height="wrap_content">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/llContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="?attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:paddingTop="24dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -40,4 +40,4 @@
     </ScrollView>
 
 
-</LinearLayout>
+</FrameLayout>
