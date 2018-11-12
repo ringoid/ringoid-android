@@ -42,6 +42,7 @@ public class ViewPhoneInput extends LinearLayout
     private EditText etPhone;
     private IViewPhotoInputListener listener;
     private View vContainerCode, vContainerNumber;
+    private View vPaste;
 
     public ViewPhoneInput(Context context) {
         super(context);
@@ -70,6 +71,8 @@ public class ViewPhoneInput extends LinearLayout
         vContainerNumber = findViewById(R.id.vContainerNumber);
         etCode = findViewById(R.id.etTelCode);
         etPhone = findViewById(R.id.etTelNum);
+        vPaste = findViewById(R.id.ivPaste);
+
         etCode.addTextChangedListener(new ListenerCode());
         ccp = findViewById(R.id.ccp);
         ccp.setOnCountryChangeListener(listenerCountry = new ListenerCountry());
@@ -79,9 +82,8 @@ public class ViewPhoneInput extends LinearLayout
 
         findViewById(R.id.tvCodePrefix).setOnClickListener(this);
 
-        findViewById(R.id.ivPaste).setOnClickListener(this);
-        findViewById(R.id.ivPaste).setOnLongClickListener(this);
-
+        vPaste.setOnClickListener(this);
+        vPaste.setOnLongClickListener(this);
 
         etPhone.addTextChangedListener(new PhoneInputTextWatcher());
 
@@ -205,6 +207,10 @@ public class ViewPhoneInput extends LinearLayout
     private void notifyListenerPhoneEdit() {
         if (listener == null) return;
         listener.onPhoneEdit(etPhone.getText().toString());
+    }
+
+    public void setButtonPasteEnabled(boolean isEnabled) {
+        vPaste.setVisibility(isEnabled ? VISIBLE : GONE);
     }
 
     private class ListenerCode implements TextWatcher {
