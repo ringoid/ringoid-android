@@ -53,19 +53,17 @@
                 android:paddingEnd="20dp"
                 android:paddingBottom="16dp"
                 android:text="@string/dialog_report_switch"
-                android:textColor="?colorTextDialog"
                 android:textSize="17sp"
-                android:theme="@style/AppThemeLight.Warning" />
+                android:theme="@style/Warning" />
 
             <RadioGroup
-
                 android:id="@+id/rgReport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:theme="@style/AppThemeLight.Warning"
+                android:theme="@style/Warning"
                 android:visibility="gone"
                 tools:visibility="visible">
 

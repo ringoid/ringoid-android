@@ -49,7 +49,8 @@
         <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
 
-    <style name="AppThemeLight.Warning">
+    <style name="Warning">
+        <item name="android:textColor">?colorTextDialog</item>
         <item name="colorAccent">@color/colorWarning</item>
     </style>
 
