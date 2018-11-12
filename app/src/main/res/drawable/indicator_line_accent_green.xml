@@ -11,6 +11,10 @@
                 android:width="1dp"
                 android:height="2.5dp" />
             <solid android:color="@color/colorAccentGreen" />
+
+            <stroke
+                android:width="0.5dp"
+                android:color="#ccc" />
         </shape>
     </item>
 </layer-list>
