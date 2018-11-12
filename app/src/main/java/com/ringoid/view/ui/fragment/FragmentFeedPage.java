@@ -74,12 +74,12 @@ public abstract class FragmentFeedPage extends FragmentInnerTab {
 
             int position = parent.getChildLayoutPosition(view);
 
-            if (position != 0)
+            if (position > 1)
                 outRect.top = margin;
             else
                 outRect.top = 0;
 
-            if (position == state.getItemCount() - 1)
+            if (position > 1 && position == state.getItemCount() - 1)
                 outRect.bottom = heightBottom;
         }
 
