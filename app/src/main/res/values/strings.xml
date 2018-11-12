@@ -120,7 +120,7 @@
 
     <string name="message_no_photo_likes">See who likes you</string>
 
-    <string name="title_profile">Your Photos</string>
+    <string name="title_profile">Profile</string>
     <string name="message_profile_empty">Upload your photos so users can like you</string>
 
     <string name="dialog_photo_upload_first_photo_add">Add another photo</string>
