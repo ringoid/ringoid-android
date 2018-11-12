@@ -199,7 +199,7 @@ public abstract class FragmentInnerTab extends FragmentBase implements View.OnCl
             int position = parent.getChildLayoutPosition(view);
 
             if (position != 0)
-                outRect.top = margin;
+                outRect.top = position == 1 ? 0 : margin;
             else
                 outRect.top = marginTopFirst;
 
