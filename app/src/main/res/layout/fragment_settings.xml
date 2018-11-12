@@ -33,7 +33,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="@dimen/dividerSettings"
                 android:background="?colorDivider" />
 
             <TextView
@@ -45,7 +45,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="@dimen/dividerSettings"
                 android:background="?colorDivider" />
 
             <TextView
@@ -57,7 +57,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="@dimen/dividerSettings"
                 android:background="?colorDivider" />
 
             <TextView
@@ -69,7 +69,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="@dimen/dividerSettings"
                 android:background="?colorDivider" />
 
             <TextView
