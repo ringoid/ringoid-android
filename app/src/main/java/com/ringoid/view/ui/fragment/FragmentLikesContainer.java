@@ -66,11 +66,11 @@ public class FragmentLikesContainer extends FragmentBase
         @Override
         public void setPageSelected(int currentPageIndex) {
             for (int i = 0; i < llTitles.getChildCount(); ++i) {
-                TextView tvTitle = (TextView) ((LinearLayout) llTitles.getChildAt(i)).getChildAt(0);
-                View vLine = ((LinearLayout) llTitles.getChildAt(i)).getChildAt(1);
+                TextView tvTitle = (TextView) llTitles.getChildAt(i);
                 tvTitle.setTypeface(null, currentPageIndex == i ? Typeface.BOLD : Typeface.NORMAL);
-                tvTitle.setTextColor(helperTheme.getColor(i == currentPageIndex ? R.attr.colorTextPrimary: R.attr.colorTabTextNotActive));
-                vLine.setVisibility(i == currentPageIndex ? View.VISIBLE : View.GONE);
+                tvTitle.setTextColor(helperTheme.getColor(i == currentPageIndex
+                        ? R.attr.colorTextPrimary
+                        : R.attr.colorTabTextNotActive));
             }
         }
 

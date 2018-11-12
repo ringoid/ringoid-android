@@ -17,44 +17,20 @@
         android:background="?colorTabBackground"
         android:orientation="horizontal">
 
-        <LinearLayout
-            style="@style/itemTabLikesContainer"
-            android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvLikes"
+            style="@style/itemTabLikes"
+            android:text="@string/who_likes_you" />
 
-            <TextView
-                android:id="@+id/tvLikes"
-                style="@style/itemTabLikes"
-                android:text="@string/who_likes_you" />
+        <TextView
+            android:id="@+id/tvMatches"
+            style="@style/itemTabLikes"
+            android:text="@string/matches" />
 
-            <View style="@style/tabLikesLine" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/itemTabLikesContainer"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvMatches"
-                style="@style/itemTabLikes"
-                android:text="@string/matches" />
-
-            <View style="@style/tabLikesLine" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/itemTabLikesContainer"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvMessages"
-                style="@style/itemTabLikes"
-                android:text="@string/messages" />
-
-            <View style="@style/tabLikesLine" />
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvMessages"
+            style="@style/itemTabLikes"
+            android:text="@string/messages" />
 
     </LinearLayout>
 
