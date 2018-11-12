@@ -118,22 +118,7 @@ public class FragmentPages extends FragmentBase
                                     int iconResProfile,
                                     int iconResLikes,
                                     int iconResExplore) {
-            if (getContext() == null) return;
-            if (llBottomAppBar == null) return;
-            for (int i = 0; i < llBottomAppBar.getChildCount(); ++i) {
-                View view = llBottomAppBar.getChildAt(i);
-                if (view == null) continue;
 
-                if (i == num)
-                    view.setBackgroundColor(helperTheme.getColor(R.attr.colorTabBackgroundActive));
-                else
-                    view.setBackground(null);
-            }
-
-            setDrawables(iconResProfile, iconResLikes, iconResExplore);
-        }
-
-        private void setDrawables(int iconResProfile, int iconResLikes, int iconResExplore) {
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_PROFILE)).setImageResource(iconResProfile);
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_LIKES)).setImageResource(iconResLikes);
             ((ImageView) llBottomAppBar.getChildAt(PresenterPagesContainer.INDEX_PAGE_EXPLORE)).setImageResource(iconResExplore);
