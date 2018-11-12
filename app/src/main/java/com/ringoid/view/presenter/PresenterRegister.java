@@ -21,6 +21,7 @@ import com.ringoid.model.SEX;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.IViewPopup;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
 import com.ringoid.view.ui.dialog.callback.IDialogErrorUnknownListener;
 import com.ringoid.view.ui.util.IHelperTimer;
@@ -208,15 +209,17 @@ public class PresenterRegister implements IPresenterRegister {
 
     private void setPhoneInput() {
         if (refListener == null || refListener.get() == null) return;
-        if (cacheUser.isPhoneCodeExist() && cacheUser.isPhoneExist()) {
-            refListener.get().setPhone(cacheUser.getPhoneCode(), cacheUser.getPhone());
-            refListener.get().setPhoneSelectionEnd();
-        } else if (cacheInterfaceState.isPhoneExist()) {
+
+        if (cacheInterfaceState.isPhoneExist()) {
             refListener.get().setPhone(cacheInterfaceState.getPhoneCode(), cacheInterfaceState.getPhone());
             refListener.get().setPhoneSelectionEnd();
-        }
-        else refListener.get().setContryLocal();
+        } else if (cacheUser.isPhoneCodeExist() && cacheUser.isPhoneExist()) {
+            refListener.get().setPhone(cacheUser.getPhoneCode(), cacheUser.getPhone());
+            refListener.get().setPhoneSelectionEnd();
+        } else
+            refListener.get().setContryLocal();
 
+        cacheInterfaceState.setCurrentPage(PAGE_ENUM.LOGIN_PHONE);
         refListener.get().setPage(INDEX_PHONE_INPUT);
     }
 
@@ -225,6 +228,7 @@ public class PresenterRegister implements IPresenterRegister {
         if (cacheRegister.getSex() != SEX.UNDEFINED.getValue())
             refListener.get().setGenderSelected(cacheRegister.getSex() == SEX.FEMALE.getValue() ? SEX.FEMALE : SEX.MALE);
         refListener.get().showDateBirth(cacheRegister.getYearBirth());
+        cacheInterfaceState.setCurrentPage(PAGE_ENUM.LOGIN_PROFILE);
         refListener.get().setPage(INDEX_PROFILE_UPDATE);
     }
 
@@ -256,6 +260,7 @@ public class PresenterRegister implements IPresenterRegister {
         refListener.get().clearCodeInput();
         refListener.get().showPhoneHint(String.format("+%d %s", cacheUser.getPhoneCode(), cacheUser.getPhone()));
         refListener.get().setPage(INDEX_CODE_INPUT);
+        cacheInterfaceState.setCurrentPage(PAGE_ENUM.LOGIN_CODE);
         updateStateSMSResend(helperTimer.getMillis());
     }
 
@@ -277,6 +282,7 @@ public class PresenterRegister implements IPresenterRegister {
         public void onErrorPhone() {
             if (refListener == null || refListener.get() == null) return;
             cacheRegister.resetCache();
+            cacheInterfaceState.setCurrentPage(PAGE_ENUM.LOGIN_PHONE);
             refListener.get().setPage(INDEX_PHONE_INPUT);
             setPhoneInputStateEnabled(true);
         }
@@ -298,6 +304,7 @@ public class PresenterRegister implements IPresenterRegister {
             setSMSInputStateEnabled(true);
             cacheRegister.resetCache();
             if (refListener == null || refListener.get() == null) return;
+            cacheInterfaceState.setCurrentPage(PAGE_ENUM.LOGIN_PHONE);
             refListener.get().setPage(INDEX_PHONE_INPUT);
         }
 
@@ -331,6 +338,7 @@ public class PresenterRegister implements IPresenterRegister {
         @Override
         public void onClick(View v) {
             if (refListener == null || refListener.get() == null) return;
+            cacheInterfaceState.setCurrentPage(PAGE_ENUM.LOGIN_PHONE);
             refListener.get().setPage(INDEX_PHONE_INPUT);
         }
     }
@@ -351,6 +359,7 @@ public class PresenterRegister implements IPresenterRegister {
         @Override
         public void onDismiss() {
             if (refListener == null || refListener.get() == null) return;
+            cacheInterfaceState.setCurrentPage(PAGE_ENUM.LOGIN_PHONE);
             refListener.get().setPage(INDEX_PHONE_INPUT);
         }
 

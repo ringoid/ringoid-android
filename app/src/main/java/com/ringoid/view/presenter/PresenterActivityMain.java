@@ -104,7 +104,8 @@ public class PresenterActivityMain implements IPresenterActivityMain {
 
     private void navigate() {
         if (!cacheToken.isTokenExist()) {
-            if (cacheRegister.isSessionIdExist()) {
+            if (cacheRegister.isSessionIdExist()
+                    && cacheInterfaceState.getCurrentPage().equals(PAGE_ENUM.LOGIN_CODE)) {
                 navigator.navigateRegisterCodeConfirm();
                 return;
             }
