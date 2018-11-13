@@ -23,13 +23,13 @@
             <ImageView
                 android:id="@+id/ivClose"
                 style="@style/selectableImage"
-                android:src="@drawable/ic_arrow_close_grey_24dp" />
+                android:src="@drawable/ic_arrow_close_gray_light_24dp" />
 
             <ImageView
                 android:id="@+id/ivReport"
                 style="@style/selectableImage"
                 android:layout_gravity="end"
-                android:src="@drawable/ic_block_gray_dark_24dp" />
+                android:src="@drawable/ic_block_gray_24dp" />
 
         </FrameLayout>
 
