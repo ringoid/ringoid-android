@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.CompoundButton;
 import android.widget.ScrollView;
+import android.widget.Switch;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
@@ -67,6 +69,10 @@ public class FragmentSettings extends FragmentBase
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.tvTitle).setOnClickListener(this);
         view.findViewById(R.id.vTheme).setOnClickListener(this);
+
+        Switch swTheme = view.findViewById(R.id.swTheme);
+        swTheme.setChecked(presenterSettings.isThemeDark());
+        swTheme.setOnCheckedChangeListener(new ListenerThemeSwitch());
 
         svContent = view.findViewById(R.id.svContent);
         svContent.getViewTreeObserver().addOnScrollChangedListener(new ListenerScroll());
@@ -148,6 +154,13 @@ public class FragmentSettings extends FragmentBase
         @Override
         public void onScrollChanged() {
             presenterSettings.onScroll(svContent.getScrollY());
+        }
+    }
+
+    private class ListenerThemeSwitch implements CompoundButton.OnCheckedChangeListener {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            presenterSettings.onThemeChanged(isChecked);
         }
     }
 }

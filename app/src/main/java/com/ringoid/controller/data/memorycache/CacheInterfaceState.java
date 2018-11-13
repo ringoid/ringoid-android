@@ -236,6 +236,14 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
+    public void setThemeDark(boolean isChecked) {
+        getData().setThemeDark(isChecked);
+        saveData();
+        notifyListenersThemeUpdated();
+    }
+
+
+    @Override
     public int getTheme() {
         return getData().getThemeId();
     }

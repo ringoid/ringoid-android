@@ -2,6 +2,7 @@ package com.ringoid.view.presenter;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.repository.IRepositoryRegisterLogout;
 import com.ringoid.view.INavigator;
@@ -69,6 +70,16 @@ public class PresenterSettings implements IPresenterSettings {
         cacheInterfaceState.setCurrentPage(PAGE_ENUM.FEED_PROFILE);
         navigator.navigateFeed();
         return true;
+    }
+
+    @Override
+    public boolean isThemeDark() {
+        return cacheInterfaceState.getTheme() == R.style.AppThemeDark;
+    }
+
+    @Override
+    public void onThemeChanged(boolean isChecked) {
+        cacheInterfaceState.setThemeDark(isChecked);
     }
 
 }

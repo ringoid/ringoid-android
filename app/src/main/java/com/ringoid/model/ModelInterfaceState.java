@@ -114,6 +114,10 @@ public class ModelInterfaceState implements Serializable {
         themeId = themeId == R.style.AppThemeLight || themeId == 0 ? R.style.AppThemeDark : R.style.AppThemeLight;
     }
 
+    public void setThemeDark(boolean isChecked) {
+        themeId = isChecked ? R.style.AppThemeDark : R.style.AppThemeLight;
+    }
+
     public int getThemeId() {
         return themeId;
     }
@@ -126,19 +130,20 @@ public class ModelInterfaceState implements Serializable {
         this.pageLikes = page;
     }
 
-    public void setPhoneCode(String s) {
-        this.phoneCode = s;
+    public String getPhone() {
+        return phone;
     }
 
     public void setPhone(String s) {
         this.phone = s;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
     public String getPhoneCode() {
         return phoneCode;
     }
+
+    public void setPhoneCode(String s) {
+        this.phoneCode = s;
+    }
+
 }

@@ -76,4 +76,6 @@ public interface ICacheInterfaceState {
     int getPhoneCode();
 
     String getPhone();
+
+    void setThemeDark(boolean isChecked);
 }

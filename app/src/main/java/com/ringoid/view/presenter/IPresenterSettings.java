@@ -15,4 +15,8 @@ public interface IPresenterSettings {
     void onClickTheme();
 
     boolean onBackPressed();
+
+    boolean isThemeDark();
+
+    void onThemeChanged(boolean isChecked);
 }
