@@ -84,7 +84,6 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     public void onCreateView(AppCompatActivity activity, View view, FragmentManager supportFragmentManager, int viewId) {
         navigator.set(activity, supportFragmentManager, viewId);
         viewDialogs.set(activity, view);
-        viewPopup.setView(view);
         helperFullscreen.set(activity.getWindow());
         helperScreenshots.set(activity.getWindow());
         helperTheme.set(activity);

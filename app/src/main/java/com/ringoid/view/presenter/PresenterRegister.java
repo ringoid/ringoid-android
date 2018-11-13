@@ -274,7 +274,7 @@ public class PresenterRegister implements IPresenterRegister {
 
         @Override
         public void onError() {
-            viewPopup.showSnackbar(R.string.message_phone_confirm_error, R.string.message_retry, listenerPopupPhoneConfirmError);
+            navigator.navigateErrorConnection();
             setPhoneInputStateEnabled(true);
         }
 
