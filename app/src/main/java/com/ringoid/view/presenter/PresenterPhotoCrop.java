@@ -60,7 +60,6 @@ public class PresenterPhotoCrop implements IPresenterPhotoCrop {
             return;
         }
 
-        cacheInterfaceState.resetOriginPhotoId();
         helperPhotoUpload.addPhotoLocal(file);
 
         checkDialogPhotoAdd();

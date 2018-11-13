@@ -29,7 +29,7 @@ public interface ICacheProfile {
 
     String getOriginPhotoId(int pos);
 
-    int getPosition(String originPhotoId, int defaultValue);
+    int getPosition(String originPhotoId, String photoLocalId, int defaultValue);
 
     void resetCache();
 

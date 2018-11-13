@@ -64,10 +64,11 @@ public class ModelProfilePhotos implements Serializable {
         return data == null || pos < 0 || pos >= data.size() ? null : data.get(pos).getOriginPhotoId();
     }
 
-    public int getPositionByOriginPhotoId(String originPhotoId, int defaultValue) {
+    public int getPositionByOriginPhotoId(String originPhotoId, String photoLocalId, int defaultValue) {
         if (data == null) return defaultValue;
         for (int i = 0; i < data.size(); ++i)
-            if (data.get(i).isEqualsOriginPhotoId(originPhotoId))
+            if (data.get(i).isEqualsOriginPhotoId(originPhotoId)
+                    || data.get(i).isEqualsClientPhotoId(photoLocalId))
                 return i;
         return defaultValue;
     }

@@ -5,11 +5,9 @@ import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateList
 import com.ringoid.view.PAGE_ENUM;
 
 public interface ICacheInterfaceState {
-    void setProfileOriginPhotoId(String originPhotoId);
+    void setPhotoSelected(String originPhotoId, String photoLocalId);
 
     String getOriginPhotoId();
-
-    void resetOriginPhotoId();
 
     void resetCache();
 
@@ -78,4 +76,8 @@ public interface ICacheInterfaceState {
     String getPhone();
 
     void setThemeDark(boolean isChecked);
+
+    String getPhotoLocalId();
+
+    void updatePhotoSelected(String photoClientId, String photoOriginId);
 }

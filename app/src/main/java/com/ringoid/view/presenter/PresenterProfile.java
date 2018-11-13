@@ -18,7 +18,7 @@ import javax.inject.Inject;
 public class PresenterProfile implements IPresenterProfile {
 
     public static final int ACTION_PHOTO_ADD = 1;
-    private static final int DEFAULT_VALUE = -1;
+    private static final int DEFAULT_VALUE = 0;
 
     @Inject
     ICacheProfile cacheProfile;
@@ -89,7 +89,7 @@ public class PresenterProfile implements IPresenterProfile {
 
     @Override
     public void onShownItem(int pos) {
-        cacheInterfaceState.setProfileOriginPhotoId(cacheProfile.getOriginPhotoId(pos));
+        cacheInterfaceState.setPhotoSelected(cacheProfile.getOriginPhotoId(pos), cacheProfile.getPhotoLocalId(pos));
     }
 
     @Override
@@ -98,7 +98,7 @@ public class PresenterProfile implements IPresenterProfile {
     }
 
     private void updateView() {
-        int pos = cacheProfile.getPosition(cacheInterfaceState.getOriginPhotoId(), DEFAULT_VALUE);
+        int pos = cacheProfile.getPosition(cacheInterfaceState.getOriginPhotoId(), cacheInterfaceState.getPhotoLocalId(), DEFAULT_VALUE);
         updateView(pos);
 
         if (refListener != null && refListener.get() != null)

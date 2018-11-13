@@ -25,14 +25,8 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     }
 
     @Override
-    public void setProfileOriginPhotoId(String originPhotoId) {
-        getData().setOriginPhotoId(originPhotoId);
-        saveData();
-    }
-
-    @Override
-    public void resetOriginPhotoId() {
-        getData().setOriginPhotoId(null);
+    public void setPhotoSelected(String originPhotoId, String photoLocalId) {
+        getData().setPhotoSelected(originPhotoId, photoLocalId);
         saveData();
     }
 
@@ -240,6 +234,17 @@ public class CacheInterfaceState implements ICacheInterfaceState {
         getData().setThemeDark(isChecked);
         saveData();
         notifyListenersThemeUpdated();
+    }
+
+    @Override
+    public String getPhotoLocalId() {
+        return getData().getPhotoLocalId();
+    }
+
+    @Override
+    public void updatePhotoSelected(String photoClientId, String photoOriginId) {
+        if (!(getData().updatePhotoSelected(photoClientId, photoOriginId))) return;
+        saveData();
     }
 
 

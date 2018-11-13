@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICachePhotoUpload;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
 import com.ringoid.controller.data.memorycache.ICacheToken;
@@ -39,6 +40,9 @@ public class RepositoryPhotoUploadSync implements IRepositoryPhotoUploadSync {
 
     @Inject
     ICacheUser cacheUser;
+
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
 
     private AsyncTask<Void, String, Void> request;
 
@@ -112,9 +116,8 @@ public class RepositoryPhotoUploadSync implements IRepositoryPhotoUploadSync {
                     || TextUtils.isEmpty(photoOriginId))
                 return;
             cacheProfile.updateLocalPhoto(photoClientId, photoOriginId);
+            cacheInterfaceState.updatePhotoSelected(photoClientId, photoOriginId);
             cacheUser.setUserOld();
-
-            //todo set cache interface state photo selected if needed
         }
 
         @Override

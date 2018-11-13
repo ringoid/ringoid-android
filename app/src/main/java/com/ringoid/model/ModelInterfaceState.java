@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class ModelInterfaceState implements Serializable {
 
-    private String originPhotoId;
+    private PhotoSelectedMeta photoSelected;
     private PAGE_ENUM currentPage;
 
     private int positionScrollPageLikes;
@@ -29,11 +29,17 @@ public class ModelInterfaceState implements Serializable {
     private String phone;
 
     public String getOriginPhotoId() {
-        return originPhotoId;
+        return photoSelected == null ? null : photoSelected.originId;
     }
 
-    public void setOriginPhotoId(String originPhotoId) {
-        this.originPhotoId = originPhotoId;
+    public String getPhotoLocalId() {
+        return photoSelected == null ? null : photoSelected.localId;
+    }
+
+    public void setPhotoSelected(String originPhotoId, String photoLocalId) {
+        if (photoSelected == null) photoSelected = new PhotoSelectedMeta();
+        this.photoSelected.originId = originPhotoId;
+        this.photoSelected.localId = photoLocalId;
     }
 
     public PAGE_ENUM getCurrentPage() {
@@ -146,4 +152,10 @@ public class ModelInterfaceState implements Serializable {
         this.phoneCode = s;
     }
 
+    public boolean updatePhotoSelected(String photoClientId, String photoOriginId) {
+        if (photoSelected == null || photoSelected.localId == null || !photoSelected.localId.equals(photoClientId))
+            return false;
+        photoSelected.originId = photoOriginId;
+        return true;
+    }
 }

@@ -122,8 +122,8 @@ public class CacheProfile implements ICacheProfile {
     }
 
     @Override
-    public int getPosition(String originPhotoId, int defaultValue) {
-        return getData().getPositionByOriginPhotoId(originPhotoId, defaultValue);
+    public int getPosition(String originPhotoId, String photoLocalId, int defaultValue) {
+        return getData().getPositionByOriginPhotoId(originPhotoId, photoLocalId, defaultValue);
     }
 
     @Override

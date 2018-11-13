@@ -4,6 +4,7 @@ package com.ringoid.view.presenter.util;
 import android.text.TextUtils;
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICachePhotoRemove;
 import com.ringoid.controller.data.memorycache.ICachePhotoUpload;
 import com.ringoid.controller.data.memorycache.ICacheProfile;
@@ -38,6 +39,9 @@ public class HelperPhotoUpload implements IHelperPhotoUpload {
     @Inject
     ICachePhotoRemove cachePhotoRemove;
 
+    @Inject
+    ICacheInterfaceState cacheInterfaceState;
+
     public HelperPhotoUpload() {
         ApplicationRingoid.getComponent().inject(this);
     }
@@ -48,7 +52,7 @@ public class HelperPhotoUpload implements IHelperPhotoUpload {
         PhotoUpload photoUpload = new PhotoUpload();
         photoUpload.setFile(file);
         photoUpload.setClientPhotoID(UUID.randomUUID().toString());
-
+        cacheInterfaceState.setPhotoSelected(null, photoUpload.getClientPhotoId());
         cacheProfile.addPhotoLocal(photoUpload.getFileUri(), photoUpload.getClientPhotoId());
         cachePhotoUpload.add(photoUpload);
 
