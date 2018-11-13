@@ -227,7 +227,10 @@ public class Navigator implements INavigator {
                 || page == PAGE_ENUM.FEED_MESSAGES
                 || page == PAGE_ENUM.FEED_EXPLORE
                 || page == PAGE_ENUM.FEED_MATCHES
-                || page == PAGE_ENUM.CHAT)
+                || page == PAGE_ENUM.CHAT
+                || page == PAGE_ENUM.LIKES_MESSAGES
+                || page == PAGE_ENUM.LIKES_MATCHES
+                || page == PAGE_ENUM.LIKES_LIKES)
             helperScreenshots.disableScreenshots();
         else
             helperScreenshots.enableScreenshots();

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.INavigator;
+import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.IPresenterLikesContainer;
 import com.ringoid.view.presenter.callback.IPresenterLikesContainerListener;
 import com.ringoid.view.ui.util.IHelperTheme;
@@ -34,6 +35,11 @@ public class FragmentLikesContainer extends FragmentBase
 
     private ListenerPresenter listenerPresenter;
     private LinearLayout llTitles;
+
+    @Override
+    public PAGE_ENUM getPage() {
+        return PAGE_ENUM.FEED_LIKES;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
