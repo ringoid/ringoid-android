@@ -20,4 +20,6 @@ public interface INavigatorPages {
     boolean isPageLikes();
 
     void navigateProfilePhotoAdd();
+
+    boolean isPageProfile();
 }

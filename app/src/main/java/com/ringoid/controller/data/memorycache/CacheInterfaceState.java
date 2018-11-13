@@ -30,6 +30,14 @@ public class CacheInterfaceState implements ICacheInterfaceState {
         saveData();
     }
 
+
+    @Override
+    public void resetPhotoSelected() {
+        setPhotoSelected(null, null);
+        saveData();
+        notifyListenersPhotoSelectedUpdated();
+    }
+
     private void saveData() {
         cacheStorage.writeData(FileEnum.CACHE_INTERFACE, data);
     }
@@ -247,7 +255,6 @@ public class CacheInterfaceState implements ICacheInterfaceState {
         saveData();
     }
 
-
     @Override
     public int getTheme() {
         return getData().getThemeId();
@@ -296,5 +303,15 @@ public class CacheInterfaceState implements ICacheInterfaceState {
             listener.onDialogComposeShowState(isShown);
         }
 
+    }
+
+
+    private void notifyListenersPhotoSelectedUpdated() {
+        if (listeners == null) return;
+        for (String key : listeners.keySet()) {
+            ICacheInterfaceStateListener listener = listeners.get(key);
+            if (listener == null) continue;
+            listener.onPhotoSelectedUpdated();
+        }
     }
 }

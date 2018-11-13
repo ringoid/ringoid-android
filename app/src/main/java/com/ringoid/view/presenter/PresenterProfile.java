@@ -10,6 +10,7 @@ import com.ringoid.controller.data.repository.callback.IRepositoryProfilePhotosL
 import com.ringoid.view.INavigator;
 import com.ringoid.view.presenter.callback.IPresenterProfileListener;
 import com.ringoid.view.presenter.util.IHelperConnection;
+import com.ringoid.view.presenter.util.SimpleCacheInterfaceStateListener;
 
 import java.lang.ref.WeakReference;
 
@@ -35,6 +36,7 @@ public class PresenterProfile implements IPresenterProfile {
     @Inject
     IHelperConnection helperConnection;
 
+    private ListenerCacheInterfaceState listenerCacheInterfaceState;
     private ListenerRepositoryProfile listenerRepositoryProfile;
     private ListenerCacheProfile listenerCache;
     private WeakReference<IPresenterProfileListener> refListener;
@@ -43,6 +45,7 @@ public class PresenterProfile implements IPresenterProfile {
         ApplicationRingoid.getComponent().inject(this);
         cacheProfile.addListener(listenerCache = new ListenerCacheProfile());
         repositoryProfilePhotos.setListener(listenerRepositoryProfile = new ListenerRepositoryProfile());
+        cacheInterfaceState.addListener(listenerCacheInterfaceState = new ListenerCacheInterfaceState());
     }
 
     @Override
@@ -148,6 +151,13 @@ public class PresenterProfile implements IPresenterProfile {
         @Override
         public void onError() {
             notifyRefreshComplete();
+        }
+    }
+
+    private class ListenerCacheInterfaceState extends SimpleCacheInterfaceStateListener {
+        @Override
+        public void onPhotoSelectedUpdated() {
+            updateView();
         }
     }
 }

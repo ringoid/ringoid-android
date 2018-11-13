@@ -80,4 +80,6 @@ public interface ICacheInterfaceState {
     String getPhotoLocalId();
 
     void updatePhotoSelected(String photoClientId, String photoOriginId);
+
+    void resetPhotoSelected();
 }

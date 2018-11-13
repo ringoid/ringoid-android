@@ -20,6 +20,7 @@ import com.ringoid.view.IViewDialogs;
 import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.presenter.util.ISettingsHelper;
+import com.ringoid.view.presenter.util.SimpleCacheInterfaceStateListener;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 
 import java.lang.ref.WeakReference;
@@ -130,6 +131,11 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     @Override
     public void onClickPageProfile() {
+        if (navigatorPages.isPageProfile()) {
+            cacheInterfaceState.resetPhotoSelected();
+            return;
+        }
+
         cacheScroll.resetCache();
         navigatorPages.navigateProfile();
     }
@@ -197,7 +203,7 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
         }
     }
 
-    private class ListenerCacheInterfaceState implements ICacheInterfaceStateListener {
+    private class ListenerCacheInterfaceState extends SimpleCacheInterfaceStateListener {
         @Override
         public void onPageSelected(PAGE_ENUM num) {
             if (refListener == null || refListener.get() == null) return;
@@ -205,16 +211,6 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
                     getIconResProfile(num.equals(PAGE_ENUM.FEED_PROFILE)),
                     getIconResLikes(num.equals(PAGE_ENUM.FEED_LIKES)),
                     getIconResExplore(num.equals(PAGE_ENUM.FEED_EXPLORE)));
-        }
-
-        @Override
-        public void onDialogComposeShowState(boolean isShown) {
-
-        }
-
-        @Override
-        public void onThemeUpdate() {
-
         }
     }
 

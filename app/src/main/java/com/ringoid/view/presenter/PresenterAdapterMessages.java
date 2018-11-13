@@ -10,8 +10,8 @@ import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.controller.data.memorycache.listener.ICacheChatMessagesListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
 import com.ringoid.controller.data.memorycache.listener.ICacheMessagesListener;
-import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.callback.IPresenterAdapterMessagesListener;
+import com.ringoid.view.presenter.util.SimpleCacheInterfaceStateListener;
 import com.ringoid.view.ui.util.IHelperMessageCompose;
 
 import java.lang.ref.WeakReference;
@@ -121,11 +121,7 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
         }
     }
 
-    private class ListenerCacheInterfaceState implements ICacheInterfaceStateListener {
-        @Override
-        public void onPageSelected(PAGE_ENUM num) {
-
-        }
+    private class ListenerCacheInterfaceState extends SimpleCacheInterfaceStateListener {
 
         @Override
         public void onDialogComposeShowState(boolean isShown) {
@@ -133,9 +129,5 @@ public class PresenterAdapterMessages implements IPresenterAdapterMessages {
             refListener.get().onUpdate();
         }
 
-        @Override
-        public void onThemeUpdate() {
-
-        }
     }
 }

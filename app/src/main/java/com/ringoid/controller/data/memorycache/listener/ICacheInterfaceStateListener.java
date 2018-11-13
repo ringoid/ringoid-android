@@ -9,4 +9,6 @@ public interface ICacheInterfaceStateListener {
     void onDialogComposeShowState(boolean isShown);
 
     void onThemeUpdate();
+
+    void onPhotoSelectedUpdated();
 }

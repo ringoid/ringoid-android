@@ -102,6 +102,15 @@ public class NavigatorPages implements INavigatorPages {
     }
 
     @Override
+    public boolean isPageProfile() {
+
+        if (refFragmentManager == null || refFragmentManager.get() == null) return false;
+
+        Fragment fragment = refFragmentManager.get().findFragmentByTag(CURRENT_FRAGMENT_TAB);
+        return fragment != null && fragment instanceof FragmentProfile;
+    }
+
+    @Override
     public void navigateProfilePhotoAdd() {
         cacheInterfaceState.setCurrentPage(PAGE_ENUM.FEED_PROFILE);
         if (refFragmentManager == null || refFragmentManager.get() == null) return;

@@ -21,6 +21,7 @@ import com.ringoid.view.PAGE_ENUM;
 import com.ringoid.view.presenter.callback.IPresenterActivityMainListener;
 import com.ringoid.view.presenter.util.IHelperPhotoUpload;
 import com.ringoid.view.presenter.util.ILogoutHelper;
+import com.ringoid.view.presenter.util.SimpleCacheInterfaceStateListener;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperScreenshots;
 import com.ringoid.view.ui.util.IHelperTheme;
@@ -168,17 +169,7 @@ public class PresenterActivityMain implements IPresenterActivityMain {
         }
     }
 
-    private class ListenerCacheInterfaceState implements ICacheInterfaceStateListener {
-        @Override
-        public void onPageSelected(PAGE_ENUM num) {
-
-        }
-
-        @Override
-        public void onDialogComposeShowState(boolean isShown) {
-
-        }
-
+    private class ListenerCacheInterfaceState extends SimpleCacheInterfaceStateListener {
         @Override
         public void onThemeUpdate() {
             restartView();
