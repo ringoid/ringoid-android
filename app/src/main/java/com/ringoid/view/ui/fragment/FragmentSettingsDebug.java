@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.controller.data.network.response.ResponseBase;
+import com.ringoid.view.presenter.util.IHelperPhotoUpload;
 import com.ringoid.view.ui.util.ApiRingoidProvider;
 import com.ringoid.view.ui.util.IHelperScreenshots;
 
@@ -31,6 +32,9 @@ public class FragmentSettingsDebug extends FragmentBase implements View.OnClickL
 
     @Inject
     ApiRingoidProvider providerApi;
+
+    @Inject
+    IHelperPhotoUpload helperPhotoUpload;
 
     private TextView tvScreenshots;
 
@@ -60,6 +64,7 @@ public class FragmentSettingsDebug extends FragmentBase implements View.OnClickL
         view.findViewById(R.id.tvTestAppVersionError).setOnClickListener(this);
         view.findViewById(R.id.tvTestInternalServerError).setOnClickListener(this);
         view.findViewById(R.id.tvTestUnknownHost).setOnClickListener(this);
+        view.findViewById(R.id.tvTestPhotoQueue).setOnClickListener(this);
 
         updateStateScreenshots();
     }
@@ -92,6 +97,15 @@ public class FragmentSettingsDebug extends FragmentBase implements View.OnClickL
 
         if (v.getId() == R.id.tvTestUnknownHost)
             providerApi.getAPI().testUnknownHost().enqueue(new ListenerBase(getContext()));
+
+        if (v.getId() == R.id.tvTestPhotoQueue)
+            Toast.makeText(getContext(), getMessagePhotoQueue(), Toast.LENGTH_LONG).show();
+    }
+
+    private String getMessagePhotoQueue() {
+        return "photo upload queue size: " + helperPhotoUpload.getPhotoUploadSize()
+                + "\n"
+                + "photo remove queue size: " + helperPhotoUpload.getPhotoRemoveSize();
     }
 
     private static class ListenerBase implements retrofit2.Callback<com.ringoid.controller.data.network.response.ResponseBase> {

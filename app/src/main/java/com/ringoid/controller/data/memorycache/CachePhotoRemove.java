@@ -67,4 +67,9 @@ public class CachePhotoRemove implements ICachePhotoRemove {
     public boolean isContains(String photoId) {
         return getData().isContains(photoId);
     }
+
+    @Override
+    public int getDataSize() {
+        return getData().size();
+    }
 }

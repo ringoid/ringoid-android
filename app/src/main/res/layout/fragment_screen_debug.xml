@@ -46,4 +46,9 @@
         style="@style/settings_menu_item"
         android:text="test unknown host" />
 
+    <TextView
+        android:id="@+id/tvTestPhotoQueue"
+        style="@style/settings_menu_item"
+        android:text="test photos upload/remove lists" />
+
 </LinearLayout>

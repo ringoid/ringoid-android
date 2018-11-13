@@ -100,4 +100,14 @@ public class HelperPhotoUpload implements IHelperPhotoUpload {
             repositoryPhotoRemove.request(item.photoId, item.originId);
         }
     }
+
+    @Override
+    public int getPhotoUploadSize() {
+        return cachePhotoUpload.getDataSize();
+    }
+
+    @Override
+    public int getPhotoRemoveSize() {
+        return cachePhotoRemove.getDataSize();
+    }
 }

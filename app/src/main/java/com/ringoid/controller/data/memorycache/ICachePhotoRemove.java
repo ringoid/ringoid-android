@@ -14,4 +14,7 @@ public interface ICachePhotoRemove {
     void resetCache();
 
     boolean isContains(String photoId);
+
+    int getDataSize();
+
 }

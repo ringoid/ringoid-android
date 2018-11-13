@@ -9,4 +9,8 @@ public interface IHelperPhotoUpload {
     void remove(String imageId, String localId, String originId);
 
     void checkState();
+
+    int getPhotoUploadSize();
+
+    int getPhotoRemoveSize();
 }

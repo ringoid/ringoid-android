@@ -15,4 +15,6 @@ public interface ICachePhotoUpload {
     void removeItem(String photoOriginId);
 
     boolean isContains(String localId);
+
+    int getDataSize();
 }
