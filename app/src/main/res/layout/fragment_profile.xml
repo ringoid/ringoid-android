@@ -17,7 +17,7 @@
             android:id="@+id/ivSettings"
             style="@style/selectableImage"
             android:layout_gravity="end"
-            android:src="@drawable/ic_menu_settings_24dp" />
+            android:src="?drawableSettings" />
 
     </com.ringoid.view.ui.view.ViewToolbar>
 
@@ -59,8 +59,8 @@
                 android:id="@+id/tvEmpty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="64dp"
                 android:layout_marginStart="64dp"
+                android:layout_marginEnd="64dp"
                 android:gravity="center"
                 android:text="@string/message_profile_empty"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
@@ -79,8 +79,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/toolbar_height_with_statusbar"
-        android:layout_marginEnd="16dp">
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="@dimen/toolbar_height_with_statusbar">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabProfile"

@@ -25,6 +25,7 @@
         <item name="drawableLicenses">@drawable/ic_settings_licenses_light_24dp</item>
         <item name="drawableBack">@drawable/ic_arrow_back_grey_light_24dp</item>
         <item name="drawableClose">@drawable/ic_arrow_close_grey_light_24dp</item>
+        <item name="drawableSettings">@drawable/ic_menu_settings_gray_24dp</item>
 
     </style>
 
@@ -49,6 +50,7 @@
         <item name="drawableLicenses">@drawable/ic_settings_licenses_24dp</item>
         <item name="drawableBack">@drawable/ic_arrow_back_grey_24dp</item>
         <item name="drawableClose">@drawable/ic_arrow_close_grey_24dp</item>
+        <item name="drawableSettings">@drawable/ic_menu_settings_24dp</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
