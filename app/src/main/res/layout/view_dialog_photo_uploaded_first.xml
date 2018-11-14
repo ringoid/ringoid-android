@@ -5,6 +5,14 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/dialog_photo_upload_first_title"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+        android:textColor="?colorTextPrimary" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,8 +22,8 @@
             android:id="@+id/tvFeed"
             style="@style/buttonBase.Dialog"
             android:layout_width="match_parent"
-            android:paddingBottom="20dp"
             android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:text="@string/dialog_photo_upload_first_feed"
             android:textColor="?colorTextPrimary" />
 
@@ -24,8 +32,8 @@
             style="@style/buttonBase.Dialog"
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
-            android:paddingBottom="20dp"
             android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:text="@string/dialog_photo_upload_first_photo_add"
             android:textColor="?colorTextPrimary"
             android:textStyle="bold" />

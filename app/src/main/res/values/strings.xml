@@ -129,5 +129,6 @@
     <string name="who_likes_you">Likes You</string>
     <string name="matches">Matches</string>
     <string name="messages">Messages</string>
+    <string name="dialog_photo_upload_first_title">What do you want to do next?</string>
 
 </resources>

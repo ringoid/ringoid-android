@@ -13,17 +13,18 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:orientation="vertical"
-            android:paddingBottom="20dp"
-            android:paddingEnd="20dp"
             android:paddingStart="20dp"
-            android:paddingTop="24dp">
+            android:paddingTop="24dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/dialog_about_title"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:textColor="?colorTextPrimary" />
 
             <TextView
                 android:layout_width="match_parent"
