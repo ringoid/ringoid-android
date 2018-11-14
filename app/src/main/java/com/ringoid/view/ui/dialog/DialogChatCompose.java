@@ -178,7 +178,8 @@ public class DialogChatCompose implements View.OnClickListener {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             if (event.getAction() == MotionEvent.ACTION_UP
-                    && last_action == MotionEvent.ACTION_DOWN) {
+                    && (last_action == MotionEvent.ACTION_DOWN
+                    || last_action == MotionEvent.ACTION_MOVE && rvMessages.getAdapter().getItemCount() == 0)) {
                 cancel();
                 return true;
             }
