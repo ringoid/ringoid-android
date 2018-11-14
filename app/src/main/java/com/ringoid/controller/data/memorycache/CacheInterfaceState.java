@@ -2,6 +2,7 @@ package com.ringoid.controller.data.memorycache;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import com.ringoid.ApplicationRingoid;
+import com.ringoid.R;
 import com.ringoid.controller.data.FileEnum;
 import com.ringoid.controller.data.memorycache.listener.ICacheInterfaceStateListener;
 import com.ringoid.controller.device.ICacheStorage;
@@ -36,6 +37,18 @@ public class CacheInterfaceState implements ICacheInterfaceState {
         setPhotoSelected(null, null);
         saveData();
         notifyListenersPhotoSelectedUpdated();
+    }
+
+    @Override
+    public boolean isThemeDark() {
+        return getTheme() == R.style.AppThemeDark;
+    }
+
+    @Override
+    public void setThemeDark(boolean isChecked) {
+        getData().setThemeDark(isChecked);
+        saveData();
+        notifyListenersThemeUpdated();
     }
 
     private void saveData() {
@@ -118,7 +131,6 @@ public class CacheInterfaceState implements ICacheInterfaceState {
         getData().setPositionScrollPageExplore(firstVisibleItemPosition, offset);
         saveData();
     }
-
 
     private void setPositionScrollPageSettings(int firstVisibleItemPosition, int offset) {
         getData().setPositionScrollPageSettings(firstVisibleItemPosition, offset);
@@ -233,13 +245,6 @@ public class CacheInterfaceState implements ICacheInterfaceState {
     @Override
     public void updateTheme() {
         getData().updateTheme();
-        saveData();
-        notifyListenersThemeUpdated();
-    }
-
-    @Override
-    public void setThemeDark(boolean isChecked) {
-        getData().setThemeDark(isChecked);
         saveData();
         notifyListenersThemeUpdated();
     }

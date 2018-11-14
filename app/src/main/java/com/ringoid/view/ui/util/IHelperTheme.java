@@ -7,4 +7,16 @@ public interface IHelperTheme {
     int getColor(int res);
 
     void set(Context context);
+
+    int getDrawableMenuProfileActive();
+
+    int getDrawableMenuProfile();
+
+    int getDrawableMenuLikesActive();
+
+    int getDrawableMenuLikes();
+
+    int getDrawableMenuExploreActive();
+
+    int getDrawableMenuExplore();
 }

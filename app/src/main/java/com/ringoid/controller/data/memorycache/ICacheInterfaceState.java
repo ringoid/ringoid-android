@@ -63,23 +63,25 @@ public interface ICacheInterfaceState {
 
     void resetCachePositionMatches();
 
-    void setPhoneCode(String s);
-
-    void setPhone(String s);
-
     void resetCacheSavedPhone();
 
     boolean isPhoneExist();
 
     int getPhoneCode();
 
+    void setPhoneCode(String s);
+
     String getPhone();
 
-    void setThemeDark(boolean isChecked);
+    void setPhone(String s);
 
     String getPhotoLocalId();
 
     void updatePhotoSelected(String photoClientId, String photoOriginId);
 
     void resetPhotoSelected();
+
+    boolean isThemeDark();
+
+    void setThemeDark(boolean isChecked);
 }

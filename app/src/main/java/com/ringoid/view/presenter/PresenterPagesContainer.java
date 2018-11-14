@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.v4.app.FragmentManager;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheLikes;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
@@ -22,6 +21,7 @@ import com.ringoid.view.presenter.callback.IPresenterPagesContainerListener;
 import com.ringoid.view.presenter.util.ISettingsHelper;
 import com.ringoid.view.presenter.util.SimpleCacheInterfaceStateListener;
 import com.ringoid.view.ui.util.IHelperFullscreen;
+import com.ringoid.view.ui.util.IHelperTheme;
 
 import java.lang.ref.WeakReference;
 
@@ -76,6 +76,9 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
 
     @Inject
     IHelperFullscreen helperFullscreen;
+
+    @Inject
+    IHelperTheme helperTheme;
 
     private ListenerCacheSettings listenerCacheSettings;
     private ICacheInterfaceStateListener listenerCacheInterfaceState;
@@ -168,17 +171,15 @@ public class PresenterPagesContainer implements IPresenterPagesContainer {
     }
 
     private int getIconResProfile(boolean isSelected) {
-        return isSelected ? R.drawable.ic_menu_profile_white_24dp : R.drawable.ic_menu_profile_24dp;
+        return isSelected ? helperTheme.getDrawableMenuProfileActive() : helperTheme.getDrawableMenuProfile();
     }
 
     private int getIconResLikes(boolean isSelected) {
-        return isSelected
-                ? R.drawable.ic_menu_favorite_white_24dp
-                : R.drawable.ic_menu_favorite_24dp;
+        return isSelected ? helperTheme.getDrawableMenuLikesActive() : helperTheme.getDrawableMenuLikes();
     }
 
     private int getIconResExplore(boolean isSelected) {
-        return isSelected ? R.drawable.ic_menu_explore_white_24dp : R.drawable.ic_menu_explore_24dp;
+        return isSelected ? helperTheme.getDrawableMenuExploreActive() : helperTheme.getDrawableMenuExplore();
     }
 
     private int getIndex(PAGE_ENUM num) {
