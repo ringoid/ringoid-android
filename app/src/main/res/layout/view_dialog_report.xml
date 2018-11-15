@@ -53,6 +53,7 @@
                 android:paddingEnd="20dp"
                 android:paddingBottom="16dp"
                 android:text="@string/dialog_report_switch"
+                android:textColor="?colorTextDialog"
                 android:textSize="17sp"
                 android:theme="@style/Warning" />
 
