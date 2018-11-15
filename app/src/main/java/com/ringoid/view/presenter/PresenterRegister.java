@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheTutorial;
@@ -295,6 +294,7 @@ public class PresenterRegister implements IPresenterRegister {
             if (cacheUser.isRegistered()) {
                 hideKeyboard();
                 cacheTutorial.setShowDialogPhotoAdded(false);
+                cacheInterfaceState.setCurrentPage(PAGE_ENUM.FEED_PROFILE);
                 navigator.navigateFeed();
             } else loginGoProfileUpdate();
         }
