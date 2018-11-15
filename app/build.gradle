@@ -26,6 +26,20 @@ android {
 
         buildConfigField 'String', 'API_URL', rootProject.ext.SERVER
     }
+
+    signingConfigs {
+        release {
+            keyAlias 'ringoid'
+            keyPassword 'eUBDPHPrTsEaDWP5jwrkX4RbK6VZVhE2'
+            storeFile file("$rootDir/keystore.jks")
+            storePassword 'L8uHXzdrcE3KLQhGEPEpmSbK45Uj93f5'
+        }
+    }
+
+    defaultConfig {
+        signingConfig signingConfigs.release
+    }
+
     buildTypes {
         release {
             minifyEnabled false
