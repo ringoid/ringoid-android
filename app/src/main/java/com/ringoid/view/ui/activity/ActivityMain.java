@@ -9,6 +9,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.IPresenterActivityMain;
 import com.ringoid.view.presenter.callback.IPresenterActivityMainListener;
+import com.ringoid.view.ui.util.KeyboardUtils;
 
 import javax.inject.Inject;
 
@@ -16,6 +17,10 @@ public class ActivityMain extends AppCompatActivity {
 
     @Inject
     IPresenterActivityMain presenterActivityMain;
+
+    @Inject
+    KeyboardUtils keyboardUtils;
+
     private IPresenterActivityMainListener listenerPresenter;
 
     @Override
@@ -34,6 +39,12 @@ public class ActivityMain extends AppCompatActivity {
     public void onBackPressed() {
         if (!presenterActivityMain.onBackPressed())
             super.onBackPressed();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        keyboardUtils.keyboardHide(this, findViewById(R.id.flContentRoot));
     }
 
     @Override
