@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
 import com.ringoid.view.presenter.util.IHelperConnection;
+import com.ringoid.view.ui.util.KeyboardUtils;
 
 import javax.inject.Inject;
 
@@ -19,6 +20,9 @@ public class FragmentErrorConnection extends FragmentBase
 
     @Inject
     IHelperConnection helperConnection;
+
+    @Inject
+    KeyboardUtils keyboardUtils;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +35,7 @@ public class FragmentErrorConnection extends FragmentBase
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_error_connection, container, false);
         initViews(view);
+        keyboardUtils.keyboardHide(getContext(), view);
         return view;
     }
 
