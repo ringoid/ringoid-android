@@ -32,6 +32,7 @@
     <attr name="drawableBack" format="reference" />
     <attr name="drawableClose" format="reference" />
     <attr name="drawableSettings" format="reference" />
+    <attr name="drawableSplash" format="reference" />
     <attr name="colorTabTextNotActive" format="color" />
 
 </resources>
