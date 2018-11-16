@@ -32,6 +32,7 @@ import com.ringoid.view.ui.fragment.FragmentSettingsPush;
 import com.ringoid.view.ui.fragment.FragmentWebView;
 import com.ringoid.view.ui.util.IHelperFullscreen;
 import com.ringoid.view.ui.util.IHelperScreenshots;
+import com.ringoid.view.ui.util.KeyboardUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -53,6 +54,9 @@ public class Navigator implements INavigator {
 
     @Inject
     ICacheInterfaceState cacheInterfaceState;
+
+    @Inject
+    KeyboardUtils keyboardUtils;
 
     private WeakReference<FragmentManager> refFragmentManager;
     private int viewId;
@@ -259,6 +263,9 @@ public class Navigator implements INavigator {
 
     @Override
     public void navigateErrorConnection() {
+        if (refActivity != null && refActivity.get() != null)
+            keyboardUtils.keyboardHide(refActivity.get(), refActivity.get().findViewById(viewId));
+
         if (refFragmentManager == null || refFragmentManager.get() == null) return;
         refFragmentManager.get()
                 .beginTransaction()

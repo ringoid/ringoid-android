@@ -35,7 +35,6 @@ public class FragmentErrorConnection extends FragmentBase
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_error_connection, container, false);
         initViews(view);
-        keyboardUtils.keyboardHide(getContext(), view);
         return view;
     }
 
