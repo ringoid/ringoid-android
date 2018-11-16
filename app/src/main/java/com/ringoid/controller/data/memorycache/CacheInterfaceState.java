@@ -62,6 +62,8 @@ public class CacheInterfaceState implements ICacheInterfaceState {
 
     @Override
     public void resetCache() {
+        if (isThemeDark())
+            updateTheme();
         data = null;
         cacheStorage.removeData(FileEnum.CACHE_INTERFACE);
     }
