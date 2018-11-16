@@ -38,6 +38,7 @@ public class ViewHolderItemMessage extends ViewHolderItemLikeBase {
         rvItems.setAdapter(adapter);
         rvItems.addOnScrollListener(new ListenerScrollPhotos());
         rvItems.setNestedScrollingEnabled(false);
+        rvItems.setHasFixedSize(true);
         dotsIndicatorHelper = IndicatorHelper.getLinesAccentGreenHelper(flDots, rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
     }
 
