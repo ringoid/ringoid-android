@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
@@ -24,6 +23,8 @@ import com.ringoid.view.ui.adapter.AdapterProfile;
 import com.ringoid.view.ui.util.IndicatorHelper;
 
 import javax.inject.Inject;
+
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class FragmentProfile extends FragmentBase implements View.OnClickListener {
 
@@ -93,6 +94,7 @@ public class FragmentProfile extends FragmentBase implements View.OnClickListene
         rvItems.setLayoutManager(layoutManager);
         rvItems.setAdapter(adapter);
         rvItems.addOnScrollListener(new ListenerScroll());
+        OverScrollDecoratorHelper.setUpOverScroll(rvItems, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
         rvItems.setScrollingTouchSlop(RecyclerView.TOUCH_SLOP_PAGING);
