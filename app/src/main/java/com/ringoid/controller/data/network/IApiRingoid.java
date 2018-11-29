@@ -13,6 +13,7 @@ import com.ringoid.controller.data.network.response.ResponseProfilePhotoUri;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotos;
 import com.ringoid.controller.data.network.response.ResponseRegisterCodeConfirm;
 import com.ringoid.controller.data.network.response.ResponseRegisterPhone;
+import com.ringoid.controller.data.network.response.ResponseRegisterUser;
 import com.ringoid.controller.data.network.response.ResponseSettings;
 
 import okhttp3.RequestBody;
@@ -35,7 +36,7 @@ public interface IApiRingoid {
             @Body RequestParamRegisterCodeConfirm param);
 
     @POST("/Prod/create_profile")
-    Call<ResponseBase> registerUserDetails(
+    Call<ResponseRegisterUser> registerUserDetails(
             @Body RequestParamRegisterUserDetails param);
 
     @POST("/Prod/logout")

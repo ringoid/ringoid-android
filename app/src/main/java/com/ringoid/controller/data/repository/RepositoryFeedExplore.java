@@ -23,8 +23,9 @@ public class RepositoryFeedExplore implements IRepositoryFeedExplore {
 
     @Override
     public void request() {
-        if (!BuildConfig.DEBUG)
+        if (!BuildConfig.DEBUG) {
             throw new UnsupportedOperationException();
+        }
         else {
 
             String JSON_DATA = "{ \"data\":[" +

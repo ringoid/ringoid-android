@@ -1,7 +1,7 @@
 package com.ringoid.controller.data.network.request;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
-public class RequestParamRegisterUserDetails {
+public class RequestParamRegisterCreateProfile {
     //private String accessToken;
     private int yearOfBirth;
     private String sex;
@@ -12,7 +12,7 @@ public class RequestParamRegisterUserDetails {
     private String deviceModel;
     private String osVersion;
 
-    public RequestParamRegisterUserDetails(int yearOfBirth, String sex, long dtTC, long dtLA, long dtPN, String locale, String deviceModel, String osVersion) {
+    public RequestParamRegisterCreateProfile(int yearOfBirth, String sex, long dtTC, long dtLA, long dtPN, String locale, String deviceModel, String osVersion) {
         this.yearOfBirth = yearOfBirth;
         this.sex = sex;
         this.dtTC = dtTC;

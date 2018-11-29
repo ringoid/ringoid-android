@@ -21,7 +21,7 @@ android {
         applicationId "com.ringoid"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 75
+        versionCode 78
         versionName "1.0"
 
         buildConfigField 'String', 'API_URL', rootProject.ext.SERVER
@@ -63,6 +63,8 @@ dependencies {
 
     implementation "com.squareup.retrofit2:retrofit:2.4.0"
     implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+
+    implementation 'me.everything:overscroll-decor-android:1.0.4'
 
     implementation project(path: ':cropiwa')
     implementation project(path: ':ccp')

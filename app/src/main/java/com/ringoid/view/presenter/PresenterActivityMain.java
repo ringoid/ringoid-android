@@ -103,14 +103,16 @@ public class PresenterActivityMain implements IPresenterActivityMain {
     }
 
     private void navigate() {
+
         if (!cacheToken.isTokenExist()) {
             if (cacheRegister.isSessionIdExist()
-                    && cacheInterfaceState.getCurrentPage().equals(PAGE_ENUM.LOGIN_CODE)) {
-                navigator.navigateRegisterCodeConfirm();
+                    && cacheInterfaceState.getCurrentPage().equals(PAGE_ENUM.LOGIN_PROFILE)) {
+                //navigator.navigateRegisterCodeConfirm();
+                navigator.navigateProfileUpdate();
                 return;
             }
 
-            navigator.navigateLogin();
+            navigator.navigateProfileUpdate();
 
             return;
         }

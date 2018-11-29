@@ -1,18 +1,19 @@
 package com.ringoid.controller.data.repository;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
+import android.util.Log;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheUser;
-import com.ringoid.controller.data.network.IApiRingoid;
 import com.ringoid.controller.data.network.request.RequestParamRegisterUserDetails;
-import com.ringoid.controller.data.network.response.ResponseBase;
+import com.ringoid.controller.data.network.response.ResponseRegisterUser;
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterUserDetailsListener;
 import com.ringoid.model.SEX;
 import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import java.lang.ref.WeakReference;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -35,8 +36,8 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
     ICacheUser cacheUser;
 
     private WeakReference<IRepositoryRegisterUserDetailsListener> refListener;
-    private Call<ResponseBase> request;
-    private Callback<ResponseBase> requestListener;
+    private Call<ResponseRegisterUser> request;
+    private Callback<ResponseRegisterUser> requestListener;
 
     public RepositoryRegisterUserDetails() {
         ApplicationRingoid.getComponent().inject(this);
@@ -54,9 +55,14 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
         if (request != null) request.cancel();
 
         request = apiRingoid.getAPI().registerUserDetails(new RequestParamRegisterUserDetails(
-                cacheToken.getToken(),
                 cacheRegister.getYearBirth(),
-                cacheRegister.getSex() == SEX.MALE.getValue() ? "male" : "female"));
+                cacheRegister.getSex() == SEX.MALE.getValue() ? "male" : "female",
+                new Date().getTime(),
+                new Date().getTime(),
+                new Date().getTime(),
+                "en",
+                "Model test",
+                "Android test"));
         request.enqueue(requestListener);
     }
 
@@ -65,14 +71,15 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
         refListener.get().onSuccess();
     }
 
-    private class RequestListener implements Callback<ResponseBase> {
+    private class RequestListener implements Callback<ResponseRegisterUser> {
         @Override
-        public void onResponse(Call<ResponseBase> call, Response<ResponseBase> response) {
+        public void onResponse(Call<ResponseRegisterUser> call, Response<ResponseRegisterUser> response) {
 
             if (response.isSuccessful()
                     && response.body() != null
                     && response.body().isSuccess()) {
 
+                cacheToken.setToken(response.body().getAccessToken());
                 cacheUser.setRegistered(true);
                 cacheUser.setUserNew();
                 notifySuccess();
@@ -80,8 +87,7 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
         }
 
         @Override
-        public void onFailure(Call<ResponseBase> call, Throwable t) {
-
+        public void onFailure(Call<ResponseRegisterUser> call, Throwable t) {
         }
     }
 }
