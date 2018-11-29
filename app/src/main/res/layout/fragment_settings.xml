@@ -80,6 +80,10 @@
                 android:text="@string/settings_delete_account"
                 android:textColor="@color/colorWarning" />
 
+            <TextView
+                style="@style/settings_privacy_delete_account_value"
+                android:text="@string/settings_delete_account_subtitle"/>
+
         </LinearLayout>
 
     </ScrollView>

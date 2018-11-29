@@ -170,4 +170,14 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="settings_privacy_delete_account_value">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Caption</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">58dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+
 </resources>
