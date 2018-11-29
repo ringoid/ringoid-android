@@ -30,7 +30,7 @@ task clean(type: Delete) {
 
 ext{
     PROD = ''
-    STAGE = '"https://6echscaw94.execute-api.eu-west-1.amazonaws.com"'
+    STAGE = '"https://k8dy93q5pa.execute-api.eu-west-1.amazonaws.com"'
 
     SERVER = STAGE
 }
