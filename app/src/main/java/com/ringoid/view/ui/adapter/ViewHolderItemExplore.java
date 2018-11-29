@@ -16,6 +16,8 @@ import com.ringoid.view.ui.util.IndicatorHelper;
 
 import javax.inject.Inject;
 
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
+
 public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClickListener {
 
     @Inject
@@ -51,6 +53,8 @@ public class ViewHolderItemExplore extends ViewHolderBase implements View.OnClic
         rvItems.setRecycledViewPool(viewPool);
         rvItems.setNestedScrollingEnabled(false);
         rvItems.setHasFixedSize(true);
+
+        OverScrollDecoratorHelper.setUpOverScroll(rvItems, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
 
         new PagerSnapHelper().attachToRecyclerView(rvItems);
         rvItems.setScrollingTouchSlop(RecyclerView.TOUCH_SLOP_PAGING);

@@ -12,6 +12,8 @@ import com.ringoid.view.ui.util.IndicatorHelper;
 
 import javax.inject.Inject;
 
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
+
 public class ViewHolderItemLikes extends ViewHolderItemLikeBase {
 
     @Inject
@@ -31,6 +33,7 @@ public class ViewHolderItemLikes extends ViewHolderItemLikeBase {
         rvItems.addOnScrollListener(new ListenerScrollPhotos());
         rvItems.setNestedScrollingEnabled(false);
         rvItems.setHasFixedSize(true);
+        OverScrollDecoratorHelper.setUpOverScroll(rvItems, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
         dotsIndicatorHelper = IndicatorHelper.getLinesPinkHelper(flDots, rvItems, (LinearLayoutManager) rvItems.getLayoutManager());
     }
 
