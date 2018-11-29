@@ -125,7 +125,7 @@
 
     <string name="dialog_photo_upload_first_photo_add">Add another\nphoto</string>
     <string name="dialog_photo_upload_first_feed">Discover\nNew Faces</string>
-    <string name="settings_theme_title">Dark Theme (Night Mode)</string>
+    <string name="settings_theme_title">Dark Theme</string>
     <string name="who_likes_you">Likes You</string>
     <string name="matches">Matches</string>
     <string name="messages">Messages</string>
