@@ -25,20 +25,20 @@ public class RecyclerViewScrollbarColored extends RecyclerView {
 
     public RecyclerViewScrollbarColored(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        gestureDetector = new GestureDetector(context, new YScrollDetector());
-        setFadingEdgeLength(0);
         init(context);
     }
 
     public RecyclerViewScrollbarColored(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        gestureDetector = new GestureDetector(context, new YScrollDetector());
-        setFadingEdgeLength(0);
         init(context);
     }
 
     private void init(Context cx) {
         scrollBarColor = getResources().getColor(R.color.grey_middle);
+        initGestureDetector(cx);
+    }
+
+    private void initGestureDetector(Context cx) {
         gestureDetector = new GestureDetector(cx, new YScrollDetector());
         setFadingEdgeLength(0);
     }
