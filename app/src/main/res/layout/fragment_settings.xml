@@ -65,12 +65,14 @@
                 style="@style/settings_menu_item"
                 android:drawableStart="?drawableLogout"
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
-                android:text="@string/settings_logout" />
+                android:text="@string/settings_logout"
+                android:visibility="gone"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dividerSettings"
-                android:background="?colorDivider" />
+                android:background="?colorDivider"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tvAccountDelete"
