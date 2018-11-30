@@ -91,7 +91,6 @@ public class RepositoryRegisterCodeConfirm implements IRepositoryRegisterCodeCon
                     notifyNoPendingClient();
 
                 if (response.body().isSuccess()) {
-
                     cacheToken.setToken(response.body().getToken());
                     cacheUser.setRegistered(response.body().isRegistered());
                     if (response.body().isRegistered())

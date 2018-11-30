@@ -9,4 +9,6 @@ public interface IInterceptorRetryListener {
     void onRequestErrorAppVersion();
 
     void onRequestErrorConnection();
+
+    void onRequestErrorWrongParams();
 }

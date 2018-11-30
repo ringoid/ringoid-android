@@ -10,11 +10,11 @@ public class ResponseRegisterPhone extends ResponseBase {
     }
 
     public boolean isErrorPhone() {
-        return !isSuccess() && errorCode.equals("PhoneNumberClientError");
+        return !isSuccess() && "PhoneNumberClientError".equals(getErrorCode());
     }
 
     public boolean isErrorCode() {
-        return !isSuccess() && errorCode.equals("CountryCallingCodeClientError");
+        return !isSuccess() && "CountryCallingCodeClientError".equals(getErrorCode());
     }
 
     public String getCustomerID() {

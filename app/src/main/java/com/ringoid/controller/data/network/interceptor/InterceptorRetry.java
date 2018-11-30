@@ -104,13 +104,18 @@ public class InterceptorRetry implements Interceptor {
 
         if (responseBase == null) return false;
 
-        if (responseBase.isInvalidToken()) {
+        if (responseBase.isInvalidAccessTokenClientError()) {
             notifyErrorTokenInvalid();
             return false;
         }
 
-        if (responseBase.isErrorAppVersion()) {
+        if (responseBase.isTooOldAppVersionClientError()) {
             notifyErrorAppVersion();
+            return false;
+        }
+
+        if (responseBase.isWrongRequestParamsClientError()) {
+            notifyErrorWrongRequestParams();
             return false;
         }
 
@@ -137,6 +142,10 @@ public class InterceptorRetry implements Interceptor {
 
     private void notifyErrorAppVersion() {
         helperThreadMain.post(new RunnableErrorAppVersion());
+    }
+
+    private void notifyErrorWrongRequestParams() {
+        helperThreadMain.post(new RunnableErrorWrongParams());
     }
 
     private class RunnableTokenInvalid implements Runnable {
@@ -170,4 +179,13 @@ public class InterceptorRetry implements Interceptor {
             refListener.get().onRequestErrorAppVersion();
         }
     }
+
+    private class RunnableErrorWrongParams implements Runnable {
+        @Override
+        public void run() {
+            if (refListener == null || refListener.get() == null) return;
+            refListener.get().onRequestErrorWrongParams();
+        }
+    }
+
 }

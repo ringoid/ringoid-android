@@ -1,29 +1,9 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.network.response;
 
-import android.text.TextUtils;
-
-public class ResponseRegisterUser {
+public class ResponseRegisterUser extends ResponseBase {
     String accessToken;
     String customerId;
-    String errorCode;
-    String errorMessage;
-
-    public boolean isSuccess() {
-        return TextUtils.isEmpty(errorCode);
-    }
-
-    public boolean isInvalidToken() {
-        return !isSuccess() && errorCode.equals("InvalidAccessTokenClientError");
-    }
-
-    public boolean isInternalServerError() {
-        return !isSuccess() && errorCode.equals("InternalServerError");
-    }
-
-    public boolean isErrorAppVersion() {
-        return !isSuccess() && errorCode.equals("TooOldAppVersionClientError");
-    }
 
     public String getAccessToken() {
         return accessToken;
@@ -33,11 +13,13 @@ public class ResponseRegisterUser {
         return customerId;
     }
 
-    public String getErrorCode() {
-        return errorCode;
+    public boolean isWrongYearOfBirthClientError() {
+        return "WrongYearOfBirthClientError".equals(getErrorCode());
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public boolean isWrongSexClientError() {
+        return "WrongSexClientError".equals(getErrorCode());
     }
+
 }
+

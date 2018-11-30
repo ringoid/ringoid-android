@@ -63,6 +63,7 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
 
         if (request != null) request.cancel();
 
+        cacheUser.setRegistered(false);
         request = apiRingoid.getAPI().registerUserDetails(new RequestParamRegisterUserDetails(
                 cacheRegister.getYearBirth(),
                 cacheRegister.getSex() == SEX.MALE.getValue() ? "male" : "female",
@@ -85,16 +86,23 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
         public void onResponse(Call<ResponseRegisterUser> call, Response<ResponseRegisterUser> response) {
 
             if (response.isSuccessful()
-                    && response.body() != null
-                    && response.body().isSuccess()) {
+                    && response.body() != null) {
 
-                cacheToken.setToken(response.body().getAccessToken());
-                cacheUser.setCustomerID(response.body().getCustomerId());
+                if (response.body().isWrongYearOfBirthClientError()
+                        || response.body().isWrongSexClientError()) {
+                    notifyError();
+                    return;
+                }
 
-                cacheUser.setRegistered(true);
-                cacheUser.setUserNew();
+                if (response.body().isSuccess()) {
+                    cacheToken.setToken(response.body().getAccessToken());
+                    cacheUser.setCustomerID(response.body().getCustomerId());
 
-                notifySuccess();
+                    cacheUser.setRegistered(true);
+                    cacheUser.setUserNew();
+
+                    notifySuccess();
+                }
             } else notifyError();
         }
 

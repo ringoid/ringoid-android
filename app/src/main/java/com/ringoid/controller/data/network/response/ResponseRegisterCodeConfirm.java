@@ -14,10 +14,10 @@ public class ResponseRegisterCodeConfirm extends ResponseBase {
     }
 
     public boolean isNoPendingClient() {
-        return !isSuccess() && errorCode.equals("NoPendingVerificationClientError");
+        return !isSuccess() && "NoPendingVerificationClientError".equals(getErrorCode());
     }
 
     public boolean isInavlidVerificationCode() {
-        return !isSuccess() && errorCode.equals("WrongVerificationCodeClientError");
+        return !isSuccess() && "WrongVerificationCodeClientError".equals(getErrorCode());
     }
 }

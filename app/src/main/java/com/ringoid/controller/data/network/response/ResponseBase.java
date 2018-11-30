@@ -4,22 +4,35 @@ package com.ringoid.controller.data.network.response;
 import android.text.TextUtils;
 
 public class ResponseBase {
-    String errorCode;
+    private String errorCode;
     private String errorMessage;
 
     public boolean isSuccess() {
         return TextUtils.isEmpty(errorCode);
     }
 
-    public boolean isInvalidToken() {
-        return !isSuccess() && errorCode.equals("InvalidAccessTokenClientError");
+    public boolean isInvalidAccessTokenClientError() {
+        return "InvalidAccessTokenClientError".equals(errorCode);
     }
 
     public boolean isInternalServerError() {
-        return !isSuccess() && errorCode.equals("InternalServerError");
+        return "InternalServerError".equals(errorCode);
     }
 
-    public boolean isErrorAppVersion() {
-        return !isSuccess() && errorCode.equals("TooOldAppVersionClientError");
+    public boolean isTooOldAppVersionClientError() {
+        return "TooOldAppVersionClientError".equals(errorCode);
     }
+
+    public boolean isWrongRequestParamsClientError() {
+        return "WrongRequestParamsClientError".equals(errorCode);
+    }
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
 }

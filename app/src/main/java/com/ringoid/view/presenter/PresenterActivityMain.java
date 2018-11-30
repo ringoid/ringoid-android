@@ -169,6 +169,11 @@ public class PresenterActivityMain implements IPresenterActivityMain {
         public void onRequestErrorConnection() {
             navigator.navigateErrorConnection();
         }
+
+        @Override
+        public void onRequestErrorWrongParams() {
+            viewDialogs.showDialogErrorUnknown(null);
+        }
     }
 
     private class ListenerCacheInterfaceState extends SimpleCacheInterfaceStateListener {
