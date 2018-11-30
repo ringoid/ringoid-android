@@ -131,6 +131,15 @@
         style="@style/buttonBase.wide.Green"
         android:text="@string/button_register_confirm" />
 
+    <ProgressBar
+        android:id="@+id/pbRegisterUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
 </LinearLayout>
 
 

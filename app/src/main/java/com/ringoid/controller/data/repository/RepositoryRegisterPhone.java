@@ -51,9 +51,9 @@ public class RepositoryRegisterPhone implements IRepositoryRegisterPhone {
         request = apiRingoid.getAPI().registerPhone(new RequestParamRegisterPhone(
                 cacheUser.getPhoneCode(),
                 cacheUser.getPhone().replaceAll("[^0-9]", ""),
-                cacheRegister.getDateTerms(),
-                cacheRegister.getDateAge(),
-                cacheRegister.getDatePrivacy(),
+                cacheRegister.getDateLegal(),
+                cacheRegister.getDateLegal(),
+                cacheRegister.getDateLegal(),
                 !cacheRegister.isPhoneValid(),
                 cacheLocale.getLang(),
                 String.format("%s, %d", Build.VERSION.RELEASE, Build.VERSION.SDK_INT),

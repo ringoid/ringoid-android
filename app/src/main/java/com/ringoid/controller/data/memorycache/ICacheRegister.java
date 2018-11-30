@@ -18,15 +18,9 @@ public interface ICacheRegister {
 
     void setPhoneValid(boolean isValid);
 
-    void setDateTerms();
+    void setDateLegal();
 
-    void setDateAge();
-
-    long getDateTerms();
-
-    long getDateAge();
-
-    long getDatePrivacy();
+    long getDateLegal();
 
     boolean isPhoneValid();
 

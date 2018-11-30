@@ -71,34 +71,18 @@ public class CacheRegister implements ICacheRegister {
     }
 
     @Override
-    public long getDateTerms() {
+    public long getDateLegal() {
         return getData().dateTerms;
     }
 
     @Override
-    public void setDateTerms() {
+    public void setDateLegal() {
         getData().dateTerms = System.currentTimeMillis();
         saveData();
     }
 
     private void saveData() {
         cacheStorage.writeData(FileEnum.CACHE_USER_REGISTER, data);
-    }
-
-    @Override
-    public long getDateAge() {
-        return getData().dateAge;
-    }
-
-    @Override
-    public void setDateAge() {
-        getData().dateAge = System.currentTimeMillis();
-        saveData();
-    }
-
-    @Override
-    public long getDatePrivacy() {
-        return getData().dateTerms;
     }
 
     @Override
@@ -122,4 +106,6 @@ public class CacheRegister implements ICacheRegister {
         this.data = null;
         cacheStorage.removeData(FileEnum.CACHE_USER_REGISTER);
     }
+
+
 }

@@ -22,11 +22,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
+import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.model.SEX;
 import com.ringoid.view.INavigator;
 import com.ringoid.view.PAGE_ENUM;
@@ -55,6 +57,9 @@ public class FragmentLogin extends FragmentBase
     @Inject
     IHelperTheme helperTheme;
 
+    @Inject
+    ICacheRegister cacheRegister;
+
     private ViewFlipper vfLogin;
     private EditText etPhone, etCodeSMS;
     private ListenerPresenter listenerPresenter;
@@ -68,6 +73,9 @@ public class FragmentLogin extends FragmentBase
     private View vPhoneConfirm, vSMSConfirm;
     private TextView tvSMSResend;
     private TextView tvPhoneHint;
+
+    private TextView tvRegister;
+    private ProgressBar pbRegisterUser;
 
     public static Fragment getInstanceCodeConfirm() {
         FragmentLogin fragment = new FragmentLogin();
@@ -130,6 +138,9 @@ public class FragmentLogin extends FragmentBase
         vSMSConfirm = view.findViewById(R.id.tvCodeSMSConfirm);
         tvSMSResend = view.findViewById(R.id.tvCodeSMSResend);
         tvPhoneHint = view.findViewById(R.id.tvPhoneHint);
+
+        tvRegister = view.findViewById(R.id.tvRegister);
+        pbRegisterUser = view.findViewById(R.id.pbRegisterUser);
 
         ((TextView) view.findViewById(R.id.tvTerms)).setMovementMethod(new LinkMovementMethodInternal());
 
@@ -299,6 +310,16 @@ public class FragmentLogin extends FragmentBase
             tvSMSResend.setEnabled(true);
             tvSMSResend.setText(R.string.message_sms_resend);
             tvSMSResend.setTextColor(getResources().getColor(R.color.blue));
+        }
+
+        @Override
+        public void setRegisterUserEnabled(boolean isEnabled) {
+            if (getContext() == null) return;
+            tvRegister.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
+            pbRegisterUser.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
+
+            cacheRegister.setDateLegal();
+
         }
 
         @Override

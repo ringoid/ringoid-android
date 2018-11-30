@@ -121,14 +121,13 @@ public class PresenterRegister implements IPresenterRegister {
             return;
         }
 
-        cacheRegister.setDateTerms();
-        cacheRegister.setDateAge();
+        cacheRegister.setDateLegal();
 
         helperTimer.cancel();
         cacheUser.setPhone(code, phone);
         cacheRegister.setPhoneValid(isValid);
-        repositoryRegisterPhone.request();
         setPhoneInputStateEnabled(false);
+        repositoryRegisterPhone.request();
     }
 
 
@@ -177,6 +176,7 @@ public class PresenterRegister implements IPresenterRegister {
         if (cacheRegister.getSex() == SEX.UNDEFINED.getValue()
                 || cacheRegister.getYearBirth() == 0) return;
 
+        refListener.get().setRegisterUserEnabled(false);
         repositoryRegisterUserDetails.request();
     }
 
@@ -330,6 +330,12 @@ public class PresenterRegister implements IPresenterRegister {
         public void onSuccess() {
             hideKeyboard();
             navigator.navigateFeedProfilePhotoSelect();
+        }
+
+        @Override
+        public void onError() {
+            navigator.navigateErrorConnection();
+            refListener.get().setRegisterUserEnabled(true);
         }
     }
 

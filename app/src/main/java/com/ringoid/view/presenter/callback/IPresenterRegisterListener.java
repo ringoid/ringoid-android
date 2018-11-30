@@ -23,6 +23,8 @@ public interface IPresenterRegisterListener {
 
     void setSMSResendEnabled();
 
+    void setRegisterUserEnabled(boolean isEnabled);
+
     void setPage(int indexProfileUpdate);
 
     void setPhone(int phoneCode, String phone);
