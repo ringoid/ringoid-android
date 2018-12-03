@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llLoginInfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,54 +13,71 @@
         android:layout_weight="1"
         android:clipToPadding="false">
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
             android:layout_gravity="center">
 
-
             <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="101dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_width="71dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
                     android:gravity="center|end"
-                    android:paddingLeft="16dp"
                     android:text="@string/login_birth_message"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/etYearBirth" />
+                    app:layout_constraintBottom_toBottomOf="@+id/etYearBirth"
+                    app:layout_constraintEnd_toStartOf="@+id/etYearBirth"
+                    app:layout_constraintTop_toTopOf="@+id/etYearBirth"
+                    tools:ignore="MissingConstraints" />
 
 
                 <TextView
+                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="44dp"
+                    android:layout_marginEnd="8dp"
                     android:gravity="center|end"
-                    android:paddingLeft="16dp"
                     android:text="@string/login_birth_gender_message"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-                    app:layout_constraintEnd_toEndOf="@+id/textView"
-                    app:layout_constraintTop_toTopOf="@+id/linearLayout"
-                    app:layout_constraintVertical_bias="0.506" />
+                    app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+                    app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
 
                 <EditText
                     android:id="@+id/etYearBirth"
-                    android:layout_width="141dp"
+                    android:layout_width="182dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="56dp"
                     android:background="@drawable/border_rounded_gray"
                     android:gravity="center"
                     android:hint="@string/hint_dots_4"
@@ -68,63 +86,68 @@
                     android:padding="16dp"
                     android:textSize="30sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.095"
-                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
+                <android.support.constraint.ConstraintLayout
                     android:id="@+id/linearLayout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/etYearBirth"
                     app:layout_constraintStart_toStartOf="@+id/etYearBirth"
                     app:layout_constraintTop_toBottomOf="@+id/etYearBirth">
 
                     <TextView
                         android:id="@+id/tvSexMale"
-                        android:layout_width="100dp"
+                        android:layout_width="90dp"
                         android:layout_height="100dp"
                         android:drawableTop="@drawable/ic_sex_male_blue_60dp"
                         android:gravity="center"
                         android:padding="16dp"
                         android:text="@string/male"
-                        android:textColor="@color/blue" />
+                        android:textColor="@color/blue"
+                        app:layout_constraintStart_toStartOf="parent" />
 
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:id="@+id/tvSexFemale"
                         style="@style/selectableImage"
-                        android:layout_width="100dp"
+                        android:layout_width="90dp"
                         android:layout_height="100dp"
                         android:drawableTop="@drawable/ic_sex_female_red_60dp"
                         android:gravity="center"
                         android:padding="16dp"
                         android:text="@string/female"
-                        android:textColor="@color/app_pink" />
+                        android:textColor="@color/app_pink"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
-                </LinearLayout>
+                </android.support.constraint.ConstraintLayout>
 
             </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/tvTerms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="4dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/message_terms"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-                android:textColor="@color/grey_middle"
-                android:textSize="10sp" />
-        </LinearLayout>
     </ScrollView>
 
+    <TextView
+        android:id="@+id/tvTerms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/message_terms"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        android:textColor="@color/grey_middle"
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/tvRegister"

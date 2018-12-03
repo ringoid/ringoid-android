@@ -15,14 +15,13 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-
 android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.ringoid"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 78
+        versionCode 79
         versionName "1.0"
 
         buildConfigField 'String', 'API_URL', rootProject.ext.SERVER
