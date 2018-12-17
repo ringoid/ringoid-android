@@ -95,6 +95,7 @@ public class PresenterRegister implements IPresenterRegister {
         cacheRegister.setSexFemale();
         if (refListener == null || refListener.get() == null) return;
         refListener.get().setGenderSelected(SEX.FEMALE);
+        refListener.get().setRegisterButtonState(cacheRegister.isValidSexAndBirth());
     }
 
     @Override
@@ -102,6 +103,7 @@ public class PresenterRegister implements IPresenterRegister {
         cacheRegister.setSexMale();
         if (refListener == null || refListener.get() == null) return;
         refListener.get().setGenderSelected(SEX.MALE);
+        refListener.get().setRegisterButtonState(cacheRegister.isValidSexAndBirth());
     }
 
     @Override
@@ -129,7 +131,6 @@ public class PresenterRegister implements IPresenterRegister {
         setPhoneInputStateEnabled(false);
         repositoryRegisterPhone.request();
     }
-
 
     @Override
     public void onClickCodeSMSResend() {
@@ -173,8 +174,7 @@ public class PresenterRegister implements IPresenterRegister {
 
     @Override
     public void onClickRegister() {
-        if (cacheRegister.getSex() == SEX.UNDEFINED.getValue()
-                || cacheRegister.getYearBirth() == 0) return;
+        if(!cacheRegister.isValidSexAndBirth()) return;
 
         refListener.get().setRegisterUserEnabled(false);
         repositoryRegisterUserDetails.request();
@@ -184,6 +184,7 @@ public class PresenterRegister implements IPresenterRegister {
     public void onDataBirthSet(int year) {
         if (cacheRegister.setDateBirth(year))
             showDateBirth(year);
+        refListener.get().setRegisterButtonState(cacheRegister.isValidSexAndBirth());
     }
 
     @Override
@@ -227,6 +228,7 @@ public class PresenterRegister implements IPresenterRegister {
         if (cacheRegister.getSex() != SEX.UNDEFINED.getValue())
             refListener.get().setGenderSelected(cacheRegister.getSex() == SEX.FEMALE.getValue() ? SEX.FEMALE : SEX.MALE);
         refListener.get().showDateBirth(cacheRegister.getYearBirth());
+        refListener.get().setRegisterButtonState(cacheRegister.isValidSexAndBirth());
         cacheInterfaceState.setCurrentPage(PAGE_ENUM.LOGIN_PROFILE);
         refListener.get().setPage(INDEX_PROFILE_UPDATE);
     }

@@ -18,13 +18,13 @@
 
     <ImageView
         android:id="@+id/ivTheme"
-        android:layout_width="66dp"
+        android:layout_width="74dp"
         android:layout_height="66dp"
         android:layout_gravity="end"
         android:background="?attr/selectableItemBackground"
         android:paddingStart="16dp"
         android:paddingTop="8dp"
-        android:paddingEnd="8dp"
+        android:paddingEnd="16dp"
         android:paddingBottom="16dp"
         android:src="?drawableThemeLogin" />
 

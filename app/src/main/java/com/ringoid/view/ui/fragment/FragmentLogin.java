@@ -142,7 +142,7 @@ public class FragmentLogin extends FragmentBase
         tvRegister = view.findViewById(R.id.tvRegister);
         pbRegisterUser = view.findViewById(R.id.pbRegisterUser);
 
-        ((TextView) view.findViewById(R.id.tvTerms)).setMovementMethod(new LinkMovementMethodInternal());
+        ((TextView) view.findViewById(R.id.tvTerms_login_3)).setMovementMethod(new LinkMovementMethodInternal());
 
         view.findViewById(R.id.tvRegister).setOnClickListener(this);
         view.findViewById(R.id.tvSexFemale).setOnClickListener(this);
@@ -346,6 +346,16 @@ public class FragmentLogin extends FragmentBase
         @Override
         public void setContryLocal() {
             vpiLogin.setCountryLocal();
+        }
+
+        @Override
+        public void setRegisterButtonState(boolean isValid) {
+            tvRegister.setEnabled(isValid);
+            if(isValid) {
+                tvRegister.setBackgroundResource(R.drawable.rectangle_rounded_green);
+            }else {
+                tvRegister.setBackgroundResource(R.drawable.rectangle_rounded_gray);
+            }
         }
 
         @Override

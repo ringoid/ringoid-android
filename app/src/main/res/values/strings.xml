@@ -42,7 +42,7 @@
 
     <string name="login_sms">Enter the code that was sent to</string>
     <string name="button_continue">Continue</string>
-    <string name="login_birth_message">Year of Birth</string>
+    <string name="hint_year_of_birth"><font size="18">Year of Birth</font></string>
     <string name="login_birth_gender_message">Your Sex</string>
     <string name="male">Male</string>
     <string name="female">Female</string>

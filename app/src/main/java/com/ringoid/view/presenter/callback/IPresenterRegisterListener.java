@@ -32,4 +32,7 @@ public interface IPresenterRegisterListener {
     void setPhoneSelectionEnd();
 
     void setContryLocal();
+
+    void setRegisterButtonState(boolean isValid);
+
 }

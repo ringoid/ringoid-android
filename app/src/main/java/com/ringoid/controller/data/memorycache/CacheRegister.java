@@ -22,6 +22,11 @@ public class CacheRegister implements ICacheRegister {
         ApplicationRingoid.getComponent().inject(this);
     }
 
+    @Override
+    public boolean isValidSexAndBirth(){
+        return (getSex() != SEX.UNDEFINED.getValue()) && (getYearBirth() != 0);
+    }
+
     private ModelUserRegister getData() {
         if (data == null)
             data = cacheStorage.readObject(FileEnum.CACHE_USER_REGISTER, ModelUserRegister.class);
@@ -106,6 +111,4 @@ public class CacheRegister implements ICacheRegister {
         this.data = null;
         cacheStorage.removeData(FileEnum.CACHE_USER_REGISTER);
     }
-
-
 }

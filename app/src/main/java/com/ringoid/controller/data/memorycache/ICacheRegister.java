@@ -27,4 +27,6 @@ public interface ICacheRegister {
     boolean isSessionIdExist();
 
     void resetCache();
+
+    boolean isValidSexAndBirth();
 }
