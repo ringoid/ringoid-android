@@ -9,8 +9,8 @@ import com.ringoid.controller.data.memorycache.ICacheLocale;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
 import com.ringoid.controller.data.memorycache.ICacheToken;
 import com.ringoid.controller.data.memorycache.ICacheUser;
-import com.ringoid.controller.data.network.request.RequestParamRegisterUserDetails;
-import com.ringoid.controller.data.network.response.ResponseRegisterUser;
+import com.ringoid.controller.data.network.request.RequestParamCreateProfile;
+import com.ringoid.controller.data.network.response.ResponseCreateProfile;
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterUserDetailsListener;
 import com.ringoid.model.SEX;
 import com.ringoid.view.presenter.util.IHelperConnection;
@@ -45,8 +45,8 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
     IHelperConnection helperConnection;
 
     private WeakReference<IRepositoryRegisterUserDetailsListener> refListener;
-    private Call<ResponseRegisterUser> request;
-    private Callback<ResponseRegisterUser> requestListener;
+    private Call<ResponseCreateProfile> request;
+    private Callback<ResponseCreateProfile> requestListener;
 
     public RepositoryRegisterUserDetails() {
         ApplicationRingoid.getComponent().inject(this);
@@ -79,7 +79,7 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
         }
 
         cacheUser.setRegistered(false);
-        request = apiRingoid.getAPI().registerUserDetails(new RequestParamRegisterUserDetails(
+        request = apiRingoid.getAPI().createProfile(new RequestParamCreateProfile(
                 cacheRegister.getYearBirth(),
                 cacheRegister.getSex() == SEX.MALE.getValue() ? "male" : "female",
                 cacheRegister.getDateLegal(),
@@ -96,9 +96,9 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
         refListener.get().onSuccess();
     }
 
-    private class RequestListener implements Callback<ResponseRegisterUser> {
+    private class RequestListener implements Callback<ResponseCreateProfile> {
         @Override
-        public void onResponse(Call<ResponseRegisterUser> call, Response<ResponseRegisterUser> response) {
+        public void onResponse(Call<ResponseCreateProfile> call, Response<ResponseCreateProfile> response) {
 
             if (response.isSuccessful()
                     && response.body() != null) {
@@ -125,7 +125,7 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
         }
 
         @Override
-        public void onFailure(Call<ResponseRegisterUser> call, Throwable t) {
+        public void onFailure(Call<ResponseCreateProfile> call, Throwable t) {
             if (call.isCanceled()) {
                 return;
             }

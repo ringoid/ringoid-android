@@ -5,7 +5,7 @@ import com.ringoid.controller.data.network.request.RequestParamProfileImageRemov
 import com.ringoid.controller.data.network.request.RequestParamRegisterCodeConfirm;
 import com.ringoid.controller.data.network.request.RequestParamRegisterLogout;
 import com.ringoid.controller.data.network.request.RequestParamRegisterPhone;
-import com.ringoid.controller.data.network.request.RequestParamRegisterUserDetails;
+import com.ringoid.controller.data.network.request.RequestParamCreateProfile;
 import com.ringoid.controller.data.network.request.RequestParamSettingsUpdate;
 import com.ringoid.controller.data.network.request.RequestPhotoUploadUri;
 import com.ringoid.controller.data.network.response.ResponseBase;
@@ -13,7 +13,7 @@ import com.ringoid.controller.data.network.response.ResponseProfilePhotoUri;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotos;
 import com.ringoid.controller.data.network.response.ResponseRegisterCodeConfirm;
 import com.ringoid.controller.data.network.response.ResponseRegisterPhone;
-import com.ringoid.controller.data.network.response.ResponseRegisterUser;
+import com.ringoid.controller.data.network.response.ResponseCreateProfile;
 import com.ringoid.controller.data.network.response.ResponseSettings;
 
 import okhttp3.RequestBody;
@@ -27,6 +27,12 @@ import retrofit2.http.Url;
 
 public interface IApiRingoid {
 
+    @POST("/auth/create_profile")
+    Call<ResponseCreateProfile> createProfile(
+            @Body RequestParamCreateProfile param);
+
+    //-----------------------------------------------------------------
+    //DEPRECATED
     @POST("/Prod/start_verification")
     Call<ResponseRegisterPhone> registerPhone(
             @Body RequestParamRegisterPhone param);
@@ -34,10 +40,6 @@ public interface IApiRingoid {
     @POST("/Prod/complete_verification")
     Call<ResponseRegisterCodeConfirm> registerCodeConfirm(
             @Body RequestParamRegisterCodeConfirm param);
-
-    @POST("/Prod/create_profile")
-    Call<ResponseRegisterUser> registerUserDetails(
-            @Body RequestParamRegisterUserDetails param);
 
     @POST("/Prod/logout")
     Call<ResponseBase> registerLogout(

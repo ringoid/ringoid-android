@@ -1,7 +1,7 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.controller.data.network.response;
 
-public class ResponseRegisterUser extends ResponseBase {
+public class ResponseCreateProfile extends ResponseBase {
     String accessToken;
     String customerId;
 
