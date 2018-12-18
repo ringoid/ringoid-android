@@ -15,6 +15,7 @@ import com.ringoid.BuildConfig;
 import com.ringoid.R;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.view.ui.activity.ActivityMain;
+import com.ringoid.view.ui.dialog.callback.IDialogErrorUnknownListener;
 import com.ringoid.view.ui.dialog.callback.ViewDialogsListener;
 import com.ringoid.view.ui.fragment.FragmentBase;
 import com.ringoid.view.ui.fragment.FragmentBlacklistPhones;

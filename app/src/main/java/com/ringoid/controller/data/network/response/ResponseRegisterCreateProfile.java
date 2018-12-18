@@ -3,6 +3,7 @@ package com.ringoid.controller.data.network.response;
 
 import android.text.TextUtils;
 
+@Deprecated
 public class ResponseRegisterCreateProfile extends ResponseBase{
     String accessToken;
     String customerId;

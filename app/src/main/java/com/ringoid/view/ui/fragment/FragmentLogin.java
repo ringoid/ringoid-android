@@ -36,6 +36,7 @@ import com.ringoid.view.presenter.IPresenterRegister;
 import com.ringoid.view.presenter.PresenterRegister;
 import com.ringoid.view.presenter.callback.IPresenterRegisterListener;
 import com.ringoid.view.ui.util.IHelperTheme;
+import com.ringoid.view.ui.util.KeyboardUtils;
 import com.ringoid.view.ui.view.ViewPhoneInput;
 import com.ringoid.view.ui.view.callback.IViewPhotoInputListener;
 import com.ringoid.view.ui.view.utils.ClipboardUtils;
@@ -317,9 +318,8 @@ public class FragmentLogin extends FragmentBase
             if (getContext() == null) return;
             tvRegister.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
             pbRegisterUser.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
-
             cacheRegister.setDateLegal();
-
+            showKeyboard(etYearBirth);
         }
 
         @Override
@@ -363,6 +363,11 @@ public class FragmentLogin extends FragmentBase
             if (getContext() == null) return;
             tvSexFemale.setBackground(sex == SEX.FEMALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
             tvSexMale.setBackground(sex == SEX.MALE ? getResources().getDrawable(R.drawable.border_rounded_green) : null);
+        }
+
+        @Override
+        public Context getAppContext() {
+            return getContext();
         }
 
     }

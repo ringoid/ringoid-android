@@ -4,5 +4,7 @@ package com.ringoid.controller.data.repository.callback;
 public interface IRepositoryRegisterUserDetailsListener {
     void onSuccess();
 
-    void onError();
+    void onErrorNoConnection();
+
+    void onErrorUnknown();
 }

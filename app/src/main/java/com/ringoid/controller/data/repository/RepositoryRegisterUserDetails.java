@@ -3,6 +3,7 @@ package com.ringoid.controller.data.repository;
 
 import android.os.Build;
 
+import com.crashlytics.android.Crashlytics;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheLocale;
 import com.ringoid.controller.data.memorycache.ICacheRegister;
@@ -12,6 +13,7 @@ import com.ringoid.controller.data.network.request.RequestParamRegisterUserDetai
 import com.ringoid.controller.data.network.response.ResponseRegisterUser;
 import com.ringoid.controller.data.repository.callback.IRepositoryRegisterUserDetailsListener;
 import com.ringoid.model.SEX;
+import com.ringoid.view.presenter.util.IHelperConnection;
 import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import java.lang.ref.WeakReference;
@@ -39,6 +41,9 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
     @Inject
     ICacheLocale cacheLocale;
 
+    @Inject
+    IHelperConnection helperConnection;
+
     private WeakReference<IRepositoryRegisterUserDetailsListener> refListener;
     private Call<ResponseRegisterUser> request;
     private Callback<ResponseRegisterUser> requestListener;
@@ -53,15 +58,25 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
         this.refListener = new WeakReference<>(listener);
     }
 
-    private void notifyError() {
+    private void notifyErrorNoConnection() {
         if (refListener == null || refListener.get() == null) return;
-        refListener.get().onError();
+        refListener.get().onErrorNoConnection();
+    }
+
+    private void notifyUnknownError() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onErrorUnknown();
     }
 
     @Override
     public void request() {
 
         if (request != null) request.cancel();
+
+        if (!helperConnection.isConnectionExist()) {
+            notifyErrorNoConnection();
+            return;
+        }
 
         cacheUser.setRegistered(false);
         request = apiRingoid.getAPI().registerUserDetails(new RequestParamRegisterUserDetails(
@@ -90,26 +105,38 @@ public class RepositoryRegisterUserDetails implements IRepositoryRegisterUserDet
 
                 if (response.body().isWrongYearOfBirthClientError()
                         || response.body().isWrongSexClientError()) {
-                    notifyError();
+                    Crashlytics.logException(new RuntimeException(response.body().toString()));
+                    notifyUnknownError();
                     return;
                 }
 
                 if (response.body().isSuccess()) {
                     cacheToken.setToken(response.body().getAccessToken());
                     cacheUser.setCustomerID(response.body().getCustomerId());
-
                     cacheUser.setRegistered(true);
                     cacheUser.setUserNew();
 
                     notifySuccess();
                 }
-            } else notifyError();
+            } else {
+                Crashlytics.logException(new RuntimeException("[" + response.code() + "]"));
+                notifyUnknownError();
+            }
         }
 
         @Override
         public void onFailure(Call<ResponseRegisterUser> call, Throwable t) {
-            if (call.isCanceled()) return;
-            notifyError();
+            if (call.isCanceled()) {
+                return;
+            }
+
+            if (!helperConnection.isConnectionExist()) {
+                notifyErrorNoConnection();
+                return;
+            }
+
+            Crashlytics.logException(new RuntimeException(t));
+            notifyUnknownError();
         }
     }
 }

@@ -106,7 +106,9 @@ public class ViewDialogs implements IViewDialogs {
         if (refDialogReport != null && refDialogReport.get() != null)
             refDialogReport.get().cancel();
 
-        if (refContext == null || refContext.get() == null) return;
+        if (refContext == null || refContext.get() == null) {
+            return;
+        }
         DialogReport dialogReport = new DialogReport(refContext.get());
         dialogReport.show();
         refDialogReport = new WeakReference<>(dialogReport);
@@ -120,7 +122,9 @@ public class ViewDialogs implements IViewDialogs {
 
         @Override
         public void onConfirm() {
-            if (refListener == null || refListener.get() == null) return;
+            if (refListener == null || refListener.get() == null) {
+                return;
+            }
             refListener.get().onDialogErrorConfirm();
         }
     }

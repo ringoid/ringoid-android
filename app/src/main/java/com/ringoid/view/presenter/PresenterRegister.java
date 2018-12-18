@@ -275,6 +275,7 @@ public class PresenterRegister implements IPresenterRegister {
 
         @Override
         public void onError() {
+            //todo onError
             navigator.navigateErrorConnection();
             setPhoneInputStateEnabled(true);
         }
@@ -335,9 +336,27 @@ public class PresenterRegister implements IPresenterRegister {
         }
 
         @Override
-        public void onError() {
+        public void onErrorNoConnection() {
             navigator.navigateErrorConnection();
             refListener.get().setRegisterUserEnabled(true);
+        }
+
+        @Override
+        public void onErrorUnknown() {
+            if (refListener == null || refListener.get() == null) {
+                return;
+            }
+            viewDialogs.showDialogErrorUnknown(new IDialogErrorUnknownListener() {
+                @Override
+                public void onDismiss() {
+                    refListener.get().setRegisterUserEnabled(true);
+                }
+
+                @Override
+                public void onConfirm() {
+                    navigator.navigateFeedback(refListener.get().getAppContext());
+                }
+            });
         }
     }
 

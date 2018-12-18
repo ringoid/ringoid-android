@@ -3,6 +3,7 @@ package com.ringoid.controller.data.network.interceptor;
 
 import android.text.TextUtils;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.ringoid.ApplicationRingoid;
@@ -53,7 +54,6 @@ public class InterceptorRetry implements Interceptor {
         for (int i = 0; i < 3; ++i) {
             response = chain.proceed(requestNew);
 
-
             if (!helperConnection.isConnectionExist()) {
                 notifyErrorConnection();
                 return getEmptyResponse(response);
@@ -65,13 +65,14 @@ public class InterceptorRetry implements Interceptor {
             }
 
             ResponseBody body = response.body();
-
-            if (body == null) return getEmptyResponse(response);
+            if (body == null) {
+                return getEmptyResponse(response);
+            }
 
             String bodyString = getBody(body);
-
-            if (!checkInternalServerError(bodyString))
+            if (!checkInternalServerError(bodyString)) {
                 return response.newBuilder().body(ResponseBody.create(body.contentType(), bodyString)).build();
+            }
         }
 
         return response;
@@ -115,11 +116,17 @@ public class InterceptorRetry implements Interceptor {
         }
 
         if (responseBase.isWrongRequestParamsClientError()) {
+            Crashlytics.logException(new RuntimeException(jsonData));
             notifyErrorWrongRequestParams();
             return false;
         }
 
-        return responseBase.isInternalServerError();
+        if (responseBase.isInternalServerError()) {
+            Crashlytics.logException(new RuntimeException(jsonData));
+            return true;
+        }
+
+        return false;
     }
 
     public void setListener(IInterceptorRetryListener listener) {
