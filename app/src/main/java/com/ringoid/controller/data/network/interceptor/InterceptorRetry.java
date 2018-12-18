@@ -2,6 +2,7 @@ package com.ringoid.controller.data.network.interceptor;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
@@ -14,6 +15,8 @@ import com.ringoid.view.presenter.util.IHelperConnection;
 import com.ringoid.view.presenter.util.IHelperThreadMain;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.ref.WeakReference;
 
 import javax.inject.Inject;
@@ -48,6 +51,19 @@ public class InterceptorRetry implements Interceptor {
                 .header("X-Ringoid-Android-BuildNum", String.valueOf(BuildConfig.VERSION_CODE))
                 .method(request.method(), request.body())
                 .build();
+
+        if(BuildConfig.DEBUG){
+            StringWriter sw = new StringWriter();
+            new RuntimeException().printStackTrace(new PrintWriter(sw));
+            Log.i("TESTER", sw.toString());
+            if (request.url() != null) {
+                Log.i("TESTER url", request.url().toString());
+            }
+            Log.i("TESTER method", request.method());
+            if (request.body() != null) {
+                Log.i("TESTER BODY", request.body().toString());
+            }
+        }
 
         Response response = null;
 

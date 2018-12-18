@@ -31,6 +31,17 @@ public interface IApiRingoid {
     Call<ResponseCreateProfile> createProfile(
             @Body RequestParamCreateProfile param);
 
+    @POST("/image/get_presigned")
+    Call<ResponseProfilePhotoUri> profilePhotoUri(@Body RequestPhotoUploadUri param);
+
+    @PUT
+    Call<Void> profilePhotoUpload(@Url String url,
+                                  @Body RequestBody image);
+
+    @GET("/image/get_own_photos")
+    Call<ResponseProfilePhotos> profilePhotosGet(@Query("accessToken") String token,
+                                                 @Query("resolution") String res);
+
     //-----------------------------------------------------------------
     //DEPRECATED
     @POST("/Prod/start_verification")
@@ -52,17 +63,6 @@ public interface IApiRingoid {
 
     @GET("/Prod/get_settings")
     Call<ResponseSettings> settingsGet(@Query("accessToken") String token);
-
-    @GET("https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/get_own_photos")
-    Call<ResponseProfilePhotos> profilePhotosGet(@Query("accessToken") String token,
-                                                 @Query("resolution") String res);
-
-    @POST("https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/get_presigned")
-    Call<ResponseProfilePhotoUri> profilePhotoUri(@Body RequestPhotoUploadUri param);
-
-    @PUT
-    Call<Void> profilePhotoUpload(@Url String url,
-                                  @Body RequestBody image);
 
     @POST("https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/delete_photo")
     Call<ResponseBase> profileImageRemove(@Body RequestParamProfileImageRemove param);

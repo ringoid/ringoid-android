@@ -21,12 +21,12 @@ public class SettingsHelper implements ISettingsHelper {
 
     @Override
     public void requestSave() {
-        repositorySettingsSave.request();
+        //todo DEBUG repositorySettingsSave.request();
     }
 
     @Override
     public void requestGet() {
-        repositorySettingsGet.request();
+        //todo DEBUG repositorySettingsGet.request();
     }
 
 }
