@@ -29,7 +29,7 @@ task clean(type: Delete) {
 }
 
 ext{
-    PROD = 'https://prod.ringoidapp.com'
+    PROD = '"https://prod.ringoidapp.com"'
     STAGE = '"https://stage.ringoidapp.com"'
 
     SERVER = STAGE

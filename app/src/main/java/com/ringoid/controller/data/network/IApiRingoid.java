@@ -42,6 +42,9 @@ public interface IApiRingoid {
     Call<ResponseProfilePhotos> profilePhotosGet(@Query("accessToken") String token,
                                                  @Query("resolution") String res);
 
+    @POST("/image/delete_photo")
+    Call<ResponseBase> profileImageRemove(@Body RequestParamProfileImageRemove param);
+
     //-----------------------------------------------------------------
     //DEPRECATED
     @POST("/Prod/start_verification")
@@ -64,8 +67,6 @@ public interface IApiRingoid {
     @GET("/Prod/get_settings")
     Call<ResponseSettings> settingsGet(@Query("accessToken") String token);
 
-    @POST("https://7y3xkhp09i.execute-api.eu-west-1.amazonaws.com/Prod/delete_photo")
-    Call<ResponseBase> profileImageRemove(@Body RequestParamProfileImageRemove param);
 
     @POST("https://xvlq70j9zb.execute-api.eu-west-1.amazonaws.com/Prod/timeout")
     Call<ResponseBase> testTimeout();
