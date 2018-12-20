@@ -1,47 +1,111 @@
 package com.ringoid.controller.data.repository;
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 
-import com.google.gson.Gson;
 import com.ringoid.ApplicationRingoid;
-import com.ringoid.BuildConfig;
 import com.ringoid.controller.data.memorycache.ICacheExplore;
-import com.ringoid.controller.data.network.response.ResponseDataProfile;
+import com.ringoid.controller.data.memorycache.ICacheProfile;
+import com.ringoid.controller.data.memorycache.ICacheToken;
+import com.ringoid.controller.data.network.response.ResponseNewFaces;
+import com.ringoid.controller.data.repository.callback.IRepositoryNewPhotosListener;
 import com.ringoid.model.DataProfile;
+import com.ringoid.view.ui.util.ApiRingoidProvider;
+import com.ringoid.view.ui.util.IScreenHelper;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RepositoryFeedExplore implements IRepositoryFeedExplore {
 
     @Inject
     ICacheExplore cacheExplore;
 
+    @Inject
+    ICacheProfile cacheProfile;
+
+    @Inject
+    ICacheToken cacheToken;
+
+    @Inject
+    ApiRingoidProvider apiRingoid;
+
+    @Inject
+    IScreenHelper screenHelper;
+
+    private Call<ResponseNewFaces> request;
+    private Callback<ResponseNewFaces> requestListener;
+    private WeakReference<IRepositoryNewPhotosListener> refListener;
+
     public RepositoryFeedExplore() {
         ApplicationRingoid.getComponent().inject(this);
+        requestListener = new RepositoryFeedExplore.RequestListener();
     }
 
     @Override
     public void request() {
-        if (!BuildConfig.DEBUG) {
-            throw new UnsupportedOperationException();
+        if (request != null) request.cancel();
+
+        request = apiRingoid.getAPI().getNewFacesGet(cacheToken.getToken(), screenHelper.getImageRatioString(), 10);
+
+        request.enqueue(requestListener);
+
+    }
+
+    @Override
+    public void setListener(IRepositoryNewPhotosListener listener) {
+        this.refListener = new WeakReference<>(listener);
+    }
+
+    @Override
+    public void removeListener() {
+        this.refListener = null;
+    }
+
+    private void notifyError() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onError();
+    }
+
+    private void notifySuccess() {
+        if (refListener == null || refListener.get() == null) return;
+        refListener.get().onSuccess();
+    }
+
+    private class RequestListener implements Callback<ResponseNewFaces> {
+        @Override
+        public void onResponse(Call<ResponseNewFaces> call, Response<ResponseNewFaces> response) {
+
+            if (response.isSuccessful()
+                    && response.body() != null
+                    && response.body().isSuccess()) {
+
+                ResponseNewFaces responseNewFaces = (ResponseNewFaces) response.body();
+                ArrayList<DataProfile> dataProfileArrayList = new ArrayList<>();
+
+                for (ResponseNewFaces.Profiles dataProfiles:responseNewFaces.getProfiles()) {
+                    DataProfile dataProfile = new DataProfile();
+                    dataProfile.setUrls(dataProfiles.getPhotos());
+                    dataProfileArrayList.add(dataProfile);
+                }
+
+                cacheExplore.setData(dataProfileArrayList);
+
+                notifySuccess();
+                return;
+            }
+            notifyError();
+
         }
-        else {
 
-            String JSON_DATA = "{ \"data\":[" +
-                    "{\"urls\":[{\"id\":\"11\",\"url\":\"f1/01.jpg\"},{\"id\":\"12\",\"url\":\"f1/02.jpg\"},{\"id\":\"13\",\"url\":\"f1/03.jpg\"}]}," +
-                    "{\"urls\":[{\"id\":\"21\",\"url\":\"f2/01.jpg\"},{\"id\":\"22\",\"url\":\"f2/02.jpg\"},{\"id\":\"23\",\"url\":\"f2/03.png\"}]}," +
-                    "{\"urls\":[{\"id\":\"31\",\"url\":\"f3/01.jpg\"},{\"id\":\"32\",\"url\":\"f3/02.jpg\"}]}," +
-                    "{\"urls\":[{\"id\":\"41\",\"url\":\"f4/01.jpg\"},{\"id\":\"42\",\"url\":\"f4/02.jpg\"},{\"id\":\"43\",\"url\":\"f4/03.jpg\"},{\"id\":\"34\",\"url\":\"f4/04.jpg\"}]}," +
-                    "{\"urls\":[{\"id\":\"61\",\"url\":\"f6/01.jpg\"},{\"id\":\"62\",\"url\":\"f6/02.jpg\"},{\"id\":\"63\",\"url\":\"f6/03.jpg\"},{\"id\":\"44\",\"url\":\"f6/04.jpg\"},{\"id\":\"45\",\"url\":\"f6/05.jpg\"}]}," +
-                    "{\"urls\":[{\"id\":\"51\",\"url\":\"f5/01.jpg\"},{\"id\":\"52\",\"url\":\"f5/02.jpg\"},{\"id\":\"53\",\"url\":\"f5/03.jpg\"},{\"id\":\"54\",\"url\":\"f5/04.png\"},{\"id\":\"55\",\"url\":\"f5/05.jpg\"}]}," +
-                    "{\"urls\":[{\"id\":\"71\",\"url\":\"f7/01.jpg\"},{\"id\":\"72\",\"url\":\"f7/02.jpg\"},{\"id\":\"73\",\"url\":\"f7/03.jpg\"}]}," +
-                    "{\"urls\":[{\"id\":\"81\",\"url\":\"f8/01.jpg\"},{\"id\":\"82\",\"url\":\"f8/02.jpg\"},{\"id\":\"83\",\"url\":\"f8/03.jpg\"}]}," +
-                    "{\"urls\":[{\"id\":\"91\",\"url\":\"f9/01.jpg\"},{\"id\":\"92\",\"url\":\"f9/02.jpg\"},{\"id\":\"93\",\"url\":\"f9/03.jpg\"},{\"id\":\"94\",\"url\":\"f9/04.jpg\"}]}" +
-                    "]  }";
-
-            ArrayList<DataProfile> data = new Gson().fromJson(JSON_DATA, ResponseDataProfile.class).getData();
-            cacheExplore.setData(data);
+        @Override
+        public void onFailure(Call<ResponseNewFaces> call, Throwable t) {
+            if (call.isCanceled()) return;
+            notifyError();
         }
     }
 }

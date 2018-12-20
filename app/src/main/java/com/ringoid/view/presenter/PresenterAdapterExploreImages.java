@@ -50,7 +50,7 @@ public class PresenterAdapterExploreImages implements IPresenterAdapterExploreIm
 
     @Override
     public String getUrl(int adapterPosition, int itemPosition) {
-        return "file:///android_asset/" + cacheExplore.getUrl(adapterPosition, itemPosition);
+        return cacheExplore.getUrl(adapterPosition, itemPosition);
     }
 
     @Override

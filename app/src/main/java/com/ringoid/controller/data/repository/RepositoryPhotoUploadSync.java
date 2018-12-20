@@ -4,6 +4,7 @@ package com.ringoid.controller.data.repository;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
+import com.crashlytics.android.Crashlytics;
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheInterfaceState;
 import com.ringoid.controller.data.memorycache.ICachePhotoUpload;
@@ -13,6 +14,7 @@ import com.ringoid.controller.data.memorycache.ICacheUser;
 import com.ringoid.controller.data.network.request.RequestPhotoUploadUri;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotoUri;
 import com.ringoid.model.PhotoUpload;
+import com.ringoid.view.presenter.util.IHelperConnection;
 import com.ringoid.view.ui.util.ApiRingoidProvider;
 
 import java.io.IOException;
@@ -43,6 +45,9 @@ public class RepositoryPhotoUploadSync implements IRepositoryPhotoUploadSync {
 
     @Inject
     ICacheInterfaceState cacheInterfaceState;
+
+    @Inject
+    IHelperConnection helperConnection;
 
     private AsyncTask<Void, String, Void> request;
 
@@ -94,6 +99,9 @@ public class RepositoryPhotoUploadSync implements IRepositoryPhotoUploadSync {
                     cachePhotoUpload.removeItem(responseUri.getClientPhotoId());
 
                 } catch (IOException e) {
+                    if (helperConnection.isConnectionExist()) {
+                        Crashlytics.logException(new RuntimeException(e));
+                    }
                     return null;
                 }
 

@@ -1,8 +1,11 @@
 /*Copyright (c) Ringoid Ltd, 2018. All Rights Reserved*/
 package com.ringoid.model;
 
+import com.ringoid.controller.data.network.response.ResponseNewFaces;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DataProfile implements Serializable {
     private ArrayList<DataImage> urls;
@@ -53,7 +56,7 @@ public class DataProfile implements Serializable {
         return selectedPosition;
     }
 
-    private class DataImage implements Serializable {
+    public class DataImage implements Serializable {
         private String url;
         private String id;
         private boolean isLiked;
@@ -61,5 +64,45 @@ public class DataProfile implements Serializable {
         public String getId() {
             return id;
         }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public boolean isLiked() {
+            return isLiked;
+        }
+
+        public void setLiked(boolean liked) {
+            isLiked = liked;
+        }
+    }
+
+    public ArrayList<DataImage> getUrls() {
+        return urls;
+    }
+
+    public void setUrls(ArrayList<DataImage> urls) {
+        this.urls = urls;
+    }
+
+    public void setUrls(List<ResponseNewFaces.Photos> urls) {
+        ArrayList<DataImage> dataImageArrayList = new ArrayList<>();
+        for(int i=0;i<urls.size();i++){
+            DataImage dataImage = new DataImage();
+            dataImage.setId(urls.get(i).getPhotoId());
+            dataImage.setUrl(urls.get(i).getPhotoUri());
+            dataImageArrayList.add(dataImage);
+        }
+
+        this.urls = dataImageArrayList;
     }
 }
