@@ -338,9 +338,9 @@ public class Navigator implements INavigator {
     }
 
     private String getEmailSubject() {
-        return String.format("Ringoid Android App %d(%s) %s %s %s, %s, %s",
-                BuildConfig.VERSION_CODE,
+        return String.format("Ringoid Android App v%s.%d [%s, %s, %s] [%s, %s]",
                 BuildConfig.VERSION_NAME,
+                BuildConfig.VERSION_CODE,
                 Build.MODEL,
                 Build.MANUFACTURER,
                 Build.PRODUCT,

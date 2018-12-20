@@ -23,7 +23,7 @@
             <ImageView
                 android:id="@+id/ivClose"
                 style="@style/selectableImage"
-                android:src="@drawable/ic_arrow_close_gray_light_24dp" />
+                android:src="@drawable/ic_arrow_close_gray_light_24dp"/>
 
             <ImageView
                 android:id="@+id/ivReport"
@@ -39,7 +39,7 @@
         android:id="@+id/llCompose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?colorComposeBackground"
+        android:background="@drawable/bg_gradient"
         android:orientation="horizontal"
         android:visibility="invisible">
 
@@ -60,7 +60,9 @@
             android:textColor="@android:color/white"
             android:textSize="17sp"
             tools:text="bla\nbla\nbla\nbla\nbla"
-            tools:textColor="#fff" />
+            tools:textColor="#fff"
+            android:shadowColor="#434343"
+            android:shadowRadius="6"/>
 
         <ImageView
             android:id="@+id/ivSend"

@@ -52,7 +52,7 @@ public class FragmentDataProtection extends FragmentBase
         tvCustomerId = view.findViewById(R.id.tvCustomerID);
 
         TextView tvVersion = view.findViewById(R.id.tvVersion);
-        tvVersion.setText(String.format("v %d (%s)", BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME));
+        tvVersion.setText(String.format("v%s.%d", BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE));
 
         view.findViewById(R.id.ivBack).setOnClickListener(this);
         view.findViewById(R.id.ivClose).setOnClickListener(this);

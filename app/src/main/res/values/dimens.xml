@@ -11,4 +11,5 @@
     <dimen name="toolbar_height_with_statusbar">48dp</dimen>
     <dimen name="statusbar">24dp</dimen>
     <dimen name="likesTitleHeight">48dp</dimen>
+    <dimen name="materialDesignDefaultPadding">16dp</dimen>
 </resources>

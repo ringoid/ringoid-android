@@ -12,7 +12,7 @@
     <string name="button_register_confirm">Continue to Upload photo</string>
     <string name="settings_terms">Terms of Service</string>
     <string name="settings_delete_account">Delete account</string>
-    <string name="settings_delete_account_subtitle">You can delete your account at any time or, if you don\'t open Ringoid for more than 16 days, your account may be automatically deleted.</string>
+    <string name="settings_delete_account_subtitle">If you don\'t use Ringoid for more than 16 days, your account will be automatically deleted.</string>
     <string name="hint_numbers">Number</string>
     <string name="settings_feedback">Email support@ringoid.com</string>
     <string name="settings_logout">Sign out</string>
