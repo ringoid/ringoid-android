@@ -20,7 +20,6 @@ import com.ringoid.controller.data.repository.RepositoryErrorUnknown;
 import com.ringoid.controller.data.repository.RepositoryFeedExplore;
 import com.ringoid.controller.data.repository.RepositoryFeedLikes;
 import com.ringoid.controller.data.repository.RepositoryFeedMessages;
-import com.ringoid.controller.data.repository.RepositoryLmm;
 import com.ringoid.controller.data.repository.RepositoryPhotoUploadSync;
 import com.ringoid.controller.data.repository.RepositoryProfileImageRemove;
 import com.ringoid.controller.data.repository.RepositoryRegisterCodeConfirm;
@@ -343,5 +342,5 @@ public interface AppComponent {
 
     void inject(PresenterSettings presenterSettings);
 
-    void inject(RepositoryLmm repositoryLmm);
+    //void inject(RepositoryLmm repositoryLmm);
 }
