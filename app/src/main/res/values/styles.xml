@@ -14,7 +14,7 @@
         <item name="colorDivider">@color/divider_light</item>
         <item name="colorTabBackground">#b4ffffff</item>
         <item name="colorTextDialog">@android:color/black</item>
-        <item name="colorTabTextNotActive">#8e8e8e</item>
+        <item name="colorTabTextNotActive">#6e6e6e</item>
         <item name="colorComposeBackground">#998e8e8e</item>
         <item name="drawableThemeLogin">@drawable/ic_theme_light_24dp</item>
         <item name="drawableTheme">@drawable/ic_theme_settings_light_24dp</item>
@@ -40,7 +40,7 @@
         <item name="colorDivider">@color/divider_dark</item>
         <item name="colorTabBackground">#b4161d24</item>
         <item name="colorTextDialog">@color/grey_middle</item>
-        <item name="colorTabTextNotActive">#5d5e63</item>
+        <item name="colorTabTextNotActive">#989898</item>
         <item name="colorComposeBackground">#991f262c</item>
         <item name="drawableThemeLogin">@drawable/ic_theme_dark_24dp</item>
         <item name="drawableTheme">@drawable/ic_theme_settings_dark_24dp</item>
