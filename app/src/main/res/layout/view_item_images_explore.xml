@@ -9,12 +9,25 @@
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="3:4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarThumbHorizontal="@color/color_horizontal_scroll_bar"
+        android:scrollbarSize="4dp"
+        android:scrollbars="horizontal"/>
 
     <FrameLayout
         android:id="@+id/flDots"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rvImages"
+        android:foregroundGravity="center"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarThumbHorizontal="@color/grey_middle"
+        android:scrollbarSize="4dp"
+        android:scrollbars="horizontal"/>
 
     <ImageView
         android:id="@+id/ivImageMenu"

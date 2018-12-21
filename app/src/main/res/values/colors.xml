@@ -19,4 +19,6 @@
     <color name="grey_middle">#bdc1c6</color>
     <color name="grey_middle_20">#33000000</color>
 
+    <color name="color_horizontal_scroll_bar">#70ffffff</color>
+
 </resources>

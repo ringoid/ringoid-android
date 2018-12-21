@@ -38,8 +38,9 @@ public class DotsIndicator implements IIndicator {
     private void updateDots(int pos) {
         if (savedPos == pos) return;
         savedPos = pos;
-        for (int i = 0; i < llDots.getChildCount(); ++i)
+        for (int i = 0; i < llDots.getChildCount(); ++i) {
             ((ImageView) llDots.getChildAt(i)).setImageResource(i == pos ? R.drawable.indicator_dot_accent : R.drawable.indicator_dot_grey);
+        }
     }
 
     @Override

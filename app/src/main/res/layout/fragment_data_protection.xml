@@ -44,24 +44,29 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableStart="?drawableAbout"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/materialDesignDefaultPadding"
+                    android:paddingRight="@dimen/materialDesignDefaultPadding"
+                    android:paddingStart="@dimen/materialDesignDefaultPadding"
+                    android:paddingEnd="@dimen/materialDesignDefaultPadding"
                     android:paddingBottom="-16dp"
-                    style="@style/settings_menu_item"
                     android:text="@string/about"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                    android:textColor="?colorTextPrimary"
                     android:textSize="17sp"
-                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
-                    android:paddingRight="@dimen/materialDesignDefaultPadding"
-                    android:drawableStart="?drawableAbout"/>
+                    android:drawablePadding="@dimen/materialDesignDefaultPadding"/>
 
                 <TextView
                     android:id="@+id/tvVersion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingStart="56dp"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                     android:textColor="@color/grey_middle"
                     android:textSize="17sp"
-                    tools:text="v123"
-                    android:paddingStart="56dp"/>
+                    tools:text="v123" />
 
             </LinearLayout>
 
@@ -143,7 +148,8 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                     android:textColor="@color/grey_middle"
                     android:textSize="14sp"
-                    tools:text="123qweqqeeeqqweewqadsadsadasdsadsadsadadadasddas" />
+                    tools:text="123qweqqeeeqqweewqadsadsadasdsadsadsadadadasddas"
+                    android:layout_marginTop="2dp"/>
 
             </LinearLayout>
 

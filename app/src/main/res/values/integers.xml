@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="message_compose_lines_max">4</integer>
+    <integer name="width_dp_fldots">20</integer>
 </resources>

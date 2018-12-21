@@ -28,7 +28,11 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_weight="1"
-        tools:listitem="@layout/view_item_blacklist_phone" />
+        tools:listitem="@layout/view_item_blacklist_phone"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarThumbHorizontal="@color/color_horizontal_scroll_bar"
+        android:scrollbarSize="4dp"
+        android:scrollbars="horizontal"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/ivBlacklistAdd"

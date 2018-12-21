@@ -80,11 +80,12 @@
                 android:drawableStart="@drawable/ic_remove_red_24dp"
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_gray_24dp"
                 android:text="@string/settings_delete_account"
-                android:textColor="@color/colorWarning" />
+                android:textColor="@color/colorWarning"/>
 
             <TextView
                 style="@style/settings_privacy_delete_account_value"
-                android:text="@string/settings_delete_account_subtitle"/>
+                android:text="@string/settings_delete_account_subtitle"
+                android:layout_marginTop="-10dp"/>
 
         </LinearLayout>
 

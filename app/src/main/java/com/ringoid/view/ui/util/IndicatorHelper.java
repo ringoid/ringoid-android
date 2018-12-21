@@ -4,6 +4,7 @@ package com.ringoid.view.ui.util;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.ringoid.R;
