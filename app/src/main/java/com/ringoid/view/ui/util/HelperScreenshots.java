@@ -24,7 +24,10 @@ public class HelperScreenshots implements IHelperScreenshots {
 
     @Override
     public void disableScreenshots() {
-        if (debugSessionScreenshotsEnabled) return;
+        if (debugSessionScreenshotsEnabled) {
+            enableScreenshots();
+            return;
+        }
         if (refWindow == null || refWindow.get() == null) return;
         refWindow.get().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
     }

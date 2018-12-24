@@ -3,6 +3,7 @@ package com.ringoid.view.presenter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.ringoid.ApplicationRingoid;
 import com.ringoid.R;
@@ -50,6 +51,7 @@ public class PresenterMessages implements IPresenterMessages {
     private ListenerMessageCompose listenerMessageCompose;
     private ListenerCacheMessages listenerCacheMessages;
     private WeakReference<IPresenterMessagesListener> refListener;
+    private View view;
 
     public PresenterMessages() {
         ApplicationRingoid.getComponent().inject(this);
@@ -70,7 +72,8 @@ public class PresenterMessages implements IPresenterMessages {
     }
 
     @Override
-    public void onCreateView() {
+    public void onCreateView(View view) {
+        this.view = view;
         if (presenterFeedPage.checkDataProfileExist(R.string.message_no_photo_messages)) {
             presenterFeedPage.scrollToPosition(cacheInterfaceState.getPositionScrollPageMessages(), cacheInterfaceState.getPositionScrollPageMessagesOffset());
             if (!cacheMessages.isDataExist())
@@ -98,20 +101,26 @@ public class PresenterMessages implements IPresenterMessages {
 
         @Override
         public void scrollToPosition(String userSelectedID, boolean isOpenChat) {
-            int position = cacheMessages.getPosition(userSelectedID, NO_VALUE);
+            final int position = cacheMessages.getPosition(userSelectedID, NO_VALUE);
             if (position == NO_VALUE) return;
-
-            int offset = position == 0
-                    ? -(int) (refContext.get().getResources().getDimension(R.dimen.likesTitleHeight))
-                    : -(int) refContext.get().getResources().getDimension(R.dimen.divider);
 
             int offsetMarginTop = 0;
             if (!isOpenChat) {
                 offsetMarginTop = (int) (refContext.get().getResources().getDimension(R.dimen.toolbar_height_with_statusbar));
             }
-            offset = offset + offsetMarginTop;
-            presenterFeedPage.scrollToPosition(position, offset);
-            cacheInterfaceState.setPositionScrollPageMessages(position, offset);
+
+            final int offset = (position == 0
+                    ? -(int) (refContext.get().getResources().getDimension(R.dimen.likesTitleHeight))
+                    : -(int) refContext.get().getResources().getDimension(R.dimen.divider))+offsetMarginTop;
+
+            view.post(new Runnable() {
+                @Override
+                public void run() {
+                    presenterFeedPage.scrollToPosition(position, offset);
+                    cacheInterfaceState.setPositionScrollPageMessages(position, offset);
+                }
+            });
+
         }
     }
 }

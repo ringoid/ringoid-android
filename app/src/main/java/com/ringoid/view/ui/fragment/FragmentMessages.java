@@ -36,7 +36,7 @@ public class FragmentMessages extends FragmentInnerTab {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container);
         initViews(view);
-        presenterMessages.onCreateView();
+        presenterMessages.onCreateView(view);
         return view;
     }
 

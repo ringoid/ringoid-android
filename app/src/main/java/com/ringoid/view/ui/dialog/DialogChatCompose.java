@@ -22,6 +22,7 @@ import com.ringoid.view.presenter.IPresenterChat;
 import com.ringoid.view.presenter.callback.IPresenterChatListener;
 import com.ringoid.view.ui.adapter.AdapterChatMessages;
 import com.ringoid.view.ui.util.DividerItemDecoration;
+import com.ringoid.view.ui.util.IHelperMessageCompose;
 import com.ringoid.view.ui.util.KeyboardUtils;
 import com.ringoid.view.ui.view.EditTextPreIme;
 import com.ringoid.view.ui.view.callback.IEditTextPreImeListener;
@@ -41,6 +42,9 @@ public class DialogChatCompose implements View.OnClickListener {
     IPresenterChat presenterChat;
 
     private IPresenterChatListener listenerPresenter;
+
+    @Inject
+    IHelperMessageCompose helperMessageCompose;
 
     private View viewContainer;
     private EditTextPreIme etMessage;
@@ -150,6 +154,8 @@ public class DialogChatCompose implements View.OnClickListener {
             keyboardUtils.keyboardHide(viewContainer.getContext(), viewContainer);
 
             presenterChat.onDialogDismiss(getMessage());
+
+            helperMessageCompose.onCloseDialog();
         }
     }
 
