@@ -228,6 +228,8 @@ public class Navigator implements INavigator {
 
         PAGE_ENUM page = fragmentBase.getPage();
 
+        helperScreenshots.disableScreenshots();
+        /* todo Disable screenshots for every screen, including Profile
         if (page == PAGE_ENUM.FEED_LIKES
                 || page == PAGE_ENUM.FEED_MESSAGES
                 || page == PAGE_ENUM.FEED_EXPLORE
@@ -239,6 +241,7 @@ public class Navigator implements INavigator {
             helperScreenshots.disableScreenshots();
         else
             helperScreenshots.enableScreenshots();
+        */
 
         if (page == PAGE_ENUM.FEED_PROFILE
                 || page == PAGE_ENUM.FEED_LIKES

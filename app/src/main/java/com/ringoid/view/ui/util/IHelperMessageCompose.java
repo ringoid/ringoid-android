@@ -8,4 +8,6 @@ public interface IHelperMessageCompose {
     void onClick(DataProfile user);
 
     void addListener(IHelperMessageComposeListener listener);
+
+    void onCloseDialog();
 }

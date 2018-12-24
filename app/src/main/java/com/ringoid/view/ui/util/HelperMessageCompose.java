@@ -5,6 +5,7 @@ import com.ringoid.ApplicationRingoid;
 import com.ringoid.controller.data.memorycache.ICacheMessages;
 import com.ringoid.model.DataProfile;
 import com.ringoid.view.IViewDialogs;
+import com.ringoid.view.presenter.IPresenterLikesContainer;
 import com.ringoid.view.ui.util.listener.IHelperMessageComposeListener;
 
 import java.util.WeakHashMap;
@@ -19,6 +20,8 @@ public class HelperMessageCompose implements IHelperMessageCompose {
     @Inject
     ICacheMessages cacheMessages;
 
+    @Inject
+    IPresenterLikesContainer presenterLikesContainer;
 
     private WeakHashMap<String, IHelperMessageComposeListener> listeners;
 
@@ -28,8 +31,9 @@ public class HelperMessageCompose implements IHelperMessageCompose {
 
     @Override
     public void onClick(DataProfile user) {
+        presenterLikesContainer.hidePageLikes();
         cacheMessages.setUserSelected(user);
-        notifyListeners(user.getId());
+        notifyListeners(user.getId(), true);
         viewDialogs.showDialogChatCompose();
     }
 
@@ -39,12 +43,19 @@ public class HelperMessageCompose implements IHelperMessageCompose {
         listeners.put(listener.getClass().getName(), listener);
     }
 
-    private void notifyListeners(String userId) {
+    @Override
+    public void onCloseDialog() {
+        if(cacheMessages.getUserSelectedID()!=null) {
+            notifyListeners(cacheMessages.getUserSelectedID(), false);
+        }
+    }
+
+    private void notifyListeners(String userId, boolean isOpenChat) {
         if (listeners == null) return;
         for (String name : listeners.keySet()) {
             IHelperMessageComposeListener listener = listeners.get(name);
             if (listener == null) continue;
-            listener.scrollToPosition(userId);
+            listener.scrollToPosition(userId, isOpenChat);
         }
     }
 }

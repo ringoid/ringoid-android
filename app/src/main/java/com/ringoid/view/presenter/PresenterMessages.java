@@ -97,12 +97,19 @@ public class PresenterMessages implements IPresenterMessages {
     private class ListenerMessageCompose implements IHelperMessageComposeListener {
 
         @Override
-        public void scrollToPosition(String userSelectedID) {
+        public void scrollToPosition(String userSelectedID, boolean isOpenChat) {
             int position = cacheMessages.getPosition(userSelectedID, NO_VALUE);
             if (position == NO_VALUE) return;
+
             int offset = position == 0
                     ? -(int) (refContext.get().getResources().getDimension(R.dimen.likesTitleHeight))
                     : -(int) refContext.get().getResources().getDimension(R.dimen.divider);
+
+            int offsetMarginTop = 0;
+            if (!isOpenChat) {
+                offsetMarginTop = (int) (refContext.get().getResources().getDimension(R.dimen.toolbar_height_with_statusbar));
+            }
+            offset = offset + offsetMarginTop;
             presenterFeedPage.scrollToPosition(position, offset);
             cacheInterfaceState.setPositionScrollPageMessages(position, offset);
         }

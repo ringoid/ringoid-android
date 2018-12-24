@@ -52,7 +52,7 @@ public class CacheChatMessages implements ICacheChatMessages {
         getData().add(new DataMessage(true, message), userSelectedID);
 
         if (random.nextBoolean() && BuildConfig.DEBUG)
-            getData().add(new DataMessage(false, "test"), userSelectedID);
+            getData().add(new DataMessage(false, "onCloseDialog"), userSelectedID);
         cacheStorage.writeData(FileEnum.CHAT_CACHE, data);
 
         setReaded(userSelectedID);

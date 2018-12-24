@@ -131,7 +131,7 @@ public class PresenterLikes implements IPresenterLikes {
     private class ListenerMessageCompose implements IHelperMessageComposeListener {
 
         @Override
-        public void scrollToPosition(String userSelectedID) {
+        public void scrollToPosition(String userSelectedID, boolean isOpenChat) {
 
             int position = cacheLikes.getPosition(userSelectedID, NO_VALUE);
             if (position == NO_VALUE) return;

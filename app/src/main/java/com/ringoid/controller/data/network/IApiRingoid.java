@@ -33,6 +33,9 @@ public interface IApiRingoid {
     Call<ResponseCreateProfile> createProfile(
             @Body RequestParamCreateProfile param);
 
+    @POST("/auth/delete")
+    Call<ResponseBase> deleteUsersAccount(@Query("accessToken") String token);
+
     @POST("/image/get_presigned")
     Call<ResponseProfilePhotoUri> profilePhotoUri(@Body RequestPhotoUploadUri param);
 
@@ -52,12 +55,10 @@ public interface IApiRingoid {
                                           @Query("resolution") String res,
                                           @Query("limit") int limit);
 
-    /* todo DEBUG
     @GET("/feeds/get_lmm")
     Call<ResponseLmm> getLmmGet(@Query("accessToken") String token,
                                 @Query("resolution") String res,
                                 @Query("lastActionTime") long lastActionTime);
-    */
 
     //-----------------------------------------------------------------
     //DEPRECATED

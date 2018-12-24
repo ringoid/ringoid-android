@@ -15,4 +15,6 @@ public interface IPresenterLikesContainer {
     void scrollTop();
 
     void showPageLikes();
+
+    void hidePageLikes();
 }

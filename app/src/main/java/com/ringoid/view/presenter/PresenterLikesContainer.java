@@ -74,6 +74,11 @@ public class PresenterLikesContainer implements IPresenterLikesContainer {
         onClick(R.id.tvLikes);
     }
 
+    @Override
+    public void hidePageLikes() {
+        refListener.get().setTabbarShown(false);
+    }
+
     private void navigateCurrentPage() {
         if (navigatorLikes.isPageCurrent(cacheInterfaceState.getPageLikes())) {
             scrollTop();
