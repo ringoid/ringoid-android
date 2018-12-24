@@ -10,7 +10,7 @@ public interface IPresenterAdapterProfile {
 
     int getLikesNum(int position);
 
-    void onCLickLikes();
+    void onClickLikes();
 
     void setListener(IPresenterAdapterProfileListener listener);
 

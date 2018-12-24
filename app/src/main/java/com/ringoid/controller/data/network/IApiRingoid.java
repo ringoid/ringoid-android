@@ -9,7 +9,6 @@ import com.ringoid.controller.data.network.request.RequestParamCreateProfile;
 import com.ringoid.controller.data.network.request.RequestParamSettingsUpdate;
 import com.ringoid.controller.data.network.request.RequestPhotoUploadUri;
 import com.ringoid.controller.data.network.response.ResponseBase;
-import com.ringoid.controller.data.network.response.ResponseLmm;
 import com.ringoid.controller.data.network.response.ResponseNewFaces;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotoUri;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotos;

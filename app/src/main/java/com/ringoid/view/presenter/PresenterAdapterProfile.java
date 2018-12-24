@@ -71,7 +71,7 @@ public class PresenterAdapterProfile implements IPresenterAdapterProfile {
     }
 
     @Override
-    public void onCLickLikes() {
+    public void onClickLikes() {
         navigatorPages.navigateLikes();
     }
 
