@@ -9,6 +9,7 @@ import com.ringoid.controller.data.network.request.RequestParamCreateProfile;
 import com.ringoid.controller.data.network.request.RequestParamSettingsUpdate;
 import com.ringoid.controller.data.network.request.RequestPhotoUploadUri;
 import com.ringoid.controller.data.network.response.ResponseBase;
+//import com.ringoid.controller.data.network.response.ResponseLmm;
 import com.ringoid.controller.data.network.response.ResponseNewFaces;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotoUri;
 import com.ringoid.controller.data.network.response.ResponseProfilePhotos;
@@ -32,8 +33,9 @@ public interface IApiRingoid {
     Call<ResponseCreateProfile> createProfile(
             @Body RequestParamCreateProfile param);
 
+    /*
     @POST("/auth/delete")
-    Call<ResponseBase> deleteUsersAccount(@Query("accessToken") String token);
+    Call<ResponseBase> deleteUsersAccount(@Query("accessToken") String token);*/
 
     @POST("/image/get_presigned")
     Call<ResponseProfilePhotoUri> profilePhotoUri(@Body RequestPhotoUploadUri param);
@@ -54,10 +56,10 @@ public interface IApiRingoid {
                                           @Query("resolution") String res,
                                           @Query("limit") int limit);
 
-    @GET("/feeds/get_lmm")
+    /*@GET("/feeds/get_lmm")
     Call<ResponseLmm> getLmmGet(@Query("accessToken") String token,
                                 @Query("resolution") String res,
-                                @Query("lastActionTime") long lastActionTime);
+                                @Query("lastActionTime") long lastActionTime);*/
 
     //-----------------------------------------------------------------
     //DEPRECATED
